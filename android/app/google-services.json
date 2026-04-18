@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1057378791268",
+    "project_id": "placeofsales-realestate",
+    "storage_bucket": "placeofsales-realestate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057378791268:android:c9fb118a4d7fd54ccbd471",
+        "android_client_info": {
+          "package_name": "com.placeofsalesrealestate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057378791268-096or5jdsugqltohg6bpp3bdtglk806h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.placeofsalesrealestate",
+            "certificate_hash": "ca85069881b289b463dd7041dc6f4b74d14551e3"
+          }
+        },
+        {
+          "client_id": "1057378791268-65i5ef7c34gaahltnnmorq1e117j3dn1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.placeofsalesrealestate",
+            "certificate_hash": "fe23f09c15edd072297857d50358894eaaf5df60"
+          }
+        },
+        {
+          "client_id": "1057378791268-v06ggcn013pstg1igf3cccs3a1cluei3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.placeofsalesrealestate",
+            "certificate_hash": "e72ad41725f8bb1ac28a647c9d70444742206eb7"
+          }
+        },
+        {
+          "client_id": "1057378791268-7dftq0in7fos1fug3pttcl4949ojb5ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTGZgS7Lt34tdDK8JBf1CWi6Jofiw40yY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057378791268-7dftq0in7fos1fug3pttcl4949ojb5ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
