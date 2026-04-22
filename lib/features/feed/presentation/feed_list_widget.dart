@@ -322,6 +322,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
       commentCount: feed.commentsCount ?? 0,
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
+      listingType: feed.listingType,
       canEdit: isOwner,
       canDelete: isOwner,
       onEditPressed: () {
@@ -428,6 +429,7 @@ Check it out on Propertify!
       commentCount: feed.commentsCount ?? 0,
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
+      listingType: feed.listingType,
       canEdit: isOwner,
       canDelete: isOwner,
       onEditPressed: () {

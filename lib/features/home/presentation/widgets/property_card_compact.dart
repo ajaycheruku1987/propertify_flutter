@@ -13,6 +13,7 @@ class PropertyCardCompact extends StatelessWidget {
   final String title;
   final String location;
   final String? price;
+  final String? listingType;
   final bool isFavorite;
   final bool isLiked;
   final bool isFeatured;
@@ -35,6 +36,7 @@ class PropertyCardCompact extends StatelessWidget {
     required this.title,
     required this.location,
     this.price,
+    this.listingType,
     this.isFavorite = false,
     this.isLiked = false,
     this.isFeatured = false,
@@ -118,34 +120,53 @@ class PropertyCardCompact extends StatelessWidget {
                             onSelected: (value) {
                               if (value == 'edit' && onEditPressed != null) {
                                 onEditPressed!();
-                              } else if (value == 'delete' && onDeletePressed != null) {
+                              } else if (value == 'delete' &&
+                                  onDeletePressed != null) {
                                 onDeletePressed!();
                               }
                             },
-                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                              if (canEdit)
-                                const PopupMenuItem<String>(
-                                  value: 'edit',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.edit, size: 16, color: Colors.blue),
-                                      SizedBox(width: 8),
-                                      Text('Edit', style: TextStyle(fontSize: 13)),
-                                    ],
-                                  ),
-                                ),
-                              if (canDelete)
-                                const PopupMenuItem<String>(
-                                  value: 'delete',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.delete, size: 16, color: Colors.red),
-                                      SizedBox(width: 8),
-                                      Text('Delete', style: TextStyle(color: Colors.red, fontSize: 13)),
-                                    ],
-                                  ),
-                                ),
-                            ],
+                            itemBuilder: (BuildContext context) =>
+                                <PopupMenuEntry<String>>[
+                                  if (canEdit)
+                                    const PopupMenuItem<String>(
+                                      value: 'edit',
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.edit,
+                                            size: 16,
+                                            color: Colors.blue,
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'Edit',
+                                            style: TextStyle(fontSize: 13),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  if (canDelete)
+                                    const PopupMenuItem<String>(
+                                      value: 'delete',
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.delete,
+                                            size: 16,
+                                            color: Colors.red,
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'Delete',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                           ),
                         ),
                     ],
@@ -301,6 +322,48 @@ class PropertyCardCompact extends StatelessWidget {
               ),
             ),
           ),
+          //write positioned code for share button
+          // Share Button
+          Positioned(
+            top: 42,
+            right: 8,
+            child: GestureDetector(
+              onTap: onSharePressed,
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  FontAwesomeIcons.share,
+                  color: Colors.grey.shade600,
+                  size: 14,
+                ),
+              ),
+            ),
+          ),
+          //code for lookingFor
+          if (listingType != null && listingType!.isNotEmpty)
+            Positioned(
+              bottom: 8,
+              left: 8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  listingType!,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            )
         ],
       ),
     );
@@ -347,14 +410,14 @@ class PropertyCardCompact extends StatelessWidget {
           ),
 
           // Share Button
-          GestureDetector(
-            onTap: onSharePressed,
-            child: Icon(
-              FontAwesomeIcons.shareNodes,
-              size: 14,
-              color: Colors.grey.shade600,
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: onSharePressed,
+          //   child: Icon(
+          //     FontAwesomeIcons.shareNodes,
+          //     size: 14,
+          //     color: Colors.grey.shade600,
+          //   ),
+          // ),
         ],
       ),
     );

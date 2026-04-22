@@ -14,6 +14,8 @@ class PropertyCard extends StatefulWidget {
   final String location;
   final double? rating;
   final String? price;
+  final String? listingType;
+  final String? category;
   final bool isFavorite;
   final bool isLiked;
   final bool isTopAd;
@@ -39,6 +41,7 @@ class PropertyCard extends StatefulWidget {
     required this.location,
     this.rating,
     this.price,
+    this.category,
     this.isFavorite = false,
     this.isLiked = false,
     this.isTopAd = false,
@@ -56,6 +59,7 @@ class PropertyCard extends StatefulWidget {
     required this.onCommentPressed,
     this.onEditPressed,
     this.onDeletePressed,
+    this.listingType,
   });
 
   @override
@@ -252,10 +256,10 @@ class _PropertyCardState extends State<PropertyCard> {
             ),
 
           // Favorite Button
-          if (context.read<HomeBloc>().state.showAddButton)
+          // if (context.read<HomeBloc>().state.showAddButton)
             Positioned(
               top: 12,
-              right: 12,
+              right: 8,
               child: GestureDetector(
                 onTap: widget.onFavoritePressed,
                 child: Container(
@@ -270,6 +274,47 @@ class _PropertyCardState extends State<PropertyCard> {
                         ? Colors.red
                         : Colors.grey.shade600,
                     size: 20,
+                  ),
+                ),
+              ),
+            ),
+          //Positioned share button
+          // Share Button
+          Positioned(
+            top: 60,
+            right: 8,
+            child: GestureDetector(
+              onTap: widget.onSharePressed,
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  FontAwesomeIcons.share,
+                  color: Colors.grey.shade600,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+          if (widget.listingType != null && widget.listingType!.isNotEmpty)
+            Positioned(
+              bottom: 8,
+              left: 8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  widget.listingType!,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -468,14 +513,14 @@ class _PropertyCardState extends State<PropertyCard> {
               },
             ),
 
-          const Spacer(),
-          _buildActionButton(
-            icon: FontAwesomeIcons.shareNodes,
-            label: 'Share',
-            onPressed: () {
-              onSharePressed();
-            },
-          ),
+          // const Spacer(),
+          // _buildActionButton(
+          //   icon: FontAwesomeIcons.shareNodes,
+          //   label: 'Share',
+          //   onPressed: () {
+          //     onSharePressed();
+          //   },
+          // ),
         ],
       ),
     );
