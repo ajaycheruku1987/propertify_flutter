@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:propertify/utils/string_extensions.dart';
 
 class RequestTileWidget extends StatefulWidget {
@@ -10,6 +11,7 @@ class RequestTileWidget extends StatefulWidget {
   final String description;
   final String type; // 'Buy' or 'Rent'
   final String budget;
+  final String? createdAt;
   final VoidCallback? onCallPressed;
   final VoidCallback? onWhatsAppPressed;
   final VoidCallback? onEditPressed;
@@ -29,6 +31,7 @@ class RequestTileWidget extends StatefulWidget {
     this.onEditPressed,
     this.onDeletePressed,
     this.onTap,
+    this.createdAt,
   });
 
   @override
@@ -161,7 +164,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                           ],
                         ),
                         // More/Less button
-                        if (widget.description.length > 80)
+                        if (widget.description.length > 60)
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -216,6 +219,24 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                   // ),
                   const SizedBox(height: 8),
 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        widget.createdAt != null
+                            ? DateFormat('dd MMM').format(
+                          DateTime.parse(widget.createdAt!),
+                        )
+                            : '',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

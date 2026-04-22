@@ -170,6 +170,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
           location: '${request.city ?? ''}',
           description: request.description ?? 'Unknown Description',
           type: request.category ?? 'General',
+          createdAt: request.createdAt ?? 'Unknown Date',
           onEditPressed:
               request.owner?.id ==
                   context.read<ProfileBloc>().state.userProfile?.id

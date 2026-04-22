@@ -11,6 +11,7 @@ import 'package:propertify/features/requests/presentation/create_request_details
 import 'package:propertify/features/services/presentation/create_service_details.dart';
 import '../../../feed/bloc/feed_bloc.dart';
 import '../../../create_post/presentation/create_post_screen.dart';
+import '../../../profile/presentation/create_banner_ad.dart';
 import '../../../reels/presentation/create_reel.dart';
 import '../../../sales/presentation/create_sales.dart';
 import 'package:propertify/utils/custom_toast.dart';
@@ -120,7 +121,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/agent.svg',
-                          title: 'Register as Agent',
+                          title: 'Register as Service Agent',
                           subtitle: 'Offer your professional\nservices',
                           color: Theme.of(context).primaryColor,
                           onTap: () async {
@@ -142,7 +143,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                           color: Theme.of(context).primaryColor,
                           onTap: () {
                             Navigator.pop(context);
-                            // Handle create ads
+                            context.push(CreateBannerAdScreen.routeName);
                           },
                         ),
                       ),
