@@ -402,7 +402,7 @@ class ReelViewState extends State<ReelView>
             ),
           Positioned(
             right: 0,
-            bottom: 100,
+            bottom: 200,
             child: BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, profileState) {
                 final currentUserId = profileState.userProfile?.id;
@@ -432,7 +432,7 @@ class ReelViewState extends State<ReelView>
                         _ActionButton(
                           icon: Icons.rocket_launch_outlined,
                           label: 'Boost',
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.white,
                           onTap: () {
                             // Navigate to SelectPlanScreen when boost is tapped
                             final reelId = widget.reel.id ?? '';
@@ -449,7 +449,7 @@ class ReelViewState extends State<ReelView>
                             : Icons.thumb_up_alt_outlined,
                         label: widget.reel.likesCount?.toString() ?? '0',
                         color: widget.reel.isLiked == true
-                            ? Theme.of(context).primaryColor
+                            ? Colors.white
                             : null,
                         onTap: () {
                           if (widget.reel.id != null) {

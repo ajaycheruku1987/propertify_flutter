@@ -154,44 +154,49 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                     children: [
                       // Video upload/preview section
                       _videoFile == null
-                          ? Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(vertical: 32),
-                              decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).primaryColor.withOpacity(0.06),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: Colors.grey.shade200),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.video_library_outlined,
-                                    size: 56,
-                                    color: Theme.of(context).primaryColor,
+                          ? GestureDetector(
+                              onTap: _pickVideo,
+                              behavior: HitTestBehavior.opaque,
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 32,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(
+                                    context,
+                                  ).primaryColor.withOpacity(0.06),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: Colors.grey.shade200,
                                   ),
-                                  const SizedBox(height: 8),
-                                  GestureDetector(
-                                    onTap: _pickVideo,
-                                    child: Text(
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.video_library_outlined,
+                                      size: 56,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
                                       'Upload Video File',
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    'Maximum 30 sec. Preferred format mp4 or webm (≤5MB)',
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 12,
+                                    const SizedBox(height: 4),
+                                    const Text(
+                                      'Maximum 30 sec. Preferred format mp4 or webm (≤5MB)',
+                                      style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 12,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             )
                           : VideoPreviewWidget(
