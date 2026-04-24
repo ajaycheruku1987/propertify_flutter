@@ -231,7 +231,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                                 icon: 'assets/icons/sales.svg',
                                 title: 'Create Project',
                                 subtitle:
-                                    'List your projects for\nsale or rent',
+                                    'List your projects for\nsales',
                                 color: Theme.of(context).primaryColor,
                                 onTap: () async {
                                   Navigator.pop(context);
