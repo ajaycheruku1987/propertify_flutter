@@ -356,19 +356,19 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                         },
                       ),
 
-                      const SizedBox(height: 16),
+                      // const SizedBox(height: 16),
 
-                      Row(
-                        children: [
-                          const Expanded(
-                            child: Text('Promote this post as an ads'),
-                          ),
-                          Switch(
-                            value: _promote,
-                            onChanged: (v) => setState(() => _promote = v),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     const Expanded(
+                      //       child: Text('Promote this post as an ads'),
+                      //     ),
+                      //     Switch(
+                      //       value: _promote,
+                      //       onChanged: (v) => setState(() => _promote = v),
+                      //     ),
+                      //   ],
+                      // ),
 
                       const SizedBox(height: 24),
 
