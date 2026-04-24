@@ -19,6 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
+import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import '../../services/presentation/my_services_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
@@ -580,54 +581,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         if (homeState.showAddButton)
                           ProfileMenuItem(
-                            icon: Icons.grid_view_rounded,
-                            title: 'My Posts',
+                            icon: Icons.dashboard_outlined,
+                            title: 'My Dashboard',
                             onTap: () {
-                              context.push('/my-posts');
-                            },
-                          ),
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
-                            icon: Icons.movie_outlined,
-                            title: 'My Reels',
-                            onTap: () {
-                              context.push('/my-reels');
-                            },
-                          ),
-                        // const SizedBox(height: 16),
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
-                            icon: Icons.description_outlined,
-                            title: 'My Requests',
-                            onTap: () {
-                              context.push('/my-requests');
-                            },
-                          ),
-                        // const SizedBox(height: 16),
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
-                            icon: Icons.home_repair_service_outlined,
-                            title: 'My Services',
-                            onTap: () {
-                              context.push(MyServicesScreen.routeName);
-                            },
-                          ),
-                        // const SizedBox(height: 16),
-                        // if (homeState.showAddButton)
-                        //   ProfileMenuItem(
-                        //     icon: Icons.people_outline,
-                        //     title: 'My Agents',
-                        //     onTap: () {
-                        //       // Navigate to my agents
-                        //     },
-                        //   ),
-                        // const SizedBox(height: 16),
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
-                            icon: Icons.campaign_outlined,
-                            title: 'Banner Promotions',
-                            onTap: () {
-                              context.push('/my-banner-ads');
+                              context.push(MyDashboardScreen.routeName);
                             },
                           ),
                         ProfileMenuItem(
