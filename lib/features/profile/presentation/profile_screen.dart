@@ -637,7 +637,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: 'Terms and Conditions',
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://avontra.in/index.php/terms-conditions/',
+                              'https://propertifyapp.com/terms-and-conditions/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
@@ -652,7 +652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: 'Privacy Policy',
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://avontra.in/index.php/privacy-policy/',
+                              'https://propertifyapp.com/our-features-one/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
