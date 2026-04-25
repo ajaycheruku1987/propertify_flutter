@@ -370,83 +370,88 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                       // ),
 
                       const SizedBox(height: 24),
+                      SafeArea(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: CommonCustomButton(
+                            buttonLabel: 'Posts',
+                            isEnable: !isLoading,
+                            onTap: () {
+                              if (_formKey.currentState?.validate() ?? false) {
+                                // Validate video file
+                                if (_videoFile == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Please select a video'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                  return;
+                                }
 
-                      SizedBox(
-                        width: double.infinity,
-                        child: CommonCustomButton(
-                          buttonLabel: 'Posts',
-                          isEnable: !isLoading,
-                          onTap: () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              // Validate video file
-                              if (_videoFile == null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Please select a video'),
-                                    backgroundColor: Colors.red,
+                                // Validate category selection
+                                if (_selectedCategory == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Please select a category'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                  return;
+                                }
+
+                                // Call createReel event
+                                context.read<ReelsBloc>().add(
+                                  ReelsEvent.createReel(
+                                    videoFile: _videoFile!,
+                                    description:
+                                        _descriptionController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? null
+                                        : _descriptionController.text.trim(),
+                                    category: _selectedCategory != null
+                                        ? [_selectedCategory!]
+                                        : null,
+                                    address:
+                                        (_selectedAddress != null &&
+                                            _selectedAddress!.isNotEmpty)
+                                        ? _selectedAddress
+                                        : (_addressController.text
+                                                  .trim()
+                                                  .isEmpty
+                                              ? null
+                                              : _addressController.text.trim()),
+                                    city:
+                                        (_selectedCity != null &&
+                                            _selectedCity!.isNotEmpty)
+                                        ? _selectedCity
+                                        : (_cityController.text.trim().isEmpty
+                                              ? null
+                                              : _cityController.text.trim()),
+                                    state: _stateController.text.trim().isEmpty
+                                        ? null
+                                        : _stateController.text.trim(),
+                                    latitude: _selectedLatitude,
+                                    longitude: _selectedLongitude,
+                                    location:
+                                        (_selectedCity != null &&
+                                            _selectedCity!.isNotEmpty)
+                                        ? _selectedCity
+                                        : (_cityController.text.trim().isEmpty
+                                              ? null
+                                              : _cityController.text.trim()),
+                                    isPromoted: _promote,
+                                    promotedUntil: _promote
+                                        ? DateTime.now()
+                                              .add(const Duration(days: 30))
+                                              .toIso8601String()
+                                        : null,
                                   ),
                                 );
-                                return;
                               }
-
-                              // Validate category selection
-                              if (_selectedCategory == null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Please select a category'),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
-                                return;
-                              }
-
-                              // Call createReel event
-                              context.read<ReelsBloc>().add(
-                                ReelsEvent.createReel(
-                                  videoFile: _videoFile!,
-                                  description:
-                                      _descriptionController.text.trim().isEmpty
-                                      ? null
-                                      : _descriptionController.text.trim(),
-                                  category: _selectedCategory != null
-                                      ? [_selectedCategory!]
-                                      : null,
-                                  address:
-                                      (_selectedAddress != null &&
-                                          _selectedAddress!.isNotEmpty)
-                                      ? _selectedAddress
-                                      : (_addressController.text.trim().isEmpty
-                                            ? null
-                                            : _addressController.text.trim()),
-                                  city:
-                                      (_selectedCity != null &&
-                                          _selectedCity!.isNotEmpty)
-                                      ? _selectedCity
-                                      : (_cityController.text.trim().isEmpty
-                                            ? null
-                                            : _cityController.text.trim()),
-                                  state: _stateController.text.trim().isEmpty
-                                      ? null
-                                      : _stateController.text.trim(),
-                                  latitude: _selectedLatitude,
-                                  longitude: _selectedLongitude,
-                                  location:
-                                      (_selectedCity != null &&
-                                          _selectedCity!.isNotEmpty)
-                                      ? _selectedCity
-                                      : (_cityController.text.trim().isEmpty
-                                            ? null
-                                            : _cityController.text.trim()),
-                                  isPromoted: _promote,
-                                  promotedUntil: _promote
-                                      ? DateTime.now()
-                                            .add(const Duration(days: 30))
-                                            .toIso8601String()
-                                      : null,
-                                ),
-                              );
-                            }
-                          },
+                            },
+                          ),
                         ),
                       ),
                     ],
