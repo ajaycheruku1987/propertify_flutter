@@ -622,7 +622,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: 'Contact us',
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://avontra.in/index.php/contact-us/',
+                              'https://propertifyapp.com/contact-us-two/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
