@@ -452,7 +452,8 @@ Check it out on Propertify!
                       const SizedBox(height: 12),
 
                       // Rating Section
-                      if (context.read<HomeBloc>().state.showAddButton)
+                      if (context.read<HomeBloc>().state.showAddButton &&
+                          !isOwner)
                         state.serviceDetails?.myReview != null
                             ? _buildMyReviewSection(
                                 state.serviceDetails!.myReview!,
@@ -732,7 +733,7 @@ Check it out on Propertify!
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Rate Now',
+                'Write a Review',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -784,7 +785,7 @@ Check it out on Propertify!
             },
 
             buttonChild: Text(
-              'Rate now',
+              'Create Review',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
