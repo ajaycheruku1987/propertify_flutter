@@ -206,32 +206,35 @@ class _CreateServiceMediaState extends State<CreateServiceMedia> {
                       const SizedBox(height: 32),
 
                       // Submit Button
-                      SizedBox(
-                        width: double.infinity,
-                        child: CommonCustomButton(
-                          isEnable: !isLoading,
-                          onTap: () {
-                            if (_acceptPolicies) {
-                              // Submit images and social links to create service
-                              context.read<ServicesBloc>().add(
-                                ServicesEvent.updateImagesAndMediaDetails(
-                                  createServiceDataModel:
-                                      CreateServiceDataModel(
-                                        imageFiles: _selectedImages,
-                                        facebook: _facebookController.text,
-                                        insta: _instagramController.text,
-                                        twitter: _twitterController.text,
-                                        website: _websiteController.text,
-                                      ),
-                                ),
-                              );
-                            } else {
-                              CustomToast.showWarningToast(
-                                msg: 'Please accept policies before submitting',
-                              );
-                            }
-                          },
-                          buttonLabel: 'Submit',
+                      SafeArea(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: CommonCustomButton(
+                            isEnable: !isLoading,
+                            onTap: () {
+                              if (_acceptPolicies) {
+                                // Submit images and social links to create service
+                                context.read<ServicesBloc>().add(
+                                  ServicesEvent.updateImagesAndMediaDetails(
+                                    createServiceDataModel:
+                                        CreateServiceDataModel(
+                                          imageFiles: _selectedImages,
+                                          facebook: _facebookController.text,
+                                          insta: _instagramController.text,
+                                          twitter: _twitterController.text,
+                                          website: _websiteController.text,
+                                        ),
+                                  ),
+                                );
+                              } else {
+                                CustomToast.showWarningToast(
+                                  msg:
+                                      'Please accept policies before submitting',
+                                );
+                              }
+                            },
+                            buttonLabel: 'Submit',
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),

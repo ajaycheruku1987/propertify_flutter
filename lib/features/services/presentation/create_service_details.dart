@@ -258,39 +258,41 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               const SizedBox(height: 20),
 
               // Next Button
-              SizedBox(
-                width: double.infinity,
-                child: CommonCustomButton(
-                  onTap: () {
-                    if (_formKey.currentState!.validate() &&
-                        _selectedCategories.isNotEmpty) {
-                      // Navigate to next page (media page)
-                      // This will be handled by the parent flow widget
-                      final createServiceDataModel = CreateServiceDataModel(
-                        agentShopName: _titleController.text,
-                        description: _descriptionController.text,
-                        categories: _selectedCategories,
-                        address: _addressController.text,
-                        city: _cityController.text,
-                        state: _stateController.text,
-                        pincode: _pinCodeController.text,
-                        latitude: _latitude ?? 0.0,
-                        longitude: _longitude ?? 0.0,
-                      );
-                      // Persist base details in bloc before moving to media
-                      context.read<ServicesBloc>().add(
-                        ServicesEvent.updateAgentDetails(
-                          createServiceDataModel: createServiceDataModel,
-                        ),
-                      );
-                      context.push(CreateServiceMedia.routeName);
-                    } else if (_selectedCategories.isEmpty) {
-                      CustomToast.showErrorToast(
-                        msg: 'Please select at least one category',
-                      );
-                    }
-                  },
-                  buttonLabel: 'Next',
+              SafeArea(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: CommonCustomButton(
+                    onTap: () {
+                      if (_formKey.currentState!.validate() &&
+                          _selectedCategories.isNotEmpty) {
+                        // Navigate to next page (media page)
+                        // This will be handled by the parent flow widget
+                        final createServiceDataModel = CreateServiceDataModel(
+                          agentShopName: _titleController.text,
+                          description: _descriptionController.text,
+                          categories: _selectedCategories,
+                          address: _addressController.text,
+                          city: _cityController.text,
+                          state: _stateController.text,
+                          pincode: _pinCodeController.text,
+                          latitude: _latitude ?? 0.0,
+                          longitude: _longitude ?? 0.0,
+                        );
+                        // Persist base details in bloc before moving to media
+                        context.read<ServicesBloc>().add(
+                          ServicesEvent.updateAgentDetails(
+                            createServiceDataModel: createServiceDataModel,
+                          ),
+                        );
+                        context.push(CreateServiceMedia.routeName);
+                      } else if (_selectedCategories.isEmpty) {
+                        CustomToast.showErrorToast(
+                          msg: 'Please select at least one category',
+                        );
+                      }
+                    },
+                    buttonLabel: 'Next',
+                  ),
                 ),
               ),
               const SizedBox(height: 20),

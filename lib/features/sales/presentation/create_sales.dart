@@ -390,130 +390,135 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                 ),
 
                 const SizedBox(height: 24),
+                SafeArea(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: CommonCustomButton(
+                      buttonLabel: 'Next',
+                      onTap: () {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          final createPostState = context
+                              .read<CreatePostBloc>()
+                              .state;
 
-                SizedBox(
-                  width: double.infinity,
-                  child: CommonCustomButton(
-                    buttonLabel: 'Next',
-                    onTap: () {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        final createPostState = context
-                            .read<CreatePostBloc>()
-                            .state;
+                          // Map property type to backend format
+                          String propertyType = createPostState
+                              .selectedPropertyType
+                              .toLowerCase()
+                              .trim();
+                          if (propertyType == 'apartments') {
+                            propertyType = 'Apartments';
+                          } else if (propertyType == 'villas') {
+                            propertyType = 'Villas';
+                          } else if (propertyType == 'open plot' ||
+                              propertyType == 'plots' ||
+                              propertyType == 'properties') {
+                            propertyType = 'OpenPlot';
+                          }
 
-                        // Map property type to backend format
-                        String propertyType = createPostState
-                            .selectedPropertyType
-                            .toLowerCase()
-                            .trim();
-                        if (propertyType == 'apartments') {
-                          propertyType = 'Apartments';
-                        } else if (propertyType == 'villas') {
-                          propertyType = 'Villas';
-                        } else if (propertyType == 'open plot' ||
-                            propertyType == 'plots' ||
-                            propertyType == 'properties') {
-                          propertyType = 'OpenPlot';
+                          final String projectName = _projectNameController.text
+                              .trim();
+                          final String? rera =
+                              _reraController.text.trim().isEmpty
+                              ? null
+                              : _reraController.text.trim();
+                          final num area =
+                              num.tryParse(_areaController.text.trim()) ?? 0;
+                          final String areaUnit = _selectedAreaUnit
+                              .toLowerCase();
+                          final int? noOfUnits =
+                              _noOfUnitsController.text.trim().isEmpty
+                              ? null
+                              : int.tryParse(_noOfUnitsController.text.trim());
+                          final int? noOfFloors =
+                              _noOfFloorsController.text.trim().isEmpty
+                              ? null
+                              : int.tryParse(_noOfFloorsController.text.trim());
+                          final String? address =
+                              (_selectedAddress ??
+                                      _addressController.text.trim())
+                                  .isEmpty
+                              ? null
+                              : (_selectedAddress ??
+                                    _addressController.text.trim());
+                          final String? city =
+                              (_selectedCity ??
+                                      createPostState.selectedLocation)
+                                  .isEmpty
+                              ? null
+                              : (_selectedCity ??
+                                    createPostState.selectedLocation);
+                          final String? state =
+                              _stateController.text.trim().isEmpty
+                              ? null
+                              : _stateController.text.trim();
+                          final double? latitude =
+                              _selectedLatitude ?? createPostState.latitude;
+                          final double? longitude =
+                              _selectedLongitude ?? createPostState.longitude;
+                          final String? publicFacilities =
+                              _publicFacilitiesController.text.trim().isEmpty
+                              ? null
+                              : _publicFacilitiesController.text.trim();
+                          final String? description =
+                              _descriptionController.text.trim().isEmpty
+                              ? null
+                              : _descriptionController.text.trim();
+                          final String? specifications =
+                              _specController.text.trim().isEmpty
+                              ? null
+                              : _specController.text.trim();
+
+                          final num? minPrice = num.tryParse(
+                            _minPriceController.text.trim(),
+                          );
+                          final num? maxPrice = num.tryParse(
+                            _maxPriceController.text.trim(),
+                          );
+
+                          final String? possessionDate =
+                              _possessionDateController.text.trim().isEmpty
+                              ? null
+                              : _possessionDateController.text.trim();
+
+                          final String? saleSpecification =
+                              _saleSpecificationController.text.trim().isEmpty
+                              ? null
+                              : _saleSpecificationController.text.trim();
+
+                          final draft = CreateSalesDataModel(
+                            propertyType: propertyType,
+                            projectName: projectName,
+                            rera: rera,
+                            area: area,
+                            areaUnit: areaUnit,
+                            noOfUnits: noOfUnits,
+                            noOfFloors: noOfFloors,
+                            address: address,
+                            city: city,
+                            state: state,
+                            latitude: latitude,
+                            longitude: longitude,
+                            publicFacilities: publicFacilities,
+                            minPrice: minPrice,
+                            maxPrice: maxPrice,
+                            possessionDate: possessionDate,
+                            description: description,
+                            specifications: specifications,
+                            saleSpecification: saleSpecification,
+                            location: createPostState.selectedLocation,
+                          );
+                          context.read<SalesBloc>().add(
+                            SalesEvent.updateSalesDetails(
+                              createSalesDataModel: draft,
+                            ),
+                          );
+                          context.push(
+                            SalesProjectImagesDescriptionScreen.routeName,
+                          );
                         }
-
-                        final String projectName = _projectNameController.text
-                            .trim();
-                        final String? rera = _reraController.text.trim().isEmpty
-                            ? null
-                            : _reraController.text.trim();
-                        final num area =
-                            num.tryParse(_areaController.text.trim()) ?? 0;
-                        final String areaUnit = _selectedAreaUnit.toLowerCase();
-                        final int? noOfUnits =
-                            _noOfUnitsController.text.trim().isEmpty
-                            ? null
-                            : int.tryParse(_noOfUnitsController.text.trim());
-                        final int? noOfFloors =
-                            _noOfFloorsController.text.trim().isEmpty
-                            ? null
-                            : int.tryParse(_noOfFloorsController.text.trim());
-                        final String? address =
-                            (_selectedAddress ?? _addressController.text.trim())
-                                .isEmpty
-                            ? null
-                            : (_selectedAddress ??
-                                  _addressController.text.trim());
-                        final String? city =
-                            (_selectedCity ?? createPostState.selectedLocation)
-                                .isEmpty
-                            ? null
-                            : (_selectedCity ??
-                                  createPostState.selectedLocation);
-                        final String? state =
-                            _stateController.text.trim().isEmpty
-                            ? null
-                            : _stateController.text.trim();
-                        final double? latitude =
-                            _selectedLatitude ?? createPostState.latitude;
-                        final double? longitude =
-                            _selectedLongitude ?? createPostState.longitude;
-                        final String? publicFacilities =
-                            _publicFacilitiesController.text.trim().isEmpty
-                            ? null
-                            : _publicFacilitiesController.text.trim();
-                        final String? description =
-                            _descriptionController.text.trim().isEmpty
-                            ? null
-                            : _descriptionController.text.trim();
-                        final String? specifications =
-                            _specController.text.trim().isEmpty
-                            ? null
-                            : _specController.text.trim();
-
-                        final num? minPrice = num.tryParse(
-                          _minPriceController.text.trim(),
-                        );
-                        final num? maxPrice = num.tryParse(
-                          _maxPriceController.text.trim(),
-                        );
-
-                        final String? possessionDate =
-                            _possessionDateController.text.trim().isEmpty
-                            ? null
-                            : _possessionDateController.text.trim();
-
-                        final String? saleSpecification =
-                            _saleSpecificationController.text.trim().isEmpty
-                            ? null
-                            : _saleSpecificationController.text.trim();
-
-                        final draft = CreateSalesDataModel(
-                          propertyType: propertyType,
-                          projectName: projectName,
-                          rera: rera,
-                          area: area,
-                          areaUnit: areaUnit,
-                          noOfUnits: noOfUnits,
-                          noOfFloors: noOfFloors,
-                          address: address,
-                          city: city,
-                          state: state,
-                          latitude: latitude,
-                          longitude: longitude,
-                          publicFacilities: publicFacilities,
-                          minPrice: minPrice,
-                          maxPrice: maxPrice,
-                          possessionDate: possessionDate,
-                          description: description,
-                          specifications: specifications,
-                          saleSpecification: saleSpecification,
-                          location: createPostState.selectedLocation,
-                        );
-                        context.read<SalesBloc>().add(
-                          SalesEvent.updateSalesDetails(
-                            createSalesDataModel: draft,
-                          ),
-                        );
-                        context.push(
-                          SalesProjectImagesDescriptionScreen.routeName,
-                        );
-                      }
-                    },
+                      },
+                    ),
                   ),
                 ),
               ],
