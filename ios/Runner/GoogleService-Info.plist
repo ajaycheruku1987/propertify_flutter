@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1057378791268-k5k5ub3n1bjicu0lu2dmkd4k5jn8usu8.apps.googleusercontent.com</string>
+	<string>1057378791268-2fmklpljr3qg98kr1klfojhnhv44706p.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1057378791268-k5k5ub3n1bjicu0lu2dmkd4k5jn8usu8</string>
+	<string>com.googleusercontent.apps.1057378791268-2fmklpljr3qg98kr1klfojhnhv44706p</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>1057378791268-096or5jdsugqltohg6bpp3bdtglk806h.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.placeofsalesrealestate</string>
+	<string>com.avontra.propertify</string>
 	<key>PROJECT_ID</key>
 	<string>placeofsales-realestate</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1057378791268:ios:0df0dcb87c13498bcbd471</string>
+	<string>1:1057378791268:ios:5407f41aaa22b5adcbd471</string>
 </dict>
 </plist>

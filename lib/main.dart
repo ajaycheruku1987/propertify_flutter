@@ -22,7 +22,11 @@ void main() async {
   // Initialize notifications after Firebase is ready
   try {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-    await NotificationService().initialize();
+    // Do NOT await this here. Awaiting requestPermission() before runApp()
+    // causes a deadlock (white screen) on iOS when the permission dialog needs to show.
+    NotificationService().initialize().catchError((e) {
+      debugPrint("Notification init error: $e");
+    });
   } catch (e) {
     debugPrint("Firebase messaging initialization error: $e");
   }

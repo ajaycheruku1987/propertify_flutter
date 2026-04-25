@@ -59,12 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC7C26-H8mv7ahxKwpDobZkXWcrK6GVQn4',
-    appId: '1:1057378791268:ios:0df0dcb87c13498bcbd471',
+    appId: '1:1057378791268:ios:5407f41aaa22b5adcbd471',
     messagingSenderId: '1057378791268',
     projectId: 'placeofsales-realestate',
     storageBucket: 'placeofsales-realestate.appspot.com',
-    iosBundleId: 'com.placeofsalesrealestate',
+    iosBundleId: 'com.avontra.propertify',
     iosClientId:
-        '1057378791268-k5k5ub3n1bjicu0lu2dmkd4k5jn8usu8.apps.googleusercontent.com',
+        '1057378791268-a3llhfurt8j5j8njk7tq0pc72v4iov3k.apps.googleusercontent.com',
   );
 }
