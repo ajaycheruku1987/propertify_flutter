@@ -51,6 +51,7 @@ import '../../features/auth/presentation/forgot_password_otp_update_password_scr
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/create_post/presentation/create_post_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/profile/presentation/my_dashboard_screen.dart';
 import '../../features/profile/presentation/my_posts_screen.dart';
 import '../../features/profile/presentation/create_banner_ad.dart';
 import '../../features/profile/presentation/my_banner_ads_screen.dart';
@@ -115,6 +116,10 @@ final router = GoRouter(
     GoRoute(
       path: MyPostsScreen.routeName,
       builder: (context, state) => const MyPostsScreen(),
+    ),
+    GoRoute(
+      path: MyDashboardScreen.routeName,
+      builder: (context, state) => const MyDashboardScreen(),
     ),
     GoRoute(
       path: MyServicesScreen.routeName,

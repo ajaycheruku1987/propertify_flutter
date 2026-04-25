@@ -12,6 +12,8 @@ import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import '../../home/presentation/widgets/home_loan_widget.dart';
+import '../../sales/presentation/create_sales.dart';
 
 class MyCompanyScreen extends StatefulWidget {
   static const String routeName = '/my-company';
@@ -195,25 +197,19 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
               }
 
               if (salesProjects.isEmpty) {
-                return SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.business_outlined,
-                          size: 64,
-                          color: Colors.grey[400],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No projects yet',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ],
+                return SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: AdSliderWidget(
+                      title: 'Add your Project!',
+                      caption: 'List your projects for\nsales',
+                      onCreateRequest: () {
+                        context.push(CreateSalesScreen.routeName);
+                      },
+                      createButtonText: 'Create Project',
+                      showExploreDetailsButton: false,
+                      backgroundImagePath:
+                          'assets/images/create_company_banner.svg',
                     ),
                   ),
                 );
