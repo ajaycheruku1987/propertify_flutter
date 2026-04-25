@@ -15,22 +15,6 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
-    // Request permission for iOS and Android 13+
-    NotificationSettings settings = await fcm.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      log('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      log('User granted provisional permission');
-    } else {
-      log('User declined or has not accepted permission');
-    }
-
     // Initialize local notifications for foreground
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -44,7 +28,6 @@ class NotificationService {
     await _localNotifications.initialize(
       initSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
-        // Handle notification tap
         log('Notification tapped: ${response.payload}');
       },
     );
@@ -70,15 +53,12 @@ class NotificationService {
       sound: true,
     );
 
-    // Get FCM Token
-    String? token = await getToken();
-    log('FCM Token: $token');
-
     // Handle Foreground Messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       log('Received foreground message: ${message.notification?.title}');
 
       RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
 
       if (notification != null) {
         _localNotifications.show(
@@ -107,11 +87,27 @@ class NotificationService {
 
     // Handle Background Messages (when app is opened from notification)
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      log(
-        'Notification opened from background: ${message.notification?.title}',
-      );
-      // Navigate to specific screen if needed
+      log('Notification opened from background: ${message.notification?.title}');
     });
+
+    // Request permission for iOS and Android 13+
+    NotificationSettings settings = await fcm.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      log('User granted permission');
+    } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+      log('User granted provisional permission');
+    } else {
+      log('User declined or has not accepted permission');
+    }
+
+    // Get FCM Token
+    String? token = await getToken();
+    log('FCM Token: $token');
 
     // Check if app was opened from terminated state by a notification
     RemoteMessage? initialMessage = await fcm.getInitialMessage();
