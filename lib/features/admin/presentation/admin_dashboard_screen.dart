@@ -75,8 +75,8 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'route': PropertiesListViewScreen.routeName,
       },
       {
-        'title': 'Banner Ads',
-        'icon': Icons.ad_units_outlined,
+        'title': 'Boosted Ads',
+        'icon': Icons.rocket_launch_outlined,
         'route': BannerAdsScreen.routeName,
       },
       {
