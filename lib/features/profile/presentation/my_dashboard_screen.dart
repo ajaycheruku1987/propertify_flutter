@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/profile/presentation/my_banner_ads_screen.dart';
+import 'package:propertify/features/profile/presentation/my_posts_screen.dart';
+import 'package:propertify/features/reels/presentation/my_reels_screen.dart';
+import 'package:propertify/features/requests/presentation/my_requests_screen.dart';
+import '../../feed/presentation/favorites_screen.dart';
 import '../../services/presentation/my_services_screen.dart';
 
 class MyDashboardScreen extends StatelessWidget {
@@ -13,17 +18,18 @@ class MyDashboardScreen extends StatelessWidget {
       {
         'title': 'My Posts',
         'icon': Icons.grid_view_rounded,
-        'route': '/my-posts',
+        'route': MyPostsScreen.routeName,
       },
       {
         'title': 'My Reels',
         'icon': Icons.movie_outlined,
-        'route': '/my-reels',
+        'route': MyReelsScreen.routeName,
       },
+
       {
         'title': 'My Requests',
         'icon': Icons.description_outlined,
-        'route': '/my-requests',
+        'route': MyRequestsScreen.routeName,
       },
       {
         'title': 'My Services',
@@ -33,7 +39,12 @@ class MyDashboardScreen extends StatelessWidget {
       {
         'title': 'Banner Promotions',
         'icon': Icons.campaign_outlined,
-        'route': '/my-banner-ads',
+        'route': MyBannerAdsScreen.routeName,
+      },
+      {
+        'title': 'My Favourites',
+        'icon': Icons.favorite_outline,
+        'route': FavoritesScreen.routeName,
       },
     ];
 
@@ -46,10 +57,7 @@ class MyDashboardScreen extends StatelessWidget {
         ),
         title: const Text(
           'My Dashboard',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
