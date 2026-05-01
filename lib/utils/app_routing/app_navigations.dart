@@ -10,6 +10,10 @@ import 'package:propertify/features/sales/models/sales_model.dart';
 import 'package:propertify/features/sales/presentation/sale_view_screen.dart';
 import 'package:propertify/features/services/presentation/create_service_details.dart';
 import 'package:propertify/features/services/presentation/create_service_media.dart';
+import 'package:propertify/features/services/presentation/builder_smart_screen.dart';
+import 'package:propertify/features/services/presentation/insights/cost_estimator_screen.dart';
+import 'package:propertify/features/services/presentation/insights/quality_guide_screen.dart';
+import 'package:propertify/features/services/presentation/insights/vastu_tips_screen.dart';
 import 'package:propertify/features/services/presentation/view_service.dart';
 import 'package:propertify/features/services/presentation/write_review_screen.dart';
 import 'package:propertify/features/services/models/services_response_model.dart';
@@ -231,6 +235,30 @@ final router = GoRouter(
       path: HomeInteriorScreen.routeName,
       builder: (context, state) {
         return HomeInteriorScreen();
+      },
+    ),
+    GoRoute(
+      path: BuilderSmartScreen.routeName,
+      builder: (context, state) {
+        return const BuilderSmartScreen();
+      },
+    ),
+    GoRoute(
+      path: CostEstimatorScreen.routeName,
+      builder: (context, state) {
+        return const CostEstimatorScreen();
+      },
+    ),
+    GoRoute(
+      path: QualityGuideScreen.routeName,
+      builder: (context, state) {
+        return const QualityGuideScreen();
+      },
+    ),
+    GoRoute(
+      path: VastuTipsScreen.routeName,
+      builder: (context, state) {
+        return const VastuTipsScreen();
       },
     ),
     GoRoute(

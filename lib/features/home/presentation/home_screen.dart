@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
-import 'package:propertify/features/feed/presentation/favorites_screen.dart';
+import '../../services/presentation/builder_smart_screen.dart';
 import 'package:propertify/features/feed/presentation/feed_list_widget.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/requests/bloc/requests_bloc.dart';
@@ -734,7 +734,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       case 1:
         return ReelsScreen();
       case 2:
-        return FavoritesScreen();
+        return const BuilderSmartScreen();
       case 3:
         return ProfileScreen();
       default:
