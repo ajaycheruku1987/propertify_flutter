@@ -778,7 +778,7 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                Icons.location_on_outlined,
+                Icons.arrow_forward_ios_outlined,
                 size: 18,
                 color: AppTheme.blueColor,
               ),
