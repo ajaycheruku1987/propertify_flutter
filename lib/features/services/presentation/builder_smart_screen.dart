@@ -16,12 +16,12 @@ class BuilderSmartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
           'BuilderSmart',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -88,7 +88,7 @@ class BuilderSmartScreen extends StatelessWidget {
             'Smart Building Decisions',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
