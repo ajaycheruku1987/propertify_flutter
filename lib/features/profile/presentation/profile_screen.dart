@@ -20,7 +20,6 @@ import 'package:share_plus/share_plus.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
-import '../../services/presentation/my_services_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
@@ -672,6 +671,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             );
                           },
                         ),
+
+                        if (homeState.showAddButton)
+                          ProfileMenuItem(
+                            icon: Icons.delete_outline_rounded,
+                            title: 'Delete Account',
+                            onTap: () {
+                              context.push(
+                                '/deactivate-account',
+                              );
+                            },
+                          ),
 
                         // Sign Out Button
                         if (homeState.showAddButton)

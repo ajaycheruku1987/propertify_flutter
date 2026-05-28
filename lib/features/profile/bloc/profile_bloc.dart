@@ -200,8 +200,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     try {
       emit(state.copyWith(isLoading: true));
-      Either<Failure, bool> deleteResponseEither = await _profileRepo
-          .deleteAccount();
+      Either<Failure, String> deleteResponseEither = await _profileRepo
+          .deleteAccount(
+            password: event.password,
+            actionType: event.actionType,
+          );
 
       deleteResponseEither.fold(
         (failure) {
@@ -212,13 +215,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             ),
           );
         },
-        (success) {
+        (message) {
           emit(
             state.copyWith(
               isLoading: false,
               userProfile: null,
               notifyStatus: NotifyStatus(
-                message: 'Account deleted successfully',
+                message: message,
               ),
             ),
           );

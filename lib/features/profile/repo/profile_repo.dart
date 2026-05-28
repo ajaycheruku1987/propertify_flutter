@@ -7,7 +7,6 @@ import 'dart:io';
 import '../../../core/api_request/api_request.dart';
 import '../../../core/failure.dart';
 import '../models/user_profile_model.dart';
-import '../models/create_banner_ad_model.dart';
 import '../models/banner_ad_model.dart';
 
 class ProfileRepo {
@@ -147,12 +146,21 @@ class ProfileRepo {
   }
 
   /// Delete Account API
-  Future<Either<Failure, bool>> deleteAccount() async {
-    final response = await ftPyroApiRequest.delete('/profile');
+  Future<Either<Failure, String>> deleteAccount({
+    required String password,
+    required String actionType,
+  }) async {
+    final response = await ftPyroApiRequest.delete(
+      '/profile',
+    );
     final responseData = await response.getResponse();
     return responseData.fold(
       (failure) => Left(failure),
-      (right) => const Right(true),
+      (right) {
+        final message = (right as Map<String, dynamic>)['message'] ??
+            'Account scheduled for deletion successfully';
+        return Right(message);
+      },
     );
   }
 

@@ -25,7 +25,7 @@ mixin _$ProfileEvent {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -44,7 +44,7 @@ mixin _$ProfileEvent {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -63,7 +63,7 @@ mixin _$ProfileEvent {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -185,7 +185,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -207,7 +207,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -229,7 +229,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -353,7 +353,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -375,7 +375,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -397,7 +397,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -565,7 +565,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -587,7 +587,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -609,7 +609,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -771,7 +771,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -793,7 +793,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -815,7 +815,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -983,7 +983,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1005,7 +1005,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1027,7 +1027,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1119,6 +1119,8 @@ abstract class _$$DeleteAccountImplCopyWith<$Res> {
   factory _$$DeleteAccountImplCopyWith(
           _$DeleteAccountImpl value, $Res Function(_$DeleteAccountImpl) then) =
       __$$DeleteAccountImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password, String actionType});
 }
 
 /// @nodoc
@@ -1128,26 +1130,60 @@ class __$$DeleteAccountImplCopyWithImpl<$Res>
   __$$DeleteAccountImplCopyWithImpl(
       _$DeleteAccountImpl _value, $Res Function(_$DeleteAccountImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? password = null,
+    Object? actionType = null,
+  }) {
+    return _then(_$DeleteAccountImpl(
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      actionType: null == actionType
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DeleteAccountImpl implements _DeleteAccount {
-  const _$DeleteAccountImpl();
+  const _$DeleteAccountImpl({required this.password, required this.actionType});
+
+  @override
+  final String password;
+  @override
+  final String actionType;
 
   @override
   String toString() {
-    return 'ProfileEvent.deleteAccount()';
+    return 'ProfileEvent.deleteAccount(password: $password, actionType: $actionType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeleteAccountImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteAccountImpl &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.actionType, actionType) ||
+                other.actionType == actionType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, password, actionType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      __$$DeleteAccountImplCopyWithImpl<_$DeleteAccountImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1159,7 +1195,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1168,7 +1204,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(bool flag) isLoading,
   }) {
-    return deleteAccount();
+    return deleteAccount(password, actionType);
   }
 
   @override
@@ -1181,7 +1217,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1190,7 +1226,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(bool flag)? isLoading,
   }) {
-    return deleteAccount?.call();
+    return deleteAccount?.call(password, actionType);
   }
 
   @override
@@ -1203,7 +1239,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1214,7 +1250,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult orElse(),
   }) {
     if (deleteAccount != null) {
-      return deleteAccount();
+      return deleteAccount(password, actionType);
     }
     return orElse();
   }
@@ -1279,7 +1315,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
 }
 
 abstract class _DeleteAccount implements ProfileEvent {
-  const factory _DeleteAccount() = _$DeleteAccountImpl;
+  const factory _DeleteAccount(
+      {required final String password,
+      required final String actionType}) = _$DeleteAccountImpl;
+
+  String get password;
+  String get actionType;
+  @JsonKey(ignore: true)
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1377,7 +1421,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1399,7 +1443,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1421,7 +1465,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1555,7 +1599,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1577,7 +1621,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1599,7 +1643,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1723,7 +1767,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1745,7 +1789,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1767,7 +1811,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1919,7 +1963,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -1941,7 +1985,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -1963,7 +2007,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -2119,7 +2163,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password, String actionType) deleteAccount,
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
@@ -2141,7 +2185,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password, String actionType)? deleteAccount,
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
@@ -2163,7 +2207,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
-    TResult Function()? deleteAccount,
+    TResult Function(String password, String actionType)? deleteAccount,
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,

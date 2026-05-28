@@ -19,7 +19,10 @@ class ProfileEvent with _$ProfileEvent {
     required String newPassword,
   }) = _ChangePassword;
 
-  const factory ProfileEvent.deleteAccount() = _DeleteAccount;
+  const factory ProfileEvent.deleteAccount({
+    required String password,
+    required String actionType,
+  }) = _DeleteAccount;
 
   const factory ProfileEvent.createBannerAd({
     required CreateBannerAdDataModel bannerAdData,

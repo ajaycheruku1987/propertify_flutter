@@ -31,6 +31,7 @@ class _AppState extends State<App> {
       providers: blocInjectors,
       child: MaterialApp.router(
         title: 'PROPERTIFY',
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         routerConfig: router,
         builder: (context, child) {

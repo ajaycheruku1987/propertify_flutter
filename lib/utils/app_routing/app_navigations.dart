@@ -59,6 +59,7 @@ import '../../features/profile/presentation/my_dashboard_screen.dart';
 import '../../features/profile/presentation/my_posts_screen.dart';
 import '../../features/profile/presentation/create_banner_ad.dart';
 import '../../features/profile/presentation/my_banner_ads_screen.dart';
+import '../../features/profile/presentation/deactivate_account_screen.dart';
 import '../../features/services/presentation/my_services_screen.dart';
 import '../../features/services/presentation/edit_service_screen.dart';
 import '../../features/feed/presentation/edit_feed_screen.dart';
@@ -125,6 +126,10 @@ final router = GoRouter(
     GoRoute(
       path: MyDashboardScreen.routeName,
       builder: (context, state) => const MyDashboardScreen(),
+    ),
+    GoRoute(
+      path: DeactivateAccountScreen.routeName,
+      builder: (context, state) => const DeactivateAccountScreen(),
     ),
     GoRoute(
       path: MyServicesScreen.routeName,
