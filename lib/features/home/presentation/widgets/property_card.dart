@@ -29,6 +29,7 @@ class PropertyCard extends StatefulWidget {
   final VoidCallback onFavoritePressed;
   final VoidCallback onCardPressed;
   final VoidCallback onSharePressed;
+  final VoidCallback onReportPressed;
   final VoidCallback onLikePressed;
   final VoidCallback onCommentPressed;
   final VoidCallback? onEditPressed;
@@ -55,6 +56,7 @@ class PropertyCard extends StatefulWidget {
     required this.onFavoritePressed,
     required this.onCardPressed,
     required this.onSharePressed,
+    required this.onReportPressed,
     required this.onLikePressed,
     required this.onCommentPressed,
     this.onEditPressed,
@@ -278,7 +280,6 @@ class _PropertyCardState extends State<PropertyCard> {
                 ),
               ),
             ),
-          //Positioned share button
           // Share Button
           Positioned(
             top: 60,
@@ -293,6 +294,26 @@ class _PropertyCardState extends State<PropertyCard> {
                 ),
                 child: Icon(
                   FontAwesomeIcons.share,
+                  color: Colors.grey.shade600,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+          // Report Button
+          Positioned(
+            top: 108,
+            right: 8,
+            child: GestureDetector(
+              onTap: widget.onReportPressed,
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.warning_amber_rounded,
                   color: Colors.grey.shade600,
                   size: 20,
                 ),

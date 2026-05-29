@@ -27,6 +27,7 @@ class PropertyCardCompact extends StatelessWidget {
   final VoidCallback onLikePressed;
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
+  final VoidCallback onReportPressed;
   final VoidCallback? onEditPressed;
   final VoidCallback? onDeletePressed;
 
@@ -50,6 +51,7 @@ class PropertyCardCompact extends StatelessWidget {
     required this.onLikePressed,
     required this.onCommentPressed,
     required this.onSharePressed,
+    required this.onReportPressed,
     this.onEditPressed,
     this.onDeletePressed,
   });
@@ -322,7 +324,6 @@ class PropertyCardCompact extends StatelessWidget {
               ),
             ),
           ),
-          //write positioned code for share button
           // Share Button
           Positioned(
             top: 42,
@@ -337,6 +338,26 @@ class PropertyCardCompact extends StatelessWidget {
                 ),
                 child: Icon(
                   FontAwesomeIcons.share,
+                  color: Colors.grey.shade600,
+                  size: 14,
+                ),
+              ),
+            ),
+          ),
+          // Report Button
+          Positioned(
+            top: 76,
+            right: 8,
+            child: GestureDetector(
+              onTap: onReportPressed,
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.warning_amber_rounded,
                   color: Colors.grey.shade600,
                   size: 14,
                 ),

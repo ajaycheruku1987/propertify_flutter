@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
+import 'package:propertify/features/feed/repo/feed_repo.dart';
+import 'package:propertify/utils/custom_toast.dart';
+import 'package:propertify/features/auth/presentation/auth_screen.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
@@ -42,6 +45,187 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     );
     // Load Banner Ads
     context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
+  }
+
+  void _handleReportProperty(String propertyId) {
+    if (!context.read<HomeBloc>().state.showAddButton) {
+      CustomToast.showErrorToast(msg: 'please login to report');
+      context.push(AuthScreen.routeName);
+      return;
+    }
+
+    final TextEditingController reasonController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+    String? selectedReason = 'Spam or Misleading';
+    bool isLoading = false;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: const Row(
+                children: [
+                  Icon(
+                    Icons.report_problem_rounded,
+                    color: Colors.orange,
+                    size: 28,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Report Property',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
+              ),
+              content: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Why are you reporting this property?',
+                        style: TextStyle(fontSize: 14, color: Colors.black87),
+                      ),
+                      const SizedBox(height: 12),
+                      ...[
+                        'Spam or Misleading',
+                        'Incorrect details/Price',
+                        'Inappropriate content',
+                        'Other',
+                      ].map((reason) {
+                        return RadioListTile<String>(
+                          title: Text(
+                            reason,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          value: reason,
+                          groupValue: selectedReason,
+                          activeColor: Theme.of(context).primaryColor,
+                          contentPadding: EdgeInsets.zero,
+                          dense: true,
+                          onChanged: (val) {
+                            setState(() {
+                              selectedReason = val;
+                            });
+                          },
+                        );
+                      }),
+                      if (selectedReason == 'Other') ...[
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: reasonController,
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                            hintText: 'Enter reason here...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter a reason';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: isLoading
+                      ? null
+                      : () => Navigator.pop(dialogContext),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          if (selectedReason == 'Other' &&
+                              !formKey.currentState!.validate()) {
+                            return;
+                          }
+
+                          final reasonText = selectedReason == 'Other'
+                              ? reasonController.text.trim()
+                              : selectedReason!;
+
+                          setState(() {
+                            isLoading = true;
+                          });
+
+                          final repo = FeedRepo();
+                          final res = await repo.reportProperty(
+                            propertyId: propertyId,
+                            reason: reasonText,
+                          );
+
+                          if (context.mounted) {
+                            Navigator.pop(dialogContext);
+                            res.fold(
+                              (failure) {
+                                CustomToast.showErrorToast(
+                                  msg: failure.message,
+                                );
+                              },
+                              (success) {
+                                CustomToast.showSuccessToast(
+                                  msg:
+                                      'Post reported, we will investigate further',
+                                );
+                              },
+                            );
+                          }
+                        },
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 16,
+                          width: 16,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Text(
+                          'Report',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -305,7 +489,8 @@ class _FeedListWidgetState extends State<FeedListWidget> {
 
   Widget _buildPropertyCardCompact(dynamic feed) {
     final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
-    final bool isOwner = currentUserId != null && currentUserId == feed.owner?.id;
+    final bool isOwner =
+        currentUserId != null && currentUserId == feed.owner?.id;
 
     return PropertyCardCompact(
       imageUrls: (feed.imageUrls != null && feed.imageUrls!.isNotEmpty)
@@ -333,7 +518,9 @@ class _FeedListWidgetState extends State<FeedListWidget> {
           context: context,
           builder: (dialogContext) => AlertDialog(
             title: const Text('Delete Property'),
-            content: const Text('Are you sure you want to delete this property?'),
+            content: const Text(
+              'Are you sure you want to delete this property?',
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(dialogContext),
@@ -343,10 +530,13 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                 onPressed: () {
                   Navigator.pop(dialogContext);
                   context.read<FeedBloc>().add(
-                        FeedEvent.deleteProperty(propertyId: feed.id!),
-                      );
+                    FeedEvent.deleteProperty(propertyId: feed.id!),
+                  );
                 },
-                child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                child: const Text(
+                  'Delete',
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
             ],
           ),
@@ -356,6 +546,11 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         context.read<FeedBloc>().add(
           FeedEvent.toggleFavorite(propertyId: feed.id!),
         );
+      },
+      onReportPressed: () {
+        if (feed.id != null) {
+          _handleReportProperty(feed.id!);
+        }
       },
       onLikePressed: () {
         context.read<FeedBloc>().add(
@@ -410,7 +605,8 @@ Check it out on Propertify!
 
   Widget _buildPropertyCard(dynamic feed) {
     final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
-    final bool isOwner = currentUserId != null && currentUserId == feed.owner?.id;
+    final bool isOwner =
+        currentUserId != null && currentUserId == feed.owner?.id;
 
     return PropertyCard(
       imageUrls: (feed.imageUrls != null && feed.imageUrls!.isNotEmpty)
@@ -440,7 +636,9 @@ Check it out on Propertify!
           context: context,
           builder: (dialogContext) => AlertDialog(
             title: const Text('Delete Property'),
-            content: const Text('Are you sure you want to delete this property?'),
+            content: const Text(
+              'Are you sure you want to delete this property?',
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(dialogContext),
@@ -450,10 +648,13 @@ Check it out on Propertify!
                 onPressed: () {
                   Navigator.pop(dialogContext);
                   context.read<FeedBloc>().add(
-                        FeedEvent.deleteProperty(propertyId: feed.id!),
-                      );
+                    FeedEvent.deleteProperty(propertyId: feed.id!),
+                  );
                 },
-                child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                child: const Text(
+                  'Delete',
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
             ],
           ),
@@ -463,6 +664,11 @@ Check it out on Propertify!
         context.read<FeedBloc>().add(
           FeedEvent.toggleFavorite(propertyId: feed.id!),
         );
+      },
+      onReportPressed: () {
+        if (feed.id != null) {
+          _handleReportProperty(feed.id!);
+        }
       },
       onLikePressed: () {
         context.read<FeedBloc>().add(

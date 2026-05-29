@@ -370,4 +370,24 @@ class FeedRepo {
       return Left(ApiFailure('Error deleting property: ${e.toString()}'));
     }
   }
+
+  /// Report Property API
+  Future<Either<Failure, bool>> reportProperty({
+    required String propertyId,
+    required String reason,
+  }) async {
+    try {
+      final response = await ftPyroApiRequest.post(
+        '/properties/$propertyId/report',
+        data: {'reason': reason},
+      );
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => const Right(true),
+      );
+    } catch (e) {
+      return Left(ApiFailure('Error reporting property: ${e.toString()}'));
+    }
+  }
 }

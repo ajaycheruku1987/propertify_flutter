@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/feed/bloc/feed_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
+import 'package:propertify/features/feed/repo/feed_repo.dart';
+import 'package:propertify/utils/custom_toast.dart';
+import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import '../../../home/models/feed_posts_response_model.dart';
 import '../../../home/presentation/widgets/property_card_compact.dart';
 import '../post_details.dart';
@@ -75,6 +78,11 @@ class SimilarPostsByCategory extends StatelessWidget {
                       context.read<FeedBloc>().add(
                         FeedEvent.toggleFavorite(propertyId: post.id!),
                       );
+                    },
+                    onReportPressed: () {
+                      if (post.id != null) {
+                        _handleReportProperty(context, post.id!);
+                      }
                     },
                     onLikePressed: () {
                       context.read<FeedBloc>().add(
@@ -160,5 +168,186 @@ Check it out on Propertify!
     }
 
     return city;
+  }
+
+  void _handleReportProperty(BuildContext context, String propertyId) {
+    if (!context.read<HomeBloc>().state.showAddButton) {
+      CustomToast.showErrorToast(msg: 'please login to report');
+      context.push(AuthScreen.routeName);
+      return;
+    }
+
+    final TextEditingController reasonController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+    String? selectedReason = 'Spam or Misleading';
+    bool isLoading = false;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: const Row(
+                children: [
+                  Icon(
+                    Icons.report_problem_rounded,
+                    color: Colors.orange,
+                    size: 28,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Report Property',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
+              ),
+              content: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Why are you reporting this property?',
+                        style: TextStyle(fontSize: 14, color: Colors.black87),
+                      ),
+                      const SizedBox(height: 12),
+                      ...[
+                        'Spam or Misleading',
+                        'Incorrect details/Price',
+                        'Inappropriate content',
+                        'Other',
+                      ].map((reason) {
+                        return RadioListTile<String>(
+                          title: Text(
+                            reason,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          value: reason,
+                          groupValue: selectedReason,
+                          activeColor: Theme.of(context).primaryColor,
+                          contentPadding: EdgeInsets.zero,
+                          dense: true,
+                          onChanged: (val) {
+                            setState(() {
+                              selectedReason = val;
+                            });
+                          },
+                        );
+                      }),
+                      if (selectedReason == 'Other') ...[
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: reasonController,
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                            hintText: 'Enter reason here...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter a reason';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: isLoading
+                      ? null
+                      : () => Navigator.pop(dialogContext),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          if (selectedReason == 'Other' &&
+                              !formKey.currentState!.validate()) {
+                            return;
+                          }
+
+                          final reasonText = selectedReason == 'Other'
+                              ? reasonController.text.trim()
+                              : selectedReason!;
+
+                          setState(() {
+                            isLoading = true;
+                          });
+
+                          final repo = FeedRepo();
+                          final res = await repo.reportProperty(
+                            propertyId: propertyId,
+                            reason: reasonText,
+                          );
+
+                          if (context.mounted) {
+                            Navigator.pop(dialogContext);
+                            res.fold(
+                              (failure) {
+                                CustomToast.showErrorToast(
+                                  msg: failure.message,
+                                );
+                              },
+                              (success) {
+                                CustomToast.showSuccessToast(
+                                  msg:
+                                      'Post reported, we will investigate further',
+                                );
+                              },
+                            );
+                          }
+                        },
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 16,
+                          width: 16,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Text(
+                          'Report',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 }
