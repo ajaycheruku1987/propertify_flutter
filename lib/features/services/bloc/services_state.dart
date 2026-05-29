@@ -22,5 +22,8 @@ class ServicesState with _$ServicesState {
     @Default([]) List<ServicesResponseModel> otherUserServices,
     @Default(false) bool isLoadingOtherUserServices,
     @Default(false) bool hasMoreOtherUserServices,
+    @Default([]) List<MaterialPrice> materialPrices,
+    @Default(false) bool isMaterialPricesLoading,
+    DateTime? lastPricesFetchTime,
   }) = _ServicesState;
 }

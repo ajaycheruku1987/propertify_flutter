@@ -10,6 +10,8 @@ import '../features/create_post/repo/create_post_repository.dart';
 import '../features/home/bloc/home_bloc.dart';
 import '../features/home/repo/home_repo.dart';
 import '../features/profile/repo/profile_repo.dart';
+import '../features/services/repo/price_repo.dart';
+import '../features/services/repo/services_repo.dart';
 import 'api_request/api_request.dart';
 import 'app_cache_service.dart';
 
@@ -22,4 +24,6 @@ Future<void> setUpServiceLocator() async {
   serviceLocator.registerSingleton<ApiRequest>(
     ApiRequest(serviceLocator<AppCacheService>()),
   );
+  serviceLocator.registerLazySingleton<ServicesRepo>(() => ServicesRepo());
+  serviceLocator.registerLazySingleton<PriceRepo>(() => PriceRepo());
 }

@@ -4,11 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/features/services/models/create_service_data_model.dart';
+import 'package:propertify/features/services/models/material_price_model.dart';
 import 'package:propertify/features/services/models/service_reviews_response_model.dart';
 
 import '../../../core/failure.dart';
 import '../../../core/notify_message.dart';
 import '../models/services_response_model.dart';
+import '../repo/price_repo.dart';
 import '../repo/services_repo.dart';
 
 part 'services_bloc.freezed.dart';
@@ -17,8 +19,9 @@ part 'services_state.dart';
 
 class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
   final ServicesRepo _servicesRepo;
+  final PriceRepo _priceRepo;
 
-  ServicesBloc(this._servicesRepo) : super(const ServicesState()) {
+  ServicesBloc(this._servicesRepo, this._priceRepo) : super(const ServicesState()) {
     on<_GetServicesEvent>(_onGetServicesEvent);
     on<_GetServiceDetailsEvent>(_onGetServiceDetailsEvent);
     on<_GetSimilarServicesEvent>(_onGetSimilarServicesEvent);
@@ -33,6 +36,7 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
     on<_GetMyServicesEvent>(_onGetMyServicesEvent);
     on<_UploadAadharEvent>(_onUploadAadharEvent);
     on<_LoadOtherUserServices>(_onLoadOtherUserServices);
+    on<_GetMaterialPricesEvent>(_onGetMaterialPricesEvent);
     on<_Reset>(_onReset);
   }
   void _onReset(_Reset event, Emitter<ServicesState> emit) {
@@ -661,6 +665,34 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
           notifyStatus: NotifyStatus(message: 'Failed to load services'),
         ),
       );
+    }
+  }
+
+  void _onGetMaterialPricesEvent(
+    _GetMaterialPricesEvent event,
+    Emitter<ServicesState> emit,
+  ) async {
+    // Basic caching: If fetched less than 1 hour ago, don't fetch again unless forced
+    final now = DateTime.now();
+    if (!event.force && 
+        state.materialPrices.isNotEmpty &&
+        state.lastPricesFetchTime != null &&
+        now.difference(state.lastPricesFetchTime!).inHours < 1) {
+      return;
+    }
+
+    try {
+      emit(state.copyWith(isMaterialPricesLoading: true));
+      final prices = await _priceRepo.getLatestMaterialPrices();
+      emit(
+        state.copyWith(
+          isMaterialPricesLoading: false,
+          materialPrices: prices,
+          lastPricesFetchTime: now,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(isMaterialPricesLoading: false));
     }
   }
 }

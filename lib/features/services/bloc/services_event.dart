@@ -75,4 +75,6 @@ class ServicesEvent with _$ServicesEvent {
     required int skip,
     required int limit,
   }) = _LoadOtherUserServices;
+
+  const factory ServicesEvent.getMaterialPricesEvent({@Default(false) bool force}) = _GetMaterialPricesEvent;
 }

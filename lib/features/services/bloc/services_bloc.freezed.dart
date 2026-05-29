@@ -56,6 +56,7 @@ mixin _$ServicesEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +98,7 @@ mixin _$ServicesEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -137,6 +139,7 @@ mixin _$ServicesEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +166,8 @@ mixin _$ServicesEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -183,6 +188,7 @@ mixin _$ServicesEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -203,6 +209,7 @@ mixin _$ServicesEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -302,6 +309,7 @@ class _$ResetImpl implements _Reset {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return reset();
   }
@@ -346,6 +354,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return reset?.call();
   }
@@ -389,6 +398,7 @@ class _$ResetImpl implements _Reset {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -421,6 +431,8 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return reset(this);
   }
@@ -444,6 +456,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return reset?.call(this);
   }
@@ -467,6 +480,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -678,6 +692,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return getServicesEvent(skip, limit, latitude, longitude, radiusKm,
         categoryNames, minRating, search);
@@ -723,6 +738,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return getServicesEvent?.call(skip, limit, latitude, longitude, radiusKm,
         categoryNames, minRating, search);
@@ -767,6 +783,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServicesEvent != null) {
@@ -800,6 +817,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return getServicesEvent(this);
   }
@@ -823,6 +842,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return getServicesEvent?.call(this);
   }
@@ -846,6 +866,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServicesEvent != null) {
@@ -985,6 +1006,7 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return getServiceDetailsEvent(serviceId);
   }
@@ -1029,6 +1051,7 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return getServiceDetailsEvent?.call(serviceId);
   }
@@ -1072,6 +1095,7 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServiceDetailsEvent != null) {
@@ -1104,6 +1128,8 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return getServiceDetailsEvent(this);
   }
@@ -1127,6 +1153,7 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return getServiceDetailsEvent?.call(this);
   }
@@ -1150,6 +1177,7 @@ class _$GetServiceDetailsEventImpl implements _GetServiceDetailsEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServiceDetailsEvent != null) {
@@ -1303,6 +1331,7 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return getSimilarServicesEvent(city, category, excludeServiceId, limit);
   }
@@ -1347,6 +1376,7 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return getSimilarServicesEvent?.call(
         city, category, excludeServiceId, limit);
@@ -1391,6 +1421,7 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getSimilarServicesEvent != null) {
@@ -1423,6 +1454,8 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return getSimilarServicesEvent(this);
   }
@@ -1446,6 +1479,7 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return getSimilarServicesEvent?.call(this);
   }
@@ -1469,6 +1503,7 @@ class _$GetSimilarServicesEventImpl implements _GetSimilarServicesEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getSimilarServicesEvent != null) {
@@ -1570,6 +1605,7 @@ class _$IsLoadingImpl implements _IsLoading {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return isLoading();
   }
@@ -1614,6 +1650,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return isLoading?.call();
   }
@@ -1657,6 +1694,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -1689,6 +1727,8 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return isLoading(this);
   }
@@ -1712,6 +1752,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return isLoading?.call(this);
   }
@@ -1735,6 +1776,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -1854,6 +1896,7 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return updateAgentDetails(createServiceDataModel);
   }
@@ -1898,6 +1941,7 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return updateAgentDetails?.call(createServiceDataModel);
   }
@@ -1941,6 +1985,7 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateAgentDetails != null) {
@@ -1973,6 +2018,8 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return updateAgentDetails(this);
   }
@@ -1996,6 +2043,7 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return updateAgentDetails?.call(this);
   }
@@ -2019,6 +2067,7 @@ class _$UpdateAgentDetailsEventImpl implements _UpdateAgentDetailsEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateAgentDetails != null) {
@@ -2149,6 +2198,7 @@ class _$UpdateImagesAndMediaDetailsEventImpl
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return updateImagesAndMediaDetails(createServiceDataModel);
   }
@@ -2193,6 +2243,7 @@ class _$UpdateImagesAndMediaDetailsEventImpl
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return updateImagesAndMediaDetails?.call(createServiceDataModel);
   }
@@ -2236,6 +2287,7 @@ class _$UpdateImagesAndMediaDetailsEventImpl
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateImagesAndMediaDetails != null) {
@@ -2268,6 +2320,8 @@ class _$UpdateImagesAndMediaDetailsEventImpl
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return updateImagesAndMediaDetails(this);
   }
@@ -2291,6 +2345,7 @@ class _$UpdateImagesAndMediaDetailsEventImpl
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return updateImagesAndMediaDetails?.call(this);
   }
@@ -2314,6 +2369,7 @@ class _$UpdateImagesAndMediaDetailsEventImpl
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateImagesAndMediaDetails != null) {
@@ -2474,6 +2530,7 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return updateServiceEvent(
         serviceId, updateServiceDataModel, existingImageUrls);
@@ -2519,6 +2576,7 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return updateServiceEvent?.call(
         serviceId, updateServiceDataModel, existingImageUrls);
@@ -2563,6 +2621,7 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateServiceEvent != null) {
@@ -2596,6 +2655,8 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return updateServiceEvent(this);
   }
@@ -2619,6 +2680,7 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return updateServiceEvent?.call(this);
   }
@@ -2642,6 +2704,7 @@ class _$UpdateServiceEventImpl implements _UpdateServiceEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (updateServiceEvent != null) {
@@ -2770,6 +2833,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return deleteServiceEvent(serviceId);
   }
@@ -2814,6 +2878,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return deleteServiceEvent?.call(serviceId);
   }
@@ -2857,6 +2922,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (deleteServiceEvent != null) {
@@ -2889,6 +2955,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return deleteServiceEvent(this);
   }
@@ -2912,6 +2980,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return deleteServiceEvent?.call(this);
   }
@@ -2935,6 +3004,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (deleteServiceEvent != null) {
@@ -3075,6 +3145,7 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return postReviewEvent(serviceId, rating, review);
   }
@@ -3119,6 +3190,7 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return postReviewEvent?.call(serviceId, rating, review);
   }
@@ -3162,6 +3234,7 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (postReviewEvent != null) {
@@ -3194,6 +3267,8 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return postReviewEvent(this);
   }
@@ -3217,6 +3292,7 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return postReviewEvent?.call(this);
   }
@@ -3240,6 +3316,7 @@ class _$PostReviewEventImpl implements _PostReviewEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (postReviewEvent != null) {
@@ -3397,6 +3474,7 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return editReviewEvent(serviceId, reviewId, rating, review);
   }
@@ -3441,6 +3519,7 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return editReviewEvent?.call(serviceId, reviewId, rating, review);
   }
@@ -3484,6 +3563,7 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (editReviewEvent != null) {
@@ -3516,6 +3596,8 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return editReviewEvent(this);
   }
@@ -3539,6 +3621,7 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return editReviewEvent?.call(this);
   }
@@ -3562,6 +3645,7 @@ class _$EditReviewEventImpl implements _EditReviewEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (editReviewEvent != null) {
@@ -3710,6 +3794,7 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return getServiceReviewsEvent(serviceId, skip, limit);
   }
@@ -3754,6 +3839,7 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return getServiceReviewsEvent?.call(serviceId, skip, limit);
   }
@@ -3797,6 +3883,7 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServiceReviewsEvent != null) {
@@ -3829,6 +3916,8 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return getServiceReviewsEvent(this);
   }
@@ -3852,6 +3941,7 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return getServiceReviewsEvent?.call(this);
   }
@@ -3875,6 +3965,7 @@ class _$GetServiceReviewsEventImpl implements _GetServiceReviewsEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getServiceReviewsEvent != null) {
@@ -3974,6 +4065,7 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return getMyServicesEvent();
   }
@@ -4018,6 +4110,7 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return getMyServicesEvent?.call();
   }
@@ -4061,6 +4154,7 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getMyServicesEvent != null) {
@@ -4093,6 +4187,8 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return getMyServicesEvent(this);
   }
@@ -4116,6 +4212,7 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return getMyServicesEvent?.call(this);
   }
@@ -4139,6 +4236,7 @@ class _$GetMyServicesEventImpl implements _GetMyServicesEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (getMyServicesEvent != null) {
@@ -4266,6 +4364,7 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return uploadAadharEvent(serviceId, aadharFile);
   }
@@ -4310,6 +4409,7 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return uploadAadharEvent?.call(serviceId, aadharFile);
   }
@@ -4353,6 +4453,7 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (uploadAadharEvent != null) {
@@ -4385,6 +4486,8 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return uploadAadharEvent(this);
   }
@@ -4408,6 +4511,7 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return uploadAadharEvent?.call(this);
   }
@@ -4431,6 +4535,7 @@ class _$UploadAadharEventImpl implements _UploadAadharEvent {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (uploadAadharEvent != null) {
@@ -4573,6 +4678,7 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
         uploadAadharEvent,
     required TResult Function(String userId, int skip, int limit)
         loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
   }) {
     return loadOtherUserServices(userId, skip, limit);
   }
@@ -4617,6 +4723,7 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
     TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult? Function(String userId, int skip, int limit)?
         loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
   }) {
     return loadOtherUserServices?.call(userId, skip, limit);
   }
@@ -4660,6 +4767,7 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
     TResult Function()? getMyServicesEvent,
     TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
     TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (loadOtherUserServices != null) {
@@ -4692,6 +4800,8 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
     required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
     required TResult Function(_LoadOtherUserServices value)
         loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
   }) {
     return loadOtherUserServices(this);
   }
@@ -4715,6 +4825,7 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
     TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
   }) {
     return loadOtherUserServices?.call(this);
   }
@@ -4738,6 +4849,7 @@ class _$LoadOtherUserServicesImpl implements _LoadOtherUserServices {
     TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
     TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
     TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
     required TResult orElse(),
   }) {
     if (loadOtherUserServices != null) {
@@ -4758,6 +4870,303 @@ abstract class _LoadOtherUserServices implements ServicesEvent {
   int get limit;
   @JsonKey(ignore: true)
   _$$LoadOtherUserServicesImplCopyWith<_$LoadOtherUserServicesImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetMaterialPricesEventImplCopyWith<$Res> {
+  factory _$$GetMaterialPricesEventImplCopyWith(
+          _$GetMaterialPricesEventImpl value,
+          $Res Function(_$GetMaterialPricesEventImpl) then) =
+      __$$GetMaterialPricesEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool force});
+}
+
+/// @nodoc
+class __$$GetMaterialPricesEventImplCopyWithImpl<$Res>
+    extends _$ServicesEventCopyWithImpl<$Res, _$GetMaterialPricesEventImpl>
+    implements _$$GetMaterialPricesEventImplCopyWith<$Res> {
+  __$$GetMaterialPricesEventImplCopyWithImpl(
+      _$GetMaterialPricesEventImpl _value,
+      $Res Function(_$GetMaterialPricesEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? force = null,
+  }) {
+    return _then(_$GetMaterialPricesEventImpl(
+      force: null == force
+          ? _value.force
+          : force // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetMaterialPricesEventImpl implements _GetMaterialPricesEvent {
+  const _$GetMaterialPricesEventImpl({this.force = false});
+
+  @override
+  @JsonKey()
+  final bool force;
+
+  @override
+  String toString() {
+    return 'ServicesEvent.getMaterialPricesEvent(force: $force)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetMaterialPricesEventImpl &&
+            (identical(other.force, force) || other.force == force));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, force);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetMaterialPricesEventImplCopyWith<_$GetMaterialPricesEventImpl>
+      get copyWith => __$$GetMaterialPricesEventImplCopyWithImpl<
+          _$GetMaterialPricesEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            List<String>? categoryNames,
+            double? minRating,
+            String? search)
+        getServicesEvent,
+    required TResult Function(String serviceId) getServiceDetailsEvent,
+    required TResult Function(String? city, String? category,
+            String? excludeServiceId, int? limit)
+        getSimilarServicesEvent,
+    required TResult Function() isLoading,
+    required TResult Function(CreateServiceDataModel createServiceDataModel)
+        updateAgentDetails,
+    required TResult Function(CreateServiceDataModel createServiceDataModel)
+        updateImagesAndMediaDetails,
+    required TResult Function(
+            String serviceId,
+            CreateServiceDataModel updateServiceDataModel,
+            List<String> existingImageUrls)
+        updateServiceEvent,
+    required TResult Function(String serviceId) deleteServiceEvent,
+    required TResult Function(String serviceId, double rating, String review)
+        postReviewEvent,
+    required TResult Function(
+            String serviceId, String reviewId, double rating, String review)
+        editReviewEvent,
+    required TResult Function(String serviceId, int? skip, int? limit)
+        getServiceReviewsEvent,
+    required TResult Function() getMyServicesEvent,
+    required TResult Function(String serviceId, File aadharFile)
+        uploadAadharEvent,
+    required TResult Function(String userId, int skip, int limit)
+        loadOtherUserServices,
+    required TResult Function(bool force) getMaterialPricesEvent,
+  }) {
+    return getMaterialPricesEvent(force);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            List<String>? categoryNames,
+            double? minRating,
+            String? search)?
+        getServicesEvent,
+    TResult? Function(String serviceId)? getServiceDetailsEvent,
+    TResult? Function(String? city, String? category, String? excludeServiceId,
+            int? limit)?
+        getSimilarServicesEvent,
+    TResult? Function()? isLoading,
+    TResult? Function(CreateServiceDataModel createServiceDataModel)?
+        updateAgentDetails,
+    TResult? Function(CreateServiceDataModel createServiceDataModel)?
+        updateImagesAndMediaDetails,
+    TResult? Function(
+            String serviceId,
+            CreateServiceDataModel updateServiceDataModel,
+            List<String> existingImageUrls)?
+        updateServiceEvent,
+    TResult? Function(String serviceId)? deleteServiceEvent,
+    TResult? Function(String serviceId, double rating, String review)?
+        postReviewEvent,
+    TResult? Function(
+            String serviceId, String reviewId, double rating, String review)?
+        editReviewEvent,
+    TResult? Function(String serviceId, int? skip, int? limit)?
+        getServiceReviewsEvent,
+    TResult? Function()? getMyServicesEvent,
+    TResult? Function(String serviceId, File aadharFile)? uploadAadharEvent,
+    TResult? Function(String userId, int skip, int limit)?
+        loadOtherUserServices,
+    TResult? Function(bool force)? getMaterialPricesEvent,
+  }) {
+    return getMaterialPricesEvent?.call(force);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            List<String>? categoryNames,
+            double? minRating,
+            String? search)?
+        getServicesEvent,
+    TResult Function(String serviceId)? getServiceDetailsEvent,
+    TResult Function(String? city, String? category, String? excludeServiceId,
+            int? limit)?
+        getSimilarServicesEvent,
+    TResult Function()? isLoading,
+    TResult Function(CreateServiceDataModel createServiceDataModel)?
+        updateAgentDetails,
+    TResult Function(CreateServiceDataModel createServiceDataModel)?
+        updateImagesAndMediaDetails,
+    TResult Function(
+            String serviceId,
+            CreateServiceDataModel updateServiceDataModel,
+            List<String> existingImageUrls)?
+        updateServiceEvent,
+    TResult Function(String serviceId)? deleteServiceEvent,
+    TResult Function(String serviceId, double rating, String review)?
+        postReviewEvent,
+    TResult Function(
+            String serviceId, String reviewId, double rating, String review)?
+        editReviewEvent,
+    TResult Function(String serviceId, int? skip, int? limit)?
+        getServiceReviewsEvent,
+    TResult Function()? getMyServicesEvent,
+    TResult Function(String serviceId, File aadharFile)? uploadAadharEvent,
+    TResult Function(String userId, int skip, int limit)? loadOtherUserServices,
+    TResult Function(bool force)? getMaterialPricesEvent,
+    required TResult orElse(),
+  }) {
+    if (getMaterialPricesEvent != null) {
+      return getMaterialPricesEvent(force);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_GetServicesEvent value) getServicesEvent,
+    required TResult Function(_GetServiceDetailsEvent value)
+        getServiceDetailsEvent,
+    required TResult Function(_GetSimilarServicesEvent value)
+        getSimilarServicesEvent,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_UpdateAgentDetailsEvent value)
+        updateAgentDetails,
+    required TResult Function(_UpdateImagesAndMediaDetailsEvent value)
+        updateImagesAndMediaDetails,
+    required TResult Function(_UpdateServiceEvent value) updateServiceEvent,
+    required TResult Function(_DeleteServiceEvent value) deleteServiceEvent,
+    required TResult Function(_PostReviewEvent value) postReviewEvent,
+    required TResult Function(_EditReviewEvent value) editReviewEvent,
+    required TResult Function(_GetServiceReviewsEvent value)
+        getServiceReviewsEvent,
+    required TResult Function(_GetMyServicesEvent value) getMyServicesEvent,
+    required TResult Function(_UploadAadharEvent value) uploadAadharEvent,
+    required TResult Function(_LoadOtherUserServices value)
+        loadOtherUserServices,
+    required TResult Function(_GetMaterialPricesEvent value)
+        getMaterialPricesEvent,
+  }) {
+    return getMaterialPricesEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_GetServicesEvent value)? getServicesEvent,
+    TResult? Function(_GetServiceDetailsEvent value)? getServiceDetailsEvent,
+    TResult? Function(_GetSimilarServicesEvent value)? getSimilarServicesEvent,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_UpdateAgentDetailsEvent value)? updateAgentDetails,
+    TResult? Function(_UpdateImagesAndMediaDetailsEvent value)?
+        updateImagesAndMediaDetails,
+    TResult? Function(_UpdateServiceEvent value)? updateServiceEvent,
+    TResult? Function(_DeleteServiceEvent value)? deleteServiceEvent,
+    TResult? Function(_PostReviewEvent value)? postReviewEvent,
+    TResult? Function(_EditReviewEvent value)? editReviewEvent,
+    TResult? Function(_GetServiceReviewsEvent value)? getServiceReviewsEvent,
+    TResult? Function(_GetMyServicesEvent value)? getMyServicesEvent,
+    TResult? Function(_UploadAadharEvent value)? uploadAadharEvent,
+    TResult? Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult? Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
+  }) {
+    return getMaterialPricesEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_GetServicesEvent value)? getServicesEvent,
+    TResult Function(_GetServiceDetailsEvent value)? getServiceDetailsEvent,
+    TResult Function(_GetSimilarServicesEvent value)? getSimilarServicesEvent,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_UpdateAgentDetailsEvent value)? updateAgentDetails,
+    TResult Function(_UpdateImagesAndMediaDetailsEvent value)?
+        updateImagesAndMediaDetails,
+    TResult Function(_UpdateServiceEvent value)? updateServiceEvent,
+    TResult Function(_DeleteServiceEvent value)? deleteServiceEvent,
+    TResult Function(_PostReviewEvent value)? postReviewEvent,
+    TResult Function(_EditReviewEvent value)? editReviewEvent,
+    TResult Function(_GetServiceReviewsEvent value)? getServiceReviewsEvent,
+    TResult Function(_GetMyServicesEvent value)? getMyServicesEvent,
+    TResult Function(_UploadAadharEvent value)? uploadAadharEvent,
+    TResult Function(_LoadOtherUserServices value)? loadOtherUserServices,
+    TResult Function(_GetMaterialPricesEvent value)? getMaterialPricesEvent,
+    required TResult orElse(),
+  }) {
+    if (getMaterialPricesEvent != null) {
+      return getMaterialPricesEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMaterialPricesEvent implements ServicesEvent {
+  const factory _GetMaterialPricesEvent({final bool force}) =
+      _$GetMaterialPricesEventImpl;
+
+  bool get force;
+  @JsonKey(ignore: true)
+  _$$GetMaterialPricesEventImplCopyWith<_$GetMaterialPricesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -4789,6 +5198,9 @@ mixin _$ServicesState {
       throw _privateConstructorUsedError;
   bool get isLoadingOtherUserServices => throw _privateConstructorUsedError;
   bool get hasMoreOtherUserServices => throw _privateConstructorUsedError;
+  List<MaterialPrice> get materialPrices => throw _privateConstructorUsedError;
+  bool get isMaterialPricesLoading => throw _privateConstructorUsedError;
+  DateTime? get lastPricesFetchTime => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServicesStateCopyWith<ServicesState> get copyWith =>
@@ -4820,7 +5232,10 @@ abstract class $ServicesStateCopyWith<$Res> {
       bool isReviewsLoading,
       List<ServicesResponseModel> otherUserServices,
       bool isLoadingOtherUserServices,
-      bool hasMoreOtherUserServices});
+      bool hasMoreOtherUserServices,
+      List<MaterialPrice> materialPrices,
+      bool isMaterialPricesLoading,
+      DateTime? lastPricesFetchTime});
 
   $ServicesResponseModelCopyWith<$Res>? get serviceDetails;
 }
@@ -4857,6 +5272,9 @@ class _$ServicesStateCopyWithImpl<$Res, $Val extends ServicesState>
     Object? otherUserServices = null,
     Object? isLoadingOtherUserServices = null,
     Object? hasMoreOtherUserServices = null,
+    Object? materialPrices = null,
+    Object? isMaterialPricesLoading = null,
+    Object? lastPricesFetchTime = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -4935,6 +5353,18 @@ class _$ServicesStateCopyWithImpl<$Res, $Val extends ServicesState>
           ? _value.hasMoreOtherUserServices
           : hasMoreOtherUserServices // ignore: cast_nullable_to_non_nullable
               as bool,
+      materialPrices: null == materialPrices
+          ? _value.materialPrices
+          : materialPrices // ignore: cast_nullable_to_non_nullable
+              as List<MaterialPrice>,
+      isMaterialPricesLoading: null == isMaterialPricesLoading
+          ? _value.isMaterialPricesLoading
+          : isMaterialPricesLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lastPricesFetchTime: freezed == lastPricesFetchTime
+          ? _value.lastPricesFetchTime
+          : lastPricesFetchTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -4979,7 +5409,10 @@ abstract class _$$ServicesStateImplCopyWith<$Res>
       bool isReviewsLoading,
       List<ServicesResponseModel> otherUserServices,
       bool isLoadingOtherUserServices,
-      bool hasMoreOtherUserServices});
+      bool hasMoreOtherUserServices,
+      List<MaterialPrice> materialPrices,
+      bool isMaterialPricesLoading,
+      DateTime? lastPricesFetchTime});
 
   @override
   $ServicesResponseModelCopyWith<$Res>? get serviceDetails;
@@ -5015,6 +5448,9 @@ class __$$ServicesStateImplCopyWithImpl<$Res>
     Object? otherUserServices = null,
     Object? isLoadingOtherUserServices = null,
     Object? hasMoreOtherUserServices = null,
+    Object? materialPrices = null,
+    Object? isMaterialPricesLoading = null,
+    Object? lastPricesFetchTime = freezed,
   }) {
     return _then(_$ServicesStateImpl(
       isLoading: null == isLoading
@@ -5093,6 +5529,18 @@ class __$$ServicesStateImplCopyWithImpl<$Res>
           ? _value.hasMoreOtherUserServices
           : hasMoreOtherUserServices // ignore: cast_nullable_to_non_nullable
               as bool,
+      materialPrices: null == materialPrices
+          ? _value._materialPrices
+          : materialPrices // ignore: cast_nullable_to_non_nullable
+              as List<MaterialPrice>,
+      isMaterialPricesLoading: null == isMaterialPricesLoading
+          ? _value.isMaterialPricesLoading
+          : isMaterialPricesLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lastPricesFetchTime: freezed == lastPricesFetchTime
+          ? _value.lastPricesFetchTime
+          : lastPricesFetchTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -5119,12 +5567,16 @@ class _$ServicesStateImpl implements _ServicesState {
       this.isReviewsLoading = false,
       final List<ServicesResponseModel> otherUserServices = const [],
       this.isLoadingOtherUserServices = false,
-      this.hasMoreOtherUserServices = false})
+      this.hasMoreOtherUserServices = false,
+      final List<MaterialPrice> materialPrices = const [],
+      this.isMaterialPricesLoading = false,
+      this.lastPricesFetchTime})
       : _similarServices = similarServices,
         _servicesList = servicesList,
         _myServicesList = myServicesList,
         _serviceReviews = serviceReviews,
-        _otherUserServices = otherUserServices;
+        _otherUserServices = otherUserServices,
+        _materialPrices = materialPrices;
 
   @override
   @JsonKey()
@@ -5211,10 +5663,24 @@ class _$ServicesStateImpl implements _ServicesState {
   @override
   @JsonKey()
   final bool hasMoreOtherUserServices;
+  final List<MaterialPrice> _materialPrices;
+  @override
+  @JsonKey()
+  List<MaterialPrice> get materialPrices {
+    if (_materialPrices is EqualUnmodifiableListView) return _materialPrices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_materialPrices);
+  }
+
+  @override
+  @JsonKey()
+  final bool isMaterialPricesLoading;
+  @override
+  final DateTime? lastPricesFetchTime;
 
   @override
   String toString() {
-    return 'ServicesState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, serviceDetails: $serviceDetails, similarServices: $similarServices, servicesList: $servicesList, myServicesList: $myServicesList, currentOffset: $currentOffset, hasMoreData: $hasMoreData, createServiceDataModel: $createServiceDataModel, notifyStatus: $notifyStatus, isMyServicesLoading: $isMyServicesLoading, isAadharUploading: $isAadharUploading, isAadharUploadSuccess: $isAadharUploadSuccess, serviceReviews: $serviceReviews, isReviewsLoading: $isReviewsLoading, otherUserServices: $otherUserServices, isLoadingOtherUserServices: $isLoadingOtherUserServices, hasMoreOtherUserServices: $hasMoreOtherUserServices)';
+    return 'ServicesState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, serviceDetails: $serviceDetails, similarServices: $similarServices, servicesList: $servicesList, myServicesList: $myServicesList, currentOffset: $currentOffset, hasMoreData: $hasMoreData, createServiceDataModel: $createServiceDataModel, notifyStatus: $notifyStatus, isMyServicesLoading: $isMyServicesLoading, isAadharUploading: $isAadharUploading, isAadharUploadSuccess: $isAadharUploadSuccess, serviceReviews: $serviceReviews, isReviewsLoading: $isReviewsLoading, otherUserServices: $otherUserServices, isLoadingOtherUserServices: $isLoadingOtherUserServices, hasMoreOtherUserServices: $hasMoreOtherUserServices, materialPrices: $materialPrices, isMaterialPricesLoading: $isMaterialPricesLoading, lastPricesFetchTime: $lastPricesFetchTime)';
   }
 
   @override
@@ -5261,7 +5727,14 @@ class _$ServicesStateImpl implements _ServicesState {
                     isLoadingOtherUserServices) &&
             (identical(
                     other.hasMoreOtherUserServices, hasMoreOtherUserServices) ||
-                other.hasMoreOtherUserServices == hasMoreOtherUserServices));
+                other.hasMoreOtherUserServices == hasMoreOtherUserServices) &&
+            const DeepCollectionEquality()
+                .equals(other._materialPrices, _materialPrices) &&
+            (identical(
+                    other.isMaterialPricesLoading, isMaterialPricesLoading) ||
+                other.isMaterialPricesLoading == isMaterialPricesLoading) &&
+            (identical(other.lastPricesFetchTime, lastPricesFetchTime) ||
+                other.lastPricesFetchTime == lastPricesFetchTime));
   }
 
   @override
@@ -5285,7 +5758,10 @@ class _$ServicesStateImpl implements _ServicesState {
         isReviewsLoading,
         const DeepCollectionEquality().hash(_otherUserServices),
         isLoadingOtherUserServices,
-        hasMoreOtherUserServices
+        hasMoreOtherUserServices,
+        const DeepCollectionEquality().hash(_materialPrices),
+        isMaterialPricesLoading,
+        lastPricesFetchTime
       ]);
 
   @JsonKey(ignore: true)
@@ -5315,7 +5791,10 @@ abstract class _ServicesState implements ServicesState {
       final bool isReviewsLoading,
       final List<ServicesResponseModel> otherUserServices,
       final bool isLoadingOtherUserServices,
-      final bool hasMoreOtherUserServices}) = _$ServicesStateImpl;
+      final bool hasMoreOtherUserServices,
+      final List<MaterialPrice> materialPrices,
+      final bool isMaterialPricesLoading,
+      final DateTime? lastPricesFetchTime}) = _$ServicesStateImpl;
 
   @override
   bool get isLoading;
@@ -5355,6 +5834,12 @@ abstract class _ServicesState implements ServicesState {
   bool get isLoadingOtherUserServices;
   @override
   bool get hasMoreOtherUserServices;
+  @override
+  List<MaterialPrice> get materialPrices;
+  @override
+  bool get isMaterialPricesLoading;
+  @override
+  DateTime? get lastPricesFetchTime;
   @override
   @JsonKey(ignore: true)
   _$$ServicesStateImplCopyWith<_$ServicesStateImpl> get copyWith =>
