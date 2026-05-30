@@ -88,10 +88,10 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                 ),
                 const SizedBox(height: 12),
                 _buildCompactPriceTracker(state.materialPrices),
-                if (state.materialPrices.isNotEmpty) ...[
+                /* if (state.materialPrices.isNotEmpty) ...[
                   const SizedBox(height: 16),
                   _buildPriceHistoryChart(state.materialPrices[_selectedPriceIndex]),
-                ],
+                ], */
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -251,7 +251,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
               ),
             ],
           ),
-          const SizedBox(width: 12),
+          /* const SizedBox(width: 12),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             decoration: BoxDecoration(
@@ -266,7 +266,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                 color: isUp == null ? Colors.grey : (isUp ? Colors.red : Colors.green),
               ),
             ),
-          ),
+          ), */
         ],
       ),
     );

@@ -52,18 +52,20 @@ class MaterialPrice {
   }
 
   static List<PricePoint> _generateMockHistory(String priceStr, String name) {
-    final numericPart = priceStr.replaceAll(RegExp(r'[^0-9.]'), '');
+    // Split by '/' to avoid including numbers from units (e.g., /1k, /50kg) in the price
+    final cleanPrice = priceStr.split('/')[0];
+    final numericPart = cleanPrice.replaceAll(RegExp(r'[^0-9.]'), '');
     final basePrice = double.tryParse(numericPart) ?? 100.0;
     
     final List<PricePoint> history = [];
     final now = DateTime.now();
     
-    // Use the name to create a unique seed so every material has a different chart shape
-    final seed = name.hashCode;
-    
     for (int i = 5; i >= 0; i--) {
-      // Significantly different patterns for each material to make trends distinct
-      double variance;
+      // Trend logic temporarily disabled: variance is set to 0.0 for a flat chart
+      double variance = 0.0;
+      
+      /* 
+      final seed = name.hashCode;
       final n = name.toLowerCase();
       if (n.contains('steel')) {
         variance = (i * 0.015) - 0.04; // Steady rise
@@ -74,6 +76,7 @@ class MaterialPrice {
       } else {
         variance = (((seed + i) % 5) - 2) * 0.03; // Random-ish
       }
+      */
       
       history.add(PricePoint(
         now.subtract(Duration(days: i * 30)), 

@@ -33,8 +33,10 @@ class _ManageMaterialPricesScreenState extends State<ManageMaterialPricesScreen>
     setState(() {
       _materials = prices;
       for (var material in _materials) {
+        // Fix: Split by '/' to ignore numbers in units like '/1k' when loading into the text box
+        String cleanPrice = material.price.split('/')[0];
         _controllers[material.name] = TextEditingController(
-          text: material.price.replaceAll(RegExp(r'[^0-9.]'), ''),
+          text: cleanPrice.replaceAll(RegExp(r'[^0-9.]'), ''),
         );
       }
       _isLoading = false;

@@ -16,7 +16,10 @@ class PriceRepo {
 
     for (var newPriceData in prices) {
       final String name = newPriceData['name'];
-      final double newPriceValue = double.tryParse(newPriceData['price'].toString().replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0;
+      
+      // Fix: Split by '/' to ignore numbers in units like '/1k' or '/50kg'
+      String cleanNewPrice = newPriceData['price'].toString().split('/')[0];
+      final double newPriceValue = double.tryParse(cleanNewPrice.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0;
       
       // Find old data to calculate trend
       dynamic oldData;
@@ -34,13 +37,16 @@ class PriceRepo {
       double trendPercent = 0.0;
       bool? isUp;
       
+      /* Temporarily disabled trend calculation
       if (oldData != null) {
-        final double oldPriceValue = double.tryParse(oldData['price'].toString().replaceAll(RegExp(r'[^0-9.]'), '')) ?? newPriceValue;
+        String cleanOldPrice = oldData['price'].toString().split('/')[0];
+        final double oldPriceValue = double.tryParse(cleanOldPrice.replaceAll(RegExp(r'[^0-9.]'), '')) ?? newPriceValue;
         if (oldPriceValue != 0) {
           trendPercent = ((newPriceValue - oldPriceValue) / oldPriceValue) * 100;
           isUp = newPriceValue > oldPriceValue ? true : (newPriceValue < oldPriceValue ? false : null);
         }
       }
+      */
 
       // Maintain history (keep last 6). If first time, 'oldData' now contains mock history
       List<dynamic> history = oldData != null && oldData['history'] != null ? List.from(oldData['history']) : [];
@@ -63,8 +69,8 @@ class PriceRepo {
       updatedList.add({
         'name': name,
         'price': newPriceData['price'], // e.g. "₹70,000/t"
-        'trend': "${trendPercent >= 0 ? '+' : ''}${trendPercent.toStringAsFixed(1)}%",
-        'isUp': isUp,
+        'trend': "", // Temporarily disabled: "${trendPercent >= 0 ? '+' : ''}${trendPercent.toStringAsFixed(1)}%"
+        'isUp': null, // Temporarily disabled: isUp,
         'history': history,
       });
     }
@@ -91,47 +97,46 @@ class PriceRepo {
   }
 
   List<MaterialPrice> _getMockPrices() {
-    // These varied trends ensure the UI looks dynamic even without the API key
     return [
       MaterialPrice(
         name: 'Steel (TMT)',
         price: '₹68,500/t',
-        trend: '+2.4%',
-        isUp: true,
+        trend: '',
+        isUp: null,
         icon: Icons.architecture,
       ),
       MaterialPrice(
         name: 'Cement',
         price: '₹385/bag',
-        trend: '-1.2%',
-        isUp: false,
+        trend: '',
+        isUp: null,
         icon: Icons.layers,
       ),
       MaterialPrice(
         name: 'Sand',
         price: '₹1,250/t',
-        trend: '+5.1%',
-        isUp: true,
+        trend: '',
+        isUp: null,
         icon: Icons.grain,
       ),
       MaterialPrice(
         name: 'Bricks',
         price: '₹8,200/1k',
-        trend: '-0.8%',
-        isUp: false,
+        trend: '',
+        isUp: null,
         icon: Icons.grid_view,
       ),
       MaterialPrice(
         name: 'Wood (Teak)',
         price: '₹3,400/cft',
-        trend: '+0.5%',
-        isUp: true,
+        trend: '',
+        isUp: null,
         icon: Icons.forest,
       ),
       MaterialPrice(
         name: 'Aggregate',
         price: '₹1,180/t',
-        trend: '0%',
+        trend: '',
         isUp: null,
         icon: Icons.foundation,
       ),
