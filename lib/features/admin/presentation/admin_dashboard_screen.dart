@@ -14,6 +14,8 @@ import 'services_verification_requests_screen.dart';
 import 'admin_reels_screen.dart';
 import 'gst_verification_requests_screen.dart';
 
+import 'manage_material_prices_screen.dart';
+
 class AdminDashboardScreen extends StatefulWidget {
   static const String routeName = '/admin-dashboard';
   final bool isSeller;
@@ -108,6 +110,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'title': 'Reels',
         'icon': Icons.video_collection_outlined,
         'route': AdminReelsScreen.routeName,
+      },
+      {
+        'title': 'Material Prices',
+        'icon': Icons.currency_rupee,
+        'route': ManageMaterialPricesScreen.routeName,
       },
     ];
 

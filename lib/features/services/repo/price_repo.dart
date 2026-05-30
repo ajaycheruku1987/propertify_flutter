@@ -1,58 +1,91 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
-import '../../../core/key_properties.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/material_price_model.dart';
 
 class PriceRepo {
-  // Use API key from KeyProperties
-  static const String _apiKey = KeyProperties.geminiApiKey;
+  static const String _storageKey = 'manual_material_prices';
+
+  Future<void> saveManualPrices(List<Map<String, dynamic>> prices) async {
+    final prefs = await SharedPreferences.getInstance();
+    // Get existing prices to calculate trends
+    final String? existingData = prefs.getString(_storageKey);
+    List<dynamic> existingList = existingData != null ? jsonDecode(existingData) : [];
+
+    final List<Map<String, dynamic>> updatedList = [];
+
+    for (var newPriceData in prices) {
+      final String name = newPriceData['name'];
+      final double newPriceValue = double.tryParse(newPriceData['price'].toString().replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0;
+      
+      // Find old data to calculate trend
+      dynamic oldData;
+      try {
+        oldData = existingList.firstWhere((item) => item['name'] == name);
+      } catch (_) {
+        // Fallback: If no manual data exists, find the mock price to use as baseline
+        final mock = _getMockPrices().firstWhere((m) => m.name == name, orElse: () => _getMockPrices().first);
+        oldData = {
+          'price': mock.price,
+          'history': mock.history.map((h) => {'date': h.date.toIso8601String(), 'price': h.price}).toList(),
+        };
+      }
+
+      double trendPercent = 0.0;
+      bool? isUp;
+      
+      if (oldData != null) {
+        final double oldPriceValue = double.tryParse(oldData['price'].toString().replaceAll(RegExp(r'[^0-9.]'), '')) ?? newPriceValue;
+        if (oldPriceValue != 0) {
+          trendPercent = ((newPriceValue - oldPriceValue) / oldPriceValue) * 100;
+          isUp = newPriceValue > oldPriceValue ? true : (newPriceValue < oldPriceValue ? false : null);
+        }
+      }
+
+      // Maintain history (keep last 6). If first time, 'oldData' now contains mock history
+      List<dynamic> history = oldData != null && oldData['history'] != null ? List.from(oldData['history']) : [];
+      
+      // Avoid adding duplicate points if saving multiple times in one day for testing
+      if (history.isNotEmpty) {
+        final lastDate = DateTime.parse(history.last['date']);
+        final now = DateTime.now();
+        if (lastDate.year == now.year && lastDate.month == now.month && lastDate.day == now.day) {
+          history.removeLast(); // Update today's point instead of adding a new one
+        }
+      }
+
+      history.add({
+        'date': DateTime.now().toIso8601String(),
+        'price': newPriceValue,
+      });
+      if (history.length > 6) history.removeAt(0);
+
+      updatedList.add({
+        'name': name,
+        'price': newPriceData['price'], // e.g. "₹70,000/t"
+        'trend': "${trendPercent >= 0 ? '+' : ''}${trendPercent.toStringAsFixed(1)}%",
+        'isUp': isUp,
+        'history': history,
+      });
+    }
+
+    await prefs.setString(_storageKey, jsonEncode(updatedList));
+  }
 
   Future<List<MaterialPrice>> getLatestMaterialPrices() async {
     try {
-      if (_apiKey.isEmpty || _apiKey == 'YOUR_GEMINI_API_KEY') {
-        // Return mock data if API key is not set to avoid errors
-        return _getMockPrices();
+      final prefs = await SharedPreferences.getInstance();
+      final String? data = prefs.getString(_storageKey);
+      
+      if (data != null) {
+        final List<dynamic> decoded = jsonDecode(data);
+        return decoded.map((item) => MaterialPrice.fromJson(item)).toList();
       }
-
-      final model = GenerativeModel(
-        model: 'gemini-1.5-flash',
-        apiKey: _apiKey,
-      );
-
-      const prompt = '''
-        Fetch the current average market prices and 6-month price history for construction materials in India:
-        1. Steel (TMT) per ton
-        2. Cement per bag
-        3. Sand per ton
-        4. Bricks per 1000 units
-        5. Wood (Teak) per cubic foot
-        6. Aggregate (Blue Metal) per ton
-        
-        Return the data ONLY as a valid JSON array of objects. 
-        Each object must have:
-        - "name": String
-        - "price": String (current price with unit)
-        - "trend": String (e.g., "+2.1%")
-        - "isUp": Boolean (true if price went up compared to last month)
-        - "history": Array of 6 objects, each with "date" (ISO format, e.g., "2024-05-01") and "price" (Numeric value only)
-        
-        Do not include any markdown formatting. Just the raw JSON array.
-      ''';
-
-      final content = [Content.text(prompt)];
-      final response = await model.generateContent(content);
       
-      final String? text = response.text;
-      if (text == null) return _getMockPrices();
-
-      // Clean the response in case Gemini includes markdown blocks
-      final cleanedText = text.replaceAll('```json', '').replaceAll('```', '').trim();
-      
-      final List<dynamic> decoded = jsonDecode(cleanedText);
-      return decoded.map((item) => MaterialPrice.fromJson(item)).toList();
+      // Return default mock data if no manual prices are set yet
+      return _getMockPrices();
     } catch (e) {
-      print('Error fetching AI prices: $e');
+      print('Error fetching manual prices: $e');
       return _getMockPrices();
     }
   }

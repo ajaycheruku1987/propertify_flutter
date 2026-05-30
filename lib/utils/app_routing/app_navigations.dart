@@ -48,6 +48,7 @@ import '../../features/admin/presentation/properties_list_view_screen.dart';
 import '../../features/admin/presentation/admin_companies_screen.dart';
 import '../../features/admin/presentation/admin_reels_screen.dart';
 import '../../features/admin/presentation/gst_verification_requests_screen.dart';
+import '../../features/admin/presentation/manage_material_prices_screen.dart';
 
 import '../../features/auth/presentation/auth_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
@@ -476,6 +477,10 @@ final router = GoRouter(
     GoRoute(
       path: GstVerificationRequestsScreen.routeName,
       builder: (context, state) => const GstVerificationRequestsScreen(),
+    ),
+    GoRoute(
+      path: ManageMaterialPricesScreen.routeName,
+      builder: (context, state) => const ManageMaterialPricesScreen(),
     ),
   ],
 );
