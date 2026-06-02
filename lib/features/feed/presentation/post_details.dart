@@ -355,7 +355,7 @@ Check it out on Propertify!
                 ),
                 child: IconButton(
                   icon: const Icon(
-                    FontAwesomeIcons.shareNodes,
+                    FontAwesomeIcons.share,
                     color: Colors.black,
                     size: 20,
                   ),
