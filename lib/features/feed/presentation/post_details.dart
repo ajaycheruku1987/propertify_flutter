@@ -8,7 +8,11 @@ import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
+import 'package:propertify/utils/custom_toast.dart';
+import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+import 'widgets/comments_bottom_sheet.dart';
 import '../bloc/feed_bloc.dart';
 import 'widgets/image_carousel.dart';
 import 'widgets/property_info.dart';
@@ -57,6 +61,244 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
     super.dispose();
   }
 
+  void _handleShare(dynamic postDetails) {
+    if (postDetails == null) return;
+
+    final String postTitle = postDetails.title ?? 'Property';
+    final String postDescription =
+        postDetails.description ?? 'Check out this property';
+    final String postedBy = postDetails.owner?.username ?? 'Propertify User';
+    final String imageUrl =
+        postDetails.imageUrls != null && postDetails.imageUrls!.isNotEmpty
+            ? postDetails.imageUrls!.first
+            : '';
+
+    final String shareMessage = '''
+🏠 $postTitle
+
+📝 Description:
+$postDescription
+
+👤 Posted by: $postedBy
+
+${imageUrl.isNotEmpty ? '📷 Image: $imageUrl' : ''}
+
+Check it out on Propertify!
+
+📱 Download the app: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
+              '''
+        .trim();
+
+    Share.share(shareMessage, subject: postTitle);
+  }
+
+  Widget _buildInteractionItem({
+    required IconData icon,
+    required String label,
+    required Color color,
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 18, color: color),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleReportProperty(String propertyId) {
+    if (!context.read<HomeBloc>().state.showAddButton) {
+      CustomToast.showErrorToast(msg: 'please login to report');
+      context.push(AuthScreen.routeName);
+      return;
+    }
+
+    final TextEditingController reasonController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+    String? selectedReason = 'Spam or Misleading';
+    bool isLoading = false;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: const Row(
+                children: [
+                  Icon(
+                    Icons.report_problem_rounded,
+                    color: Colors.orange,
+                    size: 28,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Report Property',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
+              ),
+              content: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Why are you reporting this property?',
+                        style: TextStyle(fontSize: 14, color: Colors.black87),
+                      ),
+                      const SizedBox(height: 12),
+                      ...[
+                        'Spam or Misleading',
+                        'Incorrect details/Price',
+                        'Inappropriate content',
+                        'Other',
+                      ].map((reason) {
+                        return RadioListTile<String>(
+                          title: Text(
+                            reason,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          value: reason,
+                          groupValue: selectedReason,
+                          activeColor: Theme.of(context).primaryColor,
+                          contentPadding: EdgeInsets.zero,
+                          dense: true,
+                          onChanged: (val) {
+                            setState(() {
+                              selectedReason = val;
+                            });
+                          },
+                        );
+                      }),
+                      if (selectedReason == 'Other') ...[
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: reasonController,
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                            hintText: 'Enter reason here...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter a reason';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: isLoading
+                      ? null
+                      : () => Navigator.pop(dialogContext),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          if (selectedReason == 'Other' &&
+                              !formKey.currentState!.validate()) {
+                            return;
+                          }
+
+                          final reasonText = selectedReason == 'Other'
+                              ? reasonController.text.trim()
+                              : selectedReason!;
+
+                          setState(() {
+                            isLoading = true;
+                          });
+
+                          final repo = FeedRepo();
+                          final res = await repo.reportProperty(
+                            propertyId: propertyId,
+                            reason: reasonText,
+                          );
+
+                          if (context.mounted) {
+                            Navigator.pop(dialogContext);
+                            res.fold(
+                              (failure) {
+                                CustomToast.showErrorToast(
+                                  msg: failure.message,
+                                );
+                              },
+                              (success) {
+                                CustomToast.showSuccessToast(
+                                  msg:
+                                      'Post reported, we will investigate further',
+                                );
+                              },
+                            );
+                          }
+                        },
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 16,
+                          width: 16,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Text(
+                          'Report',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,29 +338,31 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
         ),
         centerTitle: true,
         actions: [
-          Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
+          BlocBuilder<FeedBloc, FeedState>(
+            builder: (context, state) {
+              return Container(
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.shareNodes,
-                color: Colors.black,
-                size: 20,
-              ),
-              onPressed: () {
-                // Handle share functionality
-              },
-            ),
+                child: IconButton(
+                  icon: const Icon(
+                    FontAwesomeIcons.shareNodes,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  onPressed: () => _handleShare(state.postDetails),
+                ),
+              );
+            },
           ),
           context.read<HomeBloc>().state.showAddButton
               ? BlocBuilder<FeedBloc, FeedState>(
@@ -169,66 +413,68 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                             },
                           ),
                         ),
-                        if (isOwner)
-                          Container(
-                            margin: const EdgeInsets.only(
-                              right: 8,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
+                        Container(
+                          margin: const EdgeInsets.only(
+                            right: 8,
+                            top: 8,
+                            bottom: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: PopupMenuButton<String>(
+                            color: Colors.white,
+                            padding: EdgeInsets.zero,
+                            position: PopupMenuPosition.under,
+                            elevation: 4,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
                             ),
-                            child: PopupMenuButton<String>(
-                              color: Colors.white,
-                              padding: EdgeInsets.zero,
-                              position: PopupMenuPosition.under,
-                              elevation: 4,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              icon: const Icon(
-                                Icons.more_vert,
-                                color: Colors.black87,
-                                size: 20,
-                              ),
-                              onSelected: (value) {
-                                if (value == 'edit') {
-                                  context.push('/edit-feed', extra: state.postDetails!);
-                                } else if (value == 'delete') {
-                                  showDialog(
-                                    context: context,
-                                    builder: (dialogContext) => AlertDialog(
-                                      title: const Text('Delete Property'),
-                                      content: const Text('Are you sure you want to delete this property?'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(dialogContext),
-                                          child: const Text('Cancel'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(dialogContext);
-                                            context.read<FeedBloc>().add(
-                                              FeedEvent.deleteProperty(propertyId: widget.postId),
-                                            );
-                                          },
-                                          child: const Text('Delete', style: TextStyle(color: Colors.red)),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }
-                              },
-                              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                            icon: const Icon(
+                              Icons.more_vert,
+                              color: Colors.black87,
+                              size: 20,
+                            ),
+                            onSelected: (value) {
+                              if (value == 'edit') {
+                                context.push('/edit-feed', extra: state.postDetails!);
+                              } else if (value == 'delete') {
+                                showDialog(
+                                  context: context,
+                                  builder: (dialogContext) => AlertDialog(
+                                    title: const Text('Delete Property'),
+                                    content: const Text('Are you sure you want to delete this property?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(dialogContext),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(dialogContext);
+                                          context.read<FeedBloc>().add(
+                                            FeedEvent.deleteProperty(propertyId: widget.postId),
+                                          );
+                                        },
+                                        child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else if (value == 'report') {
+                                _handleReportProperty(widget.postId);
+                              }
+                            },
+                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                              if (isOwner) ...[
                                 const PopupMenuItem<String>(
                                   value: 'edit',
                                   child: Row(
@@ -250,8 +496,20 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                                   ),
                                 ),
                               ],
-                            ),
+                              if (!isOwner)
+                                const PopupMenuItem<String>(
+                                  value: 'report',
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.report, size: 18, color: Colors.orange),
+                                      SizedBox(width: 8),
+                                      Text('Report'),
+                                    ],
+                                  ),
+                                ),
+                            ],
                           ),
+                        ),
                       ],
                     );
                   },
@@ -320,14 +578,12 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                           price: postDetails.price?.toString() ?? '',
                         ),
 
-                        // const SizedBox(height: 14),
-
                         // Description Section
                         DescriptionSection(
                           description: postDetails.description ?? '',
                         ),
 
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 16),
 
                         // Agent Info Section
                         AgentInfo(
@@ -361,8 +617,80 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                               )
                             : Container(),
 
+                        const SizedBox(height: 4),
+                        // Interaction Buttons (Like, Comment, Views)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 12,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(color: Colors.grey.shade200),
+                                bottom: BorderSide(color: Colors.grey.shade200),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                _buildInteractionItem(
+                                  icon: postDetails.isLiked == true
+                                      ? FontAwesomeIcons.solidThumbsUp
+                                      : FontAwesomeIcons.thumbsUp,
+                                  label: '${postDetails.likesCount ?? 0} Likes',
+                                  color: postDetails.isLiked == true
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey.shade700,
+                                  onTap: () {
+                                    if (!context.read<HomeBloc>().state.showAddButton) {
+                                      CustomToast.showErrorToast(msg: 'Please login to like');
+                                      context.push(AuthScreen.routeName);
+                                      return;
+                                    }
+                                    context.read<FeedBloc>().add(
+                                      FeedEvent.likeProperty(
+                                        propertyId: postDetails.id!,
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Container(
+                                  height: 20,
+                                  width: 1,
+                                  color: Colors.grey.shade300,
+                                ),
+                                _buildInteractionItem(
+                                  icon: FontAwesomeIcons.comment,
+                                  label: '${postDetails.commentsCount ?? 0} Comments',
+                                  color: Colors.grey.shade700,
+                                  onTap: () {
+                                    CommentsBottomSheet.show(
+                                      context,
+                                      postDetails.id!,
+                                      context.read<HomeBloc>().state.showAddButton,
+                                    );
+                                  },
+                                ),
+                                Container(
+                                  height: 20,
+                                  width: 1,
+                                  color: Colors.grey.shade300,
+                                ),
+                                _buildInteractionItem(
+                                  icon: FontAwesomeIcons.eye,
+                                  label: '${postDetails.viewsCount ?? 0} Views',
+                                  color: Colors.grey.shade700,
+                                  onTap: null, // View only
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
                         // Call and WhatsApp Buttons
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 16),
 
                         // Similar Posts by Category Section
                         if (state.similarPostsByCategory.isNotEmpty)
