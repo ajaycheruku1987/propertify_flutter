@@ -28,15 +28,16 @@ class ProfileRepo {
     required String email,
     required String phoneNumber,
   }) async {
-    final response = await ftPyroApiRequest.put(
-      '/profile',
-      data: {"username": name, "email": email, "phone_number": phoneNumber},
-    );
-    final responseData = await response.getResponse();
-    return responseData.fold(
-      (failure) => Left(failure),
-      (right) => Right(UserProfileModel.fromJson(right)),
-    );
+    // final response = await ftPyroApiRequest.put(
+    //   '/profile',
+    //   data: {"username": name, "email": email, "phone_number": phoneNumber},
+    // );
+    // final responseData = await response.getResponse();
+    // return responseData.fold(
+    //   (failure) => Left(failure),
+    //   (right) => Right(UserProfileModel.fromJson(right)),
+    // );
+    return Left(ApiFailure('Feature disabled'));
   }
 
   /// Upload Profile Image API

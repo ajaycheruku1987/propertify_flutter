@@ -107,15 +107,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     return CommonCustomButton(
                       isEnable: !state.isLoading,
                       onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<ProfileBloc>().add(
-                                ProfileEvent.updateProfile(
-                                  name: _nameController.text,
-                                  email: _emailController.text,
-                                  phoneNumber: _phoneController.text,
-                                ),
-                              );
-                        }
+                        // if (_formKey.currentState!.validate()) {
+                        //   context.read<ProfileBloc>().add(
+                        //         ProfileEvent.updateProfile(
+                        //           name: _nameController.text,
+                        //           email: _emailController.text,
+                        //           phoneNumber: _phoneController.text,
+                        //         ),
+                        //       );
+                        // }
                       },
                       buttonLabel: state.isLoading ? 'Updating...' : 'Save Changes',
                     );
