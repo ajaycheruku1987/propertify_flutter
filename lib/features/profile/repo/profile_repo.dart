@@ -30,12 +30,12 @@ class ProfileRepo {
   }) async {
     final response = await ftPyroApiRequest.put(
       '/profile',
-      data: {"name": name, "email": email, "phone_number": phoneNumber},
+      data: {"username": name, "email": email, "phone_number": phoneNumber},
     );
     final responseData = await response.getResponse();
     return responseData.fold(
       (failure) => Left(failure),
-      (right) => Right(UserProfileModel.fromJson(right['data'])),
+      (right) => Right(UserProfileModel.fromJson(right)),
     );
   }
 

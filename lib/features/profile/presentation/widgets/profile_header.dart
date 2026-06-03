@@ -109,6 +109,19 @@ class ProfileHeader extends StatelessWidget {
 
         const SizedBox(height: 4),
 
+        // Email
+        if (userProfile?.email != null && userProfile!.email!.isNotEmpty)
+          Text(
+            userProfile!.email!,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey.shade600,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+
+        const SizedBox(height: 4),
+
         // Phone Number
         Text(
           userProfile?.phoneNumber ?? '7286047246',

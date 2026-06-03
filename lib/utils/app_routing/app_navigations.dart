@@ -20,6 +20,7 @@ import 'package:propertify/features/services/models/services_response_model.dart
 import 'package:propertify/features/services/presentation/aadhar_verification_screen.dart';
 import 'package:propertify/features/services/presentation/service_reviews_screen.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
+import 'package:propertify/features/profile/models/user_profile_model.dart';
 import 'package:propertify/features/requests/models/request_response_model.dart';
 import 'package:propertify/features/requests/presentation/create_request_details.dart';
 import 'package:propertify/features/sales/presentation/create_sales.dart';
@@ -56,6 +57,7 @@ import '../../features/auth/presentation/forgot_password_otp_update_password_scr
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/create_post/presentation/create_post_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/profile/presentation/edit_profile_screen.dart';
 import '../../features/profile/presentation/my_dashboard_screen.dart';
 import '../../features/profile/presentation/my_posts_screen.dart';
 import '../../features/profile/presentation/create_banner_ad.dart';
@@ -119,6 +121,13 @@ final router = GoRouter(
     GoRoute(
       path: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: EditProfileScreen.routeName,
+      builder: (context, state) {
+        final userProfile = state.extra as UserProfileModel;
+        return EditProfileScreen(userProfile: userProfile);
+      },
     ),
     GoRoute(
       path: MyPostsScreen.routeName,
