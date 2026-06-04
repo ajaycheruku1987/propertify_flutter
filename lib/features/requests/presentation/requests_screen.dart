@@ -25,6 +25,7 @@ class RequestsScreen extends StatefulWidget {
 
 class _RequestsScreenState extends State<RequestsScreen> {
   int _currentSlide = 0;
+  ScrollController? _scrollController;
 
   @override
   void initState() {
@@ -39,6 +40,44 @@ class _RequestsScreenState extends State<RequestsScreen> {
         radiusKm: 10,
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final newController = PrimaryScrollController.of(context);
+    if (_scrollController != newController) {
+      _scrollController?.removeListener(_onScroll);
+      _scrollController = newController;
+      _scrollController!.addListener(_onScroll);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController?.removeListener(_onScroll);
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final controller = _scrollController;
+    if (controller == null || !controller.hasClients) return;
+    if (controller.position.pixels >=
+        controller.position.maxScrollExtent - 300) {
+      final state = context.read<RequestsBloc>().state;
+      if (!state.isLoading && state.hasMoreData) {
+        final homeState = context.read<HomeBloc>().state;
+        context.read<RequestsBloc>().add(
+          RequestsEvent.getRequests(
+            skip: state.currentOffset,
+            limit: 10,
+            latitude: homeState.currentLat,
+            longitude: homeState.currentLng,
+            radiusKm: 10,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -121,6 +160,13 @@ class _RequestsScreenState extends State<RequestsScreen> {
             ),
             // Requests List as Sliver
             _buildRequestsListSliver(state),
+            if (state.isLoading && state.requestsList.isNotEmpty)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ),
           ],
         );
       },
@@ -128,7 +174,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
   }
 
   Widget _buildRequestsListSliver(RequestsState state) {
-    if (state.isLoading) {
+    if (state.isLoading && state.requestsList.isEmpty) {
       return const SliverFillRemaining(
         child: Center(child: CircularProgressIndicator()),
       );

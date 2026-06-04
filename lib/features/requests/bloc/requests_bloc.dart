@@ -15,6 +15,11 @@ part 'requests_state.dart';
 class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
   final RequestsRepo _requestsRepo;
 
+  String? _lastSearch;
+  double? _lastLatitude;
+  double? _lastLongitude;
+  double? _lastRadiusKm;
+
   RequestsBloc(this._requestsRepo) : super(const RequestsState()) {
     on<_GetRequestsEvent>(_onGetRequestsEvent);
     on<_GetRequestDetailsEvent>(_onGetRequestDetailsEvent);
@@ -39,16 +44,36 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
     Emitter<RequestsState> emit,
   ) async {
     try {
-      emit(_mergeState(isLoading: true));
+      final int offset = event.skip ?? 0;
+      final int limit = event.limit ?? 10;
+
+      final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
+      final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
+      final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
+      final double? radiusKm = event.radiusKm ?? (offset == 0 ? null : _lastRadiusKm);
+
+      if (offset == 0) {
+        _lastSearch = search;
+        _lastLatitude = latitude;
+        _lastLongitude = longitude;
+        _lastRadiusKm = radiusKm;
+      }
+
+      emit(
+        _mergeState(
+          isLoading: true,
+          requestsList: offset == 0 ? [] : state.requestsList,
+        ),
+      );
 
       final Either<Failure, List<RequestResponseModel>> requestsEither =
           await _requestsRepo.getRequests(
-            skip: event.skip,
-            limit: event.limit,
-            latitude: event.latitude,
-            longitude: event.longitude,
-            radiusKm: event.radiusKm,
-            search: event.search,
+            skip: offset,
+            limit: limit,
+            latitude: latitude,
+            longitude: longitude,
+            radiusKm: radiusKm,
+            search: search,
           );
 
       requestsEither.fold(

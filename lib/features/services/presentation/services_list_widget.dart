@@ -17,7 +17,7 @@ class ServicesListWidget extends StatefulWidget {
 }
 
 class _ServicesListWidgetState extends State<ServicesListWidget> {
-  final ScrollController _scrollController = ScrollController();
+  ScrollController? _scrollController;
 
   @override
   void initState() {
@@ -33,18 +33,45 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
           radiusKm: 5,
         ),
       );
-      _scrollController.addListener(_onScroll);
     });
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final newController = PrimaryScrollController.of(context);
+    if (_scrollController != newController) {
+      _scrollController?.removeListener(_onScroll);
+      _scrollController = newController;
+      _scrollController!.addListener(_onScroll);
+    }
+  }
+
+  @override
   void dispose() {
-    _scrollController.dispose();
+    _scrollController?.removeListener(_onScroll);
     super.dispose();
   }
 
   void _onScroll() {
-    // Scroll handling for future pagination
+    final controller = _scrollController;
+    if (controller == null || !controller.hasClients) return;
+    if (controller.position.pixels >=
+        controller.position.maxScrollExtent - 300) {
+      final state = context.read<ServicesBloc>().state;
+      if (!state.isLoading && state.hasMoreData) {
+        final homeState = context.read<HomeBloc>().state;
+        context.read<ServicesBloc>().add(
+          ServicesEvent.getServicesEvent(
+            skip: state.currentOffset,
+            limit: 10,
+            latitude: homeState.currentLat,
+            longitude: homeState.currentLng,
+            radiusKm: 5,
+          ),
+        );
+      }
+    }
   }
 
   Future<void> _onRefresh() async {
@@ -180,6 +207,13 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                   );
                 }, childCount: services.length),
               ),
+              if (state.isLoading && services.isNotEmpty)
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
             ],
           ),
         );

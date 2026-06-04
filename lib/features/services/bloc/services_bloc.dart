@@ -21,6 +21,13 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
   final ServicesRepo _servicesRepo;
   final PriceRepo _priceRepo;
 
+  String? _lastSearch;
+  List<String>? _lastCategoryNames;
+  double? _lastLatitude;
+  double? _lastLongitude;
+  double? _lastRadiusKm;
+  double? _lastMinRating;
+
   ServicesBloc(this._servicesRepo, this._priceRepo) : super(const ServicesState()) {
     on<_GetServicesEvent>(_onGetServicesEvent);
     on<_GetServiceDetailsEvent>(_onGetServiceDetailsEvent);
@@ -371,6 +378,22 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
       final int offset = event.skip ?? 0;
       final int limit = event.limit ?? 10;
 
+      final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
+      final List<String>? categoryNames = event.categoryNames ?? (offset == 0 ? null : _lastCategoryNames);
+      final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
+      final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
+      final double? radiusKm = event.radiusKm ?? (offset == 0 ? null : _lastRadiusKm);
+      final double? minRating = event.minRating ?? (offset == 0 ? null : _lastMinRating);
+
+      if (offset == 0) {
+        _lastSearch = search;
+        _lastCategoryNames = categoryNames;
+        _lastLatitude = latitude;
+        _lastLongitude = longitude;
+        _lastRadiusKm = radiusKm;
+        _lastMinRating = minRating;
+      }
+
       emit(
         state.copyWith(
           isLoading: true,
@@ -380,14 +403,14 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
 
       Either<Failure, List<ServicesResponseModel>> servicesResponseEither =
           await _servicesRepo.getServices(
-            skip: event.skip,
-            limit: event.limit,
-            latitude: event.latitude,
-            longitude: event.longitude,
-            radiusKm: event.radiusKm,
-            categoryNames: event.categoryNames,
-            minRating: event.minRating,
-            search: event.search,
+            skip: offset,
+            limit: limit,
+            latitude: latitude,
+            longitude: longitude,
+            radiusKm: radiusKm,
+            categoryNames: categoryNames,
+            minRating: minRating,
+            search: search,
           );
 
       servicesResponseEither.fold(
