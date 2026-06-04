@@ -69,7 +69,7 @@ class _AdminCompaniesScreenState extends State<AdminCompaniesScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  _buildHeader(context),
+                  _buildHeader(context, state),
                   Expanded(
                     child: state.companies == null || state.companies!.isEmpty
                         ? _buildEmptyState()
@@ -84,7 +84,7 @@ class _AdminCompaniesScreenState extends State<AdminCompaniesScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AdminState state) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -105,11 +105,13 @@ class _AdminCompaniesScreenState extends State<AdminCompaniesScreen> {
               onPressed: () => context.pop(),
               color: Colors.black87,
             ),
-            const Expanded(
+            Expanded(
               child: Text(
-                'Companies',
+                state.companies != null
+                    ? 'Companies (${state.companies!.length})'
+                    : 'Companies',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,

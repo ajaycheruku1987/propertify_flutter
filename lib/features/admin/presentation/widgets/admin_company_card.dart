@@ -153,13 +153,32 @@ class AdminCompanyCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(
-                        (company.owner?.username ?? 'Unknown Owner')
-                            .toTitleCase(),
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${company.owner?.firstName ?? ''} ${company.owner?.lastName ?? ''}'
+                                    .trim()
+                                    .isNotEmpty
+                                ? '${company.owner?.firstName ?? ''} ${company.owner?.lastName ?? ''}'
+                                    .toTitleCase()
+                                : (company.owner?.username ?? 'Unknown Owner')
+                                    .toTitleCase(),
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          if (company.owner?.phoneNumber != null &&
+                              company.owner!.phoneNumber!.isNotEmpty)
+                            Text(
+                              company.owner!.phoneNumber!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                     if (formattedDate.isNotEmpty)

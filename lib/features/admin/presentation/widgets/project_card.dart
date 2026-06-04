@@ -37,7 +37,9 @@ class ProjectCard extends StatelessWidget {
     }
 
     final category = project.propertyType ?? 'Apartments';
-    final ownerName = project.owner?.username ?? 'Khaja Mohammed';
+    final ownerName = '${project.owner?.firstName ?? ''} ${project.owner?.lastName ?? ''}'.trim().isNotEmpty
+        ? '${project.owner?.firstName ?? ''} ${project.owner?.lastName ?? ''}'
+        : project.owner?.username ?? 'Unknown Owner';
 
     return GestureDetector(
       onTap: () {
@@ -116,15 +118,32 @@ class ProjectCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     // Owner
-                    Text(
-                      ownerName,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade700,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          ownerName,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey.shade700,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        if (project.owner?.phoneNumber != null &&
+                            project.owner!.phoneNumber!.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Text(
+                              project.owner!.phoneNumber!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ],
                 ),

@@ -166,11 +166,11 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                 ],
 
                 // Sales Projects Header
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(16, 8, 16, 12),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
                   child: Row(
                     children: [
-                      Text(
+                      const Text(
                         'Projects',
                         style: TextStyle(
                           fontSize: 20,
@@ -178,6 +178,25 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                           color: Colors.black87,
                         ),
                       ),
+                      const Spacer(),
+                      if (isMyCompany)
+                        TextButton.icon(
+                          onPressed: () {
+                            context.push(CreateSalesScreen.routeName);
+                          },
+                          icon: Icon(
+                            Icons.add_circle_outline,
+                            size: 20,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          label: Text(
+                            'Create Project',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
