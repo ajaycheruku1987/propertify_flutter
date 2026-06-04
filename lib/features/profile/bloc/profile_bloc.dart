@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/profile/repo/profile_repo.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
@@ -52,6 +54,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
         },
         (profile) {
+          // Persist profile data to cache for ownership checks across the app
+          final cache = serviceLocator<AppCacheService>();
+          if (profile.id != null) cache.saveCustomerAccountId(profile.id!);
+          if (profile.phoneNumber != null) cache.saveUserPhone(profile.phoneNumber!);
+
           emit(
             state.copyWith(
               isLoading: false,

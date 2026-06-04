@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/core/api_request/api_request.dart';
@@ -89,10 +90,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
         },
         (response) async {
-          _appCacheService.saveToken(response.accessToken!);
+          await _appCacheService.saveToken(response.accessToken!);
           if (response.role != null) {
-            _appCacheService.saveRole(response.role!);
+            await _appCacheService.saveRole(response.role!);
           }
+          if (response.userId != null) {
+            await _appCacheService.saveCustomerAccountId(response.userId!);
+          }
+          // Save phone number for ownership checks
+          await _appCacheService.saveUserPhone(event.mobileNummber);
+          
           _apiRequest.updateAuthorization(accessToken: response.accessToken!);
 
           emit(state.copyWith(loginResponse: response));
@@ -137,10 +144,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
         },
         (response) async {
-          _appCacheService.saveToken(response.accessToken!);
+          await _appCacheService.saveToken(response.accessToken!);
           if (response.role != null) {
-            _appCacheService.saveRole(response.role!);
+            await _appCacheService.saveRole(response.role!);
           }
+          if (response.userId != null) {
+            await _appCacheService.saveCustomerAccountId(response.userId!);
+          }
+          // Save phone number for ownership checks
+          await _appCacheService.saveUserPhone(event.mobileNumber);
+
           _apiRequest.updateAuthorization(accessToken: response.accessToken!);
 
           emit(state.copyWith(loginResponse: response));

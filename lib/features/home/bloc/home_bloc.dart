@@ -34,7 +34,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   void _checkAccessToken(_CheckToken event, Emitter<HomeState> emit) {
     final accessToken = serviceLocator<AppCacheService>().getToken();
-    debugPrint('accessToken=====: $accessToken');
     if (accessToken != null && accessToken.isNotEmpty) {
       emit(state.copyWith(showAddButton: true));
     } else {

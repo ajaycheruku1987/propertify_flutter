@@ -7,19 +7,30 @@ import '../core/service_locator.dart';
 
 const String ACCESS_TOKEN = 'accessToken';
 const String CUSTOMER_ACCOUNT_ID = 'customerAccountId';
+const String USER_PHONE = 'userPhone';
 const String LOGIN_STATUS = 'loginStatus';
 const String THEME_VALUE = 'themeValue';
 const String USER_ROLE = 'userRole';
 
 class AppCacheService {
   String? _token;
-  String? get token => _token;
-
   String? _customerAccountId;
-  String? get customerAccountId => _customerAccountId;
-
   String? _role;
-  String? get role => _role;
+  String? _phone;
+
+  String? get token => _token ?? sharedPreferences.getString(ACCESS_TOKEN);
+
+  String? get customerAccountId {
+    final id = _customerAccountId ?? sharedPreferences.getString(CUSTOMER_ACCOUNT_ID);
+    return (id == null || id.isEmpty) ? null : id;
+  }
+
+  String? get userPhone {
+    final phone = _phone ?? sharedPreferences.getString(USER_PHONE);
+    return phone;
+  }
+
+  String? get role => _role ?? sharedPreferences.getString(USER_ROLE);
 
   SharedPreferences get sharedPreferences =>
       serviceLocator<SharedPreferences>();
@@ -75,24 +86,20 @@ class AppCacheService {
 
   ///[Customer Account Id]
   Future<bool> saveCustomerAccountId(String id) async {
-    bool saved = await sharedPreferences.setString(CUSTOMER_ACCOUNT_ID, id);
-    if (saved) {
-      _customerAccountId = await getCustomerAccountId();
-    }
-    return saved;
+    _customerAccountId = id;
+    return await sharedPreferences.setString(CUSTOMER_ACCOUNT_ID, id);
   }
 
   Future<String?> getCustomerAccountId() async {
-    String id;
-    var cid = sharedPreferences.getString(CUSTOMER_ACCOUNT_ID);
-    if (cid == null) {
-      id = '';
-      return null;
-    }
-    id = cid;
+    final id = sharedPreferences.getString(CUSTOMER_ACCOUNT_ID);
     _customerAccountId = id;
-    log("$_customerAccountId");
-    return _customerAccountId;
+    return id;
+  }
+
+  ///[User Phone]
+  Future<bool> saveUserPhone(String phone) async {
+    _phone = phone;
+    return await sharedPreferences.setString(USER_PHONE, phone);
   }
 
   Future<bool> deleteCustomerAccountId() async {
@@ -108,6 +115,7 @@ class AppCacheService {
     _token = null;
     _customerAccountId = null;
     _role = null;
+    _phone = null;
     return await sharedPreferences.clear();
   }
 }

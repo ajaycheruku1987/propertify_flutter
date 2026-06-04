@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/company/models/my_company_response_model.dart';
+import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/sales/bloc/sales_bloc.dart';
 import 'package:propertify/features/sales/models/sales_model.dart';
 import 'package:propertify/features/sales/presentation/sale_view_screen.dart';
@@ -99,9 +100,17 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
     final String? imageUrl = company.imageUrl;
 
     // Check if the current user is the owner
-    final currentUserId = serviceLocator<AppCacheService>().customerAccountId;
-    final bool isMyCompany = currentUserId == widget.userId;
-
+    final cacheService = serviceLocator<AppCacheService>();
+    final profileState = context.read<ProfileBloc>().state;
+    
+    // Get identity from cache or active profile state
+    final currentUserId = cacheService.customerAccountId ?? profileState.userProfile?.id;
+    final currentUserPhone = cacheService.userPhone ?? profileState.userProfile?.phoneNumber;
+    
+    // Check ownership by ID or Phone Number
+    final bool isMyCompany = (currentUserId != null && (currentUserId == widget.userId || currentUserId == company.userId)) ||
+                             (currentUserPhone != null && currentUserPhone.isNotEmpty && currentUserPhone == company.owner?.phoneNumber);
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -178,25 +187,6 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                           color: Colors.black87,
                         ),
                       ),
-                      const Spacer(),
-                      if (isMyCompany)
-                        TextButton.icon(
-                          onPressed: () {
-                            context.push(CreateSalesScreen.routeName);
-                          },
-                          icon: Icon(
-                            Icons.add_circle_outline,
-                            size: 20,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          label: Text(
-                            'Create Project',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -378,7 +368,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           child: SizedBox(
             height: 48,
             child: CommonCustomButton(
-              onTap: () {},
+              onTap: () {
+                context.push(CreateSalesScreen.routeName);
+              },
               buttonLabel: 'Add Project',
               buttonColor: Theme.of(context).primaryColor,
             ),
@@ -389,7 +381,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           child: SizedBox(
             height: 48,
             child: CommonCustomButton(
-              onTap: () {},
+              onTap: () {
+                // TODO: Implement Edit Company
+              },
               buttonLabel: 'Edit Company',
               buttonColor: Colors.white,
               labelColor: Theme.of(context).primaryColor,
