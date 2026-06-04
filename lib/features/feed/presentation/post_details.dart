@@ -340,6 +340,11 @@ Check it out on Propertify!
         actions: [
           BlocBuilder<FeedBloc, FeedState>(
             builder: (context, state) {
+              final currentUserId =
+                  context.read<ProfileBloc>().state.userProfile?.id;
+              final isOwner = state.postDetails?.owner?.id != null &&
+                  state.postDetails?.owner?.id == currentUserId;
+
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -353,168 +358,92 @@ Check it out on Propertify!
                     ),
                   ],
                 ),
-                child: IconButton(
+                child: PopupMenuButton<String>(
+                  color: Colors.white,
+                  padding: EdgeInsets.zero,
+                  position: PopupMenuPosition.under,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   icon: const Icon(
-                    FontAwesomeIcons.share,
-                    color: Colors.black,
+                    Icons.more_vert,
+                    color: Colors.black87,
                     size: 20,
                   ),
-                  onPressed: () => _handleShare(state.postDetails),
+                  onSelected: (value) {
+                    if (value == 'edit') {
+                      context.push('/edit-feed', extra: state.postDetails!);
+                    } else if (value == 'delete') {
+                      showDialog(
+                        context: context,
+                        builder: (dialogContext) => AlertDialog(
+                          title: const Text('Delete Property'),
+                          content: const Text(
+                              'Are you sure you want to delete this property?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(dialogContext),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(dialogContext);
+                                context.read<FeedBloc>().add(
+                                      FeedEvent.deleteProperty(
+                                          propertyId: widget.postId),
+                                    );
+                              },
+                              child: const Text('Delete',
+                                  style: TextStyle(color: Colors.red)),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else if (value == 'report') {
+                      _handleReportProperty(widget.postId);
+                    }
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    if (isOwner) ...[
+                      const PopupMenuItem<String>(
+                        value: 'edit',
+                        child: Row(
+                          children: [
+                            Icon(Icons.edit, size: 18, color: Colors.blue),
+                            SizedBox(width: 8),
+                            Text('Edit'),
+                          ],
+                        ),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: 'delete',
+                        child: Row(
+                          children: [
+                            Icon(Icons.delete, size: 18, color: Colors.red),
+                            SizedBox(width: 8),
+                            Text('Delete', style: TextStyle(color: Colors.red)),
+                          ],
+                        ),
+                      ),
+                    ],
+                    if (!isOwner)
+                      const PopupMenuItem<String>(
+                        value: 'report',
+                        child: Row(
+                          children: [
+                            Icon(Icons.report, size: 18, color: Colors.orange),
+                            SizedBox(width: 8),
+                            Text('Report'),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
               );
             },
           ),
-          context.read<HomeBloc>().state.showAddButton
-              ? BlocBuilder<FeedBloc, FeedState>(
-                  builder: (context, state) {
-                    final currentUserId =
-                        context.read<ProfileBloc>().state.userProfile?.id;
-                    final isOwner = state.postDetails?.owner?.id != null &&
-                        state.postDetails?.owner?.id == currentUserId;
-
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                            right: 8,
-                            top: 8,
-                            bottom: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: IconButton(
-                            icon: Icon(
-                              (state.postDetails?.isFavourited ?? false)
-                                  ? FontAwesomeIcons.solidHeart
-                                  : FontAwesomeIcons.heart,
-                              color: (state.postDetails?.isFavourited ?? false)
-                                  ? Colors.red
-                                  : Colors.black,
-                              size: 20,
-                            ),
-                            onPressed: () {
-                              if (state.postDetails?.id != null) {
-                                context.read<FeedBloc>().add(
-                                  FeedEvent.toggleFavorite(
-                                    propertyId: state.postDetails!.id!,
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(
-                            right: 8,
-                            top: 8,
-                            bottom: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: PopupMenuButton<String>(
-                            color: Colors.white,
-                            padding: EdgeInsets.zero,
-                            position: PopupMenuPosition.under,
-                            elevation: 4,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            icon: const Icon(
-                              Icons.more_vert,
-                              color: Colors.black87,
-                              size: 20,
-                            ),
-                            onSelected: (value) {
-                              if (value == 'edit') {
-                                context.push('/edit-feed', extra: state.postDetails!);
-                              } else if (value == 'delete') {
-                                showDialog(
-                                  context: context,
-                                  builder: (dialogContext) => AlertDialog(
-                                    title: const Text('Delete Property'),
-                                    content: const Text('Are you sure you want to delete this property?'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(dialogContext),
-                                        child: const Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(dialogContext);
-                                          context.read<FeedBloc>().add(
-                                            FeedEvent.deleteProperty(propertyId: widget.postId),
-                                          );
-                                        },
-                                        child: const Text('Delete', style: TextStyle(color: Colors.red)),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              } else if (value == 'report') {
-                                _handleReportProperty(widget.postId);
-                              }
-                            },
-                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                              if (isOwner) ...[
-                                const PopupMenuItem<String>(
-                                  value: 'edit',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.edit, size: 18, color: Colors.blue),
-                                      SizedBox(width: 8),
-                                      Text('Edit'),
-                                    ],
-                                  ),
-                                ),
-                                const PopupMenuItem<String>(
-                                  value: 'delete',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.delete, size: 18, color: Colors.red),
-                                      SizedBox(width: 8),
-                                      Text('Delete', style: TextStyle(color: Colors.red)),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                              if (!isOwner)
-                                const PopupMenuItem<String>(
-                                  value: 'report',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.report, size: 18, color: Colors.orange),
-                                      SizedBox(width: 8),
-                                      Text('Report'),
-                                    ],
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                )
-              : Container(),
         ],
       ),
       body: BlocListener<FeedBloc, FeedState>(
@@ -559,6 +488,24 @@ Check it out on Propertify!
                     child: ImageCarousel(
                       images: postDetails.imageUrls ?? [],
                       createdAt: postDetails.createdAt,
+                      isFavourited: postDetails.isFavourited ?? false,
+                      showActionButtons: true,
+                      onFavoriteToggle: () {
+                        if (!context.read<HomeBloc>().state.showAddButton) {
+                          CustomToast.showErrorToast(
+                              msg: 'Please login to add to favorites');
+                          context.push(AuthScreen.routeName);
+                          return;
+                        }
+                        if (postDetails.id != null) {
+                          context.read<FeedBloc>().add(
+                                FeedEvent.toggleFavorite(
+                                  propertyId: postDetails.id!,
+                                ),
+                              );
+                        }
+                      },
+                      onShare: () => _handleShare(postDetails),
                     ),
                   ),
 

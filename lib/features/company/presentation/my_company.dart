@@ -217,29 +217,31 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
 
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      if (index == salesProjects.length) {
-                        // Loading indicator at the end
-                        return const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                      return _buildProjectCard(salesProjects[index]);
-                    },
-                    childCount:
-                        salesProjects.length +
-                        (state.hasMoreData && state.isLoading ? 1 : 0),
+                sliver: SliverSafeArea(
+                  top: false,
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.75,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        if (index == salesProjects.length) {
+                          // Loading indicator at the end
+                          return const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                        return _buildProjectCard(salesProjects[index]);
+                      },
+                      childCount: salesProjects.length +
+                          (state.hasMoreData && state.isLoading ? 1 : 0),
+                    ),
                   ),
                 ),
               );
