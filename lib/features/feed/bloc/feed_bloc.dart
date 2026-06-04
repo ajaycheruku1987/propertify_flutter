@@ -62,29 +62,32 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
           );
         },
         (likeResponse) {
-          List<FeedPostsResponseModel> updatedFeedsList = state.feedsList.map((
-            feed,
-          ) {
-            if (feed.id == event.propertyId) {
-              if (state.postDetails?.id == event.propertyId) {
-                emit(
-                  state.copyWith(
-                    postDetails: state.postDetails?.copyWith(
-                      isFavourited: state.postDetails?.isFavourited == true
-                          ? false
-                          : true,
-                    ),
-                  ),
-                );
-              }
-              return feed.copyWith(
-                isFavourited: feed.isFavourited == true ? false : true,
-              );
+          FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
+            if (post?.id == event.propertyId) {
+              final bool isFavourited = post?.isFavourited ?? false;
+              return post?.copyWith(isFavourited: !isFavourited);
             }
-            return feed;
-          }).toList();
+            return post;
+          }
 
-          emit(state.copyWith(isLoading: false, feedsList: updatedFeedsList));
+          final updatedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedPostDetails = updatePost(state.postDetails);
+
+          emit(
+            state.copyWith(
+              isLoading: false,
+              feedsList: updatedFeedsList,
+              favouritesList: updatedFavouritesList,
+              myPropertiesList: updatedMyPropertiesList,
+              similarProperties: updatedSimilarProperties,
+              similarPostsByCategory: updatedSimilarPostsByCategory,
+              postDetails: updatedPostDetails,
+            ),
+          );
         },
       );
     } catch (e) {
@@ -124,40 +127,34 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
           );
         },
         (likeResponse) {
-          List<FeedPostsResponseModel> updatedFeedsList = state.feedsList.map((
-            feed,
-          ) {
-            if (feed.id == event.propertyId) {
-              final bool wasLiked = feed.isLiked == true;
-              final int currentCount = feed.likesCount ?? 0;
-              return feed.copyWith(
+          FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
+            if (post?.id == event.propertyId) {
+              final bool wasLiked = post?.isLiked == true;
+              final int currentCount = post?.likesCount ?? 0;
+              return post?.copyWith(
                 isLiked: !wasLiked,
                 likesCount: wasLiked ? currentCount - 1 : currentCount + 1,
               );
             }
-            return feed;
-          }).toList();
+            return post;
+          }
 
-          List<FeedPostsResponseModel> updatedFavouritesList = state
-              .favouritesList
-              .map((feed) {
-                if (feed.id == event.propertyId) {
-                  final bool wasLiked = feed.isLiked == true;
-                  final int currentCount = feed.likesCount ?? 0;
-                  return feed.copyWith(
-                    isLiked: !wasLiked,
-                    likesCount: wasLiked ? currentCount - 1 : currentCount + 1,
-                  );
-                }
-                return feed;
-              })
-              .toList();
+          final updatedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedPostDetails = updatePost(state.postDetails);
 
           emit(
             state.copyWith(
               isLoading: false,
               feedsList: updatedFeedsList,
               favouritesList: updatedFavouritesList,
+              myPropertiesList: updatedMyPropertiesList,
+              similarProperties: updatedSimilarProperties,
+              similarPostsByCategory: updatedSimilarPostsByCategory,
+              postDetails: updatedPostDetails,
             ),
           );
         },
