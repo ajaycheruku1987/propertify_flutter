@@ -376,21 +376,21 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             ),
           ),
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: SizedBox(
-            height: 48,
-            child: CommonCustomButton(
-              onTap: () {
-                // TODO: Implement Edit Company
-              },
-              buttonLabel: 'Edit Company',
-              buttonColor: Colors.white,
-              labelColor: Theme.of(context).primaryColor,
-              borderColor: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
+        // const SizedBox(width: 12),
+        // Expanded(
+        //   child: SizedBox(
+        //     height: 48,
+        //     child: CommonCustomButton(
+        //       onTap: () {
+        //         // TODO: Implement Edit Company
+        //       },
+        //       buttonLabel: 'Edit Company',
+        //       buttonColor: Colors.white,
+        //       labelColor: Theme.of(context).primaryColor,
+        //       borderColor: Theme.of(context).primaryColor,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
