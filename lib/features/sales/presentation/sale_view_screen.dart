@@ -425,8 +425,7 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
           ),
           const SizedBox(height: 16),
 
-          // Map View
-          if (sale.latitude != null && sale.longitude != null)
+          if (sale.latitude != null && sale.latitude != 0.0 && sale.longitude != null && sale.longitude != 0.0)
             StaticLocationMapView(
               latitude: sale.latitude!,
               longitude: sale.longitude!,

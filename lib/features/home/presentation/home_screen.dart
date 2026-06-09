@@ -138,9 +138,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                       ],
                     ),
                   )
-                : state.currentLat != 0.0 && state.currentLng != 0.0
-                ? _builBottomNavContent(bottomNavIndex: state.bottomNavIndex)
-                : Center(child: Text('Location not available')),
+                : _builBottomNavContent(bottomNavIndex: state.bottomNavIndex),
           ),
           floatingActionButton: _buildFloatingActionButton(),
           floatingActionButtonLocation:

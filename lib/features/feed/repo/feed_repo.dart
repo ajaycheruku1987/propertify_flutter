@@ -39,9 +39,11 @@ class FeedRepo {
     if (search != null) queryParams['search'] = search;
     if (limit != null) queryParams['limit'] = limit;
     if (offset != null) queryParams['offset'] = offset;
-    if (latitude != null) queryParams['latitude'] = latitude;
-    if (longitude != null) queryParams['longitude'] = longitude;
-    queryParams['radius_km'] = 5;
+    if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
+    if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
+    if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
+      queryParams['radius_km'] = 5;
+    }
 
     // Build query string manually since get method doesn't support queryParameters
     String queryString = '';

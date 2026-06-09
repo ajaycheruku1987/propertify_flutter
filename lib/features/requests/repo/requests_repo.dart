@@ -25,9 +25,11 @@ class RequestsRepo {
       final Map<String, dynamic> queryParams = {};
       if (skip != null) queryParams['skip'] = skip;
       if (limit != null) queryParams['limit'] = limit;
-      if (latitude != null) queryParams['latitude'] = latitude;
-      if (longitude != null) queryParams['longitude'] = longitude;
-      if (radiusKm != null) queryParams['radius_km'] = radiusKm;
+      if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
+      if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
+      if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0 && radiusKm != null) {
+        queryParams['radius_km'] = radiusKm;
+      }
       if (search != null && search.isNotEmpty) queryParams['search'] = search;
 
       // Build query string manually since get method may not support queryParameters
