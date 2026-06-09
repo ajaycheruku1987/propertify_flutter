@@ -152,6 +152,8 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                           (companyState.myCompany?.gstVerificationStatus ==
                                   'none' ||
                               companyState.myCompany?.gstVerificationStatus ==
+                                  'rejected' ||
+                              companyState.myCompany?.gstVerificationStatus ==
                                   null)) ...[
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),

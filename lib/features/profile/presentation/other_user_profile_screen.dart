@@ -267,7 +267,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     // View Company Button
                     BlocBuilder<CompanyBloc, CompanyState>(
                       builder: (context, companyState) {
-                        if (companyState.userCompany != null) {
+                        if (companyState.userCompany != null &&
+                            companyState.userCompany?.gstVerificationStatus ==
+                                'approved') {
                           return Column(
                             children: [
                               GestureDetector(

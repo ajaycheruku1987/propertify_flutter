@@ -7,6 +7,7 @@ import 'package:propertify/core/content_type.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
+import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:propertify/utils/extensions/price_format.dart';
 import '../../feed/presentation/widgets/image_carousel.dart';
@@ -948,7 +949,13 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
               onTap: () {
                 final userId = sale.userId ?? sale.owner?.id;
                 if (userId != null) {
-                  context.push(MyCompanyScreen.routeName, extra: userId);
+                  if (hasCompany &&
+                      company.gstVerificationStatus == 'approved') {
+                    context.push(MyCompanyScreen.routeName, extra: userId);
+                  } else {
+                    context.push(OtherUserProfileScreen.routeName,
+                        extra: userId);
+                  }
                 } else {
                   CustomToast.showErrorToast(msg: 'User ID not found');
                 }

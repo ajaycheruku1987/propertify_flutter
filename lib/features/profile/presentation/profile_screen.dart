@@ -197,9 +197,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       builder: (context, companyState) {
                         return Column(
                           children: [
-                            // My Company button (show if company exists)
+                            // My Company button (show if company exists and is verified)
                             if (homeState.showAddButton &&
-                                companyState.myCompany != null)
+                                companyState.myCompany != null &&
+                                companyState.myCompany?.gstVerificationStatus ==
+                                    'approved')
                               CommonCustomButton(
                                 onTap: () {
                                   if (state.userProfile?.id != null) {
