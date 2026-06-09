@@ -25,6 +25,22 @@ abstract class CompanyRepository {
     String? gstNumber,
   });
 
+  Future<Either<Failure, dynamic>> updateCompany({
+    required String companyId,
+    String? companyName,
+    String? category,
+    String? address,
+    String? city,
+    String? state,
+    String? aboutCompany,
+    String? websiteUrl,
+    String? facebookUrl,
+    String? instagramUrl,
+    String? twitterUrl,
+    XFile? image,
+    String? gstNumber,
+  });
+
   Future<List<String>> getCategories();
 
   Future<Either<Failure, MyCompanyResponseModel>> getMyCompany();
@@ -90,6 +106,62 @@ class CompanyRepositoryImpl implements CompanyRepository {
   }
 
   @override
+  Future<Either<Failure, dynamic>> updateCompany({
+    required String companyId,
+    String? companyName,
+    String? category,
+    String? address,
+    String? city,
+    String? state,
+    String? aboutCompany,
+    String? websiteUrl,
+    String? facebookUrl,
+    String? instagramUrl,
+    String? twitterUrl,
+    XFile? image,
+    String? gstNumber,
+  }) async {
+    try {
+      final Map<String, dynamic> formDataMap = {};
+
+      if (companyName != null) formDataMap['company_name'] = companyName;
+      if (category != null) formDataMap['category'] = category;
+      if (address != null) formDataMap['address'] = address;
+      if (city != null) formDataMap['city'] = city;
+      if (state != null) formDataMap['state'] = state;
+      if (aboutCompany != null) formDataMap['about'] = aboutCompany;
+      if (websiteUrl != null) formDataMap['website_url'] = websiteUrl;
+      if (facebookUrl != null) formDataMap['facebook_url'] = facebookUrl;
+      if (instagramUrl != null) formDataMap['instagram_url'] = instagramUrl;
+      if (twitterUrl != null) formDataMap['twitter_url'] = twitterUrl;
+      if (gstNumber != null) formDataMap['gst_number'] = gstNumber;
+
+      if (image != null) {
+        formDataMap['image'] = await MultipartFile.fromFile(
+          image.path,
+          filename: image.name,
+          contentType: MediaType('image', image.path.split('.').last),
+        );
+      }
+
+      final formData = FormData.fromMap(formDataMap);
+
+      final response = await _apiRequest.put(
+        '/companies/$companyId',
+        data: formData,
+      );
+
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => Right(MyCompanyResponseModel.fromJson(right)),
+      );
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<List<String>> getCategories() async {
     // TODO: Implement API call to get categories
     await Future.delayed(const Duration(milliseconds: 500));
@@ -120,12 +192,17 @@ class CompanyRepositoryImpl implements CompanyRepository {
       );
       final responseData = await response.getResponse();
       return responseData.fold((failure) => Left(failure), (right) {
-        // Response is now a direct list instead of an object with 'companies' field
-        final List<dynamic> companiesJson = right as List<dynamic>;
-        final companies = companiesJson
-            .map((e) => MyCompanyResponseModel.fromJson(e))
-            .toList();
-        return Right(companies);
+        if (right is List) {
+          final companies = right
+              .map((e) => MyCompanyResponseModel.fromJson(e as Map<String, dynamic>))
+              .toList();
+          return Right(companies);
+        } else if (right is Map<String, dynamic>) {
+          // If it's a single object, wrap it in a list
+          return Right([MyCompanyResponseModel.fromJson(right)]);
+        } else {
+          return const Right([]);
+        }
       });
     } catch (e) {
       return Left(ApiFailure(e.toString()));

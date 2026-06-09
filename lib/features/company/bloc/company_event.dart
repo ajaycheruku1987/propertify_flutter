@@ -42,7 +42,12 @@ class CompanyEvent with _$CompanyEvent {
   const factory CompanyEvent.validateAndProceed() = _ValidateAndProceed;
 
   const factory CompanyEvent.createCompany() = _CreateCompany;
+  const factory CompanyEvent.updateCompany({required String companyId}) =
+      _UpdateCompany;
   const factory CompanyEvent.getMyCompany() = _GetMyCompany;
   const factory CompanyEvent.getUserCompany({required String userId}) =
       _GetUserCompany;
+  const factory CompanyEvent.initializeForEdit({
+    required MyCompanyResponseModel company,
+  }) = _InitializeForEdit;
 }

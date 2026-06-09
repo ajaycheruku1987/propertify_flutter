@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
@@ -10,12 +11,14 @@ import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/common_widgets/common_dropdown.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
+import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/features/company/presentation/widgets/gst_success_view.dart';
 
 class CreateCompanyScreen extends StatefulWidget {
   static const String routeName = '/create-company';
+  final MyCompanyResponseModel? company;
 
-  const CreateCompanyScreen({super.key});
+  const CreateCompanyScreen({super.key, this.company});
 
   @override
   State<CreateCompanyScreen> createState() => _CreateCompanyScreenState();
@@ -56,6 +59,26 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.company != null) {
+      final company = widget.company!;
+      _companyNameController.text = company.companyName ?? '';
+      _aboutCompanyController.text = company.about ?? '';
+      _websiteController.text = company.websiteUrl ?? '';
+      _facebookController.text = company.facebookUrl ?? '';
+      _instagramController.text = company.instagramUrl ?? '';
+      _twitterController.text = company.twitterUrl ?? '';
+      _addressController.text = company.address ?? '';
+      _cityController.text = company.city ?? '';
+      _stateController.text = company.state ?? '';
+      _selectedCategory = company.category;
+
+      // Initialize Bloc with existing data
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<CompanyBloc>().add(
+              CompanyEvent.initializeForEdit(company: company),
+            );
+      });
+    }
   }
 
   @override
@@ -72,7 +95,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
     super.dispose();
   }
 
-  void _onCreatePressed() {
+  void _onSavePressed() {
     if (_formKey.currentState!.validate()) {
       // Update BLoC state with all form data
       final bloc = context.read<CompanyBloc>();
@@ -97,16 +120,25 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
       );
 
       // Update address if available
-      if (_addressController.text.isNotEmpty &&
-          _latitude != null &&
-          _longitude != null) {
+      if (_addressController.text.isNotEmpty) {
         bloc.add(
           CompanyEvent.addressChanged(
             address: _addressController.text,
             city: _cityController.text,
             state: _stateController.text,
-            latitude: _latitude!,
-            longitude: _longitude!,
+            latitude: _latitude ?? 0.0,
+            longitude: _longitude ?? 0.0,
+          ),
+        );
+      } else if (widget.company != null) {
+        // For edit mode, if address field is not changed but we have initial data
+        bloc.add(
+          CompanyEvent.addressChanged(
+            address: widget.company!.address ?? '',
+            city: widget.company!.city ?? '',
+            state: widget.company!.state ?? '',
+            latitude: _latitude ?? 0.0,
+            longitude: _longitude ?? 0.0,
           ),
         );
       }
@@ -145,8 +177,12 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
         );
       }
 
-      // Dispatch Create Company event
-      bloc.add(const CompanyEvent.createCompany());
+      // Dispatch Create or Update Company event
+      if (widget.company != null) {
+        bloc.add(CompanyEvent.updateCompany(companyId: widget.company!.id!));
+      } else {
+        bloc.add(const CompanyEvent.createCompany());
+      }
     }
   }
 
@@ -161,9 +197,9 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Create company',
-          style: TextStyle(
+        title: Text(
+          widget.company != null ? 'Edit company' : 'Create company',
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -172,14 +208,29 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
         centerTitle: true,
       ),
       body: BlocConsumer<CompanyBloc, CompanyState>(
+        listenWhen: (previous, current) =>
+            (previous.isSuccess != current.isSuccess && current.isSuccess) ||
+            (previous.errorMessage != current.errorMessage &&
+                current.errorMessage != null),
         listener: (context, state) {
           if (state.errorMessage != null) {
             CustomToast.showErrorToast(msg: state.errorMessage!);
           }
-          if (state.createCompanyResponse != null) {
-            setState(() {
-              _showSuccess = true;
-            });
+
+          if (state.isSuccess) {
+            if (widget.company != null) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) {
+                  CustomToast.showSuccessToast(
+                    msg: 'successfully updated',
+                  );
+                }
+              });
+            } else if (state.createCompanyResponse != null) {
+              setState(() {
+                _showSuccess = true;
+              });
+            }
           }
         },
         builder: (context, state) {
@@ -215,7 +266,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                             color: Colors.grey.shade100,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xFF6C5CE7).withOpacity(0.3),
+                              color: const Color(0xFF6C5CE7).withValues(alpha: 0.3),
                             ),
                           ),
                           child: ClipOval(
@@ -226,13 +277,20 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                                     width: 100,
                                     height: 100,
                                   )
-                                : const Center(
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Color(0xFF6C5CE7),
-                                      size: 32,
-                                    ),
-                                  ),
+                                : widget.company?.imageUrl != null
+                                    ? Image.network(
+                                        widget.company!.imageUrl!,
+                                        fit: BoxFit.cover,
+                                        width: 100,
+                                        height: 100,
+                                      )
+                                    : const Center(
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: Color(0xFF6C5CE7),
+                                          size: 32,
+                                        ),
+                                      ),
                           ),
                         ),
                       ),
@@ -400,8 +458,8 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: CommonCustomButton(
-                        onTap: _onCreatePressed,
-                        buttonLabel: 'Create',
+                        onTap: _onSavePressed,
+                        buttonLabel: widget.company != null ? 'Update' : 'Create',
                         isEnable: !state.isLoading,
                       ),
                     ),

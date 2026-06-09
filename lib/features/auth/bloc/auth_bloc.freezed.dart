@@ -158,12 +158,18 @@ class __$$LogoutEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LogoutEventImpl implements _LogoutEvent {
+class _$LogoutEventImpl with DiagnosticableTreeMixin implements _LogoutEvent {
   const _$LogoutEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.logout()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.logout'));
   }
 
   @override
@@ -342,15 +348,23 @@ class __$$IsLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$IsLoadingImpl implements _IsLoading {
+class _$IsLoadingImpl with DiagnosticableTreeMixin implements _IsLoading {
   const _$IsLoadingImpl(this.flag);
 
   @override
   final bool flag;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.isLoading(flag: $flag)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.isLoading'))
+      ..add(DiagnosticsProperty('flag', flag));
   }
 
   @override
@@ -547,7 +561,7 @@ class __$$LoginEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginEventImpl implements _LoginEvent {
+class _$LoginEventImpl with DiagnosticableTreeMixin implements _LoginEvent {
   const _$LoginEventImpl({required this.mobileNummber, required this.password});
 
   @override
@@ -556,8 +570,17 @@ class _$LoginEventImpl implements _LoginEvent {
   final String password;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.login(mobileNummber: $mobileNummber, password: $password)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.login'))
+      ..add(DiagnosticsProperty('mobileNummber', mobileNummber))
+      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
@@ -780,7 +803,7 @@ class __$$SignupEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignupEventImpl implements _SignupEvent {
+class _$SignupEventImpl with DiagnosticableTreeMixin implements _SignupEvent {
   const _$SignupEventImpl(
       {required this.name,
       this.email,
@@ -800,8 +823,20 @@ class _$SignupEventImpl implements _SignupEvent {
   final String otp;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.signup(name: $name, email: $email, mobileNumber: $mobileNumber, password: $password, otp: $otp)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.signup'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('mobileNumber', mobileNumber))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('otp', otp));
   }
 
   @override
@@ -1011,15 +1046,25 @@ class __$$VerifyPhoneNumberEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VerifyPhoneNumberEventImpl implements _VerifyPhoneNumberEvent {
+class _$VerifyPhoneNumberEventImpl
+    with DiagnosticableTreeMixin
+    implements _VerifyPhoneNumberEvent {
   const _$VerifyPhoneNumberEventImpl({required this.mobileNumber});
 
   @override
   final String mobileNumber;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.verifyPhoneNumber(mobileNumber: $mobileNumber)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.verifyPhoneNumber'))
+      ..add(DiagnosticsProperty('mobileNumber', mobileNumber));
   }
 
   @override
@@ -1214,15 +1259,23 @@ class __$$GetOtpEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetOtpEventImpl implements _GetOtpEvent {
+class _$GetOtpEventImpl with DiagnosticableTreeMixin implements _GetOtpEvent {
   const _$GetOtpEventImpl({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.getOtp(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.getOtp'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
@@ -1403,12 +1456,20 @@ class __$$ClearShowOtpWidgetEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearShowOtpWidgetEventImpl implements _ClearShowOtpWidgetEvent {
+class _$ClearShowOtpWidgetEventImpl
+    with DiagnosticableTreeMixin
+    implements _ClearShowOtpWidgetEvent {
   const _$ClearShowOtpWidgetEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.clearShowOtpWidget()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.clearShowOtpWidget'));
   }
 
   @override
@@ -1573,12 +1634,20 @@ class __$$ClearAllAuthEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearAllAuthEventImpl implements _ClearAllAuthEvent {
+class _$ClearAllAuthEventImpl
+    with DiagnosticableTreeMixin
+    implements _ClearAllAuthEvent {
   const _$ClearAllAuthEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.clearAllAuth()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.clearAllAuth'));
   }
 
   @override
@@ -1759,15 +1828,25 @@ class __$$SendForgotPasswordOtpEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendForgotPasswordOtpEventImpl implements _SendForgotPasswordOtpEvent {
+class _$SendForgotPasswordOtpEventImpl
+    with DiagnosticableTreeMixin
+    implements _SendForgotPasswordOtpEvent {
   const _$SendForgotPasswordOtpEventImpl({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.sendForgotPasswordOtp(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.sendForgotPasswordOtp'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
@@ -1974,7 +2053,9 @@ class __$$ConfirmForgotPasswordEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ConfirmForgotPasswordEventImpl implements _ConfirmForgotPasswordEvent {
+class _$ConfirmForgotPasswordEventImpl
+    with DiagnosticableTreeMixin
+    implements _ConfirmForgotPasswordEvent {
   const _$ConfirmForgotPasswordEventImpl(
       {required this.phoneNumber,
       required this.newPassword,
@@ -1988,8 +2069,18 @@ class _$ConfirmForgotPasswordEventImpl implements _ConfirmForgotPasswordEvent {
   final String otp;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.confirmForgotPassword(phoneNumber: $phoneNumber, newPassword: $newPassword, otp: $otp)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.confirmForgotPassword'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
+      ..add(DiagnosticsProperty('newPassword', newPassword))
+      ..add(DiagnosticsProperty('otp', otp));
   }
 
   @override
@@ -2191,15 +2282,25 @@ class __$$UpdateFcmTokenEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateFcmTokenEventImpl implements _UpdateFcmTokenEvent {
+class _$UpdateFcmTokenEventImpl
+    with DiagnosticableTreeMixin
+    implements _UpdateFcmTokenEvent {
   const _$UpdateFcmTokenEventImpl({required this.fcmToken});
 
   @override
   final String fcmToken;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.updateFcmToken(fcmToken: $fcmToken)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.updateFcmToken'))
+      ..add(DiagnosticsProperty('fcmToken', fcmToken));
   }
 
   @override
@@ -2610,7 +2711,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateImpl implements _AuthState {
+class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
   const _$AuthStateImpl(
       {this.loginResponse,
       this.sendOtpResponse,
@@ -2645,8 +2746,24 @@ class _$AuthStateImpl implements _AuthState {
   final bool showOtpWidget;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthState(loginResponse: $loginResponse, sendOtpResponse: $sendOtpResponse, resetPasswordResponse: $resetPasswordResponse, validateLoginOtp: $validateLoginOtp, isLoading: $isLoading, isNumberExists: $isNumberExists, notifyStatus: $notifyStatus, isOtpSent: $isOtpSent, showOtpWidget: $showOtpWidget)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthState'))
+      ..add(DiagnosticsProperty('loginResponse', loginResponse))
+      ..add(DiagnosticsProperty('sendOtpResponse', sendOtpResponse))
+      ..add(DiagnosticsProperty('resetPasswordResponse', resetPasswordResponse))
+      ..add(DiagnosticsProperty('validateLoginOtp', validateLoginOtp))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('isNumberExists', isNumberExists))
+      ..add(DiagnosticsProperty('notifyStatus', notifyStatus))
+      ..add(DiagnosticsProperty('isOtpSent', isOtpSent))
+      ..add(DiagnosticsProperty('showOtpWidget', showOtpWidget));
   }
 
   @override

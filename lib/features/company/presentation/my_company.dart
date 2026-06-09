@@ -15,6 +15,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import '../../home/presentation/widgets/home_loan_widget.dart';
 import '../../sales/presentation/create_sales.dart';
+import 'create_company_screen.dart';
 
 class MyCompanyScreen extends StatefulWidget {
   static const String routeName = '/my-company';
@@ -74,18 +75,71 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CompanyBloc, CompanyState>(
+    return BlocConsumer<CompanyBloc, CompanyState>(
+      listenWhen: (previous, current) =>
+          previous.errorMessage != current.errorMessage &&
+          current.errorMessage != null,
+      listener: (context, state) {
+        if (state.errorMessage != null && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errorMessage!)),
+          );
+        }
+      },
       builder: (context, state) {
         final company = state.userCompany;
 
-        if (state.isLoading || company == null) {
-          return const Scaffold(
+        if (company == null) {
+          if (state.isLoading) {
+            return const Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          return Scaffold(
             backgroundColor: Colors.white,
-            body: Center(child: CircularProgressIndicator()),
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.black87),
+                onPressed: () => Navigator.pop(context),
+              ),
+              title: const Text('Company Details'),
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'No company data found',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => context.read<CompanyBloc>().add(
+                          CompanyEvent.getUserCompany(userId: widget.userId),
+                        ),
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            ),
           );
         }
 
-        return _buildContent(company);
+        return Stack(
+          children: [
+            _buildContent(company),
+            if (state.isLoading)
+              Positioned(
+                top: MediaQuery.of(context).padding.top + kToolbarHeight,
+                left: 0,
+                right: 0,
+                child: const LinearProgressIndicator(),
+              ),
+          ],
+        );
       },
     );
   }
@@ -277,13 +331,13 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Theme.of(context).primaryColor.withOpacity(0.1),
-            Theme.of(context).primaryColor.withOpacity(0.05),
+            Theme.of(context).primaryColor.withValues(alpha: 0.1),
+            Theme.of(context).primaryColor.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Theme.of(context).primaryColor.withOpacity(0.3),
+          color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -297,7 +351,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -376,21 +430,31 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             ),
           ),
         ),
-        // const SizedBox(width: 12),
-        // Expanded(
-        //   child: SizedBox(
-        //     height: 48,
-        //     child: CommonCustomButton(
-        //       onTap: () {
-        //         // TODO: Implement Edit Company
-        //       },
-        //       buttonLabel: 'Edit Company',
-        //       buttonColor: Colors.white,
-        //       labelColor: Theme.of(context).primaryColor,
-        //       borderColor: Theme.of(context).primaryColor,
-        //     ),
-        //   ),
-        // ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: SizedBox(
+            height: 48,
+            child: CommonCustomButton(
+              onTap: () async {
+                final currentCompany = context.read<CompanyBloc>().state.userCompany;
+                // Reset submission status but keep userCompany if needed for the next screen
+                // Actually initializeForEdit will set the necessary fields.
+                context.read<CompanyBloc>().add(const CompanyEvent.resetState());
+                
+                await context.push(
+                  CreateCompanyScreen.routeName,
+                  extra: currentCompany,
+                );
+                // No need to call getUserCompany here because CompanyBloc is shared 
+                // and userCompany is already updated upon success.
+              },
+              buttonLabel: 'Edit Company',
+              buttonColor: Colors.white,
+              labelColor: Theme.of(context).primaryColor,
+              borderColor: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -490,7 +554,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -511,7 +575,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -574,7 +638,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                 radius: 28,
                 backgroundColor: Theme.of(
                   context,
-                ).primaryColor.withOpacity(0.1),
+                ).primaryColor.withValues(alpha: 0.1),
                 backgroundImage: profilepic != null && profilepic.isNotEmpty
                     ? NetworkImage(profilepic)
                     : null,
@@ -631,7 +695,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           border: Border.all(color: Colors.grey.shade200),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -688,7 +752,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                        color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(

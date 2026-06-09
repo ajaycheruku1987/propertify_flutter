@@ -21,6 +21,7 @@ class CompanyState with _$CompanyState {
     @Default(false) bool isLoading,
     String? errorMessage,
     @Default(false) bool isValid,
+    @Default(false) bool isSuccess,
     CreateCompanyResponse? createCompanyResponse,
     MyCompanyResponseModel? myCompany,
     MyCompanyResponseModel? userCompany,

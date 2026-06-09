@@ -25,16 +25,37 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     on<_ImageChanged>(_onImageChanged);
     on<_ValidateAndProceed>(_onValidateAndProceed);
     on<_CreateCompany>(_onCreateCompany);
+    on<_UpdateCompany>(_onUpdateCompany);
     on<_GetMyCompany>(_onGetMyCompany);
     on<_GetUserCompany>(_onGetUserCompany);
+    on<_InitializeForEdit>(_onInitializeForEdit);
   }
 
   void _onStarted(_CompanyStarted event, Emitter<CompanyState> emit) {
-    emit(const CompanyState());
+    emit(const CompanyState(isSuccess: false));
   }
 
   void _onResetState(_ResetState event, Emitter<CompanyState> emit) {
-    emit(const CompanyState());
+    emit(
+      state.copyWith(
+        isSuccess: false,
+        isLoading: false,
+        errorMessage: null,
+        createCompanyResponse: null,
+        companyName: '',
+        selectedCategory: '',
+        aboutCompany: '',
+        address: '',
+        city: '',
+        state: '',
+        gstNumber: '',
+        selectedImage: null,
+        websiteUrl: '',
+        facebookUrl: '',
+        instagramUrl: '',
+        twitterUrl: '',
+      ),
+    );
   }
 
   void _onCompanyNameChanged(
@@ -44,6 +65,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     emit(
       state.copyWith(
         companyName: event.companyName,
+        isSuccess: false,
         isValid: _validateForm(state.copyWith(companyName: event.companyName)),
       ),
     );
@@ -53,6 +75,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     emit(
       state.copyWith(
         selectedCategory: event.category,
+        isSuccess: false,
         isValid: _validateForm(
           state.copyWith(selectedCategory: event.category),
         ),
@@ -64,7 +87,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     _AboutCompanyChanged event,
     Emitter<CompanyState> emit,
   ) {
-    emit(state.copyWith(aboutCompany: event.aboutCompany));
+    emit(state.copyWith(aboutCompany: event.aboutCompany, isSuccess: false));
   }
 
   void _onSocialMediaPlatformSelected(
@@ -80,16 +103,16 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) {
     switch (event.platform) {
       case 'Website':
-        emit(state.copyWith(websiteUrl: event.url));
+        emit(state.copyWith(websiteUrl: event.url, isSuccess: false));
         break;
       case 'Facebook':
-        emit(state.copyWith(facebookUrl: event.url));
+        emit(state.copyWith(facebookUrl: event.url, isSuccess: false));
         break;
       case 'Instagram':
-        emit(state.copyWith(instagramUrl: event.url));
+        emit(state.copyWith(instagramUrl: event.url, isSuccess: false));
         break;
       case 'Twitter':
-        emit(state.copyWith(twitterUrl: event.url));
+        emit(state.copyWith(twitterUrl: event.url, isSuccess: false));
         break;
     }
   }
@@ -98,8 +121,11 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     emit(
       state.copyWith(
         address: event.address,
+        city: event.city,
+        state: event.state,
         latitude: event.latitude,
         longitude: event.longitude,
+        isSuccess: false,
       ),
     );
   }
@@ -108,11 +134,11 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     _GstNumberChanged event,
     Emitter<CompanyState> emit,
   ) {
-    emit(state.copyWith(gstNumber: event.gstNumber));
+    emit(state.copyWith(gstNumber: event.gstNumber, isSuccess: false));
   }
 
   void _onImageChanged(_ImageChanged event, Emitter<CompanyState> emit) {
-    emit(state.copyWith(selectedImage: event.image));
+    emit(state.copyWith(selectedImage: event.image, isSuccess: false));
   }
 
   void _onValidateAndProceed(
@@ -140,7 +166,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     _CreateCompany event,
     Emitter<CompanyState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, errorMessage: null));
+    emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: false));
 
     try {
       // Validate required fields
@@ -188,6 +214,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
           state.copyWith(
             isLoading: false,
             createCompanyResponse: right,
+            isSuccess: true,
             errorMessage: null,
           ),
         ),
@@ -202,11 +229,83 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     }
   }
 
+  Future<void> _onUpdateCompany(
+    _UpdateCompany event,
+    Emitter<CompanyState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: false));
+
+    try {
+      final updateCompanyResponse = await _repository.updateCompany(
+        companyId: event.companyId,
+        companyName: state.companyName,
+        category: state.selectedCategory,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        aboutCompany: state.aboutCompany.isNotEmpty ? state.aboutCompany : null,
+        websiteUrl: state.websiteUrl.isNotEmpty ? state.websiteUrl : null,
+        facebookUrl: state.facebookUrl.isNotEmpty ? state.facebookUrl : null,
+        instagramUrl: state.instagramUrl.isNotEmpty ? state.instagramUrl : null,
+        twitterUrl: state.twitterUrl.isNotEmpty ? state.twitterUrl : null,
+        gstNumber: state.gstNumber.isNotEmpty ? state.gstNumber : null,
+        image: state.selectedImage,
+      );
+
+      updateCompanyResponse.fold(
+        (failure) => emit(
+          state.copyWith(isLoading: false, errorMessage: failure.message),
+        ),
+        (right) => emit(
+          state.copyWith(
+            isLoading: false,
+            myCompany: right,
+            userCompany: right,
+            isSuccess: true,
+            errorMessage: null,
+          ),
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          errorMessage: 'Failed to update company: $e',
+        ),
+      );
+    }
+  }
+
+  void _onInitializeForEdit(
+    _InitializeForEdit event,
+    Emitter<CompanyState> emit,
+  ) {
+    final company = event.company;
+    emit(
+      state.copyWith(
+        isLoading: false,
+        isSuccess: false,
+        errorMessage: null,
+        companyName: company.companyName ?? '',
+        selectedCategory: company.category ?? '',
+        aboutCompany: company.about ?? '',
+        address: company.address ?? '',
+        city: company.city ?? '',
+        state: company.state ?? '',
+        gstNumber: company.gstNumber ?? '',
+        facebookUrl: company.facebookUrl ?? '',
+        instagramUrl: company.instagramUrl ?? '',
+        twitterUrl: company.twitterUrl ?? '',
+        websiteUrl: company.websiteUrl ?? '',
+      ),
+    );
+  }
+
   Future<void> _onGetMyCompany(
     _GetMyCompany event,
     Emitter<CompanyState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, errorMessage: null));
+    emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: false));
 
     final result = await _repository.getMyCompany();
 
@@ -223,7 +322,11 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     Emitter<CompanyState> emit,
   ) async {
     emit(
-      state.copyWith(isLoading: true, errorMessage: null, userCompany: null),
+      state.copyWith(
+        isLoading: true,
+        errorMessage: null,
+        isSuccess: false,
+      ),
     );
 
     final result = await _repository.getUserCompany(event.userId);

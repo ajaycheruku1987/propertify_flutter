@@ -27,6 +27,7 @@ import 'package:propertify/features/sales/presentation/create_sales.dart';
 import 'package:propertify/features/sales/presentation/create_sales_media.dart';
 import 'package:propertify/features/company/presentation/gst_verification_screen.dart';
 import 'package:propertify/features/company/presentation/my_company.dart';
+import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 
@@ -304,7 +305,8 @@ final router = GoRouter(
     GoRoute(
       path: CreateCompanyScreen.routeName,
       builder: (context, state) {
-        return CreateCompanyScreen();
+        final company = state.extra as MyCompanyResponseModel?;
+        return CreateCompanyScreen(company: company);
       },
     ),
     GoRoute(

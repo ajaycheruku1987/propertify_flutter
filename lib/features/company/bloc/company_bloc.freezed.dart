@@ -33,8 +33,10 @@ mixin _$CompanyEvent {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,8 +55,10 @@ mixin _$CompanyEvent {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,8 +77,10 @@ mixin _$CompanyEvent {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,8 +100,10 @@ mixin _$CompanyEvent {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -113,8 +121,10 @@ mixin _$CompanyEvent {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -132,8 +142,10 @@ mixin _$CompanyEvent {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -210,8 +222,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return started();
   }
@@ -233,8 +247,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return started?.call();
   }
@@ -256,8 +272,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -283,8 +301,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return started(this);
   }
@@ -305,8 +325,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return started?.call(this);
   }
@@ -327,8 +349,10 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -395,8 +419,10 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return resetState();
   }
@@ -418,8 +444,10 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return resetState?.call();
   }
@@ -441,8 +469,10 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (resetState != null) {
@@ -468,8 +498,10 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return resetState(this);
   }
@@ -490,8 +522,10 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return resetState?.call(this);
   }
@@ -512,8 +546,10 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (resetState != null) {
@@ -608,8 +644,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return companyNameChanged(companyName);
   }
@@ -631,8 +669,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return companyNameChanged?.call(companyName);
   }
@@ -654,8 +694,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (companyNameChanged != null) {
@@ -681,8 +723,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return companyNameChanged(this);
   }
@@ -703,8 +747,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return companyNameChanged?.call(this);
   }
@@ -725,8 +771,10 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (companyNameChanged != null) {
@@ -827,8 +875,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return categoryChanged(category);
   }
@@ -850,8 +900,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return categoryChanged?.call(category);
   }
@@ -873,8 +925,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (categoryChanged != null) {
@@ -900,8 +954,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return categoryChanged(this);
   }
@@ -922,8 +978,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return categoryChanged?.call(this);
   }
@@ -944,8 +1002,10 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (categoryChanged != null) {
@@ -1046,8 +1106,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return aboutCompanyChanged(aboutCompany);
   }
@@ -1069,8 +1131,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return aboutCompanyChanged?.call(aboutCompany);
   }
@@ -1092,8 +1156,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (aboutCompanyChanged != null) {
@@ -1119,8 +1185,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return aboutCompanyChanged(this);
   }
@@ -1141,8 +1209,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return aboutCompanyChanged?.call(this);
   }
@@ -1163,8 +1233,10 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (aboutCompanyChanged != null) {
@@ -1268,8 +1340,10 @@ class _$SocialMediaPlatformSelectedImpl
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return socialMediaPlatformSelected(platform);
   }
@@ -1291,8 +1365,10 @@ class _$SocialMediaPlatformSelectedImpl
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return socialMediaPlatformSelected?.call(platform);
   }
@@ -1314,8 +1390,10 @@ class _$SocialMediaPlatformSelectedImpl
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (socialMediaPlatformSelected != null) {
@@ -1341,8 +1419,10 @@ class _$SocialMediaPlatformSelectedImpl
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return socialMediaPlatformSelected(this);
   }
@@ -1363,8 +1443,10 @@ class _$SocialMediaPlatformSelectedImpl
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return socialMediaPlatformSelected?.call(this);
   }
@@ -1385,8 +1467,10 @@ class _$SocialMediaPlatformSelectedImpl
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (socialMediaPlatformSelected != null) {
@@ -1497,8 +1581,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return socialMediaUrlChanged(platform, url);
   }
@@ -1520,8 +1606,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return socialMediaUrlChanged?.call(platform, url);
   }
@@ -1543,8 +1631,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (socialMediaUrlChanged != null) {
@@ -1570,8 +1660,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return socialMediaUrlChanged(this);
   }
@@ -1592,8 +1684,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return socialMediaUrlChanged?.call(this);
   }
@@ -1614,8 +1708,10 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (socialMediaUrlChanged != null) {
@@ -1762,8 +1858,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return addressChanged(address, city, state, latitude, longitude);
   }
@@ -1785,8 +1883,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return addressChanged?.call(address, city, state, latitude, longitude);
   }
@@ -1808,8 +1908,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -1835,8 +1937,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return addressChanged(this);
   }
@@ -1857,8 +1961,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return addressChanged?.call(this);
   }
@@ -1879,8 +1985,10 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -1989,8 +2097,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return gstNumberChanged(gstNumber);
   }
@@ -2012,8 +2122,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return gstNumberChanged?.call(gstNumber);
   }
@@ -2035,8 +2147,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (gstNumberChanged != null) {
@@ -2062,8 +2176,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return gstNumberChanged(this);
   }
@@ -2084,8 +2200,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return gstNumberChanged?.call(this);
   }
@@ -2106,8 +2224,10 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (gstNumberChanged != null) {
@@ -2206,8 +2326,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return imageChanged(image);
   }
@@ -2229,8 +2351,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return imageChanged?.call(image);
   }
@@ -2252,8 +2376,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -2279,8 +2405,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return imageChanged(this);
   }
@@ -2301,8 +2429,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return imageChanged?.call(this);
   }
@@ -2323,8 +2453,10 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -2397,8 +2529,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return validateAndProceed();
   }
@@ -2420,8 +2554,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return validateAndProceed?.call();
   }
@@ -2443,8 +2579,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (validateAndProceed != null) {
@@ -2470,8 +2608,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return validateAndProceed(this);
   }
@@ -2492,8 +2632,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return validateAndProceed?.call(this);
   }
@@ -2514,8 +2656,10 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (validateAndProceed != null) {
@@ -2582,8 +2726,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return createCompany();
   }
@@ -2605,8 +2751,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return createCompany?.call();
   }
@@ -2628,8 +2776,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (createCompany != null) {
@@ -2655,8 +2805,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return createCompany(this);
   }
@@ -2677,8 +2829,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return createCompany?.call(this);
   }
@@ -2699,8 +2853,10 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (createCompany != null) {
@@ -2712,6 +2868,236 @@ class _$CreateCompanyImpl implements _CreateCompany {
 
 abstract class _CreateCompany implements CompanyEvent {
   const factory _CreateCompany() = _$CreateCompanyImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateCompanyImplCopyWith<$Res> {
+  factory _$$UpdateCompanyImplCopyWith(
+          _$UpdateCompanyImpl value, $Res Function(_$UpdateCompanyImpl) then) =
+      __$$UpdateCompanyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String companyId});
+}
+
+/// @nodoc
+class __$$UpdateCompanyImplCopyWithImpl<$Res>
+    extends _$CompanyEventCopyWithImpl<$Res, _$UpdateCompanyImpl>
+    implements _$$UpdateCompanyImplCopyWith<$Res> {
+  __$$UpdateCompanyImplCopyWithImpl(
+      _$UpdateCompanyImpl _value, $Res Function(_$UpdateCompanyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? companyId = null,
+  }) {
+    return _then(_$UpdateCompanyImpl(
+      companyId: null == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateCompanyImpl implements _UpdateCompany {
+  const _$UpdateCompanyImpl({required this.companyId});
+
+  @override
+  final String companyId;
+
+  @override
+  String toString() {
+    return 'CompanyEvent.updateCompany(companyId: $companyId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateCompanyImpl &&
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, companyId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateCompanyImplCopyWith<_$UpdateCompanyImpl> get copyWith =>
+      __$$UpdateCompanyImplCopyWithImpl<_$UpdateCompanyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String companyName) companyNameChanged,
+    required TResult Function(String category) categoryChanged,
+    required TResult Function(String aboutCompany) aboutCompanyChanged,
+    required TResult Function(String platform) socialMediaPlatformSelected,
+    required TResult Function(String platform, String url)
+        socialMediaUrlChanged,
+    required TResult Function(String address, String city, String state,
+            double latitude, double longitude)
+        addressChanged,
+    required TResult Function(String gstNumber) gstNumberChanged,
+    required TResult Function(XFile? image) imageChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
+    required TResult Function() getMyCompany,
+    required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+  }) {
+    return updateCompany(companyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String companyName)? companyNameChanged,
+    TResult? Function(String category)? categoryChanged,
+    TResult? Function(String aboutCompany)? aboutCompanyChanged,
+    TResult? Function(String platform)? socialMediaPlatformSelected,
+    TResult? Function(String platform, String url)? socialMediaUrlChanged,
+    TResult? Function(String address, String city, String state,
+            double latitude, double longitude)?
+        addressChanged,
+    TResult? Function(String gstNumber)? gstNumberChanged,
+    TResult? Function(XFile? image)? imageChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
+    TResult? Function()? getMyCompany,
+    TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+  }) {
+    return updateCompany?.call(companyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String companyName)? companyNameChanged,
+    TResult Function(String category)? categoryChanged,
+    TResult Function(String aboutCompany)? aboutCompanyChanged,
+    TResult Function(String platform)? socialMediaPlatformSelected,
+    TResult Function(String platform, String url)? socialMediaUrlChanged,
+    TResult Function(String address, String city, String state, double latitude,
+            double longitude)?
+        addressChanged,
+    TResult Function(String gstNumber)? gstNumberChanged,
+    TResult Function(XFile? image)? imageChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
+    TResult Function()? getMyCompany,
+    TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    required TResult orElse(),
+  }) {
+    if (updateCompany != null) {
+      return updateCompany(companyId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CompanyStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_CompanyNameChanged value) companyNameChanged,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_AboutCompanyChanged value) aboutCompanyChanged,
+    required TResult Function(_SocialMediaPlatformSelected value)
+        socialMediaPlatformSelected,
+    required TResult Function(_SocialMediaUrlChanged value)
+        socialMediaUrlChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_GstNumberChanged value) gstNumberChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
+    required TResult Function(_GetMyCompany value) getMyCompany,
+    required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
+  }) {
+    return updateCompany(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CompanyStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult? Function(_CategoryChanged value)? categoryChanged,
+    TResult? Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult? Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult? Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
+    TResult? Function(_GetMyCompany value)? getMyCompany,
+    TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
+  }) {
+    return updateCompany?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CompanyStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
+    TResult Function(_GetMyCompany value)? getMyCompany,
+    TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
+    required TResult orElse(),
+  }) {
+    if (updateCompany != null) {
+      return updateCompany(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCompany implements CompanyEvent {
+  const factory _UpdateCompany({required final String companyId}) =
+      _$UpdateCompanyImpl;
+
+  String get companyId;
+  @JsonKey(ignore: true)
+  _$$UpdateCompanyImplCopyWith<_$UpdateCompanyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2767,8 +3153,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return getMyCompany();
   }
@@ -2790,8 +3178,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return getMyCompany?.call();
   }
@@ -2813,8 +3203,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (getMyCompany != null) {
@@ -2840,8 +3232,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return getMyCompany(this);
   }
@@ -2862,8 +3256,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return getMyCompany?.call(this);
   }
@@ -2884,8 +3280,10 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (getMyCompany != null) {
@@ -2979,8 +3377,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     required TResult Function(XFile? image) imageChanged,
     required TResult Function() validateAndProceed,
     required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
   }) {
     return getUserCompany(userId);
   }
@@ -3002,8 +3402,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult? Function(XFile? image)? imageChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
   }) {
     return getUserCompany?.call(userId);
   }
@@ -3025,8 +3427,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult Function(XFile? image)? imageChanged,
     TResult Function()? validateAndProceed,
     TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (getUserCompany != null) {
@@ -3052,8 +3456,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     required TResult Function(_ImageChanged value) imageChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
   }) {
     return getUserCompany(this);
   }
@@ -3074,8 +3480,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult? Function(_ImageChanged value)? imageChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
   }) {
     return getUserCompany?.call(this);
   }
@@ -3096,8 +3504,10 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult Function(_ImageChanged value)? imageChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
     required TResult orElse(),
   }) {
     if (getUserCompany != null) {
@@ -3114,6 +3524,247 @@ abstract class _GetUserCompany implements CompanyEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$GetUserCompanyImplCopyWith<_$GetUserCompanyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitializeForEditImplCopyWith<$Res> {
+  factory _$$InitializeForEditImplCopyWith(_$InitializeForEditImpl value,
+          $Res Function(_$InitializeForEditImpl) then) =
+      __$$InitializeForEditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MyCompanyResponseModel company});
+
+  $MyCompanyResponseModelCopyWith<$Res> get company;
+}
+
+/// @nodoc
+class __$$InitializeForEditImplCopyWithImpl<$Res>
+    extends _$CompanyEventCopyWithImpl<$Res, _$InitializeForEditImpl>
+    implements _$$InitializeForEditImplCopyWith<$Res> {
+  __$$InitializeForEditImplCopyWithImpl(_$InitializeForEditImpl _value,
+      $Res Function(_$InitializeForEditImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? company = null,
+  }) {
+    return _then(_$InitializeForEditImpl(
+      company: null == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as MyCompanyResponseModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MyCompanyResponseModelCopyWith<$Res> get company {
+    return $MyCompanyResponseModelCopyWith<$Res>(_value.company, (value) {
+      return _then(_value.copyWith(company: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitializeForEditImpl implements _InitializeForEdit {
+  const _$InitializeForEditImpl({required this.company});
+
+  @override
+  final MyCompanyResponseModel company;
+
+  @override
+  String toString() {
+    return 'CompanyEvent.initializeForEdit(company: $company)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeForEditImpl &&
+            (identical(other.company, company) || other.company == company));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, company);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeForEditImplCopyWith<_$InitializeForEditImpl> get copyWith =>
+      __$$InitializeForEditImplCopyWithImpl<_$InitializeForEditImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String companyName) companyNameChanged,
+    required TResult Function(String category) categoryChanged,
+    required TResult Function(String aboutCompany) aboutCompanyChanged,
+    required TResult Function(String platform) socialMediaPlatformSelected,
+    required TResult Function(String platform, String url)
+        socialMediaUrlChanged,
+    required TResult Function(String address, String city, String state,
+            double latitude, double longitude)
+        addressChanged,
+    required TResult Function(String gstNumber) gstNumberChanged,
+    required TResult Function(XFile? image) imageChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
+    required TResult Function() getMyCompany,
+    required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+  }) {
+    return initializeForEdit(company);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String companyName)? companyNameChanged,
+    TResult? Function(String category)? categoryChanged,
+    TResult? Function(String aboutCompany)? aboutCompanyChanged,
+    TResult? Function(String platform)? socialMediaPlatformSelected,
+    TResult? Function(String platform, String url)? socialMediaUrlChanged,
+    TResult? Function(String address, String city, String state,
+            double latitude, double longitude)?
+        addressChanged,
+    TResult? Function(String gstNumber)? gstNumberChanged,
+    TResult? Function(XFile? image)? imageChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
+    TResult? Function()? getMyCompany,
+    TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+  }) {
+    return initializeForEdit?.call(company);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String companyName)? companyNameChanged,
+    TResult Function(String category)? categoryChanged,
+    TResult Function(String aboutCompany)? aboutCompanyChanged,
+    TResult Function(String platform)? socialMediaPlatformSelected,
+    TResult Function(String platform, String url)? socialMediaUrlChanged,
+    TResult Function(String address, String city, String state, double latitude,
+            double longitude)?
+        addressChanged,
+    TResult Function(String gstNumber)? gstNumberChanged,
+    TResult Function(XFile? image)? imageChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
+    TResult Function()? getMyCompany,
+    TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    required TResult orElse(),
+  }) {
+    if (initializeForEdit != null) {
+      return initializeForEdit(company);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CompanyStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_CompanyNameChanged value) companyNameChanged,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_AboutCompanyChanged value) aboutCompanyChanged,
+    required TResult Function(_SocialMediaPlatformSelected value)
+        socialMediaPlatformSelected,
+    required TResult Function(_SocialMediaUrlChanged value)
+        socialMediaUrlChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_GstNumberChanged value) gstNumberChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
+    required TResult Function(_GetMyCompany value) getMyCompany,
+    required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
+  }) {
+    return initializeForEdit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CompanyStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult? Function(_CategoryChanged value)? categoryChanged,
+    TResult? Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult? Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult? Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
+    TResult? Function(_GetMyCompany value)? getMyCompany,
+    TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
+  }) {
+    return initializeForEdit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CompanyStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
+    TResult Function(_GetMyCompany value)? getMyCompany,
+    TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
+    required TResult orElse(),
+  }) {
+    if (initializeForEdit != null) {
+      return initializeForEdit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitializeForEdit implements CompanyEvent {
+  const factory _InitializeForEdit(
+          {required final MyCompanyResponseModel company}) =
+      _$InitializeForEditImpl;
+
+  MyCompanyResponseModel get company;
+  @JsonKey(ignore: true)
+  _$$InitializeForEditImplCopyWith<_$InitializeForEditImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3137,6 +3788,7 @@ mixin _$CompanyState {
   bool get isLoading => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
+  bool get isSuccess => throw _privateConstructorUsedError;
   CreateCompanyResponse? get createCompanyResponse =>
       throw _privateConstructorUsedError;
   MyCompanyResponseModel? get myCompany => throw _privateConstructorUsedError;
@@ -3172,6 +3824,7 @@ abstract class $CompanyStateCopyWith<$Res> {
       bool isLoading,
       String? errorMessage,
       bool isValid,
+      bool isSuccess,
       CreateCompanyResponse? createCompanyResponse,
       MyCompanyResponseModel? myCompany,
       MyCompanyResponseModel? userCompany});
@@ -3212,6 +3865,7 @@ class _$CompanyStateCopyWithImpl<$Res, $Val extends CompanyState>
     Object? isLoading = null,
     Object? errorMessage = freezed,
     Object? isValid = null,
+    Object? isSuccess = null,
     Object? createCompanyResponse = freezed,
     Object? myCompany = freezed,
     Object? userCompany = freezed,
@@ -3288,6 +3942,10 @@ class _$CompanyStateCopyWithImpl<$Res, $Val extends CompanyState>
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSuccess: null == isSuccess
+          ? _value.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
       createCompanyResponse: freezed == createCompanyResponse
           ? _value.createCompanyResponse
@@ -3369,6 +4027,7 @@ abstract class _$$CompanyStateImplCopyWith<$Res>
       bool isLoading,
       String? errorMessage,
       bool isValid,
+      bool isSuccess,
       CreateCompanyResponse? createCompanyResponse,
       MyCompanyResponseModel? myCompany,
       MyCompanyResponseModel? userCompany});
@@ -3410,6 +4069,7 @@ class __$$CompanyStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? errorMessage = freezed,
     Object? isValid = null,
+    Object? isSuccess = null,
     Object? createCompanyResponse = freezed,
     Object? myCompany = freezed,
     Object? userCompany = freezed,
@@ -3487,6 +4147,10 @@ class __$$CompanyStateImplCopyWithImpl<$Res>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSuccess: null == isSuccess
+          ? _value.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
       createCompanyResponse: freezed == createCompanyResponse
           ? _value.createCompanyResponse
           : createCompanyResponse // ignore: cast_nullable_to_non_nullable
@@ -3525,6 +4189,7 @@ class _$CompanyStateImpl implements _CompanyState {
       this.isLoading = false,
       this.errorMessage,
       this.isValid = false,
+      this.isSuccess = false,
       this.createCompanyResponse,
       this.myCompany,
       this.userCompany});
@@ -3580,6 +4245,9 @@ class _$CompanyStateImpl implements _CompanyState {
   @JsonKey()
   final bool isValid;
   @override
+  @JsonKey()
+  final bool isSuccess;
+  @override
   final CreateCompanyResponse? createCompanyResponse;
   @override
   final MyCompanyResponseModel? myCompany;
@@ -3588,7 +4256,7 @@ class _$CompanyStateImpl implements _CompanyState {
 
   @override
   String toString() {
-    return 'CompanyState(companyName: $companyName, selectedCategory: $selectedCategory, aboutCompany: $aboutCompany, selectedSocialMediaPlatform: $selectedSocialMediaPlatform, websiteUrl: $websiteUrl, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, twitterUrl: $twitterUrl, address: $address, city: $city, state: $state, gstNumber: $gstNumber, selectedImage: $selectedImage, latitude: $latitude, longitude: $longitude, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, createCompanyResponse: $createCompanyResponse, myCompany: $myCompany, userCompany: $userCompany)';
+    return 'CompanyState(companyName: $companyName, selectedCategory: $selectedCategory, aboutCompany: $aboutCompany, selectedSocialMediaPlatform: $selectedSocialMediaPlatform, websiteUrl: $websiteUrl, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, twitterUrl: $twitterUrl, address: $address, city: $city, state: $state, gstNumber: $gstNumber, selectedImage: $selectedImage, latitude: $latitude, longitude: $longitude, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, isSuccess: $isSuccess, createCompanyResponse: $createCompanyResponse, myCompany: $myCompany, userCompany: $userCompany)';
   }
 
   @override
@@ -3630,6 +4298,8 @@ class _$CompanyStateImpl implements _CompanyState {
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess) &&
             (identical(other.createCompanyResponse, createCompanyResponse) ||
                 other.createCompanyResponse == createCompanyResponse) &&
             (identical(other.myCompany, myCompany) ||
@@ -3659,6 +4329,7 @@ class _$CompanyStateImpl implements _CompanyState {
         isLoading,
         errorMessage,
         isValid,
+        isSuccess,
         createCompanyResponse,
         myCompany,
         userCompany
@@ -3691,6 +4362,7 @@ abstract class _CompanyState implements CompanyState {
       final bool isLoading,
       final String? errorMessage,
       final bool isValid,
+      final bool isSuccess,
       final CreateCompanyResponse? createCompanyResponse,
       final MyCompanyResponseModel? myCompany,
       final MyCompanyResponseModel? userCompany}) = _$CompanyStateImpl;
@@ -3731,6 +4403,8 @@ abstract class _CompanyState implements CompanyState {
   String? get errorMessage;
   @override
   bool get isValid;
+  @override
+  bool get isSuccess;
   @override
   CreateCompanyResponse? get createCompanyResponse;
   @override
