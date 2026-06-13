@@ -12,6 +12,7 @@ import '../models/reel_model.dart';
 import '../models/create_reel_model.dart';
 import '../models/reel_comment_model.dart';
 import '../repo/reels_repo.dart';
+import '../../home/bloc/home_bloc.dart';
 
 part 'reels_bloc.freezed.dart';
 part 'reels_event.dart';
@@ -19,8 +20,9 @@ part 'reels_state.dart';
 
 class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
   final ReelsRepo _repo;
+  final HomeBloc _homeBloc;
 
-  ReelsBloc(this._repo) : super(const ReelsState()) {
+  ReelsBloc(this._repo, this._homeBloc) : super(const ReelsState()) {
     on<_GetReelsEvent>(_onGetReelsEvent);
     on<_IsLoading>(_onIsLoading);
     on<_UpdateReelDetailsEvent>(_onUpdateReelDetailsEvent);
@@ -50,8 +52,13 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     try {
       emit(_mergeState(isLoading: true));
 
-      final Either<Failure, List<ReelResponseModel>> reelsEither = await _repo
-          .getReels(skip: event.skip, limit: event.limit);
+      final Either<Failure, List<ReelResponseModel>> reelsEither =
+          await _repo.getReels(
+        skip: event.skip,
+        limit: event.limit,
+        latitude: _homeBloc.state.currentLat,
+        longitude: _homeBloc.state.currentLng,
+      );
 
       reelsEither.fold(
         (failure) {

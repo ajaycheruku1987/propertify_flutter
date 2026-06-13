@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../bloc/reels_bloc.dart';
+import '../../home/bloc/home_bloc.dart';
 import 'widgets/reel_comments_bottom_sheet.dart';
 import '../../profile/bloc/profile_bloc.dart';
 import '../../profile/presentation/other_user_profile_screen.dart';
@@ -30,7 +31,9 @@ class _ReelsScreenState extends State<ReelsScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<ReelsBloc>().add(const ReelsEvent.getReels(limit: 5));
+    context.read<ReelsBloc>().add(
+          const ReelsEvent.getReels(limit: 5),
+        );
   }
 
   @override
@@ -85,8 +88,11 @@ class _ReelsScreenState extends State<ReelsScreen> {
                   state.hasMoreData &&
                   !state.isLoading) {
                 context.read<ReelsBloc>().add(
-                  ReelsEvent.getReels(skip: state.currentOffset, limit: 5),
-                );
+                      ReelsEvent.getReels(
+                        skip: state.currentOffset,
+                        limit: 5,
+                      ),
+                    );
               }
             },
             itemBuilder: (context, index) {

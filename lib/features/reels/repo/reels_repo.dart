@@ -16,6 +16,8 @@ abstract class ReelsRepo {
   Future<Either<Failure, List<ReelResponseModel>>> getReels({
     int? skip,
     int? limit,
+    double? latitude,
+    double? longitude,
   });
 
   Future<Either<Failure, ReelResponseModel>> createReel({
@@ -63,13 +65,29 @@ class ReelsRepoImpl implements ReelsRepo {
   Future<Either<Failure, List<ReelResponseModel>>> getReels({
     int? skip,
     int? limit,
+    double? latitude,
+    double? longitude,
   }) async {
     try {
       final s = skip ?? 0;
       final l = limit ?? 10;
       final apiRequest = serviceLocator<ApiRequest>();
 
-      final response = await apiRequest.get('/reels/?skip=$s&limit=$l');
+      Map<String, dynamic> queryParams = {
+        'skip': s,
+        'limit': l,
+      };
+
+      if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
+      if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
+      if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
+        queryParams['radius_km'] = 5;
+      }
+
+      String queryString =
+          '?${queryParams.entries.map((e) => '${e.key}=${Uri.encodeComponent(e.value.toString())}').join('&')}';
+
+      final response = await apiRequest.get('/reels/$queryString');
 
       final responseData = await response.getResponse();
 

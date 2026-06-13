@@ -40,7 +40,10 @@ final List<BlocProvider> blocInjectors = [
   ),
   BlocProvider<SalesBloc>(create: (context) => SalesBloc(SalesRepo())),
   BlocProvider<RequestsBloc>(create: (context) => RequestsBloc(RequestsRepo())),
-  BlocProvider<ReelsBloc>(create: (context) => ReelsBloc(ReelsRepoImpl())),
+  BlocProvider<ReelsBloc>(
+    create:
+        (context) => ReelsBloc(ReelsRepoImpl(), context.read<HomeBloc>()),
+  ),
   BlocProvider<CompanyBloc>(
     create: (context) => CompanyBloc(CompanyRepositoryImpl()),
   ),
