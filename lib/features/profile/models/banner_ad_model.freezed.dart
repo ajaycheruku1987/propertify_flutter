@@ -284,7 +284,7 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BannerAdModelImpl implements _BannerAdModel {
+class _$BannerAdModelImpl extends _BannerAdModel {
   const _$BannerAdModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "user_id") this.userId,
@@ -299,7 +299,8 @@ class _$BannerAdModelImpl implements _BannerAdModel {
       @JsonKey(name: "approved") this.approved,
       @JsonKey(name: "is_paid") this.isPaid,
       @JsonKey(name: "owner") this.owner})
-      : _imageUrls = imageUrls;
+      : _imageUrls = imageUrls,
+        super._();
 
   factory _$BannerAdModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BannerAdModelImplFromJson(json);
@@ -417,7 +418,7 @@ class _$BannerAdModelImpl implements _BannerAdModel {
   }
 }
 
-abstract class _BannerAdModel implements BannerAdModel {
+abstract class _BannerAdModel extends BannerAdModel {
   const factory _BannerAdModel(
       {@JsonKey(name: "id") final String? id,
       @JsonKey(name: "user_id") final String? userId,
@@ -432,6 +433,7 @@ abstract class _BannerAdModel implements BannerAdModel {
       @JsonKey(name: "approved") final bool? approved,
       @JsonKey(name: "is_paid") final bool? isPaid,
       @JsonKey(name: "owner") final Owner? owner}) = _$BannerAdModelImpl;
+  const _BannerAdModel._() : super._();
 
   factory _BannerAdModel.fromJson(Map<String, dynamic> json) =
       _$BannerAdModelImpl.fromJson;

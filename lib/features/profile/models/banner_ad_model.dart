@@ -15,6 +15,8 @@ String bannerAdModelToJson(BannerAdModel data) => json.encode(data.toJson());
 
 @freezed
 class BannerAdModel with _$BannerAdModel {
+  const BannerAdModel._();
+
   const factory BannerAdModel({
     @JsonKey(name: "id") String? id,
     @JsonKey(name: "user_id") String? userId,
@@ -33,6 +35,16 @@ class BannerAdModel with _$BannerAdModel {
 
   factory BannerAdModel.fromJson(Map<String, dynamic> json) =>
       _$BannerAdModelFromJson(json);
+
+  bool get isCurrentlyActive {
+    if (expiresAt == null) return true;
+    try {
+      final expiryDate = DateTime.parse(expiresAt!);
+      return expiryDate.isAfter(DateTime.now());
+    } catch (e) {
+      return true;
+    }
+  }
 }
 
 

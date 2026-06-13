@@ -35,6 +35,7 @@ class BannerAdCard extends StatelessWidget {
         : DateTime.now().add(const Duration(days: 15));
 
     // Calculate days remaining
+    final isExpired = !bannerAd.isCurrentlyActive;
     final daysRemaining = endDate.difference(DateTime.now()).inDays;
     final daysRemainingText = daysRemaining > 0
         ? daysRemaining.toString()
@@ -138,33 +139,58 @@ class BannerAdCard extends StatelessWidget {
                       'Start Date $startDateFormatted End Date $endDateFormatted',
                       style: TextStyle(
                         fontSize: 12,
-                        color: theme.primaryColor,
+                        color: isExpired ? Colors.red : theme.primaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    // Paid/Unpaid Status
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: bannerAd.isPaid == true
-                            ? Colors.green.shade50
-                            : Colors.orange.shade50,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        bannerAd.isPaid == true ? 'PAID' : 'UNPAID',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: bannerAd.isPaid == true
-                              ? Colors.green.shade700
-                              : Colors.orange.shade700,
+                    // Paid/Unpaid/Expired Status
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: bannerAd.isPaid == true
+                                ? Colors.green.shade50
+                                : Colors.orange.shade50,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            bannerAd.isPaid == true ? 'PAID' : 'UNPAID',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: bannerAd.isPaid == true
+                                  ? Colors.green.shade700
+                                  : Colors.orange.shade700,
+                            ),
+                          ),
                         ),
-                      ),
+                        if (isExpired) ...[
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.red.shade50,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              'EXPIRED',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red.shade700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ],
                 ),
@@ -179,7 +205,7 @@ class BannerAdCard extends StatelessWidget {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: theme.primaryColor,
+                      color: isExpired ? Colors.grey : theme.primaryColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(

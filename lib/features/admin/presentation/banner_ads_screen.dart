@@ -210,128 +210,332 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
   }
 
   Widget _buildBannerAdsList(List<BannerAdModel> ads) {
-    if (ads.isEmpty) return _buildEmptyState('No banner ads found');
-    return ListView.builder(
+    if (ads.isEmpty) return _buildEmptyState('No boosted banners found');
+    
+    final activeAds = ads.where((ad) => ad.isCurrentlyActive).toList();
+    final expiredAds = ads.where((ad) => !ad.isCurrentlyActive).toList();
+
+    return ListView(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: ads.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: BannerAdCard(
-            bannerAd: ads[index],
-            onDelete: () => _handleDeleteBannerAd(ads[index].id ?? ''),
+      children: [
+        if (activeAds.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 4),
+            child: Text(
+              'Active Banners',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
           ),
-        );
-      },
+          ...activeAds.map((ad) => Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: BannerAdCard(
+              bannerAd: ad,
+              onDelete: () => _handleDeleteBannerAd(ad.id ?? ''),
+            ),
+          )),
+        ],
+        if (expiredAds.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
+            child: Text(
+              'Expired Banners',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+          ...expiredAds.map((ad) => Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: BannerAdCard(
+              bannerAd: ad,
+              onDelete: () => _handleDeleteBannerAd(ad.id ?? ''),
+            ),
+          )),
+        ],
+      ],
     );
   }
 
   Widget _buildPropertiesList(List<FeedPostsResponseModel> properties) {
-    final boostedProperties = properties.where((p) => p.isCurrentlyPromoted).toList();
-    if (boostedProperties.isEmpty) return _buildEmptyState('No boosted feeds found');
-    return ListView.builder(
+    final allBoosted = properties.where((p) => p.isPromoted == true).toList();
+    if (allBoosted.isEmpty) return _buildEmptyState('No boosted feeds found');
+
+    final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
+    final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
+
+    return ListView(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: boostedProperties.length,
-      itemBuilder: (context, index) {
-        final property = boostedProperties[index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: _buildBoostedCard(
-            title: property.title ?? 'Property Feed',
-            image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
-            owner: property.owner?.username ?? 'User',
-            isPaid: property.isCurrentlyPromoted,
-            startDate: property.createdAt,
-            endDate: property.promotedUntil,
-            onDelete: () {
-               context.read<AdminBloc>().add(AdminEvent.deleteAdminProperty(propertyId: property.id ?? ''));
-            },
+      children: [
+        if (activeItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 4),
+            child: Text(
+              'Active Feeds',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
           ),
-        );
-      },
+          ...activeItems.map((property) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: property.title ?? 'Property Feed',
+              image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
+              owner: property.owner?.username ?? 'User',
+              isPaid: property.isPromoted ?? false,
+              startDate: property.createdAt,
+              endDate: property.promotedUntil,
+              isExpired: false,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Feed Post',
+                  content: 'Are you sure you want to delete this boosted feed post?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteAdminProperty(propertyId: property.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+        if (expiredItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
+            child: Text(
+              'Expired Feeds',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+          ...expiredItems.map((property) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: property.title ?? 'Property Feed',
+              image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
+              owner: property.owner?.username ?? 'User',
+              isPaid: property.isPromoted ?? false,
+              startDate: property.createdAt,
+              endDate: property.promotedUntil,
+              isExpired: true,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Feed Post',
+                  content: 'Are you sure you want to delete this boosted feed post?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteAdminProperty(propertyId: property.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+      ],
     );
   }
 
   Widget _buildServicesList(List<ServicesResponseModel> services) {
-    final boostedServices = services.where((s) => s.isCurrentlyPromoted).toList();
-    if (boostedServices.isEmpty) return _buildEmptyState('No boosted services found');
-    return ListView.builder(
+    final allBoosted = services.where((s) => s.isPromoted == true).toList();
+    if (allBoosted.isEmpty) return _buildEmptyState('No boosted services found');
+
+    final activeItems = allBoosted.where((s) => s.isCurrentlyPromoted).toList();
+    final expiredItems = allBoosted.where((s) => !s.isCurrentlyPromoted).toList();
+
+    return ListView(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: boostedServices.length,
-      itemBuilder: (context, index) {
-        final service = boostedServices[index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: _buildBoostedCard(
-            title: service.agentName ?? 'Service',
-            image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
-            owner: service.owner?.username ?? 'User',
-            isPaid: true,
-            startDate: service.createdAt,
-            endDate: service.promotedUntil,
-            onDelete: () {
-              context.read<AdminBloc>().add(AdminEvent.deleteService(serviceId: service.id ?? ''));
-            },
+      children: [
+        if (activeItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 4),
+            child: Text(
+              'Active Services',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
           ),
-        );
-      },
+          ...activeItems.map((service) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: service.agentName ?? 'Service',
+              image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
+              owner: service.owner?.username ?? 'User',
+              isPaid: service.isPromoted ?? false,
+              startDate: service.createdAt,
+              endDate: service.promotedUntil,
+              isExpired: false,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Service',
+                  content: 'Are you sure you want to delete this boosted service?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteService(serviceId: service.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+        if (expiredItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
+            child: Text(
+              'Expired Services',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+          ...expiredItems.map((service) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: service.agentName ?? 'Service',
+              image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
+              owner: service.owner?.username ?? 'User',
+              isPaid: service.isPromoted ?? false,
+              startDate: service.createdAt,
+              endDate: service.promotedUntil,
+              isExpired: true,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Service',
+                  content: 'Are you sure you want to delete this boosted service?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteService(serviceId: service.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+      ],
     );
   }
 
   Widget _buildReelsList(List<ReelResponseModel> reels) {
-    final boostedReels = reels.where((r) => r.isCurrentlyPromoted).toList();
-    if (boostedReels.isEmpty) return _buildEmptyState('No boosted reels found');
-    return ListView.builder(
+    final allBoosted = reels.where((r) => r.isPromoted == true).toList();
+    if (allBoosted.isEmpty) return _buildEmptyState('No boosted reels found');
+
+    final activeItems = allBoosted.where((r) => r.isCurrentlyPromoted).toList();
+    final expiredItems = allBoosted.where((r) => !r.isCurrentlyPromoted).toList();
+
+    return ListView(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: boostedReels.length,
-      itemBuilder: (context, index) {
-        final reel = boostedReels[index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: _buildBoostedCard(
-            title: reel.description ?? 'Reel',
-            image: null, // Reels typically don't have thumbnail URLs in this model
-            owner: reel.owner?.username ?? 'User',
-            isPaid: true,
-            startDate: reel.createdAt,
-            endDate: reel.promotedUntil,
-            onDelete: () {
-              context.read<AdminBloc>().add(AdminEvent.deleteAdminReel(reelId: reel.id ?? ''));
-            },
+      children: [
+        if (activeItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 4),
+            child: Text(
+              'Active Reels',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
           ),
-        );
-      },
+          ...activeItems.map((reel) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: reel.description ?? 'Reel',
+              image: null,
+              owner: reel.owner?.username ?? 'User',
+              isPaid: reel.isPromoted ?? false,
+              startDate: reel.createdAt,
+              endDate: reel.promotedUntil,
+              isExpired: false,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Reel',
+                  content: 'Are you sure you want to delete this boosted reel?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteAdminReel(reelId: reel.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+        if (expiredItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
+            child: Text(
+              'Expired Reels',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+          ...expiredItems.map((reel) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: reel.description ?? 'Reel',
+              image: null,
+              owner: reel.owner?.username ?? 'User',
+              isPaid: reel.isPromoted ?? false,
+              startDate: reel.createdAt,
+              endDate: reel.promotedUntil,
+              isExpired: true,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Reel',
+                  content: 'Are you sure you want to delete this boosted reel?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteAdminReel(reelId: reel.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+      ],
     );
   }
 
   Widget _buildProjectsList(List<ProjectsAdminViewModel> projects) {
-    final boostedProjects = projects.where((p) => p.isCurrentlyPromoted).toList();
-    if (boostedProjects.isEmpty) return _buildEmptyState('No boosted projects found');
-    return ListView.builder(
+    final allBoosted = projects.where((p) => p.isPromoted == true).toList();
+    if (allBoosted.isEmpty) return _buildEmptyState('No boosted projects found');
+
+    final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
+    final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
+
+    return ListView(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: boostedProjects.length,
-      itemBuilder: (context, index) {
-        final project = boostedProjects[index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: _buildBoostedCard(
-            title: project.projectName ?? 'Project',
-            image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
-            owner: project.owner?.username ?? 'User',
-            isPaid: project.isCurrentlyPromoted,
-            startDate: project.createdAt,
-            endDate: project.promotedUntil,
-            onDelete: () {
-              context.read<AdminBloc>().add(AdminEvent.deleteProject(projectId: project.id ?? ''));
-            },
+      children: [
+        if (activeItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 4),
+            child: Text(
+              'Active Projects',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
           ),
-        );
-      },
+          ...activeItems.map((project) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: project.projectName ?? 'Project',
+              image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
+              owner: project.owner?.username ?? 'User',
+              isPaid: project.isPromoted ?? false,
+              startDate: project.createdAt,
+              endDate: project.promotedUntil,
+              isExpired: false,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Project',
+                  content: 'Are you sure you want to delete this boosted project?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteProject(projectId: project.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+        if (expiredItems.isNotEmpty) ...[
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
+            child: Text(
+              'Expired Projects',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+          ...expiredItems.map((project) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: _buildBoostedCard(
+              title: project.projectName ?? 'Project',
+              image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
+              owner: project.owner?.username ?? 'User',
+              isPaid: project.isPromoted ?? false,
+              startDate: project.createdAt,
+              endDate: project.promotedUntil,
+              isExpired: true,
+              onDelete: () {
+                _showDeleteConfirmation(
+                  title: 'Delete Project',
+                  content: 'Are you sure you want to delete this boosted project?',
+                  onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteProject(projectId: project.id ?? '')),
+                );
+              },
+            ),
+          )),
+        ],
+      ],
     );
   }
 
@@ -343,6 +547,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     required VoidCallback onDelete,
     String? startDate,
     String? endDate,
+    bool isExpired = false,
   }) {
     final DateTime? start = startDate != null ? DateTime.tryParse(startDate) : null;
     final DateTime? end = endDate != null ? DateTime.tryParse(endDate) : null;
@@ -412,14 +617,14 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        const Icon(Icons.calendar_today, size: 12, color: Colors.blue),
+                        Icon(Icons.calendar_today, size: 12, color: isExpired ? Colors.red : Colors.blue),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? "Expires: ${formatter.format(end)}" : ""}'
                                 .trim(),
-                            style: const TextStyle(
-                              color: Colors.blue,
+                            style: TextStyle(
+                              color: isExpired ? Colors.red : Colors.blue,
                               fontSize: 11,
                               fontWeight: FontWeight.w500,
                             ),
@@ -429,20 +634,42 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                     ),
                   ],
                   const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      isPaid ? 'PAID' : 'UNPAID',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          isPaid ? 'PAID' : 'UNPAID',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+                          ),
+                        ),
                       ),
-                    ),
+                      if (isExpired) ...[
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.red.shade50,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Text(
+                            'EXPIRED',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ],
               ),
@@ -479,11 +706,23 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
   }
 
   void _handleDeleteBannerAd(String bannerAdId) {
+    _showDeleteConfirmation(
+      title: 'Delete Banner Ad',
+      content: 'Are you sure you want to delete this banner ad?',
+      onConfirm: () => context.read<AdminBloc>().add(AdminEvent.deleteBannerAd(bannerAdId: bannerAdId)),
+    );
+  }
+
+  void _showDeleteConfirmation({
+    required String title,
+    required String content,
+    required VoidCallback onConfirm,
+  }) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Banner Ad'),
-        content: const Text('Are you sure you want to delete this banner ad?'),
+        title: Text(title),
+        content: Text(content),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -492,9 +731,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              context.read<AdminBloc>().add(
-                AdminEvent.deleteBannerAd(bannerAdId: bannerAdId),
-              );
+              onConfirm();
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             child: const Text('Delete'),
