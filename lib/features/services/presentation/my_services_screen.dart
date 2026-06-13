@@ -74,7 +74,9 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
                 location: service.address ?? service.city ?? 'Unknown Location',
                 rating: ratingValue,
                 ratingCount: service.ratingCount,
-                isTopAd: service.isVerified ?? false,
+                isTopAd: service.isCurrentlyPromoted,
+                createdAt: service.createdAt,
+                promotedUntil: service.promotedUntil,
                 isFavorite: false,
                 canEdit: true, // It's their own service
                 onEdit: () {

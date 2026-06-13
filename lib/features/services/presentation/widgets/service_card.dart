@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:propertify/utils/screen_config.dart';
@@ -15,6 +16,8 @@ class ServiceCard extends StatelessWidget {
   final String? price;
   final bool isFavorite;
   final bool isTopAd;
+  final String? promotedUntil;
+  final String? createdAt;
   final bool canDelete;
   final bool canEdit;
   final VoidCallback onFavoritePressed;
@@ -34,6 +37,8 @@ class ServiceCard extends StatelessWidget {
     this.price,
     this.isFavorite = false,
     this.isTopAd = false,
+    this.promotedUntil,
+    this.createdAt,
     this.canDelete = false,
     this.canEdit = false,
     required this.onFavoritePressed,
@@ -240,7 +245,47 @@ class ServiceCard extends StatelessWidget {
 
         // Star Rating
         if (rating != null) _buildStarRating(),
+        if (isTopAd && canEdit && (createdAt != null || promotedUntil != null)) ...[
+          const SizedBox(height: 8),
+          _buildPromotionDates(),
+        ],
       ],
+    );
+  }
+
+  Widget _buildPromotionDates() {
+    final DateTime? start = createdAt != null ? DateTime.tryParse(createdAt!) : null;
+    final DateTime? end = promotedUntil != null ? DateTime.tryParse(promotedUntil!) : null;
+    final formatter = DateFormat('MMM d, yyyy');
+
+    if (start == null && end == null) return const SizedBox.shrink();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.calendar_today, size: 10, color: Colors.blue.shade700),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? " Exp: ${formatter.format(end)}" : ""}'
+                  .trim(),
+              style: TextStyle(
+                color: Colors.blue.shade700,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

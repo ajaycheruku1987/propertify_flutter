@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/features/reels/models/reel_response_model.dart';
@@ -197,6 +199,57 @@ class ReelViewState extends State<ReelView>
     }
   }
 
+  Widget _buildPromotionDates(ReelResponseModel reel) {
+    final DateTime? start =
+        reel.createdAt != null ? DateTime.tryParse(reel.createdAt!) : null;
+    final DateTime? end = reel.promotedUntil != null
+        ? DateTime.tryParse(reel.promotedUntil!)
+        : null;
+    final formatter = DateFormat('MMM d, yyyy');
+
+    if (start == null && end == null) return const SizedBox.shrink();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.calendar_today, size: 12, color: Colors.white),
+          const SizedBox(width: 6),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (start != null)
+                Text(
+                  'Start: ${formatter.format(start)}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              if (end != null)
+                Text(
+                  'Expires: ${formatter.format(end)}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -364,46 +417,63 @@ class ReelViewState extends State<ReelView>
             },
           ),
 
-          // Promoted Badge
+          // Promoted Badge & Dates
           if (widget.reel.isCurrentlyPromoted)
             Positioned(
-              top: 50,
+              top: 100,
               right: 16,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.orange.withOpacity(0.4),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.star, color: Colors.white, size: 16),
-                    SizedBox(width: 6),
-                    Text(
-                      'Promoted',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
+              child: BlocBuilder<ProfileBloc, ProfileState>(
+                builder: (context, profileState) {
+                  final currentUserId = profileState.userProfile?.id;
+                  final isOwner = currentUserId != null &&
+                      currentUserId == widget.reel.userId;
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.orange.withOpacity(0.4),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.star, color: Colors.white, size: 16),
+                            SizedBox(width: 6),
+                            Text(
+                              'Promoted',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                      if (isOwner) ...[
+                        const SizedBox(height: 8),
+                        _buildPromotionDates(widget.reel),
+                      ],
+                    ],
+                  );
+                },
               ),
             ),
           Positioned(
@@ -842,7 +912,7 @@ class _ExpandableDescriptionState extends State<_ExpandableDescription> {
           text: span,
           maxLines: 2,
           textAlign: TextAlign.start,
-          textDirection: TextDirection.ltr,
+          textDirection: ui.TextDirection.ltr,
           textScaler: MediaQuery.of(context).textScaler,
         );
         tp.layout(maxWidth: constraints.maxWidth);

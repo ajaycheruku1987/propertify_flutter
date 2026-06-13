@@ -150,6 +150,8 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                   isLiked: isLiked,
                   isTopAd: isTopAd,
                   isFeatured: isFeatured,
+                  createdAt: post.createdAt,
+                  promotedUntil: post.promotedUntil,
                   commentCount: post.commentsCount ?? 0,
                   likeCount: post.likesCount ?? 0,
                   viewCount: post.viewsCount ?? 0,

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,8 @@ class PropertyCard extends StatefulWidget {
   final bool isLiked;
   final bool isTopAd;
   final bool isFeatured;
+  final String? promotedUntil;
+  final String? createdAt;
   final bool showActions;
   final bool canEdit;
   final bool canDelete;
@@ -62,6 +65,8 @@ class PropertyCard extends StatefulWidget {
     this.onEditPressed,
     this.onDeletePressed,
     this.listingType,
+    this.promotedUntil,
+    this.createdAt,
   });
 
   @override
@@ -474,6 +479,42 @@ class _PropertyCardState extends State<PropertyCard> {
                 ),
               ),
             ],
+          ),
+          if (widget.isTopAd && widget.canEdit && (widget.createdAt != null || widget.promotedUntil != null)) ...[
+            const SizedBox(height: 8),
+            _buildPromotionDates(),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPromotionDates() {
+    final DateTime? start = widget.createdAt != null ? DateTime.tryParse(widget.createdAt!) : null;
+    final DateTime? end = widget.promotedUntil != null ? DateTime.tryParse(widget.promotedUntil!) : null;
+    final formatter = DateFormat('MMM d, yyyy');
+
+    if (start == null && end == null) return const SizedBox.shrink();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.calendar_today, size: 12, color: Colors.blue.shade700),
+          const SizedBox(width: 4),
+          Text(
+            '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
+                .trim(),
+            style: TextStyle(
+              color: Colors.blue.shade700,
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
