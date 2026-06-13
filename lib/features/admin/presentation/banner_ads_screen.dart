@@ -2,6 +2,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:propertify/features/admin/models/post_ad_model.dart';
 import 'package:propertify/features/admin/models/projects_admin_view_model.dart';
 import 'package:propertify/features/home/models/feed_posts_response_model.dart';
@@ -227,7 +228,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
   }
 
   Widget _buildPropertiesList(List<FeedPostsResponseModel> properties) {
-    final boostedProperties = properties.where((p) => (p.isPromoted == true || p.isFeatured == true)).toList();
+    final boostedProperties = properties.where((p) => p.isCurrentlyPromoted).toList();
     if (boostedProperties.isEmpty) return _buildEmptyState('No boosted feeds found');
     return ListView.builder(
       controller: _scrollController,
@@ -235,21 +236,26 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       itemCount: boostedProperties.length,
       itemBuilder: (context, index) {
         final property = boostedProperties[index];
-        return _buildBoostedCard(
-          title: property.title ?? 'Property Feed',
-          image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
-          owner: property.owner?.username ?? 'User',
-          isPaid: property.isPromoted == true,
-          onDelete: () {
-             context.read<AdminBloc>().add(AdminEvent.deleteAdminProperty(propertyId: property.id ?? ''));
-          },
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: _buildBoostedCard(
+            title: property.title ?? 'Property Feed',
+            image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
+            owner: property.owner?.username ?? 'User',
+            isPaid: property.isCurrentlyPromoted,
+            startDate: property.createdAt,
+            endDate: property.promotedUntil,
+            onDelete: () {
+               context.read<AdminBloc>().add(AdminEvent.deleteAdminProperty(propertyId: property.id ?? ''));
+            },
+          ),
         );
       },
     );
   }
 
   Widget _buildServicesList(List<ServicesResponseModel> services) {
-    final boostedServices = services.where((s) => s.isPromoted == true).toList();
+    final boostedServices = services.where((s) => s.isCurrentlyPromoted).toList();
     if (boostedServices.isEmpty) return _buildEmptyState('No boosted services found');
     return ListView.builder(
       controller: _scrollController,
@@ -257,21 +263,26 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       itemCount: boostedServices.length,
       itemBuilder: (context, index) {
         final service = boostedServices[index];
-        return _buildBoostedCard(
-          title: service.agentName ?? 'Service',
-          image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
-          owner: service.owner?.username ?? 'User',
-          isPaid: true,
-          onDelete: () {
-            context.read<AdminBloc>().add(AdminEvent.deleteService(serviceId: service.id ?? ''));
-          },
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: _buildBoostedCard(
+            title: service.agentName ?? 'Service',
+            image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
+            owner: service.owner?.username ?? 'User',
+            isPaid: true,
+            startDate: service.createdAt,
+            endDate: service.promotedUntil,
+            onDelete: () {
+              context.read<AdminBloc>().add(AdminEvent.deleteService(serviceId: service.id ?? ''));
+            },
+          ),
         );
       },
     );
   }
 
   Widget _buildReelsList(List<ReelResponseModel> reels) {
-    final boostedReels = reels.where((r) => r.isPromoted == true).toList();
+    final boostedReels = reels.where((r) => r.isCurrentlyPromoted).toList();
     if (boostedReels.isEmpty) return _buildEmptyState('No boosted reels found');
     return ListView.builder(
       controller: _scrollController,
@@ -279,35 +290,46 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       itemCount: boostedReels.length,
       itemBuilder: (context, index) {
         final reel = boostedReels[index];
-        return _buildBoostedCard(
-          title: reel.description ?? 'Reel',
-          image: null, // Reels typically don't have thumbnail URLs in this model
-          owner: reel.owner?.username ?? 'User',
-          isPaid: true,
-          onDelete: () {
-            context.read<AdminBloc>().add(AdminEvent.deleteAdminReel(reelId: reel.id ?? ''));
-          },
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: _buildBoostedCard(
+            title: reel.description ?? 'Reel',
+            image: null, // Reels typically don't have thumbnail URLs in this model
+            owner: reel.owner?.username ?? 'User',
+            isPaid: true,
+            startDate: reel.createdAt,
+            endDate: reel.promotedUntil,
+            onDelete: () {
+              context.read<AdminBloc>().add(AdminEvent.deleteAdminReel(reelId: reel.id ?? ''));
+            },
+          ),
         );
       },
     );
   }
 
   Widget _buildProjectsList(List<ProjectsAdminViewModel> projects) {
-    if (projects.isEmpty) return _buildEmptyState('No projects found');
+    final boostedProjects = projects.where((p) => p.isCurrentlyPromoted).toList();
+    if (boostedProjects.isEmpty) return _buildEmptyState('No boosted projects found');
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: projects.length,
+      itemCount: boostedProjects.length,
       itemBuilder: (context, index) {
-        final project = projects[index];
-        return _buildBoostedCard(
-          title: project.projectName ?? 'Project',
-          image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
-          owner: project.owner?.username ?? 'User',
-          isPaid: true,
-          onDelete: () {
-            context.read<AdminBloc>().add(AdminEvent.deleteProject(projectId: project.id ?? ''));
-          },
+        final project = boostedProjects[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: _buildBoostedCard(
+            title: project.projectName ?? 'Project',
+            image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
+            owner: project.owner?.username ?? 'User',
+            isPaid: project.isCurrentlyPromoted,
+            startDate: project.createdAt,
+            endDate: project.promotedUntil,
+            onDelete: () {
+              context.read<AdminBloc>().add(AdminEvent.deleteProject(projectId: project.id ?? ''));
+            },
+          ),
         );
       },
     );
@@ -319,9 +341,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     required String owner,
     required bool isPaid,
     required VoidCallback onDelete,
+    String? startDate,
+    String? endDate,
   }) {
+    final DateTime? start = startDate != null ? DateTime.tryParse(startDate) : null;
+    final DateTime? end = endDate != null ? DateTime.tryParse(endDate) : null;
+    final formatter = DateFormat('MMM d, yyyy');
+
     return Card(
       margin: EdgeInsets.zero,
+      elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -330,17 +359,75 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             if (image != null)
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(image, width: 80, height: 80, fit: BoxFit.cover),
+                child: Image.network(
+                  image,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    width: 80,
+                    height: 80,
+                    color: Colors.grey.shade200,
+                    child: const Icon(Icons.broken_image, color: Colors.grey),
+                  ),
+                ),
               )
             else
-              Container(width: 80, height: 80, color: Colors.grey.shade200, child: const Icon(Icons.image)),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(Icons.image, color: Colors.grey),
+              ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis),
-                  Text('Owner: $owner', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Icon(Icons.person, size: 14, color: Colors.grey),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          'Owner: $owner',
+                          style: TextStyle(color: Colors.grey.shade700, fontSize: 12),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (start != null || end != null) ...[
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        const Icon(Icons.calendar_today, size: 12, color: Colors.blue),
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? "Expires: ${formatter.format(end)}" : ""}'
+                                .trim(),
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                   const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -348,12 +435,23 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                       color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Text(isPaid ? 'PAID' : 'UNPAID', style: TextStyle(fontSize: 10, color: isPaid ? Colors.green : Colors.orange)),
+                    child: Text(
+                      isPaid ? 'PAID' : 'UNPAID',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            IconButton(icon: const Icon(Icons.delete_outline, color: Colors.red), onPressed: onDelete),
+            IconButton(
+              icon: const Icon(Icons.delete_outline, color: Colors.red),
+              onPressed: onDelete,
+              tooltip: 'Delete',
+            ),
           ],
         ),
       ),

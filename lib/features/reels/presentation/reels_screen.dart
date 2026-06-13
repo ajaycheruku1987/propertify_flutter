@@ -365,7 +365,7 @@ class ReelViewState extends State<ReelView>
           ),
 
           // Promoted Badge
-          if (widget.reel.isPromoted ?? false)
+          if (widget.reel.isCurrentlyPromoted)
             Positioned(
               top: 50,
               right: 16,
@@ -415,7 +415,7 @@ class ReelViewState extends State<ReelView>
                 final isOwner =
                     currentUserId != null &&
                     currentUserId == widget.reel.userId;
-                final isPromoted = widget.reel.isPromoted ?? false;
+                final isPromoted = widget.reel.isCurrentlyPromoted;
                 final shouldShowBoost = isOwner && !isPromoted;
 
                 return Container(

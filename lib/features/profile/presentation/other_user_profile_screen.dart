@@ -41,7 +41,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+    _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
 
     // Load other user's profile
     context.read<ProfileBloc>().add(
@@ -513,7 +513,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     child: const Icon(Icons.play_circle_outline, size: 48),
                   ),
                   // Promoted Star Indicator
-                  if (reel.isPromoted ?? false)
+                  if (reel.isCurrentlyPromoted)
                     Positioned(
                       top: 8,
                       right: 8,

@@ -429,7 +429,7 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FeedPostsResponseModelImpl implements _FeedPostsResponseModel {
+class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   const _$FeedPostsResponseModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "user_id") this.userId,
@@ -454,7 +454,8 @@ class _$FeedPostsResponseModelImpl implements _FeedPostsResponseModel {
       @JsonKey(name: "likes_count") this.likesCount,
       @JsonKey(name: "comments_count") this.commentsCount,
       @JsonKey(name: "views_count") this.viewsCount})
-      : _imageUrls = imageUrls;
+      : _imageUrls = imageUrls,
+        super._();
 
   factory _$FeedPostsResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FeedPostsResponseModelImplFromJson(json);
@@ -630,7 +631,7 @@ class _$FeedPostsResponseModelImpl implements _FeedPostsResponseModel {
   }
 }
 
-abstract class _FeedPostsResponseModel implements FeedPostsResponseModel {
+abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   const factory _FeedPostsResponseModel(
           {@JsonKey(name: "id") final String? id,
           @JsonKey(name: "user_id") final String? userId,
@@ -656,6 +657,7 @@ abstract class _FeedPostsResponseModel implements FeedPostsResponseModel {
           @JsonKey(name: "comments_count") final int? commentsCount,
           @JsonKey(name: "views_count") final int? viewsCount}) =
       _$FeedPostsResponseModelImpl;
+  const _FeedPostsResponseModel._() : super._();
 
   factory _FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =
       _$FeedPostsResponseModelImpl.fromJson;

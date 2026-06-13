@@ -17,6 +17,17 @@ class ReelResponseModel {
   final int? commentsCount;
   final int? viewsCount;
 
+  bool get isCurrentlyPromoted {
+    if (isPromoted != true) return false;
+    if (promotedUntil == null) return true;
+    try {
+      final expiryDate = DateTime.parse(promotedUntil!);
+      return DateTime.now().isBefore(expiryDate);
+    } catch (e) {
+      return true;
+    }
+  }
+
   ReelResponseModel({
     this.description,
     this.category,

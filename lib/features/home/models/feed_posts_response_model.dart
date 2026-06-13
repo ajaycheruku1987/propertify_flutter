@@ -18,6 +18,8 @@ String feedPostsResponseModelToJson(List<FeedPostsResponseModel> data) =>
 
 @freezed
 class FeedPostsResponseModel with _$FeedPostsResponseModel {
+  const FeedPostsResponseModel._();
+
   const factory FeedPostsResponseModel({
     @JsonKey(name: "id") String? id,
     @JsonKey(name: "user_id") String? userId,
@@ -46,6 +48,17 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
 
   factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>
       _$FeedPostsResponseModelFromJson(json);
+
+  bool get isCurrentlyPromoted {
+    if (isPromoted == null || !isPromoted!) return false;
+    if (promotedUntil == null) return true;
+    try {
+      final expiryDate = DateTime.parse(promotedUntil!);
+      return expiryDate.isAfter(DateTime.now());
+    } catch (e) {
+      return true; // Fallback if parsing fails but isPromoted is true
+    }
+  }
 }
 
 @freezed

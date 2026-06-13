@@ -261,6 +261,10 @@ mixin _$ProjectsAdminViewModel {
   String? get brochureUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_promoted")
+  bool? get isPromoted => throw _privateConstructorUsedError;
+  @JsonKey(name: "promoted_until")
+  String? get promotedUntil => throw _privateConstructorUsedError;
   @JsonKey(name: "owner")
   ProjectOwner? get owner => throw _privateConstructorUsedError;
 
@@ -298,6 +302,8 @@ abstract class $ProjectsAdminViewModelCopyWith<$Res> {
       @JsonKey(name: "image_urls") List<String>? imageUrls,
       @JsonKey(name: "brochure_url") String? brochureUrl,
       @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "owner") ProjectOwner? owner});
 
   $ProjectOwnerCopyWith<$Res>? get owner;
@@ -338,6 +344,8 @@ class _$ProjectsAdminViewModelCopyWithImpl<$Res,
     Object? imageUrls = freezed,
     Object? brochureUrl = freezed,
     Object? createdAt = freezed,
+    Object? isPromoted = freezed,
+    Object? promotedUntil = freezed,
     Object? owner = freezed,
   }) {
     return _then(_value.copyWith(
@@ -425,6 +433,14 @@ class _$ProjectsAdminViewModelCopyWithImpl<$Res,
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPromoted: freezed == isPromoted
+          ? _value.isPromoted
+          : isPromoted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      promotedUntil: freezed == promotedUntil
+          ? _value.promotedUntil
+          : promotedUntil // ignore: cast_nullable_to_non_nullable
+              as String?,
       owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -476,6 +492,8 @@ abstract class _$$ProjectsAdminViewModelImplCopyWith<$Res>
       @JsonKey(name: "image_urls") List<String>? imageUrls,
       @JsonKey(name: "brochure_url") String? brochureUrl,
       @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "owner") ProjectOwner? owner});
 
   @override
@@ -516,6 +534,8 @@ class __$$ProjectsAdminViewModelImplCopyWithImpl<$Res>
     Object? imageUrls = freezed,
     Object? brochureUrl = freezed,
     Object? createdAt = freezed,
+    Object? isPromoted = freezed,
+    Object? promotedUntil = freezed,
     Object? owner = freezed,
   }) {
     return _then(_$ProjectsAdminViewModelImpl(
@@ -603,6 +623,14 @@ class __$$ProjectsAdminViewModelImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPromoted: freezed == isPromoted
+          ? _value.isPromoted
+          : isPromoted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      promotedUntil: freezed == promotedUntil
+          ? _value.promotedUntil
+          : promotedUntil // ignore: cast_nullable_to_non_nullable
+              as String?,
       owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -613,7 +641,7 @@ class __$$ProjectsAdminViewModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
+class _$ProjectsAdminViewModelImpl extends _ProjectsAdminViewModel {
   const _$ProjectsAdminViewModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "user_id") this.userId,
@@ -636,8 +664,11 @@ class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
       @JsonKey(name: "image_urls") final List<String>? imageUrls,
       @JsonKey(name: "brochure_url") this.brochureUrl,
       @JsonKey(name: "created_at") this.createdAt,
+      @JsonKey(name: "is_promoted") this.isPromoted,
+      @JsonKey(name: "promoted_until") this.promotedUntil,
       @JsonKey(name: "owner") this.owner})
-      : _imageUrls = imageUrls;
+      : _imageUrls = imageUrls,
+        super._();
 
   factory _$ProjectsAdminViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectsAdminViewModelImplFromJson(json);
@@ -714,12 +745,18 @@ class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
   @JsonKey(name: "created_at")
   final String? createdAt;
   @override
+  @JsonKey(name: "is_promoted")
+  final bool? isPromoted;
+  @override
+  @JsonKey(name: "promoted_until")
+  final String? promotedUntil;
+  @override
   @JsonKey(name: "owner")
   final ProjectOwner? owner;
 
   @override
   String toString() {
-    return 'ProjectsAdminViewModel(id: $id, userId: $userId, propertyType: $propertyType, projectName: $projectName, area: $area, areaUnit: $areaUnit, reraNumber: $reraNumber, noOfUnits: $noOfUnits, type: $type, description: $description, specifications: $specifications, address: $address, city: $city, state: $state, location: $location, latitude: $latitude, longitude: $longitude, publicFacilities: $publicFacilities, imageUrls: $imageUrls, brochureUrl: $brochureUrl, createdAt: $createdAt, owner: $owner)';
+    return 'ProjectsAdminViewModel(id: $id, userId: $userId, propertyType: $propertyType, projectName: $projectName, area: $area, areaUnit: $areaUnit, reraNumber: $reraNumber, noOfUnits: $noOfUnits, type: $type, description: $description, specifications: $specifications, address: $address, city: $city, state: $state, location: $location, latitude: $latitude, longitude: $longitude, publicFacilities: $publicFacilities, imageUrls: $imageUrls, brochureUrl: $brochureUrl, createdAt: $createdAt, isPromoted: $isPromoted, promotedUntil: $promotedUntil, owner: $owner)';
   }
 
   @override
@@ -762,6 +799,10 @@ class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
                 other.brochureUrl == brochureUrl) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.isPromoted, isPromoted) ||
+                other.isPromoted == isPromoted) &&
+            (identical(other.promotedUntil, promotedUntil) ||
+                other.promotedUntil == promotedUntil) &&
             (identical(other.owner, owner) || other.owner == owner));
   }
 
@@ -790,6 +831,8 @@ class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
         const DeepCollectionEquality().hash(_imageUrls),
         brochureUrl,
         createdAt,
+        isPromoted,
+        promotedUntil,
         owner
       ]);
 
@@ -808,7 +851,7 @@ class _$ProjectsAdminViewModelImpl implements _ProjectsAdminViewModel {
   }
 }
 
-abstract class _ProjectsAdminViewModel implements ProjectsAdminViewModel {
+abstract class _ProjectsAdminViewModel extends ProjectsAdminViewModel {
   const factory _ProjectsAdminViewModel(
           {@JsonKey(name: "id") final String? id,
           @JsonKey(name: "user_id") final String? userId,
@@ -831,8 +874,11 @@ abstract class _ProjectsAdminViewModel implements ProjectsAdminViewModel {
           @JsonKey(name: "image_urls") final List<String>? imageUrls,
           @JsonKey(name: "brochure_url") final String? brochureUrl,
           @JsonKey(name: "created_at") final String? createdAt,
+          @JsonKey(name: "is_promoted") final bool? isPromoted,
+          @JsonKey(name: "promoted_until") final String? promotedUntil,
           @JsonKey(name: "owner") final ProjectOwner? owner}) =
       _$ProjectsAdminViewModelImpl;
+  const _ProjectsAdminViewModel._() : super._();
 
   factory _ProjectsAdminViewModel.fromJson(Map<String, dynamic> json) =
       _$ProjectsAdminViewModelImpl.fromJson;
@@ -900,6 +946,12 @@ abstract class _ProjectsAdminViewModel implements ProjectsAdminViewModel {
   @override
   @JsonKey(name: "created_at")
   String? get createdAt;
+  @override
+  @JsonKey(name: "is_promoted")
+  bool? get isPromoted;
+  @override
+  @JsonKey(name: "promoted_until")
+  String? get promotedUntil;
   @override
   @JsonKey(name: "owner")
   ProjectOwner? get owner;

@@ -51,6 +51,8 @@ _$ProjectsAdminViewModelImpl _$$ProjectsAdminViewModelImplFromJson(
           .toList(),
       brochureUrl: json['brochure_url'] as String?,
       createdAt: json['created_at'] as String?,
+      isPromoted: json['is_promoted'] as bool?,
+      promotedUntil: json['promoted_until'] as String?,
       owner: json['owner'] == null
           ? null
           : ProjectOwner.fromJson(json['owner'] as Map<String, dynamic>),
@@ -80,6 +82,8 @@ Map<String, dynamic> _$$ProjectsAdminViewModelImplToJson(
       'image_urls': instance.imageUrls,
       'brochure_url': instance.brochureUrl,
       'created_at': instance.createdAt,
+      'is_promoted': instance.isPromoted,
+      'promoted_until': instance.promotedUntil,
       'owner': instance.owner,
     };
 

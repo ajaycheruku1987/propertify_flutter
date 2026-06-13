@@ -137,7 +137,7 @@ class _AdminReelsScreenState extends State<AdminReelsScreen> {
                       ),
                     ),
 
-                    if (reel.isPromoted ?? false)
+                    if (reel.isCurrentlyPromoted)
                       Positioned(
                         top: 4,
                         right: 4,

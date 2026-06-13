@@ -107,7 +107,7 @@ class SimilarProperties extends StatelessWidget {
                 ),
 
                 // Featured Badge
-                if (property.isPromoted ?? false)
+                if (property.isCurrentlyPromoted)
                   Positioned(
                     top: 6,
                     left: 6,

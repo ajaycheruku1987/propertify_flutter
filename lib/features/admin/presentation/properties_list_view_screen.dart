@@ -190,7 +190,7 @@ class _PropertiesListViewScreenState extends State<PropertiesListViewScreen> {
                 price: property.price != null ? '₹${property.price}' : null,
                 isFavorite: property.isFavourited ?? false,
                 isLiked: property.isLiked ?? false,
-                isFeatured: property.isPromoted ?? false,
+                isFeatured: property.isCurrentlyPromoted,
                 likeCount: property.likesCount ?? 0,
                 commentCount: property.commentsCount ?? 0,
                 viewCount: property.viewsCount ?? 0,

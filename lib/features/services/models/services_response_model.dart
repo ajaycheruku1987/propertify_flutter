@@ -19,6 +19,8 @@ String servicesResponseModelToJson(List<ServicesResponseModel> data) =>
 
 @freezed
 class ServicesResponseModel with _$ServicesResponseModel {
+  const ServicesResponseModel._();
+
   const factory ServicesResponseModel({
     @JsonKey(name: "agent_name") String? agentName,
     @JsonKey(name: "description") String? description,
@@ -49,6 +51,17 @@ class ServicesResponseModel with _$ServicesResponseModel {
     @JsonKey(name: "owner") Owner? owner,
     @JsonKey(name: "my_review") MyReview? myReview,
   }) = _ServicesResponseModel;
+
+  bool get isCurrentlyPromoted {
+    if (isPromoted != true) return false;
+    if (promotedUntil == null) return true;
+    try {
+      final expiryDate = DateTime.parse(promotedUntil!);
+      return DateTime.now().isBefore(expiryDate);
+    } catch (e) {
+      return true;
+    }
+  }
 
   factory ServicesResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ServicesResponseModelFromJson(json);

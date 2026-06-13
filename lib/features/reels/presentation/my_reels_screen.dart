@@ -101,7 +101,7 @@ class _MyReelsScreenState extends State<MyReelsScreen> {
                         ),
                       ),
                     ),
-                    if (reel.isPromoted ?? false)
+                    if (reel.isCurrentlyPromoted)
                       Positioned(
                         top: 4,
                         right: 4,

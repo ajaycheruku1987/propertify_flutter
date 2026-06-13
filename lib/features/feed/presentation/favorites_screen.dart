@@ -68,10 +68,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               final title = post.title ?? 'Untitled';
               final location = post.city ?? '';
               final price = post.price != null ? '₹${post.price}' : null;
-              final isFavorite = post.isFavourited ?? true;
-              final isLiked = post.isLiked ?? false;
-              final isTopAd = post.isPromoted ?? false;
-              final isFeatured = post.isPromoted ?? false;
+              final bool isFavorite = post.isFavourited ?? true;
+              final bool isLiked = post.isLiked ?? false;
+              final bool isTopAd = post.isCurrentlyPromoted;
+              final bool isFeatured = post.isCurrentlyPromoted;
               return PropertyCard(
                 imageUrls: imageUrls,
                 title: title,

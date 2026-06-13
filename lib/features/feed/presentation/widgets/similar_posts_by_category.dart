@@ -70,7 +70,7 @@ class SimilarPostsByCategory extends StatelessWidget {
                     price: post.price != null ? '₹${post.price}' : null,
                     isLiked: post.isLiked ?? false,
                     isFavorite: post.isFavourited ?? false,
-                    isFeatured: post.isPromoted ?? false,
+                    isFeatured: post.isCurrentlyPromoted,
                     commentCount: post.commentsCount ?? 0,
                     likeCount: post.likesCount ?? 0,
                     viewCount: post.viewsCount ?? 0,

@@ -137,8 +137,8 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                     : null;
                 final bool isFavorite = post.isFavourited ?? false;
                 final bool isLiked = post.isLiked ?? false;
-                final bool isTopAd = post.isPromoted ?? false;
-                final bool isFeatured = post.isPromoted ?? false;
+                final bool isTopAd = post.isCurrentlyPromoted;
+                final bool isFeatured = post.isCurrentlyPromoted;
 
                 return PropertyCard(
                   imageUrls: imageUrls,

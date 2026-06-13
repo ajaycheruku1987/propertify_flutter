@@ -23,6 +23,8 @@ class ProjectsAdminResponse with _$ProjectsAdminResponse {
 
 @freezed
 class ProjectsAdminViewModel with _$ProjectsAdminViewModel {
+  const ProjectsAdminViewModel._();
+
   const factory ProjectsAdminViewModel({
     @JsonKey(name: "id") String? id,
     @JsonKey(name: "user_id") String? userId,
@@ -45,11 +47,24 @@ class ProjectsAdminViewModel with _$ProjectsAdminViewModel {
     @JsonKey(name: "image_urls") List<String>? imageUrls,
     @JsonKey(name: "brochure_url") String? brochureUrl,
     @JsonKey(name: "created_at") String? createdAt,
+    @JsonKey(name: "is_promoted") bool? isPromoted,
+    @JsonKey(name: "promoted_until") String? promotedUntil,
     @JsonKey(name: "owner") ProjectOwner? owner,
   }) = _ProjectsAdminViewModel;
 
   factory ProjectsAdminViewModel.fromJson(Map<String, dynamic> json) =>
       _$ProjectsAdminViewModelFromJson(json);
+
+  bool get isCurrentlyPromoted {
+    if (isPromoted != true) return false;
+    if (promotedUntil == null) return true;
+    try {
+      final expiryDate = DateTime.parse(promotedUntil!);
+      return DateTime.now().isBefore(expiryDate);
+    } catch (e) {
+      return true;
+    }
+  }
 }
 
 @freezed

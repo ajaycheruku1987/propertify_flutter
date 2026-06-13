@@ -547,7 +547,7 @@ Check it out on Propertify!
 
                         context.read<ProfileBloc>().state.userProfile?.id ==
                                     postDetails.owner?.id &&
-                                postDetails.isPromoted == false
+                                !postDetails.isCurrentlyPromoted
                             ? Center(
                                 child: GestureDetector(
                                   onTap: () {

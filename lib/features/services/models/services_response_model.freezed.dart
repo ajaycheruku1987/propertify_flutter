@@ -501,7 +501,7 @@ class __$$ServicesResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ServicesResponseModelImpl implements _ServicesResponseModel {
+class _$ServicesResponseModelImpl extends _ServicesResponseModel {
   const _$ServicesResponseModelImpl(
       {@JsonKey(name: "agent_name") this.agentName,
       @JsonKey(name: "description") this.description,
@@ -532,7 +532,8 @@ class _$ServicesResponseModelImpl implements _ServicesResponseModel {
       @JsonKey(name: "owner") this.owner,
       @JsonKey(name: "my_review") this.myReview})
       : _imageUrls = imageUrls,
-        _category = category;
+        _category = category,
+        super._();
 
   factory _$ServicesResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServicesResponseModelImplFromJson(json);
@@ -740,7 +741,7 @@ class _$ServicesResponseModelImpl implements _ServicesResponseModel {
   }
 }
 
-abstract class _ServicesResponseModel implements ServicesResponseModel {
+abstract class _ServicesResponseModel extends ServicesResponseModel {
   const factory _ServicesResponseModel(
       {@JsonKey(name: "agent_name") final String? agentName,
       @JsonKey(name: "description") final String? description,
@@ -771,6 +772,7 @@ abstract class _ServicesResponseModel implements ServicesResponseModel {
       @JsonKey(name: "owner") final Owner? owner,
       @JsonKey(name: "my_review")
       final MyReview? myReview}) = _$ServicesResponseModelImpl;
+  const _ServicesResponseModel._() : super._();
 
   factory _ServicesResponseModel.fromJson(Map<String, dynamic> json) =
       _$ServicesResponseModelImpl.fromJson;
