@@ -186,6 +186,7 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
                 promotedUntil: service.promotedUntil,
                 createdAt: service.createdAt,
                 isTopAd: service.isCurrentlyPromoted,
+                isVerified: service.isVerified ?? false,
               );
             },
           );

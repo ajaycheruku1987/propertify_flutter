@@ -16,6 +16,7 @@ class ServiceCard extends StatelessWidget {
   final String? price;
   final bool isFavorite;
   final bool isTopAd;
+  final bool isVerified;
   final String? promotedAt;
   final String? promotedUntil;
   final String? createdAt;
@@ -38,6 +39,7 @@ class ServiceCard extends StatelessWidget {
     this.price,
     this.isFavorite = false,
     this.isTopAd = false,
+    this.isVerified = false,
     this.promotedAt,
     this.promotedUntil,
     this.createdAt,
@@ -89,19 +91,43 @@ class ServiceCard extends StatelessWidget {
         ? imageUrl
         : 'https://images.unsplash.com/photo-1581578731548-c64695cc6958?w=800';
 
-    return Container(
-      width: ScreenConfig.width * 0.3,
-      height: ScreenConfig.width * 0.3,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: NetworkImage(displayImageUrl),
-          onError: (exception, stackTrace) {
-            print('Error loading image: $exception');
-          },
-          fit: BoxFit.cover,
+    return Stack(
+      children: [
+        Container(
+          width: ScreenConfig.width * 0.3,
+          height: ScreenConfig.width * 0.3,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: NetworkImage(displayImageUrl),
+              onError: (exception, stackTrace) {
+                print('Error loading image: $exception');
+              },
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-      ),
+        if (isTopAd)
+          Positioned(
+            top: 4,
+            left: 4,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: const Text(
+                'Promoted',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 8,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 
@@ -127,11 +153,14 @@ class ServiceCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            if (isTopAd)
-              SvgPicture.asset(
-                'assets/icons/verified_icon.svg',
-                width: 20,
-                height: 20,
+            if (isVerified)
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: SvgPicture.asset(
+                  'assets/icons/verified_icon.svg',
+                  width: 20,
+                  height: 20,
+                ),
               ),
             if (canDelete || canEdit)
               PopupMenuButton<String>(

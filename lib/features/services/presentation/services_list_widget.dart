@@ -159,7 +159,8 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                     location: service.city ?? 'Unknown Location',
                     rating: ratingValue,
                     ratingCount: service.ratingCount,
-                    isTopAd: service.isVerified ?? false,
+                    isTopAd: service.isCurrentlyPromoted,
+                    isVerified: service.isVerified ?? false,
                     isFavorite: false,
                     canEdit: isOwner,
                     onEdit: isOwner ? () {
