@@ -37,6 +37,7 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "latitude") int? latitude,
     @JsonKey(name: "longitude") int? longitude,
     @JsonKey(name: "is_promoted") bool? isPromoted,
+    @JsonKey(name: "promoted_at") String? promotedAt,
     @JsonKey(name: "promoted_until") String? promotedUntil,
     @JsonKey(name: "owner") Owner? owner,
     @JsonKey(name: "is_favourited") bool? isFavourited,

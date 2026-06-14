@@ -182,6 +182,10 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
                 onDelete: () {
                   _showDeleteDialog(context, service.id ?? '');
                 },
+                promotedAt: service.promotedAt,
+                promotedUntil: service.promotedUntil,
+                createdAt: service.createdAt,
+                isTopAd: service.isCurrentlyPromoted,
               );
             },
           );

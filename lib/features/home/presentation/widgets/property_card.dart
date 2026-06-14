@@ -21,6 +21,7 @@ class PropertyCard extends StatefulWidget {
   final bool isLiked;
   final bool isTopAd;
   final bool isFeatured;
+  final String? promotedAt;
   final String? promotedUntil;
   final String? createdAt;
   final bool showActions;
@@ -65,6 +66,7 @@ class PropertyCard extends StatefulWidget {
     this.onEditPressed,
     this.onDeletePressed,
     this.listingType,
+    this.promotedAt,
     this.promotedUntil,
     this.createdAt,
   });
@@ -480,7 +482,7 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ],
           ),
-          if (widget.isTopAd && widget.canEdit && (widget.createdAt != null || widget.promotedUntil != null)) ...[
+          if (widget.isTopAd && widget.canEdit && (widget.promotedAt != null || widget.promotedUntil != null || widget.createdAt != null)) ...[
             const SizedBox(height: 8),
             _buildPromotionDates(),
           ],
@@ -490,8 +492,12 @@ class _PropertyCardState extends State<PropertyCard> {
   }
 
   Widget _buildPromotionDates() {
-    final DateTime? start = widget.createdAt != null ? DateTime.tryParse(widget.createdAt!) : null;
-    final DateTime? end = widget.promotedUntil != null ? DateTime.tryParse(widget.promotedUntil!) : null;
+    final DateTime? start = widget.promotedAt != null
+        ? DateTime.tryParse(widget.promotedAt!)
+        : (widget.createdAt != null ? DateTime.tryParse(widget.createdAt!) : null);
+    final DateTime? end = widget.promotedUntil != null
+        ? DateTime.tryParse(widget.promotedUntil!)
+        : null;
     final formatter = DateFormat('MMM d, yyyy');
 
     if (start == null && end == null) return const SizedBox.shrink();
@@ -508,7 +514,7 @@ class _PropertyCardState extends State<PropertyCard> {
           Icon(Icons.calendar_today, size: 12, color: Colors.blue.shade700),
           const SizedBox(width: 4),
           Text(
-            '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
+            '${start != null ? "Started: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
                 .trim(),
             style: TextStyle(
               color: Colors.blue.shade700,

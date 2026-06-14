@@ -210,6 +210,9 @@ class _PropertiesListViewScreenState extends State<PropertiesListViewScreen> {
                 },
                 onLikePressed: () {},
                 onCommentPressed: () {},
+                promotedAt: property.promotedAt,
+                promotedUntil: property.promotedUntil,
+                createdAt: property.createdAt,
               ),
               Positioned(
                 top: 8,

@@ -63,6 +63,8 @@ mixin _$ServicesResponseModel {
   int? get ratingCount => throw _privateConstructorUsedError;
   @JsonKey(name: "is_promoted")
   bool? get isPromoted => throw _privateConstructorUsedError;
+  @JsonKey(name: "promoted_at")
+  String? get promotedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "promoted_until")
   String? get promotedUntil => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
@@ -110,6 +112,7 @@ abstract class $ServicesResponseModelCopyWith<$Res> {
       @JsonKey(name: "rating") String? rating,
       @JsonKey(name: "rating_count") int? ratingCount,
       @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "aadhar_card_image_url") String? aadharCardImageUrl,
@@ -157,6 +160,7 @@ class _$ServicesResponseModelCopyWithImpl<$Res,
     Object? rating = freezed,
     Object? ratingCount = freezed,
     Object? isPromoted = freezed,
+    Object? promotedAt = freezed,
     Object? promotedUntil = freezed,
     Object? createdAt = freezed,
     Object? aadharCardImageUrl = freezed,
@@ -249,6 +253,10 @@ class _$ServicesResponseModelCopyWithImpl<$Res,
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      promotedAt: freezed == promotedAt
+          ? _value.promotedAt
+          : promotedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       promotedUntil: freezed == promotedUntil
           ? _value.promotedUntil
           : promotedUntil // ignore: cast_nullable_to_non_nullable
@@ -332,6 +340,7 @@ abstract class _$$ServicesResponseModelImplCopyWith<$Res>
       @JsonKey(name: "rating") String? rating,
       @JsonKey(name: "rating_count") int? ratingCount,
       @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "aadhar_card_image_url") String? aadharCardImageUrl,
@@ -379,6 +388,7 @@ class __$$ServicesResponseModelImplCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? ratingCount = freezed,
     Object? isPromoted = freezed,
+    Object? promotedAt = freezed,
     Object? promotedUntil = freezed,
     Object? createdAt = freezed,
     Object? aadharCardImageUrl = freezed,
@@ -471,6 +481,10 @@ class __$$ServicesResponseModelImplCopyWithImpl<$Res>
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      promotedAt: freezed == promotedAt
+          ? _value.promotedAt
+          : promotedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       promotedUntil: freezed == promotedUntil
           ? _value.promotedUntil
           : promotedUntil // ignore: cast_nullable_to_non_nullable
@@ -524,6 +538,7 @@ class _$ServicesResponseModelImpl extends _ServicesResponseModel {
       @JsonKey(name: "rating") this.rating,
       @JsonKey(name: "rating_count") this.ratingCount,
       @JsonKey(name: "is_promoted") this.isPromoted,
+      @JsonKey(name: "promoted_at") this.promotedAt,
       @JsonKey(name: "promoted_until") this.promotedUntil,
       @JsonKey(name: "created_at") this.createdAt,
       @JsonKey(name: "aadhar_card_image_url") this.aadharCardImageUrl,
@@ -618,6 +633,9 @@ class _$ServicesResponseModelImpl extends _ServicesResponseModel {
   @JsonKey(name: "is_promoted")
   final bool? isPromoted;
   @override
+  @JsonKey(name: "promoted_at")
+  final String? promotedAt;
+  @override
   @JsonKey(name: "promoted_until")
   final String? promotedUntil;
   @override
@@ -638,7 +656,7 @@ class _$ServicesResponseModelImpl extends _ServicesResponseModel {
 
   @override
   String toString() {
-    return 'ServicesResponseModel(agentName: $agentName, description: $description, email: $email, phoneNumber: $phoneNumber, address: $address, city: $city, state: $state, pincode: $pincode, latitude: $latitude, longitude: $longitude, socialFacebook: $socialFacebook, socialInstagram: $socialInstagram, socialLinkedin: $socialLinkedin, imageUrls: $imageUrls, id: $id, userId: $userId, category: $category, isVerified: $isVerified, rating: $rating, ratingCount: $ratingCount, isPromoted: $isPromoted, promotedUntil: $promotedUntil, createdAt: $createdAt, aadharCardImageUrl: $aadharCardImageUrl, aadharVerificationStatus: $aadharVerificationStatus, owner: $owner, myReview: $myReview)';
+    return 'ServicesResponseModel(agentName: $agentName, description: $description, email: $email, phoneNumber: $phoneNumber, address: $address, city: $city, state: $state, pincode: $pincode, latitude: $latitude, longitude: $longitude, socialFacebook: $socialFacebook, socialInstagram: $socialInstagram, socialLinkedin: $socialLinkedin, imageUrls: $imageUrls, id: $id, userId: $userId, category: $category, isVerified: $isVerified, rating: $rating, ratingCount: $ratingCount, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, createdAt: $createdAt, aadharCardImageUrl: $aadharCardImageUrl, aadharVerificationStatus: $aadharVerificationStatus, owner: $owner, myReview: $myReview)';
   }
 
   @override
@@ -679,6 +697,8 @@ class _$ServicesResponseModelImpl extends _ServicesResponseModel {
                 other.ratingCount == ratingCount) &&
             (identical(other.isPromoted, isPromoted) ||
                 other.isPromoted == isPromoted) &&
+            (identical(other.promotedAt, promotedAt) ||
+                other.promotedAt == promotedAt) &&
             (identical(other.promotedUntil, promotedUntil) ||
                 other.promotedUntil == promotedUntil) &&
             (identical(other.createdAt, createdAt) ||
@@ -718,6 +738,7 @@ class _$ServicesResponseModelImpl extends _ServicesResponseModel {
         rating,
         ratingCount,
         isPromoted,
+        promotedAt,
         promotedUntil,
         createdAt,
         aadharCardImageUrl,
@@ -764,6 +785,7 @@ abstract class _ServicesResponseModel extends ServicesResponseModel {
       @JsonKey(name: "rating") final String? rating,
       @JsonKey(name: "rating_count") final int? ratingCount,
       @JsonKey(name: "is_promoted") final bool? isPromoted,
+      @JsonKey(name: "promoted_at") final String? promotedAt,
       @JsonKey(name: "promoted_until") final String? promotedUntil,
       @JsonKey(name: "created_at") final String? createdAt,
       @JsonKey(name: "aadhar_card_image_url") final String? aadharCardImageUrl,
@@ -840,6 +862,9 @@ abstract class _ServicesResponseModel extends ServicesResponseModel {
   @override
   @JsonKey(name: "is_promoted")
   bool? get isPromoted;
+  @override
+  @JsonKey(name: "promoted_at")
+  String? get promotedAt;
   @override
   @JsonKey(name: "promoted_until")
   String? get promotedUntil;

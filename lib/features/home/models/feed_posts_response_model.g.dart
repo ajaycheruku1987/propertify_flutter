@@ -27,6 +27,7 @@ _$FeedPostsResponseModelImpl _$$FeedPostsResponseModelImplFromJson(
       latitude: (json['latitude'] as num?)?.toInt(),
       longitude: (json['longitude'] as num?)?.toInt(),
       isPromoted: json['is_promoted'] as bool?,
+      promotedAt: json['promoted_at'] as String?,
       promotedUntil: json['promoted_until'] as String?,
       owner: json['owner'] == null
           ? null
@@ -57,6 +58,7 @@ Map<String, dynamic> _$$FeedPostsResponseModelImplToJson(
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'is_promoted': instance.isPromoted,
+      'promoted_at': instance.promotedAt,
       'promoted_until': instance.promotedUntil,
       'owner': instance.owner,
       'is_favourited': instance.isFavourited,

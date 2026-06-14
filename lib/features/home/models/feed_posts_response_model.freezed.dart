@@ -53,6 +53,8 @@ mixin _$FeedPostsResponseModel {
   int? get longitude => throw _privateConstructorUsedError;
   @JsonKey(name: "is_promoted")
   bool? get isPromoted => throw _privateConstructorUsedError;
+  @JsonKey(name: "promoted_at")
+  String? get promotedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "promoted_until")
   String? get promotedUntil => throw _privateConstructorUsedError;
   @JsonKey(name: "owner")
@@ -97,6 +99,7 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "latitude") int? latitude,
       @JsonKey(name: "longitude") int? longitude,
       @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "owner") Owner? owner,
       @JsonKey(name: "is_favourited") bool? isFavourited,
@@ -138,6 +141,7 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? isPromoted = freezed,
+    Object? promotedAt = freezed,
     Object? promotedUntil = freezed,
     Object? owner = freezed,
     Object? isFavourited = freezed,
@@ -211,6 +215,10 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      promotedAt: freezed == promotedAt
+          ? _value.promotedAt
+          : promotedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       promotedUntil: freezed == promotedUntil
           ? _value.promotedUntil
           : promotedUntil // ignore: cast_nullable_to_non_nullable
@@ -281,6 +289,7 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "latitude") int? latitude,
       @JsonKey(name: "longitude") int? longitude,
       @JsonKey(name: "is_promoted") bool? isPromoted,
+      @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
       @JsonKey(name: "owner") Owner? owner,
       @JsonKey(name: "is_favourited") bool? isFavourited,
@@ -322,6 +331,7 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? isPromoted = freezed,
+    Object? promotedAt = freezed,
     Object? promotedUntil = freezed,
     Object? owner = freezed,
     Object? isFavourited = freezed,
@@ -395,6 +405,10 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      promotedAt: freezed == promotedAt
+          ? _value.promotedAt
+          : promotedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       promotedUntil: freezed == promotedUntil
           ? _value.promotedUntil
           : promotedUntil // ignore: cast_nullable_to_non_nullable
@@ -447,6 +461,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "latitude") this.latitude,
       @JsonKey(name: "longitude") this.longitude,
       @JsonKey(name: "is_promoted") this.isPromoted,
+      @JsonKey(name: "promoted_at") this.promotedAt,
       @JsonKey(name: "promoted_until") this.promotedUntil,
       @JsonKey(name: "owner") this.owner,
       @JsonKey(name: "is_favourited") this.isFavourited,
@@ -517,6 +532,9 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @JsonKey(name: "is_promoted")
   final bool? isPromoted;
   @override
+  @JsonKey(name: "promoted_at")
+  final String? promotedAt;
+  @override
   @JsonKey(name: "promoted_until")
   final String? promotedUntil;
   @override
@@ -540,7 +558,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
 
   @override
   String toString() {
-    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount)';
+    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount)';
   }
 
   @override
@@ -573,6 +591,8 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
                 other.longitude == longitude) &&
             (identical(other.isPromoted, isPromoted) ||
                 other.isPromoted == isPromoted) &&
+            (identical(other.promotedAt, promotedAt) ||
+                other.promotedAt == promotedAt) &&
             (identical(other.promotedUntil, promotedUntil) ||
                 other.promotedUntil == promotedUntil) &&
             (identical(other.owner, owner) || other.owner == owner) &&
@@ -607,6 +627,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
         latitude,
         longitude,
         isPromoted,
+        promotedAt,
         promotedUntil,
         owner,
         isFavourited,
@@ -649,6 +670,7 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
           @JsonKey(name: "latitude") final int? latitude,
           @JsonKey(name: "longitude") final int? longitude,
           @JsonKey(name: "is_promoted") final bool? isPromoted,
+          @JsonKey(name: "promoted_at") final String? promotedAt,
           @JsonKey(name: "promoted_until") final String? promotedUntil,
           @JsonKey(name: "owner") final Owner? owner,
           @JsonKey(name: "is_favourited") final bool? isFavourited,
@@ -710,6 +732,9 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @override
   @JsonKey(name: "is_promoted")
   bool? get isPromoted;
+  @override
+  @JsonKey(name: "promoted_at")
+  String? get promotedAt;
   @override
   @JsonKey(name: "promoted_until")
   String? get promotedUntil;

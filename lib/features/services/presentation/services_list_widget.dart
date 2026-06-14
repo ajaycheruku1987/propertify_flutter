@@ -204,6 +204,9 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                     onFavoritePressed: () {
                       CustomToast.showSuccessToast(msg: 'Added to favorites');
                     },
+                    promotedAt: service.promotedAt,
+                    promotedUntil: service.promotedUntil,
+                    createdAt: service.createdAt,
                   );
                 }, childCount: services.length),
               ),

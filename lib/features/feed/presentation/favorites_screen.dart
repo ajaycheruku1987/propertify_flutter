@@ -152,6 +152,9 @@ Check it out on Propertify!
                     );
                   }
                 },
+                promotedAt: post.promotedAt,
+                promotedUntil: post.promotedUntil,
+                createdAt: post.createdAt,
               );
             },
           );

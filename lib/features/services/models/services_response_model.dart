@@ -43,6 +43,7 @@ class ServicesResponseModel with _$ServicesResponseModel {
     @JsonKey(name: "rating") String? rating,
     @JsonKey(name: "rating_count") int? ratingCount,
     @JsonKey(name: "is_promoted") bool? isPromoted,
+    @JsonKey(name: "promoted_at") String? promotedAt,
     @JsonKey(name: "promoted_until") String? promotedUntil,
     @JsonKey(name: "created_at") String? createdAt,
     @JsonKey(name: "aadhar_card_image_url") String? aadharCardImageUrl,

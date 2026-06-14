@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,6 +18,10 @@ class PropertyCardCompact extends StatelessWidget {
   final bool isFavorite;
   final bool isLiked;
   final bool isFeatured;
+  final bool isTopAd;
+  final String? promotedAt;
+  final String? promotedUntil;
+  final String? createdAt;
   final bool canEdit;
   final bool canDelete;
   final int likeCount;
@@ -41,6 +46,10 @@ class PropertyCardCompact extends StatelessWidget {
     this.isFavorite = false,
     this.isLiked = false,
     this.isFeatured = false,
+    this.isTopAd = false,
+    this.promotedAt,
+    this.promotedUntil,
+    this.createdAt,
     this.canEdit = false,
     this.canDelete = false,
     this.likeCount = 0,
@@ -219,8 +228,51 @@ class PropertyCardCompact extends StatelessWidget {
 
             // Actions Section - Compact
             _buildActionsSection(context),
+
+            if (isTopAd && canEdit && (promotedAt != null || promotedUntil != null || createdAt != null))
+              _buildPromotionDates(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildPromotionDates() {
+    final DateTime? start = promotedAt != null
+        ? DateTime.tryParse(promotedAt!)
+        : (createdAt != null ? DateTime.tryParse(createdAt!) : null);
+    final DateTime? end =
+        promotedUntil != null ? DateTime.tryParse(promotedUntil!) : null;
+    final formatter = DateFormat('MMM d, yyyy');
+
+    if (start == null && end == null) return const SizedBox.shrink();
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.calendar_today, size: 10, color: Colors.blue.shade700),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              '${start != null ? "Started: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
+                  .trim(),
+              style: TextStyle(
+                color: Colors.blue.shade700,
+                fontSize: 9,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -16,6 +16,7 @@ class ServiceCard extends StatelessWidget {
   final String? price;
   final bool isFavorite;
   final bool isTopAd;
+  final String? promotedAt;
   final String? promotedUntil;
   final String? createdAt;
   final bool canDelete;
@@ -37,6 +38,7 @@ class ServiceCard extends StatelessWidget {
     this.price,
     this.isFavorite = false,
     this.isTopAd = false,
+    this.promotedAt,
     this.promotedUntil,
     this.createdAt,
     this.canDelete = false,
@@ -254,8 +256,11 @@ class ServiceCard extends StatelessWidget {
   }
 
   Widget _buildPromotionDates() {
-    final DateTime? start = createdAt != null ? DateTime.tryParse(createdAt!) : null;
-    final DateTime? end = promotedUntil != null ? DateTime.tryParse(promotedUntil!) : null;
+    final DateTime? start = promotedAt != null
+        ? DateTime.tryParse(promotedAt!)
+        : (createdAt != null ? DateTime.tryParse(createdAt!) : null);
+    final DateTime? end =
+        promotedUntil != null ? DateTime.tryParse(promotedUntil!) : null;
     final formatter = DateFormat('MMM d, yyyy');
 
     if (start == null && end == null) return const SizedBox.shrink();
@@ -273,7 +278,7 @@ class ServiceCard extends StatelessWidget {
           const SizedBox(width: 4),
           Flexible(
             child: Text(
-              '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? " Exp: ${formatter.format(end)}" : ""}'
+              '${start != null ? "Started: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
                   .trim(),
               style: TextStyle(
                 color: Colors.blue.shade700,

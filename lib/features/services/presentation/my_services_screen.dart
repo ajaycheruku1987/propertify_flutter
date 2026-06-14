@@ -76,6 +76,7 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
                 ratingCount: service.ratingCount,
                 isTopAd: service.isCurrentlyPromoted,
                 createdAt: service.createdAt,
+                promotedAt: service.promotedAt,
                 promotedUntil: service.promotedUntil,
                 isFavorite: false,
                 canEdit: true, // It's their own service
