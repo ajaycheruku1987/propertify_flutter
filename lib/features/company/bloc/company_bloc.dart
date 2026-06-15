@@ -311,8 +311,17 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     final result = await _repository.getMyCompany();
 
     result.fold(
-      (failure) =>
-          emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
+      (failure) {
+        final bool isNotFound =
+            failure.message.toLowerCase().contains('not found');
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: isNotFound ? null : failure.message,
+            myCompany: null,
+          ),
+        );
+      },
       (myCompany) =>
           emit(state.copyWith(isLoading: false, myCompany: myCompany)),
     );
@@ -333,8 +342,17 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     final result = await _repository.getUserCompany(event.userId);
 
     result.fold(
-      (failure) =>
-          emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
+      (failure) {
+        final bool isNotFound =
+            failure.message.toLowerCase().contains('not found');
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: isNotFound ? null : failure.message,
+            userCompany: null,
+          ),
+        );
+      },
       (companies) => emit(
         state.copyWith(
           isLoading: false,
