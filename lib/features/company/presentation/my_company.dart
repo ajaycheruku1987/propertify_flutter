@@ -80,7 +80,12 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           previous.errorMessage != current.errorMessage &&
           current.errorMessage != null,
       listener: (context, state) {
-        if (state.errorMessage != null && mounted) {
+        if (state.isSuccess &&
+            state.errorMessage == 'Company deleted successfully') {
+          Navigator.of(context).pop();
+          return;
+        }
+        if (state.errorMessage != null && mounted && !state.isSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.errorMessage!)),
           );
@@ -183,6 +188,14 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           ),
         ),
         centerTitle: true,
+        actions: isMyCompany
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.delete_outline, color: Colors.red),
+                  onPressed: () => _showDeleteDialog(context, company.id!),
+                ),
+              ]
+            : null,
       ),
       body: CustomScrollView(
         controller: _scrollController,
@@ -793,6 +806,38 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context, String companyId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Company'),
+          content: const Text(
+            'Are you sure you want to delete your company? This action cannot be undone.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<CompanyBloc>().add(
+                      CompanyEvent.deleteCompany(companyId: companyId),
+                    );
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
