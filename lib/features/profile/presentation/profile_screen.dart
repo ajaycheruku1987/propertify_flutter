@@ -74,10 +74,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           if (state.isSuccess &&
               state.errorMessage == 'Company deleted successfully') {
             CustomToast.showSuccessToast(msg: state.errorMessage!);
+            // Refresh profile to update UI after company deletion
+            context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
           } else if (state.errorMessage != null &&
               state.errorMessage!.isNotEmpty &&
               !state.isSuccess) {
-            CustomToast.showErrorToast(msg: state.errorMessage!);
+            // Filter out "not found" messages to avoid annoying toasts
+            if (!state.errorMessage!.toLowerCase().contains('not found')) {
+              CustomToast.showErrorToast(msg: state.errorMessage!);
+            }
           }
         },
         child: BlocBuilder<HomeBloc, HomeState>(

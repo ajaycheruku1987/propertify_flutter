@@ -85,7 +85,10 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           Navigator.of(context).pop();
           return;
         }
-        if (state.errorMessage != null && mounted && !state.isSuccess) {
+        if (state.errorMessage != null &&
+            mounted &&
+            !state.isSuccess &&
+            !state.errorMessage!.toLowerCase().contains('not found')) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.errorMessage!)),
           );
