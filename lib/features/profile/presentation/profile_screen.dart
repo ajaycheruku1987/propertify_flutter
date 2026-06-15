@@ -784,7 +784,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'v7.0.29', // Pro-tip: adding the version number makes it look like a finished product
+                              'v7.0.30', // Pro-tip: adding the version number makes it look like a finished product
                               style: TextStyle(
                                 fontSize: 10,
                                 color: Colors.grey.shade400,
