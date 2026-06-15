@@ -838,11 +838,11 @@ class _BottomInfo extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    _timeAgo(DateTime.parse(reel.createdAt!)),
-                    style: const TextStyle(color: Colors.white70, fontSize: 12),
-                  ),
+                  // const SizedBox(width: 8),
+                  // Text(
+                  //   _timeAgo(DateTime.parse(reel.createdAt!)),
+                  //   style: const TextStyle(color: Colors.white70, fontSize: 12),
+                  // ),
                 ],
               ),
               if (reel.location != null && reel.location!.isNotEmpty) ...[

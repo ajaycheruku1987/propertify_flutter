@@ -755,23 +755,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         const SizedBox(height: 32),
-                        Column(
+                        SafeArea(child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Text(
-                              'Powered by',
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Made with ',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey.shade600,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.favorite,
+                                  color: Colors.red.shade400,
+                                  size: 14,
+                                ),
+                                Text(
+                                  ' in Hyderabad, India',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey.shade600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'v7.0.29', // Pro-tip: adding the version number makes it look like a finished product
                               style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                                letterSpacing: 1.2,
+                                fontSize: 10,
+                                color: Colors.grey.shade400,
+                                letterSpacing: 0.5,
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            SvgPicture.asset(
-                              'assets/images/soho_logo.svg',
-                              height: 32,
-                            ),
                           ],
+                        ),
                         ),
                         const SizedBox(height: 50),
                       ],
