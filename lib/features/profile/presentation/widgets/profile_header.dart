@@ -97,9 +97,9 @@ class ProfileHeader extends StatelessWidget {
 
         const SizedBox(height: 16),
 
-        // Name
+        // Display Name (First + Last)
         Text(
-          userProfile?.username ?? 'Brooklyn Simmons',
+          _getDisplayName(),
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,
@@ -107,7 +107,19 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 4),
+        // Username
+        if (userProfile?.username != null &&
+            userProfile!.username != _getDisplayName())
+          Text(
+            '@${userProfile!.username}',
+            style: TextStyle(
+              fontSize: 14,
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+        const SizedBox(height: 8),
 
         // Email
         if (userProfile?.email != null && userProfile!.email!.isNotEmpty)
@@ -133,6 +145,16 @@ class ProfileHeader extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _getDisplayName() {
+    final firstName = userProfile?.firstName ?? '';
+    final lastName = userProfile?.lastName ?? '';
+    final fullName = '$firstName $lastName'.trim();
+    if (fullName.isEmpty) {
+      return userProfile?.username ?? 'Brooklyn Simmons';
+    }
+    return fullName;
   }
 
   String _getCacheBustedUrl(String url) {

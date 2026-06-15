@@ -123,13 +123,13 @@ final router = GoRouter(
       path: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),
     ),
-    // GoRoute(
-    //   path: EditProfileScreen.routeName,
-    //   builder: (context, state) {
-    //     final userProfile = state.extra as UserProfileModel;
-    //     return EditProfileScreen(userProfile: userProfile);
-    //   },
-    // ),
+    GoRoute(
+      path: EditProfileScreen.routeName,
+      builder: (context, state) {
+        final userProfile = state.extra as UserProfileModel;
+        return EditProfileScreen(userProfile: userProfile);
+      },
+    ),
     GoRoute(
       path: MyPostsScreen.routeName,
       builder: (context, state) => const MyPostsScreen(),

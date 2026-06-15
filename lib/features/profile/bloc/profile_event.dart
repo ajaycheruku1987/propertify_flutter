@@ -7,6 +7,8 @@ class ProfileEvent with _$ProfileEvent {
 
   const factory ProfileEvent.updateProfile({
     required String name,
+    String? firstName,
+    String? lastName,
     required String email,
     required String phoneNumber,
   }) = _UpdateProfile;

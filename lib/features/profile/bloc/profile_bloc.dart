@@ -82,44 +82,85 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     _UpdateProfile event,
     Emitter<ProfileState> emit,
   ) async {
-    // try {
-    //   emit(state.copyWith(isLoading: true));
-    //   Either<Failure, UserProfileModel> updateResponseEither =
-    //       await _profileRepo.updateProfile(
-    //         name: event.name,
-    //         email: event.email,
-    //         phoneNumber: event.phoneNumber,
-    //       );
-    //
-    //   updateResponseEither.fold(
-    //     (failure) {
-    //       emit(
-    //         state.copyWith(
-    //           isLoading: false,
-    //           notifyStatus: NotifyStatus(message: failure.message),
-    //         ),
-    //       );
-    //     },
-    //     (updatedProfile) {
-    //       emit(
-    //         state.copyWith(
-    //           isLoading: false,
-    //           userProfile: updatedProfile,
-    //           notifyStatus: NotifyStatus(
-    //             message: 'Profile updated successfully',
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // } catch (e) {
-    //   emit(
-    //     state.copyWith(
-    //       isLoading: false,
-    //       notifyStatus: NotifyStatus(message: 'Failed to update profile'),
-    //     ),
-    //   );
-    // }
+    try {
+      emit(state.copyWith(isLoading: true));
+
+      final currentProfile = state.userProfile;
+
+      // Use trim() to avoid differences caused by accidental spaces
+      final newName = event.name.trim();
+      final newFirstName = event.firstName?.trim();
+      final newLastName = event.lastName?.trim();
+      final newEmail = event.email.trim();
+      final newPhone = event.phoneNumber.trim();
+
+      final currentName = currentProfile?.username?.trim();
+      final currentFirstName = currentProfile?.firstName?.trim();
+      final currentLastName = currentProfile?.lastName?.trim();
+      final currentEmail = currentProfile?.email?.trim();
+      final currentPhone = currentProfile?.phoneNumber?.trim();
+
+      // Only send fields that have actually changed
+      final String? nameToSend = newName != currentName ? newName : null;
+      final String? firstNameToSend =
+          newFirstName != currentFirstName ? newFirstName : null;
+      final String? lastNameToSend =
+          newLastName != currentLastName ? newLastName : null;
+      final String? emailToSend = newEmail != currentEmail ? newEmail : null;
+      final String? phoneToSend = newPhone != currentPhone ? newPhone : null;
+
+      if (nameToSend == null &&
+          firstNameToSend == null &&
+          lastNameToSend == null &&
+          emailToSend == null &&
+          phoneToSend == null) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            notifyStatus: NotifyStatus(message: 'No changes detected'),
+          ),
+        );
+        return;
+      }
+
+      Either<Failure, UserProfileModel> updateResponseEither =
+          await _profileRepo.updateProfile(
+        name: nameToSend,
+        firstName: firstNameToSend,
+        lastName: lastNameToSend,
+        email: emailToSend,
+        phoneNumber: phoneToSend,
+      );
+
+      updateResponseEither.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (updatedProfile) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              userProfile: updatedProfile,
+              notifyStatus: NotifyStatus(
+                message: 'Profile updated successfully',
+              ),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to update profile'),
+        ),
+      );
+    }
   }
 
   void _onUploadProfileImage(

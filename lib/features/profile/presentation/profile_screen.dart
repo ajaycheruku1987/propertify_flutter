@@ -597,19 +597,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           }(),
                         ],
 
-                        // if (homeState.showAddButton)
-                        //   ProfileMenuItem(
-                        //     icon: Icons.person_outline,
-                        //     title: 'Edit Profile',
-                        //     onTap: () {
-                        //       if (state.userProfile != null) {
-                        //         context.push(
-                        //           EditProfileScreen.routeName,
-                        //           extra: state.userProfile,
-                        //         );
-                        //       }
-                        //     },
-                        //   ),
+                        if (homeState.showAddButton)
+                          ProfileMenuItem(
+                            icon: Icons.person_outline,
+                            title: 'Edit Profile',
+                            onTap: () {
+                              if (state.userProfile != null) {
+                                context.push(
+                                  EditProfileScreen.routeName,
+                                  extra: state.userProfile,
+                                );
+                              }
+                            },
+                          ),
                         if (homeState.showAddButton)
                           ProfileMenuItem(
                             icon: Icons.dashboard_outlined,

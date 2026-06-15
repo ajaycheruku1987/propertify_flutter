@@ -24,6 +24,10 @@ mixin _$UserModel {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "username")
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "first_name")
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
+  String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: "phone_number")
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
@@ -49,6 +53,8 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "role") String? role,
@@ -71,6 +77,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
@@ -85,6 +93,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
@@ -121,6 +137,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "role") String? role,
@@ -141,6 +159,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
@@ -155,6 +175,14 @@ class __$$UserModelImplCopyWithImpl<$Res>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
@@ -186,6 +214,8 @@ class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "username") this.username,
+      @JsonKey(name: "first_name") this.firstName,
+      @JsonKey(name: "last_name") this.lastName,
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "email") this.email,
       @JsonKey(name: "role") this.role,
@@ -201,6 +231,12 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey(name: "username")
   final String? username;
+  @override
+  @JsonKey(name: "first_name")
+  final String? firstName;
+  @override
+  @JsonKey(name: "last_name")
+  final String? lastName;
   @override
   @JsonKey(name: "phone_number")
   final String? phoneNumber;
@@ -219,7 +255,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, phoneNumber: $phoneNumber, email: $email, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -230,6 +266,10 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
@@ -242,8 +282,8 @@ class _$UserModelImpl implements _UserModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, phoneNumber, email,
-      role, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, username, firstName,
+      lastName, phoneNumber, email, role, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -263,6 +303,8 @@ abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {@JsonKey(name: "id") final String? id,
       @JsonKey(name: "username") final String? username,
+      @JsonKey(name: "first_name") final String? firstName,
+      @JsonKey(name: "last_name") final String? lastName,
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "email") final String? email,
       @JsonKey(name: "role") final String? role,
@@ -278,6 +320,12 @@ abstract class _UserModel implements UserModel {
   @override
   @JsonKey(name: "username")
   String? get username;
+  @override
+  @JsonKey(name: "first_name")
+  String? get firstName;
+  @override
+  @JsonKey(name: "last_name")
+  String? get lastName;
   @override
   @JsonKey(name: "phone_number")
   String? get phoneNumber;

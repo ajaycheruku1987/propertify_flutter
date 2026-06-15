@@ -24,6 +24,10 @@ mixin _$UserProfileModel {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "username")
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "first_name")
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
+  String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: "phone_number")
@@ -48,6 +52,8 @@ abstract class $UserProfileModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic,
@@ -69,6 +75,8 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
@@ -82,6 +90,14 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -114,6 +130,8 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic,
@@ -133,6 +151,8 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
@@ -146,6 +166,14 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -173,6 +201,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   const _$UserProfileModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "username") this.username,
+      @JsonKey(name: "first_name") this.firstName,
+      @JsonKey(name: "last_name") this.lastName,
       @JsonKey(name: "email") this.email,
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "profilepic") this.profilepic,
@@ -188,6 +218,12 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @JsonKey(name: "username")
   final String? username;
   @override
+  @JsonKey(name: "first_name")
+  final String? firstName;
+  @override
+  @JsonKey(name: "last_name")
+  final String? lastName;
+  @override
   @JsonKey(name: "email")
   final String? email;
   @override
@@ -202,7 +238,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role)';
   }
 
   @override
@@ -213,6 +249,10 @@ class _$UserProfileModelImpl implements _UserProfileModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
@@ -223,8 +263,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, username, email, phoneNumber, profilepic, role);
+  int get hashCode => Object.hash(runtimeType, id, username, firstName,
+      lastName, email, phoneNumber, profilepic, role);
 
   @JsonKey(ignore: true)
   @override
@@ -245,6 +285,8 @@ abstract class _UserProfileModel implements UserProfileModel {
   const factory _UserProfileModel(
       {@JsonKey(name: "id") final String? id,
       @JsonKey(name: "username") final String? username,
+      @JsonKey(name: "first_name") final String? firstName,
+      @JsonKey(name: "last_name") final String? lastName,
       @JsonKey(name: "email") final String? email,
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "profilepic") final String? profilepic,
@@ -259,6 +301,12 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   @JsonKey(name: "username")
   String? get username;
+  @override
+  @JsonKey(name: "first_name")
+  String? get firstName;
+  @override
+  @JsonKey(name: "last_name")
+  String? get lastName;
   @override
   @JsonKey(name: "email")
   String? get email;

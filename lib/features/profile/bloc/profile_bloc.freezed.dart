@@ -20,7 +20,8 @@ mixin _$ProfileEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -39,7 +40,8 @@ mixin _$ProfileEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -58,7 +60,8 @@ mixin _$ProfileEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -180,7 +183,8 @@ class _$ResetImpl implements _Reset {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -202,7 +206,8 @@ class _$ResetImpl implements _Reset {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -224,7 +229,8 @@ class _$ResetImpl implements _Reset {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -348,7 +354,8 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -370,7 +377,8 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -392,7 +400,8 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -482,7 +491,12 @@ abstract class _$$UpdateProfileImplCopyWith<$Res> {
           _$UpdateProfileImpl value, $Res Function(_$UpdateProfileImpl) then) =
       __$$UpdateProfileImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String email, String phoneNumber});
+  $Res call(
+      {String name,
+      String? firstName,
+      String? lastName,
+      String email,
+      String phoneNumber});
 }
 
 /// @nodoc
@@ -497,6 +511,8 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? email = null,
     Object? phoneNumber = null,
   }) {
@@ -505,6 +521,14 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -521,10 +545,18 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
 
 class _$UpdateProfileImpl implements _UpdateProfile {
   const _$UpdateProfileImpl(
-      {required this.name, required this.email, required this.phoneNumber});
+      {required this.name,
+      this.firstName,
+      this.lastName,
+      required this.email,
+      required this.phoneNumber});
 
   @override
   final String name;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
   @override
   final String email;
   @override
@@ -532,7 +564,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
 
   @override
   String toString() {
-    return 'ProfileEvent.updateProfile(name: $name, email: $email, phoneNumber: $phoneNumber)';
+    return 'ProfileEvent.updateProfile(name: $name, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -541,13 +573,18 @@ class _$UpdateProfileImpl implements _UpdateProfile {
         (other.runtimeType == runtimeType &&
             other is _$UpdateProfileImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, phoneNumber);
+  int get hashCode =>
+      Object.hash(runtimeType, name, firstName, lastName, email, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -560,7 +597,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -574,7 +612,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(bool flag) isLoading,
   }) {
-    return updateProfile(name, email, phoneNumber);
+    return updateProfile(name, firstName, lastName, email, phoneNumber);
   }
 
   @override
@@ -582,7 +620,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -596,7 +635,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(bool flag)? isLoading,
   }) {
-    return updateProfile?.call(name, email, phoneNumber);
+    return updateProfile?.call(name, firstName, lastName, email, phoneNumber);
   }
 
   @override
@@ -604,7 +643,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -620,7 +660,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult orElse(),
   }) {
     if (updateProfile != null) {
-      return updateProfile(name, email, phoneNumber);
+      return updateProfile(name, firstName, lastName, email, phoneNumber);
     }
     return orElse();
   }
@@ -687,10 +727,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
 abstract class _UpdateProfile implements ProfileEvent {
   const factory _UpdateProfile(
       {required final String name,
+      final String? firstName,
+      final String? lastName,
       required final String email,
       required final String phoneNumber}) = _$UpdateProfileImpl;
 
   String get name;
+  String? get firstName;
+  String? get lastName;
   String get email;
   String get phoneNumber;
   @JsonKey(ignore: true)
@@ -766,7 +810,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -788,7 +833,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -810,7 +856,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -978,7 +1025,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1000,7 +1048,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -1022,7 +1071,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -1190,7 +1240,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1212,7 +1263,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -1234,7 +1286,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -1416,7 +1469,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1438,7 +1492,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -1460,7 +1515,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -1594,7 +1650,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1616,7 +1673,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -1638,7 +1696,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -1762,7 +1821,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1784,7 +1844,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -1806,7 +1867,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -1958,7 +2020,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -1980,7 +2043,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -2002,7 +2066,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
@@ -2158,7 +2223,8 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String email, String phoneNumber)
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
         updateProfile,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
@@ -2180,7 +2246,8 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String email, String phoneNumber)?
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
@@ -2202,7 +2269,8 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String email, String phoneNumber)?
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
         updateProfile,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?

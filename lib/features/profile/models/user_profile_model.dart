@@ -19,6 +19,8 @@ class UserProfileModel with _$UserProfileModel {
   const factory UserProfileModel({
     @JsonKey(name: "id") String? id,
     @JsonKey(name: "username") String? username,
+    @JsonKey(name: "first_name") String? firstName,
+    @JsonKey(name: "last_name") String? lastName,
     @JsonKey(name: "email") String? email,
     @JsonKey(name: "phone_number") String? phoneNumber,
     @JsonKey(name: "profilepic") String? profilepic,

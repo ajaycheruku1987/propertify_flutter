@@ -24,20 +24,29 @@ class ProfileRepo {
 
   /// Update Profile API
   Future<Either<Failure, UserProfileModel>> updateProfile({
-    required String name,
-    required String email,
-    required String phoneNumber,
+    String? name,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phoneNumber,
   }) async {
-    // final response = await ftPyroApiRequest.put(
-    //   '/profile',
-    //   data: {"username": name, "email": email, "phone_number": phoneNumber},
-    // );
-    // final responseData = await response.getResponse();
-    // return responseData.fold(
-    //   (failure) => Left(failure),
-    //   (right) => Right(UserProfileModel.fromJson(right)),
-    // );
-    return Left(ApiFailure('Feature disabled'));
+    final Map<String, dynamic> updateData = {};
+
+    if (name != null) updateData["username"] = name;
+    if (firstName != null) updateData["first_name"] = firstName;
+    if (lastName != null) updateData["last_name"] = lastName;
+    if (email != null) updateData["email"] = email;
+    if (phoneNumber != null) updateData["phone_number"] = phoneNumber;
+
+    final response = await ftPyroApiRequest.put(
+      '/profile',
+      data: updateData,
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(UserProfileModel.fromJson(right)),
+    );
   }
 
   /// Upload Profile Image API
