@@ -50,4 +50,6 @@ class CompanyEvent with _$CompanyEvent {
   const factory CompanyEvent.initializeForEdit({
     required MyCompanyResponseModel company,
   }) = _InitializeForEdit;
+  const factory CompanyEvent.deleteCompany({required String companyId}) =
+      _DeleteCompany;
 }

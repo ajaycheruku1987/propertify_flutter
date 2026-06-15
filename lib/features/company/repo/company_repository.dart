@@ -47,6 +47,7 @@ abstract class CompanyRepository {
   Future<Either<Failure, List<MyCompanyResponseModel>>> getUserCompany(
     String userId,
   );
+  Future<Either<Failure, dynamic>> deleteCompany({required String companyId});
 }
 
 class CompanyRepositoryImpl implements CompanyRepository {
@@ -204,6 +205,19 @@ class CompanyRepositoryImpl implements CompanyRepository {
           return const Right([]);
         }
       });
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> deleteCompany({
+    required String companyId,
+  }) async {
+    try {
+      final response = await _apiRequest.delete('/companies/$companyId');
+      final responseData = await response.getResponse();
+      return responseData.fold((failure) => Left(failure), (right) => Right(right));
     } catch (e) {
       return Left(ApiFailure(e.toString()));
     }

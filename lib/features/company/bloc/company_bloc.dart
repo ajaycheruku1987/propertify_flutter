@@ -29,6 +29,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
     on<_GetMyCompany>(_onGetMyCompany);
     on<_GetUserCompany>(_onGetUserCompany);
     on<_InitializeForEdit>(_onInitializeForEdit);
+    on<_DeleteCompany>(_onDeleteCompany);
   }
 
   void _onStarted(_CompanyStarted event, Emitter<CompanyState> emit) {
@@ -338,6 +339,28 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         state.copyWith(
           isLoading: false,
           userCompany: companies.isNotEmpty ? companies.first : null,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onDeleteCompany(
+    _DeleteCompany event,
+    Emitter<CompanyState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: false));
+
+    final result = await _repository.deleteCompany(companyId: event.companyId);
+
+    result.fold(
+      (failure) =>
+          emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
+      (success) => emit(
+        state.copyWith(
+          isLoading: false,
+          myCompany: null,
+          isSuccess: true,
+          errorMessage: 'Company deleted successfully',
         ),
       ),
     );

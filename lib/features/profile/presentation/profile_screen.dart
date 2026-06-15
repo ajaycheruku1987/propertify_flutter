@@ -69,10 +69,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       //   ),
       //   centerTitle: true,
       // ),
-      body: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, homeState) {
-          return BlocBuilder<ProfileBloc, ProfileState>(
-            builder: (context, state) {
+      body: BlocListener<CompanyBloc, CompanyState>(
+        listener: (context, state) {
+          if (state.isSuccess &&
+              state.errorMessage == 'Company deleted successfully') {
+            CustomToast.showSuccessToast(msg: state.errorMessage!);
+          } else if (state.errorMessage != null &&
+              state.errorMessage!.isNotEmpty &&
+              !state.isSuccess) {
+            CustomToast.showErrorToast(msg: state.errorMessage!);
+          }
+        },
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, homeState) {
+            return BlocBuilder<ProfileBloc, ProfileState>(
+              builder: (context, state) {
               if (state.isLoading && state.userProfile == null) {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -689,6 +700,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
 
                         if (homeState.showAddButton)
+                          BlocBuilder<CompanyBloc, CompanyState>(
+                            builder: (context, companyState) {
+                              if (companyState.myCompany != null) {
+                                return ProfileMenuItem(
+                                  icon: Icons.delete_sweep_outlined,
+                                  title: 'Delete Company',
+                                  onTap: () {
+                                    _showDeleteCompanyDialog(
+                                      context,
+                                      companyState.myCompany!.id!,
+                                    );
+                                  },
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            },
+                          ),
+
+                        if (homeState.showAddButton)
                           ProfileMenuItem(
                             icon: Icons.delete_outline_rounded,
                             title: 'Delete Account',
@@ -748,8 +778,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         },
       ),
-    );
-  }
+    ),
+  );
+}
 
   void _showImagePicker(BuildContext context) async {
     final File? image = await ImagePickerUtil.showImageSourceBottomSheet(
@@ -760,6 +791,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileEvent.uploadProfileImage(imagePath: image.path),
       );
     }
+  }
+
+  void _showDeleteCompanyDialog(BuildContext context, String companyId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Company'),
+          content: const Text(
+            'Are you sure you want to delete your company? This action cannot be undone.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<CompanyBloc>().add(
+                      CompanyEvent.deleteCompany(companyId: companyId),
+                    );
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showSignOutDialog(BuildContext context) {

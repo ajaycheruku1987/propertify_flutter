@@ -37,6 +37,7 @@ mixin _$CompanyEvent {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +60,7 @@ mixin _$CompanyEvent {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +83,7 @@ mixin _$CompanyEvent {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -104,6 +107,7 @@ mixin _$CompanyEvent {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -125,6 +129,7 @@ mixin _$CompanyEvent {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -146,6 +151,7 @@ mixin _$CompanyEvent {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -226,6 +232,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return started();
   }
@@ -251,6 +258,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return started?.call();
   }
@@ -276,6 +284,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -305,6 +314,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return started(this);
   }
@@ -329,6 +339,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return started?.call(this);
   }
@@ -353,6 +364,7 @@ class _$CompanyStartedImpl implements _CompanyStarted {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -423,6 +435,7 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return resetState();
   }
@@ -448,6 +461,7 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return resetState?.call();
   }
@@ -473,6 +487,7 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (resetState != null) {
@@ -502,6 +517,7 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return resetState(this);
   }
@@ -526,6 +542,7 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return resetState?.call(this);
   }
@@ -550,6 +567,7 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (resetState != null) {
@@ -648,6 +666,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return companyNameChanged(companyName);
   }
@@ -673,6 +692,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return companyNameChanged?.call(companyName);
   }
@@ -698,6 +718,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (companyNameChanged != null) {
@@ -727,6 +748,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return companyNameChanged(this);
   }
@@ -751,6 +773,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return companyNameChanged?.call(this);
   }
@@ -775,6 +798,7 @@ class _$CompanyNameChangedImpl implements _CompanyNameChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (companyNameChanged != null) {
@@ -879,6 +903,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return categoryChanged(category);
   }
@@ -904,6 +929,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return categoryChanged?.call(category);
   }
@@ -929,6 +955,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (categoryChanged != null) {
@@ -958,6 +985,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return categoryChanged(this);
   }
@@ -982,6 +1010,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return categoryChanged?.call(this);
   }
@@ -1006,6 +1035,7 @@ class _$CategoryChangedImpl implements _CategoryChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (categoryChanged != null) {
@@ -1110,6 +1140,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return aboutCompanyChanged(aboutCompany);
   }
@@ -1135,6 +1166,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return aboutCompanyChanged?.call(aboutCompany);
   }
@@ -1160,6 +1192,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (aboutCompanyChanged != null) {
@@ -1189,6 +1222,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return aboutCompanyChanged(this);
   }
@@ -1213,6 +1247,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return aboutCompanyChanged?.call(this);
   }
@@ -1237,6 +1272,7 @@ class _$AboutCompanyChangedImpl implements _AboutCompanyChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (aboutCompanyChanged != null) {
@@ -1344,6 +1380,7 @@ class _$SocialMediaPlatformSelectedImpl
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return socialMediaPlatformSelected(platform);
   }
@@ -1369,6 +1406,7 @@ class _$SocialMediaPlatformSelectedImpl
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return socialMediaPlatformSelected?.call(platform);
   }
@@ -1394,6 +1432,7 @@ class _$SocialMediaPlatformSelectedImpl
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (socialMediaPlatformSelected != null) {
@@ -1423,6 +1462,7 @@ class _$SocialMediaPlatformSelectedImpl
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return socialMediaPlatformSelected(this);
   }
@@ -1447,6 +1487,7 @@ class _$SocialMediaPlatformSelectedImpl
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return socialMediaPlatformSelected?.call(this);
   }
@@ -1471,6 +1512,7 @@ class _$SocialMediaPlatformSelectedImpl
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (socialMediaPlatformSelected != null) {
@@ -1585,6 +1627,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return socialMediaUrlChanged(platform, url);
   }
@@ -1610,6 +1653,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return socialMediaUrlChanged?.call(platform, url);
   }
@@ -1635,6 +1679,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (socialMediaUrlChanged != null) {
@@ -1664,6 +1709,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return socialMediaUrlChanged(this);
   }
@@ -1688,6 +1734,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return socialMediaUrlChanged?.call(this);
   }
@@ -1712,6 +1759,7 @@ class _$SocialMediaUrlChangedImpl implements _SocialMediaUrlChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (socialMediaUrlChanged != null) {
@@ -1862,6 +1910,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return addressChanged(address, city, state, latitude, longitude);
   }
@@ -1887,6 +1936,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return addressChanged?.call(address, city, state, latitude, longitude);
   }
@@ -1912,6 +1962,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -1941,6 +1992,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return addressChanged(this);
   }
@@ -1965,6 +2017,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return addressChanged?.call(this);
   }
@@ -1989,6 +2042,7 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -2101,6 +2155,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return gstNumberChanged(gstNumber);
   }
@@ -2126,6 +2181,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return gstNumberChanged?.call(gstNumber);
   }
@@ -2151,6 +2207,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (gstNumberChanged != null) {
@@ -2180,6 +2237,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return gstNumberChanged(this);
   }
@@ -2204,6 +2262,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return gstNumberChanged?.call(this);
   }
@@ -2228,6 +2287,7 @@ class _$GstNumberChangedImpl implements _GstNumberChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (gstNumberChanged != null) {
@@ -2330,6 +2390,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return imageChanged(image);
   }
@@ -2355,6 +2416,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return imageChanged?.call(image);
   }
@@ -2380,6 +2442,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -2409,6 +2472,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return imageChanged(this);
   }
@@ -2433,6 +2497,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return imageChanged?.call(this);
   }
@@ -2457,6 +2522,7 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -2533,6 +2599,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return validateAndProceed();
   }
@@ -2558,6 +2625,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return validateAndProceed?.call();
   }
@@ -2583,6 +2651,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (validateAndProceed != null) {
@@ -2612,6 +2681,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return validateAndProceed(this);
   }
@@ -2636,6 +2706,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return validateAndProceed?.call(this);
   }
@@ -2660,6 +2731,7 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (validateAndProceed != null) {
@@ -2730,6 +2802,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return createCompany();
   }
@@ -2755,6 +2828,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return createCompany?.call();
   }
@@ -2780,6 +2854,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (createCompany != null) {
@@ -2809,6 +2884,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return createCompany(this);
   }
@@ -2833,6 +2909,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return createCompany?.call(this);
   }
@@ -2857,6 +2934,7 @@ class _$CreateCompanyImpl implements _CreateCompany {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (createCompany != null) {
@@ -2954,6 +3032,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return updateCompany(companyId);
   }
@@ -2979,6 +3058,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return updateCompany?.call(companyId);
   }
@@ -3004,6 +3084,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (updateCompany != null) {
@@ -3033,6 +3114,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return updateCompany(this);
   }
@@ -3057,6 +3139,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return updateCompany?.call(this);
   }
@@ -3081,6 +3164,7 @@ class _$UpdateCompanyImpl implements _UpdateCompany {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (updateCompany != null) {
@@ -3157,6 +3241,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return getMyCompany();
   }
@@ -3182,6 +3267,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return getMyCompany?.call();
   }
@@ -3207,6 +3293,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (getMyCompany != null) {
@@ -3236,6 +3323,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return getMyCompany(this);
   }
@@ -3260,6 +3348,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return getMyCompany?.call(this);
   }
@@ -3284,6 +3373,7 @@ class _$GetMyCompanyImpl implements _GetMyCompany {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (getMyCompany != null) {
@@ -3381,6 +3471,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return getUserCompany(userId);
   }
@@ -3406,6 +3497,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return getUserCompany?.call(userId);
   }
@@ -3431,6 +3523,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (getUserCompany != null) {
@@ -3460,6 +3553,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return getUserCompany(this);
   }
@@ -3484,6 +3578,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return getUserCompany?.call(this);
   }
@@ -3508,6 +3603,7 @@ class _$GetUserCompanyImpl implements _GetUserCompany {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (getUserCompany != null) {
@@ -3621,6 +3717,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     required TResult Function() getMyCompany,
     required TResult Function(String userId) getUserCompany,
     required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
   }) {
     return initializeForEdit(company);
   }
@@ -3646,6 +3743,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     TResult? Function()? getMyCompany,
     TResult? Function(String userId)? getUserCompany,
     TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
   }) {
     return initializeForEdit?.call(company);
   }
@@ -3671,6 +3769,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     TResult Function()? getMyCompany,
     TResult Function(String userId)? getUserCompany,
     TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
     required TResult orElse(),
   }) {
     if (initializeForEdit != null) {
@@ -3700,6 +3799,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     required TResult Function(_GetMyCompany value) getMyCompany,
     required TResult Function(_GetUserCompany value) getUserCompany,
     required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
   }) {
     return initializeForEdit(this);
   }
@@ -3724,6 +3824,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     TResult? Function(_GetMyCompany value)? getMyCompany,
     TResult? Function(_GetUserCompany value)? getUserCompany,
     TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
   }) {
     return initializeForEdit?.call(this);
   }
@@ -3748,6 +3849,7 @@ class _$InitializeForEditImpl implements _InitializeForEdit {
     TResult Function(_GetMyCompany value)? getMyCompany,
     TResult Function(_GetUserCompany value)? getUserCompany,
     TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
     required TResult orElse(),
   }) {
     if (initializeForEdit != null) {
@@ -3765,6 +3867,242 @@ abstract class _InitializeForEdit implements CompanyEvent {
   MyCompanyResponseModel get company;
   @JsonKey(ignore: true)
   _$$InitializeForEditImplCopyWith<_$InitializeForEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteCompanyImplCopyWith<$Res> {
+  factory _$$DeleteCompanyImplCopyWith(
+          _$DeleteCompanyImpl value, $Res Function(_$DeleteCompanyImpl) then) =
+      __$$DeleteCompanyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String companyId});
+}
+
+/// @nodoc
+class __$$DeleteCompanyImplCopyWithImpl<$Res>
+    extends _$CompanyEventCopyWithImpl<$Res, _$DeleteCompanyImpl>
+    implements _$$DeleteCompanyImplCopyWith<$Res> {
+  __$$DeleteCompanyImplCopyWithImpl(
+      _$DeleteCompanyImpl _value, $Res Function(_$DeleteCompanyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? companyId = null,
+  }) {
+    return _then(_$DeleteCompanyImpl(
+      companyId: null == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCompanyImpl implements _DeleteCompany {
+  const _$DeleteCompanyImpl({required this.companyId});
+
+  @override
+  final String companyId;
+
+  @override
+  String toString() {
+    return 'CompanyEvent.deleteCompany(companyId: $companyId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCompanyImpl &&
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, companyId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCompanyImplCopyWith<_$DeleteCompanyImpl> get copyWith =>
+      __$$DeleteCompanyImplCopyWithImpl<_$DeleteCompanyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String companyName) companyNameChanged,
+    required TResult Function(String category) categoryChanged,
+    required TResult Function(String aboutCompany) aboutCompanyChanged,
+    required TResult Function(String platform) socialMediaPlatformSelected,
+    required TResult Function(String platform, String url)
+        socialMediaUrlChanged,
+    required TResult Function(String address, String city, String state,
+            double latitude, double longitude)
+        addressChanged,
+    required TResult Function(String gstNumber) gstNumberChanged,
+    required TResult Function(XFile? image) imageChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function() createCompany,
+    required TResult Function(String companyId) updateCompany,
+    required TResult Function() getMyCompany,
+    required TResult Function(String userId) getUserCompany,
+    required TResult Function(MyCompanyResponseModel company) initializeForEdit,
+    required TResult Function(String companyId) deleteCompany,
+  }) {
+    return deleteCompany(companyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String companyName)? companyNameChanged,
+    TResult? Function(String category)? categoryChanged,
+    TResult? Function(String aboutCompany)? aboutCompanyChanged,
+    TResult? Function(String platform)? socialMediaPlatformSelected,
+    TResult? Function(String platform, String url)? socialMediaUrlChanged,
+    TResult? Function(String address, String city, String state,
+            double latitude, double longitude)?
+        addressChanged,
+    TResult? Function(String gstNumber)? gstNumberChanged,
+    TResult? Function(XFile? image)? imageChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function()? createCompany,
+    TResult? Function(String companyId)? updateCompany,
+    TResult? Function()? getMyCompany,
+    TResult? Function(String userId)? getUserCompany,
+    TResult? Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult? Function(String companyId)? deleteCompany,
+  }) {
+    return deleteCompany?.call(companyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String companyName)? companyNameChanged,
+    TResult Function(String category)? categoryChanged,
+    TResult Function(String aboutCompany)? aboutCompanyChanged,
+    TResult Function(String platform)? socialMediaPlatformSelected,
+    TResult Function(String platform, String url)? socialMediaUrlChanged,
+    TResult Function(String address, String city, String state, double latitude,
+            double longitude)?
+        addressChanged,
+    TResult Function(String gstNumber)? gstNumberChanged,
+    TResult Function(XFile? image)? imageChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function()? createCompany,
+    TResult Function(String companyId)? updateCompany,
+    TResult Function()? getMyCompany,
+    TResult Function(String userId)? getUserCompany,
+    TResult Function(MyCompanyResponseModel company)? initializeForEdit,
+    TResult Function(String companyId)? deleteCompany,
+    required TResult orElse(),
+  }) {
+    if (deleteCompany != null) {
+      return deleteCompany(companyId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CompanyStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_CompanyNameChanged value) companyNameChanged,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_AboutCompanyChanged value) aboutCompanyChanged,
+    required TResult Function(_SocialMediaPlatformSelected value)
+        socialMediaPlatformSelected,
+    required TResult Function(_SocialMediaUrlChanged value)
+        socialMediaUrlChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_GstNumberChanged value) gstNumberChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_CreateCompany value) createCompany,
+    required TResult Function(_UpdateCompany value) updateCompany,
+    required TResult Function(_GetMyCompany value) getMyCompany,
+    required TResult Function(_GetUserCompany value) getUserCompany,
+    required TResult Function(_InitializeForEdit value) initializeForEdit,
+    required TResult Function(_DeleteCompany value) deleteCompany,
+  }) {
+    return deleteCompany(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CompanyStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult? Function(_CategoryChanged value)? categoryChanged,
+    TResult? Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult? Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult? Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_CreateCompany value)? createCompany,
+    TResult? Function(_UpdateCompany value)? updateCompany,
+    TResult? Function(_GetMyCompany value)? getMyCompany,
+    TResult? Function(_GetUserCompany value)? getUserCompany,
+    TResult? Function(_InitializeForEdit value)? initializeForEdit,
+    TResult? Function(_DeleteCompany value)? deleteCompany,
+  }) {
+    return deleteCompany?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CompanyStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_CompanyNameChanged value)? companyNameChanged,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_AboutCompanyChanged value)? aboutCompanyChanged,
+    TResult Function(_SocialMediaPlatformSelected value)?
+        socialMediaPlatformSelected,
+    TResult Function(_SocialMediaUrlChanged value)? socialMediaUrlChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_GstNumberChanged value)? gstNumberChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_CreateCompany value)? createCompany,
+    TResult Function(_UpdateCompany value)? updateCompany,
+    TResult Function(_GetMyCompany value)? getMyCompany,
+    TResult Function(_GetUserCompany value)? getUserCompany,
+    TResult Function(_InitializeForEdit value)? initializeForEdit,
+    TResult Function(_DeleteCompany value)? deleteCompany,
+    required TResult orElse(),
+  }) {
+    if (deleteCompany != null) {
+      return deleteCompany(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteCompany implements CompanyEvent {
+  const factory _DeleteCompany({required final String companyId}) =
+      _$DeleteCompanyImpl;
+
+  String get companyId;
+  @JsonKey(ignore: true)
+  _$$DeleteCompanyImplCopyWith<_$DeleteCompanyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
