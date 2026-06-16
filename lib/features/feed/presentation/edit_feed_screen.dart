@@ -11,6 +11,7 @@ import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/utils/image_picker_util.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 
 class EditFeedScreen extends StatefulWidget {
   static const String routeName = '/edit-feed';
@@ -39,12 +40,8 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final List<String> _listingTypes = ['Sell', 'Rent'];
-  final List<Map<String, dynamic>> _propertyTypeOptions = const [
-    {'name': 'Villas', 'icon': Icons.villa_outlined},
-    {'name': 'Apartments', 'icon': Icons.apartment_outlined},
-    {'name': 'Open Plot', 'icon': Icons.business_outlined},
-  ];
+  final List<String> _listingTypes = AppCategories.lookingFor;
+  final List<Map<String, dynamic>> _propertyTypeOptions = AppCategories.propertyTypes;
 
   @override
   void initState() {

@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../bloc/requests_bloc.dart';
 import 'create_request_details.dart';
 import 'edit_request.dart';
+import 'dart:async';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -81,96 +82,158 @@ class _RequestsScreenState extends State<RequestsScreen> {
     }
   }
 
+  Future<void> _onRefresh() async {
+    final homeState = context.read<HomeBloc>().state;
+    final filterData = homeState.activeRequestsFilter;
+
+    String? city;
+    double? latitude = homeState.currentLat;
+    double? longitude = homeState.currentLng;
+    double radiusKm = 5;
+
+    if (filterData != null) {
+      city = filterData['address'] as String?;
+
+      final isLocationCustom = filterData['isLocationCustom'] == true;
+      if (isLocationCustom) {
+        latitude = filterData['latitude'] as double?;
+        longitude = filterData['longitude'] as double?;
+      }
+      radiusKm = 15;
+    }
+
+    final requestsBloc = context.read<RequestsBloc>();
+    final completer = Completer<void>();
+    final subscription = requestsBloc.stream.listen((state) {
+      if (!state.isLoading) {
+        if (!completer.isCompleted) completer.complete();
+      }
+    });
+
+    requestsBloc.add(
+      RequestsEvent.getRequests(
+        skip: 0,
+        limit: 10,
+        city: city,
+        latitude: latitude,
+        longitude: longitude,
+        radiusKm: radiusKm,
+      ),
+    );
+
+    await Future.any([
+      completer.future,
+      Future.delayed(const Duration(seconds: 5)),
+    ]);
+    await subscription.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
     return BlocBuilder<RequestsBloc, RequestsState>(
       builder: (context, state) {
-        return CustomScrollView(
-          slivers: [
-            SliverOverlapInjector(
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    aspectRatio: 2.1,
-                    enlargeCenterPage: true,
-                    viewportFraction: 1,
-                    enableInfiniteScroll: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentSlide = index;
-                      });
-                    },
+        return RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverOverlapInjector(
+                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              ),
+              if (homeState.activeRequestsFilter != null)
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _StickyChipHeaderDelegate(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: _buildActiveFilterChips(context, homeState),
+                    ),
+                    height: 52.0,
                   ),
-                  items: [
-                    if (!Platform.isIOS)
+                ),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      aspectRatio: 2.1,
+                      enlargeCenterPage: true,
+                      viewportFraction: 1,
+                      enableInfiniteScroll: true,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _currentSlide = index;
+                        });
+                      },
+                    ),
+                    items: [
+                      if (!Platform.isIOS)
+                        AdSliderWidget(
+                          title: 'Home Loan',
+                          caption: 'Need a home Loan Raise a\nRequest',
+                          onCreateRequest: () {
+                            context.read<HomeBloc>().state.showAddButton
+                                ? context.push(
+                                    CreateRequestDetails.routeName,
+                                    extra: 'Loan',
+                                  )
+                                : context.push(AuthScreen.routeName);
+                          },
+                          onExploreDetails: () {
+                            context.push(HomeLoanScreen.routeName);
+                          },
+                        ),
                       AdSliderWidget(
-                        title: 'Home Loan',
-                        caption: 'Need a home Loan Raise a\nRequest',
+                        title: 'Interior Design',
+                        caption: 'Design your dream home\nRaise a Request',
                         onCreateRequest: () {
                           context.read<HomeBloc>().state.showAddButton
                               ? context.push(
                                   CreateRequestDetails.routeName,
-                                  extra: 'Loan',
+                                  extra: 'Interior Design',
                                 )
                               : context.push(AuthScreen.routeName);
                         },
                         onExploreDetails: () {
-                          context.push(HomeLoanScreen.routeName);
+                          context.push(HomeInteriorScreen.routeName);
                         },
                       ),
-                    AdSliderWidget(
-                      title: 'Interior Design',
-                      caption: 'Design your dream home\nRaise a Request',
-                      onCreateRequest: () {
-                        context.read<HomeBloc>().state.showAddButton
-                            ? context.push(
-                                CreateRequestDetails.routeName,
-                                extra: 'Interior Design',
-                              )
-                            : context.push(AuthScreen.routeName);
-                      },
-                      onExploreDetails: () {
-                        context.push(HomeInteriorScreen.routeName);
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                if (!Platform.isIOS)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(2, (index) {
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: _currentSlide == index ? 24 : 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: _currentSlide == index
-                              ? Colors.deepPurple
-                              : Colors.grey.shade400,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      );
-                    }),
+                    ],
                   ),
-                const SizedBox(height: 16),
-              ]),
-            ),
-            // Requests List as Sliver
-            _buildRequestsListSliver(state),
-            if (state.isLoading && state.requestsList.isNotEmpty)
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Center(child: CircularProgressIndicator()),
-                ),
+                  const SizedBox(height: 8),
+                  if (!Platform.isIOS)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(2, (index) {
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          width: _currentSlide == index ? 24 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: _currentSlide == index
+                                ? Colors.deepPurple
+                                : Colors.grey.shade400,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        );
+                      }),
+                    ),
+                  const SizedBox(height: 16),
+                ]),
               ),
-          ],
+              // Requests List as Sliver
+              _buildRequestsListSliver(state),
+              if (state.isLoading && state.requestsList.isNotEmpty)
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+            ],
+          ),
         );
       },
     );
@@ -196,22 +259,43 @@ class _RequestsScreenState extends State<RequestsScreen> {
       );
     }
 
-    if (state.requestsList.isEmpty) {
-      return const SliverFillRemaining(
+    final homeState = context.read<HomeBloc>().state;
+    final activeFilter = homeState.activeRequestsFilter;
+    final selectedCategoryType = activeFilter?['categoryType'] as String?;
+
+    final filteredList = state.requestsList.where((request) {
+      if (request.category == 'Loan' ||
+          request.category == 'Interior Design') {
+        return false;
+      }
+      if (selectedCategoryType != null &&
+          selectedCategoryType != 'All' &&
+          selectedCategoryType.isNotEmpty) {
+        return request.category?.toLowerCase() == selectedCategoryType.toLowerCase();
+      }
+      return true;
+    }).toList();
+
+    if (filteredList.isEmpty) {
+      return SliverFillRemaining(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text('No requests available. Be the first to create one!'),
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: Text(
+              state.requestsList.isEmpty
+                  ? 'No requests available. Be the first to create one!'
+                  : 'No requests available for category: $selectedCategoryType',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 15, color: Colors.grey),
+            ),
+          ),
         ),
       );
     }
 
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
-        final request = state.requestsList[index];
-        if (request.category == 'Loan' ||
-            request.category == 'Interior Design') {
-          return const SizedBox.shrink();
-        }
+        final request = filteredList[index];
         return RequestTileWidget(
           title: request.title ?? request.category ?? 'Unknown Request',
           ownerName: request.owner?.username ?? 'Unknown Provider',
@@ -293,7 +377,145 @@ class _RequestsScreenState extends State<RequestsScreen> {
             debugPrint('Tapped on request ${request.id}');
           },
         );
-      }, childCount: state.requestsList.length),
+      }, childCount: filteredList.length),
     );
+  }
+
+  void _applyRequestsFilter(BuildContext context, Map<String, dynamic> filterData) {
+    final categoryType = filterData['categoryType'] as String?;
+    final isLocationCustom = filterData['isLocationCustom'] == true;
+
+    final isDefault = (categoryType == 'All' || categoryType == null) && !isLocationCustom;
+
+    if (isDefault) {
+      context.read<HomeBloc>().add(const HomeEvent.updateRequestsFilter(null));
+      context.read<RequestsBloc>().add(
+        RequestsEvent.getRequests(
+          latitude: context.read<HomeBloc>().state.currentLat,
+          longitude: context.read<HomeBloc>().state.currentLng,
+          radiusKm: 5,
+        ),
+      );
+    } else {
+      context.read<HomeBloc>().add(HomeEvent.updateRequestsFilter(filterData));
+
+      final latitude = isLocationCustom ? filterData['latitude'] as double? : context.read<HomeBloc>().state.currentLat;
+      final longitude = isLocationCustom ? filterData['longitude'] as double? : context.read<HomeBloc>().state.currentLng;
+
+      context.read<RequestsBloc>().add(
+        RequestsEvent.getRequests(
+          city: filterData['address'] as String?,
+          latitude: latitude,
+          longitude: longitude,
+          radiusKm: 15,
+        ),
+      );
+    }
+  }
+
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+    if (state.activeRequestsFilter == null) return const SizedBox.shrink();
+
+    final filter = state.activeRequestsFilter!;
+    final chips = <Widget>[];
+
+    if (filter['isLocationCustom'] == true && filter['address'] != null) {
+      chips.add(
+        _buildChip('Location: ${filter['address']}', () {
+          final newFilter = Map<String, dynamic>.from(filter);
+          newFilter['isLocationCustom'] = false;
+          newFilter['address'] = null;
+          newFilter['latitude'] = null;
+          newFilter['longitude'] = null;
+          _applyRequestsFilter(context, newFilter);
+        }),
+      );
+    }
+    final categoryType = filter['categoryType'] as String?;
+    if (categoryType != null && categoryType != 'All' && categoryType.isNotEmpty) {
+      chips.add(
+        _buildChip('Category: $categoryType', () {
+          final newFilter = Map<String, dynamic>.from(filter);
+          newFilter['categoryType'] = 'All';
+          _applyRequestsFilter(context, newFilter);
+        }),
+      );
+    }
+
+    if (chips.isEmpty) return const SizedBox.shrink();
+
+    return Container(
+      height: 40,
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: chips.length,
+        itemBuilder: (context, index) => chips[index],
+      ),
+    );
+  }
+
+  Widget _buildChip(String label, VoidCallback onRemove) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).primaryColor.withOpacity(0.2),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 6),
+          GestureDetector(
+            onTap: onRemove,
+            child: const Icon(Icons.close, size: 14, color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StickyChipHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+  final double height;
+
+  _StickyChipHeaderDelegate({required this.child, this.height = 52.0});
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      alignment: Alignment.center,
+      height: height,
+      child: child,
+    );
+  }
+
+  @override
+  double get maxExtent => height;
+
+  @override
+  double get minExtent => height;
+
+  @override
+  bool shouldRebuild(covariant _StickyChipHeaderDelegate oldDelegate) {
+    return oldDelegate.child != child || oldDelegate.height != height;
   }
 }

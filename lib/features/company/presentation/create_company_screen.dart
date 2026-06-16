@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
+import 'package:propertify/core/constants/app_categories.dart';
+
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -47,14 +49,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
   double? _latitude;
   double? _longitude;
 
-  final List<String> _categories = [
-    'Apartment',
-    'Villas',
-    'House',
-    'Commercial',
-    'Land',
-    'Industrial',
-  ];
+  final List<String> _categories = AppCategories.companyCategories;
 
   @override
   void initState() {

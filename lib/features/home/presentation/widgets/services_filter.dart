@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../../../../core/app_theme.dart';
 import '../../../../utils/common_widgets/common_textfield.dart';
 import '../../../../utils/common_widgets/common_custom_button.dart';
@@ -7,13 +8,26 @@ import '../../../../utils/common_widgets/common_custom_button.dart';
 class ServicesFilter extends StatefulWidget {
   final Function(Map<String, dynamic>)? onApplyFilter;
   final Function()? onResetFilter;
+  final Map<String, dynamic>? activeFilter;
+  final String? currentAddress;
+  final String? currentCity;
 
-  const ServicesFilter({super.key, this.onApplyFilter, this.onResetFilter});
+  const ServicesFilter({
+    super.key,
+    this.onApplyFilter,
+    this.onResetFilter,
+    this.activeFilter,
+    this.currentAddress,
+    this.currentCity,
+  });
 
   static void show(
     BuildContext context, {
     Function(Map<String, dynamic>)? onApplyFilter,
     Function()? onResetFilter,
+    Map<String, dynamic>? activeFilter,
+    String? currentAddress,
+    String? currentCity,
   }) {
     showModalBottomSheet(
       context: context,
@@ -22,6 +36,9 @@ class ServicesFilter extends StatefulWidget {
       builder: (context) => ServicesFilter(
         onApplyFilter: onApplyFilter,
         onResetFilter: onResetFilter,
+        activeFilter: activeFilter,
+        currentAddress: currentAddress,
+        currentCity: currentCity,
       ),
     );
   }
@@ -38,27 +55,47 @@ class _ServicesFilterState extends State<ServicesFilter> {
   List<String> _selectedCategories = [];
   RangeValues _priceRange = const RangeValues(10, 500);
 
-  final List<String> _serviceTypes = [
-    'All',
-    'Real Estate',
-    'Builder',
-    'Advocate',
-    'Interior Designer',
-    'Architect',
-    'Contractor',
-    'Property Manager',
-  ];
+  double? _latitude;
+  double? _longitude;
+  bool _isLocationCustom = false;
 
-  final List<String> _categories = [
-    'All',
-    'Residential',
-    'Commercial',
-    'Industrial',
-    'Agricultural',
-    'Rental',
-    'Sale',
-    'Consultation',
-  ];
+  @override
+  void initState() {
+    super.initState();
+    if (widget.activeFilter != null) {
+      _isLocationCustom = widget.activeFilter!['isLocationCustom'] ?? false;
+      _latitude = widget.activeFilter!['latitude'];
+      _longitude = widget.activeFilter!['longitude'];
+      _searchController.text = widget.activeFilter!['search'] ?? '';
+      _selectedServiceType = widget.activeFilter!['serviceType'] ?? 'All';
+      _selectedCategories = List<String>.from(widget.activeFilter!['categories'] ?? []);
+      if (_selectedCategories.contains('All')) {
+        _selectedCategories.clear();
+      }
+      final priceRangeMap = widget.activeFilter!['priceRange'] as Map?;
+      if (priceRangeMap != null) {
+        _priceRange = RangeValues(
+          (priceRangeMap['min'] as num).toDouble(),
+          (priceRangeMap['max'] as num).toDouble(),
+        );
+      }
+      if (_isLocationCustom) {
+        _selectedAddress = widget.activeFilter!['address'] ?? '';
+      } else {
+        _selectedAddress = widget.currentAddress ?? '';
+      }
+      _addressController.text = _selectedAddress;
+    } else {
+      _isLocationCustom = false;
+      _selectedAddress = widget.currentAddress ?? '';
+      _addressController.text = _selectedAddress;
+      _selectedServiceType = 'All';
+    }
+  }
+
+  final List<String> _serviceTypes = const ['All'];
+
+  final List<String> _categories = AppCategories.serviceCategoriesFilter;
 
   @override
   void dispose() {
@@ -133,9 +170,11 @@ class _ServicesFilterState extends State<ServicesFilter> {
                         );
 
                         setState(() {
+                          _isLocationCustom = true;
+                          _latitude = latitude;
+                          _longitude = longitude;
                           _selectedAddress = address;
-                          _addressController.text =
-                              address; // Update the controller to show the address in UI
+                          _addressController.text = address;
                         });
                       },
                     ),
@@ -145,9 +184,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                     // _buildSearchSection(),
                     const SizedBox(height: 20),
 
-                    // Service Type
-                    _buildServiceTypeSection(),
-                    const SizedBox(height: 20),
+
 
                     // Categories
                     _buildCategoriesSection(),
@@ -467,9 +504,12 @@ class _ServicesFilterState extends State<ServicesFilter> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
+                  _isLocationCustom = false;
+                  _latitude = null;
+                  _longitude = null;
                   _searchController.clear();
-                  _addressController.clear();
-                  _selectedAddress = '';
+                  _selectedAddress = widget.currentAddress ?? '';
+                  _addressController.text = _selectedAddress;
                   _selectedServiceType = 'All';
                   _selectedCategories.clear();
                   _priceRange = const RangeValues(10, 500);
@@ -515,6 +555,9 @@ class _ServicesFilterState extends State<ServicesFilter> {
                     'min': _priceRange.start.round(),
                     'max': _priceRange.end.round(),
                   },
+                  'isLocationCustom': _isLocationCustom,
+                  'latitude': _latitude,
+                  'longitude': _longitude,
                 };
                 if (widget.onApplyFilter != null) {
                   widget.onApplyFilter!(filterData);

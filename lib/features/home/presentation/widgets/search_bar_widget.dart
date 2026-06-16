@@ -5,12 +5,14 @@ class SearchBarWidget extends StatelessWidget {
   final String? hintText;
   final Function(String)? onChanged;
   final VoidCallback? onFilterPressed;
+  final bool hasActiveFilter;
 
   const SearchBarWidget({
     super.key,
     this.hintText,
     this.onChanged,
     this.onFilterPressed,
+    this.hasActiveFilter = false,
   });
 
   @override
@@ -63,10 +65,34 @@ class SearchBarWidget extends StatelessWidget {
               margin: const EdgeInsets.only(right: 8),
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppTheme.blueColor.withOpacity(0.1),
+                color: hasActiveFilter
+                    ? AppTheme.blueColor
+                    : AppTheme.blueColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(Icons.tune, color: AppTheme.blueColor, size: 20),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Icon(
+                    Icons.tune,
+                    color: hasActiveFilter ? Colors.white : AppTheme.blueColor,
+                    size: 20,
+                  ),
+                  if (hasActiveFilter)
+                    Positioned(
+                      right: -2,
+                      top: -2,
+                      child: Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ],

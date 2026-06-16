@@ -19,6 +19,12 @@ part 'sales_state.dart';
 class SalesBloc extends Bloc<SalesEvent, SalesState> {
   final SalesRepo _salesRepo;
 
+  String? _lastLocation;
+  String? _lastPropertyType;
+  double? _lastMinPrice;
+  double? _lastMaxPrice;
+  String? _lastSearch;
+
   SalesBloc(this._salesRepo) : super(const SalesState()) {
     on<_GetSalesEvent>(_onGetSalesEvent);
     on<_GetSaleDetailsEvent>(_onGetSaleDetailsEvent);
@@ -49,6 +55,20 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
       final int offset = event.offset ?? 0;
       final int limit = event.limit ?? 10;
 
+      final String? location = event.location ?? (offset == 0 ? null : _lastLocation);
+      final String? propertyType = event.propertyType ?? (offset == 0 ? null : _lastPropertyType);
+      final double? minPrice = event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
+      final double? maxPrice = event.maxPrice ?? (offset == 0 ? null : _lastMaxPrice);
+      final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
+
+      if (offset == 0) {
+        _lastLocation = location;
+        _lastPropertyType = propertyType;
+        _lastMinPrice = minPrice;
+        _lastMaxPrice = maxPrice;
+        _lastSearch = search;
+      }
+
       emit(
         state.copyWith(
           isLoading: true,
@@ -58,11 +78,11 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
 
       Either<Failure, SalesModel> salesResponseEither = await _salesRepo
           .getSales(
-            location: event.location,
-            propertyType: event.propertyType,
-            minPrice: event.minPrice,
-            maxPrice: event.maxPrice,
-            search: event.search,
+            location: location,
+            propertyType: propertyType,
+            minPrice: minPrice,
+            maxPrice: maxPrice,
+            search: search,
             limit: limit,
             offset: offset,
           );

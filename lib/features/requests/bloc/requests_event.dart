@@ -10,6 +10,10 @@ class RequestsEvent with _$RequestsEvent {
     double? longitude,
     double? radiusKm,
     String? search,
+    String? category,
+    String? city,
+    double? minBudget,
+    double? maxBudget,
   }) = _GetRequestsEvent;
 
   const factory RequestsEvent.getRequestDetails({required String requestId}) =

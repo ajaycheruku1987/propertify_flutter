@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../../../../core/app_theme.dart';
 import '../../../../utils/common_widgets/common_textfield.dart';
 import '../../../../utils/common_widgets/common_custom_button.dart';
@@ -7,13 +8,26 @@ import '../../../../utils/common_widgets/common_custom_button.dart';
 class FeedsFilter extends StatefulWidget {
   final Function(Map<String, dynamic>)? onApplyFilter;
   final Function()? onResetFilter;
+  final Map<String, dynamic>? activeFilter;
+  final String? currentAddress;
+  final String? currentCity;
 
-  const FeedsFilter({super.key, this.onApplyFilter, this.onResetFilter});
+  const FeedsFilter({
+    super.key,
+    this.onApplyFilter,
+    this.onResetFilter,
+    this.activeFilter,
+    this.currentAddress,
+    this.currentCity,
+  });
 
   static void show(
     BuildContext context, {
     Function(Map<String, dynamic>)? onApplyFilter,
     Function()? onResetFilter,
+    Map<String, dynamic>? activeFilter,
+    String? currentAddress,
+    String? currentCity,
   }) {
     showModalBottomSheet(
       context: context,
@@ -22,6 +36,9 @@ class FeedsFilter extends StatefulWidget {
       builder: (context) => FeedsFilter(
         onApplyFilter: onApplyFilter,
         onResetFilter: onResetFilter,
+        activeFilter: activeFilter,
+        currentAddress: currentAddress,
+        currentCity: currentCity,
       ),
     );
   }
@@ -39,13 +56,53 @@ class _FeedsFilterState extends State<FeedsFilter> {
   List<String> _selectedPropertyTypes = [];
   RangeValues _priceRange = const RangeValues(100000, 50000000);
 
-  final List<String> _propertyTypes = ['Villas', 'Apartments', 'OpenPlots'];
+  double? _latitude;
+  double? _longitude;
+  bool _isLocationCustom = false;
 
-  final List<String> _lookingForOptions = ['All', 'Sales', 'Rent'];
+  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
+
+  final List<String> _lookingForOptions = AppCategories.lookingForFilter;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.activeFilter != null) {
+      _isLocationCustom = widget.activeFilter!['isLocationCustom'] ?? false;
+      _latitude = widget.activeFilter!['latitude'];
+      _longitude = widget.activeFilter!['longitude'];
+      _searchController.text = widget.activeFilter!['search'] ?? '';
+      _selectedLookingFor = widget.activeFilter!['lookingFor'] ?? '';
+      _selectedPropertyTypes = List<String>.from(widget.activeFilter!['propertyTypes'] ?? []);
+      if (_selectedPropertyTypes.contains('All')) {
+        _selectedPropertyTypes.clear();
+      }
+      final priceRangeMap = widget.activeFilter!['priceRange'] as Map?;
+      if (priceRangeMap != null) {
+        _priceRange = RangeValues(
+          (priceRangeMap['min'] as num).toDouble(),
+          (priceRangeMap['max'] as num).toDouble(),
+        );
+      }
+      if (_isLocationCustom) {
+        _selectedLocation = widget.activeFilter!['location'] ?? widget.currentCity ?? 'Hyderabad';
+        _addressController.text = widget.activeFilter!['addressText'] ?? _selectedLocation;
+      } else {
+        _selectedLocation = widget.currentCity ?? 'Hyderabad';
+        _addressController.text = widget.currentAddress ?? _selectedLocation;
+      }
+    } else {
+      _isLocationCustom = false;
+      _selectedLocation = widget.currentCity ?? 'Hyderabad';
+      _addressController.text = widget.currentAddress ?? _selectedLocation;
+      _selectedLookingFor = 'All';
+    }
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _addressController.dispose();
     super.dispose();
   }
 
@@ -116,9 +173,11 @@ class _FeedsFilterState extends State<FeedsFilter> {
                         );
 
                         setState(() {
+                          _isLocationCustom = true;
+                          _latitude = latitude;
+                          _longitude = longitude;
                           _selectedLocation = city;
-                          _addressController.text =
-                              address; // Update the controller to show the address in UI
+                          _addressController.text = address;
                         });
                       },
                     ),
@@ -347,11 +406,15 @@ class _FeedsFilterState extends State<FeedsFilter> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
+                  _isLocationCustom = false;
+                  _latitude = null;
+                  _longitude = null;
                   _searchController.clear();
-                  _selectedLocation = 'Hyderabad';
+                  _selectedLocation = widget.currentCity ?? 'Hyderabad';
+                  _addressController.text = widget.currentAddress ?? _selectedLocation;
                   _selectedLookingFor = 'All';
                   _selectedPropertyTypes.clear();
-                  _priceRange = const RangeValues(10, 800);
+                  _priceRange = const RangeValues(100000, 50000000);
                 });
                 if (widget.onResetFilter != null) {
                   widget.onResetFilter!();
@@ -394,6 +457,10 @@ class _FeedsFilterState extends State<FeedsFilter> {
                     'min': _priceRange.start.round(),
                     'max': _priceRange.end.round(),
                   },
+                  'addressText': _addressController.text,
+                  'isLocationCustom': _isLocationCustom,
+                  'latitude': _latitude,
+                  'longitude': _longitude,
                 };
                 if (widget.onApplyFilter != null) {
                   widget.onApplyFilter!(filterData);

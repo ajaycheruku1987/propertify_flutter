@@ -22,4 +22,9 @@ class HomeEvent with _$HomeEvent {
     required int limit,
     required int offset,
   }) = _LoadOtherUserPosts;
+
+  const factory HomeEvent.updateFeedsFilter(Map<String, dynamic>? filter) = _UpdateFeedsFilter;
+  const factory HomeEvent.updateServicesFilter(Map<String, dynamic>? filter) = _UpdateServicesFilter;
+  const factory HomeEvent.updateRequestsFilter(Map<String, dynamic>? filter) = _UpdateRequestsFilter;
+  const factory HomeEvent.updateSalesFilter(Map<String, dynamic>? filter) = _UpdateSalesFilter;
 }

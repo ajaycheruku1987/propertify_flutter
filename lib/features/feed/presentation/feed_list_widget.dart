@@ -18,6 +18,7 @@ import '../bloc/feed_bloc.dart';
 import 'post_details.dart';
 import 'widgets/comments_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
+import 'dart:async';
 
 class FeedListWidget extends StatefulWidget {
   final VoidCallback? onRefresh;
@@ -266,25 +267,83 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   }
 
   Future<void> _onRefresh() async {
-    context.read<FeedBloc>().add(
+    final homeState = context.read<HomeBloc>().state;
+    final filterData = homeState.activeFeedsFilter;
+
+    String? city;
+    String? listingType;
+    String? propertyType;
+    double? minPrice;
+    double? maxPrice;
+    double? latitude = homeState.currentLat;
+    double? longitude = homeState.currentLng;
+
+    if (filterData != null) {
+      city = filterData['location'] as String?;
+      final lookingFor = filterData['lookingFor'] as String?;
+      listingType = lookingFor == 'Sales'
+          ? 'Sell'
+          : (lookingFor == 'All' || lookingFor == '')
+              ? null
+              : lookingFor;
+
+      final propertyTypes = filterData['propertyTypes'] as List?;
+      propertyType = propertyTypes != null &&
+              propertyTypes.isNotEmpty &&
+              !propertyTypes.contains('All')
+          ? propertyTypes.first as String?
+          : null;
+
+      minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
+      maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
+
+      final isLocationCustom = filterData['isLocationCustom'] == true;
+      if (isLocationCustom) {
+        latitude = filterData['latitude'] as double?;
+        longitude = filterData['longitude'] as double?;
+      }
+    }
+
+    final feedBloc = context.read<FeedBloc>();
+    final completer = Completer<void>();
+    final subscription = feedBloc.stream.listen((state) {
+      if (!state.isLoading) {
+        if (!completer.isCompleted) completer.complete();
+      }
+    });
+
+    feedBloc.add(
       FeedEvent.getFeedsEvent(
         offset: 0,
-        latitude: context.read<HomeBloc>().state.currentLat,
-        longitude: context.read<HomeBloc>().state.currentLng,
+        city: city,
+        listingType: listingType,
+        propertyType: propertyType,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        latitude: latitude,
+        longitude: longitude,
       ),
     );
     context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
     if (widget.onRefresh != null) {
       widget.onRefresh!();
     }
+
+    await Future.any([
+      completer.future,
+      Future.delayed(const Duration(seconds: 5)),
+    ]);
+    await subscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
     return BlocBuilder<FeedBloc, FeedState>(
       builder: (context, state) {
         if (state.isLoading && state.feedsList.isEmpty) {
           return CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverOverlapInjector(
                 handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
@@ -299,89 +358,131 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         }
 
         if (state.notifyStatus != null && state.feedsList.isEmpty) {
-          return CustomScrollView(
-            slivers: [
-              SliverOverlapInjector(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                  context,
-                ),
-              ),
-              SliverFillRemaining(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.circleExclamation,
-                        size: 60,
-                        color: Colors.red.shade400,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        state.notifyStatus!.message,
-                        style: const TextStyle(fontSize: 16, color: Colors.red),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.read<FeedBloc>().add(
-                            const FeedEvent.getFeedsEvent(),
-                          );
-                          context.read<ProfileBloc>().add(
-                            const ProfileEvent.loadBannerAds(),
-                          );
-                        },
-                        child: const Text('Retry'),
-                      ),
-                    ],
+          return RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverOverlapInjector(
+                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                    context,
                   ),
                 ),
-              ),
-            ],
+                if (homeState.activeFeedsFilter != null)
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _StickyChipHeaderDelegate(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: _buildActiveFilterChips(context, homeState),
+                      ),
+                      height: 52.0,
+                    ),
+                  ),
+                SliverFillRemaining(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.circleExclamation,
+                          size: 60,
+                          color: Colors.red.shade400,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          state.notifyStatus!.message,
+                          style: const TextStyle(fontSize: 16, color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            context.read<FeedBloc>().add(
+                              const FeedEvent.getFeedsEvent(),
+                            );
+                            context.read<ProfileBloc>().add(
+                              const ProfileEvent.loadBannerAds(),
+                            );
+                          },
+                          child: const Text('Retry'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         }
 
         if (state.feedsList.isEmpty) {
-          return CustomScrollView(
-            slivers: [
-              SliverOverlapInjector(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                  context,
-                ),
-              ),
-              const SliverFillRemaining(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.house,
-                        size: 60,
-                        color: Colors.grey,
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        'No properties found',
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                      ),
-                    ],
+          return RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverOverlapInjector(
+                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                    context,
                   ),
                 ),
-              ),
-            ],
+                if (homeState.activeFeedsFilter != null)
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _StickyChipHeaderDelegate(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: _buildActiveFilterChips(context, homeState),
+                      ),
+                      height: 52.0,
+                    ),
+                  ),
+                const SliverFillRemaining(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.house,
+                          size: 60,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'No properties found',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         }
 
         return RefreshIndicator(
           onRefresh: _onRefresh,
           child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverOverlapInjector(
                 handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                   context,
                 ),
               ),
+              if (homeState.activeFeedsFilter != null)
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _StickyChipHeaderDelegate(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: _buildActiveFilterChips(context, homeState),
+                    ),
+                    height: 52.0,
+                  ),
+                ),
               SliverPadding(
                 padding: const EdgeInsets.all(16),
                 sliver: SliverList(
@@ -885,5 +986,202 @@ Check it out on Propertify!
     }
 
     return city;
+  }
+
+  void _applyFeedsFilter(BuildContext context, Map<String, dynamic> filterData) {
+    final propertyTypes = filterData['propertyTypes'] as List?;
+    final lookingFor = filterData['lookingFor'] as String?;
+    final priceRange = filterData['priceRange'] as Map?;
+    final isLocationCustom = filterData['isLocationCustom'] == true;
+
+    final isDefault =
+        (lookingFor == 'All' || lookingFor == '') &&
+        (propertyTypes == null ||
+            propertyTypes.isEmpty ||
+            propertyTypes.contains('All')) &&
+        (priceRange == null ||
+            (priceRange['min'] == 100000 && priceRange['max'] == 50000000)) &&
+        !isLocationCustom;
+
+    if (isDefault) {
+      context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+      context.read<FeedBloc>().add(
+        FeedEvent.getFeedsEvent(
+          latitude: context.read<HomeBloc>().state.currentLat,
+          longitude: context.read<HomeBloc>().state.currentLng,
+        ),
+      );
+    } else {
+      context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
+
+      final mappedLookingFor = lookingFor == 'Sales'
+          ? 'Sell'
+          : (lookingFor == 'All' || lookingFor == '')
+          ? null
+          : lookingFor;
+
+      final propertyType =
+          propertyTypes != null &&
+              propertyTypes.isNotEmpty &&
+              !propertyTypes.contains('All')
+          ? propertyTypes.first as String?
+          : null;
+
+      final latitude = isLocationCustom
+          ? filterData['latitude'] as double?
+          : context.read<HomeBloc>().state.currentLat;
+      final longitude = isLocationCustom
+          ? filterData['longitude'] as double?
+          : context.read<HomeBloc>().state.currentLng;
+
+      context.read<FeedBloc>().add(
+        FeedEvent.getFeedsEvent(
+          city: filterData['location'] as String?,
+          listingType: mappedLookingFor,
+          propertyType: propertyType,
+          minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
+          maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
+          latitude: latitude,
+          longitude: longitude,
+        ),
+      );
+    }
+  }
+
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+    if (state.activeFeedsFilter == null) return const SizedBox.shrink();
+
+    final filter = state.activeFeedsFilter!;
+    final chips = <Widget>[];
+
+    if (filter['isLocationCustom'] == true && filter['location'] != null) {
+      chips.add(
+        _buildChip('Location: ${filter['location']}', () {
+          final newFilter = Map<String, dynamic>.from(filter);
+          newFilter['isLocationCustom'] = false;
+          newFilter['location'] = null;
+          newFilter['addressText'] = null;
+          newFilter['latitude'] = null;
+          newFilter['longitude'] = null;
+          _applyFeedsFilter(context, newFilter);
+        }),
+      );
+    }
+    final lookingFor = filter['lookingFor'] as String?;
+    if (lookingFor != null && lookingFor != 'All' && lookingFor.isNotEmpty) {
+      chips.add(
+        _buildChip('Looking For: $lookingFor', () {
+          final newFilter = Map<String, dynamic>.from(filter);
+          newFilter['lookingFor'] = 'All';
+          _applyFeedsFilter(context, newFilter);
+        }),
+      );
+    }
+    final propertyTypes = filter['propertyTypes'] as List?;
+    if (propertyTypes != null &&
+        propertyTypes.isNotEmpty &&
+        !propertyTypes.contains('All')) {
+      for (final type in propertyTypes) {
+        chips.add(
+          _buildChip('Type: $type', () {
+            final newFilter = Map<String, dynamic>.from(filter);
+            final list = List<String>.from(newFilter['propertyTypes'] ?? []);
+            list.remove(type);
+            newFilter['propertyTypes'] = list;
+            _applyFeedsFilter(context, newFilter);
+          }),
+        );
+      }
+    }
+    final priceRange = filter['priceRange'] as Map?;
+    if (priceRange != null &&
+        (priceRange['min'] != 100000 || priceRange['max'] != 50000000)) {
+      chips.add(
+        _buildChip(
+          'Price: ₹${(priceRange['min'] as num).round()} - ₹${(priceRange['max'] as num).round()}',
+          () {
+            final newFilter = Map<String, dynamic>.from(filter);
+            newFilter['priceRange'] = {'min': 100000, 'max': 50000000};
+            _applyFeedsFilter(context, newFilter);
+          },
+        ),
+      );
+    }
+
+    if (chips.isEmpty) return const SizedBox.shrink();
+
+    return Container(
+      height: 40,
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: chips.length,
+        itemBuilder: (context, index) => chips[index],
+      ),
+    );
+  }
+
+  Widget _buildChip(String label, VoidCallback onRemove) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).primaryColor.withOpacity(0.2),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 6),
+          GestureDetector(
+            onTap: onRemove,
+            child: const Icon(Icons.close, size: 14, color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StickyChipHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+  final double height;
+
+  _StickyChipHeaderDelegate({required this.child, this.height = 52.0});
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      alignment: Alignment.center,
+      height: height,
+      child: child,
+    );
+  }
+
+  @override
+  double get maxExtent => height;
+
+  @override
+  double get minExtent => height;
+
+  @override
+  bool shouldRebuild(covariant _StickyChipHeaderDelegate oldDelegate) {
+    return oldDelegate.child != child || oldDelegate.height != height;
   }
 }

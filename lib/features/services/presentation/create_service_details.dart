@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
 import 'package:propertify/features/services/models/create_service_data_model.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/features/services/presentation/create_service_media.dart';
@@ -45,16 +46,7 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Categories list
-  final List<String> _categories = [
-    'Real estate',
-    'Plots',
-    'Building Material Supply',
-    'Advocate',
-    'Construction Contractor',
-    'Property valuation',
-    'Leasing',
-    'Villas',
-  ];
+  final List<String> _categories = AppCategories.serviceCategories;
 
   // Service types
   final List<String> _serviceTypes = ['Individual', 'Business', 'Professional'];

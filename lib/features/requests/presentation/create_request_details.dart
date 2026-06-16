@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/requests/bloc/requests_bloc.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 
 import '../../../utils/common_widgets/common_textfield.dart';
 import '../../../utils/common_widgets/common_custom_button.dart';
@@ -40,14 +41,11 @@ class _CreateRequestDetailsState extends State<CreateRequestDetails> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Request categories
-  final List<Map<String, dynamic>> _requestCategories = [
-    {'name': 'Buy', 'icon': Icons.home_outlined},
-    {'name': 'Rent', 'icon': Icons.apartment_outlined},
-  ];
+  final List<Map<String, dynamic>> _requestCategories = AppCategories.requestCategories;
 
-  final List<Map<String, dynamic>> _loanAndInteriorCategories = [
-    if (!Platform.isIOS) {'name': 'Loan', 'icon': Icons.home_outlined},
-    {'name': 'Interior Design', 'icon': Icons.apartment_outlined},
+  late final List<Map<String, dynamic>> _loanAndInteriorCategories = [
+    if (!Platform.isIOS) AppCategories.loanAndInteriorCategories[0],
+    AppCategories.loanAndInteriorCategories[1],
   ];
 
   @override

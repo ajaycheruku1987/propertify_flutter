@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class LookingForSelector extends StatelessWidget {
   const LookingForSelector({super.key});
 
-  final List<String> options = const ['Sell', 'Rent'];
+  final List<String> options = AppCategories.lookingFor;
 
   @override
   Widget build(BuildContext context) {

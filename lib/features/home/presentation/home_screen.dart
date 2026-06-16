@@ -375,6 +375,17 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     return '-';
   }
 
+  String _getCurrentAddress(HomeState homeState) {
+    final parts = <String>[];
+    if (homeState.currentVillage.isNotEmpty) {
+      parts.add(homeState.currentVillage);
+    }
+    if (homeState.currentCity.isNotEmpty) {
+      parts.add(homeState.currentCity);
+    }
+    return parts.isNotEmpty ? parts.join(', ') : '';
+  }
+
   Future<void> _openMapScreen() async {
     final result = await Navigator.push<Map<String, dynamic>>(
       context,
@@ -421,13 +432,27 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   Widget mainContent(HomeState state) {
+    final currentTabIndex = state.homeIndex;
+    bool hasActiveFilter = false;
+    if (currentTabIndex == 0) {
+      hasActiveFilter = state.activeFeedsFilter != null;
+    } else if (currentTabIndex == 1) {
+      hasActiveFilter = state.activeServicesFilter != null;
+    } else if (currentTabIndex == 2) {
+      hasActiveFilter = state.activeRequestsFilter != null;
+    } else if (currentTabIndex == 3) {
+      hasActiveFilter = state.activeSalesFilter != null;
+    }
+
+    final maxHeight = 245.0;
+
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             sliver: SliverAppBar(
-              expandedHeight: 245.0,
+              expandedHeight: maxHeight,
               collapsedHeight: 70.0,
               pinned: true,
               backgroundColor: Colors.white,
@@ -438,7 +463,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                   // Calculate scroll progress
                   final currentHeight = constraints.maxHeight;
                   final minHeight = 70.0;
-                  final maxHeight = 245.0;
                   final progress =
                       ((maxHeight - currentHeight) / (maxHeight - minHeight))
                           .clamp(0.0, 1.0);
@@ -521,7 +545,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 ),
                               ),
                             ),
-                          // Search Bar - always visible
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 16,
@@ -530,6 +553,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                               bottom: 12,
                             ),
                             child: SearchBarWidget(
+                              hasActiveFilter: hasActiveFilter,
                               onChanged: (searchQuery) {
                                 final currentTabIndex = state.homeIndex;
                                 final homeState = context
@@ -575,28 +599,59 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 final homeState = context
                                     .read<HomeBloc>()
                                     .state;
+                                final currentAddress = _getCurrentAddress(
+                                  homeState,
+                                );
+                                final currentCity =
+                                    homeState.currentCity.isNotEmpty
+                                    ? homeState.currentCity
+                                    : 'Hyderabad';
 
                                 if (currentTabIndex == 0) {
                                   FeedsFilter.show(
                                     context,
+                                    activeFilter: homeState.activeFeedsFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
                                     onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateFeedsFilter(filterData),
+                                      );
+                                      final lookingFor =
+                                          filterData['lookingFor'] as String?;
+                                      final mappedLookingFor =
+                                          lookingFor == 'Sales'
+                                          ? 'Sell'
+                                          : (lookingFor == 'All' ||
+                                                lookingFor == '')
+                                          ? null
+                                          : lookingFor;
+
+                                      final propertyTypes =
+                                          filterData['propertyTypes'] as List?;
+                                      final propertyType =
+                                          propertyTypes != null &&
+                                              propertyTypes.isNotEmpty &&
+                                              !propertyTypes.contains('All')
+                                          ? propertyTypes.first as String?
+                                          : null;
+
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] ==
+                                          true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
+
                                       context.read<FeedBloc>().add(
                                         FeedEvent.getFeedsEvent(
                                           city:
                                               filterData['location'] as String?,
-                                          listingType:
-                                              filterData['lookingFor']
-                                                  as String?,
-                                          propertyType:
-                                              (filterData['propertyTypes']
-                                                          as List?)
-                                                      ?.isNotEmpty ==
-                                                  true
-                                              ? (filterData['propertyTypes']
-                                                            as List)
-                                                        .first
-                                                    as String?
-                                              : null,
+                                          listingType: mappedLookingFor,
+                                          propertyType: propertyType,
                                           minPrice:
                                               (filterData['priceRange']
                                                       as Map?)?['min']
@@ -605,12 +660,15 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                               (filterData['priceRange']
                                                       as Map?)?['max']
                                                   ?.toDouble(),
-                                          latitude: homeState.currentLat,
-                                          longitude: homeState.currentLng,
+                                          latitude: latitude,
+                                          longitude: longitude,
                                         ),
                                       );
                                     },
                                     onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateFeedsFilter(null),
+                                      );
                                       context.read<FeedBloc>().add(
                                         FeedEvent.getFeedsEvent(
                                           latitude: homeState.currentLat,
@@ -622,23 +680,61 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 } else if (currentTabIndex == 1) {
                                   ServicesFilter.show(
                                     context,
+                                    activeFilter:
+                                        homeState.activeServicesFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
                                     onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateServicesFilter(
+                                          filterData,
+                                        ),
+                                      );
+                                      final List<String> categoriesList = [];
+                                      final String? serviceType =
+                                          filterData['serviceType'] as String?;
+                                      if (serviceType != null &&
+                                          serviceType != 'All') {
+                                        categoriesList.add(serviceType);
+                                      }
+                                      final List? categories =
+                                          filterData['categories'] as List?;
+                                      if (categories != null) {
+                                        for (final cat in categories) {
+                                          if (cat != 'All' && cat is String) {
+                                            categoriesList.add(cat);
+                                          }
+                                        }
+                                      }
+
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] ==
+                                          true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
+
                                       context.read<ServicesBloc>().add(
                                         ServicesEvent.getServicesEvent(
                                           categoryNames:
-                                              filterData['serviceType'] != 'All'
-                                              ? [
-                                                  filterData['serviceType']
-                                                      as String,
-                                                ]
+                                              categoriesList.isNotEmpty
+                                              ? categoriesList
                                               : null,
-                                          latitude: homeState.currentLat,
-                                          longitude: homeState.currentLng,
-                                          radiusKm: 5,
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                          radiusKm: 15,
                                         ),
                                       );
                                     },
                                     onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateServicesFilter(
+                                          null,
+                                        ),
+                                      );
                                       context.read<ServicesBloc>().add(
                                         ServicesEvent.getServicesEvent(
                                           latitude: homeState.currentLat,
@@ -651,16 +747,42 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 } else if (currentTabIndex == 2) {
                                   RequestsFilter.show(
                                     context,
+                                    activeFilter:
+                                        homeState.activeRequestsFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
                                     onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateRequestsFilter(
+                                          filterData,
+                                        ),
+                                      );
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] ==
+                                          true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
+
                                       context.read<RequestsBloc>().add(
                                         RequestsEvent.getRequests(
-                                          latitude: homeState.currentLat,
-                                          longitude: homeState.currentLng,
-                                          radiusKm: 5,
+                                          city:
+                                              filterData['address'] as String?,
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                          radiusKm: 15,
                                         ),
                                       );
                                     },
                                     onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateRequestsFilter(
+                                          null,
+                                        ),
+                                      );
                                       context.read<RequestsBloc>().add(
                                         RequestsEvent.getRequests(
                                           latitude: homeState.currentLat,
@@ -673,40 +795,62 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 } else if (currentTabIndex == 3) {
                                   SalesFilter.show(
                                     context,
+                                    activeFilter: homeState.activeSalesFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
                                     onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateSalesFilter(filterData),
+                                      );
+                                      final propertyTypes =
+                                          filterData['propertyTypes'] as List?;
+                                      final propertyType =
+                                          propertyTypes != null &&
+                                              propertyTypes.isNotEmpty &&
+                                              !propertyTypes.contains('All')
+                                          ? propertyTypes.first as String?
+                                          : null;
+
+                                      final priceRange =
+                                          filterData['priceRange'] as Map?;
+                                      final minPrice = priceRange != null
+                                          ? (priceRange['min'] as num)
+                                                    .toDouble() *
+                                                100000
+                                          : null;
+                                      final maxPrice = priceRange != null
+                                          ? (priceRange['max'] as num)
+                                                    .toDouble() *
+                                                100000
+                                          : null;
+
                                       context.read<SalesBloc>().add(
                                         SalesEvent.getSalesEvent(
                                           location:
                                               filterData['location'] as String?,
-                                          propertyType:
-                                              (filterData['propertyTypes']
-                                                          as List?)
-                                                      ?.isNotEmpty ==
-                                                  true
-                                              ? (filterData['propertyTypes']
-                                                            as List)
-                                                        .first
-                                                    as String?
-                                              : null,
-                                          minPrice:
-                                              (filterData['priceRange']
-                                                      as Map?)?['min']
-                                                  ?.toDouble(),
-                                          maxPrice:
-                                              (filterData['priceRange']
-                                                      as Map?)?['max']
-                                                  ?.toDouble(),
+                                          propertyType: propertyType,
+                                          minPrice: minPrice,
+                                          maxPrice: maxPrice,
+                                          search:
+                                              filterData['search'] as String?,
                                         ),
                                       );
                                     },
                                     onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSalesFilter(null),
+                                      );
                                       context.read<SalesBloc>().add(
                                         const SalesEvent.getSalesEvent(),
                                       );
                                     },
                                   );
                                 } else {
-                                  FeedsFilter.show(context);
+                                  FeedsFilter.show(
+                                    context,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
+                                  );
                                 }
                               },
                             ),

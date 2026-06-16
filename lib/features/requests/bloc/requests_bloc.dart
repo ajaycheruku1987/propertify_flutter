@@ -19,6 +19,10 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
   double? _lastLatitude;
   double? _lastLongitude;
   double? _lastRadiusKm;
+  String? _lastCategory;
+  String? _lastCity;
+  double? _lastMinBudget;
+  double? _lastMaxBudget;
 
   RequestsBloc(this._requestsRepo) : super(const RequestsState()) {
     on<_GetRequestsEvent>(_onGetRequestsEvent);
@@ -51,12 +55,20 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
       final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
       final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
       final double? radiusKm = event.radiusKm ?? (offset == 0 ? null : _lastRadiusKm);
+      final String? category = event.category ?? (offset == 0 ? null : _lastCategory);
+      final String? city = event.city ?? (offset == 0 ? null : _lastCity);
+      final double? minBudget = event.minBudget ?? (offset == 0 ? null : _lastMinBudget);
+      final double? maxBudget = event.maxBudget ?? (offset == 0 ? null : _lastMaxBudget);
 
       if (offset == 0) {
         _lastSearch = search;
         _lastLatitude = latitude;
         _lastLongitude = longitude;
         _lastRadiusKm = radiusKm;
+        _lastCategory = category;
+        _lastCity = city;
+        _lastMinBudget = minBudget;
+        _lastMaxBudget = maxBudget;
       }
 
       emit(
@@ -74,6 +86,10 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
             longitude: longitude,
             radiusKm: radiusKm,
             search: search,
+            category: category,
+            city: city,
+            minBudget: minBudget,
+            maxBudget: maxBudget,
           );
 
       requestsEither.fold(

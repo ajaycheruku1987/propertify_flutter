@@ -8,6 +8,8 @@ import 'package:propertify/features/create_post/presentation/widgets/address_inp
 import 'package:propertify/features/services/models/create_service_data_model.dart';
 import 'package:propertify/features/services/models/services_response_model.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
+import 'package:propertify/core/constants/app_categories.dart';
+
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/custom_toast.dart';
@@ -45,16 +47,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final List<String> _categories = [
-    'Real estate',
-    'Plots',
-    'Building Material Supply',
-    'Advocate',
-    'Construction Contractor',
-    'Property valuation',
-    'Leasing',
-    'Villas',
-  ];
+  final List<String> _categories = AppCategories.serviceCategories;
 
   @override
   void initState() {

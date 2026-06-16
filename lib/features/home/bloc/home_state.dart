@@ -16,5 +16,9 @@ class HomeState with _$HomeState {
     List<FeedPostsResponseModel>? otherUserPosts,
     @Default(false) bool isLoadingOtherUserPosts,
     @Default(false) bool hasMoreOtherUserPosts,
+    Map<String, dynamic>? activeFeedsFilter,
+    Map<String, dynamic>? activeServicesFilter,
+    Map<String, dynamic>? activeRequestsFilter,
+    Map<String, dynamic>? activeSalesFilter,
   }) = _HomeState;
 }

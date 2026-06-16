@@ -89,9 +89,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             mounted &&
             !state.isSuccess &&
             !state.errorMessage!.toLowerCase().contains('not found')) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.errorMessage!)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
         }
       },
       builder: (context, state) {
@@ -126,8 +126,8 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => context.read<CompanyBloc>().add(
-                          CompanyEvent.getUserCompany(userId: widget.userId),
-                        ),
+                      CompanyEvent.getUserCompany(userId: widget.userId),
+                    ),
                     child: const Text('Retry'),
                   ),
                 ],
@@ -164,15 +164,22 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
     // Check if the current user is the owner
     final cacheService = serviceLocator<AppCacheService>();
     final profileState = context.read<ProfileBloc>().state;
-    
+
     // Get identity from cache or active profile state
-    final currentUserId = cacheService.customerAccountId ?? profileState.userProfile?.id;
-    final currentUserPhone = cacheService.userPhone ?? profileState.userProfile?.phoneNumber;
-    
+    final currentUserId =
+        cacheService.customerAccountId ?? profileState.userProfile?.id;
+    final currentUserPhone =
+        cacheService.userPhone ?? profileState.userProfile?.phoneNumber;
+
     // Check ownership by ID or Phone Number
-    final bool isMyCompany = (currentUserId != null && (currentUserId == widget.userId || currentUserId == company.userId)) ||
-                             (currentUserPhone != null && currentUserPhone.isNotEmpty && currentUserPhone == company.owner?.phoneNumber);
-    
+    final bool isMyCompany =
+        (currentUserId != null &&
+            (currentUserId == widget.userId ||
+                currentUserId == company.userId)) ||
+        (currentUserPhone != null &&
+            currentUserPhone.isNotEmpty &&
+            currentUserPhone == company.owner?.phoneNumber);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -276,22 +283,36 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
               }
 
               if (salesProjects.isEmpty) {
-                return SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: AdSliderWidget(
-                      title: 'Add your Project!',
-                      caption: 'List your projects for\nsales',
-                      onCreateRequest: () {
-                        context.push(CreateSalesScreen.routeName);
-                      },
-                      createButtonText: 'Create Project',
-                      showExploreDetailsButton: false,
-                      backgroundImagePath:
-                          'assets/images/create_company_banner.svg',
+                if (isMyCompany) {
+                  return SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: AdSliderWidget(
+                        title: 'Add your Project!',
+                        caption: 'List your projects for\nsales',
+                        onCreateRequest: () {
+                          context.push(CreateSalesScreen.routeName);
+                        },
+                        createButtonText: 'Create Project',
+                        showExploreDetailsButton: false,
+                        backgroundImagePath:
+                            'assets/images/create_company_banner.svg',
+                      ),
                     ),
-                  ),
-                );
+                  );
+                } else {
+                  return const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 40.0),
+                      child: Center(
+                        child: Text(
+                          'No projects available',
+                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  );
+                }
               }
 
               return SliverPadding(
@@ -299,12 +320,13 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                 sliver: SliverSafeArea(
                   top: false,
                   sliver: SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.75,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.75,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                        ),
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         if (index == salesProjects.length) {
@@ -318,7 +340,8 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                         }
                         return _buildProjectCard(salesProjects[index]);
                       },
-                      childCount: salesProjects.length +
+                      childCount:
+                          salesProjects.length +
                           (state.hasMoreData && state.isLoading ? 1 : 0),
                     ),
                   ),
@@ -452,16 +475,21 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             height: 48,
             child: CommonCustomButton(
               onTap: () async {
-                final currentCompany = context.read<CompanyBloc>().state.userCompany;
+                final currentCompany = context
+                    .read<CompanyBloc>()
+                    .state
+                    .userCompany;
                 // Reset submission status but keep userCompany if needed for the next screen
                 // Actually initializeForEdit will set the necessary fields.
-                context.read<CompanyBloc>().add(const CompanyEvent.resetState());
-                
+                context.read<CompanyBloc>().add(
+                  const CompanyEvent.resetState(),
+                );
+
                 await context.push(
                   CreateCompanyScreen.routeName,
                   extra: currentCompany,
                 );
-                // No need to call getUserCompany here because CompanyBloc is shared 
+                // No need to call getUserCompany here because CompanyBloc is shared
                 // and userCompany is already updated upon success.
               },
               buttonLabel: 'Edit Company',
@@ -570,7 +598,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                    color: Theme.of(
+                      context,
+                    ).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -591,7 +621,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                    color: Theme.of(
+                      context,
+                    ).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -768,7 +800,9 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                        color: Theme.of(
+                          context,
+                        ).primaryColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
@@ -829,14 +863,11 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             TextButton(
               onPressed: () {
                 context.read<CompanyBloc>().add(
-                      CompanyEvent.deleteCompany(companyId: companyId),
-                    );
+                  CompanyEvent.deleteCompany(companyId: companyId),
+                );
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
-              ),
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
             ),
           ],
         );

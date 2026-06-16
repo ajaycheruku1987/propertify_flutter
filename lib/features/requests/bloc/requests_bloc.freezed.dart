@@ -19,8 +19,17 @@ mixin _$RequestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -56,8 +65,17 @@ mixin _$RequestsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -93,8 +111,17 @@ mixin _$RequestsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -224,8 +251,17 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -264,8 +300,17 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -304,8 +349,17 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -410,7 +464,11 @@ abstract class _$$GetRequestsEventImplCopyWith<$Res> {
       double? latitude,
       double? longitude,
       double? radiusKm,
-      String? search});
+      String? search,
+      String? category,
+      String? city,
+      double? minBudget,
+      double? maxBudget});
 }
 
 /// @nodoc
@@ -430,6 +488,10 @@ class __$$GetRequestsEventImplCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? radiusKm = freezed,
     Object? search = freezed,
+    Object? category = freezed,
+    Object? city = freezed,
+    Object? minBudget = freezed,
+    Object? maxBudget = freezed,
   }) {
     return _then(_$GetRequestsEventImpl(
       skip: freezed == skip
@@ -456,6 +518,22 @@ class __$$GetRequestsEventImplCopyWithImpl<$Res>
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
               as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minBudget: freezed == minBudget
+          ? _value.minBudget
+          : minBudget // ignore: cast_nullable_to_non_nullable
+              as double?,
+      maxBudget: freezed == maxBudget
+          ? _value.maxBudget
+          : maxBudget // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -469,7 +547,11 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
       this.latitude,
       this.longitude,
       this.radiusKm,
-      this.search});
+      this.search,
+      this.category,
+      this.city,
+      this.minBudget,
+      this.maxBudget});
 
   @override
   final int? skip;
@@ -483,10 +565,18 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
   final double? radiusKm;
   @override
   final String? search;
+  @override
+  final String? category;
+  @override
+  final String? city;
+  @override
+  final double? minBudget;
+  @override
+  final double? maxBudget;
 
   @override
   String toString() {
-    return 'RequestsEvent.getRequests(skip: $skip, limit: $limit, latitude: $latitude, longitude: $longitude, radiusKm: $radiusKm, search: $search)';
+    return 'RequestsEvent.getRequests(skip: $skip, limit: $limit, latitude: $latitude, longitude: $longitude, radiusKm: $radiusKm, search: $search, category: $category, city: $city, minBudget: $minBudget, maxBudget: $maxBudget)';
   }
 
   @override
@@ -502,12 +592,19 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
                 other.longitude == longitude) &&
             (identical(other.radiusKm, radiusKm) ||
                 other.radiusKm == radiusKm) &&
-            (identical(other.search, search) || other.search == search));
+            (identical(other.search, search) || other.search == search) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.minBudget, minBudget) ||
+                other.minBudget == minBudget) &&
+            (identical(other.maxBudget, maxBudget) ||
+                other.maxBudget == maxBudget));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, skip, limit, latitude, longitude, radiusKm, search);
+  int get hashCode => Object.hash(runtimeType, skip, limit, latitude, longitude,
+      radiusKm, search, category, city, minBudget, maxBudget);
 
   @JsonKey(ignore: true)
   @override
@@ -520,8 +617,17 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -553,15 +659,25 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function() isLoading,
     required TResult Function() getMyRequests,
   }) {
-    return getRequests(skip, limit, latitude, longitude, radiusKm, search);
+    return getRequests(skip, limit, latitude, longitude, radiusKm, search,
+        category, city, minBudget, maxBudget);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -593,16 +709,25 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function()? isLoading,
     TResult? Function()? getMyRequests,
   }) {
-    return getRequests?.call(
-        skip, limit, latitude, longitude, radiusKm, search);
+    return getRequests?.call(skip, limit, latitude, longitude, radiusKm, search,
+        category, city, minBudget, maxBudget);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -636,7 +761,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult orElse(),
   }) {
     if (getRequests != null) {
-      return getRequests(skip, limit, latitude, longitude, radiusKm, search);
+      return getRequests(skip, limit, latitude, longitude, radiusKm, search,
+          category, city, minBudget, maxBudget);
     }
     return orElse();
   }
@@ -698,7 +824,11 @@ abstract class _GetRequestsEvent implements RequestsEvent {
       final double? latitude,
       final double? longitude,
       final double? radiusKm,
-      final String? search}) = _$GetRequestsEventImpl;
+      final String? search,
+      final String? category,
+      final String? city,
+      final double? minBudget,
+      final double? maxBudget}) = _$GetRequestsEventImpl;
 
   int? get skip;
   int? get limit;
@@ -706,6 +836,10 @@ abstract class _GetRequestsEvent implements RequestsEvent {
   double? get longitude;
   double? get radiusKm;
   String? get search;
+  String? get category;
+  String? get city;
+  double? get minBudget;
+  double? get maxBudget;
   @JsonKey(ignore: true)
   _$$GetRequestsEventImplCopyWith<_$GetRequestsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -780,8 +914,17 @@ class _$GetRequestDetailsEventImpl implements _GetRequestDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -820,8 +963,17 @@ class _$GetRequestDetailsEventImpl implements _GetRequestDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -860,8 +1012,17 @@ class _$GetRequestDetailsEventImpl implements _GetRequestDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -1124,8 +1285,17 @@ class _$CreateRequestEventImpl implements _CreateRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -1165,8 +1335,17 @@ class _$CreateRequestEventImpl implements _CreateRequestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -1206,8 +1385,17 @@ class _$CreateRequestEventImpl implements _CreateRequestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -1511,8 +1699,17 @@ class _$UpdateRequestEventImpl implements _UpdateRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -1552,8 +1749,17 @@ class _$UpdateRequestEventImpl implements _UpdateRequestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -1593,8 +1799,17 @@ class _$UpdateRequestEventImpl implements _UpdateRequestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -1781,8 +1996,17 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -1821,8 +2045,17 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -1861,8 +2094,17 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -2000,8 +2242,17 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -2040,8 +2291,17 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -2080,8 +2340,17 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(
@@ -2213,8 +2482,17 @@ class _$GetMyRequestsEventImpl implements _GetMyRequestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)
+    required TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)
         getRequests,
     required TResult Function(String requestId) getRequestDetails,
     required TResult Function(
@@ -2253,8 +2531,17 @@ class _$GetMyRequestsEventImpl implements _GetMyRequestsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, double? latitude,
-            double? longitude, double? radiusKm, String? search)?
+    TResult? Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult? Function(String requestId)? getRequestDetails,
     TResult? Function(
@@ -2293,8 +2580,17 @@ class _$GetMyRequestsEventImpl implements _GetMyRequestsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, double? latitude, double? longitude,
-            double? radiusKm, String? search)?
+    TResult Function(
+            int? skip,
+            int? limit,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            String? category,
+            String? city,
+            double? minBudget,
+            double? maxBudget)?
         getRequests,
     TResult Function(String requestId)? getRequestDetails,
     TResult Function(

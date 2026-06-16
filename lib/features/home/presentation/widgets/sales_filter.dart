@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../../../../core/app_theme.dart';
 import '../../../../utils/common_widgets/common_custom_button.dart';
 
 class SalesFilter extends StatefulWidget {
   final Function(Map<String, dynamic>)? onApplyFilter;
   final Function()? onResetFilter;
+  final Map<String, dynamic>? activeFilter;
+  final String? currentAddress;
+  final String? currentCity;
 
-  const SalesFilter({super.key, this.onApplyFilter, this.onResetFilter});
+  const SalesFilter({
+    super.key,
+    this.onApplyFilter,
+    this.onResetFilter,
+    this.activeFilter,
+    this.currentAddress,
+    this.currentCity,
+  });
 
   static void show(
     BuildContext context, {
     Function(Map<String, dynamic>)? onApplyFilter,
     Function()? onResetFilter,
+    Map<String, dynamic>? activeFilter,
+    String? currentAddress,
+    String? currentCity,
   }) {
     showModalBottomSheet(
       context: context,
@@ -21,6 +35,9 @@ class SalesFilter extends StatefulWidget {
       builder: (context) => SalesFilter(
         onApplyFilter: onApplyFilter,
         onResetFilter: onResetFilter,
+        activeFilter: activeFilter,
+        currentAddress: currentAddress,
+        currentCity: currentCity,
       ),
     );
   }
@@ -32,6 +49,45 @@ class SalesFilter extends StatefulWidget {
 class _SalesFilterState extends State<SalesFilter> {
   final TextEditingController _searchController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  bool _isLocationCustom = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.activeFilter != null) {
+      _isLocationCustom = widget.activeFilter!['isLocationCustom'] ?? false;
+      _searchController.text = widget.activeFilter!['search'] ?? '';
+      _selectedPropertyTypes = List<String>.from(widget.activeFilter!['propertyTypes'] ?? []);
+      _selectedAmenities = List<String>.from(widget.activeFilter!['amenities'] ?? []);
+      final priceMap = widget.activeFilter!['priceRange'] as Map?;
+      if (priceMap != null) {
+        _priceRange = RangeValues(
+          (priceMap['min'] as num).toDouble(),
+          (priceMap['max'] as num).toDouble(),
+        );
+      }
+      final areaMap = widget.activeFilter!['areaRange'] as Map?;
+      if (areaMap != null) {
+        _areaRange = RangeValues(
+          (areaMap['min'] as num).toDouble(),
+          (areaMap['max'] as num).toDouble(),
+        );
+      }
+      _selectedBedrooms = widget.activeFilter!['bedrooms'] ?? 'Any';
+      _selectedBathrooms = widget.activeFilter!['bathrooms'] ?? 'Any';
+      if (_isLocationCustom) {
+        _selectedLocation = widget.activeFilter!['location'] ?? widget.currentCity ?? 'Hyderabad';
+        _addressController.text = widget.activeFilter!['address'] ?? _selectedLocation;
+      } else {
+        _selectedLocation = widget.currentCity ?? 'Hyderabad';
+        _addressController.text = widget.currentAddress ?? _selectedLocation;
+      }
+    } else {
+      _isLocationCustom = false;
+      _selectedLocation = widget.currentCity ?? 'Hyderabad';
+      _addressController.text = widget.currentAddress ?? _selectedLocation;
+    }
+  }
 
   String _selectedLocation = 'Hyderabad';
   List<String> _selectedPropertyTypes = [];
@@ -52,16 +108,7 @@ class _SalesFilterState extends State<SalesFilter> {
     'Ahmedabad',
   ];
 
-  final List<String> _propertyTypes = [
-    'All',
-    'House',
-    'Flats',
-    'Villas',
-    'Plots',
-    'Commercial',
-    'Apartments',
-    'Properties',
-  ];
+  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
 
   final List<String> _amenities = [
     'Parking',
@@ -149,6 +196,7 @@ class _SalesFilterState extends State<SalesFilter> {
                       );
 
                       setState(() {
+                        _isLocationCustom = true;
                         _selectedLocation = city;
                         _addressController.text = address;
                       });
@@ -647,9 +695,10 @@ class _SalesFilterState extends State<SalesFilter> {
 
   void _resetFilters() {
     setState(() {
+      _isLocationCustom = false;
       _searchController.clear();
-      _addressController.clear();
-      _selectedLocation = 'Hyderabad';
+      _selectedLocation = widget.currentCity ?? 'Hyderabad';
+      _addressController.text = widget.currentAddress ?? _selectedLocation;
       _selectedPropertyTypes = [];
       _selectedAmenities = [];
       _priceRange = const RangeValues(10, 1000);
@@ -676,6 +725,7 @@ class _SalesFilterState extends State<SalesFilter> {
       'areaRange': {'min': _areaRange.start, 'max': _areaRange.end},
       'bedrooms': _selectedBedrooms,
       'bathrooms': _selectedBathrooms,
+      'isLocationCustom': _isLocationCustom,
     };
 
     if (widget.onApplyFilter != null) {

@@ -70,8 +70,9 @@ class SalesRepo {
         queryParams['property_types'] = [propertyType];
       }
 
-      // Note: minPrice, maxPrice, search are currently not part of schema.
-      // Keeping params in signature for backward compatibility, but not sending.
+      if (minPrice != null) queryParams['min_price'] = minPrice;
+      if (maxPrice != null) queryParams['max_price'] = maxPrice;
+      if (search != null && search.isNotEmpty) queryParams['search'] = search;
 
       // Build query string manually
       String queryString = '';

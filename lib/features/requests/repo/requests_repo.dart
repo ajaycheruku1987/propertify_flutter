@@ -19,18 +19,33 @@ class RequestsRepo {
     double? longitude,
     double? radiusKm,
     String? search,
+    String? category,
+    String? city,
+    double? minBudget,
+    double? maxBudget,
   }) async {
     try {
       // Build query parameters map
       final Map<String, dynamic> queryParams = {};
       if (skip != null) queryParams['skip'] = skip;
       if (limit != null) queryParams['limit'] = limit;
-      if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
-      if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
-      if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0 && radiusKm != null) {
+      if (latitude != null && latitude != 0.0)
+        queryParams['latitude'] = latitude;
+      if (longitude != null && longitude != 0.0)
+        queryParams['longitude'] = longitude;
+      if (latitude != null &&
+          latitude != 0.0 &&
+          longitude != null &&
+          longitude != 0.0 &&
+          radiusKm != null) {
         queryParams['radius_km'] = radiusKm;
       }
       if (search != null && search.isNotEmpty) queryParams['search'] = search;
+      if (category != null && category.isNotEmpty)
+        queryParams['category'] = category;
+      if (city != null && city.isNotEmpty) queryParams['city'] = city;
+      if (minBudget != null) queryParams['min_budget'] = minBudget;
+      if (maxBudget != null) queryParams['max_budget'] = maxBudget;
 
       // Build query string manually since get method may not support queryParameters
       String queryString = '';
@@ -138,8 +153,10 @@ class RequestsRepo {
         'longitude': longitude,
       };
 
-      final response =
-          await ftPyroApiRequest.put('/requests/$requestId', data: data);
+      final response = await ftPyroApiRequest.put(
+        '/requests/$requestId',
+        data: data,
+      );
 
       final responseData = await response.getResponse();
       return responseData.fold(

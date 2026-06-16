@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/core/app_theme.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../../../create_post/presentation/widgets/address_input.dart';
 
 class RequestsFilter extends StatefulWidget {
   final Function(Map<String, dynamic>)? onApplyFilter;
   final VoidCallback? onResetFilter;
+  final Map<String, dynamic>? activeFilter;
+  final String? currentAddress;
+  final String? currentCity;
 
-  const RequestsFilter({super.key, this.onApplyFilter, this.onResetFilter});
+  const RequestsFilter({
+    super.key,
+    this.onApplyFilter,
+    this.onResetFilter,
+    this.activeFilter,
+    this.currentAddress,
+    this.currentCity,
+  });
 
   static void show(
     BuildContext context, {
     Function(Map<String, dynamic>)? onApplyFilter,
     VoidCallback? onResetFilter,
+    Map<String, dynamic>? activeFilter,
+    String? currentAddress,
+    String? currentCity,
   }) {
     showModalBottomSheet(
       context: context,
@@ -20,6 +34,9 @@ class RequestsFilter extends StatefulWidget {
       builder: (context) => RequestsFilter(
         onApplyFilter: onApplyFilter,
         onResetFilter: onResetFilter,
+        activeFilter: activeFilter,
+        currentAddress: currentAddress,
+        currentCity: currentCity,
       ),
     );
   }
@@ -31,16 +48,35 @@ class RequestsFilter extends StatefulWidget {
 class _RequestsFilterState extends State<RequestsFilter> {
   final TextEditingController _addressController = TextEditingController();
   String _selectedCategoryType = 'All';
-  RangeValues _priceRange = const RangeValues(10, 800);
   String _selectedAddress = '';
 
-  final List<String> _categoryTypes = [
-    'All',
-    'Buy',
-    'Rent',
-    'PG',
-    'Commercial',
-  ];
+  double? _latitude;
+  double? _longitude;
+  bool _isLocationCustom = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.activeFilter != null) {
+      _isLocationCustom = widget.activeFilter!['isLocationCustom'] ?? false;
+      _latitude = widget.activeFilter!['latitude'];
+      _longitude = widget.activeFilter!['longitude'];
+      _selectedCategoryType = widget.activeFilter!['categoryType'] ?? 'All';
+      if (_isLocationCustom) {
+        _selectedAddress = widget.activeFilter!['address'] ?? '';
+      } else {
+        _selectedAddress = widget.currentAddress ?? '';
+      }
+      _addressController.text = _selectedAddress;
+    } else {
+      _isLocationCustom = false;
+      _selectedAddress = widget.currentAddress ?? '';
+      _addressController.text = _selectedAddress;
+      _selectedCategoryType = 'All';
+    }
+  }
+
+  final List<String> _categoryTypes = AppCategories.requestCategoriesFilter;
 
   @override
   void dispose() {
@@ -105,7 +141,6 @@ class _RequestsFilterState extends State<RequestsFilter> {
                       controller: _addressController,
                       onLocationSelected: (locationData) {
                         final address = locationData['address'] as String;
-                        final city = locationData['city'] as String;
                         final latitude = double.parse(
                           locationData['lat'] as String,
                         );
@@ -114,9 +149,11 @@ class _RequestsFilterState extends State<RequestsFilter> {
                         );
 
                         setState(() {
+                          _isLocationCustom = true;
+                          _latitude = latitude;
+                          _longitude = longitude;
                           _selectedAddress = address;
-                          _addressController.text =
-                              address; // Update the controller to show the address in UI
+                          _addressController.text = address;
                         });
                       },
                     ),
@@ -124,10 +161,6 @@ class _RequestsFilterState extends State<RequestsFilter> {
 
                     // Category Type Section
                     _buildCategoryTypeSection(),
-                    const SizedBox(height: 24),
-
-                    // Price Range Section
-                    _buildPriceRangeSection(),
                     const SizedBox(
                       height: 100,
                     ), // Extra space for bottom buttons
@@ -198,69 +231,7 @@ class _RequestsFilterState extends State<RequestsFilter> {
     );
   }
 
-  Widget _buildPriceRangeSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Price Range (in Lakhs)',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade50,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '₹${_priceRange.start.round()} L',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  Text(
-                    '₹${_priceRange.end.round()} L',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              RangeSlider(
-                values: _priceRange,
-                min: 10,
-                max: 800,
-                divisions: 79,
-                activeColor: AppTheme.blueColor,
-                inactiveColor: Colors.grey.shade300,
-                onChanged: (RangeValues values) {
-                  setState(() {
-                    _priceRange = values;
-                  });
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+
 
   Widget _buildBottomButtons() {
     return Container(
@@ -275,10 +246,12 @@ class _RequestsFilterState extends State<RequestsFilter> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  _addressController.clear();
-                  _selectedAddress = '';
+                  _isLocationCustom = false;
+                  _latitude = null;
+                  _longitude = null;
+                  _selectedAddress = widget.currentAddress ?? '';
+                  _addressController.text = _selectedAddress;
                   _selectedCategoryType = 'All';
-                  _priceRange = const RangeValues(10, 800);
                 });
                 if (widget.onResetFilter != null) {
                   widget.onResetFilter!();
@@ -313,7 +286,9 @@ class _RequestsFilterState extends State<RequestsFilter> {
                       ? _selectedAddress
                       : _addressController.text,
                   'categoryType': _selectedCategoryType,
-                  'priceRange': _priceRange,
+                  'isLocationCustom': _isLocationCustom,
+                  'latitude': _latitude,
+                  'longitude': _longitude,
                 };
 
                 if (widget.onApplyFilter != null) {

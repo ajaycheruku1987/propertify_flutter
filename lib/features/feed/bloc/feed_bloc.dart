@@ -19,6 +19,13 @@ part 'feed_state.dart';
 class FeedBloc extends Bloc<FeedEvent, FeedState> {
   final FeedRepo _feedRepo;
 
+  String? _lastCity;
+  String? _lastListingType;
+  String? _lastPropertyType;
+  double? _lastMinPrice;
+  double? _lastMaxPrice;
+  String? _lastSearch;
+
   FeedBloc(this._feedRepo) : super(const FeedState()) {
     on<_GetFeedsEvent>(_onGetFeedsEvent);
     on<_GetPostDetailsEvent>(_onGetPostDetailsEvent);
@@ -262,6 +269,22 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
       final int offset = event.offset ?? 0;
       final int limit = event.limit ?? 10;
 
+      final String? city = event.city ?? (offset == 0 ? null : _lastCity);
+      final String? listingType = event.listingType ?? (offset == 0 ? null : _lastListingType);
+      final String? propertyType = event.propertyType ?? (offset == 0 ? null : _lastPropertyType);
+      final double? minPrice = event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
+      final double? maxPrice = event.maxPrice ?? (offset == 0 ? null : _lastMaxPrice);
+      final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
+
+      if (offset == 0) {
+        _lastCity = city;
+        _lastListingType = listingType;
+        _lastPropertyType = propertyType;
+        _lastMinPrice = minPrice;
+        _lastMaxPrice = maxPrice;
+        _lastSearch = search;
+      }
+
       emit(
         state.copyWith(
           isLoading: true,
@@ -271,12 +294,12 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
       Either<Failure, List<FeedPostsResponseModel>> feedsResponseEither =
           await _feedRepo.getFeeds(
-            city: event.city,
-            listingType: event.listingType,
-            propertyType: event.propertyType,
-            minPrice: event.minPrice,
-            maxPrice: event.maxPrice,
-            search: event.search,
+            city: city,
+            listingType: listingType,
+            propertyType: propertyType,
+            minPrice: minPrice,
+            maxPrice: maxPrice,
+            search: search,
             limit: limit,
             offset: offset,
             latitude: event.latitude,

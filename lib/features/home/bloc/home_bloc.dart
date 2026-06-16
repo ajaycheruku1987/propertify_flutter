@@ -25,11 +25,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_CurrentLocationLatLng>(_onCurrentLocationLatLng);
     on<_UpdateCurrentLocation>(_onUpdateCurrentLocation);
     on<_LoadOtherUserPosts>(_onLoadOtherUserPosts);
+    on<_UpdateFeedsFilter>(_onUpdateFeedsFilter);
+    on<_UpdateServicesFilter>(_onUpdateServicesFilter);
+    on<_UpdateRequestsFilter>(_onUpdateRequestsFilter);
+    on<_UpdateSalesFilter>(_onUpdateSalesFilter);
     on<_Reset>(_onReset);
   }
 
   void _onReset(_Reset event, Emitter<HomeState> emit) {
     emit(const HomeState());
+  }
+
+  void _onUpdateFeedsFilter(_UpdateFeedsFilter event, Emitter<HomeState> emit) {
+    emit(state.copyWith(activeFeedsFilter: event.filter));
+  }
+
+  void _onUpdateServicesFilter(_UpdateServicesFilter event, Emitter<HomeState> emit) {
+    emit(state.copyWith(activeServicesFilter: event.filter));
+  }
+
+  void _onUpdateRequestsFilter(_UpdateRequestsFilter event, Emitter<HomeState> emit) {
+    emit(state.copyWith(activeRequestsFilter: event.filter));
+  }
+
+  void _onUpdateSalesFilter(_UpdateSalesFilter event, Emitter<HomeState> emit) {
+    emit(state.copyWith(activeSalesFilter: event.filter));
   }
 
   void _checkAccessToken(_CheckToken event, Emitter<HomeState> emit) {

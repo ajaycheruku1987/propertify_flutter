@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class PropertyTypeSelector extends StatelessWidget {
   const PropertyTypeSelector({super.key});
 
-  final List<Map<String, dynamic>> propertyTypes = const [
-    {'name': 'Villas', 'icon': Icons.villa_outlined},
-    {'name': 'Apartments', 'icon': Icons.apartment_outlined},
-    {'name': 'Open Plot', 'icon': Icons.business_outlined},
-  ];
+  final List<Map<String, dynamic>> propertyTypes = AppCategories.propertyTypes;
 
   @override
   Widget build(BuildContext context) {

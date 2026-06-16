@@ -914,7 +914,7 @@ Check it out on Propertify!
           // Call Button
           Expanded(
             child: GestureDetector(
-              onTap: () => _makePhoneCall(service.phoneNumber ?? ''),
+              onTap: () => _makePhoneCall(service.owner?.phoneNumber ?? ''),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(

@@ -36,13 +36,13 @@ class ServicesRepo {
       queryParams['radius_km'] = radiusKm ?? 5;
     }
     if (search != null && search.isNotEmpty) queryParams['search'] = search;
-    // if (categoryNames != null && categoryNames.isNotEmpty) {
-    //   // Handle multiple category_names
-    //   for (final cat in categoryNames) {
-    //     queryParams.putIfAbsent('category_names', () => <String>[]).add(cat);
-    //   }
-    // }
-    // if (minRating != null) queryParams['min_rating'] = minRating;
+    if (categoryNames != null && categoryNames.isNotEmpty) {
+      // Handle multiple category_names
+      for (final cat in categoryNames) {
+        queryParams.putIfAbsent('category_names', () => <String>[]).add(cat);
+      }
+    }
+    if (minRating != null) queryParams['min_rating'] = minRating;
 
     // Build query string manually since get method doesn't support queryParameters
     String queryString = '';

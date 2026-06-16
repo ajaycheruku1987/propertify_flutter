@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/requests/bloc/requests_bloc.dart';
 import 'package:propertify/features/requests/models/request_response_model.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 
 import '../../../utils/common_widgets/common_textfield.dart';
 import '../../../utils/common_widgets/common_custom_button.dart';
@@ -37,10 +38,7 @@ class _EditRequestState extends State<EditRequest> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Request categories
-  final List<Map<String, dynamic>> _requestCategories = [
-    {'name': 'Buy', 'icon': Icons.home_outlined},
-    {'name': 'Rent', 'icon': Icons.apartment_outlined},
-  ];
+  final List<Map<String, dynamic>> _requestCategories = AppCategories.requestCategories;
 
   @override
   void initState() {

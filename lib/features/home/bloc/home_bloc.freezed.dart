@@ -29,6 +29,12 @@ mixin _$HomeEvent {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +49,10 @@ mixin _$HomeEvent {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,10 @@ mixin _$HomeEvent {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +86,10 @@ mixin _$HomeEvent {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +102,10 @@ mixin _$HomeEvent {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +118,10 @@ mixin _$HomeEvent {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,6 +193,12 @@ class _$ResetImpl implements _Reset {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return reset();
   }
@@ -184,6 +216,10 @@ class _$ResetImpl implements _Reset {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return reset?.call();
   }
@@ -201,6 +237,10 @@ class _$ResetImpl implements _Reset {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -222,6 +262,10 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return reset(this);
   }
@@ -237,6 +281,10 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return reset?.call(this);
   }
@@ -252,6 +300,10 @@ class _$ResetImpl implements _Reset {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -314,6 +366,12 @@ class _$IsLoadingImpl implements _IsLoading {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return isLoading();
   }
@@ -331,6 +389,10 @@ class _$IsLoadingImpl implements _IsLoading {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return isLoading?.call();
   }
@@ -348,6 +410,10 @@ class _$IsLoadingImpl implements _IsLoading {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -369,6 +435,10 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return isLoading(this);
   }
@@ -384,6 +454,10 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return isLoading?.call(this);
   }
@@ -399,6 +473,10 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -487,6 +565,12 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return setHomeIndex(index);
   }
@@ -504,6 +588,10 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return setHomeIndex?.call(index);
   }
@@ -521,6 +609,10 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -542,6 +634,10 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return setHomeIndex(this);
   }
@@ -557,6 +653,10 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return setHomeIndex?.call(this);
   }
@@ -572,6 +672,10 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -666,6 +770,12 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return setBottomNavIndex(index);
   }
@@ -683,6 +793,10 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return setBottomNavIndex?.call(index);
   }
@@ -700,6 +814,10 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -721,6 +839,10 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return setBottomNavIndex(this);
   }
@@ -736,6 +858,10 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return setBottomNavIndex?.call(this);
   }
@@ -751,6 +877,10 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -818,6 +948,12 @@ class _$CheckTokenImpl implements _CheckToken {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return checkToken();
   }
@@ -835,6 +971,10 @@ class _$CheckTokenImpl implements _CheckToken {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return checkToken?.call();
   }
@@ -852,6 +992,10 @@ class _$CheckTokenImpl implements _CheckToken {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -873,6 +1017,10 @@ class _$CheckTokenImpl implements _CheckToken {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return checkToken(this);
   }
@@ -888,6 +1036,10 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return checkToken?.call(this);
   }
@@ -903,6 +1055,10 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -1001,6 +1157,12 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return currentLocationLatLng(lat, lng);
   }
@@ -1018,6 +1180,10 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return currentLocationLatLng?.call(lat, lng);
   }
@@ -1035,6 +1201,10 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1056,6 +1226,10 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return currentLocationLatLng(this);
   }
@@ -1071,6 +1245,10 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return currentLocationLatLng?.call(this);
   }
@@ -1086,6 +1264,10 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1221,6 +1403,12 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return updateCurrentLocation(lat, lng, city, state, village);
   }
@@ -1238,6 +1426,10 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return updateCurrentLocation?.call(lat, lng, city, state, village);
   }
@@ -1255,6 +1447,10 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1276,6 +1472,10 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return updateCurrentLocation(this);
   }
@@ -1291,6 +1491,10 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return updateCurrentLocation?.call(this);
   }
@@ -1306,6 +1510,10 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1426,6 +1634,12 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
         updateCurrentLocation,
     required TResult Function(String userId, int limit, int offset)
         loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
   }) {
     return loadOtherUserPosts(userId, limit, offset);
   }
@@ -1443,6 +1657,10 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
   }) {
     return loadOtherUserPosts?.call(userId, limit, offset);
   }
@@ -1460,6 +1678,10 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
             double lat, double lng, String city, String state, String village)?
         updateCurrentLocation,
     TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1481,6 +1703,10 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     required TResult Function(_UpdateCurrentLocation value)
         updateCurrentLocation,
     required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
   }) {
     return loadOtherUserPosts(this);
   }
@@ -1496,6 +1722,10 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
   }) {
     return loadOtherUserPosts?.call(this);
   }
@@ -1511,6 +1741,10 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
     TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
     TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1535,6 +1769,868 @@ abstract class _LoadOtherUserPosts implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateFeedsFilterImplCopyWith<$Res> {
+  factory _$$UpdateFeedsFilterImplCopyWith(_$UpdateFeedsFilterImpl value,
+          $Res Function(_$UpdateFeedsFilterImpl) then) =
+      __$$UpdateFeedsFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic>? filter});
+}
+
+/// @nodoc
+class __$$UpdateFeedsFilterImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateFeedsFilterImpl>
+    implements _$$UpdateFeedsFilterImplCopyWith<$Res> {
+  __$$UpdateFeedsFilterImplCopyWithImpl(_$UpdateFeedsFilterImpl _value,
+      $Res Function(_$UpdateFeedsFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$UpdateFeedsFilterImpl(
+      freezed == filter
+          ? _value._filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
+  const _$UpdateFeedsFilterImpl(final Map<String, dynamic>? filter)
+      : _filter = filter;
+
+  final Map<String, dynamic>? _filter;
+  @override
+  Map<String, dynamic>? get filter {
+    final value = _filter;
+    if (value == null) return null;
+    if (_filter is EqualUnmodifiableMapView) return _filter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateFeedsFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateFeedsFilterImpl &&
+            const DeepCollectionEquality().equals(other._filter, _filter));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_filter));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateFeedsFilterImplCopyWith<_$UpdateFeedsFilterImpl> get copyWith =>
+      __$$UpdateFeedsFilterImplCopyWithImpl<_$UpdateFeedsFilterImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+  }) {
+    return updateFeedsFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+  }) {
+    return updateFeedsFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateFeedsFilter != null) {
+      return updateFeedsFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+  }) {
+    return updateFeedsFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+  }) {
+    return updateFeedsFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateFeedsFilter != null) {
+      return updateFeedsFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateFeedsFilter implements HomeEvent {
+  const factory _UpdateFeedsFilter(final Map<String, dynamic>? filter) =
+      _$UpdateFeedsFilterImpl;
+
+  Map<String, dynamic>? get filter;
+  @JsonKey(ignore: true)
+  _$$UpdateFeedsFilterImplCopyWith<_$UpdateFeedsFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateServicesFilterImplCopyWith<$Res> {
+  factory _$$UpdateServicesFilterImplCopyWith(_$UpdateServicesFilterImpl value,
+          $Res Function(_$UpdateServicesFilterImpl) then) =
+      __$$UpdateServicesFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic>? filter});
+}
+
+/// @nodoc
+class __$$UpdateServicesFilterImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateServicesFilterImpl>
+    implements _$$UpdateServicesFilterImplCopyWith<$Res> {
+  __$$UpdateServicesFilterImplCopyWithImpl(_$UpdateServicesFilterImpl _value,
+      $Res Function(_$UpdateServicesFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$UpdateServicesFilterImpl(
+      freezed == filter
+          ? _value._filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
+  const _$UpdateServicesFilterImpl(final Map<String, dynamic>? filter)
+      : _filter = filter;
+
+  final Map<String, dynamic>? _filter;
+  @override
+  Map<String, dynamic>? get filter {
+    final value = _filter;
+    if (value == null) return null;
+    if (_filter is EqualUnmodifiableMapView) return _filter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateServicesFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateServicesFilterImpl &&
+            const DeepCollectionEquality().equals(other._filter, _filter));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_filter));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateServicesFilterImplCopyWith<_$UpdateServicesFilterImpl>
+      get copyWith =>
+          __$$UpdateServicesFilterImplCopyWithImpl<_$UpdateServicesFilterImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+  }) {
+    return updateServicesFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+  }) {
+    return updateServicesFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateServicesFilter != null) {
+      return updateServicesFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+  }) {
+    return updateServicesFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+  }) {
+    return updateServicesFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateServicesFilter != null) {
+      return updateServicesFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateServicesFilter implements HomeEvent {
+  const factory _UpdateServicesFilter(final Map<String, dynamic>? filter) =
+      _$UpdateServicesFilterImpl;
+
+  Map<String, dynamic>? get filter;
+  @JsonKey(ignore: true)
+  _$$UpdateServicesFilterImplCopyWith<_$UpdateServicesFilterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateRequestsFilterImplCopyWith<$Res> {
+  factory _$$UpdateRequestsFilterImplCopyWith(_$UpdateRequestsFilterImpl value,
+          $Res Function(_$UpdateRequestsFilterImpl) then) =
+      __$$UpdateRequestsFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic>? filter});
+}
+
+/// @nodoc
+class __$$UpdateRequestsFilterImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateRequestsFilterImpl>
+    implements _$$UpdateRequestsFilterImplCopyWith<$Res> {
+  __$$UpdateRequestsFilterImplCopyWithImpl(_$UpdateRequestsFilterImpl _value,
+      $Res Function(_$UpdateRequestsFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$UpdateRequestsFilterImpl(
+      freezed == filter
+          ? _value._filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
+  const _$UpdateRequestsFilterImpl(final Map<String, dynamic>? filter)
+      : _filter = filter;
+
+  final Map<String, dynamic>? _filter;
+  @override
+  Map<String, dynamic>? get filter {
+    final value = _filter;
+    if (value == null) return null;
+    if (_filter is EqualUnmodifiableMapView) return _filter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateRequestsFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateRequestsFilterImpl &&
+            const DeepCollectionEquality().equals(other._filter, _filter));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_filter));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateRequestsFilterImplCopyWith<_$UpdateRequestsFilterImpl>
+      get copyWith =>
+          __$$UpdateRequestsFilterImplCopyWithImpl<_$UpdateRequestsFilterImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+  }) {
+    return updateRequestsFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+  }) {
+    return updateRequestsFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateRequestsFilter != null) {
+      return updateRequestsFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+  }) {
+    return updateRequestsFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+  }) {
+    return updateRequestsFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateRequestsFilter != null) {
+      return updateRequestsFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateRequestsFilter implements HomeEvent {
+  const factory _UpdateRequestsFilter(final Map<String, dynamic>? filter) =
+      _$UpdateRequestsFilterImpl;
+
+  Map<String, dynamic>? get filter;
+  @JsonKey(ignore: true)
+  _$$UpdateRequestsFilterImplCopyWith<_$UpdateRequestsFilterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateSalesFilterImplCopyWith<$Res> {
+  factory _$$UpdateSalesFilterImplCopyWith(_$UpdateSalesFilterImpl value,
+          $Res Function(_$UpdateSalesFilterImpl) then) =
+      __$$UpdateSalesFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic>? filter});
+}
+
+/// @nodoc
+class __$$UpdateSalesFilterImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateSalesFilterImpl>
+    implements _$$UpdateSalesFilterImplCopyWith<$Res> {
+  __$$UpdateSalesFilterImplCopyWithImpl(_$UpdateSalesFilterImpl _value,
+      $Res Function(_$UpdateSalesFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$UpdateSalesFilterImpl(
+      freezed == filter
+          ? _value._filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
+  const _$UpdateSalesFilterImpl(final Map<String, dynamic>? filter)
+      : _filter = filter;
+
+  final Map<String, dynamic>? _filter;
+  @override
+  Map<String, dynamic>? get filter {
+    final value = _filter;
+    if (value == null) return null;
+    if (_filter is EqualUnmodifiableMapView) return _filter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateSalesFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateSalesFilterImpl &&
+            const DeepCollectionEquality().equals(other._filter, _filter));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_filter));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateSalesFilterImplCopyWith<_$UpdateSalesFilterImpl> get copyWith =>
+      __$$UpdateSalesFilterImplCopyWithImpl<_$UpdateSalesFilterImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+  }) {
+    return updateSalesFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+  }) {
+    return updateSalesFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateSalesFilter != null) {
+      return updateSalesFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+  }) {
+    return updateSalesFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+  }) {
+    return updateSalesFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    required TResult orElse(),
+  }) {
+    if (updateSalesFilter != null) {
+      return updateSalesFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSalesFilter implements HomeEvent {
+  const factory _UpdateSalesFilter(final Map<String, dynamic>? filter) =
+      _$UpdateSalesFilterImpl;
+
+  Map<String, dynamic>? get filter;
+  @JsonKey(ignore: true)
+  _$$UpdateSalesFilterImplCopyWith<_$UpdateSalesFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   NotifyStatus? get notifyStatus => throw _privateConstructorUsedError;
@@ -1550,6 +2646,14 @@ mixin _$HomeState {
       throw _privateConstructorUsedError;
   bool get isLoadingOtherUserPosts => throw _privateConstructorUsedError;
   bool get hasMoreOtherUserPosts => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get activeFeedsFilter =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic>? get activeServicesFilter =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic>? get activeRequestsFilter =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic>? get activeSalesFilter =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -1574,7 +2678,11 @@ abstract class $HomeStateCopyWith<$Res> {
       String currentVillage,
       List<FeedPostsResponseModel>? otherUserPosts,
       bool isLoadingOtherUserPosts,
-      bool hasMoreOtherUserPosts});
+      bool hasMoreOtherUserPosts,
+      Map<String, dynamic>? activeFeedsFilter,
+      Map<String, dynamic>? activeServicesFilter,
+      Map<String, dynamic>? activeRequestsFilter,
+      Map<String, dynamic>? activeSalesFilter});
 }
 
 /// @nodoc
@@ -1603,6 +2711,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? otherUserPosts = freezed,
     Object? isLoadingOtherUserPosts = null,
     Object? hasMoreOtherUserPosts = null,
+    Object? activeFeedsFilter = freezed,
+    Object? activeServicesFilter = freezed,
+    Object? activeRequestsFilter = freezed,
+    Object? activeSalesFilter = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -1657,6 +2769,22 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.hasMoreOtherUserPosts
           : hasMoreOtherUserPosts // ignore: cast_nullable_to_non_nullable
               as bool,
+      activeFeedsFilter: freezed == activeFeedsFilter
+          ? _value.activeFeedsFilter
+          : activeFeedsFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeServicesFilter: freezed == activeServicesFilter
+          ? _value.activeServicesFilter
+          : activeServicesFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeRequestsFilter: freezed == activeRequestsFilter
+          ? _value.activeRequestsFilter
+          : activeRequestsFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeSalesFilter: freezed == activeSalesFilter
+          ? _value.activeSalesFilter
+          : activeSalesFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -1682,7 +2810,11 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       String currentVillage,
       List<FeedPostsResponseModel>? otherUserPosts,
       bool isLoadingOtherUserPosts,
-      bool hasMoreOtherUserPosts});
+      bool hasMoreOtherUserPosts,
+      Map<String, dynamic>? activeFeedsFilter,
+      Map<String, dynamic>? activeServicesFilter,
+      Map<String, dynamic>? activeRequestsFilter,
+      Map<String, dynamic>? activeSalesFilter});
 }
 
 /// @nodoc
@@ -1709,6 +2841,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? otherUserPosts = freezed,
     Object? isLoadingOtherUserPosts = null,
     Object? hasMoreOtherUserPosts = null,
+    Object? activeFeedsFilter = freezed,
+    Object? activeServicesFilter = freezed,
+    Object? activeRequestsFilter = freezed,
+    Object? activeSalesFilter = freezed,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
@@ -1763,6 +2899,22 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.hasMoreOtherUserPosts
           : hasMoreOtherUserPosts // ignore: cast_nullable_to_non_nullable
               as bool,
+      activeFeedsFilter: freezed == activeFeedsFilter
+          ? _value._activeFeedsFilter
+          : activeFeedsFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeServicesFilter: freezed == activeServicesFilter
+          ? _value._activeServicesFilter
+          : activeServicesFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeRequestsFilter: freezed == activeRequestsFilter
+          ? _value._activeRequestsFilter
+          : activeRequestsFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      activeSalesFilter: freezed == activeSalesFilter
+          ? _value._activeSalesFilter
+          : activeSalesFilter // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -1783,8 +2935,16 @@ class _$HomeStateImpl implements _HomeState {
       this.currentVillage = '',
       final List<FeedPostsResponseModel>? otherUserPosts,
       this.isLoadingOtherUserPosts = false,
-      this.hasMoreOtherUserPosts = false})
-      : _otherUserPosts = otherUserPosts;
+      this.hasMoreOtherUserPosts = false,
+      final Map<String, dynamic>? activeFeedsFilter,
+      final Map<String, dynamic>? activeServicesFilter,
+      final Map<String, dynamic>? activeRequestsFilter,
+      final Map<String, dynamic>? activeSalesFilter})
+      : _otherUserPosts = otherUserPosts,
+        _activeFeedsFilter = activeFeedsFilter,
+        _activeServicesFilter = activeServicesFilter,
+        _activeRequestsFilter = activeRequestsFilter,
+        _activeSalesFilter = activeSalesFilter;
 
   @override
   @JsonKey()
@@ -1831,10 +2991,53 @@ class _$HomeStateImpl implements _HomeState {
   @override
   @JsonKey()
   final bool hasMoreOtherUserPosts;
+  final Map<String, dynamic>? _activeFeedsFilter;
+  @override
+  Map<String, dynamic>? get activeFeedsFilter {
+    final value = _activeFeedsFilter;
+    if (value == null) return null;
+    if (_activeFeedsFilter is EqualUnmodifiableMapView)
+      return _activeFeedsFilter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final Map<String, dynamic>? _activeServicesFilter;
+  @override
+  Map<String, dynamic>? get activeServicesFilter {
+    final value = _activeServicesFilter;
+    if (value == null) return null;
+    if (_activeServicesFilter is EqualUnmodifiableMapView)
+      return _activeServicesFilter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final Map<String, dynamic>? _activeRequestsFilter;
+  @override
+  Map<String, dynamic>? get activeRequestsFilter {
+    final value = _activeRequestsFilter;
+    if (value == null) return null;
+    if (_activeRequestsFilter is EqualUnmodifiableMapView)
+      return _activeRequestsFilter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final Map<String, dynamic>? _activeSalesFilter;
+  @override
+  Map<String, dynamic>? get activeSalesFilter {
+    final value = _activeSalesFilter;
+    if (value == null) return null;
+    if (_activeSalesFilter is EqualUnmodifiableMapView)
+      return _activeSalesFilter;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts)';
+    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts, activeFeedsFilter: $activeFeedsFilter, activeServicesFilter: $activeServicesFilter, activeRequestsFilter: $activeRequestsFilter, activeSalesFilter: $activeSalesFilter)';
   }
 
   @override
@@ -1868,7 +3071,15 @@ class _$HomeStateImpl implements _HomeState {
                     other.isLoadingOtherUserPosts, isLoadingOtherUserPosts) ||
                 other.isLoadingOtherUserPosts == isLoadingOtherUserPosts) &&
             (identical(other.hasMoreOtherUserPosts, hasMoreOtherUserPosts) ||
-                other.hasMoreOtherUserPosts == hasMoreOtherUserPosts));
+                other.hasMoreOtherUserPosts == hasMoreOtherUserPosts) &&
+            const DeepCollectionEquality()
+                .equals(other._activeFeedsFilter, _activeFeedsFilter) &&
+            const DeepCollectionEquality()
+                .equals(other._activeServicesFilter, _activeServicesFilter) &&
+            const DeepCollectionEquality()
+                .equals(other._activeRequestsFilter, _activeRequestsFilter) &&
+            const DeepCollectionEquality()
+                .equals(other._activeSalesFilter, _activeSalesFilter));
   }
 
   @override
@@ -1886,7 +3097,11 @@ class _$HomeStateImpl implements _HomeState {
       currentVillage,
       const DeepCollectionEquality().hash(_otherUserPosts),
       isLoadingOtherUserPosts,
-      hasMoreOtherUserPosts);
+      hasMoreOtherUserPosts,
+      const DeepCollectionEquality().hash(_activeFeedsFilter),
+      const DeepCollectionEquality().hash(_activeServicesFilter),
+      const DeepCollectionEquality().hash(_activeRequestsFilter),
+      const DeepCollectionEquality().hash(_activeSalesFilter));
 
   @JsonKey(ignore: true)
   @override
@@ -1909,7 +3124,11 @@ abstract class _HomeState implements HomeState {
       final String currentVillage,
       final List<FeedPostsResponseModel>? otherUserPosts,
       final bool isLoadingOtherUserPosts,
-      final bool hasMoreOtherUserPosts}) = _$HomeStateImpl;
+      final bool hasMoreOtherUserPosts,
+      final Map<String, dynamic>? activeFeedsFilter,
+      final Map<String, dynamic>? activeServicesFilter,
+      final Map<String, dynamic>? activeRequestsFilter,
+      final Map<String, dynamic>? activeSalesFilter}) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
@@ -1937,6 +3156,14 @@ abstract class _HomeState implements HomeState {
   bool get isLoadingOtherUserPosts;
   @override
   bool get hasMoreOtherUserPosts;
+  @override
+  Map<String, dynamic>? get activeFeedsFilter;
+  @override
+  Map<String, dynamic>? get activeServicesFilter;
+  @override
+  Map<String, dynamic>? get activeRequestsFilter;
+  @override
+  Map<String, dynamic>? get activeSalesFilter;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
