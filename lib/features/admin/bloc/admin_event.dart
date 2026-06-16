@@ -148,6 +148,7 @@ class AdminEvent with _$AdminEvent {
   const factory AdminEvent.getGstPendingCompanies({
     @Default(1) int page,
     @Default(30) int limit,
+    String? status,
   }) = _GetGstPendingCompaniesEvent;
 
   const factory AdminEvent.approveGst({required String companyId}) =

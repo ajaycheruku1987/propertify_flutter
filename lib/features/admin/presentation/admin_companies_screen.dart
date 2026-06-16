@@ -11,8 +11,9 @@ import 'widgets/admin_company_card.dart';
 
 class AdminCompaniesScreen extends StatefulWidget {
   static const String routeName = '/admin-companies-screen';
+  final bool hideAppBar;
 
-  const AdminCompaniesScreen({super.key});
+  const AdminCompaniesScreen({super.key, this.hideAppBar = false});
 
   @override
   State<AdminCompaniesScreen> createState() => _AdminCompaniesScreenState();
@@ -69,7 +70,7 @@ class _AdminCompaniesScreenState extends State<AdminCompaniesScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  _buildHeader(context, state),
+                  if (!widget.hideAppBar) _buildHeader(context, state),
                   Expanded(
                     child: state.companies == null || state.companies!.isEmpty
                         ? _buildEmptyState()

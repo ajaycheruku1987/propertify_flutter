@@ -15,8 +15,14 @@ import '../../../utils/common_widgets/logo_placeholder.dart';
 
 class GstVerificationRequestsScreen extends StatefulWidget {
   static const String routeName = '/admin-gst-verification-requests';
+  final bool hideAppBar;
+  final String? status;
 
-  const GstVerificationRequestsScreen({super.key});
+  const GstVerificationRequestsScreen({
+    super.key,
+    this.hideAppBar = false,
+    this.status,
+  });
 
   @override
   State<GstVerificationRequestsScreen> createState() =>
@@ -30,7 +36,9 @@ class _GstVerificationRequestsScreenState
   @override
   void initState() {
     super.initState();
-    context.read<AdminBloc>().add(const AdminEvent.getGstPendingCompanies());
+    context.read<AdminBloc>().add(
+      AdminEvent.getGstPendingCompanies(status: widget.status),
+    );
     _scrollController.addListener(_onScroll);
   }
 
@@ -44,11 +52,20 @@ class _GstVerificationRequestsScreenState
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent * 0.9) {
       final state = context.read<AdminBloc>().state;
-      if (!state.isLoading && state.hasMoreGstPending) {
+      final isLoading = state.isLoading;
+      final hasMore = widget.status == 'approved'
+          ? state.hasMoreGstVerified
+          : state.hasMoreGstPending;
+      final currentPage = widget.status == 'approved'
+          ? state.currentGstVerifiedPage
+          : state.currentGstPendingPage;
+
+      if (!isLoading && hasMore) {
         context.read<AdminBloc>().add(
           AdminEvent.getGstPendingCompanies(
-            page: state.currentGstPendingPage + 1,
+            page: currentPage + 1,
             limit: 30,
+            status: widget.status,
           ),
         );
       }
@@ -68,20 +85,23 @@ class _GstVerificationRequestsScreenState
         }
       },
       builder: (context, state) {
+        final companies = widget.status == 'approved'
+            ? state.gstVerifiedCompanies
+            : state.gstPendingCompanies;
+
         return BlurryModalProgressHUD(
-          inAsyncCall: state.isLoading && state.gstPendingCompanies == null,
+          inAsyncCall: state.isLoading && companies == null,
           child: Scaffold(
             backgroundColor: Colors.white,
             body: SafeArea(
               child: Column(
                 children: [
-                  _buildHeader(context),
+                  if (!widget.hideAppBar) _buildHeader(context),
                   Expanded(
                     child:
-                        state.gstPendingCompanies == null ||
-                            state.gstPendingCompanies!.isEmpty
+                        companies == null || companies.isEmpty
                         ? _buildEmptyState()
-                        : _buildVerificationList(state.gstPendingCompanies!),
+                        : _buildVerificationList(companies),
                   ),
                 ],
               ),
@@ -113,11 +133,13 @@ class _GstVerificationRequestsScreenState
               onPressed: () => context.pop(),
               color: Colors.black87,
             ),
-            const Expanded(
+            Expanded(
               child: Text(
-                'GST Verification Requests',
+                widget.status == 'approved'
+                    ? 'Verified Companies'
+                    : 'GST Verification Requests',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
@@ -143,7 +165,9 @@ class _GstVerificationRequestsScreenState
           ),
           const SizedBox(height: 16),
           Text(
-            'No pending GST verifications',
+            widget.status == 'approved'
+                ? 'No verified companies yet'
+                : 'No pending GST verifications',
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey.shade600,
@@ -164,7 +188,10 @@ class _GstVerificationRequestsScreenState
         final company = companies[index];
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: AdminGstCompanyCard(company: company),
+          child: AdminGstCompanyCard(
+            company: company,
+            status: widget.status,
+          ),
         );
       },
     );
@@ -173,8 +200,13 @@ class _GstVerificationRequestsScreenState
 
 class AdminGstCompanyCard extends StatelessWidget {
   final AdminCompanyModel company;
+  final String? status;
 
-  const AdminGstCompanyCard({super.key, required this.company});
+  const AdminGstCompanyCard({
+    super.key,
+    required this.company,
+    this.status,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -207,7 +239,12 @@ class AdminGstCompanyCard extends StatelessWidget {
                 offset: const Offset(0, 2),
               ),
             ],
-            border: Border.all(color: Colors.orange.withOpacity(0.3)),
+            border: Border.all(
+              color:
+                  status == 'approved'
+                      ? Colors.green.withOpacity(0.3)
+                      : Colors.orange.withOpacity(0.3),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -246,14 +283,26 @@ class AdminGstCompanyCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            (company.companyName ?? 'Unknown Company')
-                                .toTitleCase(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  (company.companyName ?? 'Unknown Company')
+                                      .toTitleCase(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ),
+                              if (status == 'approved')
+                                const Icon(
+                                  Icons.verified,
+                                  color: Colors.green,
+                                  size: 20,
+                                ),
+                            ],
                           ),
                           const SizedBox(height: 4),
                           Text(
@@ -272,14 +321,20 @@ class AdminGstCompanyCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.orange.withOpacity(0.1),
+                                color:
+                                    status == 'approved'
+                                        ? Colors.green.withOpacity(0.1)
+                                        : Colors.orange.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
                                 'GST: ${company.gstNumber}',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 12,
-                                  color: Colors.orange,
+                                  color:
+                                      status == 'approved'
+                                          ? Colors.green
+                                          : Colors.orange,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -338,39 +393,41 @@ class AdminGstCompanyCard extends StatelessWidget {
                       ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                if (status != 'approved')
+                  const SizedBox(height: 16),
                 // Action Buttons
-                Row(
-                  children: [
-                    // Expanded(
-                    //   child: OutlinedButton(
-                    //     onPressed: () => _showRejectDialog(context),
-                    //     style: OutlinedButton.styleFrom(
-                    //       foregroundColor: Colors.red,
-                    //       side: const BorderSide(color: Colors.red),
-                    //       shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(8),
-                    //       ),
-                    //     ),
-                    //     child: const Text('Reject'),
-                    //   ),
-                    // ),
-                    // const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => _showApproveDialog(context),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                if (status != 'approved')
+                  Row(
+                    children: [
+                      // Expanded(
+                      //   child: OutlinedButton(
+                      //     onPressed: () => _showRejectDialog(context),
+                      //     style: OutlinedButton.styleFrom(
+                      //       foregroundColor: Colors.red,
+                      //       side: const BorderSide(color: Colors.red),
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(8),
+                      //       ),
+                      //     ),
+                      //     child: const Text('Reject'),
+                      //   ),
+                      // ),
+                      // const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () => _showApproveDialog(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
+                          child: const Text('Approve'),
                         ),
-                        child: const Text('Approve'),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
               ],
             ),
           ),

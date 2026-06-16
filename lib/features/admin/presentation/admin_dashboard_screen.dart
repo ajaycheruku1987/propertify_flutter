@@ -11,9 +11,11 @@ import 'manage_projects_screen.dart';
 import 'requests_screen.dart';
 import 'user_list_screen.dart';
 import 'properties_list_view_screen.dart';
-import 'services_verification_requests_screen.dart';
+import 'companies_tabs_screen.dart';
+import 'sales_tabs_screen.dart';
 import 'admin_reels_screen.dart';
 import 'gst_verification_requests_screen.dart';
+import 'services_verification_requests_screen.dart';
 
 import 'manage_material_prices_screen.dart';
 
@@ -63,16 +65,6 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'route': AllServicesListAdminView.routeName,
       },
       {
-        'title': 'Services Verification',
-        'icon': Icons.verified_user_outlined,
-        'route': ServicesVerificationRequests.routeName,
-      },
-      {
-        'title': 'GST Verification',
-        'icon': Icons.business,
-        'route': GstVerificationRequestsScreen.routeName,
-      },
-      {
         'title': 'Properties',
         'icon': Icons.home_outlined,
         'route': PropertiesListViewScreen.routeName,
@@ -85,12 +77,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       {
         'title': 'Sales/Projects',
         'icon': Icons.business_outlined,
-        'route': ManageProjectsScreen.routeName,
-      },
-      {
-        'title': 'Call Back Requests',
-        'icon': Icons.phone_callback_outlined,
-        'route': CallbackRequestScreen.routeName,
+        'route': SalesTabsScreen.routeName,
       },
       {
         'title': 'Home Loan Requests',
@@ -105,12 +92,17 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       {
         'title': 'Companies',
         'icon': Icons.business_outlined,
-        'route': AdminCompaniesScreen.routeName,
+        'route': CompaniesTabsScreen.routeName,
       },
       {
         'title': 'Reels',
         'icon': Icons.video_collection_outlined,
         'route': AdminReelsScreen.routeName,
+      },
+      {
+        'title': 'Service Verifications',
+        'icon': Icons.verified_user_outlined,
+        'route': ServicesVerificationRequests.routeName,
       },
       {
         'title': 'Material Prices',

@@ -1396,6 +1396,7 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     final result = await _adminRepo.getGstPendingCompanies(
       page: event.page,
       limit: event.limit,
+      status: event.status,
     );
 
     result.fold(
@@ -1416,17 +1417,45 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
             (response.total ?? 0) > (event.page * event.limit) ||
             companies.length >= event.limit;
 
-        emit(
-          state.copyWith(
-            isLoading: false,
-            gstPendingCompanies: event.page == 1
-                ? companies
-                : [...(state.gstPendingCompanies ?? []), ...companies],
-            currentGstPendingPage: event.page,
-            hasMoreGstPending: hasMore,
-            notifyStatus: null,
-          ),
-        );
+        if (event.status == 'approved') {
+          // Local filter as a safeguard to ensure only approved companies are in this list
+          final verifiedCompanies =
+              companies
+                  .where(
+                    (c) =>
+                        c.gstVerificationStatus == 'approved' ||
+                        c.isVerified == true,
+                  )
+                  .toList();
+
+          emit(
+            state.copyWith(
+              isLoading: false,
+              gstVerifiedCompanies:
+                  event.page == 1
+                      ? verifiedCompanies
+                      : [
+                        ...(state.gstVerifiedCompanies ?? []),
+                        ...verifiedCompanies,
+                      ],
+              currentGstVerifiedPage: event.page,
+              hasMoreGstVerified: hasMore,
+              notifyStatus: null,
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              gstPendingCompanies: event.page == 1
+                  ? companies
+                  : [...(state.gstPendingCompanies ?? []), ...companies],
+              currentGstPendingPage: event.page,
+              hasMoreGstPending: hasMore,
+              notifyStatus: null,
+            ),
+          );
+        }
       },
     );
   }

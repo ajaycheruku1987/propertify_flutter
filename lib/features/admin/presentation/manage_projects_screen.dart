@@ -11,7 +11,8 @@ import 'widgets/project_card.dart';
 
 class ManageProjectsScreen extends StatefulWidget {
   static const String routeName = '/manage-projects-screen';
-  const ManageProjectsScreen({super.key});
+  final bool hideAppBar;
+  const ManageProjectsScreen({super.key, this.hideAppBar = false});
 
   @override
   State<ManageProjectsScreen> createState() => _ManageProjectsScreenState();
@@ -65,7 +66,7 @@ class _ManageProjectsScreenState extends State<ManageProjectsScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  _buildHeader(context),
+                  if (!widget.hideAppBar) _buildHeader(context),
                   Expanded(
                     child: state.projects == null || state.projects!.isEmpty
                         ? _buildEmptyState()

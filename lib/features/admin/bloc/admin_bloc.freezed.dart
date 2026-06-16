@@ -45,7 +45,9 @@ mixin _$AdminEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -60,7 +62,8 @@ mixin _$AdminEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) =>
@@ -92,7 +95,8 @@ mixin _$AdminEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -104,7 +108,8 @@ mixin _$AdminEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) =>
@@ -136,7 +141,8 @@ mixin _$AdminEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -148,7 +154,8 @@ mixin _$AdminEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -434,7 +441,9 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -449,7 +458,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -484,7 +494,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -496,7 +507,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -531,7 +543,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -543,7 +556,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -816,7 +830,9 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -831,7 +847,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -866,7 +883,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -878,7 +896,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -913,7 +932,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -925,7 +945,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -1192,7 +1213,9 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -1207,7 +1230,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -1242,7 +1266,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -1254,7 +1279,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -1289,7 +1315,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -1301,7 +1328,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -1540,7 +1568,9 @@ class _$ResetEventImpl implements _ResetEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -1555,7 +1585,8 @@ class _$ResetEventImpl implements _ResetEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -1590,7 +1621,8 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -1602,7 +1634,8 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -1637,7 +1670,8 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -1649,7 +1683,8 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -1884,7 +1919,9 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -1899,7 +1936,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -1934,7 +1972,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -1946,7 +1985,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -1981,7 +2021,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -1993,7 +2034,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -2264,7 +2306,9 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -2279,7 +2323,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -2314,7 +2359,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -2326,7 +2372,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -2361,7 +2408,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -2373,7 +2421,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -2641,7 +2690,9 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -2656,7 +2707,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -2691,7 +2743,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -2703,7 +2756,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -2738,7 +2792,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -2750,7 +2805,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -3027,7 +3083,9 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -3042,7 +3100,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -3077,7 +3136,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -3089,7 +3149,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -3124,7 +3185,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -3136,7 +3198,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -3405,7 +3468,9 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -3420,7 +3485,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -3455,7 +3521,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -3467,7 +3534,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -3502,7 +3570,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -3514,7 +3583,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -3791,7 +3861,9 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -3806,7 +3878,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -3841,7 +3914,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -3853,7 +3927,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -3888,7 +3963,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -3900,7 +3976,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -4169,7 +4246,9 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -4184,7 +4263,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -4219,7 +4299,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -4231,7 +4312,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -4266,7 +4348,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -4278,7 +4361,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -4557,7 +4641,9 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -4572,7 +4658,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -4607,7 +4694,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -4619,7 +4707,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -4654,7 +4743,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -4666,7 +4756,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -4937,7 +5028,9 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -4952,7 +5045,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -4987,7 +5081,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -4999,7 +5094,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -5034,7 +5130,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -5046,7 +5143,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -5328,7 +5426,9 @@ class _$GetVerificationRequestsEventImpl
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -5343,7 +5443,8 @@ class _$GetVerificationRequestsEventImpl
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -5378,7 +5479,8 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -5390,7 +5492,8 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -5425,7 +5528,8 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -5437,7 +5541,8 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -5712,7 +5817,9 @@ class _$DeleteVerificationRequestEventImpl
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -5727,7 +5834,8 @@ class _$DeleteVerificationRequestEventImpl
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -5762,7 +5870,8 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -5774,7 +5883,8 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -5809,7 +5919,8 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -5821,7 +5932,8 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -6104,7 +6216,9 @@ class _$UpdateVerificationStatusEventImpl
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -6119,7 +6233,8 @@ class _$UpdateVerificationStatusEventImpl
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -6154,7 +6269,8 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -6166,7 +6282,8 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -6201,7 +6318,8 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -6213,7 +6331,8 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -6493,7 +6612,9 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -6508,7 +6629,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -6543,7 +6665,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -6555,7 +6678,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -6590,7 +6714,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -6602,7 +6727,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -6882,7 +7008,9 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -6897,7 +7025,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -6932,7 +7061,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -6944,7 +7074,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -6979,7 +7110,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -6991,7 +7123,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -7287,7 +7420,9 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -7302,7 +7437,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -7337,7 +7473,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -7349,7 +7486,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -7384,7 +7522,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -7396,7 +7535,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -7670,7 +7810,9 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -7685,7 +7827,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -7720,7 +7863,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -7732,7 +7876,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -7767,7 +7912,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -7779,7 +7925,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -8055,7 +8202,9 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -8070,7 +8219,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -8105,7 +8255,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -8117,7 +8268,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -8152,7 +8304,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -8164,7 +8317,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -8433,7 +8587,9 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -8448,7 +8604,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -8483,7 +8640,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -8495,7 +8653,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -8530,7 +8689,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -8542,7 +8702,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -8723,7 +8884,7 @@ abstract class _$$GetServicesEventImplCopyWith<$Res> {
           $Res Function(_$GetServicesEventImpl) then) =
       __$$GetServicesEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int page, int limit, String? search});
+  $Res call({int page, int limit, String? search, String? status});
 }
 
 /// @nodoc
@@ -8740,6 +8901,7 @@ class __$$GetServicesEventImplCopyWithImpl<$Res>
     Object? page = null,
     Object? limit = null,
     Object? search = freezed,
+    Object? status = freezed,
   }) {
     return _then(_$GetServicesEventImpl(
       page: null == page
@@ -8754,6 +8916,10 @@ class __$$GetServicesEventImplCopyWithImpl<$Res>
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -8761,7 +8927,8 @@ class __$$GetServicesEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetServicesEventImpl implements _GetServicesEvent {
-  const _$GetServicesEventImpl({this.page = 1, this.limit = 30, this.search});
+  const _$GetServicesEventImpl(
+      {this.page = 1, this.limit = 30, this.search, this.status});
 
   @override
   @JsonKey()
@@ -8771,10 +8938,12 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
   final int limit;
   @override
   final String? search;
+  @override
+  final String? status;
 
   @override
   String toString() {
-    return 'AdminEvent.getServices(page: $page, limit: $limit, search: $search)';
+    return 'AdminEvent.getServices(page: $page, limit: $limit, search: $search, status: $status)';
   }
 
   @override
@@ -8784,11 +8953,12 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
             other is _$GetServicesEventImpl &&
             (identical(other.page, page) || other.page == page) &&
             (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.search, search) || other.search == search));
+            (identical(other.search, search) || other.search == search) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page, limit, search);
+  int get hashCode => Object.hash(runtimeType, page, limit, search, status);
 
   @JsonKey(ignore: true)
   @override
@@ -8827,7 +8997,9 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -8842,11 +9014,12 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
-    return getServices(page, limit, search);
+    return getServices(page, limit, search, status);
   }
 
   @override
@@ -8877,7 +9050,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -8889,11 +9063,12 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
-    return getServices?.call(page, limit, search);
+    return getServices?.call(page, limit, search, status);
   }
 
   @override
@@ -8924,7 +9099,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -8936,13 +9112,14 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
   }) {
     if (getServices != null) {
-      return getServices(page, limit, search);
+      return getServices(page, limit, search, status);
     }
     return orElse();
   }
@@ -9105,11 +9282,13 @@ abstract class _GetServicesEvent implements AdminEvent {
   const factory _GetServicesEvent(
       {final int page,
       final int limit,
-      final String? search}) = _$GetServicesEventImpl;
+      final String? search,
+      final String? status}) = _$GetServicesEventImpl;
 
   int get page;
   int get limit;
   String? get search;
+  String? get status;
   @JsonKey(ignore: true)
   _$$GetServicesEventImplCopyWith<_$GetServicesEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -9208,7 +9387,9 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -9223,7 +9404,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -9258,7 +9440,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -9270,7 +9453,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -9305,7 +9489,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -9317,7 +9502,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -9605,7 +9791,9 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -9620,7 +9808,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -9655,7 +9844,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -9667,7 +9857,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -9702,7 +9893,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -9714,7 +9906,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -9988,7 +10181,9 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -10003,7 +10198,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -10038,7 +10234,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -10050,7 +10247,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -10085,7 +10283,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -10097,7 +10296,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -10376,7 +10576,9 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -10391,7 +10593,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -10426,7 +10629,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -10438,7 +10642,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -10473,7 +10678,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -10485,7 +10691,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -10764,7 +10971,9 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -10779,7 +10988,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -10814,7 +11024,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -10826,7 +11037,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -10861,7 +11073,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -10873,7 +11086,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -11142,7 +11356,9 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -11157,7 +11373,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -11192,7 +11409,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -11204,7 +11422,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -11239,7 +11458,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -11251,7 +11471,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -11535,7 +11756,9 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -11550,7 +11773,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -11585,7 +11809,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -11597,7 +11822,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -11632,7 +11858,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -11644,7 +11871,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -11931,7 +12159,9 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -11946,7 +12176,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -11981,7 +12212,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -11993,7 +12225,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -12028,7 +12261,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -12040,7 +12274,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -12326,7 +12561,9 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -12341,7 +12578,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -12376,7 +12614,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -12388,7 +12627,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -12423,7 +12663,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -12435,7 +12676,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -12714,7 +12956,9 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -12729,7 +12973,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -12764,7 +13009,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -12776,7 +13022,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -12811,7 +13058,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -12823,7 +13071,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -13092,7 +13341,9 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -13107,7 +13358,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -13142,7 +13394,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -13154,7 +13407,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -13189,7 +13443,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -13201,7 +13456,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -13383,7 +13639,7 @@ abstract class _$$GetGstPendingCompaniesEventImplCopyWith<$Res> {
           $Res Function(_$GetGstPendingCompaniesEventImpl) then) =
       __$$GetGstPendingCompaniesEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int page, int limit});
+  $Res call({int page, int limit, String? status});
 }
 
 /// @nodoc
@@ -13400,6 +13656,7 @@ class __$$GetGstPendingCompaniesEventImplCopyWithImpl<$Res>
   $Res call({
     Object? page = null,
     Object? limit = null,
+    Object? status = freezed,
   }) {
     return _then(_$GetGstPendingCompaniesEventImpl(
       page: null == page
@@ -13410,6 +13667,10 @@ class __$$GetGstPendingCompaniesEventImplCopyWithImpl<$Res>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as int,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -13418,7 +13679,8 @@ class __$$GetGstPendingCompaniesEventImplCopyWithImpl<$Res>
 
 class _$GetGstPendingCompaniesEventImpl
     implements _GetGstPendingCompaniesEvent {
-  const _$GetGstPendingCompaniesEventImpl({this.page = 1, this.limit = 30});
+  const _$GetGstPendingCompaniesEventImpl(
+      {this.page = 1, this.limit = 30, this.status});
 
   @override
   @JsonKey()
@@ -13426,10 +13688,12 @@ class _$GetGstPendingCompaniesEventImpl
   @override
   @JsonKey()
   final int limit;
+  @override
+  final String? status;
 
   @override
   String toString() {
-    return 'AdminEvent.getGstPendingCompanies(page: $page, limit: $limit)';
+    return 'AdminEvent.getGstPendingCompanies(page: $page, limit: $limit, status: $status)';
   }
 
   @override
@@ -13438,11 +13702,12 @@ class _$GetGstPendingCompaniesEventImpl
         (other.runtimeType == runtimeType &&
             other is _$GetGstPendingCompaniesEventImpl &&
             (identical(other.page, page) || other.page == page) &&
-            (identical(other.limit, limit) || other.limit == limit));
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page, limit);
+  int get hashCode => Object.hash(runtimeType, page, limit, status);
 
   @JsonKey(ignore: true)
   @override
@@ -13481,7 +13746,9 @@ class _$GetGstPendingCompaniesEventImpl
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -13496,11 +13763,12 @@ class _$GetGstPendingCompaniesEventImpl
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
-    return getGstPendingCompanies(page, limit);
+    return getGstPendingCompanies(page, limit, status);
   }
 
   @override
@@ -13531,7 +13799,8 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -13543,11 +13812,12 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
-    return getGstPendingCompanies?.call(page, limit);
+    return getGstPendingCompanies?.call(page, limit, status);
   }
 
   @override
@@ -13578,7 +13848,8 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -13590,13 +13861,14 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
   }) {
     if (getGstPendingCompanies != null) {
-      return getGstPendingCompanies(page, limit);
+      return getGstPendingCompanies(page, limit, status);
     }
     return orElse();
   }
@@ -13757,10 +14029,13 @@ class _$GetGstPendingCompaniesEventImpl
 
 abstract class _GetGstPendingCompaniesEvent implements AdminEvent {
   const factory _GetGstPendingCompaniesEvent(
-      {final int page, final int limit}) = _$GetGstPendingCompaniesEventImpl;
+      {final int page,
+      final int limit,
+      final String? status}) = _$GetGstPendingCompaniesEventImpl;
 
   int get page;
   int get limit;
+  String? get status;
   @JsonKey(ignore: true)
   _$$GetGstPendingCompaniesEventImplCopyWith<_$GetGstPendingCompaniesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -13859,7 +14134,9 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -13874,7 +14151,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -13909,7 +14187,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -13921,7 +14200,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -13956,7 +14236,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -13968,7 +14249,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -14236,7 +14518,9 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     required TResult Function(String requestId) deleteRequest,
     required TResult Function(int page, int limit) getAds,
     required TResult Function(String adUserId) removeAdUser,
-    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(
+            int page, int limit, String? search, String? status)
+        getServices,
     required TResult Function(String serviceId) deleteService,
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
@@ -14251,7 +14535,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     required TResult Function(List<String> userIds, String? role) convertToUser,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
-    required TResult Function(int page, int limit) getGstPendingCompanies,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
     required TResult Function(String companyId) approveGst,
     required TResult Function(String companyId) rejectGst,
   }) {
@@ -14286,7 +14571,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(String requestId)? deleteRequest,
     TResult? Function(int page, int limit)? getAds,
     TResult? Function(String adUserId)? removeAdUser,
-    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
@@ -14298,7 +14584,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(List<String> userIds, String? role)? convertToUser,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
-    TResult? Function(int page, int limit)? getGstPendingCompanies,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult? Function(String companyId)? approveGst,
     TResult? Function(String companyId)? rejectGst,
   }) {
@@ -14333,7 +14620,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(String requestId)? deleteRequest,
     TResult Function(int page, int limit)? getAds,
     TResult Function(String adUserId)? removeAdUser,
-    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(int page, int limit, String? search, String? status)?
+        getServices,
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
@@ -14345,7 +14633,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(List<String> userIds, String? role)? convertToUser,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
-    TResult Function(int page, int limit)? getGstPendingCompanies,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
     TResult Function(String companyId)? approveGst,
     TResult Function(String companyId)? rejectGst,
     required TResult orElse(),
@@ -14576,6 +14865,18 @@ mixin _$AdminState {
       throw _privateConstructorUsedError;
   int get currentGstPendingPage => throw _privateConstructorUsedError;
   bool get hasMoreGstPending => throw _privateConstructorUsedError;
+  List<AdminCompanyModel>? get gstVerifiedCompanies =>
+      throw _privateConstructorUsedError;
+  int get currentGstVerifiedPage => throw _privateConstructorUsedError;
+  bool get hasMoreGstVerified => throw _privateConstructorUsedError;
+  List<ServicesResponseModel>? get pendingServices =>
+      throw _privateConstructorUsedError;
+  int get currentPendingServicesPage => throw _privateConstructorUsedError;
+  bool get hasMorePendingServices => throw _privateConstructorUsedError;
+  List<ServicesResponseModel>? get verifiedServices =>
+      throw _privateConstructorUsedError;
+  int get currentVerifiedServicesPage => throw _privateConstructorUsedError;
+  bool get hasMoreVerifiedServices => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AdminStateCopyWith<AdminState> get copyWith =>
@@ -14635,7 +14936,16 @@ abstract class $AdminStateCopyWith<$Res> {
       bool hasMoreAdminReels,
       List<AdminCompanyModel>? gstPendingCompanies,
       int currentGstPendingPage,
-      bool hasMoreGstPending});
+      bool hasMoreGstPending,
+      List<AdminCompanyModel>? gstVerifiedCompanies,
+      int currentGstVerifiedPage,
+      bool hasMoreGstVerified,
+      List<ServicesResponseModel>? pendingServices,
+      int currentPendingServicesPage,
+      bool hasMorePendingServices,
+      List<ServicesResponseModel>? verifiedServices,
+      int currentVerifiedServicesPage,
+      bool hasMoreVerifiedServices});
 }
 
 /// @nodoc
@@ -14698,6 +15008,15 @@ class _$AdminStateCopyWithImpl<$Res, $Val extends AdminState>
     Object? gstPendingCompanies = freezed,
     Object? currentGstPendingPage = null,
     Object? hasMoreGstPending = null,
+    Object? gstVerifiedCompanies = freezed,
+    Object? currentGstVerifiedPage = null,
+    Object? hasMoreGstVerified = null,
+    Object? pendingServices = freezed,
+    Object? currentPendingServicesPage = null,
+    Object? hasMorePendingServices = null,
+    Object? verifiedServices = freezed,
+    Object? currentVerifiedServicesPage = null,
+    Object? hasMoreVerifiedServices = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -14888,6 +15207,42 @@ class _$AdminStateCopyWithImpl<$Res, $Val extends AdminState>
           ? _value.hasMoreGstPending
           : hasMoreGstPending // ignore: cast_nullable_to_non_nullable
               as bool,
+      gstVerifiedCompanies: freezed == gstVerifiedCompanies
+          ? _value.gstVerifiedCompanies
+          : gstVerifiedCompanies // ignore: cast_nullable_to_non_nullable
+              as List<AdminCompanyModel>?,
+      currentGstVerifiedPage: null == currentGstVerifiedPage
+          ? _value.currentGstVerifiedPage
+          : currentGstVerifiedPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMoreGstVerified: null == hasMoreGstVerified
+          ? _value.hasMoreGstVerified
+          : hasMoreGstVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pendingServices: freezed == pendingServices
+          ? _value.pendingServices
+          : pendingServices // ignore: cast_nullable_to_non_nullable
+              as List<ServicesResponseModel>?,
+      currentPendingServicesPage: null == currentPendingServicesPage
+          ? _value.currentPendingServicesPage
+          : currentPendingServicesPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMorePendingServices: null == hasMorePendingServices
+          ? _value.hasMorePendingServices
+          : hasMorePendingServices // ignore: cast_nullable_to_non_nullable
+              as bool,
+      verifiedServices: freezed == verifiedServices
+          ? _value.verifiedServices
+          : verifiedServices // ignore: cast_nullable_to_non_nullable
+              as List<ServicesResponseModel>?,
+      currentVerifiedServicesPage: null == currentVerifiedServicesPage
+          ? _value.currentVerifiedServicesPage
+          : currentVerifiedServicesPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMoreVerifiedServices: null == hasMoreVerifiedServices
+          ? _value.hasMoreVerifiedServices
+          : hasMoreVerifiedServices // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -14947,7 +15302,16 @@ abstract class _$$AdminStateImplCopyWith<$Res>
       bool hasMoreAdminReels,
       List<AdminCompanyModel>? gstPendingCompanies,
       int currentGstPendingPage,
-      bool hasMoreGstPending});
+      bool hasMoreGstPending,
+      List<AdminCompanyModel>? gstVerifiedCompanies,
+      int currentGstVerifiedPage,
+      bool hasMoreGstVerified,
+      List<ServicesResponseModel>? pendingServices,
+      int currentPendingServicesPage,
+      bool hasMorePendingServices,
+      List<ServicesResponseModel>? verifiedServices,
+      int currentVerifiedServicesPage,
+      bool hasMoreVerifiedServices});
 }
 
 /// @nodoc
@@ -15008,6 +15372,15 @@ class __$$AdminStateImplCopyWithImpl<$Res>
     Object? gstPendingCompanies = freezed,
     Object? currentGstPendingPage = null,
     Object? hasMoreGstPending = null,
+    Object? gstVerifiedCompanies = freezed,
+    Object? currentGstVerifiedPage = null,
+    Object? hasMoreGstVerified = null,
+    Object? pendingServices = freezed,
+    Object? currentPendingServicesPage = null,
+    Object? hasMorePendingServices = null,
+    Object? verifiedServices = freezed,
+    Object? currentVerifiedServicesPage = null,
+    Object? hasMoreVerifiedServices = null,
   }) {
     return _then(_$AdminStateImpl(
       isLoading: null == isLoading
@@ -15198,6 +15571,42 @@ class __$$AdminStateImplCopyWithImpl<$Res>
           ? _value.hasMoreGstPending
           : hasMoreGstPending // ignore: cast_nullable_to_non_nullable
               as bool,
+      gstVerifiedCompanies: freezed == gstVerifiedCompanies
+          ? _value._gstVerifiedCompanies
+          : gstVerifiedCompanies // ignore: cast_nullable_to_non_nullable
+              as List<AdminCompanyModel>?,
+      currentGstVerifiedPage: null == currentGstVerifiedPage
+          ? _value.currentGstVerifiedPage
+          : currentGstVerifiedPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMoreGstVerified: null == hasMoreGstVerified
+          ? _value.hasMoreGstVerified
+          : hasMoreGstVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pendingServices: freezed == pendingServices
+          ? _value._pendingServices
+          : pendingServices // ignore: cast_nullable_to_non_nullable
+              as List<ServicesResponseModel>?,
+      currentPendingServicesPage: null == currentPendingServicesPage
+          ? _value.currentPendingServicesPage
+          : currentPendingServicesPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMorePendingServices: null == hasMorePendingServices
+          ? _value.hasMorePendingServices
+          : hasMorePendingServices // ignore: cast_nullable_to_non_nullable
+              as bool,
+      verifiedServices: freezed == verifiedServices
+          ? _value._verifiedServices
+          : verifiedServices // ignore: cast_nullable_to_non_nullable
+              as List<ServicesResponseModel>?,
+      currentVerifiedServicesPage: null == currentVerifiedServicesPage
+          ? _value.currentVerifiedServicesPage
+          : currentVerifiedServicesPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMoreVerifiedServices: null == hasMoreVerifiedServices
+          ? _value.hasMoreVerifiedServices
+          : hasMoreVerifiedServices // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -15252,7 +15661,16 @@ class _$AdminStateImpl implements _AdminState {
       this.hasMoreAdminReels = false,
       final List<AdminCompanyModel>? gstPendingCompanies,
       this.currentGstPendingPage = 1,
-      this.hasMoreGstPending = false})
+      this.hasMoreGstPending = false,
+      final List<AdminCompanyModel>? gstVerifiedCompanies,
+      this.currentGstVerifiedPage = 1,
+      this.hasMoreGstVerified = false,
+      final List<ServicesResponseModel>? pendingServices,
+      this.currentPendingServicesPage = 1,
+      this.hasMorePendingServices = false,
+      final List<ServicesResponseModel>? verifiedServices,
+      this.currentVerifiedServicesPage = 1,
+      this.hasMoreVerifiedServices = false})
       : _users = users,
         _postAds = postAds,
         _bannerAds = bannerAds,
@@ -15267,7 +15685,10 @@ class _$AdminStateImpl implements _AdminState {
         _properties = properties,
         _companies = companies,
         _adminReels = adminReels,
-        _gstPendingCompanies = gstPendingCompanies;
+        _gstPendingCompanies = gstPendingCompanies,
+        _gstVerifiedCompanies = gstVerifiedCompanies,
+        _pendingServices = pendingServices,
+        _verifiedServices = verifiedServices;
 
   @override
   @JsonKey()
@@ -15517,10 +15938,60 @@ class _$AdminStateImpl implements _AdminState {
   @override
   @JsonKey()
   final bool hasMoreGstPending;
+  final List<AdminCompanyModel>? _gstVerifiedCompanies;
+  @override
+  List<AdminCompanyModel>? get gstVerifiedCompanies {
+    final value = _gstVerifiedCompanies;
+    if (value == null) return null;
+    if (_gstVerifiedCompanies is EqualUnmodifiableListView)
+      return _gstVerifiedCompanies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final int currentGstVerifiedPage;
+  @override
+  @JsonKey()
+  final bool hasMoreGstVerified;
+  final List<ServicesResponseModel>? _pendingServices;
+  @override
+  List<ServicesResponseModel>? get pendingServices {
+    final value = _pendingServices;
+    if (value == null) return null;
+    if (_pendingServices is EqualUnmodifiableListView) return _pendingServices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final int currentPendingServicesPage;
+  @override
+  @JsonKey()
+  final bool hasMorePendingServices;
+  final List<ServicesResponseModel>? _verifiedServices;
+  @override
+  List<ServicesResponseModel>? get verifiedServices {
+    final value = _verifiedServices;
+    if (value == null) return null;
+    if (_verifiedServices is EqualUnmodifiableListView)
+      return _verifiedServices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final int currentVerifiedServicesPage;
+  @override
+  @JsonKey()
+  final bool hasMoreVerifiedServices;
 
   @override
   String toString() {
-    return 'AdminState(isLoading: $isLoading, users: $users, postAds: $postAds, bannerAds: $bannerAds, projects: $projects, callbackRequests: $callbackRequests, verificationRequests: $verificationRequests, homeLoans: $homeLoans, interiorDesigns: $interiorDesigns, requests: $requests, ads: $ads, services: $services, properties: $properties, companies: $companies, notifyStatus: $notifyStatus, currentPage: $currentPage, currentPostAdsPage: $currentPostAdsPage, currentBannerAdsPage: $currentBannerAdsPage, currentProjectsPage: $currentProjectsPage, currentCallbackRequestsPage: $currentCallbackRequestsPage, currentVerificationRequestsPage: $currentVerificationRequestsPage, currentHomeLoansPage: $currentHomeLoansPage, currentInteriorDesignsPage: $currentInteriorDesignsPage, currentRequestsPage: $currentRequestsPage, currentAdsPage: $currentAdsPage, currentServicesPage: $currentServicesPage, currentPropertiesPage: $currentPropertiesPage, currentCompaniesPage: $currentCompaniesPage, hasMore: $hasMore, hasMorePostAds: $hasMorePostAds, hasMoreBannerAds: $hasMoreBannerAds, hasMoreProjects: $hasMoreProjects, hasMoreCallbackRequests: $hasMoreCallbackRequests, hasMoreVerificationRequests: $hasMoreVerificationRequests, hasMoreHomeLoans: $hasMoreHomeLoans, hasMoreInteriorDesigns: $hasMoreInteriorDesigns, hasMoreRequests: $hasMoreRequests, hasMoreAds: $hasMoreAds, hasMoreServices: $hasMoreServices, hasMoreProperties: $hasMoreProperties, hasMoreCompanies: $hasMoreCompanies, adminReels: $adminReels, currentAdminReelsPage: $currentAdminReelsPage, hasMoreAdminReels: $hasMoreAdminReels, gstPendingCompanies: $gstPendingCompanies, currentGstPendingPage: $currentGstPendingPage, hasMoreGstPending: $hasMoreGstPending)';
+    return 'AdminState(isLoading: $isLoading, users: $users, postAds: $postAds, bannerAds: $bannerAds, projects: $projects, callbackRequests: $callbackRequests, verificationRequests: $verificationRequests, homeLoans: $homeLoans, interiorDesigns: $interiorDesigns, requests: $requests, ads: $ads, services: $services, properties: $properties, companies: $companies, notifyStatus: $notifyStatus, currentPage: $currentPage, currentPostAdsPage: $currentPostAdsPage, currentBannerAdsPage: $currentBannerAdsPage, currentProjectsPage: $currentProjectsPage, currentCallbackRequestsPage: $currentCallbackRequestsPage, currentVerificationRequestsPage: $currentVerificationRequestsPage, currentHomeLoansPage: $currentHomeLoansPage, currentInteriorDesignsPage: $currentInteriorDesignsPage, currentRequestsPage: $currentRequestsPage, currentAdsPage: $currentAdsPage, currentServicesPage: $currentServicesPage, currentPropertiesPage: $currentPropertiesPage, currentCompaniesPage: $currentCompaniesPage, hasMore: $hasMore, hasMorePostAds: $hasMorePostAds, hasMoreBannerAds: $hasMoreBannerAds, hasMoreProjects: $hasMoreProjects, hasMoreCallbackRequests: $hasMoreCallbackRequests, hasMoreVerificationRequests: $hasMoreVerificationRequests, hasMoreHomeLoans: $hasMoreHomeLoans, hasMoreInteriorDesigns: $hasMoreInteriorDesigns, hasMoreRequests: $hasMoreRequests, hasMoreAds: $hasMoreAds, hasMoreServices: $hasMoreServices, hasMoreProperties: $hasMoreProperties, hasMoreCompanies: $hasMoreCompanies, adminReels: $adminReels, currentAdminReelsPage: $currentAdminReelsPage, hasMoreAdminReels: $hasMoreAdminReels, gstPendingCompanies: $gstPendingCompanies, currentGstPendingPage: $currentGstPendingPage, hasMoreGstPending: $hasMoreGstPending, gstVerifiedCompanies: $gstVerifiedCompanies, currentGstVerifiedPage: $currentGstVerifiedPage, hasMoreGstVerified: $hasMoreGstVerified, pendingServices: $pendingServices, currentPendingServicesPage: $currentPendingServicesPage, hasMorePendingServices: $hasMorePendingServices, verifiedServices: $verifiedServices, currentVerifiedServicesPage: $currentVerifiedServicesPage, hasMoreVerifiedServices: $hasMoreVerifiedServices)';
   }
 
   @override
@@ -15607,7 +16078,16 @@ class _$AdminStateImpl implements _AdminState {
             (identical(other.hasMoreAdminReels, hasMoreAdminReels) || other.hasMoreAdminReels == hasMoreAdminReels) &&
             const DeepCollectionEquality().equals(other._gstPendingCompanies, _gstPendingCompanies) &&
             (identical(other.currentGstPendingPage, currentGstPendingPage) || other.currentGstPendingPage == currentGstPendingPage) &&
-            (identical(other.hasMoreGstPending, hasMoreGstPending) || other.hasMoreGstPending == hasMoreGstPending));
+            (identical(other.hasMoreGstPending, hasMoreGstPending) || other.hasMoreGstPending == hasMoreGstPending) &&
+            const DeepCollectionEquality().equals(other._gstVerifiedCompanies, _gstVerifiedCompanies) &&
+            (identical(other.currentGstVerifiedPage, currentGstVerifiedPage) || other.currentGstVerifiedPage == currentGstVerifiedPage) &&
+            (identical(other.hasMoreGstVerified, hasMoreGstVerified) || other.hasMoreGstVerified == hasMoreGstVerified) &&
+            const DeepCollectionEquality().equals(other._pendingServices, _pendingServices) &&
+            (identical(other.currentPendingServicesPage, currentPendingServicesPage) || other.currentPendingServicesPage == currentPendingServicesPage) &&
+            (identical(other.hasMorePendingServices, hasMorePendingServices) || other.hasMorePendingServices == hasMorePendingServices) &&
+            const DeepCollectionEquality().equals(other._verifiedServices, _verifiedServices) &&
+            (identical(other.currentVerifiedServicesPage, currentVerifiedServicesPage) || other.currentVerifiedServicesPage == currentVerifiedServicesPage) &&
+            (identical(other.hasMoreVerifiedServices, hasMoreVerifiedServices) || other.hasMoreVerifiedServices == hasMoreVerifiedServices));
   }
 
   @override
@@ -15659,7 +16139,16 @@ class _$AdminStateImpl implements _AdminState {
         hasMoreAdminReels,
         const DeepCollectionEquality().hash(_gstPendingCompanies),
         currentGstPendingPage,
-        hasMoreGstPending
+        hasMoreGstPending,
+        const DeepCollectionEquality().hash(_gstVerifiedCompanies),
+        currentGstVerifiedPage,
+        hasMoreGstVerified,
+        const DeepCollectionEquality().hash(_pendingServices),
+        currentPendingServicesPage,
+        hasMorePendingServices,
+        const DeepCollectionEquality().hash(_verifiedServices),
+        currentVerifiedServicesPage,
+        hasMoreVerifiedServices
       ]);
 
   @JsonKey(ignore: true)
@@ -15717,7 +16206,16 @@ abstract class _AdminState implements AdminState {
       final bool hasMoreAdminReels,
       final List<AdminCompanyModel>? gstPendingCompanies,
       final int currentGstPendingPage,
-      final bool hasMoreGstPending}) = _$AdminStateImpl;
+      final bool hasMoreGstPending,
+      final List<AdminCompanyModel>? gstVerifiedCompanies,
+      final int currentGstVerifiedPage,
+      final bool hasMoreGstVerified,
+      final List<ServicesResponseModel>? pendingServices,
+      final int currentPendingServicesPage,
+      final bool hasMorePendingServices,
+      final List<ServicesResponseModel>? verifiedServices,
+      final int currentVerifiedServicesPage,
+      final bool hasMoreVerifiedServices}) = _$AdminStateImpl;
 
   @override
   bool get isLoading;
@@ -15813,6 +16311,24 @@ abstract class _AdminState implements AdminState {
   int get currentGstPendingPage;
   @override
   bool get hasMoreGstPending;
+  @override
+  List<AdminCompanyModel>? get gstVerifiedCompanies;
+  @override
+  int get currentGstVerifiedPage;
+  @override
+  bool get hasMoreGstVerified;
+  @override
+  List<ServicesResponseModel>? get pendingServices;
+  @override
+  int get currentPendingServicesPage;
+  @override
+  bool get hasMorePendingServices;
+  @override
+  List<ServicesResponseModel>? get verifiedServices;
+  @override
+  int get currentVerifiedServicesPage;
+  @override
+  bool get hasMoreVerifiedServices;
   @override
   @JsonKey(ignore: true)
   _$$AdminStateImplCopyWith<_$AdminStateImpl> get copyWith =>

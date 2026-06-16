@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:propertify/app.dart';
-import 'package:propertify/features/admin/presentation/services_verification_requests_screen.dart';
+
 import 'package:propertify/features/company/presentation/create_company_screen.dart';
 import 'package:propertify/features/create_post/presentation/create_post_details_screen.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
@@ -46,10 +46,14 @@ import '../../features/admin/presentation/requests_screen.dart';
 import '../../features/admin/presentation/user_list_screen.dart';
 import '../../features/admin/presentation/verification_request_screen.dart';
 import '../../features/admin/presentation/all_services_list_admin_view.dart';
+
+import '../../features/admin/presentation/companies_tabs_screen.dart';
+import '../../features/admin/presentation/sales_tabs_screen.dart';
 import '../../features/admin/presentation/properties_list_view_screen.dart';
 import '../../features/admin/presentation/admin_companies_screen.dart';
 import '../../features/admin/presentation/admin_reels_screen.dart';
 import '../../features/admin/presentation/gst_verification_requests_screen.dart';
+import '../../features/admin/presentation/services_verification_requests_screen.dart';
 import '../../features/admin/presentation/manage_material_prices_screen.dart';
 
 import '../../features/auth/presentation/auth_screen.dart';
@@ -450,10 +454,6 @@ final router = GoRouter(
       builder: (context, state) => const VerificationRequestScreen(),
     ),
     GoRoute(
-      path: ServicesVerificationRequests.routeName,
-      builder: (context, state) => const ServicesVerificationRequests(),
-    ),
-    GoRoute(
       path: RequestsScreen.routeName,
       builder: (context, state) =>
           RequestsScreen(category: state.uri.queryParameters['category']),
@@ -482,12 +482,24 @@ final router = GoRouter(
       builder: (context, state) => const AdminCompaniesScreen(),
     ),
     GoRoute(
+      path: CompaniesTabsScreen.routeName,
+      builder: (context, state) => const CompaniesTabsScreen(),
+    ),
+    GoRoute(
+      path: SalesTabsScreen.routeName,
+      builder: (context, state) => const SalesTabsScreen(),
+    ),
+    GoRoute(
       path: AdminReelsScreen.routeName,
       builder: (context, state) => const AdminReelsScreen(),
     ),
     GoRoute(
       path: GstVerificationRequestsScreen.routeName,
       builder: (context, state) => const GstVerificationRequestsScreen(),
+    ),
+    GoRoute(
+      path: ServicesVerificationRequests.routeName,
+      builder: (context, state) => const ServicesVerificationRequests(),
     ),
     GoRoute(
       path: ManageMaterialPricesScreen.routeName,

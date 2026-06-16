@@ -146,6 +146,13 @@ class _ServicesVerificationRequestsState
     List<ServicesResponseModel> services,
     bool hasMore,
   ) {
+    final verificationRequests =
+        services.where((s) => s.aadharCardImageUrl != null).toList();
+
+    if (verificationRequests.isEmpty) {
+      return _buildEmptyState();
+    }
+
     return RefreshIndicator(
       onRefresh: () async {
         context.read<AdminBloc>().add(const AdminEvent.getServices());
@@ -153,18 +160,15 @@ class _ServicesVerificationRequestsState
       child: ListView.builder(
         controller: _scrollController,
         padding: const EdgeInsets.all(16),
-        itemCount: services.length + (hasMore ? 1 : 0),
+        itemCount: verificationRequests.length + (hasMore ? 1 : 0),
         itemBuilder: (context, index) {
-          if (index == services.length) {
+          if (index == verificationRequests.length) {
             return const Padding(
               padding: EdgeInsets.all(16.0),
               child: Center(child: CircularProgressIndicator()),
             );
           }
-          final service = services[index];
-          if (service.aadharCardImageUrl == null) {
-            return const SizedBox();
-          }
+          final service = verificationRequests[index];
           return ServicesVerificationRequestCard(
             service: service,
             onStatusUpdate: (status) =>

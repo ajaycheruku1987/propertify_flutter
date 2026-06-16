@@ -50,5 +50,8 @@ class AdminState with _$AdminState {
     List<AdminCompanyModel>? gstPendingCompanies,
     @Default(1) int currentGstPendingPage,
     @Default(false) bool hasMoreGstPending,
+    List<AdminCompanyModel>? gstVerifiedCompanies,
+    @Default(1) int currentGstVerifiedPage,
+    @Default(false) bool hasMoreGstVerified,
   }) = _AdminState;
 }

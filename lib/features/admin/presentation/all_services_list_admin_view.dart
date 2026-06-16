@@ -172,6 +172,7 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
                 location: '${service.city ?? "N/A"}, ${service.state ?? ""}',
                 rating: double.tryParse(service.rating ?? '0'),
                 canDelete: isAdmin || isOwner,
+                canEdit: isAdmin,
                 onFavoritePressed: () {},
                 onCardPressed: () {
                   context.push(
@@ -182,6 +183,15 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
                 onDelete: () {
                   _showDeleteDialog(context, service.id ?? '');
                 },
+                onEdit: isAdmin
+                    ? () {
+                        _showVerifyDialog(
+                          context,
+                          service.id ?? '',
+                          service.isVerified ?? false,
+                        );
+                      }
+                    : null,
                 promotedAt: service.promotedAt,
                 promotedUntil: service.promotedUntil,
                 createdAt: service.createdAt,
@@ -191,6 +201,42 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
             },
           );
         },
+      ),
+    );
+  }
+
+  void _showVerifyDialog(
+    BuildContext context,
+    String serviceId,
+    bool currentStatus,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(currentStatus ? 'Unverify Service' : 'Verify Service'),
+        content: Text(
+          currentStatus
+              ? 'Are you sure you want to unverify this service?'
+              : 'Are you sure you want to verify this service?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              context.read<AdminBloc>().add(
+                AdminEvent.verifyService(
+                  serviceId: serviceId,
+                  isVerified: !currentStatus,
+                ),
+              );
+            },
+            child: Text(currentStatus ? 'Unverify' : 'Verify'),
+          ),
+        ],
       ),
     );
   }

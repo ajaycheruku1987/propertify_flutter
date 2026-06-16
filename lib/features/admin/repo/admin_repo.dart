@@ -508,16 +508,21 @@ class AdminRepo {
     );
   }
 
-  /// Get GST Pending Companies API
+  /// Get GST Pending/Verified Companies API
   Future<Either<Failure, AdminCompaniesResponseModel>> getGstPendingCompanies({
     required int page,
     required int limit,
+    String? status,
   }) async {
-    final queryString = '?page=$page&limit=$limit';
+    var queryString = '?page=$page&limit=$limit';
 
-    final response = await ftPyroApiRequest.get(
-      '/admin/companies/gst-pending$queryString',
-    );
+    // If status is approved, we fetch from the main companies list.
+    // We'll try common filter parameters used for verification.
+    final endpoint = (status == 'approved')
+        ? '/admin/companies$queryString&isverified=true&gst_verification_status=approved'
+        : '/admin/companies/gst-pending$queryString';
+
+    final response = await ftPyroApiRequest.get(endpoint);
     final responseData = await response.getResponse();
     return responseData.fold(
       (failure) => Left(failure),

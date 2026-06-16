@@ -454,7 +454,7 @@ class _VerificationPaymentScreenState extends State<VerificationPaymentScreen> {
 
     final contentType = widget.verificationType == VerificationType.GST
         ? ContentType.GST_VERIFICATION
-        : ContentType.GST_VERIFICATION;
+        : ContentType.SERVICE_VERIFICATION;
 
     final confirmResponse = await _razorpayService.confirmPayment(
       transactionId: _currentOrderId!,

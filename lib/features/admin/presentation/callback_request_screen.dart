@@ -10,7 +10,8 @@ import 'widgets/callback_request_card.dart';
 
 class CallbackRequestScreen extends StatefulWidget {
   static const String routeName = '/callback-request-screen';
-  const CallbackRequestScreen({super.key});
+  final bool hideAppBar;
+  const CallbackRequestScreen({super.key, this.hideAppBar = false});
 
   @override
   State<CallbackRequestScreen> createState() => _CallbackRequestScreenState();
@@ -66,7 +67,7 @@ class _CallbackRequestScreenState extends State<CallbackRequestScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  _buildHeader(context),
+                  if (!widget.hideAppBar) _buildHeader(context),
                   Expanded(
                     child: state.callbackRequests == null ||
                             state.callbackRequests!.isEmpty
