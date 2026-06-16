@@ -79,8 +79,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
             fcmToken: fcmToken,
           );
-      loginResponseEither.fold(
-        (failure) {
+      await loginResponseEither.fold(
+        (failure) async {
           // Handle failure case
           emit(
             state.copyWith(
@@ -134,8 +134,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             fcmToken: fcmToken,
           );
 
-      signupResponseEither.fold(
-        (failure) {
+      await signupResponseEither.fold(
+        (failure) async {
           emit(
             state.copyWith(
               loginResponse: null,

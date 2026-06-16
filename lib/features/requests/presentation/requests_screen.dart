@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -105,21 +106,22 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     },
                   ),
                   items: [
-                    AdSliderWidget(
-                      title: 'Home Loan',
-                      caption: 'Need a home Loan Raise a\nRequest',
-                      onCreateRequest: () {
-                        context.read<HomeBloc>().state.showAddButton
-                            ? context.push(
-                                CreateRequestDetails.routeName,
-                                extra: 'Loan',
-                              )
-                            : context.push(AuthScreen.routeName);
-                      },
-                      onExploreDetails: () {
-                        context.push(HomeLoanScreen.routeName);
-                      },
-                    ),
+                    if (!Platform.isIOS)
+                      AdSliderWidget(
+                        title: 'Home Loan',
+                        caption: 'Need a home Loan Raise a\nRequest',
+                        onCreateRequest: () {
+                          context.read<HomeBloc>().state.showAddButton
+                              ? context.push(
+                                  CreateRequestDetails.routeName,
+                                  extra: 'Loan',
+                                )
+                              : context.push(AuthScreen.routeName);
+                        },
+                        onExploreDetails: () {
+                          context.push(HomeLoanScreen.routeName);
+                        },
+                      ),
                     AdSliderWidget(
                       title: 'Interior Design',
                       caption: 'Design your dream home\nRaise a Request',
@@ -138,23 +140,24 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(2, (index) {
-                    return AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      width: _currentSlide == index ? 24 : 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: _currentSlide == index
-                            ? Colors.deepPurple
-                            : Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    );
-                  }),
-                ),
+                if (!Platform.isIOS)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(2, (index) {
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        width: _currentSlide == index ? 24 : 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: _currentSlide == index
+                              ? Colors.deepPurple
+                              : Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      );
+                    }),
+                  ),
                 const SizedBox(height: 16),
               ]),
             ),

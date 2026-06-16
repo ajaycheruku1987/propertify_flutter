@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,14 +38,47 @@ class _HomeLoanScreenState extends State<HomeLoanScreen> {
       final state = context.read<AdminBloc>().state;
       if (!state.isLoading && state.hasMoreHomeLoans) {
         context.read<AdminBloc>().add(
-              AdminEvent.getHomeLoans(page: state.currentHomeLoansPage + 1),
-            );
+          AdminEvent.getHomeLoans(page: state.currentHomeLoansPage + 1),
+        );
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isIOS) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text(
+            'Home Loan Requests',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Home Loan services are not available on iOS.',
+              style: TextStyle(fontSize: 16, color: Colors.black54),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      );
+    }
+
     return BlocConsumer<AdminBloc, AdminState>(
       listener: (context, state) {
         if (state.notifyStatus != null) {
@@ -122,11 +156,7 @@ class _HomeLoanScreenState extends State<HomeLoanScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.home_outlined,
-            size: 64,
-            color: Colors.grey.shade400,
-          ),
+          Icon(Icons.home_outlined, size: 64, color: Colors.grey.shade400),
           const SizedBox(height: 16),
           Text(
             'No home loans found',
@@ -143,7 +173,7 @@ class _HomeLoanScreenState extends State<HomeLoanScreen> {
 
   Widget _buildTable(List homeLoans) {
     final theme = Theme.of(context);
-    
+
     return SingleChildScrollView(
       controller: _scrollController,
       scrollDirection: Axis.horizontal,

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -117,6 +118,10 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'route': ManageMaterialPricesScreen.routeName,
       },
     ];
+
+    if (Platform.isIOS) {
+      items.removeWhere((item) => item['title'] == 'Home Loan Requests');
+    }
 
     if (widget.isSeller) {
       items = items.where((item) {

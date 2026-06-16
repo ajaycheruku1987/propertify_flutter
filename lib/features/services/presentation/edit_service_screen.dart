@@ -367,12 +367,8 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                                       pincode: _pinCodeController.text,
                                       latitude: _latitude ?? 0.0,
                                       longitude: _longitude ?? 0.0,
-                                      phoneNumber:
-                                          widget.service.phoneNumber ??
-                                          '9700232668',
-                                      email:
-                                          widget.service.email ??
-                                          'xyz@mail.cim',
+                                      phoneNumber: widget.service.phoneNumber,
+                                      email: widget.service.email,
                                       imageFiles: _newImages,
                                       facebook: _facebookController.text,
                                       insta: _instagramController.text,

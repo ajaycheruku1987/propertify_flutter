@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -46,7 +47,11 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final items = state.myRequestsList;
+          final items = Platform.isIOS
+              ? state.myRequestsList
+                  .where((request) => request.category != 'Loan')
+                  .toList()
+              : state.myRequestsList;
           if (items.isEmpty) {
             return const Center(child: Text('No requests found'));
           }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:flutter/services.dart';
@@ -45,13 +46,19 @@ class _CreateRequestDetailsState extends State<CreateRequestDetails> {
   ];
 
   final List<Map<String, dynamic>> _loanAndInteriorCategories = [
-    {'name': 'Loan', 'icon': Icons.home_outlined},
+    if (!Platform.isIOS) {'name': 'Loan', 'icon': Icons.home_outlined},
     {'name': 'Interior Design', 'icon': Icons.apartment_outlined},
   ];
 
   @override
   initState() {
     super.initState();
+    if (Platform.isIOS && widget.categoryType == 'Loan') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pop(context);
+        CustomToast.showErrorToast(msg: 'Home Loans are not supported on iOS');
+      });
+    }
     if (widget.categoryType != null) {
       _selectedRequestCategory = widget.categoryType;
     }
