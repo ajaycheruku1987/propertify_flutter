@@ -33,7 +33,11 @@ class ServicesRepo {
     if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
     if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
     if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
-      queryParams['radius_km'] = radiusKm ?? 5;
+      final isFiltering = (search != null && search.isNotEmpty) ||
+          (categoryNames != null && categoryNames.isNotEmpty && !categoryNames.contains('All'));
+      queryParams['radius_km'] = radiusKm != null
+          ? (radiusKm == 5 && isFiltering ? 15 : radiusKm)
+          : (isFiltering ? 15 : 5);
     }
     if (search != null && search.isNotEmpty) queryParams['search'] = search;
     if (categoryNames != null && categoryNames.isNotEmpty) {

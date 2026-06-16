@@ -15,6 +15,8 @@ import '../models/services_response_model.dart';
 import '../../feed/presentation/widgets/image_carousel.dart';
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 
+import 'package:intl/intl.dart';
+
 import 'write_review_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -526,6 +528,82 @@ Check it out on Propertify!
                 ),
               ),
             ],
+          ),
+          _buildPromotionSection(service),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPromotionSection(ServicesResponseModel service) {
+    final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
+    final isOwner = currentUserId != null && currentUserId == service.userId;
+    if (!isOwner) return const SizedBox.shrink();
+
+    if (service.promotedUntil == null) return const SizedBox.shrink();
+
+    final DateTime? expiryDate = DateTime.tryParse(service.promotedUntil!);
+    if (expiryDate == null) return const SizedBox.shrink();
+
+    final now = DateTime.now();
+    final difference = expiryDate.difference(now);
+    final daysLeft = difference.inDays + 1; // round up to include today
+    final isExpired = difference.isNegative;
+
+    final formatter = DateFormat('MMM d, yyyy');
+    final formattedDate = formatter.format(expiryDate);
+
+    return Container(
+      margin: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor.withOpacity(0.06),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Theme.of(context).primaryColor.withOpacity(0.15),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.campaign_outlined,
+              color: Theme.of(context).primaryColor,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isExpired ? 'Promotion Expired' : '$daysLeft Days Left',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: isExpired
+                        ? Colors.red.shade700
+                        : Theme.of(context).primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'Promoted until $formattedDate',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

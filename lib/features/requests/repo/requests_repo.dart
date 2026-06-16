@@ -36,9 +36,15 @@ class RequestsRepo {
       if (latitude != null &&
           latitude != 0.0 &&
           longitude != null &&
-          longitude != 0.0 &&
-          radiusKm != null) {
-        queryParams['radius_km'] = radiusKm;
+          longitude != 0.0) {
+        final isFiltering = (search != null && search.isNotEmpty) ||
+            (category != null && category != 'All' && category.isNotEmpty) ||
+            (city != null && city.isNotEmpty) ||
+            minBudget != null ||
+            maxBudget != null;
+        queryParams['radius_km'] = radiusKm != null
+            ? (radiusKm == 5 && isFiltering ? 15 : radiusKm)
+            : (isFiltering ? 15 : 5);
       }
       if (search != null && search.isNotEmpty) queryParams['search'] = search;
       if (category != null && category.isNotEmpty)

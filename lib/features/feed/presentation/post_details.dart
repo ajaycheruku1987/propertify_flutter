@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+import 'package:propertify/features/home/models/feed_posts_response_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -70,10 +72,11 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
     final String postedBy = postDetails.owner?.username ?? 'Propertify User';
     final String imageUrl =
         postDetails.imageUrls != null && postDetails.imageUrls!.isNotEmpty
-            ? postDetails.imageUrls!.first
-            : '';
+        ? postDetails.imageUrls!.first
+        : '';
 
-    final String shareMessage = '''
+    final String shareMessage =
+        '''
 🏠 $postTitle
 
 📝 Description:
@@ -87,7 +90,7 @@ Check it out on Propertify!
 
 📱 Download the app: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
               '''
-        .trim();
+            .trim();
 
     Share.share(shareMessage, subject: postTitle);
   }
@@ -340,9 +343,13 @@ Check it out on Propertify!
         actions: [
           BlocBuilder<FeedBloc, FeedState>(
             builder: (context, state) {
-              final currentUserId =
-                  context.read<ProfileBloc>().state.userProfile?.id;
-              final isOwner = state.postDetails?.owner?.id != null &&
+              final currentUserId = context
+                  .read<ProfileBloc>()
+                  .state
+                  .userProfile
+                  ?.id;
+              final isOwner =
+                  state.postDetails?.owner?.id != null &&
                   state.postDetails?.owner?.id == currentUserId;
 
               return Container(
@@ -380,7 +387,8 @@ Check it out on Propertify!
                         builder: (dialogContext) => AlertDialog(
                           title: const Text('Delete Property'),
                           content: const Text(
-                              'Are you sure you want to delete this property?'),
+                            'Are you sure you want to delete this property?',
+                          ),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(dialogContext),
@@ -390,12 +398,15 @@ Check it out on Propertify!
                               onPressed: () {
                                 Navigator.pop(dialogContext);
                                 context.read<FeedBloc>().add(
-                                      FeedEvent.deleteProperty(
-                                          propertyId: widget.postId),
-                                    );
+                                  FeedEvent.deleteProperty(
+                                    propertyId: widget.postId,
+                                  ),
+                                );
                               },
-                              child: const Text('Delete',
-                                  style: TextStyle(color: Colors.red)),
+                              child: const Text(
+                                'Delete',
+                                style: TextStyle(color: Colors.red),
+                              ),
                             ),
                           ],
                         ),
@@ -406,40 +417,47 @@ Check it out on Propertify!
                   },
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
-                    if (isOwner) ...[
-                      const PopupMenuItem<String>(
-                        value: 'edit',
-                        child: Row(
-                          children: [
-                            Icon(Icons.edit, size: 18, color: Colors.blue),
-                            SizedBox(width: 8),
-                            Text('Edit'),
-                          ],
-                        ),
-                      ),
-                      const PopupMenuItem<String>(
-                        value: 'delete',
-                        child: Row(
-                          children: [
-                            Icon(Icons.delete, size: 18, color: Colors.red),
-                            SizedBox(width: 8),
-                            Text('Delete', style: TextStyle(color: Colors.red)),
-                          ],
-                        ),
-                      ),
-                    ],
-                    if (!isOwner)
-                      const PopupMenuItem<String>(
-                        value: 'report',
-                        child: Row(
-                          children: [
-                            Icon(Icons.report, size: 18, color: Colors.orange),
-                            SizedBox(width: 8),
-                            Text('Report'),
-                          ],
-                        ),
-                      ),
-                  ],
+                        if (isOwner) ...[
+                          const PopupMenuItem<String>(
+                            value: 'edit',
+                            child: Row(
+                              children: [
+                                Icon(Icons.edit, size: 18, color: Colors.blue),
+                                SizedBox(width: 8),
+                                Text('Edit'),
+                              ],
+                            ),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'delete',
+                            child: Row(
+                              children: [
+                                Icon(Icons.delete, size: 18, color: Colors.red),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                        if (!isOwner)
+                          const PopupMenuItem<String>(
+                            value: 'report',
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.report,
+                                  size: 18,
+                                  color: Colors.orange,
+                                ),
+                                SizedBox(width: 8),
+                                Text('Report'),
+                              ],
+                            ),
+                          ),
+                      ],
                 ),
               );
             },
@@ -493,16 +511,17 @@ Check it out on Propertify!
                       onFavoriteToggle: () {
                         if (!context.read<HomeBloc>().state.showAddButton) {
                           CustomToast.showErrorToast(
-                              msg: 'Please login to add to favorites');
+                            msg: 'Please login to add to favorites',
+                          );
                           context.push(AuthScreen.routeName);
                           return;
                         }
                         if (postDetails.id != null) {
                           context.read<FeedBloc>().add(
-                                FeedEvent.toggleFavorite(
-                                  propertyId: postDetails.id!,
-                                ),
-                              );
+                            FeedEvent.toggleFavorite(
+                              propertyId: postDetails.id!,
+                            ),
+                          );
                         }
                       },
                       onShare: () => _handleShare(postDetails),
@@ -524,6 +543,8 @@ Check it out on Propertify!
                           ),
                           price: postDetails.price?.toString() ?? '',
                         ),
+
+                        _buildPromotionSection(postDetails),
 
                         // Description Section
                         DescriptionSection(
@@ -591,8 +612,13 @@ Check it out on Propertify!
                                       ? Theme.of(context).primaryColor
                                       : Colors.grey.shade700,
                                   onTap: () {
-                                    if (!context.read<HomeBloc>().state.showAddButton) {
-                                      CustomToast.showErrorToast(msg: 'Please login to like');
+                                    if (!context
+                                        .read<HomeBloc>()
+                                        .state
+                                        .showAddButton) {
+                                      CustomToast.showErrorToast(
+                                        msg: 'Please login to like',
+                                      );
                                       context.push(AuthScreen.routeName);
                                       return;
                                     }
@@ -610,13 +636,17 @@ Check it out on Propertify!
                                 ),
                                 _buildInteractionItem(
                                   icon: FontAwesomeIcons.comment,
-                                  label: '${postDetails.commentsCount ?? 0} Comments',
+                                  label:
+                                      '${postDetails.commentsCount ?? 0} Comments',
                                   color: Colors.grey.shade700,
                                   onTap: () {
                                     CommentsBottomSheet.show(
                                       context,
                                       postDetails.id!,
-                                      context.read<HomeBloc>().state.showAddButton,
+                                      context
+                                          .read<HomeBloc>()
+                                          .state
+                                          .showAddButton,
                                     );
                                   },
                                 ),
@@ -669,6 +699,85 @@ Check it out on Propertify!
       ),
       bottomNavigationBar: SafeArea(child: _buildContactButtons()),
       // Bottom Action Buttons
+    );
+  }
+
+  Widget _buildPromotionSection(FeedPostsResponseModel postDetails) {
+    final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
+    final isOwner =
+        currentUserId != null && currentUserId == postDetails.owner?.id;
+    if (!isOwner) return const SizedBox.shrink();
+
+    if (postDetails.promotedUntil == null ||
+        postDetails.promotedUntil!.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final DateTime? expiryDate = DateTime.tryParse(postDetails.promotedUntil!);
+    if (expiryDate == null) return const SizedBox.shrink();
+
+    final now = DateTime.now();
+    final difference = expiryDate.difference(now);
+    final daysLeft = difference.inDays + 1; // round up to include today
+    final isExpired = difference.isNegative;
+
+    final formatter = DateFormat('MMM d, yyyy');
+    final formattedDate = formatter.format(expiryDate);
+
+    return Container(
+      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor.withOpacity(0.06),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Theme.of(context).primaryColor.withOpacity(0.15),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.campaign_outlined,
+              color: Theme.of(context).primaryColor,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isExpired ? 'Promotion Expired' : '$daysLeft Days Left',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: isExpired
+                        ? Colors.red.shade700
+                        : Theme.of(context).primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'Promoted until $formattedDate',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

@@ -425,7 +425,10 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
           ),
           const SizedBox(height: 16),
 
-          if (sale.latitude != null && sale.latitude != 0.0 && sale.longitude != null && sale.longitude != 0.0)
+          if (sale.latitude != null &&
+              sale.latitude != 0.0 &&
+              sale.longitude != null &&
+              sale.longitude != 0.0)
             StaticLocationMapView(
               latitude: sale.latitude!,
               longitude: sale.longitude!,
@@ -952,8 +955,10 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
                       company.gstVerificationStatus == 'approved') {
                     context.push(MyCompanyScreen.routeName, extra: userId);
                   } else {
-                    context.push(OtherUserProfileScreen.routeName,
-                        extra: userId);
+                    context.push(
+                      OtherUserProfileScreen.routeName,
+                      extra: userId,
+                    );
                   }
                 } else {
                   CustomToast.showErrorToast(msg: 'User ID not found');

@@ -58,9 +58,15 @@ class SalesRepo {
       if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
       if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
       if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
-        queryParams['radius_km'] = (radiusKm != null && radiusKm >= 0)
-            ? radiusKm
-            : 5;
+        final isFiltering = (city != null && city.isNotEmpty) ||
+            (state != null && state.isNotEmpty) ||
+            (location != null && location.isNotEmpty) ||
+            (propertyTypes != null && propertyTypes.isNotEmpty && !propertyTypes.contains('All')) ||
+            (propertyType != null && propertyType != 'All' && propertyType.isNotEmpty) ||
+            (search != null && search.isNotEmpty);
+        queryParams['radius_km'] = radiusKm != null
+            ? (radiusKm == 5 && isFiltering ? 15 : radiusKm)
+            : (isFiltering ? 15 : 5);
       }
 
       // property_types: array<string>

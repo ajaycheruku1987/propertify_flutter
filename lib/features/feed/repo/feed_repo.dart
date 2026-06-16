@@ -42,7 +42,13 @@ class FeedRepo {
     if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
     if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
     if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
-      queryParams['radius_km'] = 5;
+      final isFiltering = (city != null && city.isNotEmpty) ||
+          (listingType != null && listingType != 'All' && listingType.isNotEmpty) ||
+          (propertyType != null && propertyType != 'All' && propertyType.isNotEmpty) ||
+          minPrice != null ||
+          maxPrice != null ||
+          (search != null && search.isNotEmpty);
+      queryParams['radius_km'] = isFiltering ? 15 : 5;
     }
 
     // Build query string manually since get method doesn't support queryParameters
