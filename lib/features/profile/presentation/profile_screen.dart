@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/core/logout.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -20,7 +19,6 @@ import 'package:share_plus/share_plus.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
-import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
@@ -52,43 +50,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back, color: Colors.black87),
-      //     onPressed: () => Navigator.pop(context),
-      //   ),
-      //   title: const Text(
-      //     'Profile',
-      //     style: TextStyle(
-      //       color: Colors.black87,
-      //       fontSize: 18,
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      // ),
-      body: BlocListener<CompanyBloc, CompanyState>(
-        listener: (context, state) {
-          if (state.isSuccess &&
-              state.errorMessage == 'Company deleted successfully') {
-            CustomToast.showSuccessToast(msg: state.errorMessage!);
-            // Refresh profile to update UI after company deletion
-            context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
-          } else if (state.errorMessage != null &&
-              state.errorMessage!.isNotEmpty &&
-              !state.isSuccess) {
-            // Filter out "not found" messages to avoid annoying toasts
-            if (!state.errorMessage!.toLowerCase().contains('not found')) {
-              CustomToast.showErrorToast(msg: state.errorMessage!);
-            }
-          }
-        },
-        child: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, homeState) {
-            return BlocBuilder<ProfileBloc, ProfileState>(
-              builder: (context, state) {
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, homeState) {
+          return BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
               if (state.isLoading && state.userProfile == null) {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -113,9 +78,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               gradient: LinearGradient(
                                 colors: [
                                   Theme.of(context).primaryColor,
-                                  Theme.of(
-                                    context,
-                                  ).primaryColor.withOpacity(0.8),
+                                  Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.8),
                                 ],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
@@ -123,9 +88,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(
-                                    context,
-                                  ).primaryColor.withOpacity(0.3),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.3),
                                   blurRadius: 20,
                                   offset: const Offset(0, 10),
                                 ),
@@ -159,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   'Sign in to sync your favorites and manage your listings across devices',
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.white70,
                                     height: 1.4,
@@ -174,9 +139,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.white,
-                                      foregroundColor: Theme.of(
-                                        context,
-                                      ).primaryColor,
+                                      foregroundColor:
+                                          Theme.of(context).primaryColor,
                                       padding: const EdgeInsets.symmetric(
                                         vertical: 14,
                                       ),
@@ -197,14 +161,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ],
                             ),
                           ),
-
-                    // Profile Stats
-                    // ProfileStats(
-                    //   postsCount: state.userProfile?.postsCount ?? 200,
-                    //   viewsCount: state.userProfile?.viewsCount ?? 14,
-                    //   enquiresCount: state.userProfile?.enquiresCount ?? 243,
-                    //   soldsCount: state.userProfile?.soldsCount ?? 24,
-                    // ),
 
                     // Menu Items
                     if (homeState.showAddButton) const Divider(),
@@ -256,9 +212,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         padding: const EdgeInsets.all(12),
                                         decoration: BoxDecoration(
                                           color: Colors.orange.withOpacity(0.2),
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                         child: const Icon(
                                           Icons.av_timer_rounded,
@@ -329,9 +284,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           padding: const EdgeInsets.all(12),
                                           decoration: BoxDecoration(
                                             color: Colors.red.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                           child: const Icon(
                                             Icons.error_outline_rounded,
@@ -403,12 +357,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                         colors: [
-                                          Theme.of(
-                                            context,
-                                          ).primaryColor.withOpacity(0.1),
-                                          Theme.of(
-                                            context,
-                                          ).primaryColor.withOpacity(0.05),
+                                          Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.1),
+                                          Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.05),
                                         ],
                                       ),
                                       borderRadius: BorderRadius.circular(12),
@@ -422,18 +376,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Container(
                                           padding: const EdgeInsets.all(12),
                                           decoration: BoxDecoration(
-                                            color: Theme.of(
-                                              context,
-                                            ).primaryColor.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
+                                            color: Theme.of(context)
+                                                .primaryColor
+                                                .withOpacity(0.2),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                           child: Icon(
                                             Icons.verified_user,
-                                            color: Theme.of(
-                                              context,
-                                            ).primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             size: 24,
                                           ),
                                         ),
@@ -474,63 +426,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ],
 
-                            // if (homeState.showAddButton &&
-                            //     companyState.myCompany != null) ...[
-                            //   Padding(
-                            //     padding: const EdgeInsets.symmetric(
-                            //       horizontal: 16.0,
-                            //     ),
-                            //     child: ProfileStatusCard(
-                            //       title: 'GST Verification',
-                            //       subtitle: 'Please wait 24 hrs to Complete',
-                            //       buttonText: 'Pending',
-                            //       onButtonTap: () {},
-                            //       imagePath: 'assets/images/gst_inreview.svg',
-                            //       isSvg: true,
-                            //     ),
-                            //   ),
-                            //   Padding(
-                            //     padding: const EdgeInsets.symmetric(
-                            //       horizontal: 16.0,
-                            //     ),
-                            //     child: ProfileStatusCard(
-                            //       title: 'You GST Verified Sucessfully ',
-                            //       subtitle: 'Add your Company Details',
-                            //       buttonText: 'Successful',
-                            //       onButtonTap: () {},
-                            //       imagePath: 'assets/images/gst_verified.svg',
-                            //       isSvg: true,
-                            //     ),
-                            //   ),
-                            // ],
                             if (homeState.showAddButton &&
                                 companyState.myCompany == null) ...[
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //     horizontal: 16.0,
-                              //   ),
-                              //   child: ProfileStatusCard(
-                              //     title: 'GST Verification',
-                              //     subtitle: 'Please wait 24 hrs to Complete',
-                              //     buttonText: 'Pending',
-                              //     onButtonTap: () {},
-                              //     imagePath: 'assets/images/gst_inreview.svg',
-                              //     isSvg: true,
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //     horizontal: 16.0,
-                              //   ),
-                              //   child: ProfileStatusCard(
-                              //     title: 'You GST Verified Sucessfully ',
-                              //     subtitle: 'Add your Company Details',
-                              //     buttonText: 'Successful',
-                              //     onButtonTap: () {},
-                              //     imagePath: 'assets/images/gst_verified.svg',
-                              //     isSvg: true,
-                              //   ),
-                              // ),
                               AdSliderWidget(
                                 title: 'Want to create a Project!',
                                 caption:
@@ -554,8 +451,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         if (homeState.showAddButton) ...[
                           () {
-                            final role =
-                                state.userProfile?.role?.toLowerCase() ??
+                            final role = state.userProfile?.role?.toLowerCase() ??
                                 serviceLocator<AppCacheService>()
                                     .getRole()
                                     ?.toLowerCase();
@@ -599,19 +495,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         if (homeState.showAddButton)
                           ProfileMenuItem(
-                            icon: Icons.person_outline,
-                            title: 'Edit Profile',
-                            onTap: () {
-                              if (state.userProfile != null) {
-                                context.push(
-                                  EditProfileScreen.routeName,
-                                  extra: state.userProfile,
-                                );
-                              }
-                            },
-                          ),
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
                             icon: Icons.dashboard_outlined,
                             title: 'My Dashboard',
                             onTap: () {
@@ -624,17 +507,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onTap: () async {
                             Uri url;
                             if (Platform.isAndroid) {
-                              // Android - Play Store
                               url = Uri.parse(
                                 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
                               );
                             } else if (Platform.isIOS) {
-                              // iOS - App Store (replace XXXXXXXXXX with your actual App Store ID)
                               url = Uri.parse(
                                 'https://apps.apple.com/app/idXXXXXXXXXX?action=write-review',
                               );
                             } else {
-                              // Fallback to Play Store
                               url = Uri.parse(
                                 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
                               );
@@ -705,37 +585,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
 
                         if (homeState.showAddButton)
-                          BlocBuilder<CompanyBloc, CompanyState>(
-                            builder: (context, companyState) {
-                              if (companyState.myCompany != null) {
-                                return ProfileMenuItem(
-                                  icon: Icons.delete_sweep_outlined,
-                                  title: 'Delete Company',
-                                  onTap: () {
-                                    _showDeleteCompanyDialog(
-                                      context,
-                                      companyState.myCompany!.id!,
-                                    );
-                                  },
-                                );
-                              }
-                              return const SizedBox.shrink();
-                            },
-                          ),
-
-                        if (homeState.showAddButton)
-                          ProfileMenuItem(
-                            icon: Icons.delete_outline_rounded,
-                            title: 'Delete Account',
-                            onTap: () {
-                              context.push(
-                                '/deactivate-account',
-                              );
-                            },
-                          ),
-
-                        // Sign Out Button
-                        if (homeState.showAddButton)
                           GestureDetector(
                             onTap: () {
                               _showSignOutDialog(context);
@@ -754,45 +603,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                           ),
-                        const SizedBox(height: 32),
-                        SafeArea(child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Made with ',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
+                        const SizedBox(height: 16),
+                        SafeArea(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Made with ',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey.shade600,
+                                    ),
                                   ),
-                                ),
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.red.shade400,
-                                  size: 14,
-                                ),
-                                Text(
-                                  ' in Hyderabad, India',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
+                                  Icon(
+                                    Icons.favorite,
+                                    color: Colors.red.shade400,
+                                    size: 14,
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'v7.0.30', // Pro-tip: adding the version number makes it look like a finished product
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.grey.shade400,
-                                letterSpacing: 0.5,
+                                  Text(
+                                    ' in India',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey.shade600,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'v7.0.30',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.grey.shade400,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 50),
                       ],
@@ -804,51 +654,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         },
       ),
-    ),
-  );
-}
-
-  void _showImagePicker(BuildContext context) async {
-    final File? image = await ImagePickerUtil.showImageSourceBottomSheet(
-      context,
     );
-    if (image != null) {
-      context.read<ProfileBloc>().add(
-        ProfileEvent.uploadProfileImage(imagePath: image.path),
-      );
-    }
   }
 
-  void _showDeleteCompanyDialog(BuildContext context, String companyId) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Delete Company'),
-          content: const Text(
-            'Are you sure you want to delete your company? This action cannot be undone.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<CompanyBloc>().add(
-                      CompanyEvent.deleteCompany(companyId: companyId),
-                    );
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-          ],
-        );
-      },
-    );
+  void _showImagePicker(BuildContext context) async {
+    final file = await ImagePickerUtil.showImageSourceBottomSheet(context);
+    if (file != null && context.mounted) {
+      context
+          .read<ProfileBloc>()
+          .add(ProfileEvent.uploadProfileImage(imagePath: file.path));
+    }
   }
 
   void _showSignOutDialog(BuildContext context) {
@@ -866,8 +681,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             TextButton(
               onPressed: () {
                 logout(context: context);
-                // Add sign out logic here
-                // context.read<AuthBloc>().add(const AuthEvent.logout());
               },
               child: const Text(
                 'Sign Out',
