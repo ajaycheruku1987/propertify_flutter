@@ -27,6 +27,7 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
   double? _lastLongitude;
   double? _lastRadiusKm;
   double? _lastMinRating;
+  String? _currentSearchQuery;
 
   ServicesBloc(this._servicesRepo, this._priceRepo) : super(const ServicesState()) {
     on<_GetServicesEvent>(_onGetServicesEvent);
@@ -394,6 +395,110 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
         _lastMinRating = minRating;
       }
 
+      // Check if local search query is present
+      if (search != null && search.trim().isNotEmpty) {
+        final query = search.trim();
+        // If it's a new query, update active query tracker
+        if (_currentSearchQuery != query) {
+          _currentSearchQuery = query;
+        }
+
+        int currentSkip = 0;
+        List<ServicesResponseModel> accumulatedMatched = [];
+        bool hasMore = true;
+
+        emit(
+          state.copyWith(
+            isLoading: true,
+            servicesList: [],
+            currentOffset: 0,
+            hasMoreData: true,
+          ),
+        );
+
+        while (hasMore) {
+          // Check if search query has changed/cleared since starting
+          if (_currentSearchQuery != query) return;
+
+          final Either<Failure, List<ServicesResponseModel>> servicesResponseEither =
+              await _servicesRepo.getServices(
+                skip: currentSkip,
+                limit: limit,
+                latitude: latitude,
+                longitude: longitude,
+                radiusKm: radiusKm,
+                categoryNames: categoryNames,
+                minRating: minRating,
+                search: null, // do not send to API
+              );
+
+          if (_currentSearchQuery != query) return;
+
+          bool shouldBreak = false;
+          servicesResponseEither.fold(
+            (failure) {
+              emit(
+                state.copyWith(
+                  isLoading: false,
+                  notifyStatus: NotifyStatus(message: failure.message),
+                ),
+              );
+              shouldBreak = true;
+            },
+            (success) {
+              if (success.isEmpty) {
+                shouldBreak = true;
+              } else {
+                final lowercaseQuery = query.toLowerCase();
+                final matched = success.where((service) {
+                  final agentNameMatch = service.agentName?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final descMatch = service.description?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final categoryMatch = service.category?.any((cat) => cat.toLowerCase().contains(lowercaseQuery)) ?? false;
+                  final cityMatch = service.city?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final addressMatch = service.address?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  return agentNameMatch || descMatch || categoryMatch || cityMatch || addressMatch;
+                }).toList();
+
+                accumulatedMatched.addAll(matched);
+
+                emit(
+                  state.copyWith(
+                    servicesList: List.from(accumulatedMatched),
+                    currentOffset: currentSkip + success.length,
+                    hasMoreData: success.length == limit,
+                  ),
+                );
+
+                if (success.length < limit) {
+                  shouldBreak = true;
+                }
+              }
+            },
+          );
+
+          if (shouldBreak) {
+            break;
+          }
+
+          currentSkip += limit;
+        }
+
+        if (_currentSearchQuery == query) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              hasMoreData: false, // Finished fetching all records recursively
+            ),
+          );
+        }
+        return;
+      }
+
+      // If search is cleared/null
+      if (_currentSearchQuery != null) {
+        _currentSearchQuery = null;
+      }
+
       emit(
         state.copyWith(
           isLoading: true,
@@ -410,7 +515,7 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
             radiusKm: radiusKm,
             categoryNames: categoryNames,
             minRating: minRating,
-            search: search,
+            search: null,
           );
 
       servicesResponseEither.fold(

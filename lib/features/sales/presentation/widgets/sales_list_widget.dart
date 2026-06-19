@@ -71,31 +71,23 @@ class _SalesListWidgetState extends State<SalesListWidget> {
     final homeState = context.read<HomeBloc>().state;
     final filterData = homeState.activeSalesFilter;
 
-    String? location;
-    String? propertyType;
-    double? minPrice;
-    double? maxPrice;
-    String? search;
+    List<String>? propertyTypes;
+    double? latitude = homeState.currentLat;
+    double? longitude = homeState.currentLng;
+    double radiusKm = 5;
 
     if (filterData != null) {
-      location = filterData['location'] as String?;
-      
-      final propertyTypes = filterData['propertyTypes'] as List?;
-      propertyType = propertyTypes != null &&
-              propertyTypes.isNotEmpty &&
-              !propertyTypes.contains('All')
-          ? propertyTypes.first as String?
-          : null;
+      final types = filterData['propertyTypes'] as List?;
+      if (types != null && types.isNotEmpty && !types.contains('All')) {
+        propertyTypes = List<String>.from(types);
+      }
 
-      final priceRange = filterData['priceRange'] as Map?;
-      minPrice = priceRange != null
-          ? (priceRange['min'] as num).toDouble() * 100000
-          : null;
-      maxPrice = priceRange != null
-          ? (priceRange['max'] as num).toDouble() * 100000
-          : null;
-
-      search = filterData['search'] as String?;
+      final isLocationCustom = filterData['isLocationCustom'] == true;
+      if (isLocationCustom) {
+        latitude = filterData['latitude'] as double?;
+        longitude = filterData['longitude'] as double?;
+      }
+      radiusKm = 15;
     }
 
     final salesBloc = context.read<SalesBloc>();
@@ -110,11 +102,10 @@ class _SalesListWidgetState extends State<SalesListWidget> {
       SalesEvent.getSalesEvent(
         offset: 0,
         limit: 10,
-        location: location,
-        propertyType: propertyType,
-        minPrice: minPrice,
-        maxPrice: maxPrice,
-        search: search,
+        propertyTypes: propertyTypes,
+        latitude: latitude,
+        longitude: longitude,
+        radiusKm: radiusKm,
       ),
     );
 
@@ -389,15 +380,12 @@ class _SalesListWidgetState extends State<SalesListWidget> {
 
   void _applySalesFilter(BuildContext context, Map<String, dynamic> filterData) {
     final propertyTypes = filterData['propertyTypes'] as List?;
-    final priceRange = filterData['priceRange'] as Map?;
     final isLocationCustom = filterData['isLocationCustom'] == true;
 
     final isDefault =
         (propertyTypes == null ||
             propertyTypes.isEmpty ||
             propertyTypes.contains('All')) &&
-        (priceRange == null ||
-            (priceRange['min'] == 10 && priceRange['max'] == 1000)) &&
         !isLocationCustom;
 
     if (isDefault) {
@@ -406,27 +394,26 @@ class _SalesListWidgetState extends State<SalesListWidget> {
     } else {
       context.read<HomeBloc>().add(HomeEvent.updateSalesFilter(filterData));
 
-      final propertyType =
+      final List<String>? types =
           propertyTypes != null &&
               propertyTypes.isNotEmpty &&
               !propertyTypes.contains('All')
-          ? propertyTypes.first as String?
+          ? List<String>.from(propertyTypes)
           : null;
 
-      final minPrice = priceRange != null
-          ? (priceRange['min'] as num).toDouble() * 100000
-          : null;
-      final maxPrice = priceRange != null
-          ? (priceRange['max'] as num).toDouble() * 100000
-          : null;
+      final latitude = isLocationCustom
+          ? filterData['latitude'] as double?
+          : context.read<HomeBloc>().state.currentLat;
+      final longitude = isLocationCustom
+          ? filterData['longitude'] as double?
+          : context.read<HomeBloc>().state.currentLng;
 
       context.read<SalesBloc>().add(
         SalesEvent.getSalesEvent(
-          location: filterData['location'] as String?,
-          propertyType: propertyType,
-          minPrice: minPrice,
-          maxPrice: maxPrice,
-          search: filterData['search'] as String?,
+          propertyTypes: types,
+          latitude: latitude,
+          longitude: longitude,
+          radiusKm: 15,
         ),
       );
     }

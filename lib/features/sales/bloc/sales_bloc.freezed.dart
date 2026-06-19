@@ -20,10 +20,11 @@ mixin _$SalesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -75,8 +76,15 @@ mixin _$SalesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -124,8 +132,15 @@ mixin _$SalesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -292,10 +307,11 @@ class _$ResetImpl implements _Reset {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -350,8 +366,15 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -402,8 +425,15 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -539,10 +569,11 @@ abstract class _$$GetSalesEventImplCopyWith<$Res> {
       __$$GetSalesEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String? location,
-      String? propertyType,
-      double? minPrice,
-      double? maxPrice,
+      {List<String>? propertyTypes,
+      String? city,
+      double? latitude,
+      double? longitude,
+      double? radiusKm,
       String? search,
       int? limit,
       int? offset});
@@ -559,30 +590,35 @@ class __$$GetSalesEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = freezed,
-    Object? propertyType = freezed,
-    Object? minPrice = freezed,
-    Object? maxPrice = freezed,
+    Object? propertyTypes = freezed,
+    Object? city = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? radiusKm = freezed,
     Object? search = freezed,
     Object? limit = freezed,
     Object? offset = freezed,
   }) {
     return _then(_$GetSalesEventImpl(
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
+      propertyTypes: freezed == propertyTypes
+          ? _value._propertyTypes
+          : propertyTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      propertyType: freezed == propertyType
-          ? _value.propertyType
-          : propertyType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      minPrice: freezed == minPrice
-          ? _value.minPrice
-          : minPrice // ignore: cast_nullable_to_non_nullable
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
-      maxPrice: freezed == maxPrice
-          ? _value.maxPrice
-          : maxPrice // ignore: cast_nullable_to_non_nullable
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      radiusKm: freezed == radiusKm
+          ? _value.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
               as double?,
       search: freezed == search
           ? _value.search
@@ -604,22 +640,34 @@ class __$$GetSalesEventImplCopyWithImpl<$Res>
 
 class _$GetSalesEventImpl implements _GetSalesEvent {
   const _$GetSalesEventImpl(
-      {this.location,
-      this.propertyType,
-      this.minPrice,
-      this.maxPrice,
+      {final List<String>? propertyTypes,
+      this.city,
+      this.latitude,
+      this.longitude,
+      this.radiusKm,
       this.search,
       this.limit,
-      this.offset});
+      this.offset})
+      : _propertyTypes = propertyTypes;
+
+  final List<String>? _propertyTypes;
+  @override
+  List<String>? get propertyTypes {
+    final value = _propertyTypes;
+    if (value == null) return null;
+    if (_propertyTypes is EqualUnmodifiableListView) return _propertyTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
-  final String? location;
+  final String? city;
   @override
-  final String? propertyType;
+  final double? latitude;
   @override
-  final double? minPrice;
+  final double? longitude;
   @override
-  final double? maxPrice;
+  final double? radiusKm;
   @override
   final String? search;
   @override
@@ -629,7 +677,7 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
 
   @override
   String toString() {
-    return 'SalesEvent.getSalesEvent(location: $location, propertyType: $propertyType, minPrice: $minPrice, maxPrice: $maxPrice, search: $search, limit: $limit, offset: $offset)';
+    return 'SalesEvent.getSalesEvent(propertyTypes: $propertyTypes, city: $city, latitude: $latitude, longitude: $longitude, radiusKm: $radiusKm, search: $search, limit: $limit, offset: $offset)';
   }
 
   @override
@@ -637,22 +685,31 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetSalesEventImpl &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.propertyType, propertyType) ||
-                other.propertyType == propertyType) &&
-            (identical(other.minPrice, minPrice) ||
-                other.minPrice == minPrice) &&
-            (identical(other.maxPrice, maxPrice) ||
-                other.maxPrice == maxPrice) &&
+            const DeepCollectionEquality()
+                .equals(other._propertyTypes, _propertyTypes) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.radiusKm, radiusKm) ||
+                other.radiusKm == radiusKm) &&
             (identical(other.search, search) || other.search == search) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.offset, offset) || other.offset == offset));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, location, propertyType, minPrice,
-      maxPrice, search, limit, offset);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_propertyTypes),
+      city,
+      latitude,
+      longitude,
+      radiusKm,
+      search,
+      limit,
+      offset);
 
   @JsonKey(ignore: true)
   @override
@@ -665,10 +722,11 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -716,16 +774,23 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     required TResult Function(String callbackId, String projectId)
         deleteCallback,
   }) {
-    return getSalesEvent(
-        location, propertyType, minPrice, maxPrice, search, limit, offset);
+    return getSalesEvent(propertyTypes, city, latitude, longitude, radiusKm,
+        search, limit, offset);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -769,16 +834,23 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     TResult? Function(String projectId)? getProjectCallbacks,
     TResult? Function(String callbackId, String projectId)? deleteCallback,
   }) {
-    return getSalesEvent?.call(
-        location, propertyType, minPrice, maxPrice, search, limit, offset);
+    return getSalesEvent?.call(propertyTypes, city, latitude, longitude,
+        radiusKm, search, limit, offset);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -824,8 +896,8 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     required TResult orElse(),
   }) {
     if (getSalesEvent != null) {
-      return getSalesEvent(
-          location, propertyType, minPrice, maxPrice, search, limit, offset);
+      return getSalesEvent(propertyTypes, city, latitude, longitude, radiusKm,
+          search, limit, offset);
     }
     return orElse();
   }
@@ -906,18 +978,20 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
 
 abstract class _GetSalesEvent implements SalesEvent {
   const factory _GetSalesEvent(
-      {final String? location,
-      final String? propertyType,
-      final double? minPrice,
-      final double? maxPrice,
+      {final List<String>? propertyTypes,
+      final String? city,
+      final double? latitude,
+      final double? longitude,
+      final double? radiusKm,
       final String? search,
       final int? limit,
       final int? offset}) = _$GetSalesEventImpl;
 
-  String? get location;
-  String? get propertyType;
-  double? get minPrice;
-  double? get maxPrice;
+  List<String>? get propertyTypes;
+  String? get city;
+  double? get latitude;
+  double? get longitude;
+  double? get radiusKm;
   String? get search;
   int? get limit;
   int? get offset;
@@ -994,10 +1068,11 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -1052,8 +1127,15 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -1104,8 +1186,15 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -1329,10 +1418,11 @@ class _$GetSalesProjectsByUserIdEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -1387,8 +1477,15 @@ class _$GetSalesProjectsByUserIdEventImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -1439,8 +1536,15 @@ class _$GetSalesProjectsByUserIdEventImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -1620,10 +1724,11 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -1678,8 +1783,15 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -1730,8 +1842,15 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -1930,10 +2049,11 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -1988,8 +2108,15 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -2040,8 +2167,15 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -2246,10 +2380,11 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -2304,8 +2439,15 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -2356,8 +2498,15 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -2823,10 +2972,11 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -2903,8 +3053,15 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -2977,8 +3134,15 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -3246,10 +3410,11 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -3304,8 +3469,15 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -3356,8 +3528,15 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -3561,10 +3740,11 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -3619,8 +3799,15 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -3671,8 +3858,15 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -3891,10 +4085,11 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -3949,8 +4144,15 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -4001,8 +4203,15 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -4234,10 +4443,11 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -4292,8 +4502,15 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -4344,8 +4561,15 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -4554,10 +4778,11 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -4612,8 +4837,15 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -4664,8 +4896,15 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?
@@ -4878,10 +5117,11 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(
-            String? location,
-            String? propertyType,
-            double? minPrice,
-            double? maxPrice,
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
             String? search,
             int? limit,
             int? offset)
@@ -4936,8 +5176,15 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult? Function(String projectId)? getSaleDetailsEvent,
     TResult? Function(String userId, int? page, int? pageSize)?
@@ -4988,8 +5235,15 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(String? location, String? propertyType, double? minPrice,
-            double? maxPrice, String? search, int? limit, int? offset)?
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
         getSalesEvent,
     TResult Function(String projectId)? getSaleDetailsEvent,
     TResult Function(String userId, int? page, int? pageSize)?

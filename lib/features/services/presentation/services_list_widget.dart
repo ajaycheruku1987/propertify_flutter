@@ -117,6 +117,10 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
       }
     });
 
+    final double? minRating = filterData != null
+        ? (filterData['minRating'] as num?)?.toDouble()
+        : null;
+
     servicesBloc.add(
       ServicesEvent.getServicesEvent(
         skip: 0,
@@ -125,6 +129,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
         latitude: latitude,
         longitude: longitude,
         radiusKm: radiusKm,
+        minRating: minRating,
       ),
     );
 
@@ -303,10 +308,12 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
     final serviceType = filterData['serviceType'] as String?;
     final categories = filterData['categories'] as List?;
     final isLocationCustom = filterData['isLocationCustom'] == true;
+    final double? minRating = (filterData['minRating'] as num?)?.toDouble();
 
     final isDefault = (serviceType == 'All' || serviceType == null) &&
         (categories == null || categories.isEmpty || categories.contains('All')) &&
-        !isLocationCustom;
+        !isLocationCustom &&
+        (minRating == null || minRating <= 1.0);
 
     if (isDefault) {
       context.read<HomeBloc>().add(const HomeEvent.updateServicesFilter(null));
@@ -341,6 +348,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
           latitude: latitude,
           longitude: longitude,
           radiusKm: 15,
+          minRating: minRating,
         ),
       );
     }

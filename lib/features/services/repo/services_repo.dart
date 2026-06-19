@@ -31,10 +31,17 @@ class ServicesRepo {
     if (skip != null) queryParams['skip'] = skip;
     if (limit != null) queryParams['limit'] = limit;
     if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
-    if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
-    if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
-      final isFiltering = (search != null && search.isNotEmpty) ||
-          (categoryNames != null && categoryNames.isNotEmpty && !categoryNames.contains('All'));
+    if (longitude != null && longitude != 0.0)
+      queryParams['longitude'] = longitude;
+    if (latitude != null &&
+        latitude != 0.0 &&
+        longitude != null &&
+        longitude != 0.0) {
+      final isFiltering =
+          (search != null && search.isNotEmpty) ||
+          (categoryNames != null &&
+              categoryNames.isNotEmpty &&
+              !categoryNames.contains('All'));
       queryParams['radius_km'] = radiusKm != null
           ? (radiusKm == 5 && isFiltering ? 15 : radiusKm)
           : (isFiltering ? 15 : 5);
@@ -251,7 +258,9 @@ class ServicesRepo {
         'phone_number': phoneNumber,
         'email': email,
         // Join list items correctly or send as is based on backend expectation
-        'category_names': jsonEncode(categoryNames), // Adjusted per multipart standard, or use list directly
+        'category_names': jsonEncode(
+          categoryNames,
+        ), // Adjusted per multipart standard, or use list directly
         'existing_image_urls': jsonEncode(existingImageUrls),
         if (socialInstagram != null) 'social_instagram': socialInstagram,
         if (socialLinkedin != null) 'social_linkedin': socialLinkedin,
@@ -264,7 +273,9 @@ class ServicesRepo {
         formData.fields.add(MapEntry('category_names', cat));
       }
 
-      formData.fields.removeWhere((element) => element.key == 'existing_image_urls');
+      formData.fields.removeWhere(
+        (element) => element.key == 'existing_image_urls',
+      );
       for (var url in existingImageUrls) {
         formData.fields.add(MapEntry('existing_image_urls', url));
       }
@@ -282,7 +293,10 @@ class ServicesRepo {
         );
       }
 
-      final response = await ftPyroApiRequest.put('/services/$serviceId', data: formData);
+      final response = await ftPyroApiRequest.put(
+        '/services/$serviceId',
+        data: formData,
+      );
 
       final responseData = await response.getResponse();
       return responseData.fold(

@@ -53,7 +53,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
   String _selectedAddress = '';
   String _selectedServiceType = 'All';
   List<String> _selectedCategories = [];
-  RangeValues _priceRange = const RangeValues(10, 500);
+  double _minRating = 1.0;
 
   double? _latitude;
   double? _longitude;
@@ -72,12 +72,9 @@ class _ServicesFilterState extends State<ServicesFilter> {
       if (_selectedCategories.contains('All')) {
         _selectedCategories.clear();
       }
-      final priceRangeMap = widget.activeFilter!['priceRange'] as Map?;
-      if (priceRangeMap != null) {
-        _priceRange = RangeValues(
-          (priceRangeMap['min'] as num).toDouble(),
-          (priceRangeMap['max'] as num).toDouble(),
-        );
+      final minRating = widget.activeFilter!['minRating'];
+      if (minRating != null) {
+        _minRating = (minRating as num).toDouble();
       }
       if (_isLocationCustom) {
         _selectedAddress = widget.activeFilter!['address'] ?? '';
@@ -190,8 +187,8 @@ class _ServicesFilterState extends State<ServicesFilter> {
                     _buildCategoriesSection(),
                     const SizedBox(height: 20),
 
-                    // Price Range
-                    _buildPriceRangeSection(),
+                    // Rating
+                    _buildRatingSection(),
                     const SizedBox(height: 30),
                   ],
                 ),
@@ -427,19 +424,34 @@ class _ServicesFilterState extends State<ServicesFilter> {
     );
   }
 
-  Widget _buildPriceRangeSection() {
+  Widget _buildRatingSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Price Range (per hour)',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Minimum Rating',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
+            Row(
+              children: List.generate(5, (i) {
+                final starValue = i + 1;
+                return Icon(
+                  starValue <= _minRating ? Icons.star : Icons.star_border,
+                  color: Colors.amber,
+                  size: 20,
+                );
+              }),
+            ),
+          ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: AppTheme.blueColor,
@@ -449,38 +461,34 @@ class _ServicesFilterState extends State<ServicesFilter> {
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
             overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
           ),
-          child: RangeSlider(
-            values: _priceRange,
-            min: 10,
-            max: 500,
-            divisions: 49,
-            labels: RangeLabels(
-              '₹${_priceRange.start.round()}',
-              '₹${_priceRange.end.round()}',
-            ),
-            onChanged: (RangeValues values) {
+          child: Slider(
+            value: _minRating,
+            min: 1.0,
+            max: 5.0,
+            divisions: 4,
+            label: '${_minRating.round()} ★',
+            onChanged: (value) {
               setState(() {
-                _priceRange = values;
+                _minRating = value;
               });
             },
           ),
         ),
-        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '₹${_priceRange.start.round()}',
+              '1 ★',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey.shade600,
               ),
             ),
             Text(
-              '₹${_priceRange.end.round()}',
+              '5 ★',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey.shade600,
               ),
@@ -512,7 +520,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                   _addressController.text = _selectedAddress;
                   _selectedServiceType = 'All';
                   _selectedCategories.clear();
-                  _priceRange = const RangeValues(10, 500);
+                  _minRating = 1.0;
                 });
                 if (widget.onResetFilter != null) {
                   widget.onResetFilter!();
@@ -551,10 +559,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                   'categories': _selectedCategories.isEmpty
                       ? ['All']
                       : _selectedCategories,
-                  'priceRange': {
-                    'min': _priceRange.start.round(),
-                    'max': _priceRange.end.round(),
-                  },
+                  'minRating': _minRating,
                   'isLocationCustom': _isLocationCustom,
                   'latitude': _latitude,
                   'longitude': _longitude,

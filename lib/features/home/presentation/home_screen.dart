@@ -726,6 +726,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                           latitude: latitude,
                                           longitude: longitude,
                                           radiusKm: 15,
+                                          minRating: filterData['minRating'] != null
+                                              ? (filterData['minRating'] as num).toDouble()
+                                              : null,
                                         ),
                                       );
                                     },
@@ -802,37 +805,31 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       context.read<HomeBloc>().add(
                                         HomeEvent.updateSalesFilter(filterData),
                                       );
+
                                       final propertyTypes =
                                           filterData['propertyTypes'] as List?;
-                                      final propertyType =
+                                      final List<String>? types =
                                           propertyTypes != null &&
-                                              propertyTypes.isNotEmpty &&
-                                              !propertyTypes.contains('All')
-                                          ? propertyTypes.first as String?
-                                          : null;
+                                                  propertyTypes.isNotEmpty &&
+                                                  !propertyTypes.contains('All')
+                                              ? List<String>.from(propertyTypes)
+                                              : null;
 
-                                      final priceRange =
-                                          filterData['priceRange'] as Map?;
-                                      final minPrice = priceRange != null
-                                          ? (priceRange['min'] as num)
-                                                    .toDouble() *
-                                                100000
-                                          : null;
-                                      final maxPrice = priceRange != null
-                                          ? (priceRange['max'] as num)
-                                                    .toDouble() *
-                                                100000
-                                          : null;
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] == true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
 
                                       context.read<SalesBloc>().add(
                                         SalesEvent.getSalesEvent(
-                                          location:
-                                              filterData['location'] as String?,
-                                          propertyType: propertyType,
-                                          minPrice: minPrice,
-                                          maxPrice: maxPrice,
-                                          search:
-                                              filterData['search'] as String?,
+                                          propertyTypes: types,
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                          radiusKm: 15,
                                         ),
                                       );
                                     },

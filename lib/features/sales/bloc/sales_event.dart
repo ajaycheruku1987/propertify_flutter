@@ -4,10 +4,11 @@ part of 'sales_bloc.dart';
 class SalesEvent with _$SalesEvent {
   const factory SalesEvent.reset() = _Reset;
   const factory SalesEvent.getSalesEvent({
-    String? location,
-    String? propertyType,
-    double? minPrice,
-    double? maxPrice,
+    List<String>? propertyTypes,
+    String? city,
+    double? latitude,
+    double? longitude,
+    double? radiusKm,
     String? search,
     int? limit,
     int? offset,

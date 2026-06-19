@@ -19,11 +19,13 @@ part 'sales_state.dart';
 class SalesBloc extends Bloc<SalesEvent, SalesState> {
   final SalesRepo _salesRepo;
 
-  String? _lastLocation;
-  String? _lastPropertyType;
-  double? _lastMinPrice;
-  double? _lastMaxPrice;
+  List<String>? _lastPropertyTypes;
+  String? _lastCity;
+  double? _lastLatitude;
+  double? _lastLongitude;
+  double? _lastRadiusKm;
   String? _lastSearch;
+  String? _currentSearchQuery;
 
   SalesBloc(this._salesRepo) : super(const SalesState()) {
     on<_GetSalesEvent>(_onGetSalesEvent);
@@ -55,18 +57,117 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
       final int offset = event.offset ?? 0;
       final int limit = event.limit ?? 10;
 
-      final String? location = event.location ?? (offset == 0 ? null : _lastLocation);
-      final String? propertyType = event.propertyType ?? (offset == 0 ? null : _lastPropertyType);
-      final double? minPrice = event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
-      final double? maxPrice = event.maxPrice ?? (offset == 0 ? null : _lastMaxPrice);
+      final List<String>? propertyTypes = event.propertyTypes ?? (offset == 0 ? null : _lastPropertyTypes);
+      final String? city = event.city ?? (offset == 0 ? null : _lastCity);
+      final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
+      final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
+      final double? radiusKm = event.radiusKm ?? (offset == 0 ? null : _lastRadiusKm);
       final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
 
       if (offset == 0) {
-        _lastLocation = location;
-        _lastPropertyType = propertyType;
-        _lastMinPrice = minPrice;
-        _lastMaxPrice = maxPrice;
+        _lastPropertyTypes = propertyTypes;
+        _lastCity = city;
+        _lastLatitude = latitude;
+        _lastLongitude = longitude;
+        _lastRadiusKm = radiusKm;
         _lastSearch = search;
+      }
+
+      // Local search: fetch pages recursively and filter client-side
+      if (search != null && search.trim().isNotEmpty) {
+        final query = search.trim();
+        _currentSearchQuery = query;
+
+        int currentOffset = 0;
+        final List<SaleRecord> accumulatedMatched = [];
+        SalesModel? lastModel;
+
+        emit(
+          state.copyWith(
+            isLoading: true,
+            salesList: SalesModel(salerecords: []),
+            currentOffset: 0,
+            hasMoreData: true,
+          ),
+        );
+
+        while (true) {
+          if (_currentSearchQuery != query) return;
+
+          final Either<Failure, SalesModel> salesResponseEither =
+              await _salesRepo.getSales(
+                propertyTypes: propertyTypes,
+                city: city,
+                latitude: latitude,
+                longitude: longitude,
+                radiusKm: radiusKm,
+                search: null, // local filtering only
+                limit: limit,
+                offset: currentOffset,
+              );
+
+          if (_currentSearchQuery != query) return;
+
+          bool shouldBreak = false;
+          salesResponseEither.fold(
+            (failure) {
+              emit(
+                state.copyWith(
+                  isLoading: false,
+                  notifyStatus: NotifyStatus(message: failure.message),
+                ),
+              );
+              shouldBreak = true;
+            },
+            (success) {
+              lastModel = success;
+              final records = success.salerecords ?? [];
+              if (records.isEmpty) {
+                shouldBreak = true;
+              } else {
+                final lowercaseQuery = query.toLowerCase();
+                final matched = records.where((sale) {
+                  final nameMatch = sale.projectName?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final descMatch = sale.description?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final typeMatch = sale.propertyType?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final cityMatch = sale.city?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final addressMatch = sale.address?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final locationMatch = sale.location?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  return nameMatch || descMatch || typeMatch || cityMatch || addressMatch || locationMatch;
+                }).toList();
+
+                accumulatedMatched.addAll(matched);
+
+                emit(
+                  state.copyWith(
+                    salesList: (lastModel ?? SalesModel()).copyWith(
+                      salerecords: List.from(accumulatedMatched),
+                    ),
+                    currentOffset: currentOffset + records.length,
+                    hasMoreData: records.length == limit,
+                  ),
+                );
+
+                if (records.length < limit) {
+                  shouldBreak = true;
+                }
+              }
+            },
+          );
+
+          if (shouldBreak) break;
+          currentOffset += limit;
+        }
+
+        if (_currentSearchQuery == query) {
+          emit(state.copyWith(isLoading: false, hasMoreData: false));
+        }
+        return;
+      }
+
+      // Search cleared — reset and load normally
+      if (_currentSearchQuery != null) {
+        _currentSearchQuery = null;
       }
 
       emit(
@@ -78,11 +179,12 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
 
       Either<Failure, SalesModel> salesResponseEither = await _salesRepo
           .getSales(
-            location: location,
-            propertyType: propertyType,
-            minPrice: minPrice,
-            maxPrice: maxPrice,
-            search: search,
+            propertyTypes: propertyTypes,
+            city: city,
+            latitude: latitude,
+            longitude: longitude,
+            radiusKm: radiusKm,
+            search: null,
             limit: limit,
             offset: offset,
           );

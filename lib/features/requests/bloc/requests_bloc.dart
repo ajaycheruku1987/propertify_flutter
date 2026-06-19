@@ -23,6 +23,7 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
   String? _lastCity;
   double? _lastMinBudget;
   double? _lastMaxBudget;
+  String? _currentSearchQuery;
 
   RequestsBloc(this._requestsRepo) : super(const RequestsState()) {
     on<_GetRequestsEvent>(_onGetRequestsEvent);
@@ -71,6 +72,99 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
         _lastMaxBudget = maxBudget;
       }
 
+      // Local search: fetch pages recursively and filter client-side
+      if (search != null && search.trim().isNotEmpty) {
+        final query = search.trim();
+        _currentSearchQuery = query;
+
+        int currentSkip = 0;
+        final List<RequestResponseModel> accumulatedMatched = [];
+
+        emit(
+          _mergeState(
+            isLoading: true,
+            requestsList: [],
+            currentOffset: 0,
+            hasMoreData: true,
+          ),
+        );
+
+        while (true) {
+          if (_currentSearchQuery != query) return;
+
+          final Either<Failure, List<RequestResponseModel>> requestsEither =
+              await _requestsRepo.getRequests(
+                skip: currentSkip,
+                limit: limit,
+                latitude: latitude,
+                longitude: longitude,
+                radiusKm: radiusKm,
+                search: null, // local filtering only
+                category: category,
+                city: city,
+                minBudget: minBudget,
+                maxBudget: maxBudget,
+              );
+
+          if (_currentSearchQuery != query) return;
+
+          bool shouldBreak = false;
+          requestsEither.fold(
+            (failure) {
+              emit(
+                _mergeState(
+                  isLoading: false,
+                  notifyStatus: NotifyStatus(message: failure.message),
+                ),
+              );
+              shouldBreak = true;
+            },
+            (success) {
+              if (success.isEmpty) {
+                shouldBreak = true;
+              } else {
+                final lowercaseQuery = query.toLowerCase();
+                final matched = success.where((req) {
+                  final titleMatch = req.title?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final descMatch = req.description?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final categoryMatch = req.category?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final cityMatch = req.city?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  final addressMatch = req.address?.toLowerCase().contains(lowercaseQuery) ?? false;
+                  return titleMatch || descMatch || categoryMatch || cityMatch || addressMatch;
+                }).toList();
+
+                accumulatedMatched.addAll(matched);
+
+                emit(
+                  _mergeState(
+                    requestsList: List.from(accumulatedMatched),
+                    currentOffset: currentSkip + success.length,
+                    hasMoreData: success.length == limit,
+                  ),
+                );
+
+                if (success.length < limit) {
+                  shouldBreak = true;
+                }
+              }
+            },
+          );
+
+          if (shouldBreak) break;
+          currentSkip += limit;
+        }
+
+        if (_currentSearchQuery == query) {
+          emit(_mergeState(isLoading: false, hasMoreData: false));
+        }
+        return;
+      }
+
+      // Search cleared — reset and load normally
+      if (_currentSearchQuery != null) {
+        _currentSearchQuery = null;
+      }
+
       emit(
         _mergeState(
           isLoading: true,
@@ -85,7 +179,7 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
             latitude: latitude,
             longitude: longitude,
             radiusKm: radiusKm,
-            search: search,
+            search: null,
             category: category,
             city: city,
             minBudget: minBudget,
@@ -102,12 +196,12 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
           );
         },
         (requests) {
-          final int offset = event.skip ?? 0;
-          final int limit = event.limit ?? requests.length;
-          final bool hasMoreData = requests.length == limit;
+          final int effectiveOffset = event.skip ?? 0;
+          final int effectiveLimit = event.limit ?? requests.length;
+          final bool hasMoreData = requests.length == effectiveLimit;
 
           final List<RequestResponseModel> updatedList = [
-            if (offset > 0) ...state.requestsList,
+            if (effectiveOffset > 0) ...state.requestsList,
             ...requests,
           ];
 
@@ -115,7 +209,7 @@ class RequestsBloc extends Bloc<RequestsEvent, RequestsState> {
             _mergeState(
               isLoading: false,
               requestsList: updatedList,
-              currentOffset: offset + limit,
+              currentOffset: effectiveOffset + effectiveLimit,
               hasMoreData: hasMoreData,
               notifyStatus: NotifyStatus(
                 message: 'Requests loaded successfully',

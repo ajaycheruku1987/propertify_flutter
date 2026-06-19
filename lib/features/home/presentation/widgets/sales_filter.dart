@@ -47,86 +47,43 @@ class SalesFilter extends StatefulWidget {
 }
 
 class _SalesFilterState extends State<SalesFilter> {
-  final TextEditingController _searchController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   bool _isLocationCustom = false;
+  double? _latitude;
+  double? _longitude;
+  String _selectedAddress = '';
+
+  List<String> _selectedPropertyTypes = [];
+
+  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
 
   @override
   void initState() {
     super.initState();
     if (widget.activeFilter != null) {
       _isLocationCustom = widget.activeFilter!['isLocationCustom'] ?? false;
-      _searchController.text = widget.activeFilter!['search'] ?? '';
-      _selectedPropertyTypes = List<String>.from(widget.activeFilter!['propertyTypes'] ?? []);
-      _selectedAmenities = List<String>.from(widget.activeFilter!['amenities'] ?? []);
-      final priceMap = widget.activeFilter!['priceRange'] as Map?;
-      if (priceMap != null) {
-        _priceRange = RangeValues(
-          (priceMap['min'] as num).toDouble(),
-          (priceMap['max'] as num).toDouble(),
-        );
+      _latitude = widget.activeFilter!['latitude'] as double?;
+      _longitude = widget.activeFilter!['longitude'] as double?;
+      _selectedPropertyTypes =
+          List<String>.from(widget.activeFilter!['propertyTypes'] ?? []);
+      if (_selectedPropertyTypes.contains('All')) {
+        _selectedPropertyTypes.clear();
       }
-      final areaMap = widget.activeFilter!['areaRange'] as Map?;
-      if (areaMap != null) {
-        _areaRange = RangeValues(
-          (areaMap['min'] as num).toDouble(),
-          (areaMap['max'] as num).toDouble(),
-        );
-      }
-      _selectedBedrooms = widget.activeFilter!['bedrooms'] ?? 'Any';
-      _selectedBathrooms = widget.activeFilter!['bathrooms'] ?? 'Any';
       if (_isLocationCustom) {
-        _selectedLocation = widget.activeFilter!['location'] ?? widget.currentCity ?? 'Hyderabad';
-        _addressController.text = widget.activeFilter!['address'] ?? _selectedLocation;
+        _selectedAddress = widget.activeFilter!['address'] ?? '';
       } else {
-        _selectedLocation = widget.currentCity ?? 'Hyderabad';
-        _addressController.text = widget.currentAddress ?? _selectedLocation;
+        _selectedAddress = widget.currentAddress ?? '';
       }
+      _addressController.text = _selectedAddress;
     } else {
       _isLocationCustom = false;
-      _selectedLocation = widget.currentCity ?? 'Hyderabad';
-      _addressController.text = widget.currentAddress ?? _selectedLocation;
+      _selectedAddress = widget.currentAddress ?? '';
+      _addressController.text = _selectedAddress;
     }
   }
 
-  String _selectedLocation = 'Hyderabad';
-  List<String> _selectedPropertyTypes = [];
-  List<String> _selectedAmenities = [];
-  RangeValues _priceRange = const RangeValues(10, 1000);
-  RangeValues _areaRange = const RangeValues(500, 5000);
-  String _selectedBedrooms = 'Any';
-  String _selectedBathrooms = 'Any';
-
-  final List<String> _locations = [
-    'Hyderabad',
-    'Mumbai',
-    'Delhi',
-    'Bangalore',
-    'Chennai',
-    'Kolkata',
-    'Pune',
-    'Ahmedabad',
-  ];
-
-  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
-
-  final List<String> _amenities = [
-    'Parking',
-    'Swimming Pool',
-    'Gym',
-    'Garden',
-    'Security',
-    'Power Backup',
-    'Elevator',
-    'Club House',
-  ];
-
-  final List<String> _bedroomOptions = ['Any', '1', '2', '3', '4', '5+'];
-  final List<String> _bathroomOptions = ['Any', '1', '2', '3', '4+'];
-
   @override
   void dispose() {
-    _searchController.dispose();
     _addressController.dispose();
     super.dispose();
   }
@@ -136,7 +93,7 @@ class _SalesFilterState extends State<SalesFilter> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 0.7,
+      height: screenHeight * 0.55,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -162,9 +119,9 @@ class _SalesFilterState extends State<SalesFilter> {
             padding: const EdgeInsets.all(20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Sales Filter',
+              children: const [
+                Text(
+                  'Projects Filter',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -182,12 +139,11 @@ class _SalesFilterState extends State<SalesFilter> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Location
+                  // Address Input
                   AddressInput(
                     controller: _addressController,
                     onLocationSelected: (locationData) {
                       final address = locationData['address'] as String;
-                      final city = locationData['city'] as String;
                       final latitude = double.parse(
                         locationData['lat'] as String,
                       );
@@ -197,39 +153,17 @@ class _SalesFilterState extends State<SalesFilter> {
 
                       setState(() {
                         _isLocationCustom = true;
-                        _selectedLocation = city;
+                        _latitude = latitude;
+                        _longitude = longitude;
+                        _selectedAddress = address;
                         _addressController.text = address;
                       });
                     },
                   ),
                   const SizedBox(height: 20),
 
-                  // Search
-                  // _buildSearchSection(),
-                  const SizedBox(height: 20),
-
                   // Property Type
                   _buildPropertyTypeSection(),
-                  const SizedBox(height: 20),
-
-                  // Price Range
-                  _buildPriceRangeSection(),
-                  const SizedBox(height: 20),
-
-                  // Area Range
-                  _buildAreaRangeSection(),
-                  const SizedBox(height: 20),
-
-                  // Bedrooms
-                  _buildBedroomsSection(),
-                  const SizedBox(height: 20),
-
-                  // Bathrooms
-                  _buildBathroomsSection(),
-                  const SizedBox(height: 20),
-
-                  // Amenities
-                  _buildAmenitiesSection(),
                   const SizedBox(height: 30),
                 ],
               ),
@@ -240,68 +174,6 @@ class _SalesFilterState extends State<SalesFilter> {
           _buildBottomButtons(),
         ],
       ),
-    );
-  }
-
-  Widget _buildSearchSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Search',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: TextField(
-            controller: _searchController,
-            decoration: InputDecoration(
-              hintText: 'Search properties...',
-              hintStyle: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-              prefixIcon: Container(
-                padding: const EdgeInsets.all(12),
-                child: Icon(
-                  Icons.search,
-                  color: Colors.grey.shade600,
-                  size: 20,
-                ),
-              ),
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppTheme.blueColor),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -322,22 +194,18 @@ class _SalesFilterState extends State<SalesFilter> {
           spacing: 8,
           runSpacing: 8,
           children: _propertyTypes.map((type) {
-            final isSelected = _selectedPropertyTypes.contains(type);
+            final isSelected = _selectedPropertyTypes.contains(type) ||
+                (type == 'All' && _selectedPropertyTypes.isEmpty);
             return GestureDetector(
               onTap: () {
                 setState(() {
                   if (type == 'All') {
                     _selectedPropertyTypes.clear();
-                    _selectedPropertyTypes.add('All');
                   } else {
-                    _selectedPropertyTypes.remove('All');
-                    if (isSelected) {
+                    if (_selectedPropertyTypes.contains(type)) {
                       _selectedPropertyTypes.remove(type);
                     } else {
                       _selectedPropertyTypes.add(type);
-                    }
-                    if (_selectedPropertyTypes.isEmpty) {
-                      _selectedPropertyTypes.add('All');
                     }
                   }
                 });
@@ -360,278 +228,8 @@ class _SalesFilterState extends State<SalesFilter> {
                   type,
                   style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black87,
-                    fontWeight: isSelected
-                        ? FontWeight.w600
-                        : FontWeight.normal,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPriceRangeSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Price Range (Lakhs)',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '₹${_priceRange.start.round()}L',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
-            ),
-            Text(
-              '₹${_priceRange.end.round()}L',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
-            ),
-          ],
-        ),
-        RangeSlider(
-          values: _priceRange,
-          min: 10,
-          max: 1000,
-          divisions: 99,
-          activeColor: AppTheme.blueColor,
-          onChanged: (values) {
-            setState(() {
-              _priceRange = values;
-            });
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAreaRangeSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Area Range (Sq Ft)',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '${_areaRange.start.round()} sq ft',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
-            ),
-            Text(
-              '${_areaRange.end.round()} sq ft',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
-            ),
-          ],
-        ),
-        RangeSlider(
-          values: _areaRange,
-          min: 500,
-          max: 5000,
-          divisions: 45,
-          activeColor: AppTheme.blueColor,
-          onChanged: (values) {
-            setState(() {
-              _areaRange = values;
-            });
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBedroomsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Bedrooms',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: _bedroomOptions.map((option) {
-            final isSelected = _selectedBedrooms == option;
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedBedrooms = option;
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.blueColor : Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isSelected
-                        ? AppTheme.blueColor
-                        : Colors.grey.shade300,
-                  ),
-                ),
-                child: Text(
-                  option,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black87,
-                    fontWeight: isSelected
-                        ? FontWeight.w600
-                        : FontWeight.normal,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBathroomsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Bathrooms',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: _bathroomOptions.map((option) {
-            final isSelected = _selectedBathrooms == option;
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedBathrooms = option;
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.blueColor : Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isSelected
-                        ? AppTheme.blueColor
-                        : Colors.grey.shade300,
-                  ),
-                ),
-                child: Text(
-                  option,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black87,
-                    fontWeight: isSelected
-                        ? FontWeight.w600
-                        : FontWeight.normal,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAmenitiesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Amenities',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: _amenities.map((amenity) {
-            final isSelected = _selectedAmenities.contains(amenity);
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (isSelected) {
-                    _selectedAmenities.remove(amenity);
-                  } else {
-                    _selectedAmenities.add(amenity);
-                  }
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.blueColor : Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isSelected
-                        ? AppTheme.blueColor
-                        : Colors.grey.shade300,
-                  ),
-                ),
-                child: Text(
-                  amenity,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black87,
-                    fontWeight: isSelected
-                        ? FontWeight.w600
-                        : FontWeight.normal,
+                    fontWeight:
+                        isSelected ? FontWeight.w600 : FontWeight.normal,
                   ),
                 ),
               ),
@@ -696,15 +294,11 @@ class _SalesFilterState extends State<SalesFilter> {
   void _resetFilters() {
     setState(() {
       _isLocationCustom = false;
-      _searchController.clear();
-      _selectedLocation = widget.currentCity ?? 'Hyderabad';
-      _addressController.text = widget.currentAddress ?? _selectedLocation;
+      _latitude = null;
+      _longitude = null;
+      _selectedAddress = widget.currentAddress ?? '';
+      _addressController.text = _selectedAddress;
       _selectedPropertyTypes = [];
-      _selectedAmenities = [];
-      _priceRange = const RangeValues(10, 1000);
-      _areaRange = const RangeValues(500, 5000);
-      _selectedBedrooms = 'Any';
-      _selectedBathrooms = 'Any';
     });
 
     if (widget.onResetFilter != null) {
@@ -716,16 +310,13 @@ class _SalesFilterState extends State<SalesFilter> {
 
   void _applyFilters() {
     final filterData = {
-      'search': _searchController.text,
-      'location': _selectedLocation,
-      'address': _addressController.text,
-      'propertyTypes': _selectedPropertyTypes,
-      'amenities': _selectedAmenities,
-      'priceRange': {'min': _priceRange.start, 'max': _priceRange.end},
-      'areaRange': {'min': _areaRange.start, 'max': _areaRange.end},
-      'bedrooms': _selectedBedrooms,
-      'bathrooms': _selectedBathrooms,
+      'address': _selectedAddress,
+      'propertyTypes': _selectedPropertyTypes.isEmpty
+          ? ['All']
+          : _selectedPropertyTypes,
       'isLocationCustom': _isLocationCustom,
+      'latitude': _latitude,
+      'longitude': _longitude,
     };
 
     if (widget.onApplyFilter != null) {
