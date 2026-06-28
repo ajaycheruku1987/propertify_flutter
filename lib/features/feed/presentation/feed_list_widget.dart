@@ -18,6 +18,7 @@ import '../bloc/feed_bloc.dart';
 import 'post_details.dart';
 import 'widgets/comments_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'dart:async';
 
 class FeedListWidget extends StatefulWidget {
@@ -681,9 +682,9 @@ class _FeedListWidgetState extends State<FeedListWidget> {
           final firstName = owner.firstName?.trim() ?? '';
           final lastName = owner.lastName?.trim() ?? '';
           if (firstName.isNotEmpty || lastName.isNotEmpty) {
-            return '$firstName $lastName'.trim();
+            return '$firstName $lastName'.trim().toTitleCase();
           }
-          return owner.username ?? 'Propertify User';
+          return (owner.username ?? 'Propertify User').toTitleCase();
         }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty
@@ -812,9 +813,9 @@ Check it out on Propertify!
           final firstName = owner.firstName?.trim() ?? '';
           final lastName = owner.lastName?.trim() ?? '';
           if (firstName.isNotEmpty || lastName.isNotEmpty) {
-            return '$firstName $lastName'.trim();
+            return '$firstName $lastName'.trim().toTitleCase();
           }
-          return owner.username ?? 'Propertify User';
+          return (owner.username ?? 'Propertify User').toTitleCase();
         }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty

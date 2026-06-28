@@ -72,12 +72,13 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
         postDetails.description ?? 'Check out this property';
     String postedBy = 'Propertify User';
     if (postDetails.owner != null) {
-      final firstName = postDetails.owner?.firstName?.trim() ?? '';
-      final lastName = postDetails.owner?.lastName?.trim() ?? '';
+      final owner = postDetails.owner!;
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         postedBy = '$firstName $lastName'.trim().toTitleCase();
       } else {
-        postedBy = (postDetails.owner?.username ?? 'Propertify User').toTitleCase();
+        postedBy = (owner.username ?? 'Propertify User').toTitleCase();
       }
     }
     final String imageUrl =

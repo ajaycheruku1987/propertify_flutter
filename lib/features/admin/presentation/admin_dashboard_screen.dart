@@ -38,6 +38,12 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> requestCategories = ['Buy', 'Rent'];
+    if (!Platform.isIOS) {
+      requestCategories.add('Loan');
+    }
+    requestCategories.add('Interior Design');
+
     List<Map<String, dynamic>> items = [
       {
         'title': 'Users',
@@ -57,7 +63,8 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       {
         'title': 'Requests',
         'icon': Icons.verified_user_outlined,
-        'route': '${RequestsScreen.routeName}?category=Buy,Rent',
+        'route':
+            '${RequestsScreen.routeName}?category=${requestCategories.join(',')}',
       },
       {
         'title': 'Services',
@@ -78,16 +85,6 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'title': 'Sales/Projects',
         'icon': Icons.business_outlined,
         'route': SalesTabsScreen.routeName,
-      },
-      {
-        'title': 'Home Loan Requests',
-        'icon': Icons.home_work_outlined,
-        'route': '${RequestsScreen.routeName}?category=Loan',
-      },
-      {
-        'title': 'Interior Design Requests',
-        'icon': Icons.format_paint_outlined,
-        'route': '${RequestsScreen.routeName}?category=Interior Design',
       },
       {
         'title': 'Companies',
@@ -111,15 +108,19 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       },
     ];
 
-    if (Platform.isIOS) {
-      items.removeWhere((item) => item['title'] == 'Home Loan Requests');
-    }
-
     if (widget.isSeller) {
-      items = items.where((item) {
-        return item['title'] == 'Home Loan Requests' ||
-            item['title'] == 'Interior Design Requests';
-      }).toList();
+      final List<String> sellerCategories = [];
+      if (!Platform.isIOS) sellerCategories.add('Loan');
+      sellerCategories.add('Interior Design');
+
+      items = [
+        {
+          'title': 'Requests',
+          'icon': Icons.verified_user_outlined,
+          'route':
+              '${RequestsScreen.routeName}?category=${sellerCategories.join(',')}',
+        },
+      ];
     }
 
     return Scaffold(
