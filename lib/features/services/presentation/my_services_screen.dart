@@ -66,11 +66,25 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
                   : 'General';
               final ratingValue = double.tryParse(service.rating ?? '');
 
+              final owner = service.owner;
+              final String providerDisplayName;
+              if (owner != null) {
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  providerDisplayName = '$firstName $lastName'.trim();
+                } else {
+                  providerDisplayName = owner.username ?? 'Propertify User';
+                }
+              } else {
+                providerDisplayName = 'Propertify User';
+              }
+
               return ServiceCard(
                 imageUrl: imageUrl,
                 title: service.agentName ?? 'Service',
                 category: categoryLabel,
-                providerName: service.owner?.username ?? 'Unknown Provider',
+                providerName: providerDisplayName,
                 location: service.address ?? service.city ?? 'Unknown Location',
                 rating: ratingValue,
                 ratingCount: service.ratingCount,
