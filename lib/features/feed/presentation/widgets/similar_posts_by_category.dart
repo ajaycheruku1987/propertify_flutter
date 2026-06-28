@@ -35,7 +35,7 @@ class SimilarPostsByCategory extends StatelessWidget {
         children: [
           // Section Title
           Text(
-            'Similar $categoryName Properties',
+            'Similar Properties',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
