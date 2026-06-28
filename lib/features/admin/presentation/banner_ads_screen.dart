@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -279,7 +280,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: property.title ?? 'Property Feed',
               image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
-              owner: property.owner?.username ?? 'User',
+              owner: () {
+                final owner = property.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: property.isPromoted ?? false,
               startDate: property.createdAt,
               endDate: property.promotedUntil,
@@ -307,7 +317,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: property.title ?? 'Property Feed',
               image: property.imageUrls?.isNotEmpty == true ? property.imageUrls!.first : null,
-              owner: property.owner?.username ?? 'User',
+              owner: () {
+                final owner = property.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: property.isPromoted ?? false,
               startDate: property.createdAt,
               endDate: property.promotedUntil,
@@ -350,7 +369,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: service.agentName ?? 'Service',
               image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
-              owner: service.owner?.username ?? 'User',
+              owner: () {
+                final owner = service.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: service.isPromoted ?? false,
               startDate: service.createdAt,
               endDate: service.promotedUntil,
@@ -378,7 +406,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: service.agentName ?? 'Service',
               image: service.imageUrls?.isNotEmpty == true ? service.imageUrls!.first : null,
-              owner: service.owner?.username ?? 'User',
+              owner: () {
+                final owner = service.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: service.isPromoted ?? false,
               startDate: service.createdAt,
               endDate: service.promotedUntil,
@@ -421,7 +458,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: reel.description ?? 'Reel',
               image: null,
-              owner: reel.owner?.username ?? 'User',
+              owner: () {
+                final owner = reel.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: reel.isPromoted ?? false,
               startDate: reel.createdAt,
               endDate: reel.promotedUntil,
@@ -449,7 +495,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: reel.description ?? 'Reel',
               image: null,
-              owner: reel.owner?.username ?? 'User',
+              owner: () {
+                final owner = reel.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: reel.isPromoted ?? false,
               startDate: reel.createdAt,
               endDate: reel.promotedUntil,
@@ -492,7 +547,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: project.projectName ?? 'Project',
               image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
-              owner: project.owner?.username ?? 'User',
+              owner: () {
+                final owner = project.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: project.isPromoted ?? false,
               startDate: project.createdAt,
               endDate: project.promotedUntil,
@@ -520,7 +584,16 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             child: _buildBoostedCard(
               title: project.projectName ?? 'Project',
               image: project.imageUrls?.isNotEmpty == true ? project.imageUrls!.first : null,
-              owner: project.owner?.username ?? 'User',
+              owner: () {
+                final owner = project.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim().toTitleCase();
+                }
+                return (owner.username ?? 'Propertify User').toTitleCase();
+              }(),
               isPaid: project.isPromoted ?? false,
               startDate: project.createdAt,
               endDate: project.promotedUntil,

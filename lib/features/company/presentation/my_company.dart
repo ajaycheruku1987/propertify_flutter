@@ -646,7 +646,14 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
     final owner = company.owner;
     if (owner == null) return const SizedBox.shrink();
 
-    final String? username = owner.username;
+    final String? displayName = () {
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim();
+      }
+      return owner.username;
+    }();
     final String? email = owner.email;
     final String? profilepic = owner.profilepic;
 
@@ -704,7 +711,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      username ?? 'Unknown Owner',
+                      displayName ?? 'Unknown Owner',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

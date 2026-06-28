@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
 import 'package:propertify/features/services/models/service_reviews_response_model.dart';
 import 'package:propertify/utils/common_widgets/rating_widget.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 
 class ServiceReviewsScreen extends StatefulWidget {
@@ -236,7 +237,17 @@ class _ServiceReviewsScreenState extends State<ServiceReviewsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      review.user?.username ?? 'Anonymous',
+                      () {
+                        final user = review.user;
+                        if (user == null) return 'Propertify User';
+                        final firstName = user.firstName?.trim() ?? '';
+                        final lastName = user.lastName?.trim() ?? '';
+                        if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                          return '$firstName $lastName'.trim().toTitleCase();
+                        }
+                        return (user.username ?? 'Propertify User')
+                            .toTitleCase();
+                      }(),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

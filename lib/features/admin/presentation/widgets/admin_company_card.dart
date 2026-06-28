@@ -157,13 +157,17 @@ class AdminCompanyCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${company.owner?.firstName ?? ''} ${company.owner?.lastName ?? ''}'
-                                    .trim()
-                                    .isNotEmpty
-                                ? '${company.owner?.firstName ?? ''} ${company.owner?.lastName ?? ''}'
-                                    .toTitleCase()
-                                : (company.owner?.username ?? 'Unknown Owner')
-                                    .toTitleCase(),
+                            () {
+                              final owner = company.owner;
+                              if (owner == null) return 'Unknown Owner';
+                              final firstName = owner.firstName?.trim() ?? '';
+                              final lastName = owner.lastName?.trim() ?? '';
+                              if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                                return '$firstName $lastName'.trim().toTitleCase();
+                              }
+                              return (owner.username ?? 'Unknown Owner')
+                                  .toTitleCase();
+                            }(),
                             style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,

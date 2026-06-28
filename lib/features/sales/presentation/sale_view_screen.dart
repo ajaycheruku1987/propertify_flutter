@@ -930,7 +930,16 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
             : sale.owner?.profilepic;
         final String name = hasCompany
             ? (company.companyName ?? 'Company')
-            : (sale.owner?.username ?? 'Propertify User');
+            : () {
+                final owner = sale.owner;
+                if (owner == null) return 'Propertify User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim();
+                }
+                return owner.username ?? 'Propertify User';
+              }();
         final String subTitle = hasCompany
             ? (company.category ?? 'Real Estate')
             : (sale.owner?.email ?? '');

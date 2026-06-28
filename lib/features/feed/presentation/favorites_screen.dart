@@ -10,6 +10,7 @@ import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/utils/env.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'widgets/comments_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -110,8 +111,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   final String postTitle = post.title ?? 'Property';
                   final String postDescription =
                       post.description ?? 'Check out this property';
-                  final String postedBy =
-                      post.owner?.username ?? 'Propertify User';
+                  final String postedBy = () {
+                    final owner = post.owner;
+                    if (owner == null) return 'Propertify User';
+                    final firstName = owner.firstName?.trim() ?? '';
+                    final lastName = owner.lastName?.trim() ?? '';
+                    if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                      return '$firstName $lastName'.trim().toTitleCase();
+                    }
+                    return (owner.username ?? 'Propertify User').toTitleCase();
+                  }();
                   final String imageUrl = imageUrls.isNotEmpty
                       ? imageUrls.first
                       : '';

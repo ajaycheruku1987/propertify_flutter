@@ -220,8 +220,16 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                     final String postTitle = post.title ?? 'Property';
                     final String postDescription =
                         post.description ?? 'Check out this property';
-                    final String postedBy =
-                        post.owner?.username ?? 'Propertify User';
+                    final String postedBy = () {
+                      final owner = post.owner;
+                      if (owner == null) return 'Propertify User';
+                      final firstName = owner.firstName?.trim() ?? '';
+                      final lastName = owner.lastName?.trim() ?? '';
+                      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                        return '$firstName $lastName'.trim();
+                      }
+                      return owner.username ?? 'Propertify User';
+                    }();
                     final String imageUrl = imageUrls.isNotEmpty
                         ? imageUrls.first
                         : '';

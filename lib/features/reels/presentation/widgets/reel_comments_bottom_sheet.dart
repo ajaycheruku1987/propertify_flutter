@@ -279,7 +279,7 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
                 ),
                 child: Center(
                   child: Text(
-                    comment.username?.substring(0, 1).toUpperCase() ?? 'U',
+                    (comment.username ?? 'U').substring(0, 1).toUpperCase(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -296,7 +296,7 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
                     Row(
                       children: [
                         Text(
-                          comment.username ?? 'Unknown',
+                          (comment.username ?? 'Propertify User'),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

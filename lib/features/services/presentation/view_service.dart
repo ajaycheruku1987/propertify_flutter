@@ -433,10 +433,16 @@ Check it out on Propertify!
 
                       // Agent Info Section
                       AgentInfo(
-                        agentName:
-                            service.owner?.username ??
-                            '${service.owner?.firstName ?? ""} ${service.owner?.lastName ?? ""}'
-                                .trim(),
+                        agentName: () {
+                          final owner = service.owner;
+                          if (owner == null) return '-';
+                          final firstName = owner.firstName?.trim() ?? '';
+                          final lastName = owner.lastName?.trim() ?? '';
+                          if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                            return '$firstName $lastName'.trim();
+                          }
+                          return owner.username ?? '-';
+                        }(),
                         agentRole: '',
                         agentImage: service.owner?.profilepic ?? '',
                         rating: service.rating?.toString() ?? '-',

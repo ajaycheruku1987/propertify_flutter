@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import '../../models/user_profile_model.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
@@ -152,9 +153,9 @@ class ProfileHeader extends StatelessWidget {
     final lastName = userProfile?.lastName ?? '';
     final fullName = '$firstName $lastName'.trim();
     if (fullName.isEmpty) {
-      return userProfile?.username ?? 'Brooklyn Simmons';
+      return (userProfile?.username ?? 'Propertify User').toTitleCase();
     }
-    return fullName;
+    return fullName.toTitleCase();
   }
 
   String _getCacheBustedUrl(String url) {

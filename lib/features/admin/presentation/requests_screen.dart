@@ -327,7 +327,16 @@ class _RequestsListContentState extends State<RequestsListContent> {
             ),
             const SizedBox(height: 8),
             Text(
-              request.owner?.username ?? "Anonymous User",
+              () {
+                final owner = request.owner;
+                if (owner == null) return 'Anonymous User';
+                final firstName = owner.firstName?.trim() ?? '';
+                final lastName = owner.lastName?.trim() ?? '';
+                if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                  return '$firstName $lastName'.trim();
+                }
+                return owner.username ?? 'Anonymous User';
+              }(),
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

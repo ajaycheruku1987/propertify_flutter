@@ -675,7 +675,16 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         final String postTitle = feed.title ?? 'Property';
         final String postDescription =
             feed.description ?? 'Check out this property';
-        final String postedBy = feed.owner?.username ?? 'Propertify User';
+        final String postedBy = () {
+          final owner = feed.owner;
+          if (owner == null) return 'Propertify User';
+          final firstName = owner.firstName?.trim() ?? '';
+          final lastName = owner.lastName?.trim() ?? '';
+          if (firstName.isNotEmpty || lastName.isNotEmpty) {
+            return '$firstName $lastName'.trim();
+          }
+          return owner.username ?? 'Propertify User';
+        }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty
             ? feed.imageUrls!.first
@@ -797,7 +806,16 @@ Check it out on Propertify!
         final String postTitle = feed.title ?? 'Property';
         final String postDescription =
             feed.description ?? 'Check out this property';
-        final String postedBy = feed.owner?.username ?? 'Propertify User';
+        final String postedBy = () {
+          final owner = feed.owner;
+          if (owner == null) return 'Propertify User';
+          final firstName = owner.firstName?.trim() ?? '';
+          final lastName = owner.lastName?.trim() ?? '';
+          if (firstName.isNotEmpty || lastName.isNotEmpty) {
+            return '$firstName $lastName'.trim();
+          }
+          return owner.username ?? 'Propertify User';
+        }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty
             ? feed.imageUrls!.first

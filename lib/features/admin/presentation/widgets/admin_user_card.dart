@@ -108,7 +108,15 @@ class AdminUserCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    (user.username ?? user.phoneNumber ?? '').toTitleCase(),
+                    () {
+                      final firstName = user.firstName?.trim() ?? '';
+                      final lastName = user.lastName?.trim() ?? '';
+                      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                        return '$firstName $lastName'.trim().toTitleCase();
+                      }
+                      return (user.username ?? user.phoneNumber ?? '')
+                          .toTitleCase();
+                    }(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
