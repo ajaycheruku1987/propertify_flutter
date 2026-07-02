@@ -64,7 +64,16 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
               final request = items[index];
               return RequestTileWidget(
                 title: request.title ?? request.category ?? 'Unknown Request',
-                ownerName: request.owner?.username ?? 'You',
+                ownerName: () {
+                  final owner = request.owner;
+                  if (owner == null) return 'You';
+                  final firstName = owner.firstName?.trim() ?? '';
+                  final lastName = owner.lastName?.trim() ?? '';
+                  if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                    return '$firstName $lastName'.trim();
+                  }
+                  return owner.username ?? 'You';
+                }(),
                 budget: request.budget?.toString() ?? 'Unknown Budget',
                 location: '${request.city ?? ''}',
                 description: request.description ?? '',

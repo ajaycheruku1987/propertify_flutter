@@ -173,6 +173,7 @@ class _CreateRequestDetailsState extends State<CreateRequestDetails> {
                 label: 'Budget Price',
                 hintText: 'Enter your budget price',
                 keyboardType: TextInputType.number,
+                textInputFormatter: [FilteringTextInputFormatter.digitsOnly],
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {

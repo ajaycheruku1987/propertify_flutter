@@ -575,8 +575,16 @@ class ReelViewState extends State<ReelView>
                           // Prepare share content
                           final String reelDescription =
                               widget.reel.description ?? 'Check out this reel';
-                          final String postedBy =
-                              widget.reel.owner?.username ?? 'Propertify User';
+                          final String postedBy = () {
+                            final owner = widget.reel.owner;
+                            if (owner == null) return 'Propertify User';
+                            final firstName = owner.firstName?.trim() ?? '';
+                            final lastName = owner.lastName?.trim() ?? '';
+                            if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                              return '$firstName $lastName'.trim();
+                            }
+                            return owner.username ?? 'Propertify User';
+                          }();
                           final String videoUrl = widget.reel.videoUrl ?? '';
                           final String location = widget.reel.location ?? '';
 
@@ -831,7 +839,17 @@ class _BottomInfo extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      reel.owner?.username?.toTitleCase() ?? '',
+                      () {
+                        final owner = reel.owner;
+                        if (owner == null) return 'Propertify User';
+                        final firstName = owner.firstName?.trim() ?? '';
+                        final lastName = owner.lastName?.trim() ?? '';
+                        if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                          return '$firstName $lastName'.trim().toTitleCase();
+                        }
+                        return (owner.username ?? 'Propertify User')
+                            .toTitleCase();
+                      }(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,

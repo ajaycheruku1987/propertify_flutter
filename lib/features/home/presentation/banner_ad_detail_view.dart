@@ -208,10 +208,23 @@ class BannerAdDetailView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    bannerAd.owner?.username != null
-                                        ? (bannerAd.owner?.username ?? '')
-                                              .toTitleCase()
-                                        : 'Property Owner',
+                                    () {
+                                      final owner = bannerAd.owner;
+                                      if (owner == null) return 'Propertify User';
+                                      final firstName =
+                                          owner.firstName?.trim() ?? '';
+                                      final lastName =
+                                          owner.lastName?.trim() ?? '';
+                                      if (firstName.isNotEmpty ||
+                                          lastName.isNotEmpty) {
+                                        return '$firstName $lastName'
+                                            .trim()
+                                            .toTitleCase();
+                                      }
+                                      return (owner.username ??
+                                              'Propertify User')
+                                          .toTitleCase();
+                                    }(),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,

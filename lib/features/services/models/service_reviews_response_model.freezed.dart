@@ -337,6 +337,10 @@ mixin _$User {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "username")
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "first_name")
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
+  String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: "phone_number")
@@ -357,6 +361,8 @@ abstract class $UserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic});
@@ -377,6 +383,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
@@ -389,6 +397,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -416,6 +432,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") String? id,
       @JsonKey(name: "username") String? username,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic});
@@ -433,6 +451,8 @@ class __$$UserImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
@@ -445,6 +465,14 @@ class __$$UserImplCopyWithImpl<$Res>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -468,6 +496,8 @@ class _$UserImpl implements _User {
   const _$UserImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "username") this.username,
+      @JsonKey(name: "first_name") this.firstName,
+      @JsonKey(name: "last_name") this.lastName,
       @JsonKey(name: "email") this.email,
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "profilepic") this.profilepic});
@@ -482,6 +512,12 @@ class _$UserImpl implements _User {
   @JsonKey(name: "username")
   final String? username;
   @override
+  @JsonKey(name: "first_name")
+  final String? firstName;
+  @override
+  @JsonKey(name: "last_name")
+  final String? lastName;
+  @override
   @JsonKey(name: "email")
   final String? email;
   @override
@@ -493,7 +529,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic)';
+    return 'User(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic)';
   }
 
   @override
@@ -504,6 +540,10 @@ class _$UserImpl implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
@@ -513,8 +553,8 @@ class _$UserImpl implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, username, email, phoneNumber, profilepic);
+  int get hashCode => Object.hash(runtimeType, id, username, firstName,
+      lastName, email, phoneNumber, profilepic);
 
   @JsonKey(ignore: true)
   @override
@@ -534,6 +574,8 @@ abstract class _User implements User {
   const factory _User(
       {@JsonKey(name: "id") final String? id,
       @JsonKey(name: "username") final String? username,
+      @JsonKey(name: "first_name") final String? firstName,
+      @JsonKey(name: "last_name") final String? lastName,
       @JsonKey(name: "email") final String? email,
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "profilepic") final String? profilepic}) = _$UserImpl;
@@ -546,6 +588,12 @@ abstract class _User implements User {
   @override
   @JsonKey(name: "username")
   String? get username;
+  @override
+  @JsonKey(name: "first_name")
+  String? get firstName;
+  @override
+  @JsonKey(name: "last_name")
+  String? get lastName;
   @override
   @JsonKey(name: "email")
   String? get email;

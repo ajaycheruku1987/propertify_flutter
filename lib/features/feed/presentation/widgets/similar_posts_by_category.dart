@@ -10,6 +10,7 @@ import '../../../home/models/feed_posts_response_model.dart';
 import '../../../home/presentation/widgets/property_card_compact.dart';
 import '../post_details.dart';
 import 'comments_bottom_sheet.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SimilarPostsByCategory extends StatelessWidget {
@@ -35,7 +36,7 @@ class SimilarPostsByCategory extends StatelessWidget {
         children: [
           // Section Title
           Text(
-            'Similar $categoryName Properties',
+            'Similar Properties',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -102,8 +103,21 @@ class SimilarPostsByCategory extends StatelessWidget {
                       final String postTitle = post.title ?? 'Property';
                       final String postDescription =
                           post.description ?? 'Check out this property';
-                      final String postedBy =
-                          post.owner?.username ?? 'Propertify User';
+                      
+                      final owner = post.owner;
+                      final String postedBy;
+                      if (owner != null) {
+                        final String firstName = owner.firstName?.trim() ?? '';
+                        final String lastName = owner.lastName?.trim() ?? '';
+                        if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                          postedBy = '$firstName $lastName'.trim().toTitleCase();
+                        } else {
+                          postedBy = (owner.username ?? 'Propertify User').toTitleCase();
+                        }
+                      } else {
+                        postedBy = 'Propertify User';
+                      }
+
                       final String imageUrl =
                           post.imageUrls != null && post.imageUrls!.isNotEmpty
                           ? post.imageUrls!.first

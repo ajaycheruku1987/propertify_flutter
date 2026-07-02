@@ -375,8 +375,16 @@ class AdminGstCompanyCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        (company.owner?.username ?? 'Unknown Owner')
-                            .toTitleCase(),
+                        (() {
+                          final owner = company.owner;
+                          if (owner == null) return 'Propertify User';
+                          final fullName =
+                              '${owner.firstName ?? ''} ${owner.lastName ?? ''}'
+                                  .trim();
+                          if (fullName.isNotEmpty) return fullName.toTitleCase();
+                          return (owner.username ?? 'Propertify User')
+                              .toTitleCase();
+                        })(),
                         style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,

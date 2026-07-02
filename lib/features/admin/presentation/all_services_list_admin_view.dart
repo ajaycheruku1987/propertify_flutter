@@ -168,7 +168,14 @@ class _AllServicesListAdminViewState extends State<AllServicesListAdminView> {
                 category: (service.category?.isNotEmpty ?? false)
                     ? service.category!.join(', ')
                     : 'Expert',
-                providerName: service.owner?.username ?? 'Anonymous',
+                providerName: (() {
+                  final owner = service.owner;
+                  if (owner == null) return 'Propertify User';
+                  final fullName =
+                      '${owner.firstName ?? ''} ${owner.lastName ?? ''}'.trim();
+                  if (fullName.isNotEmpty) return fullName;
+                  return owner.username ?? 'Propertify User';
+                })(),
                 location: '${service.city ?? "N/A"}, ${service.state ?? ""}',
                 rating: double.tryParse(service.rating ?? '0'),
                 canDelete: isAdmin || isOwner,

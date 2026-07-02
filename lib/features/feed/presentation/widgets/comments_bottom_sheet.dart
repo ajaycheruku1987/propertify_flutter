@@ -347,7 +347,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
                 ),
                 child: Center(
                   child: Text(
-                    comment.username?.substring(0, 1).toUpperCase() ?? 'U',
+                    (comment.username ?? 'U').substring(0, 1).toUpperCase(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -364,7 +364,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
                     Row(
                       children: [
                         Text(
-                          comment.username ?? 'Unknown',
+                          (comment.username ?? 'Propertify User'),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

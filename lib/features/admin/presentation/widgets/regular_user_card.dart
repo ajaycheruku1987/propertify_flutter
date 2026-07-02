@@ -98,7 +98,14 @@ class RegularUserCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    user.username ?? 'Unknown User',
+                    () {
+                      final firstName = user.firstName?.trim() ?? '';
+                      final lastName = user.lastName?.trim() ?? '';
+                      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                        return '$firstName $lastName'.trim();
+                      }
+                      return user.username ?? 'Unknown User';
+                    }(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

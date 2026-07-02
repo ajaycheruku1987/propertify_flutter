@@ -46,9 +46,16 @@ class BannerAdCard extends StatelessWidget {
     final endDateFormatted = DateFormat('MMM d').format(endDate);
 
     // Get owner name
-    final ownerName = bannerAd.owner?.username != null
-        ? bannerAd.owner!.username
-        : 'Property Owner';
+    final ownerName = () {
+      final owner = bannerAd.owner;
+      if (owner == null) return 'Property Owner';
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim();
+      }
+      return owner.username ?? 'Property Owner';
+    }();
 
     return InkWell(
       onTap: () => context.push(BannerAdDetailView.routeName, extra: bannerAd),

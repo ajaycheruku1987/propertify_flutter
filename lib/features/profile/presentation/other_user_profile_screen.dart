@@ -255,7 +255,15 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     const SizedBox(height: 16),
                     // Name
                     Text(
-                      (profile.username ?? 'User').toTitleCase(),
+                      () {
+                        final firstName = profile.firstName?.trim() ?? '';
+                        final lastName = profile.lastName?.trim() ?? '';
+                        if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                          return '$firstName $lastName'.trim().toTitleCase();
+                        }
+                        return (profile.username ?? 'Propertify User')
+                            .toTitleCase();
+                      }(),
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

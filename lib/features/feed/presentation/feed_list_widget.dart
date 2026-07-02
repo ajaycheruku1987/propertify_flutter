@@ -18,6 +18,7 @@ import '../bloc/feed_bloc.dart';
 import 'post_details.dart';
 import 'widgets/comments_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'dart:async';
 
 class FeedListWidget extends StatefulWidget {
@@ -671,7 +672,16 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         final String postTitle = feed.title ?? 'Property';
         final String postDescription =
             feed.description ?? 'Check out this property';
-        final String postedBy = feed.owner?.username ?? 'Propertify User';
+        final String postedBy = () {
+          final owner = feed.owner;
+          if (owner == null) return 'Propertify User';
+          final firstName = owner.firstName?.trim() ?? '';
+          final lastName = owner.lastName?.trim() ?? '';
+          if (firstName.isNotEmpty || lastName.isNotEmpty) {
+            return '$firstName $lastName'.trim().toTitleCase();
+          }
+          return (owner.username ?? 'Propertify User').toTitleCase();
+        }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty
             ? feed.imageUrls!.first
@@ -793,7 +803,16 @@ Check it out on Propertify!
         final String postTitle = feed.title ?? 'Property';
         final String postDescription =
             feed.description ?? 'Check out this property';
-        final String postedBy = feed.owner?.username ?? 'Propertify User';
+        final String postedBy = () {
+          final owner = feed.owner;
+          if (owner == null) return 'Propertify User';
+          final firstName = owner.firstName?.trim() ?? '';
+          final lastName = owner.lastName?.trim() ?? '';
+          if (firstName.isNotEmpty || lastName.isNotEmpty) {
+            return '$firstName $lastName'.trim().toTitleCase();
+          }
+          return (owner.username ?? 'Propertify User').toTitleCase();
+        }();
         final String imageUrl =
             feed.imageUrls != null && feed.imageUrls!.isNotEmpty
             ? feed.imageUrls!.first

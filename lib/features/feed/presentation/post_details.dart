@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -69,7 +70,17 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
     final String postTitle = postDetails.title ?? 'Property';
     final String postDescription =
         postDetails.description ?? 'Check out this property';
-    final String postedBy = postDetails.owner?.username ?? 'Propertify User';
+    String postedBy = 'Propertify User';
+    if (postDetails.owner != null) {
+      final owner = postDetails.owner!;
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        postedBy = '$firstName $lastName'.trim().toTitleCase();
+      } else {
+        postedBy = (owner.username ?? 'Propertify User').toTitleCase();
+      }
+    }
     final String imageUrl =
         postDetails.imageUrls != null && postDetails.imageUrls!.isNotEmpty
         ? postDetails.imageUrls!.first
@@ -555,9 +566,19 @@ Check it out on Propertify!
 
                         // Agent Info Section
                         AgentInfo(
-                          agentName: postDetails.owner?.username != null
-                              ? '${postDetails.owner!.username!}'
-                              : '-',
+                          agentName: () {
+                            final owner = postDetails.owner;
+                            if (owner == null) return 'Propertify User';
+                            final firstName = owner.firstName?.trim() ?? '';
+                            final lastName = owner.lastName?.trim() ?? '';
+                            if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                              return '$firstName $lastName'
+                                  .trim()
+                                  .toTitleCase();
+                            }
+                            return (owner.username ?? 'Propertify User')
+                                .toTitleCase();
+                          }(),
                           agentRole: '',
                           agentImage: postDetails.owner?.profileImage ?? '',
                           rating: postDetails.rating?.toString() ?? '-',

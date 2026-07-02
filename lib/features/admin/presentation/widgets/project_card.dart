@@ -37,9 +37,16 @@ class ProjectCard extends StatelessWidget {
     }
 
     final category = project.propertyType ?? 'Apartments';
-    final ownerName = '${project.owner?.firstName ?? ''} ${project.owner?.lastName ?? ''}'.trim().isNotEmpty
-        ? '${project.owner?.firstName ?? ''} ${project.owner?.lastName ?? ''}'
-        : project.owner?.username ?? 'Unknown Owner';
+    final ownerName = () {
+      final owner = project.owner;
+      if (owner == null) return 'Unknown Owner';
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim();
+      }
+      return owner.username ?? 'Unknown Owner';
+    }();
 
     return GestureDetector(
       onTap: () {
