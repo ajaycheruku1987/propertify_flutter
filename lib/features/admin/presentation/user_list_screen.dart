@@ -272,10 +272,20 @@ class _UserListScreenState extends State<UserListScreen> {
           'icon': Icons.admin_panel_settings,
         },
         {'label': 'Make Seller', 'action': 'seller', 'icon': Icons.store},
+        {
+          'label': 'Make Marketer',
+          'action': 'marketing',
+          'icon': Icons.campaign,
+        },
       ];
     } else if (role == 'admin') {
       return [
         {'label': 'Make Seller', 'action': 'seller', 'icon': Icons.store},
+        {
+          'label': 'Make Marketer',
+          'action': 'marketing',
+          'icon': Icons.campaign,
+        },
         {
           'label': 'Remove Admin Role',
           'action': 'user',
@@ -290,7 +300,26 @@ class _UserListScreenState extends State<UserListScreen> {
           'icon': Icons.admin_panel_settings,
         },
         {
+          'label': 'Make Marketer',
+          'action': 'marketing',
+          'icon': Icons.campaign,
+        },
+        {
           'label': 'Remove Seller Role',
+          'action': 'user',
+          'icon': Icons.person_remove,
+        },
+      ];
+    } else if (role == 'marketing') {
+      return [
+        {
+          'label': 'Make Admin',
+          'action': 'admin',
+          'icon': Icons.admin_panel_settings,
+        },
+        {'label': 'Make Seller', 'action': 'seller', 'icon': Icons.store},
+        {
+          'label': 'Remove Marketer Role',
           'action': 'user',
           'icon': Icons.person_remove,
         },
@@ -314,6 +343,10 @@ class _UserListScreenState extends State<UserListScreen> {
     } else if (targetRole == 'user') {
       context.read<AdminBloc>().add(
         AdminEvent.convertToUser(userIds: userIds, role: widget.role),
+      );
+    } else if (targetRole == 'marketing') {
+      context.read<AdminBloc>().add(
+        AdminEvent.convertToMarketing(userIds: userIds, role: widget.role),
       );
     }
 

@@ -22,8 +22,13 @@ import 'manage_material_prices_screen.dart';
 class AdminDashboardScreen extends StatefulWidget {
   static const String routeName = '/admin-dashboard';
   final bool isSeller;
+  final bool isMarketing;
 
-  const AdminDashboardScreen({super.key, this.isSeller = false});
+  const AdminDashboardScreen({
+    super.key,
+    this.isSeller = false,
+    this.isMarketing = false,
+  });
 
   @override
   State<AdminDashboardScreen> createState() => _AdminDashboardScreenState();
@@ -53,6 +58,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         'title': 'Sellers',
         'icon': Icons.storefront_outlined,
         'route': '${UserListScreen.routeName}?role=seller',
+      },
+      {
+        'title': 'Marketers',
+        'icon': Icons.storefront_outlined,
+        'route': '${UserListScreen.routeName}?role=marketing',
       },
       {
         'title': 'Requests',
@@ -111,14 +121,17 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       },
     ];
 
-    if (Platform.isIOS) {
-      items.removeWhere((item) => item['title'] == 'Home Loan Requests');
-    }
+    // if (Platform.isIOS) {
+    //   items.removeWhere((item) => item['title'] == 'Home Loan Requests');
+    // }
 
-    if (widget.isSeller) {
+    if (widget.isMarketing) {
       items = items.where((item) {
-        return item['title'] == 'Home Loan Requests' ||
-            item['title'] == 'Interior Design Requests';
+        return item['title'] == 'Interior Design Requests';
+      }).toList();
+    } else if (widget.isSeller) {
+      items = items.where((item) {
+        return item['title'] == 'Home Loan Requests';
       }).toList();
     }
 
@@ -130,7 +143,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          widget.isSeller ? 'Seller Dashboard' : 'Admin Dashboard',
+          widget.isMarketing
+              ? 'Marketing Dashboard'
+              : widget.isSeller
+              ? 'Seller Dashboard'
+              : 'Admin Dashboard',
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,

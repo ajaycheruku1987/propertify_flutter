@@ -58,6 +58,8 @@ mixin _$AdminEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -103,6 +105,7 @@ mixin _$AdminEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -148,6 +151,7 @@ mixin _$AdminEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -199,6 +203,8 @@ mixin _$AdminEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -244,6 +250,7 @@ mixin _$AdminEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -289,6 +296,7 @@ mixin _$AdminEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -450,6 +458,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -498,6 +508,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -546,6 +557,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -603,6 +615,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -651,6 +665,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -699,6 +714,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -835,6 +851,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -883,6 +901,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -931,6 +950,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -988,6 +1008,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -1036,6 +1058,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -1084,6 +1107,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -1214,6 +1238,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -1262,6 +1288,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -1310,6 +1337,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -1367,6 +1395,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -1415,6 +1445,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -1463,6 +1494,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -1565,6 +1597,8 @@ class _$ResetEventImpl implements _ResetEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -1613,6 +1647,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -1661,6 +1696,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -1718,6 +1754,8 @@ class _$ResetEventImpl implements _ResetEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -1766,6 +1804,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -1814,6 +1853,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -1912,6 +1952,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -1960,6 +2002,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -2008,6 +2051,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -2065,6 +2109,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -2113,6 +2159,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -2161,6 +2208,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -2295,6 +2343,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -2343,6 +2393,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -2391,6 +2442,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -2448,6 +2500,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -2496,6 +2550,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -2544,6 +2599,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -2675,6 +2731,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -2723,6 +2781,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -2771,6 +2830,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -2828,6 +2888,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -2876,6 +2938,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -2924,6 +2987,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -3064,6 +3128,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -3112,6 +3178,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -3160,6 +3227,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -3217,6 +3285,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -3265,6 +3335,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -3313,6 +3384,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -3445,6 +3517,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -3493,6 +3567,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -3541,6 +3616,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -3598,6 +3674,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -3646,6 +3724,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -3694,6 +3773,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -3834,6 +3914,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -3882,6 +3964,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -3930,6 +4013,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -3987,6 +4071,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -4035,6 +4121,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -4083,6 +4170,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -4215,6 +4303,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -4263,6 +4353,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -4311,6 +4402,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -4368,6 +4460,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -4416,6 +4510,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -4464,6 +4559,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -4606,6 +4702,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -4654,6 +4752,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -4702,6 +4801,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -4759,6 +4859,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -4807,6 +4909,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -4855,6 +4958,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -4989,6 +5093,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -5037,6 +5143,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -5085,6 +5192,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -5142,6 +5250,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -5190,6 +5300,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -5238,6 +5349,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -5383,6 +5495,8 @@ class _$GetVerificationRequestsEventImpl
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -5431,6 +5545,7 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -5479,6 +5594,7 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -5536,6 +5652,8 @@ class _$GetVerificationRequestsEventImpl
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -5584,6 +5702,7 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -5632,6 +5751,7 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -5770,6 +5890,8 @@ class _$DeleteVerificationRequestEventImpl
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -5818,6 +5940,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -5866,6 +5989,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -5923,6 +6047,8 @@ class _$DeleteVerificationRequestEventImpl
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -5971,6 +6097,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -6019,6 +6146,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -6165,6 +6293,8 @@ class _$UpdateVerificationStatusEventImpl
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -6213,6 +6343,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -6261,6 +6392,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -6318,6 +6450,8 @@ class _$UpdateVerificationStatusEventImpl
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -6366,6 +6500,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -6414,6 +6549,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -6557,6 +6693,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -6605,6 +6743,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -6653,6 +6792,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -6710,6 +6850,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -6758,6 +6900,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -6806,6 +6949,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -6949,6 +7093,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -6997,6 +7143,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -7045,6 +7192,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -7102,6 +7250,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -7150,6 +7300,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -7198,6 +7349,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -7357,6 +7509,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -7405,6 +7559,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -7453,6 +7608,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -7510,6 +7666,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -7558,6 +7716,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -7606,6 +7765,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -7743,6 +7903,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -7791,6 +7953,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -7839,6 +8002,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -7896,6 +8060,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -7944,6 +8110,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -7992,6 +8159,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -8131,6 +8299,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -8179,6 +8349,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -8227,6 +8398,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -8284,6 +8456,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -8332,6 +8506,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -8380,6 +8555,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -8512,6 +8688,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -8560,6 +8738,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -8608,6 +8787,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -8665,6 +8845,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -8713,6 +8895,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -8761,6 +8944,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -8909,6 +9093,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -8957,6 +9143,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -9005,6 +9192,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -9062,6 +9250,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -9110,6 +9300,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -9158,6 +9349,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -9293,6 +9485,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -9341,6 +9535,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -9389,6 +9584,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -9446,6 +9642,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -9494,6 +9692,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -9542,6 +9741,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -9693,6 +9893,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -9741,6 +9943,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -9789,6 +9992,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -9846,6 +10050,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -9894,6 +10100,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -9942,6 +10149,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -10079,6 +10287,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -10127,6 +10337,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -10175,6 +10386,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -10232,6 +10444,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -10280,6 +10494,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -10328,6 +10543,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -10470,6 +10686,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -10518,6 +10736,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -10566,6 +10785,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -10623,6 +10843,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -10671,6 +10893,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -10719,6 +10942,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -10861,6 +11085,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -10909,6 +11135,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -10957,6 +11184,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -11014,6 +11242,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -11062,6 +11292,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -11110,6 +11341,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -11242,6 +11474,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -11290,6 +11524,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -11338,6 +11573,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -11395,6 +11631,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -11443,6 +11681,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -11491,6 +11730,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -11638,6 +11878,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -11686,6 +11928,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -11734,6 +11977,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -11791,6 +12035,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -11839,6 +12085,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -11887,6 +12134,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -12037,6 +12285,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -12085,6 +12335,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -12133,6 +12384,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -12190,6 +12442,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -12238,6 +12492,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -12286,6 +12541,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -12435,6 +12691,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -12483,6 +12741,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -12531,6 +12790,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -12588,6 +12848,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -12636,6 +12898,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -12684,6 +12947,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -12709,6 +12973,414 @@ abstract class _ConvertToUserEvent implements AdminEvent {
   @JsonKey(ignore: true)
   _$$ConvertToUserEventImplCopyWith<_$ConvertToUserEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConvertToMarketingEventImplCopyWith<$Res> {
+  factory _$$ConvertToMarketingEventImplCopyWith(
+          _$ConvertToMarketingEventImpl value,
+          $Res Function(_$ConvertToMarketingEventImpl) then) =
+      __$$ConvertToMarketingEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> userIds, String? role});
+}
+
+/// @nodoc
+class __$$ConvertToMarketingEventImplCopyWithImpl<$Res>
+    extends _$AdminEventCopyWithImpl<$Res, _$ConvertToMarketingEventImpl>
+    implements _$$ConvertToMarketingEventImplCopyWith<$Res> {
+  __$$ConvertToMarketingEventImplCopyWithImpl(
+      _$ConvertToMarketingEventImpl _value,
+      $Res Function(_$ConvertToMarketingEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userIds = null,
+    Object? role = freezed,
+  }) {
+    return _then(_$ConvertToMarketingEventImpl(
+      userIds: null == userIds
+          ? _value._userIds
+          : userIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
+  const _$ConvertToMarketingEventImpl(
+      {required final List<String> userIds, this.role})
+      : _userIds = userIds;
+
+  final List<String> _userIds;
+  @override
+  List<String> get userIds {
+    if (_userIds is EqualUnmodifiableListView) return _userIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userIds);
+  }
+
+  @override
+  final String? role;
+
+  @override
+  String toString() {
+    return 'AdminEvent.convertToMarketing(userIds: $userIds, role: $role)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConvertToMarketingEventImpl &&
+            const DeepCollectionEquality().equals(other._userIds, _userIds) &&
+            (identical(other.role, role) || other.role == role));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_userIds), role);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConvertToMarketingEventImplCopyWith<_$ConvertToMarketingEventImpl>
+      get copyWith => __$$ConvertToMarketingEventImplCopyWithImpl<
+          _$ConvertToMarketingEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page, int limit, String? role, String? search)
+        getUserList,
+    required TResult Function(String userId) removeUser,
+    required TResult Function(bool flag) isLoading,
+    required TResult Function() reset,
+    required TResult Function() clearAdminState,
+    required TResult Function(int page, int limit) getPostAds,
+    required TResult Function(String postId) deletePostAd,
+    required TResult Function(int page, int limit) getBannerAds,
+    required TResult Function(String bannerAdId) deleteBannerAd,
+    required TResult Function(int page, int limit) getProjects,
+    required TResult Function(String projectId) deleteProject,
+    required TResult Function(int page, int limit) getCallbackRequests,
+    required TResult Function(String callbackRequestId) deleteCallbackRequest,
+    required TResult Function(int page, int limit) getVerificationRequests,
+    required TResult Function(String verificationRequestId)
+        deleteVerificationRequest,
+    required TResult Function(String verificationRequestId, String status)
+        updateVerificationStatus,
+    required TResult Function(int page, int limit) getHomeLoans,
+    required TResult Function(int page, int limit) getInteriorDesigns,
+    required TResult Function(
+            int page, int limit, String? category, String? search)
+        getRequests,
+    required TResult Function(String requestId) deleteRequest,
+    required TResult Function(int page, int limit) getAds,
+    required TResult Function(String adUserId) removeAdUser,
+    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(String serviceId) deleteService,
+    required TResult Function(int page, int limit, String? search)
+        getAdminProperties,
+    required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String serviceId, bool isVerified) verifyService,
+    required TResult Function(int page, int limit) getCompanies,
+    required TResult Function(String companyId) deleteCompany,
+    required TResult Function(List<String> userIds, String? role)
+        convertToAdmin,
+    required TResult Function(List<String> userIds, String? role)
+        convertToSeller,
+    required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
+    required TResult Function(int page, int limit) getAdminReels,
+    required TResult Function(String reelId) deleteAdminReel,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
+    required TResult Function(String companyId) approveGst,
+    required TResult Function(String companyId) rejectGst,
+  }) {
+    return convertToMarketing(userIds, role);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page, int limit, String? role, String? search)?
+        getUserList,
+    TResult? Function(String userId)? removeUser,
+    TResult? Function(bool flag)? isLoading,
+    TResult? Function()? reset,
+    TResult? Function()? clearAdminState,
+    TResult? Function(int page, int limit)? getPostAds,
+    TResult? Function(String postId)? deletePostAd,
+    TResult? Function(int page, int limit)? getBannerAds,
+    TResult? Function(String bannerAdId)? deleteBannerAd,
+    TResult? Function(int page, int limit)? getProjects,
+    TResult? Function(String projectId)? deleteProject,
+    TResult? Function(int page, int limit)? getCallbackRequests,
+    TResult? Function(String callbackRequestId)? deleteCallbackRequest,
+    TResult? Function(int page, int limit)? getVerificationRequests,
+    TResult? Function(String verificationRequestId)? deleteVerificationRequest,
+    TResult? Function(String verificationRequestId, String status)?
+        updateVerificationStatus,
+    TResult? Function(int page, int limit)? getHomeLoans,
+    TResult? Function(int page, int limit)? getInteriorDesigns,
+    TResult? Function(int page, int limit, String? category, String? search)?
+        getRequests,
+    TResult? Function(String requestId)? deleteRequest,
+    TResult? Function(int page, int limit)? getAds,
+    TResult? Function(String adUserId)? removeAdUser,
+    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(String serviceId)? deleteService,
+    TResult? Function(int page, int limit, String? search)? getAdminProperties,
+    TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String serviceId, bool isVerified)? verifyService,
+    TResult? Function(int page, int limit)? getCompanies,
+    TResult? Function(String companyId)? deleteCompany,
+    TResult? Function(List<String> userIds, String? role)? convertToAdmin,
+    TResult? Function(List<String> userIds, String? role)? convertToSeller,
+    TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
+    TResult? Function(int page, int limit)? getAdminReels,
+    TResult? Function(String reelId)? deleteAdminReel,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
+    TResult? Function(String companyId)? approveGst,
+    TResult? Function(String companyId)? rejectGst,
+  }) {
+    return convertToMarketing?.call(userIds, role);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page, int limit, String? role, String? search)?
+        getUserList,
+    TResult Function(String userId)? removeUser,
+    TResult Function(bool flag)? isLoading,
+    TResult Function()? reset,
+    TResult Function()? clearAdminState,
+    TResult Function(int page, int limit)? getPostAds,
+    TResult Function(String postId)? deletePostAd,
+    TResult Function(int page, int limit)? getBannerAds,
+    TResult Function(String bannerAdId)? deleteBannerAd,
+    TResult Function(int page, int limit)? getProjects,
+    TResult Function(String projectId)? deleteProject,
+    TResult Function(int page, int limit)? getCallbackRequests,
+    TResult Function(String callbackRequestId)? deleteCallbackRequest,
+    TResult Function(int page, int limit)? getVerificationRequests,
+    TResult Function(String verificationRequestId)? deleteVerificationRequest,
+    TResult Function(String verificationRequestId, String status)?
+        updateVerificationStatus,
+    TResult Function(int page, int limit)? getHomeLoans,
+    TResult Function(int page, int limit)? getInteriorDesigns,
+    TResult Function(int page, int limit, String? category, String? search)?
+        getRequests,
+    TResult Function(String requestId)? deleteRequest,
+    TResult Function(int page, int limit)? getAds,
+    TResult Function(String adUserId)? removeAdUser,
+    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(String serviceId)? deleteService,
+    TResult Function(int page, int limit, String? search)? getAdminProperties,
+    TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String serviceId, bool isVerified)? verifyService,
+    TResult Function(int page, int limit)? getCompanies,
+    TResult Function(String companyId)? deleteCompany,
+    TResult Function(List<String> userIds, String? role)? convertToAdmin,
+    TResult Function(List<String> userIds, String? role)? convertToSeller,
+    TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
+    TResult Function(int page, int limit)? getAdminReels,
+    TResult Function(String reelId)? deleteAdminReel,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
+    TResult Function(String companyId)? approveGst,
+    TResult Function(String companyId)? rejectGst,
+    required TResult orElse(),
+  }) {
+    if (convertToMarketing != null) {
+      return convertToMarketing(userIds, role);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserListEvent value) getUserList,
+    required TResult Function(_RemoveUserEvent value) removeUser,
+    required TResult Function(_IsLoadingEvent value) isLoading,
+    required TResult Function(_ResetEvent value) reset,
+    required TResult Function(_ClearAdminStateEvent value) clearAdminState,
+    required TResult Function(_GetPostAdsEvent value) getPostAds,
+    required TResult Function(_DeletePostAdEvent value) deletePostAd,
+    required TResult Function(_GetBannerAdsEvent value) getBannerAds,
+    required TResult Function(_DeleteBannerAdEvent value) deleteBannerAd,
+    required TResult Function(_GetProjectsEvent value) getProjects,
+    required TResult Function(_DeleteProjectEvent value) deleteProject,
+    required TResult Function(_GetCallbackRequestsEvent value)
+        getCallbackRequests,
+    required TResult Function(_DeleteCallbackRequestEvent value)
+        deleteCallbackRequest,
+    required TResult Function(_GetVerificationRequestsEvent value)
+        getVerificationRequests,
+    required TResult Function(_DeleteVerificationRequestEvent value)
+        deleteVerificationRequest,
+    required TResult Function(_UpdateVerificationStatusEvent value)
+        updateVerificationStatus,
+    required TResult Function(_GetHomeLoansEvent value) getHomeLoans,
+    required TResult Function(_GetInteriorDesignsEvent value)
+        getInteriorDesigns,
+    required TResult Function(_GetRequestsEvent value) getRequests,
+    required TResult Function(_DeleteRequestEvent value) deleteRequest,
+    required TResult Function(_GetAdsEvent value) getAds,
+    required TResult Function(_RemoveAdUserEvent value) removeAdUser,
+    required TResult Function(_GetServicesEvent value) getServices,
+    required TResult Function(_DeleteServiceEvent value) deleteService,
+    required TResult Function(_GetAdminPropertiesEvent value)
+        getAdminProperties,
+    required TResult Function(_DeleteAdminPropertyEvent value)
+        deleteAdminProperty,
+    required TResult Function(_VerifyServiceEvent value) verifyService,
+    required TResult Function(_GetCompaniesEvent value) getCompanies,
+    required TResult Function(_DeleteCompanyEvent value) deleteCompany,
+    required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
+    required TResult Function(_ConvertToSellerEvent value) convertToSeller,
+    required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
+    required TResult Function(_GetAdminReelsEvent value) getAdminReels,
+    required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
+    required TResult Function(_GetGstPendingCompaniesEvent value)
+        getGstPendingCompanies,
+    required TResult Function(_ApproveGstEvent value) approveGst,
+    required TResult Function(_RejectGstEvent value) rejectGst,
+  }) {
+    return convertToMarketing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserListEvent value)? getUserList,
+    TResult? Function(_RemoveUserEvent value)? removeUser,
+    TResult? Function(_IsLoadingEvent value)? isLoading,
+    TResult? Function(_ResetEvent value)? reset,
+    TResult? Function(_ClearAdminStateEvent value)? clearAdminState,
+    TResult? Function(_GetPostAdsEvent value)? getPostAds,
+    TResult? Function(_DeletePostAdEvent value)? deletePostAd,
+    TResult? Function(_GetBannerAdsEvent value)? getBannerAds,
+    TResult? Function(_DeleteBannerAdEvent value)? deleteBannerAd,
+    TResult? Function(_GetProjectsEvent value)? getProjects,
+    TResult? Function(_DeleteProjectEvent value)? deleteProject,
+    TResult? Function(_GetCallbackRequestsEvent value)? getCallbackRequests,
+    TResult? Function(_DeleteCallbackRequestEvent value)? deleteCallbackRequest,
+    TResult? Function(_GetVerificationRequestsEvent value)?
+        getVerificationRequests,
+    TResult? Function(_DeleteVerificationRequestEvent value)?
+        deleteVerificationRequest,
+    TResult? Function(_UpdateVerificationStatusEvent value)?
+        updateVerificationStatus,
+    TResult? Function(_GetHomeLoansEvent value)? getHomeLoans,
+    TResult? Function(_GetInteriorDesignsEvent value)? getInteriorDesigns,
+    TResult? Function(_GetRequestsEvent value)? getRequests,
+    TResult? Function(_DeleteRequestEvent value)? deleteRequest,
+    TResult? Function(_GetAdsEvent value)? getAds,
+    TResult? Function(_RemoveAdUserEvent value)? removeAdUser,
+    TResult? Function(_GetServicesEvent value)? getServices,
+    TResult? Function(_DeleteServiceEvent value)? deleteService,
+    TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
+    TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_VerifyServiceEvent value)? verifyService,
+    TResult? Function(_GetCompaniesEvent value)? getCompanies,
+    TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
+    TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
+    TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
+    TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
+    TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
+    TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
+    TResult? Function(_GetGstPendingCompaniesEvent value)?
+        getGstPendingCompanies,
+    TResult? Function(_ApproveGstEvent value)? approveGst,
+    TResult? Function(_RejectGstEvent value)? rejectGst,
+  }) {
+    return convertToMarketing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserListEvent value)? getUserList,
+    TResult Function(_RemoveUserEvent value)? removeUser,
+    TResult Function(_IsLoadingEvent value)? isLoading,
+    TResult Function(_ResetEvent value)? reset,
+    TResult Function(_ClearAdminStateEvent value)? clearAdminState,
+    TResult Function(_GetPostAdsEvent value)? getPostAds,
+    TResult Function(_DeletePostAdEvent value)? deletePostAd,
+    TResult Function(_GetBannerAdsEvent value)? getBannerAds,
+    TResult Function(_DeleteBannerAdEvent value)? deleteBannerAd,
+    TResult Function(_GetProjectsEvent value)? getProjects,
+    TResult Function(_DeleteProjectEvent value)? deleteProject,
+    TResult Function(_GetCallbackRequestsEvent value)? getCallbackRequests,
+    TResult Function(_DeleteCallbackRequestEvent value)? deleteCallbackRequest,
+    TResult Function(_GetVerificationRequestsEvent value)?
+        getVerificationRequests,
+    TResult Function(_DeleteVerificationRequestEvent value)?
+        deleteVerificationRequest,
+    TResult Function(_UpdateVerificationStatusEvent value)?
+        updateVerificationStatus,
+    TResult Function(_GetHomeLoansEvent value)? getHomeLoans,
+    TResult Function(_GetInteriorDesignsEvent value)? getInteriorDesigns,
+    TResult Function(_GetRequestsEvent value)? getRequests,
+    TResult Function(_DeleteRequestEvent value)? deleteRequest,
+    TResult Function(_GetAdsEvent value)? getAds,
+    TResult Function(_RemoveAdUserEvent value)? removeAdUser,
+    TResult Function(_GetServicesEvent value)? getServices,
+    TResult Function(_DeleteServiceEvent value)? deleteService,
+    TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
+    TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_VerifyServiceEvent value)? verifyService,
+    TResult Function(_GetCompaniesEvent value)? getCompanies,
+    TResult Function(_DeleteCompanyEvent value)? deleteCompany,
+    TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
+    TResult Function(_ConvertToSellerEvent value)? convertToSeller,
+    TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
+    TResult Function(_GetAdminReelsEvent value)? getAdminReels,
+    TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
+    TResult Function(_GetGstPendingCompaniesEvent value)?
+        getGstPendingCompanies,
+    TResult Function(_ApproveGstEvent value)? approveGst,
+    TResult Function(_RejectGstEvent value)? rejectGst,
+    required TResult orElse(),
+  }) {
+    if (convertToMarketing != null) {
+      return convertToMarketing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConvertToMarketingEvent implements AdminEvent {
+  const factory _ConvertToMarketingEvent(
+      {required final List<String> userIds,
+      final String? role}) = _$ConvertToMarketingEventImpl;
+
+  List<String> get userIds;
+  String? get role;
+  @JsonKey(ignore: true)
+  _$$ConvertToMarketingEventImplCopyWith<_$ConvertToMarketingEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -12826,6 +13498,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -12874,6 +13548,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -12922,6 +13597,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -12979,6 +13655,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -13027,6 +13705,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -13075,6 +13754,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -13207,6 +13887,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -13255,6 +13937,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -13303,6 +13986,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -13360,6 +14044,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -13408,6 +14094,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -13456,6 +14143,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -13608,6 +14296,8 @@ class _$GetGstPendingCompaniesEventImpl
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -13656,6 +14346,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -13704,6 +14395,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -13761,6 +14453,8 @@ class _$GetGstPendingCompaniesEventImpl
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -13809,6 +14503,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -13857,6 +14552,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -13992,6 +14688,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -14040,6 +14738,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -14088,6 +14787,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -14145,6 +14845,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -14193,6 +14895,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -14241,6 +14944,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?
@@ -14372,6 +15076,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     required TResult Function(List<String> userIds, String? role)
         convertToSeller,
     required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
     required TResult Function(int page, int limit) getAdminReels,
     required TResult Function(String reelId) deleteAdminReel,
     required TResult Function(int page, int limit, String? status)
@@ -14420,6 +15126,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(List<String> userIds, String? role)? convertToAdmin,
     TResult? Function(List<String> userIds, String? role)? convertToSeller,
     TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
     TResult? Function(int page, int limit)? getAdminReels,
     TResult? Function(String reelId)? deleteAdminReel,
     TResult? Function(int page, int limit, String? status)?
@@ -14468,6 +15175,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(List<String> userIds, String? role)? convertToAdmin,
     TResult Function(List<String> userIds, String? role)? convertToSeller,
     TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
     TResult Function(int page, int limit)? getAdminReels,
     TResult Function(String reelId)? deleteAdminReel,
     TResult Function(int page, int limit, String? status)?
@@ -14525,6 +15233,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
     required TResult Function(_ConvertToSellerEvent value) convertToSeller,
     required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
     required TResult Function(_GetAdminReelsEvent value) getAdminReels,
     required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
     required TResult Function(_GetGstPendingCompaniesEvent value)
@@ -14573,6 +15283,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult? Function(_GetGstPendingCompaniesEvent value)?
@@ -14621,6 +15332,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
     TResult Function(_ConvertToSellerEvent value)? convertToSeller,
     TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
     TResult Function(_GetAdminReelsEvent value)? getAdminReels,
     TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
     TResult Function(_GetGstPendingCompaniesEvent value)?

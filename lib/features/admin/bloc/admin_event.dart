@@ -138,6 +138,11 @@ class AdminEvent with _$AdminEvent {
     String? role,
   }) = _ConvertToUserEvent;
 
+  const factory AdminEvent.convertToMarketing({
+    required List<String> userIds,
+    String? role,
+  }) = _ConvertToMarketingEvent;
+
   const factory AdminEvent.getAdminReels({
     @Default(1) int page,
     @Default(30) int limit,

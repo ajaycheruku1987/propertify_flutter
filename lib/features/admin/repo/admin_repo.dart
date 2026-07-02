@@ -103,6 +103,21 @@ class AdminRepo {
     );
   }
 
+  /// Convert Users to Marketing
+  Future<Either<Failure, Map<String, dynamic>>> convertToMarketing({
+    required List<String> userIds,
+  }) async {
+    final response = await ftPyroApiRequest.post(
+      '/admin/users/convert-to-marketing',
+      data: {'user_ids': userIds},
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(right as Map<String, dynamic>),
+    );
+  }
+
   /// Get Post Ads API
   Future<Either<Failure, PostAdsResponseModel>> getPostAds({
     required int page,

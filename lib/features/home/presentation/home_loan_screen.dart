@@ -16,38 +16,38 @@ class HomeLoanScreen extends StatefulWidget {
 class _HomeLoanScreenState extends State<HomeLoanScreen> {
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
-          ),
-          title: const Text(
-            'Home Loan',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          centerTitle: true,
-        ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Home Loan services are not available on iOS.',
-              style: TextStyle(fontSize: 16, color: Colors.black54),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      );
-    }
+    // if (Platform.isIOS) {
+    //   return Scaffold(
+    //     backgroundColor: Colors.white,
+    //     appBar: AppBar(
+    //       backgroundColor: Colors.white,
+    //       elevation: 0,
+    //       leading: IconButton(
+    //         icon: const Icon(Icons.arrow_back, color: Colors.black),
+    //         onPressed: () => Navigator.pop(context),
+    //       ),
+    //       title: const Text(
+    //         'Home Loan',
+    //         style: TextStyle(
+    //           color: Colors.black,
+    //           fontSize: 18,
+    //           fontWeight: FontWeight.w600,
+    //         ),
+    //       ),
+    //       centerTitle: true,
+    //     ),
+    //     body: const Center(
+    //       child: Padding(
+    //         padding: EdgeInsets.all(16.0),
+    //         child: Text(
+    //           'Home Loan services are not available on iOS.',
+    //           style: TextStyle(fontSize: 16, color: Colors.black54),
+    //           textAlign: TextAlign.center,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -172,7 +172,10 @@ class _HomeLoanScreenState extends State<HomeLoanScreen> {
               ),
               const SizedBox(height: 16),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(20),
@@ -181,7 +184,11 @@ class _HomeLoanScreenState extends State<HomeLoanScreen> {
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.location_on_outlined, color: Colors.white, size: 14),
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.white,
+                      size: 14,
+                    ),
                     SizedBox(width: 4),
                     Text(
                       'Currently available only in Hyderabad',

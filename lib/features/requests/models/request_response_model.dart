@@ -174,8 +174,9 @@ class Owner {
     "last_name": lastName,
     "email": email,
     "phone_number": phoneNumber,
-    "date_of_birth":
-        "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
+    "date_of_birth": dateOfBirth != null
+        ? "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}"
+        : null,
     "username": username,
   };
 }

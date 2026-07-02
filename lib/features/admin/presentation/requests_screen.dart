@@ -10,6 +10,7 @@ import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import '../bloc/admin_bloc.dart';
 import '../models/request_model.dart';
 import '../repo/admin_repo.dart';
+import '../../requests/repo/requests_repo.dart';
 
 class RequestsScreen extends StatefulWidget {
   static const String routeName = '/admin-requests';
@@ -24,38 +25,38 @@ class RequestsScreen extends StatefulWidget {
 class _RequestsScreenState extends State<RequestsScreen> {
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS && widget.category == 'Loan') {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => context.pop(),
-          ),
-          title: const Text(
-            'Home Loan Requests',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          centerTitle: true,
-        ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Home Loan services are not available on iOS.',
-              style: TextStyle(fontSize: 16, color: Colors.black54),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      );
-    }
+    // if (Platform.isIOS && widget.category == 'Loan') {
+    //   return Scaffold(
+    //     backgroundColor: Colors.white,
+    //     appBar: AppBar(
+    //       backgroundColor: Colors.white,
+    //       elevation: 0,
+    //       leading: IconButton(
+    //         icon: const Icon(Icons.arrow_back, color: Colors.black),
+    //         onPressed: () => context.pop(),
+    //       ),
+    //       title: const Text(
+    //         'Home Loan Requests',
+    //         style: TextStyle(
+    //           color: Colors.black,
+    //           fontSize: 18,
+    //           fontWeight: FontWeight.w600,
+    //         ),
+    //       ),
+    //       centerTitle: true,
+    //     ),
+    //     body: const Center(
+    //       child: Padding(
+    //         padding: EdgeInsets.all(16.0),
+    //         child: Text(
+    //           'Home Loan services are not available on iOS.',
+    //           style: TextStyle(fontSize: 16, color: Colors.black54),
+    //           textAlign: TextAlign.center,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     final categories = widget.category?.split(',') ?? ['All'];
     final showTabs = categories.length > 1;
@@ -162,6 +163,7 @@ class RequestsListContent extends StatefulWidget {
 class _RequestsListContentState extends State<RequestsListContent> {
   final ScrollController _scrollController = ScrollController();
   final AdminRepo _adminRepo = AdminRepo();
+  final RequestsRepo _requestsRepo = RequestsRepo();
   List<RequestModel>? _requests;
   int _currentPage = 1;
   bool _hasMore = true;
@@ -202,47 +204,102 @@ class _RequestsListContentState extends State<RequestsListContent> {
       _currentPage = 1;
     }
 
-    // We use context.read<AdminBloc>().state to get repo or you might want to call AdminBloc event.
-    // However, since we want tabs to work "individually" and AdminBloc has only ONE requests list,
-    // we should probably let AdminBloc handle it but it will overwrite.
-    // If we want them truly separate, we should fetch from repo here or update AdminBloc.
-    // But since this is an agent, I'll update AdminBloc to handle category specific states if needed,
-    // or just fetch locally here for better tab experience.
+    final role = serviceLocator<AppCacheService>().getRole()?.toLowerCase();
+    final isSellerOrMarketing = role == 'seller' || role == 'marketing';
 
-    // Actually, it's better to stick to Bloc. But if I use Bloc, switching tabs will overwrite.
-    // Let's use the repository directly for local state management in tabs if they are on the same screen.
-    // Wait, the project uses BLoC for everything.
-    // I'll stick to triggering BLoC events, but I'll add a 'requests' map or separate lists in state if I could.
-    // Given the constraints, I will fetch locally in this sub-widget to keep tabs independent.
-
-    final result = await _adminRepo.getRequests(
-      page: _currentPage,
-      limit: 30,
-      category: widget.category == 'All' ? null : widget.category,
-    );
-
-    if (mounted) {
-      result.fold(
-        (failure) {
-          setState(() {
-            _isLoading = false;
-            _hasMore = false;
-          });
-          CustomToast.showErrorToast(msg: failure.message);
-        },
-        (response) {
-          setState(() {
-            _isLoading = false;
-            final newRequests = response.requests ?? [];
-            _hasMore = newRequests.length >= 30;
-            if (isNextPage) {
-              _requests = [...(_requests ?? []), ...newRequests];
-            } else {
-              _requests = newRequests;
-            }
-          });
-        },
+    if (isSellerOrMarketing) {
+      final skip = (_currentPage - 1) * 30;
+      final result = await _requestsRepo.getRequests(
+        skip: skip,
+        limit: 30,
+        category: widget.category == 'All' ? null : widget.category,
       );
+
+      if (mounted) {
+        result.fold(
+          (failure) {
+            setState(() {
+              _isLoading = false;
+              _hasMore = false;
+            });
+            CustomToast.showErrorToast(msg: failure.message);
+          },
+          (response) {
+            bool isEmpty = false;
+            setState(() {
+              _isLoading = false;
+              List<RequestModel> newRequests = response
+                  .map((e) => RequestModel.fromJson(e.toJson()))
+                  .toList();
+
+              if (widget.category != null && widget.category != 'All') {
+                newRequests = newRequests
+                    .where((req) => req.category == widget.category)
+                    .toList();
+              }
+
+              _hasMore = response.length >= 30;
+              if (isNextPage) {
+                _requests = [...(_requests ?? []), ...newRequests];
+              } else {
+                _requests = newRequests;
+              }
+              isEmpty = newRequests.isEmpty;
+            });
+
+            if (_hasMore && (_requests?.length ?? 0) < 10) {
+              Future.microtask(() => _fetchRequests(isNextPage: true));
+            } else if (_hasMore && isNextPage && isEmpty) {
+              Future.microtask(() => _fetchRequests(isNextPage: true));
+            }
+          },
+        );
+      }
+    } else {
+      final result = await _adminRepo.getRequests(
+        page: _currentPage,
+        limit: 30,
+        category: widget.category == 'All' ? null : widget.category,
+      );
+
+      if (mounted) {
+        result.fold(
+          (failure) {
+            setState(() {
+              _isLoading = false;
+              _hasMore = false;
+            });
+            CustomToast.showErrorToast(msg: failure.message);
+          },
+          (response) {
+            bool isEmpty = false;
+            setState(() {
+              _isLoading = false;
+              List<RequestModel> newRequests = response.requests ?? [];
+
+              if (widget.category != null && widget.category != 'All') {
+                newRequests = newRequests
+                    .where((req) => req.category == widget.category)
+                    .toList();
+              }
+
+              _hasMore = (response.requests?.length ?? 0) >= 30;
+              if (isNextPage) {
+                _requests = [...(_requests ?? []), ...newRequests];
+              } else {
+                _requests = newRequests;
+              }
+              isEmpty = newRequests.isEmpty;
+            });
+
+            if (_hasMore && (_requests?.length ?? 0) < 10) {
+              Future.microtask(() => _fetchRequests(isNextPage: true));
+            } else if (_hasMore && isNextPage && isEmpty) {
+              Future.microtask(() => _fetchRequests(isNextPage: true));
+            }
+          },
+        );
+      }
     }
   }
 

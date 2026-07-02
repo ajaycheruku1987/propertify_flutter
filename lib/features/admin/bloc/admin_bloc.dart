@@ -74,6 +74,7 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     on<_ConvertToAdminEvent>(_onConvertToAdminEvent);
     on<_ConvertToSellerEvent>(_onConvertToSellerEvent);
     on<_ConvertToUserEvent>(_onConvertToUserEvent);
+    on<_ConvertToMarketingEvent>(_onConvertToMarketingEvent);
     on<_GetAdminReelsEvent>(_onGetAdminReelsEvent);
     on<_DeleteAdminReelEvent>(_onDeleteAdminReelEvent);
     on<_GetGstPendingCompaniesEvent>(_onGetGstPendingCompaniesEvent);
@@ -1301,6 +1302,44 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
           ),
         );
         // Refresh the user list with the current role filter
+        add(AdminEvent.getUserList(role: event.role));
+      },
+    );
+  }
+
+  Future<void> _onConvertToMarketingEvent(
+    _ConvertToMarketingEvent event,
+    Emitter<AdminState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, notifyStatus: null));
+
+    final result = await _adminRepo.convertToMarketing(userIds: event.userIds);
+
+    result.fold(
+      (failure) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            notifyStatus: NotifyStatus(
+              message: failure.message,
+              type: NotifyType.error,
+            ),
+          ),
+        );
+      },
+      (response) {
+        final message =
+            response['message'] ??
+            'Successfully converted users to marketers';
+        emit(
+          state.copyWith(
+            isLoading: false,
+            notifyStatus: NotifyStatus(
+              message: message,
+              type: NotifyType.success,
+            ),
+          ),
+        );
         add(AdminEvent.getUserList(role: event.role));
       },
     );

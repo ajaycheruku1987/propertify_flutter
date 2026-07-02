@@ -12,7 +12,8 @@ class KeyProperties {
 
   static const prodCloudFrontUrl = 'https://';
   static const prodGoogleMapsApiKey = '';
-  static const geminiApiKey = 'YOUR_GEMINI_API_KEY_HERE'; // Replace with key starting with AIzaSy
+  static const geminiApiKey =
+      'YOUR_GEMINI_API_KEY_HERE'; // Replace with key starting with AIzaSy
 
   ///[QA]
   static const qaBaseUrl = 'http://18.61.83.116:8080';

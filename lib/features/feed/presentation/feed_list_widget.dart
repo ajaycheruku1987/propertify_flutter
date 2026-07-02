@@ -284,11 +284,12 @@ class _FeedListWidgetState extends State<FeedListWidget> {
       listingType = lookingFor == 'Sales'
           ? 'Sell'
           : (lookingFor == 'All' || lookingFor == '')
-              ? null
-              : lookingFor;
+          ? null
+          : lookingFor;
 
       final propertyTypes = filterData['propertyTypes'] as List?;
-      propertyType = propertyTypes != null &&
+      propertyType =
+          propertyTypes != null &&
               propertyTypes.isNotEmpty &&
               !propertyTypes.contains('All')
           ? propertyTypes.first as String?
@@ -390,20 +391,15 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                           color: Colors.red.shade400,
                         ),
                         const SizedBox(height: 16),
-                        Text(
-                          state.notifyStatus!.message,
-                          style: const TextStyle(fontSize: 16, color: Colors.red),
+                        const Text(
+                          'Something went wrong, please try again later.',
+                          style: TextStyle(fontSize: 16, color: Colors.red),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: () {
-                            context.read<FeedBloc>().add(
-                              const FeedEvent.getFeedsEvent(),
-                            );
-                            context.read<ProfileBloc>().add(
-                              const ProfileEvent.loadBannerAds(),
-                            );
+                            context.go('/splash');
                           },
                           child: const Text('Retry'),
                         ),
@@ -988,7 +984,10 @@ Check it out on Propertify!
     return city;
   }
 
-  void _applyFeedsFilter(BuildContext context, Map<String, dynamic> filterData) {
+  void _applyFeedsFilter(
+    BuildContext context,
+    Map<String, dynamic> filterData,
+  ) {
     final propertyTypes = filterData['propertyTypes'] as List?;
     final lookingFor = filterData['lookingFor'] as String?;
     final priceRange = filterData['priceRange'] as Map?;
@@ -1165,7 +1164,11 @@ class _StickyChipHeaderDelegate extends SliverPersistentHeaderDelegate {
   _StickyChipHeaderDelegate({required this.child, this.height = 52.0});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,

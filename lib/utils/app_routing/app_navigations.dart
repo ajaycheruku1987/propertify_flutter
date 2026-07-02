@@ -417,7 +417,11 @@ final router = GoRouter(
       path: AdminDashboardScreen.routeName,
       builder: (context, state) {
         final isSeller = state.uri.queryParameters['isSeller'] == 'true';
-        return AdminDashboardScreen(isSeller: isSeller);
+        final isMarketing = state.uri.queryParameters['isMarketing'] == 'true';
+        return AdminDashboardScreen(
+          isSeller: isSeller,
+          isMarketing: isMarketing,
+        );
       },
     ),
     GoRoute(

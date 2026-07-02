@@ -458,7 +458,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                             return Column(
                               children: [
-                                if (role == 'admin' || role == 'seller')
+                                if (role == 'admin' || role == 'seller' || role == 'marketing')
                                   Divider(
                                     height: 20,
                                     color: Theme.of(context).primaryColor,
@@ -483,7 +483,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       );
                                     },
                                   ),
-                                if (role == 'admin' || role == 'seller')
+                                if (role == 'marketing')
+                                  ProfileMenuItem(
+                                    icon: Icons.campaign_outlined,
+                                    title: 'Marketing Dashboard',
+                                    onTap: () {
+                                      context.push(
+                                        '${AdminDashboardScreen.routeName}?isMarketing=true',
+                                      );
+                                    },
+                                  ),
+                                if (role == 'admin' || role == 'seller' || role == 'marketing')
                                   Divider(
                                     height: 20,
                                     color: Theme.of(context).primaryColor,
