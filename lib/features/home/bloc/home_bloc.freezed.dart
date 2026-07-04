@@ -35,6 +35,7 @@ mixin _$HomeEvent {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +54,7 @@ mixin _$HomeEvent {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +73,7 @@ mixin _$HomeEvent {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,6 +93,7 @@ mixin _$HomeEvent {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,6 +110,7 @@ mixin _$HomeEvent {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +127,7 @@ mixin _$HomeEvent {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -199,6 +205,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return reset();
   }
@@ -220,6 +227,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return reset?.call();
   }
@@ -241,6 +249,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -266,6 +275,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return reset(this);
   }
@@ -285,6 +295,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return reset?.call(this);
   }
@@ -304,6 +315,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -372,6 +384,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return isLoading();
   }
@@ -393,6 +406,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return isLoading?.call();
   }
@@ -414,6 +428,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -439,6 +454,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return isLoading(this);
   }
@@ -458,6 +474,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return isLoading?.call(this);
   }
@@ -477,6 +494,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -571,6 +589,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return setHomeIndex(index);
   }
@@ -592,6 +611,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return setHomeIndex?.call(index);
   }
@@ -613,6 +633,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -638,6 +659,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return setHomeIndex(this);
   }
@@ -657,6 +679,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return setHomeIndex?.call(this);
   }
@@ -676,6 +699,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -776,6 +800,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return setBottomNavIndex(index);
   }
@@ -797,6 +822,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return setBottomNavIndex?.call(index);
   }
@@ -818,6 +844,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -843,6 +870,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return setBottomNavIndex(this);
   }
@@ -862,6 +890,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return setBottomNavIndex?.call(this);
   }
@@ -881,6 +910,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -954,6 +984,7 @@ class _$CheckTokenImpl implements _CheckToken {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return checkToken();
   }
@@ -975,6 +1006,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return checkToken?.call();
   }
@@ -996,6 +1028,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -1021,6 +1054,7 @@ class _$CheckTokenImpl implements _CheckToken {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return checkToken(this);
   }
@@ -1040,6 +1074,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return checkToken?.call(this);
   }
@@ -1059,6 +1094,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -1163,6 +1199,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return currentLocationLatLng(lat, lng);
   }
@@ -1184,6 +1221,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return currentLocationLatLng?.call(lat, lng);
   }
@@ -1205,6 +1243,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1230,6 +1269,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return currentLocationLatLng(this);
   }
@@ -1249,6 +1289,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return currentLocationLatLng?.call(this);
   }
@@ -1268,6 +1309,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1409,6 +1451,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return updateCurrentLocation(lat, lng, city, state, village);
   }
@@ -1430,6 +1473,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return updateCurrentLocation?.call(lat, lng, city, state, village);
   }
@@ -1451,6 +1495,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1476,6 +1521,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return updateCurrentLocation(this);
   }
@@ -1495,6 +1541,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return updateCurrentLocation?.call(this);
   }
@@ -1514,6 +1561,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1640,6 +1688,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return loadOtherUserPosts(userId, limit, offset);
   }
@@ -1661,6 +1710,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return loadOtherUserPosts?.call(userId, limit, offset);
   }
@@ -1682,6 +1732,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1707,6 +1758,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return loadOtherUserPosts(this);
   }
@@ -1726,6 +1778,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return loadOtherUserPosts?.call(this);
   }
@@ -1745,6 +1798,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1859,6 +1913,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return updateFeedsFilter(filter);
   }
@@ -1880,6 +1935,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return updateFeedsFilter?.call(filter);
   }
@@ -1901,6 +1957,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateFeedsFilter != null) {
@@ -1926,6 +1983,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return updateFeedsFilter(this);
   }
@@ -1945,6 +2003,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return updateFeedsFilter?.call(this);
   }
@@ -1964,6 +2023,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateFeedsFilter != null) {
@@ -2075,6 +2135,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return updateServicesFilter(filter);
   }
@@ -2096,6 +2157,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return updateServicesFilter?.call(filter);
   }
@@ -2117,6 +2179,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateServicesFilter != null) {
@@ -2142,6 +2205,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return updateServicesFilter(this);
   }
@@ -2161,6 +2225,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return updateServicesFilter?.call(this);
   }
@@ -2180,6 +2245,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateServicesFilter != null) {
@@ -2291,6 +2357,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return updateRequestsFilter(filter);
   }
@@ -2312,6 +2379,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return updateRequestsFilter?.call(filter);
   }
@@ -2333,6 +2401,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateRequestsFilter != null) {
@@ -2358,6 +2427,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return updateRequestsFilter(this);
   }
@@ -2377,6 +2447,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return updateRequestsFilter?.call(this);
   }
@@ -2396,6 +2467,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateRequestsFilter != null) {
@@ -2506,6 +2578,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     required TResult Function(Map<String, dynamic>? filter)
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
   }) {
     return updateSalesFilter(filter);
   }
@@ -2527,6 +2600,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
   }) {
     return updateSalesFilter?.call(filter);
   }
@@ -2548,6 +2622,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateSalesFilter != null) {
@@ -2573,6 +2648,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
   }) {
     return updateSalesFilter(this);
   }
@@ -2592,6 +2668,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
   }) {
     return updateSalesFilter?.call(this);
   }
@@ -2611,6 +2688,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
     required TResult orElse(),
   }) {
     if (updateSalesFilter != null) {
@@ -2627,6 +2705,218 @@ abstract class _UpdateSalesFilter implements HomeEvent {
   Map<String, dynamic>? get filter;
   @JsonKey(ignore: true)
   _$$UpdateSalesFilterImplCopyWith<_$UpdateSalesFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateSearchQueryImplCopyWith<$Res> {
+  factory _$$UpdateSearchQueryImplCopyWith(_$UpdateSearchQueryImpl value,
+          $Res Function(_$UpdateSearchQueryImpl) then) =
+      __$$UpdateSearchQueryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$UpdateSearchQueryImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateSearchQueryImpl>
+    implements _$$UpdateSearchQueryImplCopyWith<$Res> {
+  __$$UpdateSearchQueryImplCopyWithImpl(_$UpdateSearchQueryImpl _value,
+      $Res Function(_$UpdateSearchQueryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$UpdateSearchQueryImpl(
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
+  const _$UpdateSearchQueryImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateSearchQuery(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateSearchQueryImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateSearchQueryImplCopyWith<_$UpdateSearchQueryImpl> get copyWith =>
+      __$$UpdateSearchQueryImplCopyWithImpl<_$UpdateSearchQueryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
+  }) {
+    return updateSearchQuery(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
+  }) {
+    return updateSearchQuery?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
+    required TResult orElse(),
+  }) {
+    if (updateSearchQuery != null) {
+      return updateSearchQuery(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+  }) {
+    return updateSearchQuery(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+  }) {
+    return updateSearchQuery?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    required TResult orElse(),
+  }) {
+    if (updateSearchQuery != null) {
+      return updateSearchQuery(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSearchQuery implements HomeEvent {
+  const factory _UpdateSearchQuery(final String query) =
+      _$UpdateSearchQueryImpl;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$UpdateSearchQueryImplCopyWith<_$UpdateSearchQueryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2654,6 +2944,7 @@ mixin _$HomeState {
       throw _privateConstructorUsedError;
   Map<String, dynamic>? get activeSalesFilter =>
       throw _privateConstructorUsedError;
+  String get searchQuery => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -2682,7 +2973,8 @@ abstract class $HomeStateCopyWith<$Res> {
       Map<String, dynamic>? activeFeedsFilter,
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
-      Map<String, dynamic>? activeSalesFilter});
+      Map<String, dynamic>? activeSalesFilter,
+      String searchQuery});
 }
 
 /// @nodoc
@@ -2715,6 +3007,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? activeServicesFilter = freezed,
     Object? activeRequestsFilter = freezed,
     Object? activeSalesFilter = freezed,
+    Object? searchQuery = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -2785,6 +3078,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.activeSalesFilter
           : activeSalesFilter // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -2814,7 +3111,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       Map<String, dynamic>? activeFeedsFilter,
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
-      Map<String, dynamic>? activeSalesFilter});
+      Map<String, dynamic>? activeSalesFilter,
+      String searchQuery});
 }
 
 /// @nodoc
@@ -2845,6 +3143,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? activeServicesFilter = freezed,
     Object? activeRequestsFilter = freezed,
     Object? activeSalesFilter = freezed,
+    Object? searchQuery = null,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
@@ -2915,6 +3214,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._activeSalesFilter
           : activeSalesFilter // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -2939,7 +3242,8 @@ class _$HomeStateImpl implements _HomeState {
       final Map<String, dynamic>? activeFeedsFilter,
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
-      final Map<String, dynamic>? activeSalesFilter})
+      final Map<String, dynamic>? activeSalesFilter,
+      this.searchQuery = ''})
       : _otherUserPosts = otherUserPosts,
         _activeFeedsFilter = activeFeedsFilter,
         _activeServicesFilter = activeServicesFilter,
@@ -3036,8 +3340,12 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
+  @JsonKey()
+  final String searchQuery;
+
+  @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts, activeFeedsFilter: $activeFeedsFilter, activeServicesFilter: $activeServicesFilter, activeRequestsFilter: $activeRequestsFilter, activeSalesFilter: $activeSalesFilter)';
+    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts, activeFeedsFilter: $activeFeedsFilter, activeServicesFilter: $activeServicesFilter, activeRequestsFilter: $activeRequestsFilter, activeSalesFilter: $activeSalesFilter, searchQuery: $searchQuery)';
   }
 
   @override
@@ -3079,7 +3387,9 @@ class _$HomeStateImpl implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other._activeRequestsFilter, _activeRequestsFilter) &&
             const DeepCollectionEquality()
-                .equals(other._activeSalesFilter, _activeSalesFilter));
+                .equals(other._activeSalesFilter, _activeSalesFilter) &&
+            (identical(other.searchQuery, searchQuery) ||
+                other.searchQuery == searchQuery));
   }
 
   @override
@@ -3101,7 +3411,8 @@ class _$HomeStateImpl implements _HomeState {
       const DeepCollectionEquality().hash(_activeFeedsFilter),
       const DeepCollectionEquality().hash(_activeServicesFilter),
       const DeepCollectionEquality().hash(_activeRequestsFilter),
-      const DeepCollectionEquality().hash(_activeSalesFilter));
+      const DeepCollectionEquality().hash(_activeSalesFilter),
+      searchQuery);
 
   @JsonKey(ignore: true)
   @override
@@ -3128,7 +3439,8 @@ abstract class _HomeState implements HomeState {
       final Map<String, dynamic>? activeFeedsFilter,
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
-      final Map<String, dynamic>? activeSalesFilter}) = _$HomeStateImpl;
+      final Map<String, dynamic>? activeSalesFilter,
+      final String searchQuery}) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
@@ -3164,6 +3476,8 @@ abstract class _HomeState implements HomeState {
   Map<String, dynamic>? get activeRequestsFilter;
   @override
   Map<String, dynamic>? get activeSalesFilter;
+  @override
+  String get searchQuery;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

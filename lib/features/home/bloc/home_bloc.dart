@@ -29,7 +29,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_UpdateServicesFilter>(_onUpdateServicesFilter);
     on<_UpdateRequestsFilter>(_onUpdateRequestsFilter);
     on<_UpdateSalesFilter>(_onUpdateSalesFilter);
+    on<_UpdateSearchQuery>(_onUpdateSearchQuery);
     on<_Reset>(_onReset);
+  }
+
+  void _onUpdateSearchQuery(_UpdateSearchQuery event, Emitter<HomeState> emit) {
+    emit(state.copyWith(searchQuery: event.query));
   }
 
   void _onReset(_Reset event, Emitter<HomeState> emit) {

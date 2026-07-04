@@ -88,8 +88,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   int _selectedBottomNavIndex = 0;
   int _currentSlide = 0;
   bool _isLoadingLocation = true; // Track location loading state
+  final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _tabs = ['Feeds', 'Services', 'Requests', 'Projects'];
+  final List<String> _tabs = ['Feeds', 'Requests', 'Projects', 'Services'];
 
   @override
   void initState() {
@@ -111,6 +112,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
       // Initialize current location and update HomeBloc
     });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -234,14 +241,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     switch (tabIndex) {
       case 0: // Feeds
         return _buildFeedsContent();
-      case 1: // Services
-        return _buildServicesContent();
-      case 2:
+      case 1:
         return const RequestsScreen();
-
-      case 3: // Request
+      case 2: // Request
         return _buildSalesContent();
-
+      case 3: // Services
+        return _buildServicesContent();
       default:
         return _buildFeedsContent();
     }
@@ -412,16 +417,15 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             longitude: context.read<HomeBloc>().state.currentLng,
           ),
         );
-        context.read<ServicesBloc>().add(
-          ServicesEvent.getServicesEvent(
+        context.read<RequestsBloc>().add(
+          RequestsEvent.getRequests(
             latitude: context.read<HomeBloc>().state.currentLat,
             longitude: context.read<HomeBloc>().state.currentLng,
             radiusKm: 5,
           ),
         );
-
-        context.read<RequestsBloc>().add(
-          RequestsEvent.getRequests(
+        context.read<ServicesBloc>().add(
+          ServicesEvent.getServicesEvent(
             latitude: context.read<HomeBloc>().state.currentLat,
             longitude: context.read<HomeBloc>().state.currentLng,
             radiusKm: 5,
@@ -437,11 +441,11 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     if (currentTabIndex == 0) {
       hasActiveFilter = state.activeFeedsFilter != null;
     } else if (currentTabIndex == 1) {
-      hasActiveFilter = state.activeServicesFilter != null;
-    } else if (currentTabIndex == 2) {
       hasActiveFilter = state.activeRequestsFilter != null;
-    } else if (currentTabIndex == 3) {
+    } else if (currentTabIndex == 2) {
       hasActiveFilter = state.activeSalesFilter != null;
+    } else if (currentTabIndex == 3) {
+      hasActiveFilter = state.activeServicesFilter != null;
     }
 
     final maxHeight = 245.0;
@@ -553,12 +557,17 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                               bottom: 12,
                             ),
                             child: SearchBarWidget(
+                              controller: _searchController,
                               hasActiveFilter: hasActiveFilter,
                               onChanged: (searchQuery) {
                                 final currentTabIndex = state.homeIndex;
                                 final homeState = context
                                     .read<HomeBloc>()
                                     .state;
+
+                                context.read<HomeBloc>().add(
+                                  HomeEvent.updateSearchQuery(searchQuery),
+                                );
 
                                 if (currentTabIndex == 0) {
                                   context.read<FeedBloc>().add(
@@ -568,16 +577,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       longitude: homeState.currentLng,
                                     ),
                                   );
-                                } else if (currentTabIndex == 1) {
-                                  context.read<ServicesBloc>().add(
-                                    ServicesEvent.getServicesEvent(
-                                      search: searchQuery,
-                                      latitude: homeState.currentLat,
-                                      longitude: homeState.currentLng,
-                                      radiusKm: 5,
-                                    ),
-                                  );
-                                } else if (currentTabIndex == 2) {
+                                }else if (currentTabIndex == 1) {
                                   context.read<RequestsBloc>().add(
                                     RequestsEvent.getRequests(
                                       search: searchQuery,
@@ -586,10 +586,19 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       radiusKm: 5,
                                     ),
                                   );
-                                } else if (currentTabIndex == 3) {
+                                } else if (currentTabIndex == 2) {
                                   context.read<SalesBloc>().add(
                                     SalesEvent.getSalesEvent(
                                       search: searchQuery,
+                                    ),
+                                  );
+                                } else if (currentTabIndex == 3) {
+                                  context.read<ServicesBloc>().add(
+                                    ServicesEvent.getServicesEvent(
+                                      search: searchQuery,
+                                      latitude: homeState.currentLat,
+                                      longitude: homeState.currentLng,
+                                      radiusKm: 5,
                                     ),
                                   );
                                 }
@@ -648,6 +657,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
                                       context.read<FeedBloc>().add(
                                         FeedEvent.getFeedsEvent(
+                                          search: homeState.searchQuery,
                                           city:
                                               filterData['location'] as String?,
                                           listingType: mappedLookingFor,
@@ -669,6 +679,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       context.read<HomeBloc>().add(
                                         const HomeEvent.updateFeedsFilter(null),
                                       );
+                                      _searchController.clear();
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSearchQuery(''),
+                                      );
                                       context.read<FeedBloc>().add(
                                         FeedEvent.getFeedsEvent(
                                           latitude: homeState.currentLat,
@@ -678,76 +692,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                     },
                                   );
                                 } else if (currentTabIndex == 1) {
-                                  ServicesFilter.show(
-                                    context,
-                                    activeFilter:
-                                        homeState.activeServicesFilter,
-                                    currentAddress: currentAddress,
-                                    currentCity: currentCity,
-                                    onApplyFilter: (filterData) {
-                                      context.read<HomeBloc>().add(
-                                        HomeEvent.updateServicesFilter(
-                                          filterData,
-                                        ),
-                                      );
-                                      final List<String> categoriesList = [];
-                                      final String? serviceType =
-                                          filterData['serviceType'] as String?;
-                                      if (serviceType != null &&
-                                          serviceType != 'All') {
-                                        categoriesList.add(serviceType);
-                                      }
-                                      final List? categories =
-                                          filterData['categories'] as List?;
-                                      if (categories != null) {
-                                        for (final cat in categories) {
-                                          if (cat != 'All' && cat is String) {
-                                            categoriesList.add(cat);
-                                          }
-                                        }
-                                      }
-
-                                      final isLocationCustom =
-                                          filterData['isLocationCustom'] ==
-                                          true;
-                                      final latitude = isLocationCustom
-                                          ? filterData['latitude'] as double?
-                                          : homeState.currentLat;
-                                      final longitude = isLocationCustom
-                                          ? filterData['longitude'] as double?
-                                          : homeState.currentLng;
-
-                                      context.read<ServicesBloc>().add(
-                                        ServicesEvent.getServicesEvent(
-                                          categoryNames:
-                                              categoriesList.isNotEmpty
-                                              ? categoriesList
-                                              : null,
-                                          latitude: latitude,
-                                          longitude: longitude,
-                                          radiusKm: 15,
-                                          minRating: filterData['minRating'] != null
-                                              ? (filterData['minRating'] as num).toDouble()
-                                              : null,
-                                        ),
-                                      );
-                                    },
-                                    onResetFilter: () {
-                                      context.read<HomeBloc>().add(
-                                        const HomeEvent.updateServicesFilter(
-                                          null,
-                                        ),
-                                      );
-                                      context.read<ServicesBloc>().add(
-                                        ServicesEvent.getServicesEvent(
-                                          latitude: homeState.currentLat,
-                                          longitude: homeState.currentLng,
-                                          radiusKm: 5,
-                                        ),
-                                      );
-                                    },
-                                  );
-                                } else if (currentTabIndex == 2) {
                                   RequestsFilter.show(
                                     context,
                                     activeFilter:
@@ -772,6 +716,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
                                       context.read<RequestsBloc>().add(
                                         RequestsEvent.getRequests(
+                                          search: homeState.searchQuery,
                                           city:
                                               filterData['address'] as String?,
                                           latitude: latitude,
@@ -786,6 +731,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                           null,
                                         ),
                                       );
+                                      _searchController.clear();
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSearchQuery(''),
+                                      );
                                       context.read<RequestsBloc>().add(
                                         RequestsEvent.getRequests(
                                           latitude: homeState.currentLat,
@@ -795,7 +744,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       );
                                     },
                                   );
-                                } else if (currentTabIndex == 3) {
+                                } else if (currentTabIndex == 2) {
                                   SalesFilter.show(
                                     context,
                                     activeFilter: homeState.activeSalesFilter,
@@ -826,6 +775,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
                                       context.read<SalesBloc>().add(
                                         SalesEvent.getSalesEvent(
+                                          search: homeState.searchQuery,
                                           propertyTypes: types,
                                           latitude: latitude,
                                           longitude: longitude,
@@ -837,12 +787,91 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       context.read<HomeBloc>().add(
                                         const HomeEvent.updateSalesFilter(null),
                                       );
+                                      _searchController.clear();
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSearchQuery(''),
+                                      );
                                       context.read<SalesBloc>().add(
                                         const SalesEvent.getSalesEvent(),
                                       );
                                     },
                                   );
-                                } else {
+                                } else if (currentTabIndex == 3) {
+                                  ServicesFilter.show(
+                                    context,
+                                    activeFilter:
+                                    homeState.activeServicesFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
+                                    onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateServicesFilter(
+                                          filterData,
+                                        ),
+                                      );
+                                      final List<String> categoriesList = [];
+                                      final String? serviceType =
+                                      filterData['serviceType'] as String?;
+                                      if (serviceType != null &&
+                                          serviceType != 'All') {
+                                        categoriesList.add(serviceType);
+                                      }
+                                      final List? categories =
+                                      filterData['categories'] as List?;
+                                      if (categories != null) {
+                                        for (final cat in categories) {
+                                          if (cat != 'All' && cat is String) {
+                                            categoriesList.add(cat);
+                                          }
+                                        }
+                                      }
+
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] ==
+                                              true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
+
+                                      context.read<ServicesBloc>().add(
+                                        ServicesEvent.getServicesEvent(
+                                          search: homeState.searchQuery,
+                                          categoryNames:
+                                          categoriesList.isNotEmpty
+                                              ? categoriesList
+                                              : null,
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                          radiusKm: 15,
+                                          minRating: filterData['minRating'] != null
+                                              ? (filterData['minRating'] as num).toDouble()
+                                              : null,
+                                        ),
+                                      );
+                                    },
+                                    onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateServicesFilter(
+                                          null,
+                                        ),
+                                      );
+                                      _searchController.clear();
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSearchQuery(''),
+                                      );
+                                      context.read<ServicesBloc>().add(
+                                        ServicesEvent.getServicesEvent(
+                                          latitude: homeState.currentLat,
+                                          longitude: homeState.currentLng,
+                                          radiusKm: 5,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }else {
                                   FeedsFilter.show(
                                     context,
                                     currentAddress: currentAddress,

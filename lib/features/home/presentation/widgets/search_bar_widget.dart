@@ -3,6 +3,7 @@ import '../../../../core/app_theme.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final String? hintText;
+  final TextEditingController? controller;
   final Function(String)? onChanged;
   final VoidCallback? onFilterPressed;
   final bool hasActiveFilter;
@@ -10,6 +11,7 @@ class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({
     super.key,
     this.hintText,
+    this.controller,
     this.onChanged,
     this.onFilterPressed,
     this.hasActiveFilter = false,
@@ -33,6 +35,7 @@ class SearchBarWidget extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              controller: controller,
               onChanged: onChanged,
               decoration: InputDecoration(
                 hintText: hintText ?? 'Search Property',
