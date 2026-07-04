@@ -16,7 +16,6 @@ import 'sales_tabs_screen.dart';
 import 'admin_reels_screen.dart';
 import 'gst_verification_requests_screen.dart';
 import 'services_verification_requests_screen.dart';
-
 import 'manage_material_prices_screen.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
@@ -43,96 +42,110 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> items = [
-      {
-        'title': 'Users',
-        'icon': Icons.people_outline,
-        'route': '${UserListScreen.routeName}?role=user',
-      },
-      {
-        'title': 'Admins',
-        'icon': Icons.admin_panel_settings_outlined,
-        'route': '${UserListScreen.routeName}?role=admin',
-      },
-      {
-        'title': 'Sellers',
-        'icon': Icons.storefront_outlined,
-        'route': '${UserListScreen.routeName}?role=seller',
-      },
-      {
-        'title': 'Marketers',
-        'icon': Icons.storefront_outlined,
-        'route': '${UserListScreen.routeName}?role=marketing',
-      },
-      {
-        'title': 'Requests',
-        'icon': Icons.verified_user_outlined,
-        'route': '${RequestsScreen.routeName}?category=Buy,Rent',
-      },
-      {
-        'title': 'Services',
-        'icon': Icons.psychology_outlined,
-        'route': AllServicesListAdminView.routeName,
-      },
-      {
-        'title': 'Properties',
-        'icon': Icons.home_outlined,
-        'route': PropertiesListViewScreen.routeName,
-      },
-      {
-        'title': 'Boosted Ads',
-        'icon': Icons.rocket_launch_outlined,
-        'route': BannerAdsScreen.routeName,
-      },
-      {
-        'title': 'Sales/Projects',
-        'icon': Icons.business_outlined,
-        'route': SalesTabsScreen.routeName,
-      },
-      {
-        'title': 'Home Loan Requests',
-        'icon': Icons.home_work_outlined,
-        'route': '${RequestsScreen.routeName}?category=Loan',
-      },
-      {
-        'title': 'Interior Design Requests',
-        'icon': Icons.format_paint_outlined,
-        'route': '${RequestsScreen.routeName}?category=Interior Design',
-      },
-      {
-        'title': 'Companies',
-        'icon': Icons.business_outlined,
-        'route': CompaniesTabsScreen.routeName,
-      },
-      {
-        'title': 'Reels',
-        'icon': Icons.video_collection_outlined,
-        'route': AdminReelsScreen.routeName,
-      },
-      {
-        'title': 'Service Verifications',
-        'icon': Icons.verified_user_outlined,
-        'route': ServicesVerificationRequests.routeName,
-      },
-      {
-        'title': 'Material Prices',
-        'icon': Icons.currency_rupee,
-        'route': ManageMaterialPricesScreen.routeName,
-      },
-    ];
+    final Map<String, List<Map<String, dynamic>>> categorizedItems = {
+      'Feeds': [
+        {
+          'title': 'Properties',
+          'icon': Icons.home_outlined,
+          'route': PropertiesListViewScreen.routeName,
+        },
+        {
+          'title': 'Reels',
+          'icon': Icons.video_collection_outlined,
+          'route': AdminReelsScreen.routeName,
+        },
+        {
+          'title': 'Boosted Ads',
+          'icon': Icons.rocket_launch_outlined,
+          'route': BannerAdsScreen.routeName,
+        },
+      ],
+      'Services': [
+        {
+          'title': 'Services',
+          'icon': Icons.psychology_outlined,
+          'route': AllServicesListAdminView.routeName,
+        },
+        {
+          'title': 'Service Verifications',
+          'icon': Icons.verified_user_outlined,
+          'route': ServicesVerificationRequests.routeName,
+        },
+        {
+          'title': 'Material Prices',
+          'icon': Icons.currency_rupee,
+          'route': ManageMaterialPricesScreen.routeName,
+        },
+      ],
+      'Requests': [
+        {
+          'title': 'Requests',
+          'icon': Icons.verified_user_outlined,
+          'route': '${RequestsScreen.routeName}?category=Buy,Rent',
+        },
+        {
+          'title': 'Home Loan Requests',
+          'icon': Icons.home_work_outlined,
+          'route': '${RequestsScreen.routeName}?category=Loan',
+        },
+        {
+          'title': 'Interior Design Requests',
+          'icon': Icons.format_paint_outlined,
+          'route': '${RequestsScreen.routeName}?category=Interior Design',
+        },
+      ],
+      'Projects': [
+        {
+          'title': 'Sales/Projects',
+          'icon': Icons.business_outlined,
+          'route': SalesTabsScreen.routeName,
+        },
+        {
+          'title': 'Companies',
+          'icon': Icons.business_outlined,
+          'route': CompaniesTabsScreen.routeName,
+        },
+      ],
+      'User Management': [
+        {
+          'title': 'Users',
+          'icon': Icons.people_outline,
+          'route': '${UserListScreen.routeName}?role=user',
+        },
+        {
+          'title': 'Admins',
+          'icon': Icons.admin_panel_settings_outlined,
+          'route': '${UserListScreen.routeName}?role=admin',
+        },
+        {
+          'title': 'Loan Team',
+          'icon': Icons.storefront_outlined,
+          'route': '${UserListScreen.routeName}?role=seller',
+        },
+        {
+          'title': 'Interior Design Team',
+          'icon': Icons.storefront_outlined,
+          'route': '${UserListScreen.routeName}?role=marketing',
+        },
+      ],
+    };
 
-    // if (Platform.isIOS) {
-    //   items.removeWhere((item) => item['title'] == 'Home Loan Requests');
-    // }
+    Map<String, List<Map<String, dynamic>>> displayItems = {};
 
     if (widget.isMarketing) {
-      items = items.where((item) {
-        return item['title'] == 'Interior Design Requests';
-      }).toList();
+      displayItems = {
+        'Requests': categorizedItems['Requests']!
+            .where((item) => item['title'] == 'Interior Design Requests')
+            .toList(),
+      };
     } else if (widget.isSeller) {
-      items = items.where((item) {
-        return item['title'] == 'Home Loan Requests';
-      }).toList();
+      displayItems = {
+        'Requests': categorizedItems['Requests']!
+            .where((item) => item['title'] == 'Home Loan Requests')
+            .toList(),
+      };
+    } else {
+      displayItems = categorizedItems;
     }
 
     return Scaffold(
@@ -146,8 +159,8 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           widget.isMarketing
               ? 'Interior Design Dashboard'
               : widget.isSeller
-              ? 'Home Loans Dashboard'
-              : 'Admin Dashboard',
+                  ? 'Home Loans Dashboard'
+                  : 'Admin Dashboard',
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -159,26 +172,52 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         automaticallyImplyLeading: false,
         actions: [const SizedBox(width: 8)],
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-            childAspectRatio: 0.85,
-          ),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
-            return _buildDashboardTile(
-              context,
-              item['title'],
-              item['icon'],
-              item['route'],
-            );
-          },
-        ),
+        children: displayItems.entries.map((entry) {
+          final String category = entry.key;
+          final List<Map<String, dynamic>> items = entry.value;
+
+          if (items.isEmpty) return const SizedBox.shrink();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 0.85,
+                ),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return _buildDashboardTile(
+                    context,
+                    item['title'],
+                    item['icon'],
+                    item['route'],
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+            ],
+          );
+        }).toList(),
       ),
     );
   }
@@ -227,7 +266,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                 title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
