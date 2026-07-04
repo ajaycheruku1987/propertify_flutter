@@ -476,7 +476,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (role == 'seller')
                                   ProfileMenuItem(
                                     icon: Icons.dashboard_outlined,
-                                    title: 'Seller Dashboard',
+                                    title: 'Home Loans Dashboard',
                                     onTap: () {
                                       context.push(
                                         '${AdminDashboardScreen.routeName}?isSeller=true',
@@ -486,7 +486,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (role == 'marketing')
                                   ProfileMenuItem(
                                     icon: Icons.campaign_outlined,
-                                    title: 'Marketing Dashboard',
+                                    title: 'Interior Design Dashboard',
                                     onTap: () {
                                       context.push(
                                         '${AdminDashboardScreen.routeName}?isMarketing=true',

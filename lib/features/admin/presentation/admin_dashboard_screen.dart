@@ -144,9 +144,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         ),
         title: Text(
           widget.isMarketing
-              ? 'Marketing Dashboard'
+              ? 'Interior Design Dashboard'
               : widget.isSeller
-              ? 'Seller Dashboard'
+              ? 'Home Loans Dashboard'
               : 'Admin Dashboard',
           style: const TextStyle(
             color: Colors.black,
