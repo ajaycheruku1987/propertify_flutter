@@ -127,6 +127,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           'icon': Icons.storefront_outlined,
           'route': '${UserListScreen.routeName}?role=marketing',
         },
+        {
+          'title': 'User Feedbacks',
+          'icon': Icons.feedback_outlined,
+          'route': '/feedback-list?isAdmin=true',
+        },
       ],
     };
 

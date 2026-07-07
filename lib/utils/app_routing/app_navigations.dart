@@ -30,6 +30,7 @@ import 'package:propertify/features/company/presentation/my_company.dart';
 import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:propertify/features/profile/models/feedback_model.dart';
 
 import 'package:propertify/features/requests/presentation/edit_request.dart';
 
@@ -68,6 +69,8 @@ import '../../features/profile/presentation/my_posts_screen.dart';
 import '../../features/profile/presentation/create_banner_ad.dart';
 import '../../features/profile/presentation/my_banner_ads_screen.dart';
 import '../../features/profile/presentation/deactivate_account_screen.dart';
+import '../../features/profile/presentation/feedback_screen.dart';
+import '../../features/profile/presentation/feedback_list_screen.dart';
 import '../../features/services/presentation/my_services_screen.dart';
 import '../../features/services/presentation/edit_service_screen.dart';
 import '../../features/feed/presentation/edit_feed_screen.dart';
@@ -171,6 +174,20 @@ final router = GoRouter(
     GoRoute(
       path: FavoritesScreen.routeName,
       builder: (context, state) => const FavoritesScreen(),
+    ),
+    GoRoute(
+      path: FeedbackScreen.routeName,
+      builder: (context, state) {
+        final feedback = state.extra as FeedbackModel?;
+        return FeedbackScreen(feedback: feedback);
+      },
+    ),
+    GoRoute(
+      path: FeedbackListScreen.routeName,
+      builder: (context, state) {
+        final isAdmin = state.uri.queryParameters['isAdmin'] == 'true';
+        return FeedbackListScreen(isAdmin: isAdmin);
+      },
     ),
     GoRoute(
       path: PostDetailsScreen.routeName,

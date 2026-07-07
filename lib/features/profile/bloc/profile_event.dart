@@ -38,5 +38,23 @@ class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.loadOtherUserProfile({required String userId}) =
       _LoadOtherUserProfile;
 
+  const factory ProfileEvent.submitFeedback({
+    required String category,
+    required String subject,
+    required String description,
+  }) = _SubmitFeedback;
+
+  const factory ProfileEvent.loadMyFeedbacks() = _LoadMyFeedbacks;
+  const factory ProfileEvent.loadAllFeedbacks() = _LoadAllFeedbacks;
+
+  const factory ProfileEvent.updateFeedback({
+    required String id,
+    required String category,
+    required String subject,
+    required String description,
+  }) = _UpdateFeedback;
+
+  const factory ProfileEvent.deleteFeedback({required String id}) = _DeleteFeedback;
+
   const factory ProfileEvent.isLoading(bool flag) = _IsLoading;
 }

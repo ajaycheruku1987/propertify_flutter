@@ -11,5 +11,7 @@ class ProfileState with _$ProfileState {
     BannerAdModel? createdBannerAd,
     UserProfileModel? otherUserProfile,
     @Default(false) bool isLoadingOtherProfile,
+    List<FeedbackModel>? myFeedbacks,
+    List<FeedbackModel>? allFeedbacks,
   }) = _ProfileState;
 }

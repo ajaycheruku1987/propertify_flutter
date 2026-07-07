@@ -33,6 +33,15 @@ mixin _$ProfileEvent {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +62,14 @@ mixin _$ProfileEvent {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +90,14 @@ mixin _$ProfileEvent {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) =>
@@ -89,6 +114,11 @@ mixin _$ProfileEvent {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) =>
       throw _privateConstructorUsedError;
@@ -104,6 +134,11 @@ mixin _$ProfileEvent {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +154,11 @@ mixin _$ProfileEvent {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) =>
@@ -196,6 +236,15 @@ class _$ResetImpl implements _Reset {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return reset();
@@ -219,6 +268,14 @@ class _$ResetImpl implements _Reset {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return reset?.call();
@@ -242,6 +299,14 @@ class _$ResetImpl implements _Reset {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -264,6 +329,11 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return reset(this);
@@ -282,6 +352,11 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return reset?.call(this);
@@ -300,6 +375,11 @@ class _$ResetImpl implements _Reset {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -367,6 +447,15 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return loadProfile();
@@ -390,6 +479,14 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return loadProfile?.call();
@@ -413,6 +510,14 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -435,6 +540,11 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return loadProfile(this);
@@ -453,6 +563,11 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return loadProfile?.call(this);
@@ -471,6 +586,11 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -610,6 +730,15 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return updateProfile(name, firstName, lastName, email, phoneNumber);
@@ -633,6 +762,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return updateProfile?.call(name, firstName, lastName, email, phoneNumber);
@@ -656,6 +793,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -678,6 +823,11 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return updateProfile(this);
@@ -696,6 +846,11 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return updateProfile?.call(this);
@@ -714,6 +869,11 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -823,6 +983,15 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return uploadProfileImage(imagePath);
@@ -846,6 +1015,14 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return uploadProfileImage?.call(imagePath);
@@ -869,6 +1046,14 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -891,6 +1076,11 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return uploadProfileImage(this);
@@ -909,6 +1099,11 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return uploadProfileImage?.call(this);
@@ -927,6 +1122,11 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -1038,6 +1238,15 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return changePassword(currentPassword, newPassword);
@@ -1061,6 +1270,14 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return changePassword?.call(currentPassword, newPassword);
@@ -1084,6 +1301,14 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -1106,6 +1331,11 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return changePassword(this);
@@ -1124,6 +1354,11 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return changePassword?.call(this);
@@ -1142,6 +1377,11 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -1253,6 +1493,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return deleteAccount(password, actionType);
@@ -1276,6 +1525,14 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return deleteAccount?.call(password, actionType);
@@ -1299,6 +1556,14 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -1321,6 +1586,11 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return deleteAccount(this);
@@ -1339,6 +1609,11 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return deleteAccount?.call(this);
@@ -1357,6 +1632,11 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -1482,6 +1762,15 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return createBannerAd(bannerAdData, paymentId, orderId);
@@ -1505,6 +1794,14 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return createBannerAd?.call(bannerAdData, paymentId, orderId);
@@ -1528,6 +1825,14 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -1550,6 +1855,11 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return createBannerAd(this);
@@ -1568,6 +1878,11 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return createBannerAd?.call(this);
@@ -1586,6 +1901,11 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -1663,6 +1983,15 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return loadBannerAds();
@@ -1686,6 +2015,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return loadBannerAds?.call();
@@ -1709,6 +2046,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -1731,6 +2076,11 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return loadBannerAds(this);
@@ -1749,6 +2099,11 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return loadBannerAds?.call(this);
@@ -1767,6 +2122,11 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -1834,6 +2194,15 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return loadMyBannerAds();
@@ -1857,6 +2226,14 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return loadMyBannerAds?.call();
@@ -1880,6 +2257,14 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -1902,6 +2287,11 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return loadMyBannerAds(this);
@@ -1920,6 +2310,11 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return loadMyBannerAds?.call(this);
@@ -1938,6 +2333,11 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -2033,6 +2433,15 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return loadOtherUserProfile(userId);
@@ -2056,6 +2465,14 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return loadOtherUserProfile?.call(userId);
@@ -2079,6 +2496,14 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -2101,6 +2526,11 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return loadOtherUserProfile(this);
@@ -2119,6 +2549,11 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return loadOtherUserProfile?.call(this);
@@ -2137,6 +2572,11 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -2155,6 +2595,1222 @@ abstract class _LoadOtherUserProfile implements ProfileEvent {
   @JsonKey(ignore: true)
   _$$LoadOtherUserProfileImplCopyWith<_$LoadOtherUserProfileImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitFeedbackImplCopyWith<$Res> {
+  factory _$$SubmitFeedbackImplCopyWith(_$SubmitFeedbackImpl value,
+          $Res Function(_$SubmitFeedbackImpl) then) =
+      __$$SubmitFeedbackImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String category, String subject, String description});
+}
+
+/// @nodoc
+class __$$SubmitFeedbackImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$SubmitFeedbackImpl>
+    implements _$$SubmitFeedbackImplCopyWith<$Res> {
+  __$$SubmitFeedbackImplCopyWithImpl(
+      _$SubmitFeedbackImpl _value, $Res Function(_$SubmitFeedbackImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? subject = null,
+    Object? description = null,
+  }) {
+    return _then(_$SubmitFeedbackImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitFeedbackImpl implements _SubmitFeedback {
+  const _$SubmitFeedbackImpl(
+      {required this.category,
+      required this.subject,
+      required this.description});
+
+  @override
+  final String category;
+  @override
+  final String subject;
+  @override
+  final String description;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.submitFeedback(category: $category, subject: $subject, description: $description)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitFeedbackImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.subject, subject) || other.subject == subject) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category, subject, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitFeedbackImplCopyWith<_$SubmitFeedbackImpl> get copyWith =>
+      __$$SubmitFeedbackImplCopyWithImpl<_$SubmitFeedbackImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function() loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return submitFeedback(category, subject, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function()? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return submitFeedback?.call(category, subject, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function()? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (submitFeedback != null) {
+      return submitFeedback(category, subject, description);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return submitFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return submitFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (submitFeedback != null) {
+      return submitFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitFeedback implements ProfileEvent {
+  const factory _SubmitFeedback(
+      {required final String category,
+      required final String subject,
+      required final String description}) = _$SubmitFeedbackImpl;
+
+  String get category;
+  String get subject;
+  String get description;
+  @JsonKey(ignore: true)
+  _$$SubmitFeedbackImplCopyWith<_$SubmitFeedbackImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadMyFeedbacksImplCopyWith<$Res> {
+  factory _$$LoadMyFeedbacksImplCopyWith(_$LoadMyFeedbacksImpl value,
+          $Res Function(_$LoadMyFeedbacksImpl) then) =
+      __$$LoadMyFeedbacksImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadMyFeedbacksImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$LoadMyFeedbacksImpl>
+    implements _$$LoadMyFeedbacksImplCopyWith<$Res> {
+  __$$LoadMyFeedbacksImplCopyWithImpl(
+      _$LoadMyFeedbacksImpl _value, $Res Function(_$LoadMyFeedbacksImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
+  const _$LoadMyFeedbacksImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.loadMyFeedbacks()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadMyFeedbacksImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function() loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return loadMyFeedbacks();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function()? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return loadMyFeedbacks?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function()? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (loadMyFeedbacks != null) {
+      return loadMyFeedbacks();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return loadMyFeedbacks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return loadMyFeedbacks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (loadMyFeedbacks != null) {
+      return loadMyFeedbacks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadMyFeedbacks implements ProfileEvent {
+  const factory _LoadMyFeedbacks() = _$LoadMyFeedbacksImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadAllFeedbacksImplCopyWith<$Res> {
+  factory _$$LoadAllFeedbacksImplCopyWith(_$LoadAllFeedbacksImpl value,
+          $Res Function(_$LoadAllFeedbacksImpl) then) =
+      __$$LoadAllFeedbacksImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadAllFeedbacksImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$LoadAllFeedbacksImpl>
+    implements _$$LoadAllFeedbacksImplCopyWith<$Res> {
+  __$$LoadAllFeedbacksImplCopyWithImpl(_$LoadAllFeedbacksImpl _value,
+      $Res Function(_$LoadAllFeedbacksImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
+  const _$LoadAllFeedbacksImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.loadAllFeedbacks()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadAllFeedbacksImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function() loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return loadAllFeedbacks();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function()? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return loadAllFeedbacks?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function()? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (loadAllFeedbacks != null) {
+      return loadAllFeedbacks();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return loadAllFeedbacks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return loadAllFeedbacks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (loadAllFeedbacks != null) {
+      return loadAllFeedbacks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadAllFeedbacks implements ProfileEvent {
+  const factory _LoadAllFeedbacks() = _$LoadAllFeedbacksImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateFeedbackImplCopyWith<$Res> {
+  factory _$$UpdateFeedbackImplCopyWith(_$UpdateFeedbackImpl value,
+          $Res Function(_$UpdateFeedbackImpl) then) =
+      __$$UpdateFeedbackImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, String category, String subject, String description});
+}
+
+/// @nodoc
+class __$$UpdateFeedbackImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$UpdateFeedbackImpl>
+    implements _$$UpdateFeedbackImplCopyWith<$Res> {
+  __$$UpdateFeedbackImplCopyWithImpl(
+      _$UpdateFeedbackImpl _value, $Res Function(_$UpdateFeedbackImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? category = null,
+    Object? subject = null,
+    Object? description = null,
+  }) {
+    return _then(_$UpdateFeedbackImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateFeedbackImpl implements _UpdateFeedback {
+  const _$UpdateFeedbackImpl(
+      {required this.id,
+      required this.category,
+      required this.subject,
+      required this.description});
+
+  @override
+  final String id;
+  @override
+  final String category;
+  @override
+  final String subject;
+  @override
+  final String description;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.updateFeedback(id: $id, category: $category, subject: $subject, description: $description)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateFeedbackImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.subject, subject) || other.subject == subject) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, category, subject, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateFeedbackImplCopyWith<_$UpdateFeedbackImpl> get copyWith =>
+      __$$UpdateFeedbackImplCopyWithImpl<_$UpdateFeedbackImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function() loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return updateFeedback(id, category, subject, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function()? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return updateFeedback?.call(id, category, subject, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function()? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (updateFeedback != null) {
+      return updateFeedback(id, category, subject, description);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return updateFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return updateFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (updateFeedback != null) {
+      return updateFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateFeedback implements ProfileEvent {
+  const factory _UpdateFeedback(
+      {required final String id,
+      required final String category,
+      required final String subject,
+      required final String description}) = _$UpdateFeedbackImpl;
+
+  String get id;
+  String get category;
+  String get subject;
+  String get description;
+  @JsonKey(ignore: true)
+  _$$UpdateFeedbackImplCopyWith<_$UpdateFeedbackImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteFeedbackImplCopyWith<$Res> {
+  factory _$$DeleteFeedbackImplCopyWith(_$DeleteFeedbackImpl value,
+          $Res Function(_$DeleteFeedbackImpl) then) =
+      __$$DeleteFeedbackImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteFeedbackImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$DeleteFeedbackImpl>
+    implements _$$DeleteFeedbackImplCopyWith<$Res> {
+  __$$DeleteFeedbackImplCopyWithImpl(
+      _$DeleteFeedbackImpl _value, $Res Function(_$DeleteFeedbackImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteFeedbackImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteFeedbackImpl implements _DeleteFeedback {
+  const _$DeleteFeedbackImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.deleteFeedback(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteFeedbackImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteFeedbackImplCopyWith<_$DeleteFeedbackImpl> get copyWith =>
+      __$$DeleteFeedbackImplCopyWithImpl<_$DeleteFeedbackImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function() loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return deleteFeedback(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function()? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return deleteFeedback?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function()? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (deleteFeedback != null) {
+      return deleteFeedback(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return deleteFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return deleteFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (deleteFeedback != null) {
+      return deleteFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteFeedback implements ProfileEvent {
+  const factory _DeleteFeedback({required final String id}) =
+      _$DeleteFeedbackImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DeleteFeedbackImplCopyWith<_$DeleteFeedbackImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2236,6 +3892,15 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function() loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
     return isLoading(flag);
@@ -2259,6 +3924,14 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function()? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
     return isLoading?.call(flag);
@@ -2282,6 +3955,14 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function()? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
     TResult Function(bool flag)? isLoading,
     required TResult orElse(),
   }) {
@@ -2304,6 +3985,11 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_LoadBannerAds value) loadBannerAds,
     required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
     required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return isLoading(this);
@@ -2322,6 +4008,11 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_LoadBannerAds value)? loadBannerAds,
     TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return isLoading?.call(this);
@@ -2340,6 +4031,11 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_LoadBannerAds value)? loadBannerAds,
     TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
     TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
@@ -2369,6 +4065,8 @@ mixin _$ProfileState {
   BannerAdModel? get createdBannerAd => throw _privateConstructorUsedError;
   UserProfileModel? get otherUserProfile => throw _privateConstructorUsedError;
   bool get isLoadingOtherProfile => throw _privateConstructorUsedError;
+  List<FeedbackModel>? get myFeedbacks => throw _privateConstructorUsedError;
+  List<FeedbackModel>? get allFeedbacks => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -2389,7 +4087,9 @@ abstract class $ProfileStateCopyWith<$Res> {
       List<BannerAdModel>? myBannerAds,
       BannerAdModel? createdBannerAd,
       UserProfileModel? otherUserProfile,
-      bool isLoadingOtherProfile});
+      bool isLoadingOtherProfile,
+      List<FeedbackModel>? myFeedbacks,
+      List<FeedbackModel>? allFeedbacks});
 
   $UserProfileModelCopyWith<$Res>? get userProfile;
   $BannerAdModelCopyWith<$Res>? get createdBannerAd;
@@ -2417,6 +4117,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? createdBannerAd = freezed,
     Object? otherUserProfile = freezed,
     Object? isLoadingOtherProfile = null,
+    Object? myFeedbacks = freezed,
+    Object? allFeedbacks = freezed,
   }) {
     return _then(_value.copyWith(
       userProfile: freezed == userProfile
@@ -2451,6 +4153,14 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.isLoadingOtherProfile
           : isLoadingOtherProfile // ignore: cast_nullable_to_non_nullable
               as bool,
+      myFeedbacks: freezed == myFeedbacks
+          ? _value.myFeedbacks
+          : myFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>?,
+      allFeedbacks: freezed == allFeedbacks
+          ? _value.allFeedbacks
+          : allFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>?,
     ) as $Val);
   }
 
@@ -2507,7 +4217,9 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       List<BannerAdModel>? myBannerAds,
       BannerAdModel? createdBannerAd,
       UserProfileModel? otherUserProfile,
-      bool isLoadingOtherProfile});
+      bool isLoadingOtherProfile,
+      List<FeedbackModel>? myFeedbacks,
+      List<FeedbackModel>? allFeedbacks});
 
   @override
   $UserProfileModelCopyWith<$Res>? get userProfile;
@@ -2536,6 +4248,8 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? createdBannerAd = freezed,
     Object? otherUserProfile = freezed,
     Object? isLoadingOtherProfile = null,
+    Object? myFeedbacks = freezed,
+    Object? allFeedbacks = freezed,
   }) {
     return _then(_$ProfileStateImpl(
       userProfile: freezed == userProfile
@@ -2570,6 +4284,14 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.isLoadingOtherProfile
           : isLoadingOtherProfile // ignore: cast_nullable_to_non_nullable
               as bool,
+      myFeedbacks: freezed == myFeedbacks
+          ? _value._myFeedbacks
+          : myFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>?,
+      allFeedbacks: freezed == allFeedbacks
+          ? _value._allFeedbacks
+          : allFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>?,
     ));
   }
 }
@@ -2585,9 +4307,13 @@ class _$ProfileStateImpl implements _ProfileState {
       final List<BannerAdModel>? myBannerAds,
       this.createdBannerAd,
       this.otherUserProfile,
-      this.isLoadingOtherProfile = false})
+      this.isLoadingOtherProfile = false,
+      final List<FeedbackModel>? myFeedbacks,
+      final List<FeedbackModel>? allFeedbacks})
       : _bannerAds = bannerAds,
-        _myBannerAds = myBannerAds;
+        _myBannerAds = myBannerAds,
+        _myFeedbacks = myFeedbacks,
+        _allFeedbacks = allFeedbacks;
 
   @override
   final UserProfileModel? userProfile;
@@ -2623,10 +4349,29 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   @JsonKey()
   final bool isLoadingOtherProfile;
+  final List<FeedbackModel>? _myFeedbacks;
+  @override
+  List<FeedbackModel>? get myFeedbacks {
+    final value = _myFeedbacks;
+    if (value == null) return null;
+    if (_myFeedbacks is EqualUnmodifiableListView) return _myFeedbacks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<FeedbackModel>? _allFeedbacks;
+  @override
+  List<FeedbackModel>? get allFeedbacks {
+    final value = _allFeedbacks;
+    if (value == null) return null;
+    if (_allFeedbacks is EqualUnmodifiableListView) return _allFeedbacks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ProfileState(userProfile: $userProfile, isLoading: $isLoading, notifyStatus: $notifyStatus, bannerAds: $bannerAds, myBannerAds: $myBannerAds, createdBannerAd: $createdBannerAd, otherUserProfile: $otherUserProfile, isLoadingOtherProfile: $isLoadingOtherProfile)';
+    return 'ProfileState(userProfile: $userProfile, isLoading: $isLoading, notifyStatus: $notifyStatus, bannerAds: $bannerAds, myBannerAds: $myBannerAds, createdBannerAd: $createdBannerAd, otherUserProfile: $otherUserProfile, isLoadingOtherProfile: $isLoadingOtherProfile, myFeedbacks: $myFeedbacks, allFeedbacks: $allFeedbacks)';
   }
 
   @override
@@ -2649,7 +4394,11 @@ class _$ProfileStateImpl implements _ProfileState {
             (identical(other.otherUserProfile, otherUserProfile) ||
                 other.otherUserProfile == otherUserProfile) &&
             (identical(other.isLoadingOtherProfile, isLoadingOtherProfile) ||
-                other.isLoadingOtherProfile == isLoadingOtherProfile));
+                other.isLoadingOtherProfile == isLoadingOtherProfile) &&
+            const DeepCollectionEquality()
+                .equals(other._myFeedbacks, _myFeedbacks) &&
+            const DeepCollectionEquality()
+                .equals(other._allFeedbacks, _allFeedbacks));
   }
 
   @override
@@ -2662,7 +4411,9 @@ class _$ProfileStateImpl implements _ProfileState {
       const DeepCollectionEquality().hash(_myBannerAds),
       createdBannerAd,
       otherUserProfile,
-      isLoadingOtherProfile);
+      isLoadingOtherProfile,
+      const DeepCollectionEquality().hash(_myFeedbacks),
+      const DeepCollectionEquality().hash(_allFeedbacks));
 
   @JsonKey(ignore: true)
   @override
@@ -2680,7 +4431,9 @@ abstract class _ProfileState implements ProfileState {
       final List<BannerAdModel>? myBannerAds,
       final BannerAdModel? createdBannerAd,
       final UserProfileModel? otherUserProfile,
-      final bool isLoadingOtherProfile}) = _$ProfileStateImpl;
+      final bool isLoadingOtherProfile,
+      final List<FeedbackModel>? myFeedbacks,
+      final List<FeedbackModel>? allFeedbacks}) = _$ProfileStateImpl;
 
   @override
   UserProfileModel? get userProfile;
@@ -2698,6 +4451,10 @@ abstract class _ProfileState implements ProfileState {
   UserProfileModel? get otherUserProfile;
   @override
   bool get isLoadingOtherProfile;
+  @override
+  List<FeedbackModel>? get myFeedbacks;
+  @override
+  List<FeedbackModel>? get allFeedbacks;
   @override
   @JsonKey(ignore: true)
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>

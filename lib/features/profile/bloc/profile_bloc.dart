@@ -6,11 +6,12 @@ import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/profile/repo/profile_repo.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
-import '../../../core/failure.dart';
-import '../../../core/notify_message.dart';
-import '../models/user_profile_model.dart';
-import '../models/create_banner_ad_model.dart';
-import '../models/banner_ad_model.dart';
+import 'package:propertify/core/failure.dart';
+import 'package:propertify/core/notify_message.dart';
+import 'package:propertify/features/profile/models/user_profile_model.dart';
+import 'package:propertify/features/profile/models/create_banner_ad_model.dart';
+import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:propertify/features/profile/models/feedback_model.dart';
 
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
@@ -29,6 +30,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<_LoadBannerAds>(_onLoadBannerAds);
     on<_LoadMyBannerAds>(_onLoadMyBannerAds);
     on<_LoadOtherUserProfile>(_onLoadOtherUserProfile);
+    on<_SubmitFeedback>(_onSubmitFeedback);
+    on<_LoadMyFeedbacks>(_onLoadMyFeedbacks);
+    on<_LoadAllFeedbacks>(_onLoadAllFeedbacks);
+    on<_UpdateFeedback>(_onUpdateFeedback);
+    on<_DeleteFeedback>(_onDeleteFeedback);
     on<_IsLoading>(_onIsLoading);
     on<_Reset>(_onReset);
   }
@@ -443,6 +449,204 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         state.copyWith(
           isLoadingOtherProfile: false,
           notifyStatus: NotifyStatus(message: 'Failed to load profile'),
+        ),
+      );
+    }
+  }
+
+  void _onSubmitFeedback(
+    _SubmitFeedback event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final response = await _profileRepo.submitFeedback(
+        category: event.category,
+        subject: event.subject,
+        description: event.description,
+      );
+      response.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (success) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(
+                message: 'Feedback submitted successfully',
+              ),
+            ),
+          );
+          CustomToast.showSuccessToast(msg: 'Feedback submitted successfully');
+          add(const ProfileEvent.loadMyFeedbacks());
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to submit feedback'),
+        ),
+      );
+    }
+  }
+
+  void _onLoadMyFeedbacks(
+    _LoadMyFeedbacks event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final response = await _profileRepo.getMyFeedbacks();
+      response.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (feedbacks) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              myFeedbacks: feedbacks,
+              notifyStatus: null,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to load feedbacks'),
+        ),
+      );
+    }
+  }
+
+  void _onLoadAllFeedbacks(
+    _LoadAllFeedbacks event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final response = await _profileRepo.getAllFeedbacks();
+      response.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (feedbacks) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              allFeedbacks: feedbacks,
+              notifyStatus: null,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to load all feedbacks'),
+        ),
+      );
+    }
+  }
+
+  void _onUpdateFeedback(
+    _UpdateFeedback event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final response = await _profileRepo.updateFeedback(
+        id: event.id,
+        category: event.category,
+        subject: event.subject,
+        description: event.description,
+      );
+      response.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (success) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(
+                message: 'Feedback updated successfully',
+              ),
+            ),
+          );
+          CustomToast.showSuccessToast(msg: 'Feedback updated successfully');
+          add(const ProfileEvent.loadMyFeedbacks());
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to update feedback'),
+        ),
+      );
+    }
+  }
+
+  void _onDeleteFeedback(
+    _DeleteFeedback event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final response = await _profileRepo.deleteFeedback(event.id);
+      response.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (success) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(
+                message: 'Feedback deleted successfully',
+              ),
+            ),
+          );
+          CustomToast.showSuccessToast(msg: 'Feedback deleted successfully');
+          add(const ProfileEvent.loadMyFeedbacks());
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to delete feedback'),
         ),
       );
     }

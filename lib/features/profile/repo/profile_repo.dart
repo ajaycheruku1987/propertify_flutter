@@ -6,8 +6,9 @@ import 'dart:io';
 
 import '../../../core/api_request/api_request.dart';
 import '../../../core/failure.dart';
-import '../models/user_profile_model.dart';
-import '../models/banner_ad_model.dart';
+import 'package:propertify/features/profile/models/user_profile_model.dart';
+import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:propertify/features/profile/models/feedback_model.dart';
 
 class ProfileRepo {
   final ftPyroApiRequest = GetIt.instance<ApiRequest>();
@@ -183,6 +184,85 @@ class ProfileRepo {
     return responseData.fold(
       (failure) => Left(failure),
       (right) => Right(UserProfileModel.fromJson(right)),
+    );
+  }
+
+  /// Submit Feedback API
+  Future<Either<Failure, bool>> submitFeedback({
+    required String category,
+    required String subject,
+    required String description,
+  }) async {
+    final response = await ftPyroApiRequest.post(
+      '/feedback/',
+      data: {
+        'category': category,
+        'subject': subject,
+        'description': description,
+      },
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => const Right(true),
+    );
+  }
+
+  /// Get My Feedbacks API
+  Future<Either<Failure, List<FeedbackModel>>> getMyFeedbacks() async {
+    final response = await ftPyroApiRequest.get('/feedback/me');
+    final responseData = await response.getResponse();
+    return responseData.fold((failure) => Left(failure), (right) {
+      final List<dynamic> data = right as List<dynamic>;
+      final feedbacks = data
+          .map((item) => FeedbackModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+      return Right(feedbacks);
+    });
+  }
+
+  /// Get All Feedbacks API (Admin)
+  Future<Either<Failure, List<FeedbackModel>>> getAllFeedbacks() async {
+    final response = await ftPyroApiRequest.get('/feedback/');
+    final responseData = await response.getResponse();
+    return responseData.fold((failure) => Left(failure), (right) {
+      final List<dynamic> data = right as List<dynamic>;
+      final feedbacks = data
+          .map((item) => FeedbackModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+      return Right(feedbacks);
+    });
+  }
+
+  /// Update Feedback API
+  Future<Either<Failure, bool>> updateFeedback({
+    required String id,
+    required String category,
+    required String subject,
+    required String description,
+  }) async {
+    final response = await ftPyroApiRequest.put(
+      '/feedback/$id',
+      data: {
+        'category': category,
+        'subject': subject,
+        'description': description,
+      },
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => const Right(true),
+    );
+  }
+
+  /// Delete Feedback API
+  Future<Either<Failure, bool>> deleteFeedback(String id) async {
+    final response = await ftPyroApiRequest.delete('/feedback/$id');
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => const Right(true),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:propertify/features/profile/presentation/my_banner_ads_screen.da
 import 'package:propertify/features/profile/presentation/my_posts_screen.dart';
 import 'package:propertify/features/reels/presentation/my_reels_screen.dart';
 import 'package:propertify/features/requests/presentation/my_requests_screen.dart';
+import 'package:propertify/features/profile/presentation/feedback_list_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import '../bloc/profile_bloc.dart';
 import '../../feed/presentation/favorites_screen.dart';
@@ -95,6 +96,11 @@ class MyDashboardScreen extends StatelessWidget {
                       );
                     },
                   },
+                {
+                  'title': 'My Feedbacks',
+                  'icon': Icons.feedback_outlined,
+                  'onTap': () => context.push(FeedbackListScreen.routeName),
+                },
                 {
                   'title': 'Delete Account',
                   'icon': Icons.delete_outline_rounded,
