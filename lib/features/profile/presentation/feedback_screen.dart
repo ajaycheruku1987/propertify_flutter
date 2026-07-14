@@ -4,6 +4,9 @@ import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/profile/models/feedback_model.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 
+import '../../../utils/custom_toast.dart';
+
+
 class FeedbackScreen extends StatefulWidget {
   static const String routeName = '/feedback';
   final FeedbackModel? feedback;
@@ -69,10 +72,17 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: BlocListener<ProfileBloc, ProfileState>(
+        listenWhen: (previous, current) =>
+            previous.notifyStatus != current.notifyStatus,
         listener: (context, state) {
           if (state.notifyStatus?.message == 'Feedback submitted successfully' ||
               state.notifyStatus?.message == 'Feedback updated successfully') {
-            Navigator.of(context).pop();
+            final msg = state.notifyStatus!.message;
+            if (Navigator.of(context).canPop()) {
+              Navigator.of(context).pop();
+            }
+            // Show toast after pop to avoid navigator conflicts
+            CustomToast.showSuccessToast(msg: msg);
           }
         },
         child: SingleChildScrollView(

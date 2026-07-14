@@ -210,7 +210,7 @@ class ProfileRepo {
 
   /// Get My Feedbacks API
   Future<Either<Failure, List<FeedbackModel>>> getMyFeedbacks() async {
-    final response = await ftPyroApiRequest.get('/feedback/me');
+    final response = await ftPyroApiRequest.get('/feedback/');
     final responseData = await response.getResponse();
     return responseData.fold((failure) => Left(failure), (right) {
       final List<dynamic> data = right as List<dynamic>;

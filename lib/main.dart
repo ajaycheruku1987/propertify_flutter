@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'app.dart';
 import 'core/key_properties.dart';
 import 'core/service_locator.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'core/notification_service.dart';

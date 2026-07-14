@@ -459,7 +459,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
       final response = await _profileRepo.submitFeedback(
         category: event.category,
         subject: event.subject,
@@ -483,7 +483,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               ),
             ),
           );
-          CustomToast.showSuccessToast(msg: 'Feedback submitted successfully');
+          // CustomToast moved to UI listener to avoid Navigator race conditions
           add(const ProfileEvent.loadMyFeedbacks());
         },
       );
@@ -502,7 +502,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
       final response = await _profileRepo.getMyFeedbacks();
       response.fold(
         (failure) {
@@ -538,7 +538,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
       final response = await _profileRepo.getAllFeedbacks();
       response.fold(
         (failure) {
@@ -574,7 +574,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
       final response = await _profileRepo.updateFeedback(
         id: event.id,
         category: event.category,
@@ -599,7 +599,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               ),
             ),
           );
-          CustomToast.showSuccessToast(msg: 'Feedback updated successfully');
+          // CustomToast moved to UI listener to avoid Navigator race conditions
           add(const ProfileEvent.loadMyFeedbacks());
         },
       );
@@ -638,6 +638,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               ),
             ),
           );
+          // Toast remains here as delete usually happens on the list screen
           CustomToast.showSuccessToast(msg: 'Feedback deleted successfully');
           add(const ProfileEvent.loadMyFeedbacks());
         },
