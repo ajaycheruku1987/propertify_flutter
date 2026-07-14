@@ -6,7 +6,6 @@ import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 
 import '../../../utils/custom_toast.dart';
 
-
 class FeedbackScreen extends StatefulWidget {
   static const String routeName = '/feedback';
   final FeedbackModel? feedback;
@@ -26,8 +25,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   void initState() {
     super.initState();
-    _subjectController = TextEditingController(text: widget.feedback?.subject ?? '');
-    _descriptionController = TextEditingController(text: widget.feedback?.description ?? '');
+    _subjectController =
+        TextEditingController(text: widget.feedback?.subject ?? '');
+    _descriptionController =
+        TextEditingController(text: widget.feedback?.description ?? '');
     _selectedCategory = widget.feedback?.category ?? 'Suggestion';
   }
 
@@ -42,15 +43,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   void _submitFeedback() {
     if (_formKey.currentState!.validate()) {
-      if (widget.feedback != null) {
-        context.read<ProfileBloc>().add(
-              ProfileEvent.updateFeedback(
-                id: widget.feedback!.id,
-                category: _selectedCategory,
-                subject: _subjectController.text.trim(),
-                description: _descriptionController.text.trim(),
-              ),
-            );
+      final feedback = widget.feedback;
+      if (feedback != null) {
+        final id = feedback.id;
+        if (id != null) {
+          context.read<ProfileBloc>().add(
+                ProfileEvent.updateFeedback(
+                  id: id,
+                  category: _selectedCategory,
+                  subject: _subjectController.text.trim(),
+                  description: _descriptionController.text.trim(),
+                ),
+              );
+        }
       } else {
         context.read<ProfileBloc>().add(
               ProfileEvent.submitFeedback(
@@ -101,10 +106,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   value: _selectedCategory,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2),
                     ),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   ),
@@ -132,7 +139,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     hintText: 'Enter subject',
                     border: const OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2),
                     ),
                   ),
                   validator: (value) {
@@ -155,7 +163,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     hintText: 'Describe your suggestion, feedback, or bug',
                     border: const OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2),
                     ),
                   ),
                   validator: (value) {
@@ -173,7 +182,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       child: CommonCustomButton(
                         isEnable: !state.isLoading,
                         onTap: _submitFeedback,
-                        buttonLabel: state.isLoading ? 'Submitting...' : 'Submit Feedback',
+                        buttonLabel: state.isLoading
+                            ? 'Submitting...'
+                            : 'Submit Feedback',
                         buttonColor: Theme.of(context).primaryColor,
                       ),
                     );

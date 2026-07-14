@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
 import 'dart:io';
@@ -210,10 +211,30 @@ class ProfileRepo {
 
   /// Get My Feedbacks API
   Future<Either<Failure, List<FeedbackModel>>> getMyFeedbacks() async {
-    final response = await ftPyroApiRequest.get('/feedback/');
-    final responseData = await response.getResponse();
+    var response = await ftPyroApiRequest.get('/feedback/');
+    var responseData = await response.getResponse();
+
+    // If /feedback/ returns empty or fails, try /feedback/me/ as a fallback
+    if (responseData.isLeft() ||
+        (responseData.isRight() && (responseData.getOrElse(() => []) as List).isEmpty)) {
+      final fallbackResponse = await ftPyroApiRequest.get('/feedback/me/');
+      final fallbackData = await fallbackResponse.getResponse();
+      if (fallbackData.isRight()) {
+        response = fallbackResponse;
+        responseData = fallbackData;
+      }
+    }
+
     return responseData.fold((failure) => Left(failure), (right) {
-      final List<dynamic> data = right as List<dynamic>;
+      debugPrint('Feedback response: $right');
+      List<dynamic> data = [];
+      if (right is List) {
+        data = right;
+      } else if (right is Map && right['feedbacks'] is List) {
+        data = right['feedbacks'];
+      } else if (right is Map && right['data'] is List) {
+        data = right['data'];
+      }
       final feedbacks = data
           .map((item) => FeedbackModel.fromJson(item as Map<String, dynamic>))
           .toList();
@@ -226,7 +247,14 @@ class ProfileRepo {
     final response = await ftPyroApiRequest.get('/feedback/');
     final responseData = await response.getResponse();
     return responseData.fold((failure) => Left(failure), (right) {
-      final List<dynamic> data = right as List<dynamic>;
+      List<dynamic> data = [];
+      if (right is List) {
+        data = right;
+      } else if (right is Map && right['feedbacks'] is List) {
+        data = right['feedbacks'];
+      } else if (right is Map && right['data'] is List) {
+        data = right['data'];
+      }
       final feedbacks = data
           .map((item) => FeedbackModel.fromJson(item as Map<String, dynamic>))
           .toList();

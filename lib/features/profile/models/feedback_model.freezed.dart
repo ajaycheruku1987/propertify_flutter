@@ -20,14 +20,15 @@ FeedbackModel _$FeedbackModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FeedbackModel {
-  String get id => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
-  String get subject => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
+  String? get category => throw _privateConstructorUsedError;
+  String? get subject => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
-  String get user => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,12 +43,12 @@ abstract class $FeedbackModelCopyWith<$Res> {
       _$FeedbackModelCopyWithImpl<$Res, FeedbackModel>;
   @useResult
   $Res call(
-      {String id,
-      String category,
-      String subject,
-      String description,
-      @JsonKey(name: 'user_id') String user,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      {@JsonKey(name: 'id') String? id,
+      String? category,
+      String? subject,
+      String? description,
+      @JsonKey(name: 'user_id') String? user,
+      @JsonKey(name: 'created_at') DateTime? createdAt});
 }
 
 /// @nodoc
@@ -63,38 +64,38 @@ class _$FeedbackModelCopyWithImpl<$Res, $Val extends FeedbackModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? category = null,
-    Object? subject = null,
-    Object? description = null,
-    Object? user = null,
-    Object? createdAt = null,
+    Object? id = freezed,
+    Object? category = freezed,
+    Object? subject = freezed,
+    Object? description = freezed,
+    Object? user = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: null == category
+              as String?,
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      subject: null == subject
+              as String?,
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: null == user
+              as String?,
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -108,12 +109,12 @@ abstract class _$$FeedbackModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String category,
-      String subject,
-      String description,
-      @JsonKey(name: 'user_id') String user,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      {@JsonKey(name: 'id') String? id,
+      String? category,
+      String? subject,
+      String? description,
+      @JsonKey(name: 'user_id') String? user,
+      @JsonKey(name: 'created_at') DateTime? createdAt});
 }
 
 /// @nodoc
@@ -127,38 +128,38 @@ class __$$FeedbackModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? category = null,
-    Object? subject = null,
-    Object? description = null,
-    Object? user = null,
-    Object? createdAt = null,
+    Object? id = freezed,
+    Object? category = freezed,
+    Object? subject = freezed,
+    Object? description = freezed,
+    Object? user = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$FeedbackModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: null == category
+              as String?,
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      subject: null == subject
+              as String?,
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: null == user
+              as String?,
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -167,30 +168,31 @@ class __$$FeedbackModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FeedbackModelImpl implements _FeedbackModel {
   const _$FeedbackModelImpl(
-      {required this.id,
-      required this.category,
-      required this.subject,
-      required this.description,
-      @JsonKey(name: 'user_id') required this.user,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      {@JsonKey(name: 'id') this.id,
+      this.category,
+      this.subject,
+      this.description,
+      @JsonKey(name: 'user_id') this.user,
+      @JsonKey(name: 'created_at') this.createdAt});
 
   factory _$FeedbackModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FeedbackModelImplFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(name: 'id')
+  final String? id;
   @override
-  final String category;
+  final String? category;
   @override
-  final String subject;
+  final String? subject;
   @override
-  final String description;
+  final String? description;
   @override
   @JsonKey(name: 'user_id')
-  final String user;
+  final String? user;
   @override
   @JsonKey(name: 'created_at')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   @override
   String toString() {
@@ -234,31 +236,32 @@ class _$FeedbackModelImpl implements _FeedbackModel {
 
 abstract class _FeedbackModel implements FeedbackModel {
   const factory _FeedbackModel(
-          {required final String id,
-          required final String category,
-          required final String subject,
-          required final String description,
-          @JsonKey(name: 'user_id') required final String user,
-          @JsonKey(name: 'created_at') required final DateTime createdAt}) =
+          {@JsonKey(name: 'id') final String? id,
+          final String? category,
+          final String? subject,
+          final String? description,
+          @JsonKey(name: 'user_id') final String? user,
+          @JsonKey(name: 'created_at') final DateTime? createdAt}) =
       _$FeedbackModelImpl;
 
   factory _FeedbackModel.fromJson(Map<String, dynamic> json) =
       _$FeedbackModelImpl.fromJson;
 
   @override
-  String get id;
+  @JsonKey(name: 'id')
+  String? get id;
   @override
-  String get category;
+  String? get category;
   @override
-  String get subject;
+  String? get subject;
   @override
-  String get description;
+  String? get description;
   @override
   @JsonKey(name: 'user_id')
-  String get user;
+  String? get user;
   @override
   @JsonKey(name: 'created_at')
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$FeedbackModelImplCopyWith<_$FeedbackModelImpl> get copyWith =>

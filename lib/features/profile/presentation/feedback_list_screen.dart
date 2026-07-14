@@ -64,8 +64,15 @@ class _FeedbackListScreenState extends State<FeedbackListScreen> {
                 return _FeedbackTile(
                   feedback: feedback,
                   isAdmin: widget.isAdmin,
-                  onDelete: () => _showDeleteDialog(feedback.id),
-                  onEdit: () => context.push(FeedbackScreen.routeName, extra: feedback),
+                  onDelete: () {
+                    final feedbackId = feedback.id;
+                    if (feedbackId != null) {
+                      _showDeleteDialog(feedbackId);
+                    }
+                  },
+                  onEdit: () {
+                    context.push(FeedbackScreen.routeName, extra: feedback);
+                  },
                 );
               },
             ),
@@ -78,23 +85,27 @@ class _FeedbackListScreenState extends State<FeedbackListScreen> {
   void _showDeleteDialog(String id) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Delete Feedback'),
-        content: const Text('Are you sure you want to delete this feedback?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<ProfileBloc>().add(ProfileEvent.deleteFeedback(id: id));
-              Navigator.pop(context);
-            },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Delete Feedback'),
+          content: const Text('Are you sure you want to delete this feedback?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                context
+                    .read<ProfileBloc>()
+                    .add(ProfileEvent.deleteFeedback(id: id));
+                Navigator.pop(context);
+              },
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -114,6 +125,11 @@ class _FeedbackTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String category = feedback.category ?? 'Feedback';
+    final String subject = feedback.subject ?? '';
+    final String description = feedback.description ?? '';
+    final String userId = feedback.user ?? '';
+
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -127,15 +143,16 @@ class _FeedbackTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getCategoryColor(feedback.category).withOpacity(0.1),
+                    color: _getCategoryColor(category).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    feedback.category,
+                    category,
                     style: TextStyle(
-                      color: _getCategoryColor(feedback.category),
+                      color: _getCategoryColor(category),
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                     ),
@@ -145,11 +162,13 @@ class _FeedbackTile extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.edit_outlined, size: 20, color: Colors.blue),
+                        icon: const Icon(Icons.edit_outlined,
+                            size: 20, color: Colors.blue),
                         onPressed: onEdit,
                       ),
                       IconButton(
-                        icon: const Icon(Icons.delete_outline, size: 20, color: Colors.red),
+                        icon: const Icon(Icons.delete_outline,
+                            size: 20, color: Colors.red),
                         onPressed: onDelete,
                       ),
                     ],
@@ -158,12 +177,12 @@ class _FeedbackTile extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              feedback.subject,
+              subject,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
             Text(
-              feedback.description,
+              description,
               style: const TextStyle(fontSize: 14, color: Colors.black87),
             ),
             const SizedBox(height: 12),
@@ -171,12 +190,14 @@ class _FeedbackTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  DateFormat('MMM dd, yyyy').format(feedback.createdAt),
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                  feedback.createdAt != null
+                      ? DateFormat('MMM dd, yyyy').format(feedback.createdAt!)
+                      : '',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 if (isAdmin)
                   Text(
-                    'User ID: ${feedback.user}',
+                    'User ID: $userId',
                     style: TextStyle(fontSize: 10, color: Colors.grey.shade500),
                   ),
               ],
