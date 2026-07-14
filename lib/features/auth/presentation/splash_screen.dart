@@ -85,21 +85,40 @@ class _SplashScreenState extends State<SplashScreen>
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 32.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Column(mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
-                      'Powered by',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        letterSpacing: 1.2,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Made with ',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red.shade400,
+                          size: 14,
+                        ),
+                        Text(
+                          ' in India',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    SvgPicture.asset(
-                      'assets/images/soho_logo.svg',
-                      height: 32,
+                    const SizedBox(height: 4),
+                    Text(
+                      'v7.0.32',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.grey.shade400,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ],
                 ),
