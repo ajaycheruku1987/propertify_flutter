@@ -40,17 +40,27 @@ class _FeedbackListScreenState extends State<FeedbackListScreen> {
       ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
-          final feedbacks = widget.isAdmin ? state.allFeedbacks : state.myFeedbacks;
+          final originalFeedbacks =
+              widget.isAdmin ? state.allFeedbacks : state.myFeedbacks;
 
-          if (state.isLoading && (feedbacks == null || feedbacks.isEmpty)) {
+          if (state.isLoading &&
+              (originalFeedbacks == null || originalFeedbacks.isEmpty)) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (feedbacks == null || feedbacks.isEmpty) {
+          if (originalFeedbacks == null || originalFeedbacks.isEmpty) {
             return const Center(
               child: Text('No feedback found.'),
             );
           }
+
+          // Create a sorted list descending by createdAt
+          final feedbacks = List<FeedbackModel>.from(originalFeedbacks)
+            ..sort((a, b) {
+              final aTime = a.createdAt ?? DateTime(0);
+              final bTime = b.createdAt ?? DateTime(0);
+              return bTime.compareTo(aTime);
+            });
 
           return RefreshIndicator(
             onRefresh: () async {
