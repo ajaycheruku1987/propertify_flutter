@@ -8,6 +8,7 @@ import 'package:propertify/features/company/models/create_company_response.dart'
 import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:propertify/core/services/meta_service.dart';
 
 abstract class CompanyRepository {
   Future<Either<Failure, dynamic>> createCompany({
@@ -99,7 +100,18 @@ class CompanyRepositoryImpl implements CompanyRepository {
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),
-        (right) => Right(CreateCompanyResponse.fromJson(right)),
+        (right) {
+          final createCompanyResponse = CreateCompanyResponse.fromJson(right);
+          
+          // Automatically post to Socials
+          serviceLocator<MetaService>().autoPostToSocials(
+            title: "New Company Registered: $companyName",
+            description: aboutCompany ?? "A new company has joined Propertify!",
+            imageUrl: createCompanyResponse.imageUrl, // Assuming this is the public URL
+          );
+
+          return Right(createCompanyResponse);
+        },
       );
     } catch (e) {
       return Left(ApiFailure(e.toString()));

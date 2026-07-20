@@ -14,6 +14,7 @@ import '../features/services/repo/price_repo.dart';
 import '../features/services/repo/services_repo.dart';
 import 'api_request/api_request.dart';
 import 'app_cache_service.dart';
+import 'services/meta_service.dart';
 
 final serviceLocator = GetIt.instance;
 Future<void> setUpServiceLocator() async {
@@ -26,4 +27,7 @@ Future<void> setUpServiceLocator() async {
   );
   serviceLocator.registerLazySingleton<ServicesRepo>(() => ServicesRepo());
   serviceLocator.registerLazySingleton<PriceRepo>(() => PriceRepo());
+  serviceLocator.registerLazySingleton<MetaService>(
+    () => MetaService(serviceLocator<SharedPreferences>()),
+  );
 }

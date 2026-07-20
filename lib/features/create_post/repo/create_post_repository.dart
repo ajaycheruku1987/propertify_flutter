@@ -7,6 +7,7 @@ import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/create_post/models/add_post_response.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
+import 'package:propertify/core/services/meta_service.dart';
 
 abstract class CreatePostRepository {
   Future<Either<Failure, AddPostResponse>> createPost({
@@ -85,7 +86,20 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),
-        (right) => Right(AddPostResponse.fromJson(right)),
+        (right) {
+          final addPostResponse = AddPostResponse.fromJson(right);
+          
+          // Automatically post to Facebook & Instagram after successful creation
+          serviceLocator<MetaService>().autoPostToSocials(
+            title: title,
+            description: description ?? '',
+            imageUrl: addPostResponse.imageUrls?.isNotEmpty == true 
+                ? addPostResponse.imageUrls!.first 
+                : null,
+          );
+
+          return Right(addPostResponse);
+        },
       );
     } catch (e) {
       print('Error creating post: $e');
