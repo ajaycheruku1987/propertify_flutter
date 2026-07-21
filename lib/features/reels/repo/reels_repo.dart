@@ -125,7 +125,7 @@ class ReelsRepoImpl implements ReelsRepo {
       final apiRequest = serviceLocator<ApiRequest>();
       final Map<String, dynamic> body = {
         if (description != null) 'description': description,
-        if (category != null && category.isNotEmpty) 'category': category,
+        'category': category ?? ['Real estate'],
         if (location != null) 'location': location,
         if (city != null) 'city': city,
         if (state != null) 'state': state,

@@ -40,18 +40,6 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
 
   bool _promote = false;
   File? _videoFile;
-  String? _selectedCategory = 'Real estate'; // Single category selection
-
-  final List<String> _categories = [
-    'Real estate',
-    'Plots',
-    'Building Material',
-    'Lawyer',
-    'Contractor',
-    'Property valuation',
-    'Leasing',
-    'Villas',
-  ];
 
   double? _selectedLatitude;
   double? _selectedLongitude;
@@ -255,55 +243,6 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
 
                       const SizedBox(height: 16),
 
-                      const Text(
-                        'Category',
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: _categories.map((category) {
-                          final isSelected = _selectedCategory == category;
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedCategory = category;
-                              });
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey.shade100,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? Theme.of(context).primaryColor
-                                      : Colors.grey.shade300,
-                                ),
-                              ),
-                              child: Text(
-                                category,
-                                style: TextStyle(
-                                  color: isSelected
-                                      ? Colors.white
-                                      : Colors.black87,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-
-                      const SizedBox(height: 16),
-
                       AddressInput(
                         controller: _addressController,
                         onLocationSelected: (locationData) {
@@ -389,17 +328,6 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                                   return;
                                 }
 
-                                // Validate category selection
-                                if (_selectedCategory == null) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Please select a category'),
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  );
-                                  return;
-                                }
-
                                 // Call createReel event
                                 context.read<ReelsBloc>().add(
                                   ReelsEvent.createReel(
@@ -410,9 +338,6 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                                             .isEmpty
                                         ? null
                                         : _descriptionController.text.trim(),
-                                    category: _selectedCategory != null
-                                        ? [_selectedCategory!]
-                                        : null,
                                     address:
                                         (_selectedAddress != null &&
                                             _selectedAddress!.isNotEmpty)
