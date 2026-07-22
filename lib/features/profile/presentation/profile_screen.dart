@@ -652,7 +652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'v7.0.34',
+                                'v7.0.35',
                                 style: TextStyle(
                                   fontSize: 10,
                                   color: Colors.grey.shade400,
