@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,13 +49,23 @@ class _ReelsScreenState extends State<ReelsScreen> {
   Widget build(BuildContext context) {
     return BlocListener<ReelsBloc, ReelsState>(
       listener: (context, state) {
+        if (state.isError &&
+            state.notifyStatus != null &&
+            state.notifyStatus!.message.isNotEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.notifyStatus!.message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+
         if (state.notifyStatus?.message == 'Reel deleted successfully') {
           if (state.reelsList.isEmpty) {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }
           } else {
-            // If the deleted reel was the last one, swipe back to previous
             if (_currentIndex >= state.reelsList.length) {
               final newIndex = state.reelsList.length - 1;
               _pageController.animateToPage(
@@ -64,49 +75,253 @@ class _ReelsScreenState extends State<ReelsScreen> {
               );
               _currentIndex = newIndex;
             }
-            // If satisfied, the PageView automatically shows the next item (logic of List removal)
           }
         }
       },
-      child: BlocBuilder<ReelsBloc, ReelsState>(
-        builder: (context, state) {
-          if (state.isLoading && state.reelsList.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: BlocBuilder<ReelsBloc, ReelsState>(
+          builder: (context, state) {
+            final reels = state.reelsList;
 
-          final reels = state.reelsList;
-          if (reels.isEmpty) {
-            return const Center(child: Text('No reels available'));
-          }
+            return Stack(
+              children: [
+                if (state.isLoading && reels.isEmpty)
+                  const Center(child: CircularProgressIndicator())
+                else if (reels.isEmpty)
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.video_library_outlined,
+                            color: Colors.white24, size: 64),
+                        const SizedBox(height: 16),
+                        Text(
+                          state.searchQuery.isEmpty
+                              ? 'No reels available'
+                              : 'No reels found for "${state.searchQuery}"',
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                        if (state.searchQuery.isNotEmpty)
+                          TextButton(
+                            onPressed: () {
+                              context.read<ReelsBloc>().add(
+                                    const ReelsEvent.getReels(
+                                        skip: 0, limit: 10, search: ''),
+                                  );
+                            },
+                            child: const Text('Clear Search',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                      ],
+                    ),
+                  )
+                else
+                  PageView.builder(
+                    controller: _pageController,
+                    scrollDirection: Axis.vertical,
+                    itemCount: reels.length,
+                    onPageChanged: (index) {
+                      _currentIndex = index;
+                      if (index >= reels.length - 3 &&
+                          state.hasMoreData &&
+                          !state.isLoading) {
+                        context.read<ReelsBloc>().add(
+                              ReelsEvent.getReels(
+                                skip: state.currentOffset,
+                                limit: 5,
+                                search: state.searchQuery,
+                              ),
+                            );
+                      }
+                    },
+                    itemBuilder: (context, index) {
+                      final reel = reels[index];
+                      return ReelView(
+                        key: ValueKey(reel.id ?? index.toString()),
+                        reel: reel,
+                      );
+                    },
+                  ),
 
-          return PageView.builder(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            itemCount: reels.length,
-            onPageChanged: (index) {
-              _currentIndex = index;
-              // Trigger loading more reels when reaching near the end
-              if (index >= reels.length - 3 &&
-                  state.hasMoreData &&
-                  !state.isLoading) {
-                context.read<ReelsBloc>().add(
-                      ReelsEvent.getReels(
-                        skip: state.currentOffset,
-                        limit: 5,
+                if (state.searchQuery.isNotEmpty)
+                  Positioned(
+                    top: MediaQuery.of(context).padding.top + 52, // Below search icons
+                    right: 16,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.black54,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.white24),
                       ),
-                    );
-              }
-            },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.search, color: Colors.white70, size: 12),
+                          const SizedBox(width: 6),
+                          Flexible(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 150),
+                              child: Text(
+                                state.searchQuery,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class ReelSearchDelegate extends SearchDelegate<String?> {
+  final ReelsBloc reelsBloc;
+
+  ReelSearchDelegate(this.reelsBloc);
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(color: Colors.white54, fontSize: 16),
+        border: InputBorder.none,
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: Colors.white,
+      ),
+    );
+  }
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      if (query.isNotEmpty)
+        IconButton(
+          icon: const Icon(Icons.clear, color: Colors.white70),
+          onPressed: () {
+            query = '';
+            showSuggestions(context);
+          },
+        ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back, color: Colors.white),
+      onPressed: () => close(context, null),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      close(context, query);
+    });
+    return Container(color: Colors.black);
+  }
+
+  String _lastQuery = '';
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    if (query.isEmpty) {
+      return Container(
+        color: Colors.black,
+        child: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.search, color: Colors.white24, size: 64),
+              SizedBox(height: 16),
+              Text(
+                'Search for names, locations, or content',
+                style: TextStyle(color: Colors.white54),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (query != _lastQuery) {
+      _lastQuery = query;
+      // Trigger suggestion fetch with a slight delay is handled by build logic often, 
+      // but SearchDelegate calls buildSuggestions many times. 
+      // We rely on Bloc's internal handling or just check query change.
+      reelsBloc.add(ReelsEvent.getSearchSuggestions(query: query));
+    }
+
+    return BlocBuilder<ReelsBloc, ReelsState>(
+      bloc: reelsBloc,
+      builder: (context, state) {
+        final suggestions = state.searchSuggestions;
+
+        if (state.suggestionsLoading && suggestions.isEmpty) {
+          return Container(
+            color: Colors.black,
+            child: const Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        return Container(
+          color: Colors.black,
+          child: ListView.builder(
+            itemCount: suggestions.length,
             itemBuilder: (context, index) {
-              final reel = reels[index];
-              return ReelView(
-                key: ValueKey(reel.id ?? index.toString()),
-                reel: reel,
+              final reel = suggestions[index];
+              
+              // Determine what to show as suggestion text
+              final String titleText = reel.description?.trim().split('\n').first ?? '';
+              final String subTitleText = reel.owner?.username ?? reel.location ?? '';
+              
+              final String displayText = titleText.isNotEmpty ? titleText : subTitleText;
+
+              return ListTile(
+                leading: const Icon(Icons.history, color: Colors.white38),
+                title: Text(
+                  displayText,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                ),
+                subtitle: titleText.isNotEmpty ? Text(
+                  subTitleText,
+                  style: const TextStyle(color: Colors.white38, fontSize: 12),
+                ) : null,
+                trailing: const Icon(Icons.north_west, color: Colors.white38, size: 18),
+                onTap: () {
+                  query = displayText;
+                  showResults(context);
+                },
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -173,6 +388,23 @@ class ReelViewState extends State<ReelView>
     _controller.dispose();
     _muteIconController.dispose();
     super.dispose();
+  }
+
+  void _onSearchTapped() async {
+    final String? query = await showSearch<String?>(
+      context: context,
+      delegate: ReelSearchDelegate(context.read<ReelsBloc>()),
+    );
+
+    if (query != null && query.isNotEmpty) {
+      if (mounted) {
+        context.read<ReelsBloc>().add(
+              ReelsEvent.getReels(skip: 0, limit: 10, search: query),
+            );
+        // Page controller reset logic is handled in ReelsScreen listener if needed, 
+        // but since we are inside ReelView, we rely on the Bloc to reset results.
+      }
+    }
   }
 
   void _toggleMute() async {
@@ -309,111 +541,191 @@ class ReelViewState extends State<ReelView>
             Positioned(
               top: MediaQuery.of(context).padding.top + 8,
               left: 16,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () => Navigator.pop(context),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  customBorder: const CircleBorder(),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.3),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white24),
+                    ),
+                    child: const Icon(Icons.arrow_back,
+                        color: Colors.white, size: 20),
+                  ),
                 ),
               ),
             ),
 
-          // Delete Button (Admin or Self Post)
+          // Action Icons (Delete, Search, Clear Filter)
           BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, profileState) {
               final currentUserId = profileState.userProfile?.id;
               final isOwner =
                   currentUserId != null && currentUserId == widget.reel.userId;
+              final bool showDelete = widget.isFromAdmin || isOwner;
 
-              if (widget.isFromAdmin || isOwner) {
-                return Positioned(
-                  top: MediaQuery.of(context).padding.top + 8,
-                  right: 16,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        if (widget.isFromAdmin) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text('Delete Reel'),
-                              content: const Text(
-                                'Are you sure you want to delete this reel?',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    context.read<AdminBloc>().add(
-                                      AdminEvent.deleteAdminReel(
-                                        reelId: widget.reel.id ?? '',
+              // Position calculation
+              final double deleteRight = 16;
+              final double searchRight = showDelete ? 60 : 16;
+              final double clearFilterRight = showDelete ? 104 : 60;
+
+              return BlocBuilder<ReelsBloc, ReelsState>(
+                builder: (context, reelsState) {
+                  final bool isSearchActive = reelsState.searchQuery.isNotEmpty;
+
+                  return Stack(
+                    children: [
+                      // Delete Button
+                      if (showDelete)
+                        Positioned(
+                          top: MediaQuery.of(context).padding.top + 8,
+                          right: deleteRight,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                if (widget.isFromAdmin) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Delete Reel'),
+                                      content: const Text(
+                                        'Are you sure you want to delete this reel?',
                                       ),
-                                    );
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text(
-                                    'Delete',
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          // User delete reel functionality
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text('Delete Reel'),
-                              content: const Text(
-                                'Are you sure you want to delete this reel?',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    if (widget.reel.id != null) {
-                                      context.read<ReelsBloc>().add(
-                                        ReelsEvent.deleteReel(
-                                          reelId: widget.reel.id!,
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(context),
+                                          child: const Text('Cancel'),
                                         ),
-                                      );
-                                    }
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text(
-                                    'Delete',
-                                    style: TextStyle(color: Colors.red),
-                                  ),
+                                        TextButton(
+                                          onPressed: () {
+                                            context.read<AdminBloc>().add(
+                                              AdminEvent.deleteAdminReel(
+                                                reelId: widget.reel.id ?? '',
+                                              ),
+                                            );
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(
+                                            'Delete',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  // User delete reel functionality
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Delete Reel'),
+                                      content: const Text(
+                                        'Are you sure you want to delete this reel?',
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(context),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            if (widget.reel.id != null) {
+                                              context.read<ReelsBloc>().add(
+                                                ReelsEvent.deleteReel(
+                                                  reelId: widget.reel.id!,
+                                                ),
+                                              );
+                                            }
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(
+                                            'Delete',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                              },
+                              customBorder: const CircleBorder(),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.3),
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white24),
                                 ),
-                              ],
+                                child: const Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
                             ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                );
-              }
-              return const SizedBox.shrink();
+                          ),
+                        ),
+
+                      // Search Icon
+                      Positioned(
+                        top: MediaQuery.of(context).padding.top + 8,
+                        right: searchRight,
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: _onSearchTapped,
+                            customBorder: const CircleBorder(),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.3),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white24),
+                              ),
+                              child: const Icon(Icons.search,
+                                  color: Colors.white, size: 20),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Clear Search Button
+                      if (isSearchActive)
+                        Positioned(
+                          top: MediaQuery.of(context).padding.top + 8,
+                          right: clearFilterRight,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                context.read<ReelsBloc>().add(
+                                      const ReelsEvent.getReels(
+                                          skip: 0, limit: 10, search: ''),
+                                    );
+                              },
+                              customBorder: const CircleBorder(),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.red.withOpacity(0.6),
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white24),
+                                ),
+                                child: const Icon(Icons.filter_alt_off_outlined,
+                                    color: Colors.white, size: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              );
             },
           ),
 

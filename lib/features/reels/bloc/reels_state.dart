@@ -18,5 +18,8 @@ class ReelsState with _$ReelsState {
     @Default(false) bool isLoadingOtherUserReels,
     @Default(<ReelResponseModel>[]) List<ReelResponseModel> myReels,
     @Default(false) bool isLoadingMyReels,
+    @Default('') String searchQuery,
+    @Default(<ReelResponseModel>[]) List<ReelResponseModel> searchSuggestions,
+    @Default(false) bool suggestionsLoading,
   }) = _ReelsState;
 }

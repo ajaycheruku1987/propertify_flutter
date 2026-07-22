@@ -18,6 +18,7 @@ abstract class ReelsRepo {
     int? limit,
     double? latitude,
     double? longitude,
+    String? search,
   });
 
   Future<Either<Failure, ReelResponseModel>> createReel({
@@ -67,6 +68,7 @@ class ReelsRepoImpl implements ReelsRepo {
     int? limit,
     double? latitude,
     double? longitude,
+    String? search,
   }) async {
     try {
       final s = skip ?? 0;
@@ -78,10 +80,15 @@ class ReelsRepoImpl implements ReelsRepo {
         'limit': l,
       };
 
-      if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
-      if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
-      if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
-        queryParams['radius_km'] = 5;
+      if (search != null && search.isNotEmpty) {
+        queryParams['search'] = search;
+      } else {
+        // Only send location if we are NOT searching globally
+        if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
+        if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
+        if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
+          queryParams['radius_km'] = 5;
+        }
       }
 
       String queryString =
