@@ -523,20 +523,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: Icons.star_outline,
                           title: 'Rate Us',
                           onTap: () async {
-                            Uri url;
-                            if (Platform.isAndroid) {
-                              url = Uri.parse(
-                                'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
-                              );
-                            } else if (Platform.isIOS) {
-                              url = Uri.parse(
-                                'https://apps.apple.com/app/idXXXXXXXXXX?action=write-review',
-                              );
-                            } else {
-                              url = Uri.parse(
-                                'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
-                              );
-                            }
+                            final Uri url = Platform.isAndroid
+                                ? Uri.parse(
+                                    'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
+                                  )
+                                : Uri.parse(
+                                    'https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054?action=write-review',
+                                  );
 
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
@@ -595,8 +588,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: Icons.person_add_outlined,
                           title: 'Invite Friends',
                           onTap: () {
+                            final String appLink = Platform.isAndroid
+                                ? 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate'
+                                : 'https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054';
                             Share.share(
-                              'Check out Propertify! https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
+                              'Check out Propertify! $appLink',
                               subject: 'Join me on Propertify',
                             );
                           },

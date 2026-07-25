@@ -21,6 +21,8 @@ class MetaService {
 
   // Your actual Play Store link
   static const String _playStoreUrl = 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate';
+  // Your actual App Store link
+  static const String _appStoreUrl = 'https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054';
 
   // Permanent PAGE Access Token (Found in /me/accounts)
   // static const String _accessToken = 'EAASzcoBEi8ABSMHRBzSZA2qUdKcZC59PZCucmsnzTawpZCRDaF9oafnEKMVz0SzpJnb4d04gQ3ZBAWcLnAGdn8AwhwSDI4erznGkRRCIr28JlZBScBuZAWUDYF4SZAMF56oOV1JUJIBNT20N4e0AcfILDkQ30cJcqZAM81uElFmzdjX8fYcAxCRpgolPNnKFAE77Ya2Wwm0ApqEXTIov39Pl8VU6MG5LxZBb7qaR8GVwoZD';

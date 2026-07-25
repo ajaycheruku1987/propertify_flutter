@@ -916,7 +916,9 @@ ${videoUrl.isNotEmpty ? '🎥 Video: $videoUrl' : ''}
 
 Check it out on Propertify!
 
-📱 Download the app: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
+📱 Download the app:
+Android: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
+iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         '''
                                   .trim();
 
