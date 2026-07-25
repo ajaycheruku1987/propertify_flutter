@@ -281,6 +281,7 @@ class PropertyCardCompact extends StatelessWidget {
             right: 8,
             child: GestureDetector(
               onTap: onFavoritePressed,
+              behavior: HitTestBehavior.opaque,
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
@@ -303,6 +304,7 @@ class PropertyCardCompact extends StatelessWidget {
             right: 8,
             child: GestureDetector(
               onTap: onSharePressed,
+              behavior: HitTestBehavior.opaque,
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(

@@ -261,6 +261,7 @@ class _PropertyCardState extends State<PropertyCard> {
               right: 8,
               child: GestureDetector(
                 onTap: widget.onFavoritePressed,
+                behavior: HitTestBehavior.opaque,
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -283,6 +284,7 @@ class _PropertyCardState extends State<PropertyCard> {
             right: 8,
             child: GestureDetector(
               onTap: widget.onSharePressed,
+              behavior: HitTestBehavior.opaque,
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
