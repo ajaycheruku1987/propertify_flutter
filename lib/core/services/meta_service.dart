@@ -145,7 +145,7 @@ class MetaService {
           'https://graph.facebook.com/v20.0/$_instagramId/media_publish',
           data: {
             'creation_id': creationId,
-            'access_token': _accessToken,
+            'access_token': _accessTokenInsta,
           },
         );
         debugPrint("Instagram Publish Response: ${publishResponse.data}");

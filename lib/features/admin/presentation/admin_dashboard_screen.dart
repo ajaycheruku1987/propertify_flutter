@@ -43,6 +43,33 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final Map<String, List<Map<String, dynamic>>> categorizedItems = {
+      'User Management': [
+        {
+          'title': 'Users',
+          'icon': Icons.people_outline,
+          'route': '${UserListScreen.routeName}?role=user',
+        },
+        {
+          'title': 'Admins',
+          'icon': Icons.admin_panel_settings_outlined,
+          'route': '${UserListScreen.routeName}?role=admin',
+        },
+        {
+          'title': 'Loan Team',
+          'icon': Icons.storefront_outlined,
+          'route': '${UserListScreen.routeName}?role=seller',
+        },
+        {
+          'title': 'Interior Design Team',
+          'icon': Icons.storefront_outlined,
+          'route': '${UserListScreen.routeName}?role=marketing',
+        },
+        {
+          'title': 'User Feedbacks',
+          'icon': Icons.feedback_outlined,
+          'route': '/feedback-list?isAdmin=true',
+        },
+      ],
       'Feeds': [
         {
           'title': 'Properties',
@@ -58,23 +85,6 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           'title': 'Boosted Ads',
           'icon': Icons.rocket_launch_outlined,
           'route': BannerAdsScreen.routeName,
-        },
-      ],
-      'Services': [
-        {
-          'title': 'Services',
-          'icon': Icons.psychology_outlined,
-          'route': AllServicesListAdminView.routeName,
-        },
-        {
-          'title': 'Service Verifications',
-          'icon': Icons.verified_user_outlined,
-          'route': ServicesVerificationRequests.routeName,
-        },
-        {
-          'title': 'Material Prices',
-          'icon': Icons.currency_rupee,
-          'route': ManageMaterialPricesScreen.routeName,
         },
       ],
       'Requests': [
@@ -106,31 +116,21 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           'route': CompaniesTabsScreen.routeName,
         },
       ],
-      'User Management': [
+      'Services': [
         {
-          'title': 'Users',
-          'icon': Icons.people_outline,
-          'route': '${UserListScreen.routeName}?role=user',
+          'title': 'Services',
+          'icon': Icons.psychology_outlined,
+          'route': AllServicesListAdminView.routeName,
         },
         {
-          'title': 'Admins',
-          'icon': Icons.admin_panel_settings_outlined,
-          'route': '${UserListScreen.routeName}?role=admin',
+          'title': 'Service Verifications',
+          'icon': Icons.verified_user_outlined,
+          'route': ServicesVerificationRequests.routeName,
         },
         {
-          'title': 'Loan Team',
-          'icon': Icons.storefront_outlined,
-          'route': '${UserListScreen.routeName}?role=seller',
-        },
-        {
-          'title': 'Interior Design Team',
-          'icon': Icons.storefront_outlined,
-          'route': '${UserListScreen.routeName}?role=marketing',
-        },
-        {
-          'title': 'User Feedbacks',
-          'icon': Icons.feedback_outlined,
-          'route': '/feedback-list?isAdmin=true',
+          'title': 'Material Prices',
+          'icon': Icons.currency_rupee,
+          'route': ManageMaterialPricesScreen.routeName,
         },
       ],
     };
@@ -219,7 +219,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                   );
                 },
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 1),
             ],
           );
         }).toList(),
