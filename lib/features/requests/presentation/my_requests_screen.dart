@@ -117,8 +117,8 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
                     },
                   );
                 },
-                onCallPressed: () {},
-                onWhatsAppPressed: () {},
+                onCallPressed: null,
+                onWhatsAppPressed: null,
                 onTap: () {},
               );
             },

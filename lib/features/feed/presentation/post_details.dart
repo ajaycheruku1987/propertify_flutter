@@ -506,6 +506,11 @@ Check it out on Propertify!
             }
 
             final postDetails = state.postDetails!;
+            final currentUserId =
+                context.read<ProfileBloc>().state.userProfile?.id;
+            final isOwner =
+                postDetails.owner?.id != null &&
+                postDetails.owner?.id == currentUserId;
 
             return SingleChildScrollView(
               child: Column(
@@ -718,7 +723,19 @@ Check it out on Propertify!
           },
         ),
       ),
-      bottomNavigationBar: SafeArea(child: _buildContactButtons()),
+      bottomNavigationBar: BlocBuilder<FeedBloc, FeedState>(
+        builder: (context, state) {
+          final postDetails = state.postDetails;
+          if (postDetails == null) return const SizedBox.shrink();
+
+          final currentUserId =
+              context.read<ProfileBloc>().state.userProfile?.id;
+          final isOwner = postDetails.owner?.id != null &&
+              postDetails.owner?.id == currentUserId;
+
+          return isOwner ? const SizedBox.shrink() : SafeArea(child: _buildContactButtons());
+        },
+      ),
       // Bottom Action Buttons
     );
   }

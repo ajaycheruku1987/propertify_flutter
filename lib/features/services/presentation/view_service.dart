@@ -480,9 +480,11 @@ Check it out on Propertify!
               ],
             ),
           ),
-          bottomNavigationBar: SafeArea(
-            child: _buildBottomActionButtons(service),
-          ),
+          bottomNavigationBar: isOwner
+              ? null
+              : SafeArea(
+                  child: _buildBottomActionButtons(service),
+                ),
         );
       },
     );

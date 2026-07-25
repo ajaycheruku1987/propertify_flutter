@@ -360,28 +360,42 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 }
               : null,
 
-          onCallPressed: () {
-            debugPrint('Calling ${request.phoneNumber}');
-            if (!context.read<HomeBloc>().state.showAddButton) {
-              context.push(AuthScreen.routeName);
-              return;
-            }
-            if (request.phoneNumber != null) {
-              launchUrl(Uri(scheme: 'tel', path: request.phoneNumber!));
-            }
-          },
-          onWhatsAppPressed: () {
-            debugPrint('WhatsApp to ${request.phoneNumber}');
-            if (!context.read<HomeBloc>().state.showAddButton) {
-              context.push(AuthScreen.routeName);
-              return;
-            }
-            if (request.phoneNumber != null) {
-              launchUrl(
-                Uri(scheme: 'https', host: 'wa.me', path: request.phoneNumber!),
-              );
-            }
-          },
+          onCallPressed:
+              request.owner?.id ==
+                      context.read<ProfileBloc>().state.userProfile?.id
+                  ? null
+                  : () {
+                      debugPrint('Calling ${request.phoneNumber}');
+                      if (!context.read<HomeBloc>().state.showAddButton) {
+                        context.push(AuthScreen.routeName);
+                        return;
+                      }
+                      if (request.phoneNumber != null) {
+                        launchUrl(
+                          Uri(scheme: 'tel', path: request.phoneNumber!),
+                        );
+                      }
+                    },
+          onWhatsAppPressed:
+              request.owner?.id ==
+                      context.read<ProfileBloc>().state.userProfile?.id
+                  ? null
+                  : () {
+                      debugPrint('WhatsApp to ${request.phoneNumber}');
+                      if (!context.read<HomeBloc>().state.showAddButton) {
+                        context.push(AuthScreen.routeName);
+                        return;
+                      }
+                      if (request.phoneNumber != null) {
+                        launchUrl(
+                          Uri(
+                            scheme: 'https',
+                            host: 'wa.me',
+                            path: request.phoneNumber!,
+                          ),
+                        );
+                      }
+                    },
           onTap: () {
             debugPrint('Tapped on request ${request.id}');
           },

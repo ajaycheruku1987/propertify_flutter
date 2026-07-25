@@ -241,48 +241,51 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       // Call Button
-                      InkWell(
-                        onTap: widget.onCallPressed,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          width: 36,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: Theme.of(
-                              context,
-                            ).primaryColor.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Icon(
-                            Icons.phone_outlined,
-                            color: Theme.of(context).primaryColor,
-                            size: 18,
+                      if (widget.onCallPressed != null) ...[
+                        InkWell(
+                          onTap: widget.onCallPressed,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).primaryColor.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            child: Icon(
+                              Icons.phone_outlined,
+                              color: Theme.of(context).primaryColor,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-
-                      const SizedBox(width: 8),
+                        const SizedBox(width: 8),
+                      ],
 
                       // WhatsApp Button
-                      InkWell(
-                        onTap: widget.onWhatsAppPressed,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          width: 36,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: Theme.of(
-                              context,
-                            ).primaryColor.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Icon(
-                            FontAwesomeIcons.whatsapp,
-                            color: Theme.of(context).primaryColor,
-                            size: 18,
+                      if (widget.onWhatsAppPressed != null) ...[
+                        InkWell(
+                          onTap: widget.onWhatsAppPressed,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).primaryColor.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.whatsapp,
+                              color: Theme.of(context).primaryColor,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
 
                       // More Options (Edit/Delete) - Only if at least one is provided
                       if (widget.onEditPressed != null ||
