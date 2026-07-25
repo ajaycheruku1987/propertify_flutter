@@ -588,13 +588,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: Icons.person_add_outlined,
                           title: 'Invite Friends',
                           onTap: () {
-                            final String appLink = Platform.isAndroid
-                                ? 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate'
-                                : 'https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054';
-                            Share.share(
-                              'Check out Propertify! $appLink',
-                              subject: 'Join me on Propertify',
-                            );
+                            try {
+                              final isAndroid = Platform.isAndroid;
+                              final String appLink = isAndroid
+                                  ? 'https://play.google.com/store/apps/details?id=com.placeofsalesrealestate'
+                                  : 'https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054';
+                              Share.share(
+                                'Check out Propertify! $appLink',
+                                subject: 'Join me on Propertify',
+                              );
+                            } catch (e) {
+                              debugPrint('Error sharing: $e');
+                              // Fallback share if Platform check fails (e.g. Web)
+                              Share.share(
+                                'Check out Propertify! https://play.google.com/store/apps/details?id=com.placeofsalesrealestate',
+                                subject: 'Join me on Propertify',
+                              );
+                            }
                           },
                         ),
 
