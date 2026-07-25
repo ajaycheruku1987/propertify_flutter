@@ -10,6 +10,7 @@ import '../bloc/admin_bloc.dart';
 import '../models/user_model.dart';
 import 'widgets/admin_user_card.dart';
 import 'widgets/regular_user_card.dart';
+import '../../profile/presentation/other_user_profile_screen.dart';
 
 class UserListScreen extends StatefulWidget {
   static const String routeName = '/user-list-screen';
@@ -578,6 +579,14 @@ class _UserListScreenState extends State<UserListScreen> {
                     onProfileTap: userId.isNotEmpty
                         ? () => _toggleSelection(userId)
                         : null,
+                    onPhoneNumberTap: userId.isNotEmpty
+                        ? () {
+                            context.push(
+                              OtherUserProfileScreen.routeName,
+                              extra: userId,
+                            );
+                          }
+                        : null,
                   )
                 : RegularUserCard(
                     user: user,
@@ -585,6 +594,14 @@ class _UserListScreenState extends State<UserListScreen> {
                     isSelectionMode: _isSelectionMode,
                     onProfileTap: userId.isNotEmpty
                         ? () => _toggleSelection(userId)
+                        : null,
+                    onPhoneNumberTap: userId.isNotEmpty
+                        ? () {
+                            context.push(
+                              OtherUserProfileScreen.routeName,
+                              extra: userId,
+                            );
+                          }
                         : null,
                   ),
           ),

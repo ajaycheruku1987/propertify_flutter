@@ -86,35 +86,13 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
           );
         },
         (reels) {
-          final String query = (event.search ?? state.searchQuery).toLowerCase();
-          
-          // Local fallback filtering in case backend doesn't support search yet
-          List<ReelResponseModel> filteredReels = reels;
-          if (query.isNotEmpty) {
-            filteredReels = reels.where((reel) {
-              final String description = (reel.description ?? '').toLowerCase();
-              final String location = (reel.location ?? '').toLowerCase();
-              final String username = (reel.owner?.username ?? '').toLowerCase();
-              final String name = '${reel.owner?.firstName ?? ''} ${reel.owner?.lastName ?? ''}'.toLowerCase();
-              
-              return description.contains(query) || 
-                     location.contains(query) || 
-                     username.contains(query) || 
-                     name.contains(query);
-            }).toList();
-            
-            // If local filtering removed everything, but backend returned data, 
-            // it confirms backend ignored the search. We'll show an empty list 
-            // for the search instead of irrelevant results.
-          }
-
           final int offset = event.skip ?? 0;
           final int limit = event.limit ?? 10;
           final bool hasMoreData = reels.length >= limit;
 
           final List<ReelResponseModel> updatedList = [
             if (offset > 0) ...state.reelsList,
-            ...filteredReels,
+            ...reels,
           ];
 
           emit(

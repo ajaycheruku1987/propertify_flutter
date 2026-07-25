@@ -8,6 +8,7 @@ class AdminUserCard extends StatelessWidget {
   final bool isSelected;
   final bool isSelectionMode;
   final VoidCallback? onProfileTap;
+  final VoidCallback? onPhoneNumberTap;
 
   const AdminUserCard({
     super.key,
@@ -15,6 +16,7 @@ class AdminUserCard extends StatelessWidget {
     this.isSelected = false,
     this.isSelectionMode = false,
     this.onProfileTap,
+    this.onPhoneNumberTap,
   });
 
   @override
@@ -124,12 +126,17 @@ class AdminUserCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    '${user.phoneNumber ?? ''} • ${role.toTitleCase()}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                      fontWeight: FontWeight.w500,
+                  GestureDetector(
+                    onTap: onPhoneNumberTap,
+                    child: Text(
+                      '${user.phoneNumber ?? ''} • ${role.toTitleCase()}',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.grey.shade600,
+                      ),
                     ),
                   ),
                 ],

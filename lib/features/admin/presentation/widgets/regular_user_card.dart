@@ -8,6 +8,7 @@ class RegularUserCard extends StatelessWidget {
   final bool isSelected;
   final bool isSelectionMode;
   final VoidCallback? onProfileTap;
+  final VoidCallback? onPhoneNumberTap;
 
   const RegularUserCard({
     super.key,
@@ -15,6 +16,7 @@ class RegularUserCard extends StatelessWidget {
     this.isSelected = false,
     this.isSelectionMode = false,
     this.onProfileTap,
+    this.onPhoneNumberTap,
   });
 
   @override
@@ -115,12 +117,17 @@ class RegularUserCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    user.phoneNumber ?? '',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: theme.primaryColor,
-                      fontWeight: FontWeight.w500,
+                  GestureDetector(
+                    onTap: onPhoneNumberTap,
+                    child: Text(
+                      user.phoneNumber ?? '',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: theme.primaryColor,
+                        fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
+                        decorationColor: theme.primaryColor,
+                      ),
                     ),
                   ),
                 ],

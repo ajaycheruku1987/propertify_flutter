@@ -89,30 +89,17 @@ class _ReelsScreenState extends State<ReelsScreen> {
                 if (state.isLoading && reels.isEmpty)
                   const Center(child: CircularProgressIndicator())
                 else if (reels.isEmpty)
-                  Center(
+                  const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.video_library_outlined,
+                        Icon(Icons.video_library_outlined,
                             color: Colors.white24, size: 64),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16),
                         Text(
-                          state.searchQuery.isEmpty
-                              ? 'No reels available'
-                              : 'No reels found for "${state.searchQuery}"',
-                          style: const TextStyle(color: Colors.white70),
+                          'No reels available',
+                          style: TextStyle(color: Colors.white70),
                         ),
-                        if (state.searchQuery.isNotEmpty)
-                          TextButton(
-                            onPressed: () {
-                              context.read<ReelsBloc>().add(
-                                    const ReelsEvent.getReels(
-                                        skip: 0, limit: 10, search: ''),
-                                  );
-                            },
-                            child: const Text('Clear Search',
-                                style: TextStyle(color: Colors.white)),
-                          ),
                       ],
                     ),
                   )
@@ -130,7 +117,6 @@ class _ReelsScreenState extends State<ReelsScreen> {
                               ReelsEvent.getReels(
                                 skip: state.currentOffset,
                                 limit: 5,
-                                search: state.searchQuery,
                               ),
                             );
                       }
@@ -143,185 +129,11 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       );
                     },
                   ),
-
-                if (state.searchQuery.isNotEmpty)
-                  Positioned(
-                    top: MediaQuery.of(context).padding.top + 52, // Below search icons
-                    right: 16,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.white24),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.search, color: Colors.white70, size: 12),
-                          const SizedBox(width: 6),
-                          Flexible(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 150),
-                              child: Text(
-                                state.searchQuery,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
               ],
             );
           },
         ),
       ),
-    );
-  }
-}
-
-class ReelSearchDelegate extends SearchDelegate<String?> {
-  final ReelsBloc reelsBloc;
-
-  ReelSearchDelegate(this.reelsBloc);
-
-  @override
-  ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context).copyWith(
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      inputDecorationTheme: const InputDecorationTheme(
-        hintStyle: TextStyle(color: Colors.white54, fontSize: 16),
-        border: InputBorder.none,
-      ),
-      textTheme: const TextTheme(
-        titleLarge: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      textSelectionTheme: const TextSelectionThemeData(
-        cursorColor: Colors.white,
-      ),
-    );
-  }
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      if (query.isNotEmpty)
-        IconButton(
-          icon: const Icon(Icons.clear, color: Colors.white70),
-          onPressed: () {
-            query = '';
-            showSuggestions(context);
-          },
-        ),
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back, color: Colors.white),
-      onPressed: () => close(context, null),
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      close(context, query);
-    });
-    return Container(color: Colors.black);
-  }
-
-  String _lastQuery = '';
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    if (query.isEmpty) {
-      return Container(
-        color: Colors.black,
-        child: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.search, color: Colors.white24, size: 64),
-              SizedBox(height: 16),
-              Text(
-                'Search for names, locations, or content',
-                style: TextStyle(color: Colors.white54),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (query != _lastQuery) {
-      _lastQuery = query;
-      // Trigger suggestion fetch with a slight delay is handled by build logic often, 
-      // but SearchDelegate calls buildSuggestions many times. 
-      // We rely on Bloc's internal handling or just check query change.
-      reelsBloc.add(ReelsEvent.getSearchSuggestions(query: query));
-    }
-
-    return BlocBuilder<ReelsBloc, ReelsState>(
-      bloc: reelsBloc,
-      builder: (context, state) {
-        final suggestions = state.searchSuggestions;
-
-        if (state.suggestionsLoading && suggestions.isEmpty) {
-          return Container(
-            color: Colors.black,
-            child: const Center(child: CircularProgressIndicator()),
-          );
-        }
-
-        return Container(
-          color: Colors.black,
-          child: ListView.builder(
-            itemCount: suggestions.length,
-            itemBuilder: (context, index) {
-              final reel = suggestions[index];
-              
-              // Determine what to show as suggestion text
-              final String titleText = reel.description?.trim().split('\n').first ?? '';
-              final String subTitleText = reel.owner?.username ?? reel.location ?? '';
-              
-              final String displayText = titleText.isNotEmpty ? titleText : subTitleText;
-
-              return ListTile(
-                leading: const Icon(Icons.history, color: Colors.white38),
-                title: Text(
-                  displayText,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
-                ),
-                subtitle: titleText.isNotEmpty ? Text(
-                  subTitleText,
-                  style: const TextStyle(color: Colors.white38, fontSize: 12),
-                ) : null,
-                trailing: const Icon(Icons.north_west, color: Colors.white38, size: 18),
-                onTap: () {
-                  query = displayText;
-                  showResults(context);
-                },
-              );
-            },
-          ),
-        );
-      },
     );
   }
 }
@@ -388,23 +200,6 @@ class ReelViewState extends State<ReelView>
     _controller.dispose();
     _muteIconController.dispose();
     super.dispose();
-  }
-
-  void _onSearchTapped() async {
-    final String? query = await showSearch<String?>(
-      context: context,
-      delegate: ReelSearchDelegate(context.read<ReelsBloc>()),
-    );
-
-    if (query != null && query.isNotEmpty) {
-      if (mounted) {
-        context.read<ReelsBloc>().add(
-              ReelsEvent.getReels(skip: 0, limit: 10, search: query),
-            );
-        // Page controller reset logic is handled in ReelsScreen listener if needed, 
-        // but since we are inside ReelView, we rely on the Bloc to reset results.
-      }
-    }
   }
 
   void _toggleMute() async {
@@ -560,7 +355,7 @@ class ReelViewState extends State<ReelView>
               ),
             ),
 
-          // Action Icons (Delete, Search, Clear Filter)
+          // Action Icons (Delete)
           BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, profileState) {
               final currentUserId = profileState.userProfile?.id;
@@ -570,13 +365,9 @@ class ReelViewState extends State<ReelView>
 
               // Position calculation
               final double deleteRight = 16;
-              final double searchRight = showDelete ? 60 : 16;
-              final double clearFilterRight = showDelete ? 104 : 60;
 
               return BlocBuilder<ReelsBloc, ReelsState>(
                 builder: (context, reelsState) {
-                  final bool isSearchActive = reelsState.searchQuery.isNotEmpty;
-
                   return Stack(
                     children: [
                       // Delete Button
@@ -666,58 +457,6 @@ class ReelViewState extends State<ReelView>
                                   color: Colors.white,
                                   size: 20,
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      // Search Icon
-                      Positioned(
-                        top: MediaQuery.of(context).padding.top + 8,
-                        right: searchRight,
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: _onSearchTapped,
-                            customBorder: const CircleBorder(),
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.3),
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white24),
-                              ),
-                              child: const Icon(Icons.search,
-                                  color: Colors.white, size: 20),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      // Clear Search Button
-                      if (isSearchActive)
-                        Positioned(
-                          top: MediaQuery.of(context).padding.top + 8,
-                          right: clearFilterRight,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {
-                                context.read<ReelsBloc>().add(
-                                      const ReelsEvent.getReels(
-                                          skip: 0, limit: 10, search: ''),
-                                    );
-                              },
-                              customBorder: const CircleBorder(),
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Colors.red.withOpacity(0.6),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white24),
-                                ),
-                                child: const Icon(Icons.filter_alt_off_outlined,
-                                    color: Colors.white, size: 20),
                               ),
                             ),
                           ),

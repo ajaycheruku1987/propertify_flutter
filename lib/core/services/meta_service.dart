@@ -67,7 +67,7 @@ class MetaService {
     }
 
     // 1. Post to Facebook (Includes full Play Store Link)
-    final String fbDescription = "$description\n\nDownload our app: $_playStoreUrl\n\n#Propertify #RealEstate";
+    final String fbDescription = "$description\n\nDownload Android app: $_playStoreUrl\nDownload iOS app: $_appStoreUrl\n\n#Propertify #RealEstate";
     await postToFacebook(
       title: title,
       description: fbDescription,
