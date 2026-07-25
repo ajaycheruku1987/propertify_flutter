@@ -22,8 +22,6 @@ class PropertyCardCompact extends StatelessWidget {
   final String? promotedAt;
   final String? promotedUntil;
   final String? createdAt;
-  final bool canEdit;
-  final bool canDelete;
   final int likeCount;
   final int commentCount;
   final int viewCount;
@@ -32,9 +30,6 @@ class PropertyCardCompact extends StatelessWidget {
   final VoidCallback onLikePressed;
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
-  final VoidCallback onReportPressed;
-  final VoidCallback? onEditPressed;
-  final VoidCallback? onDeletePressed;
 
   const PropertyCardCompact({
     super.key,
@@ -50,8 +45,6 @@ class PropertyCardCompact extends StatelessWidget {
     this.promotedAt,
     this.promotedUntil,
     this.createdAt,
-    this.canEdit = false,
-    this.canDelete = false,
     this.likeCount = 0,
     this.commentCount = 0,
     this.viewCount = 0,
@@ -60,9 +53,6 @@ class PropertyCardCompact extends StatelessWidget {
     required this.onLikePressed,
     required this.onCommentPressed,
     required this.onSharePressed,
-    required this.onReportPressed,
-    this.onEditPressed,
-    this.onDeletePressed,
   });
 
   @override
@@ -111,75 +101,6 @@ class PropertyCardCompact extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      if (canEdit || canDelete)
-                        SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: PopupMenuButton<String>(
-                            color: Colors.white,
-                            padding: EdgeInsets.zero,
-                            position: PopupMenuPosition.under,
-                            elevation: 4,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            icon: const Icon(
-                              Icons.more_vert,
-                              color: Colors.black87,
-                              size: 16,
-                            ),
-                            onSelected: (value) {
-                              if (value == 'edit' && onEditPressed != null) {
-                                onEditPressed!();
-                              } else if (value == 'delete' &&
-                                  onDeletePressed != null) {
-                                onDeletePressed!();
-                              }
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<String>>[
-                                  if (canEdit)
-                                    const PopupMenuItem<String>(
-                                      value: 'edit',
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.edit,
-                                            size: 16,
-                                            color: Colors.blue,
-                                          ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            'Edit',
-                                            style: TextStyle(fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (canDelete)
-                                    const PopupMenuItem<String>(
-                                      value: 'delete',
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.delete,
-                                            size: 16,
-                                            color: Colors.red,
-                                          ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            'Delete',
-                                            style: TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 13,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                ],
-                          ),
-                        ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -229,7 +150,7 @@ class PropertyCardCompact extends StatelessWidget {
             // Actions Section - Compact
             _buildActionsSection(context),
 
-            if (isTopAd && canEdit && (promotedAt != null || promotedUntil != null || createdAt != null))
+            if (isTopAd && (promotedAt != null || promotedUntil != null || createdAt != null))
               _buildPromotionDates(),
           ],
         ),
@@ -396,26 +317,6 @@ class PropertyCardCompact extends StatelessWidget {
               ),
             ),
           ),
-          // Report Button
-          Positioned(
-            top: 76,
-            right: 8,
-            child: GestureDetector(
-              onTap: onReportPressed,
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.warning_amber_rounded,
-                  color: Colors.grey.shade600,
-                  size: 14,
-                ),
-              ),
-            ),
-          ),
           //code for lookingFor
           if (listingType != null && listingType!.isNotEmpty)
             Positioned(
@@ -481,16 +382,6 @@ class PropertyCardCompact extends StatelessWidget {
             count: viewCount,
             onPressed: () {}, // View count is read-only
           ),
-
-          // Share Button
-          // GestureDetector(
-          //   onTap: onSharePressed,
-          //   child: Icon(
-          //     FontAwesomeIcons.shareNodes,
-          //     size: 14,
-          //     color: Colors.grey.shade600,
-          //   ),
-          // ),
         ],
       ),
     );

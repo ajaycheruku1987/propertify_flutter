@@ -25,19 +25,14 @@ class PropertyCard extends StatefulWidget {
   final String? promotedUntil;
   final String? createdAt;
   final bool showActions;
-  final bool canEdit;
-  final bool canDelete;
   final int likeCount;
   final int commentCount;
   final int viewCount;
   final VoidCallback onFavoritePressed;
   final VoidCallback onCardPressed;
   final VoidCallback onSharePressed;
-  final VoidCallback onReportPressed;
   final VoidCallback onLikePressed;
   final VoidCallback onCommentPressed;
-  final VoidCallback? onEditPressed;
-  final VoidCallback? onDeletePressed;
 
   const PropertyCard({
     super.key,
@@ -52,19 +47,14 @@ class PropertyCard extends StatefulWidget {
     this.isTopAd = false,
     this.isFeatured = false,
     this.showActions = false,
-    this.canEdit = false,
-    this.canDelete = false,
     this.likeCount = 0,
     this.commentCount = 0,
     this.viewCount = 0,
     required this.onFavoritePressed,
     required this.onCardPressed,
     required this.onSharePressed,
-    required this.onReportPressed,
     required this.onLikePressed,
     required this.onCommentPressed,
-    this.onEditPressed,
-    this.onDeletePressed,
     this.listingType,
     this.promotedAt,
     this.promotedUntil,
@@ -307,26 +297,6 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ),
           ),
-          // Report Button
-          Positioned(
-            top: 108,
-            right: 8,
-            child: GestureDetector(
-              onTap: widget.onReportPressed,
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.warning_amber_rounded,
-                  color: Colors.grey.shade600,
-                  size: 20,
-                ),
-              ),
-            ),
-          ),
           if (widget.listingType != null && widget.listingType!.isNotEmpty)
             Positioned(
               bottom: 8,
@@ -410,51 +380,6 @@ class _PropertyCardState extends State<PropertyCard> {
                     color: AppTheme.blueColor,
                   ),
                 ),
-              if (widget.canEdit || widget.canDelete)
-                PopupMenuButton<String>(
-                  color: Colors.white,
-                  position: PopupMenuPosition.under,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  icon: const Icon(
-                    Icons.more_vert,
-                    color: Colors.black87,
-                    size: 20,
-                  ),
-                  onSelected: (value) {
-                    if (value == 'edit' && widget.onEditPressed != null) {
-                      widget.onEditPressed!();
-                    } else if (value == 'delete' && widget.onDeletePressed != null) {
-                      widget.onDeletePressed!();
-                    }
-                  },
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                    if (widget.canEdit)
-                      const PopupMenuItem<String>(
-                        value: 'edit',
-                        child: Row(
-                          children: [
-                            Icon(Icons.edit, size: 18, color: Colors.blue),
-                            SizedBox(width: 8),
-                            Text('Edit'),
-                          ],
-                        ),
-                      ),
-                    if (widget.canDelete)
-                      const PopupMenuItem<String>(
-                        value: 'delete',
-                        child: Row(
-                          children: [
-                            Icon(Icons.delete, size: 18, color: Colors.red),
-                            SizedBox(width: 8),
-                            Text('Delete', style: TextStyle(color: Colors.red)),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
             ],
           ),
           const SizedBox(height: 4),
@@ -482,7 +407,7 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ],
           ),
-          if (widget.isTopAd && widget.canEdit && (widget.promotedAt != null || widget.promotedUntil != null || widget.createdAt != null)) ...[
+          if (widget.isTopAd && (widget.promotedAt != null || widget.promotedUntil != null || widget.createdAt != null)) ...[
             const SizedBox(height: 8),
             _buildPromotionDates(),
           ],
