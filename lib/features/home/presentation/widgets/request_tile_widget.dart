@@ -244,15 +244,16 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                       if (widget.onCallPressed != null) ...[
                         InkWell(
                           onTap: widget.onCallPressed,
-                          borderRadius: BorderRadius.circular(20),
+                          customBorder: const CircleBorder(),
                           child: Container(
                             width: 36,
                             height: 36,
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: Theme.of(
                                 context,
                               ).primaryColor.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(18),
+                              shape: BoxShape.circle,
                             ),
                             child: Icon(
                               Icons.phone_outlined,
@@ -268,15 +269,16 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                       if (widget.onWhatsAppPressed != null) ...[
                         InkWell(
                           onTap: widget.onWhatsAppPressed,
-                          borderRadius: BorderRadius.circular(20),
+                          customBorder: const CircleBorder(),
                           child: Container(
                             width: 36,
                             height: 36,
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: Theme.of(
                                 context,
                               ).primaryColor.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(18),
+                              shape: BoxShape.circle,
                             ),
                             child: FaIcon(
                               FontAwesomeIcons.whatsapp,
