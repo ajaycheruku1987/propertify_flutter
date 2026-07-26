@@ -447,6 +447,14 @@ Check it out on Propertify!
                         agentImage: service.owner?.profilepic ?? '',
                         rating: service.rating?.toString() ?? '-',
                         userId: service.owner?.id,
+                        onCallPressed: isOwner
+                            ? null
+                            : () => _makePhoneCall(
+                                service.owner?.phoneNumber ?? '',
+                              ),
+                        onWhatsAppPressed: isOwner
+                            ? null
+                            : () => _openWhatsApp(service.phoneNumber ?? ''),
                       ),
 
                       const SizedBox(height: 12),
@@ -473,16 +481,14 @@ Check it out on Propertify!
                       // Boost Now Button (only for owner)
                       _buildBoostButton(service),
 
-                      const SizedBox(height: 80), // Space for bottom buttons
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          bottomNavigationBar: isOwner
-              ? null
-              : SafeArea(child: _buildBottomActionButtons(service)),
+          bottomNavigationBar: null,
         );
       },
     );
@@ -988,79 +994,6 @@ Check it out on Propertify!
             ),
           )
         : Container();
-  }
-
-  Widget _buildBottomActionButtons(ServicesResponseModel service) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-      child: Row(
-        children: [
-          // Call Button
-          Expanded(
-            child: GestureDetector(
-              onTap: () => _makePhoneCall(service.owner?.phoneNumber ?? ''),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.phone, color: Colors.white, size: 20),
-                    SizedBox(width: 8),
-                    Text(
-                      'Call',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          const SizedBox(width: 16),
-
-          // WhatsApp Button
-          Expanded(
-            child: GestureDetector(
-              onTap: () => _openWhatsApp(service.phoneNumber ?? ''),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF25D366),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Whatsapp',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> _makePhoneCall(String phoneNumber) async {

@@ -3,12 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:propertify/utils/string_extensions.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class AgentInfo extends StatelessWidget {
   final String agentName;
   final String agentRole;
   final String agentImage;
   final String rating;
   final String? userId; // Optional for backward compatibility
+  final VoidCallback? onCallPressed;
+  final VoidCallback? onWhatsAppPressed;
 
   const AgentInfo({
     Key? key,
@@ -17,6 +21,8 @@ class AgentInfo extends StatelessWidget {
     required this.agentImage,
     required this.rating,
     this.userId,
+    this.onCallPressed,
+    this.onWhatsAppPressed,
   }) : super(key: key);
 
   @override
@@ -85,47 +91,74 @@ class AgentInfo extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        agentRole,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w400,
+                      if (userId != null && userId!.isNotEmpty)
+                        GestureDetector(
+                          onTap: () {
+                            context.push(
+                              OtherUserProfileScreen.routeName,
+                              extra: userId,
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              'View Profile',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
 
-                // View Profile Button
-                if (userId != null && userId!.isNotEmpty)
-                  GestureDetector(
-                    onTap: () {
-                      context.push(
-                        OtherUserProfileScreen.routeName,
-                        extra: userId,
-                      );
-                    },
+                const SizedBox(width: 8),
+
+                // Call and WhatsApp Icons
+                if (onCallPressed != null)
+                  InkWell(
+                    onTap: onCallPressed,
+                    customBorder: const CircleBorder(),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 8,
-                      ),
+                      width: 36,
+                      height: 36,
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(8),
+                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                        shape: BoxShape.circle,
                       ),
-                      child: const Text(
-                        'View Profile',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      child: Icon(
+                        Icons.phone_outlined,
+                        color: Theme.of(context).primaryColor,
+                        size: 18,
                       ),
                     ),
                   ),
+                if (onWhatsAppPressed != null) ...[
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: onWhatsAppPressed,
+                    customBorder: const CircleBorder(),
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF25D366).withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: Color(0xFF25D366),
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ],
 
                 // Rating and View Button
                 // Column(

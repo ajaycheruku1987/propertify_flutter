@@ -593,6 +593,72 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           agentImage: postDetails.owner?.profileImage ?? '',
                           rating: postDetails.rating?.toString() ?? '-',
                           userId: postDetails.owner?.id,
+                          onCallPressed: isOwner
+                              ? null
+                              : () {
+                                  if (!context
+                                      .read<HomeBloc>()
+                                      .state
+                                      .showAddButton) {
+                                    context.push(AuthScreen.routeName);
+                                    return;
+                                  }
+
+                                  String mobile =
+                                      postDetails.owner?.phoneNumber ?? '';
+                                  if (mobile.isNotEmpty) {
+                                    final Uri launchUri =
+                                        Uri(scheme: 'tel', path: mobile);
+                                    launchUrl(launchUri);
+                                  }
+                                },
+                          onWhatsAppPressed: isOwner
+                              ? null
+                              : () async {
+                                  if (!context
+                                      .read<HomeBloc>()
+                                      .state
+                                      .showAddButton) {
+                                    context.push(AuthScreen.routeName);
+                                    return;
+                                  }
+                                  String mobile =
+                                      postDetails.owner?.phoneNumber ?? '';
+                                  if (mobile.isNotEmpty) {
+                                    String cleanMobile =
+                                        mobile.replaceAll(RegExp(r'\D'), '');
+                                    var whatsappUrl =
+                                        "whatsapp://send?phone=$cleanMobile";
+                                    var uri = Uri.parse(whatsappUrl);
+
+                                    try {
+                                      if (await canLaunchUrl(uri)) {
+                                        await launchUrl(uri);
+                                      } else {
+                                        final webUri = Uri.parse(
+                                          'https://wa.me/$cleanMobile',
+                                        );
+                                        if (!await launchUrl(
+                                          webUri,
+                                          mode: LaunchMode.externalApplication,
+                                        )) {
+                                          throw 'Could not launch WhatsApp';
+                                        }
+                                      }
+                                    } catch (e) {
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Could not open WhatsApp',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  }
+                                },
                         ),
 
                         const SizedBox(height: 16),
@@ -718,7 +784,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           similarProperties: state.similarProperties ?? [],
                         ),
 
-                        const SizedBox(height: 100), // Space for bottom buttons
+                        const SizedBox(height: 32),
                       ],
                     ),
                   ),
@@ -728,25 +794,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           },
         ),
       ),
-      bottomNavigationBar: BlocBuilder<FeedBloc, FeedState>(
-        builder: (context, state) {
-          final postDetails = state.postDetails;
-          if (postDetails == null) return const SizedBox.shrink();
-
-          final currentUserId = context
-              .read<ProfileBloc>()
-              .state
-              .userProfile
-              ?.id;
-          final isOwner =
-              postDetails.owner?.id != null &&
-              postDetails.owner?.id == currentUserId;
-
-          return isOwner
-              ? const SizedBox.shrink()
-              : SafeArea(child: _buildContactButtons());
-        },
-      ),
+      bottomNavigationBar: null,
       // Bottom Action Buttons
     );
   }
@@ -853,118 +901,5 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
 
     return city;
-  }
-
-  Widget _buildContactButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () {
-                // Handle call functionality
-
-                if (!context.read<HomeBloc>().state.showAddButton) {
-                  context.push(AuthScreen.routeName);
-                  return;
-                }
-
-                String mobile =
-                    context
-                        .read<FeedBloc>()
-                        .state
-                        .postDetails
-                        ?.owner
-                        ?.phoneNumber ??
-                    '';
-                if (mobile.isNotEmpty) {
-                  final Uri launchUri = Uri(scheme: 'tel', path: mobile);
-                  launchUrl(launchUri);
-                }
-              },
-              icon: const FaIcon(
-                FontAwesomeIcons.phone,
-                color: Colors.white,
-                size: 20,
-              ),
-              label: const Text('Call'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6C5CE7),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () async {
-                // Handle WhatsApp functionality
-                if (!context.read<HomeBloc>().state.showAddButton) {
-                  context.push(AuthScreen.routeName);
-                  return;
-                }
-                String mobile =
-                    context
-                        .read<FeedBloc>()
-                        .state
-                        .postDetails
-                        ?.owner
-                        ?.phoneNumber ??
-                    '';
-                if (mobile.isNotEmpty) {
-                  String cleanMobile = mobile.replaceAll(RegExp(r'\D'), '');
-                  var whatsappUrl = "whatsapp://send?phone=$cleanMobile";
-                  var uri = Uri.parse(whatsappUrl);
-
-                  try {
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      // Fallback to web
-                      final webUri = Uri.parse('https://wa.me/$cleanMobile');
-                      if (!await launchUrl(
-                        webUri,
-                        mode: LaunchMode.externalApplication,
-                      )) {
-                        throw 'Could not launch WhatsApp';
-                      }
-                    }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Could not open WhatsApp'),
-                        ),
-                      );
-                    }
-                  }
-                }
-              },
-              icon: const FaIcon(
-                FontAwesomeIcons.whatsapp,
-                color: Colors.white,
-                size: 20,
-              ),
-              label: const Text('WhatsApp'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF25D366),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
