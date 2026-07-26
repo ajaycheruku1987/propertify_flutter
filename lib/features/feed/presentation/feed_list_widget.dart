@@ -187,7 +187,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        FaIcon(
                           FontAwesomeIcons.circleExclamation,
                           size: 60,
                           color: Colors.red.shade400,
@@ -241,7 +241,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        FaIcon(
                           FontAwesomeIcons.house,
                           size: 60,
                           color: Colors.grey,
@@ -303,7 +303,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                         Row(
                           children: [
                             IconButton(
-                              icon: Icon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.list,
                                 size: 20,
                                 color: !_isGridView
@@ -318,7 +318,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                               tooltip: 'List View',
                             ),
                             IconButton(
-                              icon: Icon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.borderAll,
                                 size: 20,
                                 color: _isGridView

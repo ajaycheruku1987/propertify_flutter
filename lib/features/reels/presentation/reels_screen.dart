@@ -13,7 +13,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../bloc/reels_bloc.dart';
-import '../../home/bloc/home_bloc.dart';
 import 'widgets/reel_comments_bottom_sheet.dart';
 import '../../profile/bloc/profile_bloc.dart';
 import '../../profile/presentation/other_user_profile_screen.dart';
@@ -29,20 +28,75 @@ class ReelsScreen extends StatefulWidget {
 
 class _ReelsScreenState extends State<ReelsScreen> {
   final PageController _pageController = PageController();
+  final TextEditingController _searchController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    context.read<ReelsBloc>().add(
-          const ReelsEvent.getReels(limit: 5),
-        );
+    _searchController.addListener(_handleSearchFieldChange);
+    _searchFocusNode.addListener(_handleSearchFieldChange);
+    _loadReels();
   }
 
   @override
   void dispose() {
+    _searchController
+      ..removeListener(_handleSearchFieldChange)
+      ..dispose();
+    _searchFocusNode
+      ..removeListener(_handleSearchFieldChange)
+      ..dispose();
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _handleSearchFieldChange() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _loadReels({String? query}) {
+    context.read<ReelsBloc>().add(ReelsEvent.getReels(limit: 5, search: query));
+  }
+
+  void _submitSearch([String? query]) {
+    final String trimmedQuery = (query ?? _searchController.text).trim();
+    _currentIndex = 0;
+
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
+    }
+
+    context.read<ReelsBloc>().add(
+      const ReelsEvent.getSearchSuggestions(query: ''),
+    );
+    _searchFocusNode.unfocus();
+    _loadReels(query: trimmedQuery.isEmpty ? null : trimmedQuery);
+  }
+
+  void _clearSearch() {
+    _searchController.clear();
+    _currentIndex = 0;
+
+    context.read<ReelsBloc>().add(
+      const ReelsEvent.getSearchSuggestions(query: ''),
+    );
+    _searchFocusNode.unfocus();
+
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
+    }
+
+    _loadReels();
+  }
+
+  bool _shouldShowSuggestions(ReelsState state) {
+    return _searchFocusNode.hasFocus &&
+        _searchController.text.trim().isNotEmpty &&
+        (state.suggestionsLoading || state.searchSuggestions.isNotEmpty);
   }
 
   @override
@@ -93,8 +147,11 @@ class _ReelsScreenState extends State<ReelsScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.video_library_outlined,
-                            color: Colors.white24, size: 64),
+                        Icon(
+                          Icons.video_library_outlined,
+                          color: Colors.white24,
+                          size: 64,
+                        ),
                         SizedBox(height: 16),
                         Text(
                           'No reels available',
@@ -114,11 +171,11 @@ class _ReelsScreenState extends State<ReelsScreen> {
                           state.hasMoreData &&
                           !state.isLoading) {
                         context.read<ReelsBloc>().add(
-                              ReelsEvent.getReels(
-                                skip: state.currentOffset,
-                                limit: 5,
-                              ),
-                            );
+                          ReelsEvent.getReels(
+                            skip: state.currentOffset,
+                            limit: 5,
+                          ),
+                        );
                       }
                     },
                     itemBuilder: (context, index) {
@@ -129,11 +186,134 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       );
                     },
                   ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _buildSearchBar(context),
+                        if (_shouldShowSuggestions(state)) ...[
+                          const SizedBox(height: 8),
+                          _buildSuggestions(state),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
               ],
             );
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildSearchBar(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.55),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: TextField(
+        controller: _searchController,
+        focusNode: _searchFocusNode,
+        textInputAction: TextInputAction.search,
+        style: const TextStyle(color: Colors.white),
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+          hintText: 'Search reels by description, location, or creator',
+          hintStyle: const TextStyle(color: Colors.white54),
+          prefixIcon: const Icon(Icons.search, color: Colors.white70),
+          suffixIcon: _searchController.text.trim().isEmpty
+              ? null
+              : IconButton(
+                  onPressed: _clearSearch,
+                  icon: const Icon(Icons.close, color: Colors.white70),
+                ),
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 14,
+          ),
+        ),
+        onChanged: (value) {
+          context.read<ReelsBloc>().add(
+            ReelsEvent.getSearchSuggestions(query: value.trim()),
+          );
+        },
+        onSubmitted: _submitSearch,
+      ),
+    );
+  }
+
+  Widget _buildSuggestions(ReelsState state) {
+    return Container(
+      constraints: const BoxConstraints(maxHeight: 260),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: state.suggestionsLoading
+          ? const Padding(
+              padding: EdgeInsets.all(24),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          : ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: state.searchSuggestions.length,
+              separatorBuilder: (_, __) =>
+                  const Divider(height: 1, color: Colors.white12),
+              itemBuilder: (context, index) {
+                final reel = state.searchSuggestions[index];
+                final String title = reel.description?.trim().isNotEmpty == true
+                    ? reel.description!.trim()
+                    : (reel.owner?.username?.trim().isNotEmpty == true
+                          ? reel.owner!.username!.trim()
+                          : 'Reel');
+                final String subtitle = [
+                  if (reel.owner?.username?.trim().isNotEmpty == true)
+                    '@${reel.owner!.username!.trim()}',
+                  if (reel.location?.trim().isNotEmpty == true)
+                    reel.location!.trim(),
+                ].join(' • ');
+
+                return ListTile(
+                  dense: true,
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.white12,
+                    backgroundImage:
+                        reel.owner?.profilepic?.trim().isNotEmpty == true
+                        ? NetworkImage(reel.owner!.profilepic!.trim())
+                        : null,
+                    child: reel.owner?.profilepic?.trim().isNotEmpty == true
+                        ? null
+                        : const Icon(Icons.person, color: Colors.white70),
+                  ),
+                  title: Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  subtitle: subtitle.isEmpty
+                      ? null
+                      : Text(
+                          subtitle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: Colors.white60),
+                        ),
+                  onTap: () {
+                    _searchController.text = title;
+                    _submitSearch(title);
+                  },
+                );
+              },
+            ),
     );
   }
 }
@@ -227,8 +407,9 @@ class ReelViewState extends State<ReelView>
   }
 
   Widget _buildPromotionDates(ReelResponseModel reel) {
-    final DateTime? start =
-        reel.createdAt != null ? DateTime.tryParse(reel.createdAt!) : null;
+    final DateTime? start = reel.createdAt != null
+        ? DateTime.tryParse(reel.createdAt!)
+        : null;
     final DateTime? end = reel.promotedUntil != null
         ? DateTime.tryParse(reel.promotedUntil!)
         : null;
@@ -348,8 +529,11 @@ class ReelViewState extends State<ReelView>
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white24),
                     ),
-                    child: const Icon(Icons.arrow_back,
-                        color: Colors.white, size: 20),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
               ),
@@ -389,7 +573,8 @@ class ReelViewState extends State<ReelView>
                                       ),
                                       actions: [
                                         TextButton(
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
                                           child: const Text('Cancel'),
                                         ),
                                         TextButton(
@@ -420,7 +605,8 @@ class ReelViewState extends State<ReelView>
                                       ),
                                       actions: [
                                         TextButton(
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
                                           child: const Text('Cancel'),
                                         ),
                                         TextButton(
@@ -476,7 +662,8 @@ class ReelViewState extends State<ReelView>
               child: BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, profileState) {
                   final currentUserId = profileState.userProfile?.id;
-                  final isOwner = currentUserId != null &&
+                  final isOwner =
+                      currentUserId != null &&
                       currentUserId == widget.reel.userId;
 
                   return Column(
@@ -771,7 +958,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             }
                           }
                         },
-                        icon: const Icon(
+                        icon: const FaIcon(
                           FontAwesomeIcons.whatsapp,
                           color: Colors.white,
                         ),
@@ -949,14 +1136,6 @@ class _BottomInfo extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  String _timeAgo(DateTime time) {
-    final diff = DateTime.now().difference(time);
-    if (diff.inDays >= 1) return '${diff.inDays} Days ago';
-    if (diff.inHours >= 1) return '${diff.inHours} Hours ago';
-    if (diff.inMinutes >= 1) return '${diff.inMinutes} Minutes ago';
-    return 'Just now';
   }
 }
 

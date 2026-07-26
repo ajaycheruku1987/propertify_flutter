@@ -110,7 +110,7 @@ class PropertyCardCompact extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 2.0),
-                        child: Icon(
+                        child: FaIcon(
                           FontAwesomeIcons.locationDot,
                           size: 10,
                           color: Colors.grey.shade600,
@@ -150,7 +150,10 @@ class PropertyCardCompact extends StatelessWidget {
             // Actions Section - Compact
             _buildActionsSection(context),
 
-            if (isTopAd && (promotedAt != null || promotedUntil != null || createdAt != null))
+            if (isTopAd &&
+                (promotedAt != null ||
+                    promotedUntil != null ||
+                    createdAt != null))
               _buildPromotionDates(),
           ],
         ),
@@ -162,8 +165,9 @@ class PropertyCardCompact extends StatelessWidget {
     final DateTime? start = promotedAt != null
         ? DateTime.tryParse(promotedAt!)
         : (createdAt != null ? DateTime.tryParse(createdAt!) : null);
-    final DateTime? end =
-        promotedUntil != null ? DateTime.tryParse(promotedUntil!) : null;
+    final DateTime? end = promotedUntil != null
+        ? DateTime.tryParse(promotedUntil!)
+        : null;
     final formatter = DateFormat('MMM d, yyyy');
 
     if (start == null && end == null) return const SizedBox.shrink();
@@ -256,7 +260,7 @@ class PropertyCardCompact extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
+                    const FaIcon(
                       FontAwesomeIcons.star,
                       color: Colors.white,
                       size: 8,
@@ -288,7 +292,7 @@ class PropertyCardCompact extends StatelessWidget {
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: FaIcon(
                   isFavorite
                       ? FontAwesomeIcons.solidHeart
                       : FontAwesomeIcons.heart,
@@ -311,7 +315,7 @@ class PropertyCardCompact extends StatelessWidget {
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: FaIcon(
                   FontAwesomeIcons.share,
                   color: Colors.grey.shade600,
                   size: 14,
@@ -339,7 +343,7 @@ class PropertyCardCompact extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );
@@ -390,7 +394,7 @@ class PropertyCardCompact extends StatelessWidget {
   }
 
   Widget _buildActionButton({
-    required IconData icon,
+    required FaIconData icon,
     required int count,
     required VoidCallback onPressed,
   }) {
@@ -399,7 +403,7 @@ class PropertyCardCompact extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: Colors.grey.shade600),
+          FaIcon(icon, size: 16, color: Colors.grey.shade600),
           const SizedBox(width: 4),
           Text(
             count.toString(),

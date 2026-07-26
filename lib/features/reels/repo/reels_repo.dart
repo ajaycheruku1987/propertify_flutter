@@ -6,7 +6,6 @@ import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
 
-import '../models/reel_model.dart';
 import '../models/reel_response_model.dart';
 import '../models/like_reel_response_model.dart';
 import '../models/reel_comment_model.dart';
@@ -75,40 +74,69 @@ class ReelsRepoImpl implements ReelsRepo {
       final l = limit ?? 10;
       final apiRequest = serviceLocator<ApiRequest>();
 
-      Map<String, dynamic> queryParams = {
-        'skip': s,
-        'limit': l,
-      };
+      final String trimmedSearch = search?.trim() ?? '';
+      final bool isSearchRequest = trimmedSearch.isNotEmpty;
+      final bool hasLocation =
+          latitude != null &&
+          latitude != 0.0 &&
+          longitude != null &&
+          longitude != 0.0;
 
-      if (search != null && search.isNotEmpty) {
-        queryParams['search'] = search;
-      } else {
-        // Only send location if we are NOT searching globally
-        if (latitude != null && latitude != 0.0) queryParams['latitude'] = latitude;
-        if (longitude != null && longitude != 0.0) queryParams['longitude'] = longitude;
-        if (latitude != null && latitude != 0.0 && longitude != null && longitude != 0.0) {
+      final Map<String, dynamic> queryParams = {'skip': s, 'limit': l};
+
+      late final String path;
+
+      if (isSearchRequest) {
+        queryParams['query'] = trimmedSearch;
+        queryParams['sort_by'] = 'trending';
+        queryParams['include_promoted'] = true;
+
+        if (hasLocation) {
+          queryParams['latitude'] = latitude;
+          queryParams['longitude'] = longitude;
           queryParams['radius_km'] = 5;
         }
+
+        path = '/api/reels/search${_buildQueryString(queryParams)}';
+      } else {
+        if (hasLocation) {
+          queryParams['latitude'] = latitude;
+          queryParams['longitude'] = longitude;
+          queryParams['radius_km'] = 5;
+        }
+
+        path = '/reels/${_buildQueryString(queryParams)}';
       }
 
-      String queryString =
-          '?${queryParams.entries.map((e) => '${e.key}=${Uri.encodeComponent(e.value.toString())}').join('&')}';
-
-      final response = await apiRequest.get('/reels/$queryString');
+      final response = await apiRequest.get(path);
 
       final responseData = await response.getResponse();
 
       return responseData.fold((failure) => Left(failure), (data) {
-        final List<dynamic> results = data is List ? data : [];
-        final List<ReelResponseModel> reels = results.map((e) {
-          final reelResponse = ReelResponseModel.fromJson(e);
-          return reelResponse;
-        }).toList();
+        final List<ReelResponseModel> reels = _parseReelsList(data);
         return Right(reels);
       });
     } catch (e) {
       return Left(ApiFailure('An error occurred: ${e.toString()}'));
     }
+  }
+
+  String _buildQueryString(Map<String, dynamic> queryParams) {
+    return '?${queryParams.entries.map((entry) => '${entry.key}=${Uri.encodeQueryComponent(entry.value.toString())}').join('&')}';
+  }
+
+  List<ReelResponseModel> _parseReelsList(dynamic data) {
+    final List<dynamic> rawList = switch (data) {
+      {'reels': final List<dynamic> reels} => reels,
+      {'results': final List<dynamic> reels} => reels,
+      List<dynamic> reels => reels,
+      _ => const <dynamic>[],
+    };
+
+    return rawList
+        .whereType<Map<String, dynamic>>()
+        .map(ReelResponseModel.fromJson)
+        .toList();
   }
 
   @override
@@ -194,7 +222,7 @@ class ReelsRepoImpl implements ReelsRepo {
       final responseData = await response.getResponse();
 
       return responseData.fold((failure) => Left(failure), (data) {
-        final List<dynamic> results = data is List ? data : [];
+        final List<dynamic> results = data is List ? data : const <dynamic>[];
         final List<ReelCommentModel> comments = results.map((e) {
           return ReelCommentModel.fromJson(e);
         }).toList();
@@ -255,7 +283,7 @@ class ReelsRepoImpl implements ReelsRepo {
       final responseData = await response.getResponse();
 
       return responseData.fold((failure) => Left(failure), (data) {
-        final List<dynamic> results = data is List ? data : [];
+        final List<dynamic> results = data is List ? data : const <dynamic>[];
         final List<ReelResponseModel> reels = results.map((e) {
           return ReelResponseModel.fromJson(e);
         }).toList();
@@ -290,7 +318,7 @@ class ReelsRepoImpl implements ReelsRepo {
       final responseData = await response.getResponse();
 
       return responseData.fold((failure) => Left(failure), (data) {
-        final List<dynamic> results = data is List ? data : [];
+        final List<dynamic> results = data is List ? data : const <dynamic>[];
         final List<ReelResponseModel> reels = results.map((e) {
           return ReelResponseModel.fromJson(e);
         }).toList();

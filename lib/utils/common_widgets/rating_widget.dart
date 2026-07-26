@@ -4,28 +4,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class RatingWidget extends StatefulWidget {
   /// Current rating value (1-5)
   final double rating;
-  
+
   /// Maximum rating value (default: 5)
   final int maxRating;
-  
+
   /// Size of each star icon
   final double size;
-  
+
   /// Color of filled stars
   final Color activeColor;
-  
+
   /// Color of unfilled stars
   final Color inactiveColor;
-  
+
   /// Whether the rating is readonly (non-interactive)
   final bool readonly;
-  
+
   /// Callback when rating changes
   final ValueChanged<double>? onRatingChanged;
-  
+
   /// Allow half ratings
   final bool allowHalfRating;
-  
+
   /// Spacing between stars
   final double spacing;
 
@@ -40,7 +40,10 @@ class RatingWidget extends StatefulWidget {
     this.onRatingChanged,
     this.allowHalfRating = false,
     this.spacing = 4.0,
-  }) : assert(rating >= 0 && rating <= maxRating, 'Rating must be between 0 and maxRating');
+  }) : assert(
+         rating >= 0 && rating <= maxRating,
+         'Rating must be between 0 and maxRating',
+       );
 
   @override
   State<RatingWidget> createState() => _RatingWidgetState();
@@ -65,12 +68,12 @@ class _RatingWidgetState extends State<RatingWidget> {
 
   void _handleTap(int index) {
     if (widget.readonly) return;
-    
+
     final newRating = (index + 1).toDouble();
     setState(() {
       _currentRating = newRating;
     });
-    
+
     widget.onRatingChanged?.call(newRating);
   }
 
@@ -81,16 +84,16 @@ class _RatingWidgetState extends State<RatingWidget> {
     final localPosition = box.globalToLocal(details.globalPosition);
     final starWidth = widget.size + widget.spacing;
     final relativePosition = localPosition.dx - (index * starWidth);
-    
+
     double newRating;
     if (relativePosition < widget.size / 2) {
       newRating = index + 0.5;
     } else {
       newRating = (index + 1).toDouble();
     }
-    
+
     newRating = newRating.clamp(0.0, widget.maxRating.toDouble());
-    
+
     if (newRating != _currentRating) {
       setState(() {
         _currentRating = newRating;
@@ -101,7 +104,7 @@ class _RatingWidgetState extends State<RatingWidget> {
 
   Widget _buildStar(int index) {
     final starValue = index + 1;
-    IconData iconData;
+    FaIconData iconData;
     Color color;
 
     if (_currentRating >= starValue) {
@@ -118,11 +121,7 @@ class _RatingWidgetState extends State<RatingWidget> {
       color = widget.inactiveColor;
     }
 
-    Widget star = FaIcon(
-      iconData,
-      size: widget.size,
-      color: color,
-    );
+    Widget star = FaIcon(iconData, size: widget.size, color: color);
 
     if (widget.readonly) {
       return star;
@@ -130,13 +129,10 @@ class _RatingWidgetState extends State<RatingWidget> {
 
     return GestureDetector(
       onTap: () => _handleTap(index),
-      onPanUpdate: widget.allowHalfRating 
+      onPanUpdate: widget.allowHalfRating
           ? (details) => _handlePanUpdate(details, index)
           : null,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: star,
-      ),
+      child: MouseRegion(cursor: SystemMouseCursors.click, child: star),
     );
   }
 
@@ -199,10 +195,11 @@ class RatingDisplay extends StatelessWidget {
           SizedBox(width: spacing * 2),
           Text(
             rating.toStringAsFixed(1),
-            style: ratingTextStyle ?? 
-                Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Colors.grey[600],
-                ),
+            style:
+                ratingTextStyle ??
+                Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
           ),
         ],
       ],

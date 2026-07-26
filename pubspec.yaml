@@ -68,7 +68,7 @@ dependencies:
   go_router: 15.0.0
   geocoding: 4.0.0
   flutter_map: 8.2.1
-  font_awesome_flutter: 10.7.0
+  font_awesome_flutter: ^11.0.0
   carousel_slider:
   url_launcher: 6.2.5
   shimmer: 3.0.0

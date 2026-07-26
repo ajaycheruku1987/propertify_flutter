@@ -224,9 +224,9 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                     children: [
                       Text(
                         widget.createdAt != null
-                            ? DateFormat('dd MMM').format(
-                          DateTime.parse(widget.createdAt!),
-                        )
+                            ? DateFormat(
+                                'dd MMM',
+                              ).format(DateTime.parse(widget.createdAt!))
                             : '',
                         style: const TextStyle(
                           fontSize: 11,
@@ -278,7 +278,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                               ).primaryColor.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(18),
                             ),
-                            child: Icon(
+                            child: FaIcon(
                               FontAwesomeIcons.whatsapp,
                               color: Theme.of(context).primaryColor,
                               size: 18,

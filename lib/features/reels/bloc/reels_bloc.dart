@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/features/reels/models/reel_response_model.dart';
-import 'package:propertify/features/reels/models/reel_view_response_model.dart';
 
 import '../../../core/failure.dart';
 import '../../../core/notify_message.dart';
@@ -54,23 +53,25 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
   ) async {
     try {
       final bool isNewSearch = (event.skip ?? 0) == 0;
-      emit(_mergeState(
-        isLoading: true,
-        isError: false,
-        searchQuery: event.search,
-        reelsList: isNewSearch ? [] : null,
-        currentOffset: isNewSearch ? 0 : null,
-        hasMoreData: isNewSearch ? true : null,
-      ));
-
-      final Either<Failure, List<ReelResponseModel>> reelsEither =
-          await _repo.getReels(
-        skip: event.skip,
-        limit: event.limit,
-        latitude: _homeBloc.state.currentLat,
-        longitude: _homeBloc.state.currentLng,
-        search: event.search ?? state.searchQuery,
+      emit(
+        _mergeState(
+          isLoading: true,
+          isError: false,
+          searchQuery: event.search,
+          reelsList: isNewSearch ? const <ReelResponseModel>[] : null,
+          currentOffset: isNewSearch ? 0 : null,
+          hasMoreData: isNewSearch ? true : null,
+        ),
       );
+
+      final Either<Failure, List<ReelResponseModel>> reelsEither = await _repo
+          .getReels(
+            skip: event.skip,
+            limit: event.limit,
+            latitude: _homeBloc.state.currentLat,
+            longitude: _homeBloc.state.currentLng,
+            search: event.search ?? state.searchQuery,
+          );
 
       reelsEither.fold(
         (failure) {
@@ -429,11 +430,11 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
               .toList();
 
           final updatedOtherUserReels = state.otherUserReels
-              ?.where((reel) => reel.id != event.reelId)
+              .where((reel) => reel.id != event.reelId)
               .toList();
 
           final updatedMyReels = state.myReels
-              ?.where((reel) => reel.id != event.reelId)
+              .where((reel) => reel.id != event.reelId)
               .toList();
 
           emit(
@@ -505,12 +506,12 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
   ) async {
     if (event.query.isEmpty) {
       _suggestionTimer?.cancel();
-      emit(_mergeState(searchSuggestions: []));
+      emit(_mergeState(searchSuggestions: const <ReelResponseModel>[]));
       return;
     }
 
     _suggestionTimer?.cancel();
-    
+
     // Completer to wait for debounce
     final completer = Completer<void>();
     _suggestionTimer = Timer(const Duration(milliseconds: 500), () {
@@ -521,40 +522,52 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
 
     try {
       emit(_mergeState(suggestionsLoading: true));
-      
-      final Either<Failure, List<ReelResponseModel>> result =
-          await _repo.getReels(
-        skip: 0,
-        limit: 10,
-        search: event.query,
-      );
+
+      final Either<Failure, List<ReelResponseModel>> result = await _repo
+          .getReels(skip: 0, limit: 10, search: event.query);
 
       result.fold(
         (failure) {
-          emit(_mergeState(suggestionsLoading: false, searchSuggestions: []));
+          emit(
+            _mergeState(
+              suggestionsLoading: false,
+              searchSuggestions: const <ReelResponseModel>[],
+            ),
+          );
         },
         (reels) {
           final String query = event.query.toLowerCase();
-          final List<ReelResponseModel> filteredSuggestions = reels.where((reel) {
+          final List<ReelResponseModel> filteredSuggestions = reels.where((
+            reel,
+          ) {
             final String description = (reel.description ?? '').toLowerCase();
             final String location = (reel.location ?? '').toLowerCase();
             final String username = (reel.owner?.username ?? '').toLowerCase();
-            final String name = '${reel.owner?.firstName ?? ''} ${reel.owner?.lastName ?? ''}'.toLowerCase();
-            
-            return description.contains(query) || 
-                   location.contains(query) || 
-                   username.contains(query) || 
-                   name.contains(query);
+            final String name =
+                '${reel.owner?.firstName ?? ''} ${reel.owner?.lastName ?? ''}'
+                    .toLowerCase();
+
+            return description.contains(query) ||
+                location.contains(query) ||
+                username.contains(query) ||
+                name.contains(query);
           }).toList();
 
-          emit(_mergeState(
-            suggestionsLoading: false, 
-            searchSuggestions: filteredSuggestions,
-          ));
+          emit(
+            _mergeState(
+              suggestionsLoading: false,
+              searchSuggestions: filteredSuggestions,
+            ),
+          );
         },
       );
     } catch (e) {
-      emit(_mergeState(suggestionsLoading: false, searchSuggestions: []));
+      emit(
+        _mergeState(
+          suggestionsLoading: false,
+          searchSuggestions: const <ReelResponseModel>[],
+        ),
+      );
     }
   }
 

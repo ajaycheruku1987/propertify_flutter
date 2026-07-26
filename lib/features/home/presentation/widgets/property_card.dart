@@ -256,28 +256,26 @@ class _PropertyCardState extends State<PropertyCard> {
 
           // Favorite Button
           // if (context.read<HomeBloc>().state.showAddButton)
-            Positioned(
-              top: 12,
-              right: 8,
-              child: GestureDetector(
-                onTap: widget.onFavoritePressed,
-                behavior: HitTestBehavior.opaque,
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: widget.isFavorite
-                        ? Colors.red
-                        : Colors.grey.shade600,
-                    size: 20,
-                  ),
+          Positioned(
+            top: 12,
+            right: 8,
+            child: GestureDetector(
+              onTap: widget.onFavoritePressed,
+              behavior: HitTestBehavior.opaque,
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  widget.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: widget.isFavorite ? Colors.red : Colors.grey.shade600,
+                  size: 20,
                 ),
               ),
             ),
+          ),
           // Share Button
           Positioned(
             top: 60,
@@ -291,7 +289,7 @@ class _PropertyCardState extends State<PropertyCard> {
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: FaIcon(
                   FontAwesomeIcons.share,
                   color: Colors.grey.shade600,
                   size: 20,
@@ -390,7 +388,7 @@ class _PropertyCardState extends State<PropertyCard> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 2.0),
-                child: Icon(
+                child: FaIcon(
                   FontAwesomeIcons.locationDot,
                   size: 14,
                   color: Colors.grey.shade600,
@@ -409,7 +407,10 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ],
           ),
-          if (widget.isTopAd && (widget.promotedAt != null || widget.promotedUntil != null || widget.createdAt != null)) ...[
+          if (widget.isTopAd &&
+              (widget.promotedAt != null ||
+                  widget.promotedUntil != null ||
+                  widget.createdAt != null)) ...[
             const SizedBox(height: 8),
             _buildPromotionDates(),
           ],
@@ -421,7 +422,9 @@ class _PropertyCardState extends State<PropertyCard> {
   Widget _buildPromotionDates() {
     final DateTime? start = widget.promotedAt != null
         ? DateTime.tryParse(widget.promotedAt!)
-        : (widget.createdAt != null ? DateTime.tryParse(widget.createdAt!) : null);
+        : (widget.createdAt != null
+              ? DateTime.tryParse(widget.createdAt!)
+              : null);
     final DateTime? end = widget.promotedUntil != null
         ? DateTime.tryParse(widget.promotedUntil!)
         : null;
@@ -522,7 +525,7 @@ class _PropertyCardState extends State<PropertyCard> {
   }
 
   Widget _buildActionButton({
-    required IconData icon,
+    required FaIconData icon,
     required String label,
     required VoidCallback onPressed,
     int? count,
@@ -532,7 +535,7 @@ class _PropertyCardState extends State<PropertyCard> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: Colors.grey.shade600),
+          FaIcon(icon, size: 16, color: Colors.grey.shade600),
           if (count != null) ...[
             const SizedBox(width: 6),
             Text(

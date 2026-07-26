@@ -109,7 +109,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildInteractionItem({
-    required IconData icon,
+    required FaIconData icon,
     required String label,
     required Color color,
     VoidCallback? onTap,
@@ -119,7 +119,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 18, color: color),
+          FaIcon(icon, size: 18, color: color),
           const SizedBox(width: 6),
           Text(
             label,
@@ -336,7 +336,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             ],
           ),
           child: IconButton(
-            icon: const Icon(
+            icon: const FaIcon(
               FontAwesomeIcons.arrowLeft,
               color: Colors.black,
               size: 20,
@@ -508,8 +508,11 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             }
 
             final postDetails = state.postDetails!;
-            final currentUserId =
-                context.read<ProfileBloc>().state.userProfile?.id;
+            final currentUserId = context
+                .read<ProfileBloc>()
+                .state
+                .userProfile
+                ?.id;
             final isOwner =
                 postDetails.owner?.id != null &&
                 postDetails.owner?.id == currentUserId;
@@ -730,12 +733,18 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           final postDetails = state.postDetails;
           if (postDetails == null) return const SizedBox.shrink();
 
-          final currentUserId =
-              context.read<ProfileBloc>().state.userProfile?.id;
-          final isOwner = postDetails.owner?.id != null &&
+          final currentUserId = context
+              .read<ProfileBloc>()
+              .state
+              .userProfile
+              ?.id;
+          final isOwner =
+              postDetails.owner?.id != null &&
               postDetails.owner?.id == currentUserId;
 
-          return isOwner ? const SizedBox.shrink() : SafeArea(child: _buildContactButtons());
+          return isOwner
+              ? const SizedBox.shrink()
+              : SafeArea(child: _buildContactButtons());
         },
       ),
       // Bottom Action Buttons
@@ -874,7 +883,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   launchUrl(launchUri);
                 }
               },
-              icon: const Icon(
+              icon: const FaIcon(
                 FontAwesomeIcons.phone,
                 color: Colors.white,
                 size: 20,
@@ -937,7 +946,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   }
                 }
               },
-              icon: const Icon(
+              icon: const FaIcon(
                 FontAwesomeIcons.whatsapp,
                 color: Colors.white,
                 size: 20,

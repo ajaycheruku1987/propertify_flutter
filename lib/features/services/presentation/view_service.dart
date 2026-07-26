@@ -482,9 +482,7 @@ Check it out on Propertify!
           ),
           bottomNavigationBar: isOwner
               ? null
-              : SafeArea(
-                  child: _buildBottomActionButtons(service),
-                ),
+              : SafeArea(child: _buildBottomActionButtons(service)),
         );
       },
     );
@@ -760,7 +758,7 @@ Check it out on Propertify!
   }
 
   Widget _buildSocialMediaButton({
-    required IconData icon,
+    required FaIconData icon,
     required String label,
     required Color color,
     // required VoidCallback onTap,
@@ -791,7 +789,7 @@ Check it out on Propertify!
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: color, size: 20),
+            FaIcon(icon, color: color, size: 20),
             const SizedBox(width: 8),
             FittedBox(
               child: Text(
@@ -1041,7 +1039,7 @@ Check it out on Propertify!
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    FaIcon(
                       FontAwesomeIcons.whatsapp,
                       color: Colors.white,
                       size: 20,

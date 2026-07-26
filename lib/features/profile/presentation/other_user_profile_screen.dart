@@ -783,7 +783,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      FaIcon(
                         FontAwesomeIcons.whatsapp,
                         color: Colors.white,
                         size: 20,
