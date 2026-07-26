@@ -8,7 +8,7 @@ import 'package:propertify/features/company/models/create_company_response.dart'
 import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:propertify/core/services/meta_service.dart';
+// import 'package:propertify/core/services/meta_service.dart'; // moved to backend
 
 abstract class CompanyRepository {
   Future<Either<Failure, dynamic>> createCompany({
@@ -98,21 +98,18 @@ class CompanyRepositoryImpl implements CompanyRepository {
       final response = await _apiRequest.post('/companies', data: formData);
 
       final responseData = await response.getResponse();
-      return responseData.fold(
-        (failure) => Left(failure),
-        (right) {
-          final createCompanyResponse = CreateCompanyResponse.fromJson(right);
-          
-          // Automatically post to Socials
-          serviceLocator<MetaService>().autoPostToSocials(
-            title: "New Company Registered: $companyName",
-            description: aboutCompany ?? "A new company has joined Propertify!",
-            imageUrl: createCompanyResponse.imageUrl, // Assuming this is the public URL
-          );
+      return responseData.fold((failure) => Left(failure), (right) {
+        final createCompanyResponse = CreateCompanyResponse.fromJson(right);
 
-          return Right(createCompanyResponse);
-        },
-      );
+        // Social auto-posting (Facebook/Instagram) moved to the backend.
+        // serviceLocator<MetaService>().autoPostToSocials(
+        //   title: "New Company Registered: $companyName",
+        //   description: aboutCompany ?? "A new company has joined Propertify!",
+        //   imageUrl: createCompanyResponse.imageUrl, // Assuming this is the public URL
+        // );
+
+        return Right(createCompanyResponse);
+      });
     } catch (e) {
       return Left(ApiFailure(e.toString()));
     }
@@ -207,7 +204,10 @@ class CompanyRepositoryImpl implements CompanyRepository {
       return responseData.fold((failure) => Left(failure), (right) {
         if (right is List) {
           final companies = right
-              .map((e) => MyCompanyResponseModel.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) =>
+                    MyCompanyResponseModel.fromJson(e as Map<String, dynamic>),
+              )
               .toList();
           return Right(companies);
         } else if (right is Map<String, dynamic>) {
@@ -229,7 +229,10 @@ class CompanyRepositoryImpl implements CompanyRepository {
     try {
       final response = await _apiRequest.delete('/companies/$companyId');
       final responseData = await response.getResponse();
-      return responseData.fold((failure) => Left(failure), (right) => Right(right));
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => Right(right),
+      );
     } catch (e) {
       return Left(ApiFailure(e.toString()));
     }
