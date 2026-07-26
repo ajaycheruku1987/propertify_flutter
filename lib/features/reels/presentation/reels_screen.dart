@@ -31,6 +31,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
   int _currentIndex = 0;
+  bool _isSearchExpanded = false;
 
   @override
   void initState() {
@@ -183,6 +184,14 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       return ReelView(
                         key: ValueKey(reel.id ?? index.toString()),
                         reel: reel,
+                        onSearchTap: _isSearchExpanded
+                            ? null
+                            : () {
+                                setState(() {
+                                  _isSearchExpanded = true;
+                                });
+                                _searchFocusNode.requestFocus();
+                              },
                       );
                     },
                   ),
@@ -210,6 +219,10 @@ class _ReelsScreenState extends State<ReelsScreen> {
   }
 
   Widget _buildSearchBar(BuildContext context) {
+    if (!_isSearchExpanded) {
+      return const SizedBox.shrink();
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.55),
@@ -223,9 +236,17 @@ class _ReelsScreenState extends State<ReelsScreen> {
         style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
         decoration: InputDecoration(
-          hintText: 'Search reels by description, location, or creator',
+          hintText: 'Search reels...',
           hintStyle: const TextStyle(color: Colors.white54),
-          prefixIcon: const Icon(Icons.search, color: Colors.white70),
+          prefixIcon: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white70),
+            onPressed: () {
+              setState(() {
+                _isSearchExpanded = false;
+              });
+              _clearSearch();
+            },
+          ),
           suffixIcon: _searchController.text.trim().isEmpty
               ? null
               : IconButton(
@@ -322,11 +343,13 @@ class ReelView extends StatefulWidget {
   final ReelResponseModel reel;
   final bool showBackButton;
   final bool isFromAdmin;
+  final VoidCallback? onSearchTap;
 
   const ReelView({
     required this.reel,
     this.showBackButton = false,
     this.isFromAdmin = false,
+    this.onSearchTap,
     super.key,
   });
 
@@ -539,112 +562,148 @@ class ReelViewState extends State<ReelView>
               ),
             ),
 
-          // Action Icons (Delete)
+          // Action Icons (Delete & Search)
           BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, profileState) {
               final currentUserId = profileState.userProfile?.id;
               final isOwner =
                   currentUserId != null && currentUserId == widget.reel.userId;
               final bool showDelete = widget.isFromAdmin || isOwner;
-
-              // Position calculation
-              final double deleteRight = 16;
+              final bool showSearch = widget.onSearchTap != null;
 
               return BlocBuilder<ReelsBloc, ReelsState>(
                 builder: (context, reelsState) {
                   return Stack(
                     children: [
-                      // Delete Button
-                      if (showDelete)
+                      if (showDelete || showSearch)
                         Positioned(
                           top: MediaQuery.of(context).padding.top + 8,
-                          right: deleteRight,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {
-                                if (widget.isFromAdmin) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: const Text('Delete Reel'),
-                                      content: const Text(
-                                        'Are you sure you want to delete this reel?',
+                          right: 16,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (showSearch) ...[
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: widget.onSearchTap,
+                                    customBorder: const CircleBorder(),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.3),
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white24),
                                       ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context),
-                                          child: const Text('Cancel'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            context.read<AdminBloc>().add(
-                                              AdminEvent.deleteAdminReel(
-                                                reelId: widget.reel.id ?? '',
+                                      child: const Icon(
+                                        Icons.search,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if (showDelete) const SizedBox(width: 8),
+                              ],
+                              if (showDelete)
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (widget.isFromAdmin) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: const Text('Delete Reel'),
+                                            content: const Text(
+                                              'Are you sure you want to delete this reel?',
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                child: const Text('Cancel'),
                                               ),
-                                            );
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text(
-                                            'Delete',
-                                            style: TextStyle(color: Colors.red),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else {
-                                  // User delete reel functionality
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: const Text('Delete Reel'),
-                                      content: const Text(
-                                        'Are you sure you want to delete this reel?',
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context),
-                                          child: const Text('Cancel'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            if (widget.reel.id != null) {
-                                              context.read<ReelsBloc>().add(
-                                                ReelsEvent.deleteReel(
-                                                  reelId: widget.reel.id!,
+                                              TextButton(
+                                                onPressed: () {
+                                                  context.read<AdminBloc>().add(
+                                                    AdminEvent.deleteAdminReel(
+                                                      reelId:
+                                                          widget.reel.id ?? '',
+                                                    ),
+                                                  );
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text(
+                                                  'Delete',
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
                                                 ),
-                                              );
-                                            }
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text(
-                                            'Delete',
-                                            style: TextStyle(color: Colors.red),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ],
+                                        );
+                                      } else {
+                                        // User delete reel functionality
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: const Text('Delete Reel'),
+                                            content: const Text(
+                                              'Are you sure you want to delete this reel?',
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  if (widget.reel.id != null) {
+                                                    context
+                                                        .read<ReelsBloc>()
+                                                        .add(
+                                                          ReelsEvent.deleteReel(
+                                                            reelId:
+                                                                widget.reel.id!,
+                                                          ),
+                                                        );
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text(
+                                                  'Delete',
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    customBorder: const CircleBorder(),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.3),
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white24),
+                                      ),
+                                      child: const Icon(
+                                        Icons.delete_outline,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
                                     ),
-                                  );
-                                }
-                              },
-                              customBorder: const CircleBorder(),
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.3),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white24),
+                                  ),
                                 ),
-                                child: const Icon(
-                                  Icons.delete_outline,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
+                            ],
                           ),
                         ),
                     ],
