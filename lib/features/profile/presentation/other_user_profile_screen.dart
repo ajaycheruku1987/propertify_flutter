@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
@@ -229,28 +230,43 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                 child: Column(
                   children: [
                     // Profile Picture
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey[300],
-                        image: profile.profilepic?.isNotEmpty ?? false
-                            ? DecorationImage(
-                                image: CachedNetworkImageProvider(
-                                  profile.profilepic!,
-                                ),
-                                fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        if (profile.profilepic?.isNotEmpty ?? false) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullScreenImageViewer(
+                                images: [profile.profilepic!],
+                                initialIndex: 0,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey[300],
+                          image: profile.profilepic?.isNotEmpty ?? false
+                              ? DecorationImage(
+                                  image: CachedNetworkImageProvider(
+                                    profile.profilepic!,
+                                  ),
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
+                        ),
+                        child: profile.profilepic?.isEmpty ?? true
+                            ? Icon(
+                                Icons.person,
+                                size: 60,
+                                color: Colors.grey[600],
                               )
                             : null,
                       ),
-                      child: profile.profilepic?.isEmpty ?? true
-                          ? Icon(
-                              Icons.person,
-                              size: 60,
-                              color: Colors.grey[600],
-                            )
-                          : null,
                     ),
                     const SizedBox(height: 16),
                     // Name

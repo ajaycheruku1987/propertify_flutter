@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/company/models/my_company_response_model.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
@@ -382,33 +383,48 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
       child: Row(
         children: [
           // Company Logo
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: imageUrl != null && imageUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const LogoPlaceholder(),
-                    )
-                  : const LogoPlaceholder(),
+          GestureDetector(
+            onTap: () {
+              if (imageUrl != null && imageUrl.isNotEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FullScreenImageViewer(
+                      images: [imageUrl],
+                      initialIndex: 0,
+                    ),
+                  ),
+                );
+              }
+            },
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: imageUrl != null && imageUrl.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const LogoPlaceholder(),
+                      )
+                    : const LogoPlaceholder(),
+              ),
             ),
           ),
           const SizedBox(width: 16),
@@ -689,21 +705,36 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           const SizedBox(height: 12),
           Row(
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundColor: Theme.of(
-                  context,
-                ).primaryColor.withValues(alpha: 0.1),
-                backgroundImage: profilepic != null && profilepic.isNotEmpty
-                    ? NetworkImage(profilepic)
-                    : null,
-                child: profilepic == null || profilepic.isEmpty
-                    ? Icon(
-                        Icons.person,
-                        size: 32,
-                        color: Theme.of(context).primaryColor,
-                      )
-                    : null,
+              GestureDetector(
+                onTap: () {
+                  if (profilepic != null && profilepic.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullScreenImageViewer(
+                          images: [profilepic],
+                          initialIndex: 0,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 28,
+                  backgroundColor: Theme.of(
+                    context,
+                  ).primaryColor.withValues(alpha: 0.1),
+                  backgroundImage: profilepic != null && profilepic.isNotEmpty
+                      ? NetworkImage(profilepic)
+                      : null,
+                  child: profilepic == null || profilepic.isEmpty
+                      ? Icon(
+                          Icons.person,
+                          size: 32,
+                          color: Theme.of(context).primaryColor,
+                        )
+                      : null,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(

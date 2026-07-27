@@ -6,12 +6,14 @@ import '../../../../utils/common_widgets/logo_placeholder.dart';
 class ProfileHeader extends StatelessWidget {
   final UserProfileModel? userProfile;
   final VoidCallback onImageTap;
+  final VoidCallback? onViewImage;
   final bool isLoading;
 
   const ProfileHeader({
     super.key,
     required this.userProfile,
     required this.onImageTap,
+    this.onViewImage,
     this.isLoading = false,
   });
 
@@ -22,37 +24,40 @@ class ProfileHeader extends StatelessWidget {
         // Profile Image with Camera Icon
         Stack(
           children: [
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.grey.shade300, width: 2),
-              ),
-              child: ClipOval(
-                child: userProfile?.profilepic != null
-                    ? Image.network(
-                        _getCacheBustedUrl(userProfile!.profilepic!),
-                        key: ValueKey(userProfile!.profilepic),
-                        fit: BoxFit.cover,
-                        cacheWidth: null,
-                        cacheHeight: null,
-                        errorBuilder: (context, error, stackTrace) {
-                          return _buildDefaultAvatar();
-                        },
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
-                      )
-                    : _buildDefaultAvatar(),
+            GestureDetector(
+              onTap: onViewImage,
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.grey.shade300, width: 2),
+                ),
+                child: ClipOval(
+                  child: userProfile?.profilepic != null
+                      ? Image.network(
+                          _getCacheBustedUrl(userProfile!.profilepic!),
+                          key: ValueKey(userProfile!.profilepic),
+                          fit: BoxFit.cover,
+                          cacheWidth: null,
+                          cacheHeight: null,
+                          errorBuilder: (context, error, stackTrace) {
+                            return _buildDefaultAvatar();
+                          },
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
+                        )
+                      : _buildDefaultAvatar(),
+                ),
               ),
             ),
             // Loading overlay

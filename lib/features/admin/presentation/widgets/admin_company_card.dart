@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/admin/models/admin_companies_response_model.dart';
 import 'package:propertify/features/admin/bloc/admin_bloc.dart';
 import 'package:propertify/features/company/presentation/my_company.dart';
@@ -125,31 +126,46 @@ class AdminCompanyCard extends StatelessWidget {
                 // Owner Info
                 Row(
                   children: [
-                    ClipOval(
-                      child: company.owner?.profilepic?.isNotEmpty ?? false
-                          ? CachedNetworkImage(
-                              imageUrl: company.owner!.profilepic!,
-                              width: 24,
-                              height: 24,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => Container(
+                    GestureDetector(
+                      onTap: () {
+                        if (company.owner?.profilepic?.isNotEmpty ?? false) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullScreenImageViewer(
+                                images: [company.owner!.profilepic!],
+                                initialIndex: 0,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      child: ClipOval(
+                        child: company.owner?.profilepic?.isNotEmpty ?? false
+                            ? CachedNetworkImage(
+                                imageUrl: company.owner!.profilepic!,
                                 width: 24,
                                 height: 24,
-                                color: Colors.grey.shade200,
-                                child: const Icon(Icons.person, size: 12),
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => Container(
+                                  width: 24,
+                                  height: 24,
+                                  color: Colors.grey.shade200,
+                                  child: const Icon(Icons.person, size: 12),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const LogoPlaceholder(
+                                      logoWidth: 12,
+                                      logoHeight: 12,
+                                    ),
+                              )
+                            : const LogoPlaceholder(
+                                width: 24,
+                                height: 24,
+                                logoWidth: 12,
+                                logoHeight: 12,
                               ),
-                              errorWidget: (context, url, error) =>
-                                  const LogoPlaceholder(
-                                    logoWidth: 12,
-                                    logoHeight: 12,
-                                  ),
-                            )
-                          : const LogoPlaceholder(
-                              width: 24,
-                              height: 24,
-                              logoWidth: 12,
-                              logoHeight: 12,
-                            ),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(

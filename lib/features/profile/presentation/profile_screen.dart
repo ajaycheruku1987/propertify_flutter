@@ -18,6 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
@@ -66,6 +67,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ? ProfileHeader(
                             userProfile: state.userProfile,
                             onImageTap: () => _showImagePicker(context),
+                            onViewImage: () {
+                              if (state.userProfile?.profilepic != null) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FullScreenImageViewer(
+                                      images: [state.userProfile!.profilepic!],
+                                      initialIndex: 0,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
                             isLoading: state.isLoading,
                           )
                         : Container(

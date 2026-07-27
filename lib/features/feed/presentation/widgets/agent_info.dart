@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:propertify/utils/string_extensions.dart';
 
@@ -55,25 +56,40 @@ class AgentInfo extends StatelessWidget {
             child: Row(
               children: [
                 // Agent Avatar
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey[300],
-                    image: agentImage.isNotEmpty
-                        ? DecorationImage(
-                            image: NetworkImage(agentImage),
-                            fit: BoxFit.cover,
-                            onError: (exception, stackTrace) {
-                              // Handle image loading error
-                            },
-                          )
+                GestureDetector(
+                  onTap: () {
+                    if (agentImage.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FullScreenImageViewer(
+                            images: [agentImage],
+                            initialIndex: 0,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[300],
+                      image: agentImage.isNotEmpty
+                          ? DecorationImage(
+                              image: NetworkImage(agentImage),
+                              fit: BoxFit.cover,
+                              onError: (exception, stackTrace) {
+                                // Handle image loading error
+                              },
+                            )
+                          : null,
+                    ),
+                    child: agentImage.isEmpty
+                        ? Icon(Icons.person, color: Colors.grey[600], size: 24)
                         : null,
                   ),
-                  child: agentImage.isEmpty
-                      ? Icon(Icons.person, color: Colors.grey[600], size: 24)
-                      : null,
                 ),
 
                 const SizedBox(width: 12),
