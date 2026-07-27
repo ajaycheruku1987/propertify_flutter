@@ -15,7 +15,8 @@ import '../models/sales_model.dart';
 import '../../../core/app_theme.dart';
 import 'package:propertify/utils/fullscreenwidget.dart';
 import '../../../utils/custom_toast.dart';
-import '../../../utils/string_extensions.dart';
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:share_plus/share_plus.dart';
 import '../bloc/sales_bloc.dart';
 
 import 'widgets/static_location_map_view.dart';
@@ -53,6 +54,63 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
         SalesEvent.getProjectUnits(projectId: widget.sale.id!),
       );
     }
+  }
+
+  void _handleShare(SaleRecord? sale) {
+    if (sale == null) return;
+
+    final String projectTitle = sale.projectName ?? 'Project';
+    final String projectDescription =
+        sale.description ?? 'Check out this project';
+    String postedBy = 'Propertify User';
+    if (sale.owner != null) {
+      final owner = sale.owner!;
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        postedBy = '$firstName $lastName'.trim().toTitleCase();
+      } else {
+        postedBy = (owner.username ?? 'Propertify User').toTitleCase();
+      }
+    }
+
+    final String priceRange =
+        sale.minPrice != null && sale.maxPrice != null
+            ? '${formatPrice(sale.minPrice)} - ${formatPrice(sale.maxPrice)}'
+            : sale.minPrice != null
+            ? formatPrice(sale.minPrice)
+            : '';
+
+    final String location =
+        '${sale.city ?? ''}${sale.state != null ? ", ${sale.state}" : ""}'
+            .trim();
+
+    final String imageUrl =
+        sale.imageUrls != null && sale.imageUrls!.isNotEmpty
+            ? sale.imageUrls!.first
+            : '';
+
+    final String shareMessage = '''
+🏢 $projectTitle
+${priceRange.isNotEmpty ? '💰 Price: $priceRange' : ''}
+📍 Location: $location
+
+📝 Description:
+$projectDescription
+
+👤 Posted by: $postedBy
+
+${imageUrl.isNotEmpty ? '📷 Image: $imageUrl' : ''}
+
+Check out this project on Propertify!
+
+📱 Download the app:
+Android: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
+iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
+'''
+        .trim();
+
+    Share.share(shareMessage, subject: projectTitle);
   }
 
   @override
@@ -128,9 +186,7 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
                 ),
                 child: IconButton(
                   icon: const Icon(Icons.share, color: Colors.black),
-                  onPressed: () {
-                    // Handle share functionality
-                  },
+                  onPressed: () => _handleShare(sale),
                 ),
               ),
             ],
