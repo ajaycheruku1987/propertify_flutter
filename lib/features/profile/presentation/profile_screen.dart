@@ -715,6 +715,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             _socialIcon(
               icon: FontAwesomeIcons.facebook,
+
               color: const Color(0xFF1877F2),
               onTap: () => _launchExternalUrl('https://www.facebook.com/1251613104692490'),
             ),

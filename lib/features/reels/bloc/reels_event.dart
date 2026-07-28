@@ -3,8 +3,14 @@ part of 'reels_bloc.dart';
 @freezed
 class ReelsEvent with _$ReelsEvent {
   const factory ReelsEvent.reset() = _Reset;
-  const factory ReelsEvent.getReels({int? skip, int? limit, String? search}) =
-      _GetReelsEvent;
+  const factory ReelsEvent.getReels({
+    int? skip,
+    int? limit,
+    String? search,
+    List<String>? categories,
+    double? radiusKm,
+    String? sortBy,
+  }) = _GetReelsEvent;
   const factory ReelsEvent.isLoading() = _IsLoading;
 
   // Save details from create reel form

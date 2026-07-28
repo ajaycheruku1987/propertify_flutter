@@ -18,6 +18,9 @@ abstract class ReelsRepo {
     double? latitude,
     double? longitude,
     String? search,
+    List<String>? categories,
+    double? radiusKm,
+    String? sortBy,
   });
 
   Future<Either<Failure, ReelResponseModel>> createReel({
@@ -68,6 +71,9 @@ class ReelsRepoImpl implements ReelsRepo {
     double? latitude,
     double? longitude,
     String? search,
+    List<String>? categories,
+    double? radiusKm,
+    String? sortBy,
   }) async {
     try {
       final s = skip ?? 0;
@@ -75,7 +81,9 @@ class ReelsRepoImpl implements ReelsRepo {
       final apiRequest = serviceLocator<ApiRequest>();
 
       final String trimmedSearch = search?.trim() ?? '';
-      final bool isSearchRequest = trimmedSearch.isNotEmpty;
+      final bool isSearchRequest =
+          trimmedSearch.isNotEmpty ||
+          (categories != null && categories.isNotEmpty);
       final bool hasLocation =
           latitude != null &&
           latitude != 0.0 &&
@@ -87,25 +95,28 @@ class ReelsRepoImpl implements ReelsRepo {
       late final String path;
 
       if (isSearchRequest) {
-        queryParams['query'] = trimmedSearch;
-        queryParams['sort_by'] = 'trending';
+        if (trimmedSearch.isNotEmpty) queryParams['query'] = trimmedSearch;
+        if (categories != null && categories.isNotEmpty) {
+          queryParams['categories'] = categories.join(',');
+        }
+        queryParams['sort_by'] = sortBy ?? 'trending';
         queryParams['include_promoted'] = true;
 
         if (hasLocation) {
           queryParams['latitude'] = latitude;
           queryParams['longitude'] = longitude;
-          queryParams['radius_km'] = 5;
+          queryParams['radius_km'] = radiusKm ?? 10.0;
         }
 
-        path = '/api/reels/search${_buildQueryString(queryParams)}';
+        path = '/reels/search${_buildQueryString(queryParams)}';
       } else {
         if (hasLocation) {
           queryParams['latitude'] = latitude;
           queryParams['longitude'] = longitude;
-          queryParams['radius_km'] = 5;
+          queryParams['radius_km'] = radiusKm ?? 5;
         }
 
-        path = '/reels/${_buildQueryString(queryParams)}';
+        path = '/reels${_buildQueryString(queryParams)}';
       }
 
       final response = await apiRequest.get(path);
@@ -183,7 +194,7 @@ class ReelsRepoImpl implements ReelsRepo {
         ),
       );
 
-      final response = await apiRequest.post('/reels/', data: formData);
+      final response = await apiRequest.post('/reels', data: formData);
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),

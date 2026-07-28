@@ -19,6 +19,9 @@ class ReelsState with _$ReelsState {
     @Default(<ReelResponseModel>[]) List<ReelResponseModel> myReels,
     @Default(false) bool isLoadingMyReels,
     @Default('') String searchQuery,
+    @Default(<String>[]) List<String> selectedCategories,
+    @Default(10.0) double radiusKm,
+    @Default('trending') String sortBy,
     @Default(<ReelResponseModel>[]) List<ReelResponseModel> searchSuggestions,
     @Default(false) bool suggestionsLoading,
   }) = _ReelsState;

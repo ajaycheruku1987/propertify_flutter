@@ -329,8 +329,15 @@ class _ReelsScreenState extends State<ReelsScreen> {
                           style: const TextStyle(color: Colors.white60),
                         ),
                   onTap: () {
-                    _searchController.text = title;
-                    _submitSearch(title);
+                    // Use the original search term if available, or the title
+                    final String actualSearch = reel.description?.trim().isNotEmpty == true 
+                        ? reel.description!.trim() 
+                        : (reel.owner?.username?.trim().isNotEmpty == true 
+                            ? reel.owner!.username!.trim() 
+                            : title);
+                    
+                    _searchController.text = actualSearch;
+                    _submitSearch(actualSearch);
                   },
                 );
               },

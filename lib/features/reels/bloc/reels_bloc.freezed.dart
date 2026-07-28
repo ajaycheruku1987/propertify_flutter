@@ -19,7 +19,9 @@ mixin _$ReelsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -49,7 +51,9 @@ mixin _$ReelsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -78,7 +82,9 @@ mixin _$ReelsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -216,7 +222,9 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -249,7 +257,9 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -281,7 +291,9 @@ class _$ResetImpl implements _Reset {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -388,7 +400,13 @@ abstract class _$$GetReelsEventImplCopyWith<$Res> {
           _$GetReelsEventImpl value, $Res Function(_$GetReelsEventImpl) then) =
       __$$GetReelsEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? skip, int? limit, String? search});
+  $Res call(
+      {int? skip,
+      int? limit,
+      String? search,
+      List<String>? categories,
+      double? radiusKm,
+      String? sortBy});
 }
 
 /// @nodoc
@@ -405,6 +423,9 @@ class __$$GetReelsEventImplCopyWithImpl<$Res>
     Object? skip = freezed,
     Object? limit = freezed,
     Object? search = freezed,
+    Object? categories = freezed,
+    Object? radiusKm = freezed,
+    Object? sortBy = freezed,
   }) {
     return _then(_$GetReelsEventImpl(
       skip: freezed == skip
@@ -419,6 +440,18 @@ class __$$GetReelsEventImplCopyWithImpl<$Res>
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
               as String?,
+      categories: freezed == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      radiusKm: freezed == radiusKm
+          ? _value.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sortBy: freezed == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -426,7 +459,14 @@ class __$$GetReelsEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReelsEventImpl implements _GetReelsEvent {
-  const _$GetReelsEventImpl({this.skip, this.limit, this.search});
+  const _$GetReelsEventImpl(
+      {this.skip,
+      this.limit,
+      this.search,
+      final List<String>? categories,
+      this.radiusKm,
+      this.sortBy})
+      : _categories = categories;
 
   @override
   final int? skip;
@@ -434,10 +474,24 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
   final int? limit;
   @override
   final String? search;
+  final List<String>? _categories;
+  @override
+  List<String>? get categories {
+    final value = _categories;
+    if (value == null) return null;
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final double? radiusKm;
+  @override
+  final String? sortBy;
 
   @override
   String toString() {
-    return 'ReelsEvent.getReels(skip: $skip, limit: $limit, search: $search)';
+    return 'ReelsEvent.getReels(skip: $skip, limit: $limit, search: $search, categories: $categories, radiusKm: $radiusKm, sortBy: $sortBy)';
   }
 
   @override
@@ -447,11 +501,17 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
             other is _$GetReelsEventImpl &&
             (identical(other.skip, skip) || other.skip == skip) &&
             (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.search, search) || other.search == search));
+            (identical(other.search, search) || other.search == search) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories) &&
+            (identical(other.radiusKm, radiusKm) ||
+                other.radiusKm == radiusKm) &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, skip, limit, search);
+  int get hashCode => Object.hash(runtimeType, skip, limit, search,
+      const DeepCollectionEquality().hash(_categories), radiusKm, sortBy);
 
   @JsonKey(ignore: true)
   @override
@@ -463,7 +523,9 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -489,14 +551,16 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
-    return getReels(skip, limit, search);
+    return getReels(skip, limit, search, categories, radiusKm, sortBy);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -521,14 +585,16 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
-    return getReels?.call(skip, limit, search);
+    return getReels?.call(skip, limit, search, categories, radiusKm, sortBy);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -555,7 +621,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     required TResult orElse(),
   }) {
     if (getReels != null) {
-      return getReels(skip, limit, search);
+      return getReels(skip, limit, search, categories, radiusKm, sortBy);
     }
     return orElse();
   }
@@ -629,11 +695,17 @@ abstract class _GetReelsEvent implements ReelsEvent {
   const factory _GetReelsEvent(
       {final int? skip,
       final int? limit,
-      final String? search}) = _$GetReelsEventImpl;
+      final String? search,
+      final List<String>? categories,
+      final double? radiusKm,
+      final String? sortBy}) = _$GetReelsEventImpl;
 
   int? get skip;
   int? get limit;
   String? get search;
+  List<String>? get categories;
+  double? get radiusKm;
+  String? get sortBy;
   @JsonKey(ignore: true)
   _$$GetReelsEventImplCopyWith<_$GetReelsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -678,7 +750,9 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -711,7 +785,9 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -743,7 +819,9 @@ class _$IsLoadingImpl implements _IsLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -913,7 +991,9 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -946,7 +1026,9 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -978,7 +1060,9 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -1282,7 +1366,9 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -1316,7 +1402,9 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -1349,7 +1437,9 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -1543,7 +1633,9 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -1576,7 +1668,9 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -1608,7 +1702,9 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -1781,7 +1877,9 @@ class _$GetReelCommentsImpl implements _GetReelComments {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -1814,7 +1912,9 @@ class _$GetReelCommentsImpl implements _GetReelComments {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -1846,7 +1946,9 @@ class _$GetReelCommentsImpl implements _GetReelComments {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -2027,7 +2129,9 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -2060,7 +2164,9 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -2092,7 +2198,9 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -2267,7 +2375,9 @@ class _$RecordReelViewImpl implements _RecordReelView {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -2300,7 +2410,9 @@ class _$RecordReelViewImpl implements _RecordReelView {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -2332,7 +2444,9 @@ class _$RecordReelViewImpl implements _RecordReelView {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -2505,7 +2619,9 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -2538,7 +2654,9 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -2570,7 +2688,9 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -2742,7 +2862,9 @@ class _$DeleteReelImpl implements _DeleteReel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -2775,7 +2897,9 @@ class _$DeleteReelImpl implements _DeleteReel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -2807,7 +2931,9 @@ class _$DeleteReelImpl implements _DeleteReel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -2952,7 +3078,9 @@ class _$GetMyReelsImpl implements _GetMyReels {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -2985,7 +3113,9 @@ class _$GetMyReelsImpl implements _GetMyReels {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -3017,7 +3147,9 @@ class _$GetMyReelsImpl implements _GetMyReels {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -3185,7 +3317,9 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function(int? skip, int? limit, String? search) getReels,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
     required TResult Function() isLoading,
     required TResult Function(CreateReelModel createReelModel)
         updateReelDetails,
@@ -3218,7 +3352,9 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
-    TResult? Function(int? skip, int? limit, String? search)? getReels,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult? Function()? isLoading,
     TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult? Function(
@@ -3250,7 +3386,9 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function(int? skip, int? limit, String? search)? getReels,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
     TResult Function()? isLoading,
     TResult Function(CreateReelModel createReelModel)? updateReelDetails,
     TResult Function(
@@ -3376,6 +3514,9 @@ mixin _$ReelsState {
   List<ReelResponseModel> get myReels => throw _privateConstructorUsedError;
   bool get isLoadingMyReels => throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError;
+  List<String> get selectedCategories => throw _privateConstructorUsedError;
+  double get radiusKm => throw _privateConstructorUsedError;
+  String get sortBy => throw _privateConstructorUsedError;
   List<ReelResponseModel> get searchSuggestions =>
       throw _privateConstructorUsedError;
   bool get suggestionsLoading => throw _privateConstructorUsedError;
@@ -3408,6 +3549,9 @@ abstract class $ReelsStateCopyWith<$Res> {
       List<ReelResponseModel> myReels,
       bool isLoadingMyReels,
       String searchQuery,
+      List<String> selectedCategories,
+      double radiusKm,
+      String sortBy,
       List<ReelResponseModel> searchSuggestions,
       bool suggestionsLoading});
 }
@@ -3441,6 +3585,9 @@ class _$ReelsStateCopyWithImpl<$Res, $Val extends ReelsState>
     Object? myReels = null,
     Object? isLoadingMyReels = null,
     Object? searchQuery = null,
+    Object? selectedCategories = null,
+    Object? radiusKm = null,
+    Object? sortBy = null,
     Object? searchSuggestions = null,
     Object? suggestionsLoading = null,
   }) {
@@ -3509,6 +3656,18 @@ class _$ReelsStateCopyWithImpl<$Res, $Val extends ReelsState>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedCategories: null == selectedCategories
+          ? _value.selectedCategories
+          : selectedCategories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      radiusKm: null == radiusKm
+          ? _value.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
+              as double,
+      sortBy: null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
       searchSuggestions: null == searchSuggestions
           ? _value.searchSuggestions
           : searchSuggestions // ignore: cast_nullable_to_non_nullable
@@ -3546,6 +3705,9 @@ abstract class _$$ReelsStateImplCopyWith<$Res>
       List<ReelResponseModel> myReels,
       bool isLoadingMyReels,
       String searchQuery,
+      List<String> selectedCategories,
+      double radiusKm,
+      String sortBy,
       List<ReelResponseModel> searchSuggestions,
       bool suggestionsLoading});
 }
@@ -3577,6 +3739,9 @@ class __$$ReelsStateImplCopyWithImpl<$Res>
     Object? myReels = null,
     Object? isLoadingMyReels = null,
     Object? searchQuery = null,
+    Object? selectedCategories = null,
+    Object? radiusKm = null,
+    Object? sortBy = null,
     Object? searchSuggestions = null,
     Object? suggestionsLoading = null,
   }) {
@@ -3645,6 +3810,18 @@ class __$$ReelsStateImplCopyWithImpl<$Res>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedCategories: null == selectedCategories
+          ? _value._selectedCategories
+          : selectedCategories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      radiusKm: null == radiusKm
+          ? _value.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
+              as double,
+      sortBy: null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
       searchSuggestions: null == searchSuggestions
           ? _value._searchSuggestions
           : searchSuggestions // ignore: cast_nullable_to_non_nullable
@@ -3678,6 +3855,9 @@ class _$ReelsStateImpl implements _ReelsState {
       final List<ReelResponseModel> myReels = const <ReelResponseModel>[],
       this.isLoadingMyReels = false,
       this.searchQuery = '',
+      final List<String> selectedCategories = const <String>[],
+      this.radiusKm = 10.0,
+      this.sortBy = 'trending',
       final List<ReelResponseModel> searchSuggestions =
           const <ReelResponseModel>[],
       this.suggestionsLoading = false})
@@ -3685,6 +3865,7 @@ class _$ReelsStateImpl implements _ReelsState {
         _reelComments = reelComments,
         _otherUserReels = otherUserReels,
         _myReels = myReels,
+        _selectedCategories = selectedCategories,
         _searchSuggestions = searchSuggestions;
 
   @override
@@ -3756,6 +3937,22 @@ class _$ReelsStateImpl implements _ReelsState {
   @override
   @JsonKey()
   final String searchQuery;
+  final List<String> _selectedCategories;
+  @override
+  @JsonKey()
+  List<String> get selectedCategories {
+    if (_selectedCategories is EqualUnmodifiableListView)
+      return _selectedCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedCategories);
+  }
+
+  @override
+  @JsonKey()
+  final double radiusKm;
+  @override
+  @JsonKey()
+  final String sortBy;
   final List<ReelResponseModel> _searchSuggestions;
   @override
   @JsonKey()
@@ -3772,7 +3969,7 @@ class _$ReelsStateImpl implements _ReelsState {
 
   @override
   String toString() {
-    return 'ReelsState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, reelDetails: $reelDetails, reelsList: $reelsList, currentOffset: $currentOffset, hasMoreData: $hasMoreData, notifyStatus: $notifyStatus, createReelModel: $createReelModel, reelComments: $reelComments, commentsLoading: $commentsLoading, otherUserReels: $otherUserReels, isLoadingOtherUserReels: $isLoadingOtherUserReels, myReels: $myReels, isLoadingMyReels: $isLoadingMyReels, searchQuery: $searchQuery, searchSuggestions: $searchSuggestions, suggestionsLoading: $suggestionsLoading)';
+    return 'ReelsState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, reelDetails: $reelDetails, reelsList: $reelsList, currentOffset: $currentOffset, hasMoreData: $hasMoreData, notifyStatus: $notifyStatus, createReelModel: $createReelModel, reelComments: $reelComments, commentsLoading: $commentsLoading, otherUserReels: $otherUserReels, isLoadingOtherUserReels: $isLoadingOtherUserReels, myReels: $myReels, isLoadingMyReels: $isLoadingMyReels, searchQuery: $searchQuery, selectedCategories: $selectedCategories, radiusKm: $radiusKm, sortBy: $sortBy, searchSuggestions: $searchSuggestions, suggestionsLoading: $suggestionsLoading)';
   }
 
   @override
@@ -3812,32 +4009,41 @@ class _$ReelsStateImpl implements _ReelsState {
             (identical(other.searchQuery, searchQuery) ||
                 other.searchQuery == searchQuery) &&
             const DeepCollectionEquality()
+                .equals(other._selectedCategories, _selectedCategories) &&
+            (identical(other.radiusKm, radiusKm) ||
+                other.radiusKm == radiusKm) &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
+            const DeepCollectionEquality()
                 .equals(other._searchSuggestions, _searchSuggestions) &&
             (identical(other.suggestionsLoading, suggestionsLoading) ||
                 other.suggestionsLoading == suggestionsLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isError,
-      isSuccess,
-      reelDetails,
-      const DeepCollectionEquality().hash(_reelsList),
-      currentOffset,
-      hasMoreData,
-      notifyStatus,
-      createReelModel,
-      const DeepCollectionEquality().hash(_reelComments),
-      commentsLoading,
-      const DeepCollectionEquality().hash(_otherUserReels),
-      isLoadingOtherUserReels,
-      const DeepCollectionEquality().hash(_myReels),
-      isLoadingMyReels,
-      searchQuery,
-      const DeepCollectionEquality().hash(_searchSuggestions),
-      suggestionsLoading);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isLoading,
+        isError,
+        isSuccess,
+        reelDetails,
+        const DeepCollectionEquality().hash(_reelsList),
+        currentOffset,
+        hasMoreData,
+        notifyStatus,
+        createReelModel,
+        const DeepCollectionEquality().hash(_reelComments),
+        commentsLoading,
+        const DeepCollectionEquality().hash(_otherUserReels),
+        isLoadingOtherUserReels,
+        const DeepCollectionEquality().hash(_myReels),
+        isLoadingMyReels,
+        searchQuery,
+        const DeepCollectionEquality().hash(_selectedCategories),
+        radiusKm,
+        sortBy,
+        const DeepCollectionEquality().hash(_searchSuggestions),
+        suggestionsLoading
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -3864,6 +4070,9 @@ abstract class _ReelsState implements ReelsState {
       final List<ReelResponseModel> myReels,
       final bool isLoadingMyReels,
       final String searchQuery,
+      final List<String> selectedCategories,
+      final double radiusKm,
+      final String sortBy,
       final List<ReelResponseModel> searchSuggestions,
       final bool suggestionsLoading}) = _$ReelsStateImpl;
 
@@ -3899,6 +4108,12 @@ abstract class _ReelsState implements ReelsState {
   bool get isLoadingMyReels;
   @override
   String get searchQuery;
+  @override
+  List<String> get selectedCategories;
+  @override
+  double get radiusKm;
+  @override
+  String get sortBy;
   @override
   List<ReelResponseModel> get searchSuggestions;
   @override

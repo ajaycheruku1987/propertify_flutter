@@ -53,24 +53,38 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
   ) async {
     try {
       final bool isNewSearch = (event.skip ?? 0) == 0;
-      emit(
-        _mergeState(
-          isLoading: true,
-          isError: false,
-          searchQuery: event.search,
-          reelsList: isNewSearch ? const <ReelResponseModel>[] : null,
-          currentOffset: isNewSearch ? 0 : null,
-          hasMoreData: isNewSearch ? true : null,
-        ),
-      );
+      
+      if (isNewSearch) {
+        emit(
+          _mergeState(
+            isLoading: true,
+            isError: false,
+            searchQuery: event.search ?? '',
+            selectedCategories: event.categories,
+            radiusKm: event.radiusKm,
+            sortBy: event.sortBy,
+            reelsList: const <ReelResponseModel>[],
+            currentOffset: 0,
+            hasMoreData: true,
+          ),
+        );
+      } else {
+        emit(_mergeState(isLoading: true, isError: false));
+      }
+
+      final String? search = isNewSearch ? event.search : state.searchQuery;
+      final bool hasSearch = search != null && search.trim().isNotEmpty;
 
       final Either<Failure, List<ReelResponseModel>> reelsEither = await _repo
           .getReels(
-            skip: event.skip,
+            skip: event.skip ?? 0,
             limit: event.limit,
-            latitude: _homeBloc.state.currentLat,
-            longitude: _homeBloc.state.currentLng,
-            search: event.search ?? state.searchQuery,
+            latitude: hasSearch ? null : _homeBloc.state.currentLat,
+            longitude: hasSearch ? null : _homeBloc.state.currentLng,
+            search: search,
+            categories: isNewSearch ? (event.categories ?? state.selectedCategories) : state.selectedCategories,
+            radiusKm: isNewSearch ? (event.radiusKm ?? state.radiusKm) : state.radiusKm,
+            sortBy: isNewSearch ? (event.sortBy ?? state.sortBy) : state.sortBy,
           );
 
       reelsEither.fold(
@@ -594,6 +608,9 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     List<ReelResponseModel>? myReels,
     bool? isLoadingMyReels,
     String? searchQuery,
+    List<String>? selectedCategories,
+    double? radiusKm,
+    String? sortBy,
     List<ReelResponseModel>? searchSuggestions,
     bool? suggestionsLoading,
   }) {
@@ -615,6 +632,9 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
       myReels: myReels ?? state.myReels,
       isLoadingMyReels: isLoadingMyReels ?? state.isLoadingMyReels,
       searchQuery: searchQuery ?? state.searchQuery,
+      selectedCategories: selectedCategories ?? state.selectedCategories,
+      radiusKm: radiusKm ?? state.radiusKm,
+      sortBy: sortBy ?? state.sortBy,
       searchSuggestions: searchSuggestions ?? state.searchSuggestions,
       suggestionsLoading: suggestionsLoading ?? state.suggestionsLoading,
     );
