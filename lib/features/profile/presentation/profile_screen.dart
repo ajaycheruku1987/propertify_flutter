@@ -16,6 +16,7 @@ import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
@@ -621,6 +622,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             }
                           },
                         ),
+                        _buildFollowUsSection(),
 
                         if (homeState.showAddButton)
                           GestureDetector(
@@ -693,6 +695,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
       ),
     );
+  }
+
+  Widget _buildFollowUsSection() {
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        Text(
+          'Follow Us',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade600,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _socialIcon(
+              icon: FontAwesomeIcons.facebook,
+              color: const Color(0xFF1877F2),
+              onTap: () => _launchExternalUrl('https://www.facebook.com/1251613104692490'),
+            ),
+            const SizedBox(width: 24),
+            _socialIcon(
+              icon: FontAwesomeIcons.instagram,
+              color: const Color(0xFFE4405F),
+              onTap: () => _launchExternalUrl('https://www.instagram.com/propertifyapp?igsh=MTE4d2VydXJxd2x6&utm_source=qr'),
+            ),
+            const SizedBox(width: 24),
+            _socialIcon(
+              icon: FontAwesomeIcons.whatsapp,
+              color: const Color(0xFF25D366),
+              onTap: () => _launchExternalUrl('https://whatsapp.com/channel/0029Vb7oK1r7oQhUoESENq3n'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+
+  Widget _socialIcon({
+    required dynamic icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color.withOpacity(0.1),
+          border: Border.all(color: color.withOpacity(0.2)),
+        ),
+        child: FaIcon(icon, color: color, size: 22),
+      ),
+    );
+  }
+
+  Future<void> _launchExternalUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      debugPrint('Error launching social URL: $e');
+    }
   }
 
   void _showImagePicker(BuildContext context) async {

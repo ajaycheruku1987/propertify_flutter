@@ -13,6 +13,9 @@ import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:propertify/utils/custom_toast.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import '../../home/presentation/widgets/home_loan_widget.dart';
 import '../../sales/presentation/create_sales.dart';
@@ -216,7 +219,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 16),
-                _buildCompanyHeader(companyName, category, imageUrl),
+                _buildCompanyHeader(company),
                 const SizedBox(height: 24),
 
                 // Action Buttons
@@ -358,11 +361,18 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
     );
   }
 
-  Widget _buildCompanyHeader(
-    String? companyName,
-    String? category,
-    String? imageUrl,
-  ) {
+  Widget _buildCompanyHeader(MyCompanyResponseModel company) {
+    final String? companyName = company.companyName;
+    final String? category = company.category;
+    final String? imageUrl = company.imageUrl;
+
+    final hasFacebook =
+        company.facebookUrl != null && company.facebookUrl!.isNotEmpty;
+    final hasInstagram =
+        company.instagramUrl != null && company.instagramUrl!.isNotEmpty;
+    final hasWebsite =
+        company.websiteUrl != null && company.websiteUrl!.isNotEmpty;
+
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -380,85 +390,87 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
         ),
       ),
-      child: Row(
+      child: Column(
         children: [
-          // Company Logo
-          GestureDetector(
-            onTap: () {
-              if (imageUrl != null && imageUrl.isNotEmpty) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FullScreenImageViewer(
-                      images: [imageUrl],
-                      initialIndex: 0,
-                    ),
-                  ),
-                );
-              }
-            },
-            child: Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: imageUrl != null && imageUrl.isNotEmpty
-                    ? CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
+          Row(
+            children: [
+              // Company Logo
+              GestureDetector(
+                onTap: () {
+                  if (imageUrl != null && imageUrl.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullScreenImageViewer(
+                          images: [imageUrl],
+                          initialIndex: 0,
                         ),
-                        errorWidget: (context, url, error) =>
-                            const LogoPlaceholder(),
-                      )
-                    : const LogoPlaceholder(),
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          // Company Info
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  (companyName ?? 'Company Name').toTitleCase(),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 6),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
+                      ),
+                    );
+                  }
+                },
+                child: Container(
+                  width: 80,
+                  height: 80,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                  child: Text(
-                    (category ?? 'Real Estate').toTitleCase(),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: imageUrl != null && imageUrl.isNotEmpty
+                        ? CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => const Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const LogoPlaceholder(),
+                          )
+                        : const LogoPlaceholder(),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              // Company Info
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      (companyName ?? 'Company Name').toTitleCase(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        (category ?? 'Real Estate').toTitleCase(),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
                     ),
                   ),
                 ),
@@ -467,7 +479,72 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
           ),
         ],
       ),
+          if (hasFacebook || hasInstagram || hasWebsite) ...[
+            const SizedBox(height: 20),
+            const Divider(),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (hasFacebook)
+                  _socialIcon(
+                    icon: FontAwesomeIcons.facebook,
+                    color: const Color(0xFF1877F2),
+                    onTap: () => _launchSocialUrl(company.facebookUrl!),
+                  ),
+                if (hasInstagram)
+                  _socialIcon(
+                    icon: FontAwesomeIcons.instagram,
+                    color: const Color(0xFFE4405F),
+                    onTap: () => _launchSocialUrl(company.instagramUrl!),
+                  ),
+                if (hasWebsite)
+                  _socialIcon(
+                    icon: FontAwesomeIcons.globe,
+                    color: Colors.blueGrey,
+                    onTap: () => _launchSocialUrl(company.websiteUrl!),
+                  ),
+              ],
+            ),
+          ],
+        ],
+      ),
     );
+  }
+
+  Widget _socialIcon({
+    required dynamic icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color.withOpacity(0.1),
+            border: Border.all(color: color.withOpacity(0.2)),
+          ),
+          child: FaIcon(icon, color: color, size: 22),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchSocialUrl(String url) async {
+    final Uri uri = Uri.parse(url.startsWith('http') ? url : 'https://$url');
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        CustomToast.showErrorToast(msg: 'Could not launch URL');
+      }
+    } catch (e) {
+      CustomToast.showErrorToast(msg: 'Error launching URL');
+    }
   }
 
   Widget _buildActionButtons() {

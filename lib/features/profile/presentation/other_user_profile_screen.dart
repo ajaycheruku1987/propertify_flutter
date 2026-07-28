@@ -291,9 +291,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     // View Company Button
                     BlocBuilder<CompanyBloc, CompanyState>(
                       builder: (context, companyState) {
-                        if (companyState.userCompany != null &&
-                            companyState.userCompany?.gstVerificationStatus ==
-                                'approved') {
+                        final company = companyState.userCompany;
+                        if (company != null &&
+                            company.gstVerificationStatus == 'approved') {
                           return Column(
                             children: [
                               GestureDetector(
@@ -336,6 +336,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                   ),
                                 ),
                               ),
+                              _buildSocialLinks(company),
                               const SizedBox(height: 8),
                             ],
                           );
@@ -876,6 +877,81 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       }
     } catch (e) {
       CustomToast.showErrorToast(msg: 'Error launching WhatsApp');
+    }
+  }
+
+  Widget _buildSocialLinks(dynamic company) {
+    final hasFacebook =
+        company.facebookUrl != null && company.facebookUrl!.isNotEmpty;
+    final hasInstagram =
+        company.instagramUrl != null && company.instagramUrl!.isNotEmpty;
+    final hasWebsite =
+        company.websiteUrl != null && company.websiteUrl!.isNotEmpty;
+
+    if (!hasFacebook && !hasInstagram && !hasWebsite) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (hasFacebook)
+            _socialIcon(
+              icon: FontAwesomeIcons.facebook,
+              color: const Color(0xFF1877F2),
+              onTap: () => _launchSocialUrl(company.facebookUrl!),
+            ),
+          if (hasInstagram)
+            _socialIcon(
+              icon: FontAwesomeIcons.instagram,
+              color: const Color(0xFFE4405F),
+              onTap: () => _launchSocialUrl(company.instagramUrl!),
+            ),
+          if (hasWebsite)
+            _socialIcon(
+              icon: FontAwesomeIcons.globe,
+              color: Colors.blueGrey,
+              onTap: () => _launchSocialUrl(company.websiteUrl!),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _socialIcon({
+    required dynamic icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color.withOpacity(0.1),
+            border: Border.all(color: color.withOpacity(0.2)),
+          ),
+          child: FaIcon(icon, color: color, size: 20),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchSocialUrl(String url) async {
+    final Uri uri = Uri.parse(url.startsWith('http') ? url : 'https://$url');
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        CustomToast.showErrorToast(msg: 'Could not launch URL');
+      }
+    } catch (e) {
+      CustomToast.showErrorToast(msg: 'Error launching URL');
     }
   }
 }
