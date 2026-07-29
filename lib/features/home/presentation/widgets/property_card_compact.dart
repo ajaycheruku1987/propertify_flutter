@@ -170,12 +170,6 @@ class PropertyCardCompact extends StatelessWidget {
 
             // Actions Section - Compact
             _buildActionsSection(context),
-
-            if (isTopAd &&
-                (promotedAt != null ||
-                    promotedUntil != null ||
-                    createdAt != null))
-              _buildPromotionDates(),
           ],
         ),
       ),

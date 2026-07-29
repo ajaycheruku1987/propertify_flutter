@@ -425,13 +425,6 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ],
           ),
-          if (widget.isTopAd &&
-              (widget.promotedAt != null ||
-                  widget.promotedUntil != null ||
-                  widget.createdAt != null)) ...[
-            const SizedBox(height: 8),
-            _buildPromotionDates(),
-          ],
         ],
       ),
     );
