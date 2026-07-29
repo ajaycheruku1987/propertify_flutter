@@ -336,7 +336,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                   ),
                                 ),
                               ),
-                              _buildSocialLinks(company),
                               const SizedBox(height: 8),
                             ],
                           );
@@ -388,16 +387,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
               ),
             ],
           );
-        },
-      ),
-      bottomNavigationBar: BlocBuilder<ProfileBloc, ProfileState>(
-        builder: (context, state) {
-          if (state.otherUserProfile != null) {
-            return _buildBottomActionButtons(
-              state.otherUserProfile!.phoneNumber,
-            );
-          }
-          return const SizedBox.shrink();
         },
       ),
     );
