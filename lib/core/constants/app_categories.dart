@@ -3,21 +3,29 @@ import 'package:flutter/material.dart';
 class AppCategories {
   // Feed / Property Types (Display name, Icon)
   static const List<Map<String, dynamic>> propertyTypes = [
+    {'name': 'Independent House', 'icon': Icons.home_outlined},
     {'name': 'Villas', 'icon': Icons.villa_outlined},
     {'name': 'Apartments', 'icon': Icons.apartment_outlined},
     {'name': 'Open Plot', 'icon': Icons.business_outlined},
+    {'name': 'Agriculture Land', 'icon': Icons.landscape_outlined},
+    {'name': 'Commercial', 'icon': Icons.storefront_outlined},
+    {'name': 'Industrial', 'icon': Icons.factory_outlined},
   ];
 
   static const List<String> propertyTypeFilterNames = [
     'All',
+    'Independent House',
     'Villas',
     'Apartments',
     'Open Plot',
+    'Agriculture Land',
+    'Commercial',
+    'Industrial',
   ];
 
   // Feed / Looking For options
-  static const List<String> lookingFor = ['Sell', 'Rent'];
-  static const List<String> lookingForFilter = ['All', 'Sales', 'Rent'];
+  static const List<String> lookingFor = ['Sell', 'Rent', 'Lease'];
+  static const List<String> lookingForFilter = ['All', 'Sales', 'Rent', 'Lease'];
 
   // Request categories
   static const List<Map<String, dynamic>> requestCategories = [

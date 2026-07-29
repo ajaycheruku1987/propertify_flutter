@@ -373,25 +373,50 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
       children: [
         const Text(
           'Looking For',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
         ),
         const SizedBox(height: 12),
-        Row(
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
           children: _listingTypes.map((option) {
             final isSelected = _listingType == option;
-            return Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: CommonCustomButton(
-                  onTap: () {
-                    setState(() {
-                      _listingType = option;
-                    });
-                  },
-                  buttonLabel: option,
-                  labelColor: isSelected ? Colors.white : Theme.of(context).hintColor,
-                  buttonColor: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
-                  borderColor: isSelected ? Theme.of(context).primaryColor : Colors.grey.shade300,
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _listingType = option;
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? Theme.of(context).primaryColor.withOpacity(0.1)
+                      : Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade300,
+                    width: 1,
+                  ),
+                ),
+                child: Text(
+                  option,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade700,
+                  ),
                 ),
               ),
             );
@@ -407,71 +432,51 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
       children: [
         const Text(
           'Property Type *',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
         ),
         const SizedBox(height: 12),
-        Row(
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
           children: _propertyTypeOptions.map((type) {
             final isSelected = _propertyType == type['name'];
-            return Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _propertyType = type['name'];
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: isSelected
-                          ? LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Theme.of(context).primaryColor,
-                                Theme.of(context).primaryColor,
-                                Theme.of(context).primaryColor.withOpacity(0.2),
-                                Theme.of(context).primaryColor.withOpacity(0.2),
-                              ],
-                            )
-                          : null,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: isSelected
-                            ? Colors.transparent
-                            : Theme.of(context).hintColor.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: isSelected ? const Color(0xFFE4D7FF) : Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Icon(
-                              type['icon'],
-                              size: 24,
-                              color: isSelected ? Theme.of(context).primaryColor : Colors.grey.shade600,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              type['name'],
-                              style: TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w500,
-                                color: isSelected ? Theme.of(context).primaryColor : Colors.grey.shade700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _propertyType = type['name'];
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? Theme.of(context).primaryColor.withOpacity(0.1)
+                      : Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade300,
+                    width: 1,
                   ),
+                ),
+                child: Text(
+                  type['name'],
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade700,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             );

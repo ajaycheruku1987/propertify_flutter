@@ -24,84 +24,46 @@ class PropertyTypeSelector extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Row(
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
               children: propertyTypes.map((type) {
                 final isSelected = state.selectedPropertyType == type['name'];
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      context.read<CreatePostBloc>().add(
-                        CreatePostEvent.propertyTypeChanged(
-                          propertyType: type['name'],
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          // color: isSelected
-                          //     ? Theme.of(context).primaryColor.withOpacity(0.1)
-                          //     : Colors.grey.shade50,
-                          gradient: isSelected
-                              ? LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Theme.of(context).primaryColor,
-                                    Theme.of(context).primaryColor,
-                                    Theme.of(
-                                      context,
-                                    ).primaryColor.withOpacity(0.2),
-                                    Theme.of(
-                                      context,
-                                    ).primaryColor.withOpacity(0.2),
-                                  ],
-                                )
-                              : null,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: isSelected
-                                ? Colors.transparent
-                                : Theme.of(context).hintColor.withOpacity(0.2),
-                            // width: isSelected ? 2 : 1,
+                return GestureDetector(
+                  onTap: () {
+                    context.read<CreatePostBloc>().add(
+                          CreatePostEvent.propertyTypeChanged(
+                            propertyType: type['name'],
                           ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? const Color(0xFFE4D7FF)
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  type['icon'],
-                                  size: 24,
-                                  color: isSelected
-                                      ? Theme.of(context).primaryColor
-                                      : Colors.grey.shade600,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  type['name'],
-                                  style: TextStyle(
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w500,
-                                    color: isSelected
-                                        ? Theme.of(context).primaryColor
-                                        : Colors.grey.shade700,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.grey.shade50,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey.shade300,
+                        width: 1,
                       ),
+                    ),
+                    child: Text(
+                      type['name'],
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey.shade700,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 );

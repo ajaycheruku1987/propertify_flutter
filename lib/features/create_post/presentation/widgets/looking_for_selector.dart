@@ -25,28 +25,43 @@ class LookingForSelector extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Row(
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
               children: options.map((option) {
                 final isSelected = state.selectedLookingFor == option;
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: CommonCustomButton(
-                      onTap: () {
-                        context.read<CreatePostBloc>().add(
+                return GestureDetector(
+                  onTap: () {
+                    context.read<CreatePostBloc>().add(
                           CreatePostEvent.lookingForChanged(lookingFor: option),
                         );
-                      },
-                      buttonLabel: option,
-                      labelColor: isSelected
-                          ? Colors.white
-                          : Theme.of(context).hintColor,
-                      buttonColor: isSelected
-                          ? Theme.of(context).primaryColor
-                          : Colors.transparent,
-                      borderColor: isSelected
-                          ? Theme.of(context).primaryColor
-                          : Colors.grey.shade300,
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.grey.shade50,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey.shade300,
+                        width: 1,
+                      ),
+                    ),
+                    child: Text(
+                      option,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey.shade700,
+                      ),
                     ),
                   ),
                 );
