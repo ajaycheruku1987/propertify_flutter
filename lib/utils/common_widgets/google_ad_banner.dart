@@ -47,11 +47,14 @@ class _GoogleAdBannerState extends State<GoogleAdBanner> {
   @override
   Widget build(BuildContext context) {
     if (_isLoaded && _bannerAd != null) {
-      return Container(
-        alignment: Alignment.center,
-        width: _bannerAd!.size.width.toDouble(),
-        height: _bannerAd!.size.height.toDouble(),
-        child: AdWidget(ad: _bannerAd!),
+      return SafeArea(
+        child: Container(
+          alignment: Alignment.center,
+          width: _bannerAd!.size.width.toDouble(),
+          height: _bannerAd!.size.height.toDouble(),
+          margin: const EdgeInsets.symmetric(vertical: 16),
+          child: AdWidget(ad: _bannerAd!),
+        ),
       );
     }
     return const SizedBox.shrink();
