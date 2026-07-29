@@ -24,6 +24,7 @@ import 'widgets/agent_info.dart';
 import 'widgets/similar_properties.dart';
 import 'widgets/similar_posts_by_category.dart';
 import 'widgets/action_buttons.dart';
+import '../../../utils/common_widgets/google_ad_banner.dart';
 
 class PostDetailsScreen extends StatefulWidget {
   static const String routeName = '/post-details';
@@ -783,6 +784,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         SimilarProperties(
                           similarProperties: state.similarProperties ?? [],
                         ),
+
+                        const SizedBox(height: 16),
+                        const Center(child: GoogleAdBanner()),
 
                         const SizedBox(height: 32),
                       ],
