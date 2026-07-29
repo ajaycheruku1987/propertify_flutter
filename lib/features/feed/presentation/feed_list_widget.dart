@@ -31,41 +31,44 @@ class FeedListWidget extends StatefulWidget {
 }
 
 class _FeedListWidgetState extends State<FeedListWidget> {
-  ScrollController? _scrollController;
   int _currentBannerIndex = 0;
   bool _isGridView = true; // Track grid/list view mode
 
   @override
   void initState() {
     super.initState();
-    // Load initial feeds
-    context.read<FeedBloc>().add(
-      FeedEvent.getFeedsEvent(
-        latitude: context.read<HomeBloc>().state.currentLat,
-        longitude: context.read<HomeBloc>().state.currentLng,
-      ),
-    );
+    // Load initial feeds if empty
+    final feedBloc = context.read<FeedBloc>();
+    if (feedBloc.state.feedsList.isEmpty) {
+      feedBloc.add(
+        FeedEvent.getFeedsEvent(
+          latitude: context.read<HomeBloc>().state.currentLat,
+          longitude: context.read<HomeBloc>().state.currentLng,
+        ),
+      );
+    }
     // Load Banner Ads
     context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
   }
 
-  void _onScroll() {
-    final controller = _scrollController;
-    if (controller == null || !controller.hasClients) return;
-    if (controller.position.pixels >=
-        controller.position.maxScrollExtent - 300) {
-      final feedState = context.read<FeedBloc>().state;
-      if (!feedState.isLoading && feedState.hasMoreData) {
-        context.read<FeedBloc>().add(
-          FeedEvent.getFeedsEvent(
-            limit: 10,
-            offset: feedState.currentOffset,
-            latitude: context.read<HomeBloc>().state.currentLat,
-            longitude: context.read<HomeBloc>().state.currentLng,
-          ),
-        );
+  bool _handleScrollNotification(ScrollNotification notification) {
+    if (notification is ScrollEndNotification) {
+      final metrics = notification.metrics;
+      if (metrics.pixels >= metrics.maxScrollExtent - 300) {
+        final feedState = context.read<FeedBloc>().state;
+        if (!feedState.isLoading && feedState.hasMoreData) {
+          context.read<FeedBloc>().add(
+            FeedEvent.getFeedsEvent(
+              limit: 10,
+              offset: feedState.currentOffset,
+              latitude: context.read<HomeBloc>().state.currentLat,
+              longitude: context.read<HomeBloc>().state.currentLng,
+            ),
+          );
+        }
       }
     }
+    return false;
   }
 
   Future<void> _onRefresh() async {
@@ -144,242 +147,189 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     final homeState = context.watch<HomeBloc>().state;
     return BlocBuilder<FeedBloc, FeedState>(
       builder: (context, state) {
-        if (state.isLoading && state.feedsList.isEmpty) {
-          return CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              SliverOverlapInjector(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                  context,
-                ),
-              ),
-              const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ],
-          );
-        }
-
-        if (state.notifyStatus != null && state.feedsList.isEmpty) {
-          return RefreshIndicator(
-            onRefresh: _onRefresh,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverOverlapInjector(
-                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                    context,
-                  ),
-                ),
-                if (homeState.activeFeedsFilter != null)
-                  SliverPersistentHeader(
-                    pinned: true,
-                    delegate: _StickyChipHeaderDelegate(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: _buildActiveFilterChips(context, homeState),
-                      ),
-                      height: 52.0,
-                    ),
-                  ),
-                SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.circleExclamation,
-                          size: 60,
-                          color: Colors.red.shade400,
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Something went wrong, please try again later.',
-                          style: TextStyle(fontSize: 16, color: Colors.red),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.go('/splash');
-                          },
-                          child: const Text('Retry'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-
-        if (state.feedsList.isEmpty) {
-          return RefreshIndicator(
-            onRefresh: _onRefresh,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverOverlapInjector(
-                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                    context,
-                  ),
-                ),
-                if (homeState.activeFeedsFilter != null)
-                  SliverPersistentHeader(
-                    pinned: true,
-                    delegate: _StickyChipHeaderDelegate(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: _buildActiveFilterChips(context, homeState),
-                      ),
-                      height: 52.0,
-                    ),
-                  ),
-                const SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.house,
-                          size: 60,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'No properties found',
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-
         return RefreshIndicator(
           onRefresh: _onRefresh,
-          child: CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              SliverOverlapInjector(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                  context,
-                ),
-              ),
-              if (homeState.activeFeedsFilter != null)
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _StickyChipHeaderDelegate(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: _buildActiveFilterChips(context, homeState),
-                    ),
-                    height: 52.0,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: _handleScrollNotification,
+            child: CustomScrollView(
+              key: const PageStorageKey('feed_list_scroll'),
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverOverlapInjector(
+                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                    context,
                   ),
                 ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Banner Ads Section
-                    _buildBannerAds(context),
+                if (homeState.activeFeedsFilter != null)
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _StickyChipHeaderDelegate(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: _buildActiveFilterChips(context, homeState),
+                      ),
+                      height: 52.0,
+                    ),
+                  ),
 
-                    // Feeds Section Header with Grid/List Toggle
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'New Listing',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                if (state.isLoading && state.feedsList.isEmpty)
+                  const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                else if (state.notifyStatus != null && state.feedsList.isEmpty)
+                  SliverFillRemaining(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.circleExclamation,
+                            size: 60,
+                            color: Colors.red.shade400,
                           ),
-                        ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Something went wrong, please try again later.',
+                            style: TextStyle(fontSize: 16, color: Colors.red),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              context.go('/splash');
+                            },
+                            child: const Text('Retry'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else if (state.feedsList.isEmpty)
+                  const SliverFillRemaining(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.house,
+                            size: 60,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No properties found',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else ...[
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        // Banner Ads Section
+                        _buildBannerAds(context),
+
+                        // Feeds Section Header with Grid/List Toggle
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                              icon: FaIcon(
-                                FontAwesomeIcons.list,
-                                size: 20,
-                                color: !_isGridView
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey,
+                            const Text(
+                              'New Listing',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87,
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _isGridView = false;
-                                });
-                              },
-                              tooltip: 'List View',
                             ),
-                            IconButton(
-                              icon: FaIcon(
-                                FontAwesomeIcons.borderAll,
-                                size: 20,
-                                color: _isGridView
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isGridView = true;
-                                });
-                              },
-                              tooltip: 'Grid View',
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.list,
+                                    size: 20,
+                                    color: !_isGridView
+                                        ? Theme.of(context).primaryColor
+                                        : Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isGridView = false;
+                                    });
+                                  },
+                                  tooltip: 'List View',
+                                ),
+                                IconButton(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.borderAll,
+                                    size: 20,
+                                    color: _isGridView
+                                        ? Theme.of(context).primaryColor
+                                        : Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isGridView = true;
+                                    });
+                                  },
+                                  tooltip: 'Grid View',
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                        const SizedBox(height: 16),
+                      ]),
                     ),
-                    const SizedBox(height: 16),
-                  ]),
-                ),
-              ),
-              // Grid or List View
-              if (_isGridView)
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.68,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                        ),
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      final feed = state.feedsList[index];
-                      return _buildPropertyCardCompact(feed);
-                    }, childCount: state.feedsList.length),
                   ),
-                )
-              else
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      final feed = state.feedsList[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: _buildPropertyCard(feed),
-                      );
-                    }, childCount: state.feedsList.length),
+                  // Grid or List View
+                  if (_isGridView)
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      sliver: SliverGrid(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.68,
+                              crossAxisSpacing: 15,
+                              mainAxisSpacing: 15,
+                            ),
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          final feed = state.feedsList[index];
+                          return _buildPropertyCardCompact(feed);
+                        }, childCount: state.feedsList.length),
+                      ),
+                    )
+                  else
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          final feed = state.feedsList[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: _buildPropertyCard(feed),
+                          );
+                        }, childCount: state.feedsList.length),
+                      ),
+                    ),
+                  // Loading indicator
+                  if (state.isLoading && state.feedsList.isNotEmpty)
+                    const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                    ),
+                  // Extra space at bottom to ensure scroll works well with FAB
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: 80),
                   ),
-                ),
-              // Loading indicator
-              if (state.isLoading && state.feedsList.isNotEmpty)
-                const SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                ),
-            ],
+                ],
+              ],
+            ),
           ),
         );
       },
