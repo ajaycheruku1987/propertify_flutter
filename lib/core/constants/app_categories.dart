@@ -31,9 +31,10 @@ class AppCategories {
   static const List<Map<String, dynamic>> requestCategories = [
     {'name': 'Buy', 'icon': Icons.home_outlined},
     {'name': 'Rent', 'icon': Icons.apartment_outlined},
+    {'name': 'Lease', 'icon': Icons.business_outlined},
   ];
 
-  static const List<String> requestCategoriesFilter = ['All', 'Buy', 'Rent'];
+  static const List<String> requestCategoriesFilter = ['All', 'Buy', 'Rent', 'Lease'];
 
   static const List<Map<String, dynamic>> loanAndInteriorCategories = [
     {'name': 'Loan', 'icon': Icons.home_outlined},

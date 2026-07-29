@@ -28,72 +28,42 @@ class RequestCategorySelector extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        Row(
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
           children: categories.map((type) {
             final isSelected = selectedPropertyType == type['name'];
-            return Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  onPropertyTypeChanged(type['name']);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: isSelected
-                          ? LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Theme.of(context).primaryColor,
-                                Theme.of(context).primaryColor,
-                                Theme.of(context).primaryColor.withOpacity(0.2),
-                                Theme.of(context).primaryColor.withOpacity(0.2),
-                              ],
-                            )
-                          : null,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: isSelected
-                            ? Colors.transparent
-                            : Theme.of(context).hintColor.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? const Color(0xFFE4D7FF)
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Icon(
-                              type['icon'],
-                              size: 24,
-                              color: isSelected
-                                  ? Theme.of(context).primaryColor
-                                  : Colors.grey.shade600,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              type['name'],
-                              style: TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w500,
-                                color: isSelected
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey.shade700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+            return GestureDetector(
+              onTap: () {
+                onPropertyTypeChanged(type['name']);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? Theme.of(context).primaryColor.withOpacity(0.1)
+                      : Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade300,
+                    width: 1,
                   ),
+                ),
+                child: Text(
+                  type['name'],
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade700,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             );
