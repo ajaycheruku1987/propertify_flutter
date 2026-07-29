@@ -16,7 +16,7 @@ class PropertyCard extends StatefulWidget {
   final double? rating;
   final String? price;
   final String? listingType;
-  final String? category;
+  final String? propertyType;
   final bool isFavorite;
   final bool isLiked;
   final bool isTopAd;
@@ -41,7 +41,6 @@ class PropertyCard extends StatefulWidget {
     required this.location,
     this.rating,
     this.price,
-    this.category,
     this.isFavorite = false,
     this.isLiked = false,
     this.isTopAd = false,
@@ -56,6 +55,7 @@ class PropertyCard extends StatefulWidget {
     required this.onLikePressed,
     required this.onCommentPressed,
     this.listingType,
+    this.propertyType,
     this.promotedAt,
     this.promotedUntil,
     this.createdAt,
@@ -383,6 +383,24 @@ class _PropertyCardState extends State<PropertyCard> {
             ],
           ),
           const SizedBox(height: 4),
+          // Property Type Label
+          if (widget.propertyType != null && widget.propertyType!.isNotEmpty)
+            Container(
+              margin: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: AppTheme.blueColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                widget.propertyType!.toTitleCase(),
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                  color: AppTheme.blueColor,
+                ),
+              ),
+            ),
           // Location
           Row(
             children: [

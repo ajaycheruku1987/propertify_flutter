@@ -348,7 +348,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: 0.79,
+                          childAspectRatio: 0.68,
                           crossAxisSpacing: 15,
                           mainAxisSpacing: 15,
                         ),
@@ -407,6 +407,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
       listingType: feed.listingType,
+      propertyType: feed.propertyType,
       onFavoritePressed: () {
         context.read<FeedBloc>().add(
           FeedEvent.toggleFavorite(propertyId: feed.id!),
@@ -497,6 +498,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
       listingType: feed.listingType,
+      propertyType: feed.propertyType,
       onFavoritePressed: () {
         context.read<FeedBloc>().add(
           FeedEvent.toggleFavorite(propertyId: feed.id!),

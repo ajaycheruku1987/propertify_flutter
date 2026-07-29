@@ -15,6 +15,7 @@ class PropertyCardCompact extends StatelessWidget {
   final String location;
   final String? price;
   final String? listingType;
+  final String? propertyType;
   final bool isFavorite;
   final bool isLiked;
   final bool isFeatured;
@@ -38,6 +39,7 @@ class PropertyCardCompact extends StatelessWidget {
     required this.location,
     this.price,
     this.listingType,
+    this.propertyType,
     this.isFavorite = false,
     this.isLiked = false,
     this.isFeatured = false,
@@ -80,7 +82,7 @@ class PropertyCardCompact extends StatelessWidget {
 
             // Content Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -104,6 +106,25 @@ class PropertyCardCompact extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
+
+                  // Property Type Label
+                  if (propertyType != null && propertyType!.isNotEmpty)
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                      decoration: BoxDecoration(
+                        color: AppTheme.blueColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        propertyType!.toTitleCase(),
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.blueColor,
+                        ),
+                      ),
+                    ),
 
                   // Location
                   Row(
@@ -204,7 +225,7 @@ class PropertyCardCompact extends StatelessWidget {
 
   Widget _buildImageSection(BuildContext context) {
     return Container(
-      height: 120,
+      height: 110,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12),
@@ -223,16 +244,16 @@ class PropertyCardCompact extends StatelessWidget {
                 ? Image.network(
                     imageUrls.first,
                     width: double.infinity,
-                    height: 120,
+                    height: 110,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return const LogoPlaceholder(
                         width: double.infinity,
-                        height: 120,
+                        height: 110,
                       );
                     },
                   )
-                : const LogoPlaceholder(width: double.infinity, height: 120),
+                : const LogoPlaceholder(width: double.infinity, height: 110),
           ),
 
           // Featured Badge
@@ -353,7 +374,7 @@ class PropertyCardCompact extends StatelessWidget {
     final isLoggedIn = context.read<HomeBloc>().state.showAddButton;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         border: Border(top: BorderSide(color: Colors.grey.shade200, width: 1)),
       ),
