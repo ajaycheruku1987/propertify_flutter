@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
@@ -90,8 +91,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   bool _isLoadingLocation = true; // Track location loading state
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _tabs = ['Feeds', 'Requests', 'Projects', 'Services'];
-
   @override
   void initState() {
     super.initState();
@@ -122,6 +121,14 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final List<String> tabs = [
+      l10n.feeds,
+      l10n.requests,
+      l10n.projects,
+      l10n.services,
+    ];
+
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return Scaffold(
@@ -145,7 +152,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                       ],
                     ),
                   )
-                : _builBottomNavContent(bottomNavIndex: state.bottomNavIndex),
+                : _builBottomNavContent(
+                  bottomNavIndex: state.bottomNavIndex,
+                  tabs: tabs,
+                ),
           ),
           floatingActionButton: _buildFloatingActionButton(),
           floatingActionButtonLocation:
@@ -201,6 +211,8 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
               onLocationPressed: _openMapScreen,
             ),
           ),
+          const SizedBox(width: 8),
+          _buildLanguageSelector(),
           if (false)
             Stack(
               children: [
@@ -233,6 +245,35 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             ),
         ],
       ),
+    );
+  }
+
+  Widget _buildLanguageSelector() {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return PopupMenuButton<Locale>(
+          initialValue: state.locale ?? const Locale('en'),
+          icon: Icon(Icons.language, color: Theme.of(context).primaryColor),
+          onSelected: (Locale locale) {
+            context.read<HomeBloc>().add(HomeEvent.setLocale(locale));
+          },
+          itemBuilder:
+              (BuildContext context) => <PopupMenuEntry<Locale>>[
+                const PopupMenuItem<Locale>(
+                  value: Locale('en'),
+                  child: Text('English'),
+                ),
+                const PopupMenuItem<Locale>(
+                  value: Locale('hi'),
+                  child: Text('हिन्दी (Hindi)'),
+                ),
+                const PopupMenuItem<Locale>(
+                  value: Locale('te'),
+                  child: Text('తెలుగు (Telugu)'),
+                ),
+              ],
+        );
+      },
     );
   }
 
@@ -435,7 +476,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     }
   }
 
-  Widget mainContent(HomeState state) {
+  Widget mainContent(HomeState state, List<String> tabs) {
     final currentTabIndex = state.homeIndex;
     bool hasActiveFilter = false;
     if (currentTabIndex == 0) {
@@ -537,7 +578,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                     maxHeight: 109.0,
                                     alignment: Alignment.topCenter,
                                     child: NavigationTabs(
-                                      tabs: _tabs,
+                                      tabs: tabs,
                                       selectedIndex: state.homeIndex,
                                       onTabSelected: (index) {
                                         context.read<HomeBloc>().add(
@@ -895,10 +936,13 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     );
   }
 
-  Widget _builBottomNavContent({required int bottomNavIndex}) {
+  Widget _builBottomNavContent({
+    required int bottomNavIndex,
+    required List<String> tabs,
+  }) {
     switch (bottomNavIndex) {
       case 0:
-        return mainContent(context.watch<HomeBloc>().state);
+        return mainContent(context.watch<HomeBloc>().state, tabs);
       case 1:
         return ReelsScreen();
       case 2:

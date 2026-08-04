@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../bloc/create_post_bloc.dart';
 import '../map_screen.dart';
 
@@ -43,6 +44,7 @@ class _AddressInputState extends State<AddressInput> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
         if (widget.controller.text != state.address) {
@@ -55,7 +57,7 @@ class _AddressInputState extends State<AddressInput> {
           children: [
             Expanded(
               child: CommonTextFormField(
-                label: 'Address',
+                label: l10n.address,
                 controller: widget.controller,
                 maxlines: 3,
                 isRequired: true,
@@ -70,7 +72,7 @@ class _AddressInputState extends State<AddressInput> {
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Address is required';
+                    return l10n.addressRequired;
                   }
                   return null;
                 },

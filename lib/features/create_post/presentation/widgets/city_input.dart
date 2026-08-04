@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class CityInput extends StatefulWidget {
@@ -27,6 +28,7 @@ class _CityInputState extends State<CityInput> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
         if (_controller.text != state.selectedLocation) {
@@ -34,7 +36,7 @@ class _CityInputState extends State<CityInput> {
         }
       },
       child: CommonTextFormField(
-        label: 'City',
+        label: l10n.city,
         controller: _controller,
         readOnly: true,
         onChanged: (value) {

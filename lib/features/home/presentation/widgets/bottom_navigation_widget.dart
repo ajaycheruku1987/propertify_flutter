@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../../../core/app_theme.dart';
 
 class BottomNavigationWidget extends StatelessWidget {
@@ -15,6 +16,7 @@ class BottomNavigationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -35,26 +37,26 @@ class BottomNavigationWidget extends StatelessWidget {
                 index: 0,
                 icon: Icons.home_outlined,
                 activeIcon: Icons.home,
-                label: 'Home',
+                label: l10n.home,
               ),
               _buildNavItem(
                 index: 1,
                 icon: Icons.smart_display_outlined,
                 activeIcon: Icons.smart_display,
-                label: 'Reels',
+                label: l10n.reels,
               ),
               const SizedBox(width: 60), // Space for FAB
               _buildNavItem(
                 index: 2,
                 icon: Icons.insights_outlined,
                 activeIcon: Icons.insights,
-                label: 'BuilderSmart',
+                label: l10n.builderSmart,
               ),
               _buildNavItem(
                 index: 3,
                 icon: Icons.person_outline_outlined,
                 activeIcon: Icons.person,
-                label: 'Profile',
+                label: l10n.profile,
               ),
             ],
           ),

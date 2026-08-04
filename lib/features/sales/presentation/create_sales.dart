@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/common_widgets/common_dropdown.dart';
@@ -95,6 +96,7 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -104,9 +106,9 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Create Sales Project',
-          style: TextStyle(
+        title: Text(
+          l10n.createSalesProject,
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -130,20 +132,20 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonTextFormField(
-                  label: 'Project Name',
+                  label: l10n.projectName,
                   controller: _projectNameController,
                   isRequired: true,
                   maxLength: 30,
                   validator: (v) =>
-                      v == null || v.trim().isEmpty ? 'Required' : null,
+                      v == null || v.trim().isEmpty ? l10n.required : null,
                 ),
                 const SizedBox(height: 16),
                 CommonTextFormField(
-                  label: 'RERA Number',
+                  label: l10n.reraNumber,
                   controller: _reraController,
                   isRequired: true,
                   validator: (v) =>
-                      v == null || v.trim().isEmpty ? 'Required' : null,
+                      v == null || v.trim().isEmpty ? l10n.required : null,
                 ),
                 const SizedBox(height: 16),
                 const PropertyTypeSelector(),
@@ -155,20 +157,20 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                         .toLowerCase()
                         .trim();
 
-                    String unitsLabel = 'No of Units';
-                    String areaLabel = 'Total Built-up Area';
+                    String unitsLabel = l10n.noOfUnits;
+                    String areaLabel = l10n.totalBuiltUpArea;
                     bool showFloors = false;
 
                     if (type == 'apartment' || type == 'apartments') {
-                      unitsLabel = 'No of Flats';
+                      unitsLabel = l10n.noOfFlats;
                       showFloors = true;
                     } else if (type == 'villa' || type == 'villas') {
-                      unitsLabel = 'No of Villas';
+                      unitsLabel = l10n.noOfVillas;
                     } else if (type == 'open plot' ||
                         type == 'plots' ||
                         type == 'properties') {
-                      unitsLabel = 'No of Plots';
-                      areaLabel = 'Total Project Area';
+                      unitsLabel = l10n.noOfPlots;
+                      areaLabel = l10n.totalProjectArea;
                     }
 
                     return Column(
@@ -176,7 +178,7 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                       children: [
                         if (showFloors) ...[
                           CommonDropdownFormField<int>(
-                            label: 'No of Floors',
+                            label: l10n.noOfFloors,
                             isRequired: true,
                             value: _noOfFloorsController.text.isEmpty
                                 ? null
@@ -203,7 +205,7 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                           keyboardType: TextInputType.number,
                           isRequired: true,
                           validator: (v) =>
-                              v == null || v.trim().isEmpty ? 'Required' : null,
+                              v == null || v.trim().isEmpty ? l10n.required : null,
                         ),
                         const SizedBox(height: 16),
                         CommonTextFormField(
@@ -212,11 +214,11 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                           keyboardType: TextInputType.number,
                           isRequired: true,
                           validator: (v) =>
-                              v == null || v.trim().isEmpty ? 'Required' : null,
+                              v == null || v.trim().isEmpty ? l10n.required : null,
                         ),
                         const SizedBox(height: 16),
                         CommonDropdownFormField<String>(
-                          label: 'Measurement',
+                          label: l10n.measurement,
                           isRequired: true,
                           value: _selectedAreaUnit,
                           items: const [
@@ -248,36 +250,36 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   children: [
                     Expanded(
                       child: CommonTextFormField(
-                        label: 'Min Price',
+                        label: l10n.minPrice,
                         controller: _minPriceController,
                         keyboardType: const TextInputType.numberWithOptions(
                           decimal: true,
                         ),
                         isRequired: true,
                         validator: (v) =>
-                            v == null || v.trim().isEmpty ? 'Required' : null,
+                            v == null || v.trim().isEmpty ? l10n.required : null,
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: CommonTextFormField(
-                        label: 'Max Price',
+                        label: l10n.maxPrice,
                         controller: _maxPriceController,
                         keyboardType: const TextInputType.numberWithOptions(
                           decimal: true,
                         ),
                         isRequired: true,
                         validator: (v) =>
-                            v == null || v.trim().isEmpty ? 'Required' : null,
+                            v == null || v.trim().isEmpty ? l10n.required : null,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
                 CommonTextFormField(
-                  label: 'Sale Specification',
+                  label: l10n.saleSpecification,
                   controller: _saleSpecificationController,
-                  hintText: 'e.g. 2BHK, 3BHK starting from ₹45L',
+                  hintText: l10n.saleSpecHint,
                   maxlines: 2,
                 ),
                 const SizedBox(height: 16),
@@ -285,10 +287,10 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   onTap: _selectPossessionDate,
                   child: AbsorbPointer(
                     child: CommonTextFormField(
-                      label: 'Possession Date',
+                      label: l10n.possessionDate,
                       controller: _possessionDateController,
                       suffixIcon: const Icon(Icons.calendar_month),
-                      hintText: 'Select possession date',
+                      hintText: l10n.selectPossessionDate,
                     ),
                   ),
                 ),
@@ -336,13 +338,13 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   children: [
                     Expanded(
                       child: CommonTextFormField(
-                        label: 'City',
+                        label: l10n.city,
                         controller: _cityController,
                         readOnly: true,
                         isRequired: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please choose address';
+                            return l10n.pleaseChooseAddress;
                           }
                           return null;
                         },
@@ -351,13 +353,13 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: CommonTextFormField(
-                        label: 'State',
+                        label: l10n.state,
                         controller: _stateController,
                         readOnly: true,
                         isRequired: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please choose address';
+                            return l10n.pleaseChooseAddress;
                           }
                           return null;
                         },
@@ -370,23 +372,23 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                 const SizedBox(height: 16),
                 // Description
                 CommonTextFormField(
-                  label: 'Description',
+                  label: l10n.description,
                   controller: _descriptionController,
                   maxlines: 6,
                 ),
                 const SizedBox(height: 16),
                 // Specifications with bullet points
                 DynamicListField(
-                  label: 'Specifications',
+                  label: l10n.specifications,
                   controller: _specController,
-                  hint: 'Enter a specification',
+                  hint: l10n.enterSpecification,
                 ),
                 const SizedBox(height: 16),
                 // Public Facilities with bullet points
                 DynamicListField(
-                  label: 'Public Facilities',
+                  label: l10n.publicFacilities,
                   controller: _publicFacilitiesController,
-                  hint: 'Enter a public facility',
+                  hint: l10n.enterPublicFacility,
                 ),
 
                 const SizedBox(height: 24),
@@ -394,7 +396,7 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     child: CommonCustomButton(
-                      buttonLabel: 'Next',
+                      buttonLabel: l10n.next,
                       onTap: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           final createPostState = context

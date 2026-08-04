@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -30,14 +31,15 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          'BuilderSmart',
-          style: TextStyle(
+        title: Text(
+          l10n.builderSmart,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -53,14 +55,14 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMinimizedHero(context),
+                _buildMinimizedHero(context, l10n),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Market Price Tracker',
-                      style: TextStyle(
+                    Text(
+                      l10n.marketPriceTracker,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: Colors.black87,
@@ -76,7 +78,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                       InkWell(
                         onTap: () => context.read<ServicesBloc>().add(const ServicesEvent.getMaterialPricesEvent(force: true)),
                         child: Text(
-                          'Refresh Trends',
+                          l10n.refreshTrends,
                           style: TextStyle(
                             fontSize: 12,
                             color: Theme.of(context).primaryColor,
@@ -96,16 +98,16 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Building Insights',
-                      style: TextStyle(
+                    Text(
+                      l10n.buildingInsights,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: Colors.black87,
                       ),
                     ),
                     Text(
-                      'Expert Guidance',
+                      l10n.expertGuidance,
                       style: TextStyle(
                         fontSize: 12,
                         color: Theme.of(context).primaryColor,
@@ -115,11 +117,11 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                _buildCompactGrid(context),
+                _buildCompactGrid(context, l10n),
                 const SizedBox(height: 24),
-                _buildCompactFutureSection(context),
+                _buildCompactFutureSection(context, l10n),
                 const SizedBox(height: 24),
-                _buildDisclaimerSection(context),
+                _buildDisclaimerSection(context, l10n),
                 const SizedBox(height: 20),
               ],
             ),
@@ -129,7 +131,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
     );
   }
 
-  Widget _buildMinimizedHero(BuildContext context) {
+  Widget _buildMinimizedHero(BuildContext context, AppLocalizations l10n) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -145,7 +147,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Smart Decisions',
+                  l10n.smartDecisions,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16,
@@ -153,9 +155,9 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Material prices & expert insights.',
-                  style: TextStyle(
+                Text(
+                  l10n.smartDecisionsSubtitle,
+                  style: const TextStyle(
                     color: Colors.black54,
                     fontSize: 13,
                   ),
@@ -331,7 +333,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
     );
   }
 
-  Widget _buildCompactGrid(BuildContext context) {
+  Widget _buildCompactGrid(BuildContext context, AppLocalizations l10n) {
     return GridView.count(
       crossAxisCount: 2,
       shrinkWrap: true,
@@ -342,28 +344,28 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
       children: [
         _buildCompactCard(
           context,
-          'Cost Estimator',
+          l10n.costEstimator,
           Icons.calculate_outlined,
           Colors.blue,
           () => context.push(CostEstimatorScreen.routeName),
         ),
         _buildCompactCard(
           context,
-          'Quality Guide',
+          l10n.qualityGuide,
           Icons.verified_outlined,
           Colors.green,
           () => context.push(QualityGuideScreen.routeName),
         ),
         _buildCompactCard(
           context,
-          'Vastu Tips',
+          l10n.vastuTips,
           Icons.explore_outlined,
           Colors.orange,
           () => context.push(VastuTipsScreen.routeName),
         ),
         _buildCompactCard(
           context,
-          'Contractors',
+          l10n.contractors,
           Icons.engineering_outlined,
           Colors.purple,
           () => context.go('${HomeScreen.routeName}?tab=services'),
@@ -410,7 +412,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
     );
   }
 
-  Widget _buildCompactFutureSection(BuildContext context) {
+  Widget _buildCompactFutureSection(BuildContext context, AppLocalizations l10n) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
@@ -427,7 +429,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Material Marketplace',
+                  l10n.materialMarketplace,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -435,7 +437,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
                   ),
                 ),
                 Text(
-                  'Wholesale prices coming soon!',
+                  l10n.comingSoon,
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.orange[800],
@@ -450,7 +452,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
     );
   }
 
-  Widget _buildDisclaimerSection(BuildContext context) {
+  Widget _buildDisclaimerSection(BuildContext context, AppLocalizations l10n) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
@@ -466,7 +468,7 @@ class _BuilderSmartScreenState extends State<BuilderSmartScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Disclaimer: These building insights are collected from various internet sources and may be right or wrong. Please verify with a professional before making construction decisions.',
+              l10n.disclaimer,
               style: TextStyle(
                 fontSize: 11,
                 color: Colors.grey[700],

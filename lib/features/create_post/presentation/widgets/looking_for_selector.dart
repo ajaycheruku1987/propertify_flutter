@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class LookingForSelector extends StatelessWidget {
@@ -11,14 +12,15 @@ class LookingForSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<CreatePostBloc, CreatePostState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Looking For',
-              style: TextStyle(
+            Text(
+              l10n.lookingFor,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../../home/models/feed_posts_response_model.dart';
 
 class SimilarProperties extends StatelessWidget {
@@ -19,9 +20,9 @@ class SimilarProperties extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          const Text(
-            'Similar',
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.similarProperties,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.black,

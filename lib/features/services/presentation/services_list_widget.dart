@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
@@ -143,6 +144,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
   @override
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeBloc>().state;
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<ServicesBloc, ServicesState>(
       builder: (context, state) {
         final services = state.servicesList;
@@ -181,13 +183,13 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                     delegate: _StickyChipHeaderDelegate(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: _buildActiveFilterChips(context, homeState),
+                        child: _buildActiveFilterChips(context, homeState, l10n),
                       ),
                       height: 52.0,
                     ),
                   ),
-                const SliverFillRemaining(
-                  child: Center(child: Text('No services found')),
+                SliverFillRemaining(
+                  child: Center(child: Text(l10n.noServicesFound)),
                 ),
               ],
             ),
@@ -210,7 +212,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                   delegate: _StickyChipHeaderDelegate(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: _buildActiveFilterChips(context, homeState),
+                      child: _buildActiveFilterChips(context, homeState, l10n),
                     ),
                     height: 52.0,
                   ),
@@ -265,12 +267,12 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                         context: context,
                         builder: (BuildContext dialogContext) {
                           return AlertDialog(
-                            title: const Text('Delete Service'),
-                            content: const Text('Are you sure you want to delete this service?'),
+                            title: Text(l10n.deleteService),
+                            content: Text(l10n.deleteServiceConfirm),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.of(dialogContext).pop(),
-                                child: const Text('Cancel'),
+                                child: Text(l10n.cancel),
                               ),
                               TextButton(
                                 onPressed: () {
@@ -279,9 +281,9 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                                     ServicesEvent.deleteServiceEvent(serviceId: service.id ?? ''),
                                   );
                                 },
-                                child: const Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.red),
+                                child: Text(
+                                  l10n.delete,
+                                  style: const TextStyle(color: Colors.red),
                                 ),
                               ),
                             ],
@@ -296,7 +298,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
                       );
                     },
                     onFavoritePressed: () {
-                      CustomToast.showSuccessToast(msg: 'Added to favorites');
+                      CustomToast.showSuccessToast(msg: l10n.addedToFavorites);
                     },
                     promotedAt: service.promotedAt,
                     promotedUntil: service.promotedUntil,
@@ -368,7 +370,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
     }
   }
 
-  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state, AppLocalizations l10n) {
     if (state.activeServicesFilter == null) return const SizedBox.shrink();
 
     final filter = state.activeServicesFilter!;
@@ -376,7 +378,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
 
     if (filter['isLocationCustom'] == true && filter['address'] != null) {
       chips.add(
-        _buildChip('Location: ${filter['address']}', () {
+        _buildChip('${l10n.location}: ${filter['address']}', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['isLocationCustom'] = false;
           newFilter['address'] = null;
@@ -389,7 +391,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
     final serviceType = filter['serviceType'] as String?;
     if (serviceType != null && serviceType != 'All' && serviceType.isNotEmpty) {
       chips.add(
-        _buildChip('Type: $serviceType', () {
+        _buildChip('${l10n.type}: $serviceType', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['serviceType'] = 'All';
           _applyServicesFilter(context, newFilter);
@@ -400,7 +402,7 @@ class _ServicesListWidgetState extends State<ServicesListWidget> {
     if (categories != null && categories.isNotEmpty && !categories.contains('All')) {
       for (final cat in categories) {
         chips.add(
-          _buildChip('Category: $cat', () {
+          _buildChip('${l10n.category}: $cat', () {
             final newFilter = Map<String, dynamic>.from(filter);
             final list = List<String>.from(newFilter['categories'] ?? []);
             list.remove(cat);

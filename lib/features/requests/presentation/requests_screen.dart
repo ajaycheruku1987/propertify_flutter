@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/notify_message.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
@@ -131,6 +132,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
   @override
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeBloc>().state;
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<RequestsBloc, RequestsState>(
       builder: (context, state) {
         return RefreshIndicator(
@@ -147,7 +149,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   delegate: _StickyChipHeaderDelegate(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: _buildActiveFilterChips(context, homeState),
+                      child: _buildActiveFilterChips(context, homeState, l10n),
                     ),
                     height: 52.0,
                   ),
@@ -170,8 +172,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     items: [
                       if (!Platform.isIOS)
                         AdSliderWidget(
-                          title: 'Home Loan',
-                          caption: 'Need a home Loan Raise a\nRequest',
+                          title: l10n.homeLoan,
+                          caption: l10n.homeLoanCaption,
                           onCreateRequest: () {
                             context.read<HomeBloc>().state.showAddButton
                                 ? context.push(
@@ -185,8 +187,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                           },
                         ),
                       AdSliderWidget(
-                        title: 'Interior Design',
-                        caption: 'Design your dream home\nRaise a Request',
+                        title: l10n.interiorDesign,
+                        caption: l10n.interiorDesignCaption,
                         onCreateRequest: () {
                           context.read<HomeBloc>().state.showAddButton
                               ? context.push(
@@ -224,7 +226,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 ]),
               ),
               // Requests List as Sliver
-              _buildRequestsListSliver(state),
+              _buildRequestsListSliver(state, l10n),
               if (state.isLoading && state.requestsList.isNotEmpty)
                 const SliverToBoxAdapter(
                   child: Padding(
@@ -239,7 +241,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
     );
   }
 
-  Widget _buildRequestsListSliver(RequestsState state) {
+  Widget _buildRequestsListSliver(RequestsState state, AppLocalizations l10n) {
     if (state.isLoading && state.requestsList.isEmpty) {
       return const SliverFillRemaining(
         child: Center(child: CircularProgressIndicator()),
@@ -252,7 +254,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            state.notifyStatus!.message ?? 'Failed to load requests',
+            state.notifyStatus!.message ?? l10n.failedToLoadRequests,
             style: const TextStyle(color: Colors.red),
           ),
         ),
@@ -283,8 +285,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
           child: Center(
             child: Text(
               state.requestsList.isEmpty
-                  ? 'No requests available. Be the first to create one!'
-                  : 'No requests available for category: $selectedCategoryType',
+                  ? l10n.noRequestsAvailable
+                  : l10n.noRequestsInCategory(selectedCategoryType ?? ''),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 15, color: Colors.grey),
             ),
@@ -330,14 +332,12 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text('Delete Request'),
-                        content: const Text(
-                          'Are you sure you want to delete this request?',
-                        ),
+                        title: Text(l10n.deleteRequest),
+                        content: Text(l10n.deleteRequestConfirm),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
-                            child: const Text('Cancel'),
+                            child: Text(l10n.cancel),
                           ),
                           TextButton(
                             onPressed: () {
@@ -348,9 +348,9 @@ class _RequestsScreenState extends State<RequestsScreen> {
                                 ),
                               );
                             },
-                            child: const Text(
-                              'Delete',
-                              style: TextStyle(color: Colors.red),
+                            child: Text(
+                              l10n.delete,
+                              style: const TextStyle(color: Colors.red),
                             ),
                           ),
                         ],
@@ -436,7 +436,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
     }
   }
 
-  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state, AppLocalizations l10n) {
     if (state.activeRequestsFilter == null) return const SizedBox.shrink();
 
     final filter = state.activeRequestsFilter!;
@@ -444,7 +444,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
 
     if (filter['isLocationCustom'] == true && filter['address'] != null) {
       chips.add(
-        _buildChip('Location: ${filter['address']}', () {
+        _buildChip('${l10n.location}: ${filter['address']}', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['isLocationCustom'] = false;
           newFilter['address'] = null;
@@ -457,7 +457,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
     final categoryType = filter['categoryType'] as String?;
     if (categoryType != null && categoryType != 'All' && categoryType.isNotEmpty) {
       chips.add(
-        _buildChip('Category: $categoryType', () {
+        _buildChip('${l10n.categoryType}: $categoryType', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['categoryType'] = 'All';
           _applyRequestsFilter(context, newFilter);
@@ -522,7 +522,11 @@ class _StickyChipHeaderDelegate extends SliverPersistentHeaderDelegate {
   _StickyChipHeaderDelegate({required this.child, this.height = 52.0});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,

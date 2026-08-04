@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/feed/bloc/feed_bloc.dart';
@@ -36,7 +37,7 @@ class SimilarPostsByCategory extends StatelessWidget {
         children: [
           // Section Title
           Text(
-            'Similar Properties',
+            AppLocalizations.of(context)!.similarProperties,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,

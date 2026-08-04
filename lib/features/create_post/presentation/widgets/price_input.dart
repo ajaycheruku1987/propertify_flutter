@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class PriceInput extends StatefulWidget {
@@ -44,6 +45,7 @@ class _PriceInputState extends State<PriceInput> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
         if (_controller.text != state.price) {
@@ -56,10 +58,10 @@ class _PriceInputState extends State<PriceInput> {
           CommonTextFormField(
             controller: _controller,
             keyboardType: TextInputType.number,
-            label: 'Price *',
+            label: '${l10n.price} *',
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Price is required';
+                return l10n.priceRequired;
               }
               return null;
             },

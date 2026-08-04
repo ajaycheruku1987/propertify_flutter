@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'dart:ui' as ui;
 import 'dart:async';
 import 'package:intl/intl.dart';
@@ -102,6 +103,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<ReelsBloc, ReelsState>(
       listener: (context, state) {
         if (state.isError &&
@@ -144,19 +146,19 @@ class _ReelsScreenState extends State<ReelsScreen> {
                 if (state.isLoading && reels.isEmpty)
                   const Center(child: CircularProgressIndicator())
                 else if (reels.isEmpty)
-                  const Center(
+                  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.video_library_outlined,
                           color: Colors.white24,
                           size: 64,
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
-                          'No reels available',
-                          style: TextStyle(color: Colors.white70),
+                          AppLocalizations.of(context)!.noReelsAvailable,
+                          style: const TextStyle(color: Colors.white70),
                         ),
                       ],
                     ),
@@ -236,7 +238,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
         style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
         decoration: InputDecoration(
-          hintText: 'Search reels...',
+          hintText: AppLocalizations.of(context)!.searchReels,
           hintStyle: const TextStyle(color: Colors.white54),
           prefixIcon: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white70),
@@ -436,7 +438,7 @@ class ReelViewState extends State<ReelView>
     }
   }
 
-  Widget _buildPromotionDates(ReelResponseModel reel) {
+  Widget _buildPromotionDates(ReelResponseModel reel, AppLocalizations l10n) {
     final DateTime? start = reel.createdAt != null
         ? DateTime.tryParse(reel.createdAt!)
         : null;
@@ -465,7 +467,7 @@ class ReelViewState extends State<ReelView>
             children: [
               if (start != null)
                 Text(
-                  'Start: ${formatter.format(start)}',
+                  '${l10n.start}: ${formatter.format(start)}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
@@ -474,7 +476,7 @@ class ReelViewState extends State<ReelView>
                 ),
               if (end != null)
                 Text(
-                  'Expires: ${formatter.format(end)}',
+                  '${l10n.expiresReel}: ${formatter.format(end)}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
@@ -490,6 +492,7 @@ class ReelViewState extends State<ReelView>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: _toggleMute,
       behavior: HitTestBehavior.opaque,
@@ -755,14 +758,14 @@ class ReelViewState extends State<ReelView>
                             ),
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.star, color: Colors.white, size: 16),
-                            SizedBox(width: 6),
+                            const Icon(Icons.star, color: Colors.white, size: 16),
+                            const SizedBox(width: 6),
                             Text(
-                              'Promoted',
-                              style: TextStyle(
+                              l10n.promoted,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -773,7 +776,7 @@ class ReelViewState extends State<ReelView>
                       ),
                       if (isOwner) ...[
                         const SizedBox(height: 8),
-                        _buildPromotionDates(widget.reel),
+                        _buildPromotionDates(widget.reel, l10n),
                       ],
                     ],
                   );
@@ -811,7 +814,7 @@ class ReelViewState extends State<ReelView>
                       if (shouldShowBoost) ...[
                         _ActionButton(
                           icon: Icons.rocket_launch_outlined,
-                          label: 'Boost',
+                          label: l10n.boost,
                           color: Colors.white,
                           onTap: () {
                             // Navigate to SelectPlanScreen when boost is tapped
@@ -868,6 +871,7 @@ class ReelViewState extends State<ReelView>
                           _showContactBottomSheet(
                             context,
                             widget.reel.owner?.phoneNumber,
+                            l10n,
                           );
                         },
                       ),
@@ -937,10 +941,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  void _showContactBottomSheet(BuildContext context, String? phoneNumber) {
+  void _showContactBottomSheet(BuildContext context, String? phoneNumber, AppLocalizations l10n) {
     if (phoneNumber == null || phoneNumber.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Contact number not available')),
+        SnackBar(content: Text(l10n.contactNumberNotAvailable)),
       );
       return;
     }
@@ -957,9 +961,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  'Contact Owner',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Text(
+                  l10n.contactOwner,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -975,7 +979,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           launchUrl(launchUri);
                         },
                         icon: const Icon(Icons.phone, color: Colors.white),
-                        label: const Text('Call'),
+                        label: Text(l10n.call),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF6C5CE7),
                           foregroundColor: Colors.white,
@@ -1017,8 +1021,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           } catch (e) {
                             if (mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Could not open WhatsApp'),
+                                SnackBar(
+                                  content: Text(l10n.couldNotOpenWhatsapp),
                                 ),
                               );
                             }
@@ -1028,7 +1032,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           FontAwesomeIcons.whatsapp,
                           color: Colors.white,
                         ),
-                        label: const Text('WhatsApp'),
+                        label: Text(l10n.whatsapp),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF25D366),
                           foregroundColor: Colors.white,
@@ -1066,6 +1070,7 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: onTap,
       child: Column(

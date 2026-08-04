@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
 import 'package:propertify/features/services/models/create_service_data_model.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
@@ -58,6 +59,7 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -67,9 +69,9 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Create Service Agent',
-          style: TextStyle(
+        title: Text(
+          l10n.createServiceAgent,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -84,9 +86,9 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Agent Details',
-                style: TextStyle(
+              Text(
+                l10n.agentDetails,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
@@ -97,13 +99,13 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               // Service Title
               CommonTextFormField(
                 controller: _titleController,
-                label: 'Agent / Shop Name',
-                hintText: 'Enter service title',
+                label: l10n.agentShopName,
+                hintText: l10n.enterServiceTitle,
                 isRequired: true,
                 maxLength: 30,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter service title';
+                    return l10n.pleaseEnterServiceTitle;
                   }
                   return null;
                 },
@@ -113,13 +115,13 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               // Description
               CommonTextFormField(
                 controller: _descriptionController,
-                label: 'Description',
-                hintText: 'Enter service description',
+                label: l10n.description,
+                hintText: l10n.enterRequestDescription,
                 maxlines: 4,
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter description';
+                    return l10n.pleaseEnterDescription;
                   }
                   return null;
                 },
@@ -127,9 +129,9 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               const SizedBox(height: 20),
 
               // Category Section
-              const Text(
-                'Category',
-                style: TextStyle(
+              Text(
+                l10n.category,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
@@ -206,13 +208,13 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               const SizedBox(height: 20),
               CommonTextFormField(
                 controller: _cityController,
-                label: 'City',
+                label: l10n.city,
                 // hintText: 'Enter city',
                 isRequired: true,
                 readOnly: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please choose address';
+                    return l10n.pleaseChooseAddress;
                   }
                   return null;
                 },
@@ -220,13 +222,13 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               const SizedBox(height: 20),
               CommonTextFormField(
                 controller: _stateController,
-                label: 'State',
+                label: l10n.state,
                 // hintText: 'Enter state',
                 readOnly: true,
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please choose address';
+                    return l10n.pleaseChooseAddress;
                   }
                   return null;
                 },
@@ -234,15 +236,15 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
               const SizedBox(height: 20),
               CommonTextFormField(
                 controller: _pinCodeController,
-                label: 'Pin Code',
-                hintText: 'Enter pin code',
+                label: l10n.pinCode,
+                hintText: l10n.enterPinCode,
                 isRequired: true,
                 maxLength: 6,
                 keyboardType: TextInputType.number,
                 textInputFormatter: [FilteringTextInputFormatter.digitsOnly],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter pin code';
+                    return l10n.pleaseEnterPinCode;
                   }
                   return null;
                 },
@@ -279,11 +281,11 @@ class _CreateServiceDetailsState extends State<CreateServiceDetails> {
                         context.push(CreateServiceMedia.routeName);
                       } else if (_selectedCategories.isEmpty) {
                         CustomToast.showErrorToast(
-                          msg: 'Please select at least one category',
+                          msg: l10n.selectAtLeastOneCategory,
                         );
                       }
                     },
-                    buttonLabel: 'Next',
+                    buttonLabel: l10n.next,
                   ),
                 ),
               ),

@@ -17,6 +17,7 @@ import 'package:propertify/core/service_locator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
@@ -51,6 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocBuilder<HomeBloc, HomeState>(
@@ -127,9 +129,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                const Text(
-                                  'Welcome to Propertify',
-                                  style: TextStyle(
+                                Text(
+                                  l10n.welcomeToPropertify,
+                                  style: const TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -137,10 +139,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                const Text(
-                                  'Sign in to sync your favorites and manage your listings across devices',
+                                Text(
+                                  l10n.signInToSync,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.white70,
                                     height: 1.4,
@@ -165,9 +167,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       elevation: 0,
                                     ),
-                                    child: const Text(
-                                      'Get Started',
-                                      style: TextStyle(
+                                    child: Text(
+                                      l10n.getStarted,
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -199,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     );
                                   }
                                 },
-                                buttonLabel: 'My Company',
+                                buttonLabel: l10n.myCompany,
                               ),
 
                             // Verification Pending Banner
@@ -238,23 +240,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       const SizedBox(width: 16),
-                                      const Expanded(
+                                      Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Verification in progress',
-                                              style: TextStyle(
+                                              l10n.verificationInProgress,
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w600,
                                                 color: Colors.black87,
                                               ),
                                             ),
-                                            SizedBox(height: 4),
+                                            const SizedBox(height: 4),
                                             Text(
-                                              'Usually takes 24 hours',
-                                              style: TextStyle(
+                                              l10n.usuallyTakes24Hours,
+                                              style: const TextStyle(
                                                 fontSize: 13,
                                                 color: Colors.black54,
                                               ),
@@ -310,23 +312,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                         const SizedBox(width: 16),
-                                        const Expanded(
+                                        Expanded(
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'GST Verification is Rejected',
-                                                style: TextStyle(
+                                                l10n.gstRejected,
+                                                style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w600,
                                                   color: Colors.black87,
                                                 ),
                                               ),
-                                              SizedBox(height: 4),
+                                              const SizedBox(height: 4),
                                               Text(
-                                                'Please update the GST again',
-                                                style: TextStyle(
+                                                l10n.pleaseUpdateGst,
+                                                style: const TextStyle(
                                                   fontSize: 13,
                                                   color: Colors.black54,
                                                 ),
@@ -411,18 +413,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              const Text(
-                                                'Verify GST',
-                                                style: TextStyle(
+                                              Text(
+                                                l10n.verifyGst,
+                                                style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w600,
                                                   color: Colors.black87,
                                                 ),
                                               ),
                                               const SizedBox(height: 4),
-                                              const Text(
-                                                'Verify GST to start creating projects',
-                                                style: TextStyle(
+                                              Text(
+                                                l10n.verifyGstToCreate,
+                                                style: const TextStyle(
                                                   fontSize: 13,
                                                   color: Colors.black54,
                                                 ),
@@ -445,13 +447,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             if (homeState.showAddButton &&
                                 companyState.myCompany == null) ...[
                               AdSliderWidget(
-                                title: 'Want to create a Project!',
-                                caption:
-                                    'First Create a company by Verifying GST',
+                                title: l10n.wantToCreateProject,
+                                caption: l10n.createCompanyByGst,
                                 onCreateRequest: () {
                                   context.push(GstVerificationScreen.routeName);
                                 },
-                                createButtonText: 'Create Company',
+                                createButtonText: l10n.createCompany,
                                 showExploreDetailsButton: false,
                                 backgroundImagePath:
                                     'assets/images/create_company_banner.svg',
@@ -482,7 +483,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (role == 'admin')
                                   ProfileMenuItem(
                                     icon: Icons.admin_panel_settings_outlined,
-                                    title: 'Admin Dashboard',
+                                    title: l10n.adminDashboard,
                                     onTap: () {
                                       context.push(
                                         AdminDashboardScreen.routeName,
@@ -492,7 +493,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (role == 'seller')
                                   ProfileMenuItem(
                                     icon: Icons.dashboard_outlined,
-                                    title: 'Home Loans Dashboard',
+                                    title: l10n.homeLoansDashboard,
                                     onTap: () {
                                       context.push(
                                         '${AdminDashboardScreen.routeName}?isSeller=true',
@@ -502,7 +503,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (role == 'marketing')
                                   ProfileMenuItem(
                                     icon: Icons.campaign_outlined,
-                                    title: 'Interior Design Dashboard',
+                                    title: l10n.interiorDesignDashboard,
                                     onTap: () {
                                       context.push(
                                         '${AdminDashboardScreen.routeName}?isMarketing=true',
@@ -522,21 +523,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (homeState.showAddButton)
                           ProfileMenuItem(
                             icon: Icons.dashboard_outlined,
-                            title: 'My Dashboard',
+                            title: l10n.myDashboard,
                             onTap: () {
                               context.push(MyDashboardScreen.routeName);
                             },
                           ),
                         ProfileMenuItem(
                           icon: Icons.feedback_outlined,
-                          title: 'Suggestions & Feedback',
+                          title: l10n.suggestionsFeedback,
                           onTap: () {
                             context.push(FeedbackScreen.routeName);
                           },
                         ),
                         ProfileMenuItem(
                           icon: Icons.star_outline,
-                          title: 'Rate Us',
+                          title: l10n.rateUs,
                           onTap: () async {
                             final Uri url = Platform.isAndroid
                                 ? Uri.parse(
@@ -556,7 +557,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         ProfileMenuItem(
                           icon: Icons.phone_outlined,
-                          title: 'Contact us',
+                          title: l10n.contactUs,
                           onTap: () async {
                             final Uri url = Uri.parse(
                               'https://propertifyapp.com/contact-us-two/',
@@ -571,7 +572,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         ProfileMenuItem(
                           icon: Icons.info_outline,
-                          title: 'Terms and Conditions',
+                          title: l10n.termsConditions,
                           onTap: () async {
                             final Uri url = Uri.parse(
                               'https://propertifyapp.com/terms-and-conditions/',
@@ -586,7 +587,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         ProfileMenuItem(
                           icon: Icons.privacy_tip_outlined,
-                          title: 'Privacy Policy',
+                          title: l10n.privacyPolicy,
                           onTap: () async {
                             final Uri url = Uri.parse(
                               'https://propertifyapp.com/our-features-one/',
@@ -601,7 +602,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         ProfileMenuItem(
                           icon: Icons.person_add_outlined,
-                          title: 'Invite Friends',
+                          title: l10n.inviteFriends,
                           onTap: () {
                             try {
                               final isAndroid = Platform.isAndroid;
@@ -622,20 +623,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             }
                           },
                         ),
-                        _buildFollowUsSection(),
+                        _buildFollowUsSection(l10n),
 
                         if (homeState.showAddButton)
                           GestureDetector(
                             onTap: () {
-                              _showSignOutDialog(context);
+                              _showSignOutDialog(context, l10n);
                             },
                             child: Container(
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: const Text(
-                                'Sign Out',
+                              child: Text(
+                                l10n.signOut,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -652,7 +653,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Made with ',
+                                    l10n.madeWith,
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey.shade600,
@@ -664,7 +665,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     size: 14,
                                   ),
                                   Text(
-                                    ' in India',
+                                    l10n.inIndia,
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey.shade600,
@@ -697,12 +698,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildFollowUsSection() {
+  Widget _buildFollowUsSection(AppLocalizations l10n) {
     return Column(
       children: [
         const SizedBox(height: 24),
         Text(
-          'Follow Us',
+          l10n.followUs,
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
@@ -777,25 +778,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  void _showSignOutDialog(BuildContext context) {
+  void _showSignOutDialog(BuildContext context, AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Sign Out'),
-          content: const Text('Are you sure you want to sign out?'),
+          title: Text(l10n.signOut),
+          content: Text(l10n.signOutConfirm),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () {
                 logout(context: context);
               },
-              child: const Text(
-                'Sign Out',
-                style: TextStyle(color: Colors.red),
+              child: Text(
+                l10n.signOut,
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           ],

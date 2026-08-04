@@ -21,5 +21,6 @@ class HomeState with _$HomeState {
     Map<String, dynamic>? activeRequestsFilter,
     Map<String, dynamic>? activeSalesFilter,
     @Default('') String searchQuery,
+    Locale? locale,
   }) = _HomeState;
 }

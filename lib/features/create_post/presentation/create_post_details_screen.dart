@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../bloc/create_post_bloc.dart';
 import '../../../utils/image_picker_util.dart';
 import '../../../core/service_locator.dart';
@@ -39,6 +40,7 @@ class _CreatePostImagesDescriptionScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -48,9 +50,9 @@ class _CreatePostImagesDescriptionScreenState
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Add Images',
-          style: TextStyle(
+        title: Text(
+          l10n.addImages,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -70,11 +72,11 @@ class _CreatePostImagesDescriptionScreenState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Image Upload Section
-                _buildImageUploadSection(context, state),
+                _buildImageUploadSection(context, state, l10n),
                 const SizedBox(height: 32),
 
                 // Description Section
-                _buildDescriptionSection(context, state),
+                _buildDescriptionSection(context, state, l10n),
                 const SizedBox(height: 32),
 
                 // Error Message
@@ -111,11 +113,11 @@ class _CreatePostImagesDescriptionScreenState
                   ),
 
                 // Terms and Conditions
-                _buildTermsSection(),
+                _buildTermsSection(l10n),
                 const SizedBox(height: 32),
 
                 // Post Button
-                _buildPostButton(context, state),
+                _buildPostButton(context, state, l10n),
                 const SizedBox(height: 20),
               ],
             ),
@@ -125,21 +127,25 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Widget _buildImageUploadSection(BuildContext context, CreatePostState state) {
+  Widget _buildImageUploadSection(
+    BuildContext context,
+    CreatePostState state,
+    AppLocalizations l10n,
+  ) {
     return Column(
       children: [
         // Upload Area
         if (state.selectedImages.isEmpty)
-          _buildUploadArea(context)
+          _buildUploadArea(context, l10n)
         else
-          _buildSelectedImages(context, state),
+          _buildSelectedImages(context, state, l10n),
       ],
     );
   }
 
-  Widget _buildUploadArea(BuildContext context) {
+  Widget _buildUploadArea(BuildContext context, AppLocalizations l10n) {
     return GestureDetector(
-      onTap: () => _pickImages(context),
+      onTap: () => _pickImages(context, l10n),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -153,9 +159,9 @@ class _CreatePostImagesDescriptionScreenState
             // Upload Icon
             Image.asset('assets/images/upload_images.png', width: 120),
 
-            const Text(
-              'Upload images',
-              style: TextStyle(
+            Text(
+              l10n.uploadImages,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF8B5CF6),
@@ -164,18 +170,18 @@ class _CreatePostImagesDescriptionScreenState
             const SizedBox(height: 8),
             RichText(
               textAlign: TextAlign.center,
-              text: const TextSpan(
-                style: TextStyle(fontSize: 12, color: Color(0xFF666666)),
+              text: TextSpan(
+                style: const TextStyle(fontSize: 12, color: Color(0xFF666666)),
                 children: [
-                  TextSpan(text: 'Just tap to Here to '),
+                  TextSpan(text: l10n.justTapToHere),
                   TextSpan(
-                    text: 'Browse',
-                    style: TextStyle(
+                    text: l10n.browse,
+                    style: const TextStyle(
                       color: Color(0xFF8B5CF6),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  TextSpan(text: ' the Gallery to\nUpload image'),
+                  TextSpan(text: l10n.galleryToUpload),
                 ],
               ),
             ),
@@ -186,12 +192,16 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Widget _buildSelectedImages(BuildContext context, CreatePostState state) {
+  Widget _buildSelectedImages(
+    BuildContext context,
+    CreatePostState state,
+    AppLocalizations l10n,
+  ) {
     return Column(
       children: [
         // Add more images button
         GestureDetector(
-          onTap: () => _pickImages(context),
+          onTap: () => _pickImages(context, l10n),
           child: Container(
             width: double.infinity,
             height: 120,
@@ -205,10 +215,10 @@ class _CreatePostImagesDescriptionScreenState
               children: [
                 // Upload Icon
                 Image.asset('assets/images/upload_images.png', width: 120),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Add more images +',
-                  style: TextStyle(
+                  l10n.addMoreImages,
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF8B5CF6),
                     fontWeight: FontWeight.w500,
@@ -275,13 +285,17 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Widget _buildDescriptionSection(BuildContext context, CreatePostState state) {
+  Widget _buildDescriptionSection(
+    BuildContext context,
+    CreatePostState state,
+    AppLocalizations l10n,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Description',
-          style: TextStyle(
+        Text(
+          l10n.description,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -297,11 +311,11 @@ class _CreatePostImagesDescriptionScreenState
           child: TextField(
             controller: _descriptionController,
             maxLines: 8,
-            decoration: const InputDecoration(
-              hintText: 'Write a description for your property...',
-              hintStyle: TextStyle(color: Color(0xFF999999), fontSize: 14),
+            decoration: InputDecoration(
+              hintText: l10n.writeDescription,
+              hintStyle: const TextStyle(color: Color(0xFF999999), fontSize: 14),
               border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16),
+              contentPadding: const EdgeInsets.all(16),
             ),
             onChanged: (value) {
               context.read<CreatePostBloc>().add(
@@ -314,7 +328,7 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Widget _buildTermsSection() {
+  Widget _buildTermsSection(AppLocalizations l10n) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -328,12 +342,12 @@ class _CreatePostImagesDescriptionScreenState
           activeColor: const Color(0xFF8B5CF6),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
-        const Expanded(
+        Expanded(
           child: Padding(
-            padding: EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: 12),
             child: Text(
-              'By Creating this post you are accepting our Generated policies',
-              style: TextStyle(fontSize: 14, color: Color(0xFF666666)),
+              l10n.acceptPolicies,
+              style: const TextStyle(fontSize: 14, color: Color(0xFF666666)),
             ),
           ),
         ),
@@ -341,7 +355,11 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Widget _buildPostButton(BuildContext context, CreatePostState state) {
+  Widget _buildPostButton(
+    BuildContext context,
+    CreatePostState state,
+    AppLocalizations l10n,
+  ) {
     final isEnabled = state.selectedImages.isNotEmpty && _acceptTerms;
 
     return SizedBox(
@@ -376,7 +394,7 @@ class _CreatePostImagesDescriptionScreenState
                 ),
               )
             : Text(
-                'Post',
+                l10n.post,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -387,7 +405,7 @@ class _CreatePostImagesDescriptionScreenState
     );
   }
 
-  Future<void> _pickImages(BuildContext context) async {
+  Future<void> _pickImages(BuildContext context, AppLocalizations l10n) async {
     try {
       final images = await ImagePickerUtil.pickMultipleImages(
         maxImages: 10,
@@ -401,7 +419,7 @@ class _CreatePostImagesDescriptionScreenState
       }
     } catch (e) {
       if (context.mounted) {
-        CustomToast.showErrorToast(msg: 'Error picking images: $e');
+        CustomToast.showErrorToast(msg: '${l10n.errorPickingImages}: $e');
       }
     }
   }

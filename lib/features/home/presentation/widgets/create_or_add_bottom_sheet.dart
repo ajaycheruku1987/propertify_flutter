@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/app.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/company/presentation/gst_verification_screen.dart';
@@ -31,6 +32,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -55,11 +57,11 @@ class CreateOrAddBottomSheet extends StatelessWidget {
             ),
 
             // Title
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                'Create',
-                style: TextStyle(
+                l10n.create,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
@@ -81,8 +83,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/post.svg',
-                          title: 'Create a Post',
-                          subtitle: 'Share your properties with\nthe community',
+                          title: l10n.createPost,
+                          subtitle: l10n.shareProperties,
                           color: Theme.of(context).primaryColor,
                           onTap: () async {
                             Navigator.pop(context);
@@ -98,8 +100,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/reel.svg',
-                          title: 'Create a Reel',
-                          subtitle: 'Showcase properties with\nshort videos',
+                          title: l10n.createReel,
+                          subtitle: l10n.showcaseProperties,
                           color: Theme.of(context).primaryColor,
                           onTap: () async {
                             Navigator.pop(context);
@@ -121,8 +123,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/agent.svg',
-                          title: 'Register as Service Agent',
-                          subtitle: 'Offer your professional\nservices',
+                          title: l10n.registerAsAgent,
+                          subtitle: l10n.offerProfessionalServices,
                           color: Theme.of(context).primaryColor,
                           onTap: () async {
                             Navigator.pop(context);
@@ -137,9 +139,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/ads.svg',
-                          title: 'Create a Banner Ad',
-                          subtitle:
-                              'Promote your business with\nadvertisements',
+                          title: l10n.createBannerAd,
+                          subtitle: l10n.promoteBusiness,
                           color: Theme.of(context).primaryColor,
                           onTap: () {
                             Navigator.pop(context);
@@ -159,8 +160,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         child: _buildOptionCard(
                           context: context,
                           icon: 'assets/icons/request.svg',
-                          title: 'Create a Request',
-                          subtitle: 'Find properties that match\nyour needs',
+                          title: l10n.createRequest,
+                          subtitle: l10n.findMatchNeeds,
                           color: Theme.of(context).primaryColor,
                           onTap: () {
                             Navigator.pop(context);
@@ -186,16 +187,15 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               child: _buildOptionCard(
                                 context: context,
                                 iconData: Icons.av_timer_rounded,
-                                title: '24 HOURS',
-                                subtitle:
-                                    'You can create a project\nafter 24 hours',
+                                title: l10n.hours24,
+                                subtitle: l10n.canCreateAfter24,
                                 color: Colors.orange,
                                 onTap: () {
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
+                                    SnackBar(
                                       content: Text(
-                                        'Verification is in progress. Please wait up to 24 hours.',
+                                        l10n.verificationWait24,
                                       ),
                                     ),
                                   );
@@ -209,8 +209,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               child: _buildOptionCard(
                                 context: context,
                                 iconData: Icons.error_outline_rounded,
-                                title: 'GST Verification is Rejected',
-                                subtitle: 'Please update the GST again',
+                                title: l10n.gstRejected,
+                                subtitle: l10n.pleaseUpdateGst,
                                 color: Colors.red,
                                 onTap: () {
                                   Navigator.pop(context);
@@ -229,9 +229,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               child: _buildOptionCard(
                                 context: context,
                                 icon: 'assets/icons/sales.svg',
-                                title: 'Create Project',
-                                subtitle:
-                                    'List your projects for\nsales',
+                                title: l10n.createProject,
+                                subtitle: l10n.listProjectsSales,
                                 color: Theme.of(context).primaryColor,
                                 onTap: () async {
                                   Navigator.pop(context);
@@ -248,9 +247,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               child: _buildOptionCard(
                                 context: context,
                                 icon: 'assets/images/gst_inreview.svg',
-                                title: 'Verify GST',
-                                subtitle:
-                                    'Verify company GST to\nstart posting projects',
+                                title: l10n.verifyGst,
+                                subtitle: l10n.verifyCompanyGst,
                                 color: Theme.of(context).primaryColor,
                                 onTap: () async {
                                   Navigator.pop(context);
@@ -267,9 +265,8 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               child: _buildOptionCard(
                                 context: context,
                                 icon: 'assets/images/my_company.svg',
-                                title: 'Create Company',
-                                subtitle:
-                                    'Register your company to\ncreate projects',
+                                title: l10n.createCompany,
+                                subtitle: l10n.registerCompanyToCreate,
                                 color: Theme.of(context).primaryColor,
                                 onTap: () async {
                                   Navigator.pop(context);

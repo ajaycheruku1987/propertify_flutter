@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../../../core/app_theme.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -19,6 +20,7 @@ class SearchBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -38,7 +40,7 @@ class SearchBarWidget extends StatelessWidget {
               controller: controller,
               onChanged: onChanged,
               decoration: InputDecoration(
-                hintText: hintText ?? 'Search Property',
+                hintText: hintText ?? l10n.search,
                 hintStyle: TextStyle(
                   color: Colors.grey.shade500,
                   fontSize: 14,

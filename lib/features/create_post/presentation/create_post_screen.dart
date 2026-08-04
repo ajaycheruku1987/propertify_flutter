@@ -6,6 +6,7 @@ import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/post_success_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/core/content_type.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../bloc/create_post_bloc.dart';
 import '../../../core/service_locator.dart';
 import 'create_post_details_screen.dart';
@@ -46,6 +47,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -55,9 +57,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Create Post',
-          style: TextStyle(
+        title: Text(
+          l10n.createPost,
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -74,7 +76,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             // Navigate to success screen using GoRouter
             final postId = state.addPostResponse?.id ?? '';
             context.go(
-              '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent('Posted Successfully!')}&message=${Uri.encodeComponent('Your Post has been created Successfully\nwould You Like to boost Your Post')}&contentType=${ContentType.FEED.value}&contentId=$postId&homeRoute=${Uri.encodeComponent('${HomeScreen.routeName}?refresh=true')}',
+              '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent(l10n.postedSuccessfully)}&message=${Uri.encodeComponent(l10n.postCreatedSuccess)}&contentType=${ContentType.FEED.value}&contentId=$postId&homeRoute=${Uri.encodeComponent('${HomeScreen.routeName}?refresh=true')}',
             );
           }
         },
@@ -154,12 +156,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             );
                           } else {
                             CustomToast.showErrorToast(
-                              msg: 'Please fill all the fields',
+                              msg: l10n.fillAllFields,
                             );
                           }
                         }
                       },
-                      buttonLabel: 'Next',
+                      buttonLabel: l10n.next,
                     ),
                   ),
 

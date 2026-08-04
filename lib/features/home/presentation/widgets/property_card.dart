@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,7 @@ class _PropertyCardState extends State<PropertyCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: widget.onCardPressed,
       child: Container(
@@ -88,7 +90,7 @@ class _PropertyCardState extends State<PropertyCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Section
-            _buildImageSection(context),
+            _buildImageSection(context, l10n),
 
             // Content Section
             _buildContentSection(),
@@ -101,6 +103,7 @@ class _PropertyCardState extends State<PropertyCard> {
                 onCommentPressed: widget.onCommentPressed,
                 onLikePressed: widget.onLikePressed,
                 isLiked: widget.isLiked,
+                l10n: l10n,
               ),
           ],
         ),
@@ -108,7 +111,7 @@ class _PropertyCardState extends State<PropertyCard> {
     );
   }
 
-  Widget _buildImageSection(BuildContext context) {
+  Widget _buildImageSection(BuildContext context, AppLocalizations l10n) {
     final hasMultipleImages = widget.imageUrls.length > 1;
 
     return Container(
@@ -203,9 +206,9 @@ class _PropertyCardState extends State<PropertyCard> {
                   color: Colors.black.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text(
-                  'Top Ads',
-                  style: TextStyle(
+                child: Text(
+                  l10n.topAds,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w500,
@@ -241,9 +244,9 @@ class _PropertyCardState extends State<PropertyCard> {
                   children: [
                     const Icon(Icons.star, color: Colors.white, size: 12),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Featured',
-                      style: TextStyle(
+                    Text(
+                      l10n.featured,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
@@ -255,7 +258,6 @@ class _PropertyCardState extends State<PropertyCard> {
             ),
 
           // Favorite Button
-          // if (context.read<HomeBloc>().state.showAddButton)
           Positioned(
             top: 12,
             right: 8,
@@ -430,7 +432,7 @@ class _PropertyCardState extends State<PropertyCard> {
     );
   }
 
-  Widget _buildPromotionDates() {
+  Widget _buildPromotionDates(AppLocalizations l10n) {
     final DateTime? start = widget.promotedAt != null
         ? DateTime.tryParse(widget.promotedAt!)
         : (widget.createdAt != null
@@ -455,7 +457,7 @@ class _PropertyCardState extends State<PropertyCard> {
           Icon(Icons.calendar_today, size: 12, color: Colors.blue.shade700),
           const SizedBox(width: 4),
           Text(
-            '${start != null ? "Started: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
+            '${start != null ? "${l10n.started}: ${formatter.format(start)}" : ""} ${end != null ? " ${l10n.expires}: ${formatter.format(end)}" : ""}'
                 .trim(),
             style: TextStyle(
               color: Colors.blue.shade700,
@@ -476,6 +478,7 @@ class _PropertyCardState extends State<PropertyCard> {
     required VoidCallback onLikePressed,
     required VoidCallback onCommentPressed,
     required VoidCallback onSharePressed,
+    required AppLocalizations l10n,
   }) {
     final isLoggedIn = context.read<HomeBloc>().state.showAddButton;
 
@@ -491,13 +494,13 @@ class _PropertyCardState extends State<PropertyCard> {
               icon: isLiked
                   ? FontAwesomeIcons.solidThumbsUp
                   : FontAwesomeIcons.thumbsUp,
-              label: 'Like',
+              label: l10n.like,
               count: widget.likeCount,
               onPressed: () {
                 if (isLoggedIn) {
                   onLikePressed();
                 } else {
-                  CustomToast.showErrorToast(msg: 'Please login to like posts');
+                  CustomToast.showErrorToast(msg: l10n.pleaseLoginToLikePosts);
                 }
               },
             ),
@@ -505,7 +508,7 @@ class _PropertyCardState extends State<PropertyCard> {
           if (showComment)
             _buildActionButton(
               icon: FontAwesomeIcons.comment,
-              label: 'Comment',
+              label: l10n.comment,
               count: widget.commentCount,
               onPressed: () {
                 onCommentPressed();
@@ -516,20 +519,11 @@ class _PropertyCardState extends State<PropertyCard> {
             _buildActionButton(
               icon: FontAwesomeIcons.eye,
               count: widget.viewCount,
-              label: 'View',
+              label: l10n.view,
               onPressed: () {
                 onCommentPressed();
               },
             ),
-
-          // const Spacer(),
-          // _buildActionButton(
-          //   icon: FontAwesomeIcons.shareNodes,
-          //   label: 'Share',
-          //   onPressed: () {
-          //     onSharePressed();
-          //   },
-          // ),
         ],
       ),
     );

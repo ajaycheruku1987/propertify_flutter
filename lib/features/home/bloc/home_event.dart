@@ -28,4 +28,5 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.updateRequestsFilter(Map<String, dynamic>? filter) = _UpdateRequestsFilter;
   const factory HomeEvent.updateSalesFilter(Map<String, dynamic>? filter) = _UpdateSalesFilter;
   const factory HomeEvent.updateSearchQuery(String query) = _UpdateSearchQuery;
+  const factory HomeEvent.setLocale(Locale locale) = _SetLocale;
 }

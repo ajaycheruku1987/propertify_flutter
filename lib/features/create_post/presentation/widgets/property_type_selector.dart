@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify/core/constants/app_categories.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class PropertyTypeSelector extends StatelessWidget {
@@ -10,14 +11,15 @@ class PropertyTypeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<CreatePostBloc, CreatePostState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Property Type *',
-              style: TextStyle(
+            Text(
+              '${l10n.propertyType} *',
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
@@ -70,11 +72,11 @@ class PropertyTypeSelector extends StatelessWidget {
               }).toList(),
             ),
             if (state.selectedPropertyType.isEmpty)
-              const Padding(
-                padding: EdgeInsets.only(top: 8.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Property type is required',
-                  style: TextStyle(color: Colors.red, fontSize: 12),
+                  l10n.propertyTypeRequired,
+                  style: const TextStyle(color: Colors.red, fontSize: 12),
                 ),
               ),
           ],

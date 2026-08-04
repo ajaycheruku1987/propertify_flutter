@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
@@ -118,6 +119,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<CompanyBloc, CompanyState>(
       builder: (context, companyState) {
         final homeState = context.watch<HomeBloc>().state;
@@ -140,7 +142,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                       delegate: _StickyChipHeaderDelegate(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: _buildActiveFilterChips(context, homeState),
+                          child: _buildActiveFilterChips(context, homeState, l10n),
                         ),
                         height: 52.0,
                       ),
@@ -166,7 +168,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                       delegate: _StickyChipHeaderDelegate(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: _buildActiveFilterChips(context, homeState),
+                          child: _buildActiveFilterChips(context, homeState, l10n),
                         ),
                         height: 52.0,
                       ),
@@ -174,7 +176,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                   SliverFillRemaining(
                     child: Center(
                       child: Text(
-                        'Error: ${state.notifyStatus?.message ?? "Unknown error"}',
+                        '${l10n.other}: ${state.notifyStatus?.message ?? "Unknown error"}',
                       ),
                     ),
                   ),
@@ -195,7 +197,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                       delegate: _StickyChipHeaderDelegate(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: _buildActiveFilterChips(context, homeState),
+                          child: _buildActiveFilterChips(context, homeState, l10n),
                         ),
                         height: 52.0,
                       ),
@@ -283,18 +285,18 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const Text(
-                                            'Verify GST',
-                                            style: TextStyle(
+                                          Text(
+                                            l10n.verifyGst,
+                                            style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
                                               color: Colors.black87,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
-                                          const Text(
-                                            'Verify GST to start creating projects',
-                                            style: TextStyle(
+                                          Text(
+                                            l10n.verifyGstToCreate,
+                                            style: const TextStyle(
                                               fontSize: 13,
                                               color: Colors.black54,
                                             ),
@@ -317,12 +319,12 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                         if (homeState.showAddButton &&
                             companyState.myCompany == null) ...[
                           AdSliderWidget(
-                            title: 'Want to create a Project!',
-                            caption: 'First Create a company by Verifying GST',
+                            title: l10n.wantToCreateProject,
+                            caption: l10n.createCompanyByGst,
                             onCreateRequest: () {
                               context.push(GstVerificationScreen.routeName);
                             },
-                            createButtonText: 'Create Company',
+                            createButtonText: l10n.createCompany,
                             showExploreDetailsButton: false,
                             backgroundImagePath:
                                 'assets/images/create_company_banner.svg',
@@ -332,8 +334,8 @@ class _SalesListWidgetState extends State<SalesListWidget> {
                     ),
                   ),
                   if ((state.salesList?.salerecords ?? []).isEmpty)
-                    const SliverFillRemaining(
-                      child: Center(child: Text('No sales available')),
+                    SliverFillRemaining(
+                      child: Center(child: Text(l10n.noSalesAvailable)),
                     )
                   else
                     SliverPadding(
@@ -419,7 +421,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
     }
   }
 
-  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state, AppLocalizations l10n) {
     if (state.activeSalesFilter == null) return const SizedBox.shrink();
 
     final filter = state.activeSalesFilter!;
@@ -427,7 +429,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
 
     if (filter['isLocationCustom'] == true && filter['address'] != null) {
       chips.add(
-        _buildChip('Location: ${filter['address']}', () {
+        _buildChip('${l10n.location}: ${filter['address']}', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['isLocationCustom'] = false;
           newFilter['location'] = null;
@@ -442,7 +444,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
         !propertyTypes.contains('All')) {
       for (final type in propertyTypes) {
         chips.add(
-          _buildChip('Type: $type', () {
+          _buildChip('${l10n.type}: $type', () {
             final newFilter = Map<String, dynamic>.from(filter);
             final list = List<String>.from(newFilter['propertyTypes'] ?? []);
             list.remove(type);
@@ -457,7 +459,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
         (priceRange['min'] != 10 || priceRange['max'] != 1000)) {
       chips.add(
         _buildChip(
-          'Price: ₹${(priceRange['min'] as num).round()}L - ₹${(priceRange['max'] as num).round()}L',
+          '${l10n.price}: ₹${(priceRange['min'] as num).round()}L - ₹${(priceRange['max'] as num).round()}L',
           () {
             final newFilter = Map<String, dynamic>.from(filter);
             newFilter['priceRange'] = {'min': 10, 'max': 1000};

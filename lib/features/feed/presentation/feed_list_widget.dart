@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -145,6 +146,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   @override
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeBloc>().state;
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<FeedBloc, FeedState>(
       builder: (context, state) {
         return RefreshIndicator(
@@ -166,7 +168,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     delegate: _StickyChipHeaderDelegate(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: _buildActiveFilterChips(context, homeState),
+                        child: _buildActiveFilterChips(context, homeState, l10n),
                       ),
                       height: 52.0,
                     ),
@@ -188,9 +190,9 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                             color: Colors.red.shade400,
                           ),
                           const SizedBox(height: 16),
-                          const Text(
-                            'Something went wrong, please try again later.',
-                            style: TextStyle(fontSize: 16, color: Colors.red),
+                          Text(
+                            l10n.somethingWentWrong,
+                            style: const TextStyle(fontSize: 16, color: Colors.red),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
@@ -198,27 +200,27 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                             onPressed: () {
                               context.go('/splash');
                             },
-                            child: const Text('Retry'),
+                            child: Text(l10n.retry),
                           ),
                         ],
                       ),
                     ),
                   )
                 else if (state.feedsList.isEmpty)
-                  const SliverFillRemaining(
+                  SliverFillRemaining(
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FaIcon(
+                          const FaIcon(
                             FontAwesomeIcons.house,
                             size: 60,
                             color: Colors.grey,
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'No properties found',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                            l10n.noPropertiesFound,
+                            style: const TextStyle(fontSize: 16, color: Colors.grey),
                           ),
                         ],
                       ),
@@ -230,15 +232,15 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
                         // Banner Ads Section
-                        _buildBannerAds(context),
+                        _buildBannerAds(context, l10n),
 
                         // Feeds Section Header with Grid/List Toggle
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'New Listing',
-                              style: TextStyle(
+                            Text(
+                              l10n.newListing,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black87,
@@ -259,7 +261,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                                       _isGridView = false;
                                     });
                                   },
-                                  tooltip: 'List View',
+                                  tooltip: l10n.listView,
                                 ),
                                 IconButton(
                                   icon: FaIcon(
@@ -274,7 +276,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                                       _isGridView = true;
                                     });
                                   },
-                                  tooltip: 'Grid View',
+                                  tooltip: l10n.gridView,
                                 ),
                               ],
                             ),
@@ -516,7 +518,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  Widget _buildBannerAds(BuildContext context) {
+  Widget _buildBannerAds(BuildContext context, AppLocalizations l10n) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         if (state.bannerAds == null) {
@@ -567,9 +569,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             color: Colors.white,
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            'Boost Your Property',
-                            style: TextStyle(
+                          Text(
+                            l10n.boostYourProperty,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -585,9 +587,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               color: Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Text(
-                              'Create Banner Ad',
-                              style: TextStyle(
+                            child: Text(
+                              l10n.createBannerAd,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -737,7 +739,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
   }
 
-  Widget _buildActiveFilterChips(BuildContext context, HomeState state) {
+  Widget _buildActiveFilterChips(BuildContext context, HomeState state, AppLocalizations l10n) {
     if (state.activeFeedsFilter == null) return const SizedBox.shrink();
 
     final filter = state.activeFeedsFilter!;
@@ -745,7 +747,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
     if (filter['isLocationCustom'] == true && filter['location'] != null) {
       chips.add(
-        _buildChip('Location: ${filter['location']}', () {
+        _buildChip('${l10n.location}: ${filter['location']}', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['isLocationCustom'] = false;
           newFilter['location'] = null;
@@ -759,7 +761,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     final lookingFor = filter['lookingFor'] as String?;
     if (lookingFor != null && lookingFor != 'All' && lookingFor.isNotEmpty) {
       chips.add(
-        _buildChip('Looking For: $lookingFor', () {
+        _buildChip('${l10n.lookingFor}: $lookingFor', () {
           final newFilter = Map<String, dynamic>.from(filter);
           newFilter['lookingFor'] = 'All';
           _applyFeedsFilter(context, newFilter);
@@ -772,7 +774,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         !propertyTypes.contains('All')) {
       for (final type in propertyTypes) {
         chips.add(
-          _buildChip('Type: $type', () {
+          _buildChip('${l10n.type}: $type', () {
             final newFilter = Map<String, dynamic>.from(filter);
             final list = List<String>.from(newFilter['propertyTypes'] ?? []);
             list.remove(type);
@@ -787,7 +789,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         (priceRange['min'] != 100000 || priceRange['max'] != 50000000)) {
       chips.add(
         _buildChip(
-          'Price: ₹${(priceRange['min'] as num).round()} - ₹${(priceRange['max'] as num).round()}',
+          '${l10n.price}: ₹${(priceRange['min'] as num).round()} - ₹${(priceRange['max'] as num).round()}',
           () {
             final newFilter = Map<String, dynamic>.from(filter);
             newFilter['priceRange'] = {'min': 100000, 'max': 50000000};

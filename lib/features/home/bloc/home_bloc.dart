@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_UpdateRequestsFilter>(_onUpdateRequestsFilter);
     on<_UpdateSalesFilter>(_onUpdateSalesFilter);
     on<_UpdateSearchQuery>(_onUpdateSearchQuery);
+    on<_SetLocale>(_onSetLocale);
     on<_Reset>(_onReset);
+  }
+
+  void _onSetLocale(_SetLocale event, Emitter<HomeState> emit) {
+    emit(state.copyWith(locale: event.locale));
   }
 
   void _onUpdateSearchQuery(_UpdateSearchQuery event, Emitter<HomeState> emit) {

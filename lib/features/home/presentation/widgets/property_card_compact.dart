@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,6 +60,7 @@ class PropertyCardCompact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: onCardPressed,
       child: Container(
@@ -78,7 +80,7 @@ class PropertyCardCompact extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Section
-            _buildImageSection(context),
+            _buildImageSection(context, l10n),
 
             // Content Section
             Padding(
@@ -169,14 +171,14 @@ class PropertyCardCompact extends StatelessWidget {
             ),
 
             // Actions Section - Compact
-            _buildActionsSection(context),
+            _buildActionsSection(context, l10n),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildPromotionDates() {
+  Widget _buildPromotionDates(AppLocalizations l10n) {
     final DateTime? start = promotedAt != null
         ? DateTime.tryParse(promotedAt!)
         : (createdAt != null ? DateTime.tryParse(createdAt!) : null);
@@ -201,7 +203,7 @@ class PropertyCardCompact extends StatelessWidget {
           const SizedBox(width: 4),
           Flexible(
             child: Text(
-              '${start != null ? "Started: ${formatter.format(start)}" : ""} ${end != null ? " Expires: ${formatter.format(end)}" : ""}'
+              '${start != null ? "${l10n.started}: ${formatter.format(start)}" : ""} ${end != null ? " ${l10n.expires}: ${formatter.format(end)}" : ""}'
                   .trim(),
               style: TextStyle(
                 color: Colors.blue.shade700,
@@ -217,7 +219,7 @@ class PropertyCardCompact extends StatelessWidget {
     );
   }
 
-  Widget _buildImageSection(BuildContext context) {
+  Widget _buildImageSection(BuildContext context, AppLocalizations l10n) {
     return Container(
       height: 110,
       decoration: const BoxDecoration(
@@ -281,9 +283,9 @@ class PropertyCardCompact extends StatelessWidget {
                       size: 8,
                     ),
                     const SizedBox(width: 3),
-                    const Text(
-                      'Featured',
-                      style: TextStyle(
+                    Text(
+                      l10n.featured,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 9,
                         fontWeight: FontWeight.w600,
@@ -364,7 +366,7 @@ class PropertyCardCompact extends StatelessWidget {
     );
   }
 
-  Widget _buildActionsSection(BuildContext context) {
+  Widget _buildActionsSection(BuildContext context, AppLocalizations l10n) {
     final isLoggedIn = context.read<HomeBloc>().state.showAddButton;
 
     return Container(
@@ -385,7 +387,7 @@ class PropertyCardCompact extends StatelessWidget {
               if (isLoggedIn) {
                 onLikePressed();
               } else {
-                CustomToast.showErrorToast(msg: 'Please login to like posts');
+                CustomToast.showErrorToast(msg: l10n.pleaseLoginToLikePosts);
               }
             },
           ),

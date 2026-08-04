@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import '../../../../core/app_theme.dart';
@@ -109,6 +110,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final l10n = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: Container(
@@ -139,9 +141,9 @@ class _FeedsFilterState extends State<FeedsFilter> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Feeds Filter',
-                    style: TextStyle(
+                  Text(
+                    l10n.feedsFilter,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
@@ -188,15 +190,15 @@ class _FeedsFilterState extends State<FeedsFilter> {
                     const SizedBox(height: 20),
 
                     // Property Type
-                    _buildPropertyTypeSection(),
+                    _buildPropertyTypeSection(l10n),
                     const SizedBox(height: 20),
 
                     // Looking For
-                    _buildLookingForSection(),
+                    _buildLookingForSection(l10n),
                     const SizedBox(height: 20),
 
                     // Price Range
-                    _buildPriceRangeSection(),
+                    _buildPriceRangeSection(l10n),
                     const SizedBox(height: 30),
                   ],
                 ),
@@ -204,20 +206,20 @@ class _FeedsFilterState extends State<FeedsFilter> {
             ),
 
             // Bottom Buttons
-            _buildBottomButtons(),
+            _buildBottomButtons(l10n),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildPropertyTypeSection() {
+  Widget _buildPropertyTypeSection(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Property Type',
-          style: TextStyle(
+        Text(
+          l10n.propertyType,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -275,13 +277,13 @@ class _FeedsFilterState extends State<FeedsFilter> {
     );
   }
 
-  Widget _buildLookingForSection() {
+  Widget _buildLookingForSection(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Looking For',
-          style: TextStyle(
+        Text(
+          l10n.lookingFor,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -329,13 +331,13 @@ class _FeedsFilterState extends State<FeedsFilter> {
     );
   }
 
-  Widget _buildPriceRangeSection() {
+  Widget _buildPriceRangeSection(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Price Range',
-          style: TextStyle(
+        Text(
+          l10n.priceRange,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -393,7 +395,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
     );
   }
 
-  Widget _buildBottomButtons() {
+  Widget _buildBottomButtons(AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -427,10 +429,10 @@ class _FeedsFilterState extends State<FeedsFilter> {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey.shade300),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'Reset',
-                    style: TextStyle(
+                    l10n.reset,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
@@ -444,7 +446,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
           Expanded(
             flex: 2,
             child: CommonCustomButton(
-              buttonLabel: 'Apply',
+              buttonLabel: l10n.apply,
               onTap: () {
                 final filterData = {
                   'location': _selectedLocation,

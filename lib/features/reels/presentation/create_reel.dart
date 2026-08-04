@@ -3,6 +3,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/common_widgets/post_success_screen.dart';
@@ -88,6 +89,7 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<ReelsBloc, ReelsState>(
       listener: (context, state) {
         if (state.isSuccess && !state.isLoading) {
@@ -95,13 +97,13 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
           // Note: We'll need to get the reel ID from state when available
           final reelId = ''; // TODO: Get from successful reel creation response
           context.go(
-            '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent('Reel Posted Successfully!')}&message=${Uri.encodeComponent('Your Reel has been created Successfully\nwould You Like to boost Your Reel')}&contentType=${ContentType.REEL.value}&contentId=$reelId&homeRoute=${Uri.encodeComponent(HomeScreen.routeName)}',
+            '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent(l10n.reelPostedSuccess)}&message=${Uri.encodeComponent(l10n.reelCreatedMessage)}&contentType=${ContentType.REEL.value}&contentId=$reelId&homeRoute=${Uri.encodeComponent(HomeScreen.routeName)}',
           );
         } else if (state.isError && !state.isLoading) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                state.notifyStatus?.message ?? 'Failed to create reel',
+                state.notifyStatus?.message ?? l10n.failedToCreateReel,
               ),
               backgroundColor: Colors.red,
             ),
@@ -123,9 +125,9 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                   icon: const Icon(Icons.arrow_back, color: Colors.black87),
                   onPressed: isLoading ? null : () => Navigator.pop(context),
                 ),
-                title: const Text(
-                  'Create Reel',
-                  style: TextStyle(
+                title: Text(
+                  l10n.createReel,
+                  style: const TextStyle(
                     color: Colors.black87,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -169,16 +171,16 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                                     ),
                                     const SizedBox(height: 8),
                                     Text(
-                                      'Upload Video File',
+                                      l10n.uploadVideoFile,
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     const SizedBox(height: 4),
-                                    const Text(
-                                      'Maximum 30 sec. Preferred format mp4 or webm (≤5MB)',
-                                      style: TextStyle(
+                                    Text(
+                                      l10n.maxVideoDuration,
+                                      style: const TextStyle(
                                         color: Colors.black54,
                                         fontSize: 12,
                                       ),
@@ -234,11 +236,11 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                       const SizedBox(height: 12),
 
                       CommonTextFormField(
-                        label: 'Description',
+                        label: l10n.description,
                         controller: _descriptionController,
                         maxlines: 4,
                         maxLength: 400,
-                        hintText: 'Enter your description here',
+                        hintText: l10n.enterDescriptionHere,
                       ),
 
                       const SizedBox(height: 16),
@@ -270,26 +272,26 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                       ),
                       const SizedBox(height: 16),
                       CommonTextFormField(
-                        label: 'City',
+                        label: l10n.city,
                         controller: _cityController,
                         readOnly: true,
                         isRequired: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please choose address';
+                            return l10n.pleaseChooseAddress;
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 16),
                       CommonTextFormField(
-                        label: 'State',
+                        label: l10n.state,
                         controller: _stateController,
                         readOnly: true,
                         isRequired: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please choose address';
+                            return l10n.pleaseChooseAddress;
                           }
                           return null;
                         },
@@ -313,15 +315,15 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
                         child: SizedBox(
                           width: double.infinity,
                           child: CommonCustomButton(
-                            buttonLabel: 'Posts',
+                            buttonLabel: l10n.posts,
                             isEnable: !isLoading,
                             onTap: () {
                               if (_formKey.currentState?.validate() ?? false) {
                                 // Validate video file
                                 if (_videoFile == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Please select a video'),
+                                    SnackBar(
+                                      content: Text(l10n.pleaseSelectVideo),
                                       backgroundColor: Colors.red,
                                     ),
                                   );

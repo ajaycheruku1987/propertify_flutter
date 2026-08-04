@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import '../../bloc/create_post_bloc.dart';
 
@@ -28,6 +29,7 @@ class _TitleInputState extends State<TitleInput> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
         if (_controller.text != state.title) {
@@ -40,12 +42,12 @@ class _TitleInputState extends State<TitleInput> {
           CommonTextFormField(
             controller: _controller,
             keyboardType: TextInputType.text,
-            label: 'Title *',
-            hintText: 'Enter property title',
+            label: '${l10n.title} *',
+            hintText: l10n.enterPropertyTitle,
             maxLength: 30,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Title is required';
+                return l10n.titleRequired;
               }
               return null;
             },

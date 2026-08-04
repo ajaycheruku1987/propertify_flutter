@@ -36,6 +36,7 @@ mixin _$HomeEvent {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +56,7 @@ mixin _$HomeEvent {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +76,7 @@ mixin _$HomeEvent {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,6 +97,7 @@ mixin _$HomeEvent {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +115,7 @@ mixin _$HomeEvent {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -128,6 +133,7 @@ mixin _$HomeEvent {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -206,6 +212,7 @@ class _$ResetImpl implements _Reset {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return reset();
   }
@@ -228,6 +235,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return reset?.call();
   }
@@ -250,6 +258,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -276,6 +285,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return reset(this);
   }
@@ -296,6 +306,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return reset?.call(this);
   }
@@ -316,6 +327,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -385,6 +397,7 @@ class _$IsLoadingImpl implements _IsLoading {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return isLoading();
   }
@@ -407,6 +420,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return isLoading?.call();
   }
@@ -429,6 +443,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -455,6 +470,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return isLoading(this);
   }
@@ -475,6 +491,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return isLoading?.call(this);
   }
@@ -495,6 +512,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -590,6 +608,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return setHomeIndex(index);
   }
@@ -612,6 +631,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return setHomeIndex?.call(index);
   }
@@ -634,6 +654,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -660,6 +681,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return setHomeIndex(this);
   }
@@ -680,6 +702,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return setHomeIndex?.call(this);
   }
@@ -700,6 +723,7 @@ class _$SetHomeIndexImpl implements _SetHomeIndex {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (setHomeIndex != null) {
@@ -801,6 +825,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return setBottomNavIndex(index);
   }
@@ -823,6 +848,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return setBottomNavIndex?.call(index);
   }
@@ -845,6 +871,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -871,6 +898,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return setBottomNavIndex(this);
   }
@@ -891,6 +919,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return setBottomNavIndex?.call(this);
   }
@@ -911,6 +940,7 @@ class _$SetBottomNavIndexImpl implements _SetBottomNavIndex {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (setBottomNavIndex != null) {
@@ -985,6 +1015,7 @@ class _$CheckTokenImpl implements _CheckToken {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return checkToken();
   }
@@ -1007,6 +1038,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return checkToken?.call();
   }
@@ -1029,6 +1061,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -1055,6 +1088,7 @@ class _$CheckTokenImpl implements _CheckToken {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return checkToken(this);
   }
@@ -1075,6 +1109,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return checkToken?.call(this);
   }
@@ -1095,6 +1130,7 @@ class _$CheckTokenImpl implements _CheckToken {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (checkToken != null) {
@@ -1200,6 +1236,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return currentLocationLatLng(lat, lng);
   }
@@ -1222,6 +1259,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return currentLocationLatLng?.call(lat, lng);
   }
@@ -1244,6 +1282,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1270,6 +1309,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return currentLocationLatLng(this);
   }
@@ -1290,6 +1330,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return currentLocationLatLng?.call(this);
   }
@@ -1310,6 +1351,7 @@ class _$CurrentLocationLatLngImpl implements _CurrentLocationLatLng {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (currentLocationLatLng != null) {
@@ -1452,6 +1494,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateCurrentLocation(lat, lng, city, state, village);
   }
@@ -1474,6 +1517,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateCurrentLocation?.call(lat, lng, city, state, village);
   }
@@ -1496,6 +1540,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1522,6 +1567,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateCurrentLocation(this);
   }
@@ -1542,6 +1588,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateCurrentLocation?.call(this);
   }
@@ -1562,6 +1609,7 @@ class _$UpdateCurrentLocationImpl implements _UpdateCurrentLocation {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateCurrentLocation != null) {
@@ -1689,6 +1737,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return loadOtherUserPosts(userId, limit, offset);
   }
@@ -1711,6 +1760,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return loadOtherUserPosts?.call(userId, limit, offset);
   }
@@ -1733,6 +1783,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1759,6 +1810,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return loadOtherUserPosts(this);
   }
@@ -1779,6 +1831,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return loadOtherUserPosts?.call(this);
   }
@@ -1799,6 +1852,7 @@ class _$LoadOtherUserPostsImpl implements _LoadOtherUserPosts {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (loadOtherUserPosts != null) {
@@ -1914,6 +1968,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateFeedsFilter(filter);
   }
@@ -1936,6 +1991,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateFeedsFilter?.call(filter);
   }
@@ -1958,6 +2014,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateFeedsFilter != null) {
@@ -1984,6 +2041,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateFeedsFilter(this);
   }
@@ -2004,6 +2062,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateFeedsFilter?.call(this);
   }
@@ -2024,6 +2083,7 @@ class _$UpdateFeedsFilterImpl implements _UpdateFeedsFilter {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateFeedsFilter != null) {
@@ -2136,6 +2196,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateServicesFilter(filter);
   }
@@ -2158,6 +2219,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateServicesFilter?.call(filter);
   }
@@ -2180,6 +2242,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateServicesFilter != null) {
@@ -2206,6 +2269,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateServicesFilter(this);
   }
@@ -2226,6 +2290,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateServicesFilter?.call(this);
   }
@@ -2246,6 +2311,7 @@ class _$UpdateServicesFilterImpl implements _UpdateServicesFilter {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateServicesFilter != null) {
@@ -2358,6 +2424,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateRequestsFilter(filter);
   }
@@ -2380,6 +2447,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateRequestsFilter?.call(filter);
   }
@@ -2402,6 +2470,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateRequestsFilter != null) {
@@ -2428,6 +2497,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateRequestsFilter(this);
   }
@@ -2448,6 +2518,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateRequestsFilter?.call(this);
   }
@@ -2468,6 +2539,7 @@ class _$UpdateRequestsFilterImpl implements _UpdateRequestsFilter {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateRequestsFilter != null) {
@@ -2579,6 +2651,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateSalesFilter(filter);
   }
@@ -2601,6 +2674,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateSalesFilter?.call(filter);
   }
@@ -2623,6 +2697,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateSalesFilter != null) {
@@ -2649,6 +2724,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateSalesFilter(this);
   }
@@ -2669,6 +2745,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateSalesFilter?.call(this);
   }
@@ -2689,6 +2766,7 @@ class _$UpdateSalesFilterImpl implements _UpdateSalesFilter {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateSalesFilter != null) {
@@ -2791,6 +2869,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
         updateRequestsFilter,
     required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
     required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
   }) {
     return updateSearchQuery(query);
   }
@@ -2813,6 +2892,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
     TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
   }) {
     return updateSearchQuery?.call(query);
   }
@@ -2835,6 +2915,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
     TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
     TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
     TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
     required TResult orElse(),
   }) {
     if (updateSearchQuery != null) {
@@ -2861,6 +2942,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
     required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
     required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
     required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
   }) {
     return updateSearchQuery(this);
   }
@@ -2881,6 +2963,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
     TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
   }) {
     return updateSearchQuery?.call(this);
   }
@@ -2901,6 +2984,7 @@ class _$UpdateSearchQueryImpl implements _UpdateSearchQuery {
     TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
     TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
     TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
     required TResult orElse(),
   }) {
     if (updateSearchQuery != null) {
@@ -2917,6 +3001,222 @@ abstract class _UpdateSearchQuery implements HomeEvent {
   String get query;
   @JsonKey(ignore: true)
   _$$UpdateSearchQueryImplCopyWith<_$UpdateSearchQueryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetLocaleImplCopyWith<$Res> {
+  factory _$$SetLocaleImplCopyWith(
+          _$SetLocaleImpl value, $Res Function(_$SetLocaleImpl) then) =
+      __$$SetLocaleImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Locale locale});
+}
+
+/// @nodoc
+class __$$SetLocaleImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SetLocaleImpl>
+    implements _$$SetLocaleImplCopyWith<$Res> {
+  __$$SetLocaleImplCopyWithImpl(
+      _$SetLocaleImpl _value, $Res Function(_$SetLocaleImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locale = null,
+  }) {
+    return _then(_$SetLocaleImpl(
+      null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetLocaleImpl implements _SetLocale {
+  const _$SetLocaleImpl(this.locale);
+
+  @override
+  final Locale locale;
+
+  @override
+  String toString() {
+    return 'HomeEvent.setLocale(locale: $locale)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetLocaleImpl &&
+            (identical(other.locale, locale) || other.locale == locale));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locale);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetLocaleImplCopyWith<_$SetLocaleImpl> get copyWith =>
+      __$$SetLocaleImplCopyWithImpl<_$SetLocaleImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() isLoading,
+    required TResult Function(int index) setHomeIndex,
+    required TResult Function(int index) setBottomNavIndex,
+    required TResult Function() checkToken,
+    required TResult Function(double lat, double lng) currentLocationLatLng,
+    required TResult Function(
+            double lat, double lng, String city, String state, String village)
+        updateCurrentLocation,
+    required TResult Function(String userId, int limit, int offset)
+        loadOtherUserPosts,
+    required TResult Function(Map<String, dynamic>? filter) updateFeedsFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateServicesFilter,
+    required TResult Function(Map<String, dynamic>? filter)
+        updateRequestsFilter,
+    required TResult Function(Map<String, dynamic>? filter) updateSalesFilter,
+    required TResult Function(String query) updateSearchQuery,
+    required TResult Function(Locale locale) setLocale,
+  }) {
+    return setLocale(locale);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? isLoading,
+    TResult? Function(int index)? setHomeIndex,
+    TResult? Function(int index)? setBottomNavIndex,
+    TResult? Function()? checkToken,
+    TResult? Function(double lat, double lng)? currentLocationLatLng,
+    TResult? Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult? Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult? Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult? Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult? Function(String query)? updateSearchQuery,
+    TResult? Function(Locale locale)? setLocale,
+  }) {
+    return setLocale?.call(locale);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? isLoading,
+    TResult Function(int index)? setHomeIndex,
+    TResult Function(int index)? setBottomNavIndex,
+    TResult Function()? checkToken,
+    TResult Function(double lat, double lng)? currentLocationLatLng,
+    TResult Function(
+            double lat, double lng, String city, String state, String village)?
+        updateCurrentLocation,
+    TResult Function(String userId, int limit, int offset)? loadOtherUserPosts,
+    TResult Function(Map<String, dynamic>? filter)? updateFeedsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateServicesFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateRequestsFilter,
+    TResult Function(Map<String, dynamic>? filter)? updateSalesFilter,
+    TResult Function(String query)? updateSearchQuery,
+    TResult Function(Locale locale)? setLocale,
+    required TResult orElse(),
+  }) {
+    if (setLocale != null) {
+      return setLocale(locale);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_SetHomeIndex value) setHomeIndex,
+    required TResult Function(_SetBottomNavIndex value) setBottomNavIndex,
+    required TResult Function(_CheckToken value) checkToken,
+    required TResult Function(_CurrentLocationLatLng value)
+        currentLocationLatLng,
+    required TResult Function(_UpdateCurrentLocation value)
+        updateCurrentLocation,
+    required TResult Function(_LoadOtherUserPosts value) loadOtherUserPosts,
+    required TResult Function(_UpdateFeedsFilter value) updateFeedsFilter,
+    required TResult Function(_UpdateServicesFilter value) updateServicesFilter,
+    required TResult Function(_UpdateRequestsFilter value) updateRequestsFilter,
+    required TResult Function(_UpdateSalesFilter value) updateSalesFilter,
+    required TResult Function(_UpdateSearchQuery value) updateSearchQuery,
+    required TResult Function(_SetLocale value) setLocale,
+  }) {
+    return setLocale(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_SetHomeIndex value)? setHomeIndex,
+    TResult? Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult? Function(_CheckToken value)? checkToken,
+    TResult? Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult? Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult? Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult? Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult? Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult? Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult? Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult? Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult? Function(_SetLocale value)? setLocale,
+  }) {
+    return setLocale?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_SetHomeIndex value)? setHomeIndex,
+    TResult Function(_SetBottomNavIndex value)? setBottomNavIndex,
+    TResult Function(_CheckToken value)? checkToken,
+    TResult Function(_CurrentLocationLatLng value)? currentLocationLatLng,
+    TResult Function(_UpdateCurrentLocation value)? updateCurrentLocation,
+    TResult Function(_LoadOtherUserPosts value)? loadOtherUserPosts,
+    TResult Function(_UpdateFeedsFilter value)? updateFeedsFilter,
+    TResult Function(_UpdateServicesFilter value)? updateServicesFilter,
+    TResult Function(_UpdateRequestsFilter value)? updateRequestsFilter,
+    TResult Function(_UpdateSalesFilter value)? updateSalesFilter,
+    TResult Function(_UpdateSearchQuery value)? updateSearchQuery,
+    TResult Function(_SetLocale value)? setLocale,
+    required TResult orElse(),
+  }) {
+    if (setLocale != null) {
+      return setLocale(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetLocale implements HomeEvent {
+  const factory _SetLocale(final Locale locale) = _$SetLocaleImpl;
+
+  Locale get locale;
+  @JsonKey(ignore: true)
+  _$$SetLocaleImplCopyWith<_$SetLocaleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2945,6 +3245,7 @@ mixin _$HomeState {
   Map<String, dynamic>? get activeSalesFilter =>
       throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError;
+  Locale? get locale => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -2974,7 +3275,8 @@ abstract class $HomeStateCopyWith<$Res> {
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
       Map<String, dynamic>? activeSalesFilter,
-      String searchQuery});
+      String searchQuery,
+      Locale? locale});
 }
 
 /// @nodoc
@@ -3008,6 +3310,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? activeRequestsFilter = freezed,
     Object? activeSalesFilter = freezed,
     Object? searchQuery = null,
+    Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -3082,6 +3385,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as String,
+      locale: freezed == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale?,
     ) as $Val);
   }
 }
@@ -3112,7 +3419,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
       Map<String, dynamic>? activeSalesFilter,
-      String searchQuery});
+      String searchQuery,
+      Locale? locale});
 }
 
 /// @nodoc
@@ -3144,6 +3452,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? activeRequestsFilter = freezed,
     Object? activeSalesFilter = freezed,
     Object? searchQuery = null,
+    Object? locale = freezed,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
@@ -3218,6 +3527,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as String,
+      locale: freezed == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale?,
     ));
   }
 }
@@ -3243,7 +3556,8 @@ class _$HomeStateImpl implements _HomeState {
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
       final Map<String, dynamic>? activeSalesFilter,
-      this.searchQuery = ''})
+      this.searchQuery = '',
+      this.locale})
       : _otherUserPosts = otherUserPosts,
         _activeFeedsFilter = activeFeedsFilter,
         _activeServicesFilter = activeServicesFilter,
@@ -3342,10 +3656,12 @@ class _$HomeStateImpl implements _HomeState {
   @override
   @JsonKey()
   final String searchQuery;
+  @override
+  final Locale? locale;
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts, activeFeedsFilter: $activeFeedsFilter, activeServicesFilter: $activeServicesFilter, activeRequestsFilter: $activeRequestsFilter, activeSalesFilter: $activeSalesFilter, searchQuery: $searchQuery)';
+    return 'HomeState(isLoading: $isLoading, notifyStatus: $notifyStatus, homeIndex: $homeIndex, bottomNavIndex: $bottomNavIndex, showAddButton: $showAddButton, currentLat: $currentLat, currentLng: $currentLng, currentCity: $currentCity, currentState: $currentState, currentVillage: $currentVillage, otherUserPosts: $otherUserPosts, isLoadingOtherUserPosts: $isLoadingOtherUserPosts, hasMoreOtherUserPosts: $hasMoreOtherUserPosts, activeFeedsFilter: $activeFeedsFilter, activeServicesFilter: $activeServicesFilter, activeRequestsFilter: $activeRequestsFilter, activeSalesFilter: $activeSalesFilter, searchQuery: $searchQuery, locale: $locale)';
   }
 
   @override
@@ -3389,30 +3705,33 @@ class _$HomeStateImpl implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other._activeSalesFilter, _activeSalesFilter) &&
             (identical(other.searchQuery, searchQuery) ||
-                other.searchQuery == searchQuery));
+                other.searchQuery == searchQuery) &&
+            (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      notifyStatus,
-      homeIndex,
-      bottomNavIndex,
-      showAddButton,
-      currentLat,
-      currentLng,
-      currentCity,
-      currentState,
-      currentVillage,
-      const DeepCollectionEquality().hash(_otherUserPosts),
-      isLoadingOtherUserPosts,
-      hasMoreOtherUserPosts,
-      const DeepCollectionEquality().hash(_activeFeedsFilter),
-      const DeepCollectionEquality().hash(_activeServicesFilter),
-      const DeepCollectionEquality().hash(_activeRequestsFilter),
-      const DeepCollectionEquality().hash(_activeSalesFilter),
-      searchQuery);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isLoading,
+        notifyStatus,
+        homeIndex,
+        bottomNavIndex,
+        showAddButton,
+        currentLat,
+        currentLng,
+        currentCity,
+        currentState,
+        currentVillage,
+        const DeepCollectionEquality().hash(_otherUserPosts),
+        isLoadingOtherUserPosts,
+        hasMoreOtherUserPosts,
+        const DeepCollectionEquality().hash(_activeFeedsFilter),
+        const DeepCollectionEquality().hash(_activeServicesFilter),
+        const DeepCollectionEquality().hash(_activeRequestsFilter),
+        const DeepCollectionEquality().hash(_activeSalesFilter),
+        searchQuery,
+        locale
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -3440,7 +3759,8 @@ abstract class _HomeState implements HomeState {
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
       final Map<String, dynamic>? activeSalesFilter,
-      final String searchQuery}) = _$HomeStateImpl;
+      final String searchQuery,
+      final Locale? locale}) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
@@ -3478,6 +3798,8 @@ abstract class _HomeState implements HomeState {
   Map<String, dynamic>? get activeSalesFilter;
   @override
   String get searchQuery;
+  @override
+  Locale? get locale;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

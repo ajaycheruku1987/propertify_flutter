@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -136,15 +137,16 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   void _handleReportProperty(String propertyId) {
+    final l10n = AppLocalizations.of(context)!;
     if (!context.read<HomeBloc>().state.showAddButton) {
-      CustomToast.showErrorToast(msg: 'please login to report');
+      CustomToast.showErrorToast(msg: l10n.pleaseLoginToReport);
       context.push(AuthScreen.routeName);
       return;
     }
 
     final TextEditingController reasonController = TextEditingController();
     final formKey = GlobalKey<FormState>();
-    String? selectedReason = 'Spam or Misleading';
+    String? selectedReason = l10n.spamMisleading;
     bool isLoading = false;
 
     showDialog(
@@ -156,17 +158,17 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              title: const Row(
+              title: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.report_problem_rounded,
                     color: Colors.orange,
                     size: 28,
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
-                    'Report Property',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    l10n.reportProperty,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],
               ),
@@ -177,16 +179,16 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Why are you reporting this property?',
-                        style: TextStyle(fontSize: 14, color: Colors.black87),
-                      ),
+                Text(
+                  l10n.whyReporting,
+                  style: const TextStyle(fontSize: 14, color: Colors.black87),
+                ),
                       const SizedBox(height: 12),
                       ...[
-                        'Spam or Misleading',
-                        'Incorrect details/Price',
-                        'Inappropriate content',
-                        'Other',
+                        l10n.spamMisleading,
+                        l10n.incorrectDetailsPrice,
+                        l10n.inappropriateContent,
+                        l10n.other,
                       ].map((reason) {
                         return RadioListTile<String>(
                           title: Text(
@@ -205,13 +207,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           },
                         );
                       }),
-                      if (selectedReason == 'Other') ...[
+                      if (selectedReason == l10n.other) ...[
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: reasonController,
                           maxLines: 3,
                           decoration: InputDecoration(
-                            hintText: 'Enter reason here...',
+                            hintText: l10n.enterReasonHere,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -222,7 +224,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           ),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
-                              return 'Please enter a reason';
+                              return l10n.pleaseEnterReason;
                             }
                             return null;
                           },
@@ -238,7 +240,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       ? null
                       : () => Navigator.pop(dialogContext),
                   child: Text(
-                    'Cancel',
+                    l10n.cancel,
                     style: TextStyle(
                       color: Colors.grey.shade600,
                       fontWeight: FontWeight.w600,
@@ -255,12 +257,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   onPressed: isLoading
                       ? null
                       : () async {
-                          if (selectedReason == 'Other' &&
+                          if (selectedReason == l10n.other &&
                               !formKey.currentState!.validate()) {
                             return;
                           }
 
-                          final reasonText = selectedReason == 'Other'
+                          final reasonText = selectedReason == l10n.other
                               ? reasonController.text.trim()
                               : selectedReason!;
 
@@ -284,8 +286,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               },
                               (success) {
                                 CustomToast.showSuccessToast(
-                                  msg:
-                                      'Post reported, we will investigate further',
+                                  msg: l10n.postReportedSuccess,
                                 );
                               },
                             );
@@ -300,9 +301,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             strokeWidth: 2,
                           ),
                         )
-                      : const Text(
-                          'Report',
-                          style: TextStyle(
+                      : Text(
+                          l10n.report,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -318,6 +319,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -345,9 +347,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             onPressed: () => Navigator.pop(context),
           ),
         ),
-        title: const Text(
-          'Details',
-          style: TextStyle(
+        title: Text(
+          l10n.details,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -399,14 +401,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       showDialog(
                         context: context,
                         builder: (dialogContext) => AlertDialog(
-                          title: const Text('Delete Property'),
-                          content: const Text(
-                            'Are you sure you want to delete this property?',
-                          ),
+                          title: Text(l10n.deleteProperty),
+                          content: Text(l10n.deleteConfirm),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(dialogContext),
-                              child: const Text('Cancel'),
+                              child: Text(l10n.cancel),
                             ),
                             TextButton(
                               onPressed: () {
@@ -417,9 +417,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   ),
                                 );
                               },
-                              child: const Text(
-                                'Delete',
-                                style: TextStyle(color: Colors.red),
+                              child: Text(
+                                l10n.delete,
+                                style: const TextStyle(color: Colors.red),
                               ),
                             ),
                           ],
@@ -432,42 +432,42 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
                         if (isOwner) ...[
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'edit',
                             child: Row(
                               children: [
-                                Icon(Icons.edit, size: 18, color: Colors.blue),
-                                SizedBox(width: 8),
-                                Text('Edit'),
+                                const Icon(Icons.edit, size: 18, color: Colors.blue),
+                                const SizedBox(width: 8),
+                                Text(l10n.edit),
                               ],
                             ),
                           ),
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'delete',
                             child: Row(
                               children: [
-                                Icon(Icons.delete, size: 18, color: Colors.red),
-                                SizedBox(width: 8),
+                                const Icon(Icons.delete, size: 18, color: Colors.red),
+                                const SizedBox(width: 8),
                                 Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.red),
+                                  l10n.delete,
+                                  style: const TextStyle(color: Colors.red),
                                 ),
                               ],
                             ),
                           ),
                         ],
                         if (!isOwner)
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'report',
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.report,
                                   size: 18,
                                   color: Colors.orange,
                                 ),
-                                SizedBox(width: 8),
-                                Text('Report'),
+                                const SizedBox(width: 8),
+                                Text(l10n.report),
                               ],
                             ),
                           ),
@@ -505,7 +505,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             }
 
             if (state.postDetails == null) {
-              return const Center(child: Text('Post not found'));
+              return Center(child: Text(l10n.postNotFound));
             }
 
             final postDetails = state.postDetails!;
@@ -533,7 +533,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       onFavoriteToggle: () {
                         if (!context.read<HomeBloc>().state.showAddButton) {
                           CustomToast.showErrorToast(
-                            msg: 'Please login to add to favorites',
+                            msg: l10n.pleaseLoginToFavorite,
                           );
                           context.push(AuthScreen.routeName);
                           return;
@@ -566,7 +566,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           price: postDetails.price?.toString() ?? '',
                         ),
 
-                        _buildPromotionSection(postDetails),
+                        _buildPromotionSection(postDetails, l10n),
 
                         // Description Section
                         DescriptionSection(
@@ -650,9 +650,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                       if (context.mounted) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          const SnackBar(
+                                          SnackBar(
                                             content: Text(
-                                              'Could not open WhatsApp',
+                                              l10n.couldNotOpenWhatsapp,
                                             ),
                                           ),
                                         );
@@ -705,7 +705,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   icon: postDetails.isLiked == true
                                       ? FontAwesomeIcons.solidThumbsUp
                                       : FontAwesomeIcons.thumbsUp,
-                                  label: '${postDetails.likesCount ?? 0} Likes',
+                                  label: '${postDetails.likesCount ?? 0} ${l10n.likes}',
                                   color: postDetails.isLiked == true
                                       ? Theme.of(context).primaryColor
                                       : Colors.grey.shade700,
@@ -715,7 +715,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                         .state
                                         .showAddButton) {
                                       CustomToast.showErrorToast(
-                                        msg: 'Please login to like',
+                                        msg: l10n.pleaseLoginToLike,
                                       );
                                       context.push(AuthScreen.routeName);
                                       return;
@@ -735,7 +735,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 _buildInteractionItem(
                                   icon: FontAwesomeIcons.comment,
                                   label:
-                                      '${postDetails.commentsCount ?? 0} Comments',
+                                      '${postDetails.commentsCount ?? 0} ${l10n.comments}',
                                   color: Colors.grey.shade700,
                                   onTap: () {
                                     CommentsBottomSheet.show(
@@ -755,7 +755,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 ),
                                 _buildInteractionItem(
                                   icon: FontAwesomeIcons.eye,
-                                  label: '${postDetails.viewsCount ?? 0} Views',
+                                  label: '${postDetails.viewsCount ?? 0} ${l10n.views}',
                                   color: Colors.grey.shade700,
                                   onTap: null, // View only
                                 ),
@@ -803,7 +803,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  Widget _buildPromotionSection(FeedPostsResponseModel postDetails) {
+  Widget _buildPromotionSection(FeedPostsResponseModel postDetails, AppLocalizations l10n) {
     final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
     final isOwner =
         currentUserId != null && currentUserId == postDetails.owner?.id;
@@ -856,7 +856,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isExpired ? 'Promotion Expired' : '$daysLeft Days Left',
+                  isExpired ? l10n.promotionExpired : l10n.daysLeft(daysLeft),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -867,7 +867,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Promoted until $formattedDate',
+                  l10n.promotedUntil(formattedDate),
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
