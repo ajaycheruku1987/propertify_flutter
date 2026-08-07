@@ -418,7 +418,7 @@ class _PropertyCardState extends State<PropertyCard> {
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
-                  widget.location.toTitleCase(),
+                  widget.location.translate(context),
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey.shade600,

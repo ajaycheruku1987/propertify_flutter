@@ -60,9 +60,9 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
   void _handleShare(SaleRecord? sale) {
     if (sale == null) return;
 
-    final String projectTitle = sale.projectName ?? 'Project';
+    final String projectTitle = (sale.projectName ?? 'Project').translate(context);
     final String projectDescription =
-        sale.description ?? 'Check out this project';
+        (sale.description ?? 'Check out this project').translate(context);
     String postedBy = 'Propertify User';
     if (sale.owner != null) {
       final owner = sale.owner!;
@@ -83,7 +83,7 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
             : '';
 
     final String location =
-        '${sale.city ?? ''}${sale.state != null ? ", ${sale.state}" : ""}'
+        '${(sale.city ?? '').translate(context)}${sale.state != null ? ", ${sale.state!.translate(context)}" : ""}'
             .trim();
 
     final String imageUrl =
@@ -348,7 +348,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               const SizedBox(width: 20),
               _buildTabItem(
                 'Available ${_getUnitsLabel(sale.propertyType)}',
-                '${l10n.available} ${_getUnitsLabel(sale.propertyType)} ($unitsCount)',
+                '${l10n.available} ${_getUnitsLabel(sale.propertyType).translate(context)} ($unitsCount)',
               ),
               const SizedBox(width: 20),
               _buildTabItem(l10n.specifications),
@@ -412,6 +412,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildOverviewContent(SaleRecord sale) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -443,7 +444,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   Widget _buildPropertyInfoCards(SaleRecord sale) {
     final l10n = AppLocalizations.of(context)!;
-    final String unitsLabel = _getUnitsLabel(sale.propertyType);
+    final String unitsLabel = _getUnitsLabel(sale.propertyType).translate(context);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -462,7 +463,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           _buildSpecificationItem(unitsLabel, '${sale.noOfUnits ?? 0}'),
           const Divider(),
           _buildSpecificationItem(
-            _getAreaLabel(sale.propertyType),
+            _getAreaLabel(sale.propertyType).translate(context),
             '${sale.area ?? 0} ${sale.areaUnit ?? "sqft"}',
           ),
         ],
@@ -471,14 +472,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildLocationContent(SaleRecord sale) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Location',
-            style: TextStyle(
+          Text(
+            l10n.location,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -525,7 +527,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildAvailableFlatsContent(SaleRecord sale, SalesState state) {
-    final String unitsLabel = _getUnitsLabel(sale.propertyType);
+    final l10n = AppLocalizations.of(context)!;
+    final String unitsLabel = _getUnitsLabel(sale.propertyType).translate(context);
     final bool isOwner =
         context.read<ProfileBloc>().state.userProfile?.id ==
         (sale.userId ?? sale.owner?.id);
@@ -541,7 +544,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Available $unitsLabel (${units.length})',
+                  '${l10n.available} $unitsLabel (${units.length})',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -553,7 +556,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     AddEditUnitBottomSheet.show(context, sale);
                   },
                   icon: const Icon(Icons.add, size: 20),
-                  label: Text('Add $unitsLabel'),
+                  label: Text('${l10n.create} $unitsLabel'),
                   style: TextButton.styleFrom(
                     foregroundColor: AppTheme.blueColor,
                     padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -573,7 +576,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  'No available ${sale.propertyType?.toLowerCase() ?? 'units'}',
+                  '${l10n.noResultsFound} ${sale.propertyType?.toLowerCase().translate(context) ?? 'units'}',
                 ),
               ),
             )
@@ -594,9 +597,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     final bool isOpenPlot = lowerPropType.contains('plot');
 
                     String titleLabel = 'Unit';
-                    if (isApartment) titleLabel = 'Flat';
-                    if (isVilla) titleLabel = 'Villa';
-                    if (isOpenPlot) titleLabel = 'Plot';
+                    if (isApartment) titleLabel = l10n.flats.replaceAll('లు', ''); // Rough singular
+                    if (isVilla) titleLabel = l10n.villa;
+                    if (isOpenPlot) titleLabel = l10n.openPlot;
 
                     final isAvailable =
                         (unit.status ?? "Available").toLowerCase() ==
@@ -663,7 +666,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 ),
                               ),
                               child: Text(
-                                isAvailable ? 'Available' : 'Sold Out',
+                                isAvailable ? l10n.available : 'Sold Out',
                                 style: TextStyle(
                                   color: isAvailable
                                       ? Colors.green[700]
@@ -690,7 +693,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             if (isApartment && unit.floor != null)
                               _buildUnitDetailIconRow(
                                 Icons.layers_outlined,
-                                'Floor ${unit.floor}',
+                                '${l10n.noOfFloors.replaceAll('ల సంఖ్య', '')} ${unit.floor}', // Rough mapping
                               ),
                             if (isApartment && unit.bhkQty != null)
                               _buildUnitDetailIconRow(
@@ -730,7 +733,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           const SizedBox(width: 6),
           Expanded(
             child: Text(
-              text,
+              text.translate(context),
               style: TextStyle(color: Colors.grey[700], fontSize: 12),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -742,14 +745,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildSpecificationContent(SaleRecord sale) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Specifications',
-            style: TextStyle(
+          Text(
+            l10n.specifications,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -769,10 +773,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey[200]!),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   'No specifications available',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ),
             ),
@@ -784,14 +788,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildPublicFacilitiesContent(SaleRecord sale) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Public Facilities',
-            style: TextStyle(
+          Text(
+            l10n.publicFacilities,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -852,7 +857,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   item.replaceFirst(
                     RegExp(r'^•\s*'),
                     '',
-                  ), // Strip old bullets if present
+                  ).translate(context), // Strip old bullets if present
                   style: const TextStyle(
                     fontSize: 14,
                     color: Colors.black87,
@@ -966,7 +971,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   const Icon(Icons.location_on_outlined),
                   const SizedBox(width: 8),
                   Text(
-                    "${sale.city?.replaceAll(',', ' |') ?? ''} | ${sale.state ?? ''}",
+                    "${(sale.city?.replaceAll(',', ' |') ?? '').translate(context)} | ${(sale.state ?? '').translate(context)}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -1012,7 +1017,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Posted By', // You can localize this if you want
+              l10n.postedBy, 
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -1127,6 +1132,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildBottomActionButtons(SaleRecord sale) {
+    final l10n = AppLocalizations.of(context)!;
     final bool isOwner =
         context.read<ProfileBloc>().state.userProfile?.id ==
         (sale.userId ?? sale.owner?.id);
@@ -1196,7 +1202,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         );
                       },
                       icon: const Icon(Icons.notifications_outlined, size: 20),
-                      label: const Text('View Requests'),
+                      label: Text(l10n.requests),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.blueColor,
                         foregroundColor: Colors.white,
@@ -1221,7 +1227,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         }
                       },
                       icon: const Icon(Icons.phone, size: 20),
-                      label: const Text('Call Request'),
+                      label: Text(l10n.call),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.blueColor,
                         foregroundColor: Colors.white,

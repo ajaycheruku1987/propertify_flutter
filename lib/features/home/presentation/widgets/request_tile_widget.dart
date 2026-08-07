@@ -124,7 +124,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          widget.location.toTitleCase(),
+                          widget.location.translate(context),
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,

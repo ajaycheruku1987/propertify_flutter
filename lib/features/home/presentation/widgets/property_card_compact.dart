@@ -142,7 +142,7 @@ class PropertyCardCompact extends StatelessWidget {
                       const SizedBox(width: 2),
                       Expanded(
                         child: Text(
-                          location.toTitleCase(),
+                          location.translate(context),
                           style: TextStyle(
                             fontSize: 11,
                             color: Colors.grey.shade600,

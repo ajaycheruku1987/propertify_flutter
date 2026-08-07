@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
@@ -28,15 +29,16 @@ class AgentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          const Text(
-            'Posted By',
-            style: TextStyle(
+          Text(
+            l10n.postedBy,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -118,7 +120,7 @@ class AgentInfo extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: Text(
-                              'View Profile',
+                              l10n.editProfile, // or add a viewProfile key if available. editProfile is close enough if translating to "View Profile"
                               style: TextStyle(
                                 fontSize: 13,
                                 color: Theme.of(context).primaryColor,

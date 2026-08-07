@@ -581,7 +581,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         // Agent Info Section
                         AgentInfo(
-                          agentName: () {
+                          agentName: (() {
                             final owner = postDetails.owner;
                             if (owner == null) return 'Propertify User';
                             final firstName = owner.firstName?.trim() ?? '';
@@ -593,7 +593,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             }
                             return (owner.username ?? 'Propertify User')
                                 .toTitleCase();
-                          }(),
+                          }()).translate(context),
                           agentRole: '',
                           agentImage: postDetails.owner?.profileImage ?? '',
                           rating: postDetails.rating?.toString() ?? '-',

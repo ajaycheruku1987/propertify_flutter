@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import 'package:propertify/utils/string_extensions.dart';
 import '../../../sales/models/sales_model.dart';
 import '../../../sales/presentation/sale_view_screen.dart';
 import '../../models/projects_admin_view_model.dart';
@@ -104,7 +105,7 @@ class ProjectCard extends StatelessWidget {
                   children: [
                     // Title
                     Text(
-                      project.projectName ?? 'Ayana Homestay',
+                      (project.projectName ?? 'Ayana Homestay').translate(context),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -116,7 +117,7 @@ class ProjectCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     // Category
                     Text(
-                      category,
+                      category.translate(context),
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey.shade700,

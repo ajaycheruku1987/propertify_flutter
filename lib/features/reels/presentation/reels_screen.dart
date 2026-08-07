@@ -293,7 +293,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
               itemBuilder: (context, index) {
                 final reel = state.searchSuggestions[index];
                 final String title = reel.description?.trim().isNotEmpty == true
-                    ? reel.description!.trim()
+                    ? reel.description!.trim().translate(context)
                     : (reel.owner?.username?.trim().isNotEmpty == true
                           ? reel.owner!.username!.trim()
                           : 'Reel');
@@ -301,7 +301,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
                   if (reel.owner?.username?.trim().isNotEmpty == true)
                     '@${reel.owner!.username!.trim()}',
                   if (reel.location?.trim().isNotEmpty == true)
-                    reel.location!.trim(),
+                    reel.location!.trim().translate(context),
                 ].join(' • ');
 
                 return ListTile(
@@ -883,7 +883,7 @@ class ReelViewState extends State<ReelView>
                         onTap: () {
                           // Prepare share content
                           final String reelDescription =
-                              widget.reel.description ?? 'Check out this reel';
+                              (widget.reel.description ?? 'Check out this reel').translate(context);
                           final String postedBy = () {
                             final owner = widget.reel.owner;
                             if (owner == null) return 'Propertify User';
@@ -895,7 +895,7 @@ class ReelViewState extends State<ReelView>
                             return owner.username ?? 'Propertify User';
                           }();
                           final String videoUrl = widget.reel.videoUrl ?? '';
-                          final String location = widget.reel.location ?? '';
+                          final String location = (widget.reel.location ?? '').translate(context);
 
                           // Create formatted message
                           final String shareMessage =
@@ -1188,7 +1188,7 @@ class _BottomInfo extends StatelessWidget {
                     const SizedBox(width: 4),
                     Expanded(
                       child: Text(
-                        reel.location!.toTitleCase(),
+                        reel.location!.translate(context),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -1203,7 +1203,7 @@ class _BottomInfo extends StatelessWidget {
 
               const SizedBox(height: 6),
               if (reel.description != null && reel.description!.isNotEmpty)
-                _ExpandableDescription(text: reel.description!.capitalize()),
+                _ExpandableDescription(text: reel.description!.translate(context)),
             ],
           ),
         ),

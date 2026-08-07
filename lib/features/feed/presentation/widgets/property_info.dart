@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/utils/string_extensions.dart';
 
@@ -27,6 +28,7 @@ class PropertyInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -85,35 +87,35 @@ class PropertyInfo extends StatelessWidget {
                       },
                       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                         if (canEdit)
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'edit',
                             child: Row(
                               children: [
-                                Icon(Icons.edit, size: 18, color: Colors.blue),
-                                SizedBox(width: 8),
-                                Text('Edit'),
+                                const Icon(Icons.edit, size: 18, color: Colors.blue),
+                                const SizedBox(width: 8),
+                                Text(l10n.edit),
                               ],
                             ),
                           ),
                         if (canDelete)
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'delete',
                             child: Row(
                               children: [
-                                Icon(Icons.delete, size: 18, color: Colors.red),
-                                SizedBox(width: 8),
-                                Text('Delete', style: TextStyle(color: Colors.red)),
+                                const Icon(Icons.delete, size: 18, color: Colors.red),
+                                const SizedBox(width: 8),
+                                Text(l10n.delete, style: const TextStyle(color: Colors.red)),
                               ],
                             ),
                           ),
                         if (canReport)
-                          const PopupMenuItem<String>(
+                          PopupMenuItem<String>(
                             value: 'report',
                             child: Row(
                               children: [
-                                Icon(Icons.report, size: 18, color: Colors.orange),
-                                SizedBox(width: 8),
-                                Text('Report'),
+                                const Icon(Icons.report, size: 18, color: Colors.orange),
+                                const SizedBox(width: 8),
+                                Text(l10n.report),
                               ],
                             ),
                           ),
@@ -133,7 +135,7 @@ class PropertyInfo extends StatelessWidget {
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
-                  location.toTitleCase(),
+                  location.translate(context),
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[600],

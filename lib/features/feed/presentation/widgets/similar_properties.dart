@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import '../../../home/models/feed_posts_response_model.dart';
 
 class SimilarProperties extends StatelessWidget {
@@ -79,13 +80,17 @@ class SimilarProperties extends StatelessWidget {
                 topRight: Radius.circular(12),
               ),
               color: Colors.grey[300],
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=160&h=120&fit=crop',
-                ),
-                fit: BoxFit.cover,
-                onError: null, // Handle image loading error
-              ),
+              image: property.imageUrls != null && property.imageUrls!.isNotEmpty
+                  ? DecorationImage(
+                      image: NetworkImage(property.imageUrls!.first),
+                      fit: BoxFit.cover,
+                    )
+                  : const DecorationImage(
+                      image: NetworkImage(
+                        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=160&h=120&fit=crop',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
             ),
             child: Stack(
               children: [
@@ -137,9 +142,9 @@ class SimilarProperties extends StatelessWidget {
                         children: [
                           const Icon(Icons.star, color: Colors.white, size: 10),
                           const SizedBox(width: 3),
-                          const Text(
-                            'Featured',
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.featured,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 8,
                               fontWeight: FontWeight.w600,
@@ -156,7 +161,7 @@ class SimilarProperties extends StatelessWidget {
                   left: 8,
                   right: 8,
                   child: Text(
-                    property.title ?? 'Property Name',
+                    (property.title ?? 'Property Name').translate(context),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -189,7 +194,7 @@ class SimilarProperties extends StatelessWidget {
                       const SizedBox(width: 2),
                       Expanded(
                         child: Text(
-                          'Denpasar, Bali', // Use actual location when available
+                          _resolveLocation(property.city, property.address).translate(context),
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.grey[600],
@@ -205,7 +210,7 @@ class SimilarProperties extends StatelessWidget {
 
                   // Price
                   Text(
-                    '\$${property.price ?? '0'}/month',
+                    '₹${property.price ?? '0'}',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -219,5 +224,29 @@ class SimilarProperties extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _resolveLocation(String? city, String? address) {
+    if (city == null || city.isEmpty) return '';
+
+    // Check if city starts with comma (meaning village/area is missing)
+    if (city.trim().startsWith(',')) {
+      final cleanedCity = city.trim().substring(1).trim();
+
+      String state = '';
+      if (address != null && address.isNotEmpty) {
+        final parts = address.split(',');
+        if (parts.length >= 3) {
+          state = parts[parts.length - 3].trim();
+        }
+      }
+
+      if (state.isNotEmpty) {
+        return '$cleanedCity, $state';
+      }
+      return cleanedCity;
+    }
+
+    return city;
   }
 }

@@ -36,7 +36,7 @@ class PostAdCard extends StatelessWidget {
     }
 
     final category = (post.category ?? post.propertyType ?? 'Real-estate')
-        .toTitleCase();
+        .translate(context);
     final ownerName = (post.ownerName ?? 'Unknown').toTitleCase();
 
     return Container(
@@ -86,7 +86,7 @@ class PostAdCard extends StatelessWidget {
                 children: [
                   // Title
                   Text(
-                    (post.title ?? 'Untitled Post').toTitleCase(),
+                    (post.title ?? 'Untitled Post').translate(context),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

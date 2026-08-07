@@ -187,7 +187,7 @@ class SalesTile extends StatelessWidget {
                   const SizedBox(height: 8),
                   _buildFeature(
                     Icons.location_on_outlined,
-                    (sale.city ?? '').toTitleCase(),
+                    (sale.city ?? '').translate(context),
                   ),
 
                   // const SizedBox(height: 12),
