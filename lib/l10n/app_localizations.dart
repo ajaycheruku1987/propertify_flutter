@@ -1600,6 +1600,48 @@ abstract class AppLocalizations {
   /// **'Edit Profile'**
   String get editProfile;
 
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @overview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get overview;
+
+  /// No description provided for @postedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Posted By'**
+  String get postedBy;
+
+  /// No description provided for @writeReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a Review'**
+  String get writeReview;
+
+  /// No description provided for @tellUsExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us Your Experience'**
+  String get tellUsExperience;
+
+  /// No description provided for @createReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Review'**
+  String get createReview;
+
+  /// No description provided for @yourReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Review'**
+  String get yourReview;
+
   /// No description provided for @independentHouse.
   ///
   /// In en, this message translates to:

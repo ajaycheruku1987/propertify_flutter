@@ -72,7 +72,7 @@ class SalesTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      (sale.propertyType ?? 'Property').toTitleCase(),
+                      (sale.propertyType ?? 'Property').translate(context),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -95,7 +95,7 @@ class SalesTile extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          (sale.projectName ?? '').toTitleCase(),
+                          (sale.projectName ?? '').translate(context),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -136,7 +136,7 @@ class SalesTile extends StatelessWidget {
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            sale.saleSpecification!,
+                            sale.saleSpecification?.translate(context) ?? '',
                             style: TextStyle(
                               fontSize: 12,
                               color: Theme.of(context).primaryColor,

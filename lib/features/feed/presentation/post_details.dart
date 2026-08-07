@@ -68,10 +68,11 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 
   void _handleShare(dynamic postDetails) {
     if (postDetails == null) return;
+    final l10n = AppLocalizations.of(context)!;
 
-    final String postTitle = postDetails.title ?? 'Property';
+    final String postTitle = (postDetails.title as String? ?? 'Property').translate(context);
     final String postDescription =
-        postDetails.description ?? 'Check out this property';
+        (postDetails.description as String? ?? 'Check out this property').translate(context);
     String postedBy = 'Propertify User';
     if (postDetails.owner != null) {
       final owner = postDetails.owner!;

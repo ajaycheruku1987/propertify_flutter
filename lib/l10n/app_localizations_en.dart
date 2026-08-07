@@ -780,6 +780,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editProfile => 'Edit Profile';
 
   @override
+  String get available => 'Available';
+
+  @override
+  String get overview => 'Overview';
+
+  @override
+  String get postedBy => 'Posted By';
+
+  @override
+  String get writeReview => 'Write a Review';
+
+  @override
+  String get tellUsExperience => 'Tell us Your Experience';
+
+  @override
+  String get createReview => 'Create Review';
+
+  @override
+  String get yourReview => 'Your Review';
+
+  @override
   String get independentHouse => 'Independent House';
 
   @override

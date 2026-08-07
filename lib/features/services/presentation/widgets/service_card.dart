@@ -158,7 +158,7 @@ class ServiceCard extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                title.toTitleCase(),
+                title.translate(context),
 
                 style: const TextStyle(
                   fontSize: 16,

@@ -786,6 +786,27 @@ class AppLocalizationsTe extends AppLocalizations {
   String get editProfile => 'ప్రొఫైల్‌ను సవరించండి';
 
   @override
+  String get available => 'అందుబాటులో ఉంది';
+
+  @override
+  String get overview => 'అవలోకనం';
+
+  @override
+  String get postedBy => 'వీరు పోస్ట్ చేసారు';
+
+  @override
+  String get writeReview => 'సమీక్ష రాయండి';
+
+  @override
+  String get tellUsExperience => 'మీ అనుభవాన్ని మాకు చెప్పండి';
+
+  @override
+  String get createReview => 'సమీక్షను సృష్టించండి';
+
+  @override
+  String get yourReview => 'మీ సమీక్ష';
+
+  @override
   String get independentHouse => 'ఇండిపెండెంట్ హౌస్';
 
   @override

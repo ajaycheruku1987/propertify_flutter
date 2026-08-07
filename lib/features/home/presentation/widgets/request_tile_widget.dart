@@ -87,7 +87,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                   children: [
                     // Title
                     Text(
-                      widget.title.toTitleCase(),
+                      widget.title.translate(context),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -150,7 +150,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
-                                widget.description.capitalize(),
+                                widget.description.translate(context),
                                 maxLines: _isExpanded ? null : 2,
                                 style: const TextStyle(
                                   fontSize: 12,

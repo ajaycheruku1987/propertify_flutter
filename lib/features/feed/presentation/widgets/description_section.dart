@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/utils/string_extensions.dart';
 
@@ -16,6 +17,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     const int maxLines = 3;
     final bool isLongText = widget.description.length > 150;
 
@@ -25,9 +27,9 @@ class _DescriptionSectionState extends State<DescriptionSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          const Text(
-            'Description',
-            style: TextStyle(
+          Text(
+            l10n.description,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -39,7 +41,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
           // Description Text
           AnimatedCrossFade(
             firstChild: Text(
-              widget.description.capitalize(),
+              widget.description.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],
@@ -50,7 +52,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               overflow: TextOverflow.ellipsis,
             ),
             secondChild: Text(
-              widget.description.capitalize(),
+              widget.description.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],
@@ -75,7 +77,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  _isExpanded ? 'Read less' : 'Read more',
+                  _isExpanded ? l10n.less : l10n.more,
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF6C5CE7),

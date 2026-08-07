@@ -444,7 +444,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
         !propertyTypes.contains('All')) {
       for (final type in propertyTypes) {
         chips.add(
-          _buildChip('${l10n.type}: $type', () {
+          _buildChip('${l10n.type}: ${type.translate(context)}', () {
             final newFilter = Map<String, dynamic>.from(filter);
             final list = List<String>.from(newFilter['propertyTypes'] ?? []);
             list.remove(type);

@@ -39,7 +39,7 @@ class PropertyInfo extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  title.toTitleCase(),
+                  title.translate(context),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(

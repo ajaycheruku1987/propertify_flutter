@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/notify_message.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -286,7 +287,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
             child: Text(
               state.requestsList.isEmpty
                   ? l10n.noRequestsAvailable
-                  : l10n.noRequestsInCategory(selectedCategoryType ?? ''),
+                  : l10n.noRequestsInCategory(selectedCategoryType?.translate(context) ?? ''),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 15, color: Colors.grey),
             ),

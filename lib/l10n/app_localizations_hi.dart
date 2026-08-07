@@ -784,6 +784,27 @@ class AppLocalizationsHi extends AppLocalizations {
   String get editProfile => 'प्रोफ़ाइल संपादित करें';
 
   @override
+  String get available => 'उपलब्ध';
+
+  @override
+  String get overview => 'अवलोकन';
+
+  @override
+  String get postedBy => 'इसके द्वारा पोस्ट किया गया';
+
+  @override
+  String get writeReview => 'समीक्षा लिखें';
+
+  @override
+  String get tellUsExperience => 'हमें अपना अनुभव बताएं';
+
+  @override
+  String get createReview => 'समीक्षा बनाएं';
+
+  @override
+  String get yourReview => 'आपकी समीक्षा';
+
+  @override
   String get independentHouse => 'स्वतंत्र घर';
 
   @override

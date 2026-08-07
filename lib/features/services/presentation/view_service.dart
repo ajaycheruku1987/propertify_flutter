@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,6 +60,7 @@ class _ViewServiceScreenState extends State<ViewServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocConsumer<ServicesBloc, ServicesState>(
       listenWhen: (previous, current) =>
           previous.notifyStatus != current.notifyStatus &&
@@ -104,9 +106,9 @@ class _ViewServiceScreenState extends State<ViewServiceScreen> {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-            title: const Text(
-              'Details',
-              style: TextStyle(
+            title: Text(
+              l10n.details,
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -495,6 +497,7 @@ Check it out on Propertify!
   }
 
   Widget _buildServiceProviderInfo(ServicesResponseModel service) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -504,7 +507,7 @@ Check it out on Propertify!
             children: [
               Expanded(
                 child: Text(
-                  (service.agentName ?? 'Service Name').toTitleCase(),
+                  (service.agentName ?? 'Service Name').translate(context),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -530,7 +533,7 @@ Check it out on Propertify!
               Text(
                 (service.category != null && service.category!.isNotEmpty)
                     ? service.category!
-                          .map((cat) => cat.toTitleCase())
+                          .map((cat) => cat.translate(context))
                           .join(' | ')
                     : 'General',
                 style: TextStyle(
@@ -548,6 +551,7 @@ Check it out on Propertify!
   }
 
   Widget _buildPromotionSection(ServicesResponseModel service) {
+    final l10n = AppLocalizations.of(context)!;
     final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
     final isOwner = currentUserId != null && currentUserId == service.userId;
     if (!isOwner) return const SizedBox.shrink();
@@ -596,7 +600,7 @@ Check it out on Propertify!
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isExpired ? 'Promotion Expired' : '$daysLeft Days Left',
+                  isExpired ? l10n.promotionExpired : l10n.daysLeft(daysLeft),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -607,7 +611,7 @@ Check it out on Propertify!
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Promoted until $formattedDate',
+                  l10n.promotedUntil(formattedDate),
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
@@ -623,14 +627,15 @@ Check it out on Propertify!
   }
 
   Widget _buildDescriptionSection(service) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Description',
-            style: TextStyle(
+          Text(
+            l10n.description,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -642,7 +647,7 @@ Check it out on Propertify!
           Text(
             (service.description ?? 'No description available')
                 .toString()
-                .capitalize(),
+                .translate(context),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFF666666),
@@ -661,7 +666,7 @@ Check it out on Propertify!
               });
             },
             child: Text(
-              _isDescriptionExpanded ? 'Read less' : 'Read more',
+              _isDescriptionExpanded ? l10n.less : l10n.more,
               style: const TextStyle(
                 fontSize: 14,
                 color: Color(0xFF6C5CE7),
@@ -675,14 +680,15 @@ Check it out on Propertify!
   }
 
   Widget _buildAddressSection(ServicesResponseModel service) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Address',
-            style: TextStyle(
+          Text(
+            l10n.address,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.black,
