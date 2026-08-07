@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -22,6 +23,7 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,9 +33,9 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
-          'My Services',
-          style: TextStyle(
+        title: Text(
+          l10n.myServices,
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -49,7 +51,7 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
 
           final services = state.myServicesList;
           if (services.isEmpty) {
-            return const Center(child: Text('No services found'));
+            return Center(child: Text(l10n.noServicesFound));
           }
 
           return ListView.builder(

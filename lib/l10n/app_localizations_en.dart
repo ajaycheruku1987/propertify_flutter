@@ -735,4 +735,137 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get categories => 'Categories';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get noFavoritesYet => 'No favorites yet';
+
+  @override
+  String get myPosts => 'My Posts';
+
+  @override
+  String get noPostsYet => 'No posts yet';
+
+  @override
+  String get myServices => 'My Services';
+
+  @override
+  String get myReels => 'My Reels';
+
+  @override
+  String get myRequests => 'My Requests';
+
+  @override
+  String get bannerPromotions => 'Banner Promotions';
+
+  @override
+  String get myFavourites => 'My Favourites';
+
+  @override
+  String get deleteCompany => 'Delete Company';
+
+  @override
+  String get deleteCompanyConfirm =>
+      'Are you sure you want to delete your company? This action cannot be undone.';
+
+  @override
+  String get myFeedbacks => 'My Feedbacks';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  @override
+  String get independentHouse => 'Independent House';
+
+  @override
+  String get villa => 'Villa';
+
+  @override
+  String get villas => 'Villas';
+
+  @override
+  String get apartment => 'Apartment';
+
+  @override
+  String get apartments => 'Apartments';
+
+  @override
+  String get openPlot => 'Open Plot';
+
+  @override
+  String get agricultureLand => 'Agriculture Land';
+
+  @override
+  String get commercial => 'Commercial';
+
+  @override
+  String get industrial => 'Industrial';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get sell => 'Sell';
+
+  @override
+  String get rent => 'Rent';
+
+  @override
+  String get lease => 'Lease';
+
+  @override
+  String get sales => 'Sales';
+
+  @override
+  String get buy => 'Buy';
+
+  @override
+  String get loan => 'Loan';
+
+  @override
+  String get realEstate => 'Real estate';
+
+  @override
+  String get plots => 'Plots';
+
+  @override
+  String get sand => 'Sand';
+
+  @override
+  String get rocks => 'Rocks';
+
+  @override
+  String get steel => 'Steel';
+
+  @override
+  String get cement => 'Cement';
+
+  @override
+  String get buildingMaterialSupply => 'Building Material Supply';
+
+  @override
+  String get legal => 'Legal';
+
+  @override
+  String get documentVerification => 'Document Verification';
+
+  @override
+  String get advocate => 'Advocate';
+
+  @override
+  String get constructionContractor => 'Construction Contractor';
+
+  @override
+  String get propertyValuation => 'Property valuation';
+
+  @override
+  String get leasing => 'Leasing';
+
+  @override
+  String get house => 'House';
+
+  @override
+  String get land => 'Land';
 }

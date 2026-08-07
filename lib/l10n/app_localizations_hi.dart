@@ -739,4 +739,137 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get categories => 'श्रेणियाँ';
+
+  @override
+  String get favorites => 'पसंदीदा';
+
+  @override
+  String get noFavoritesYet => 'अभी तक कोई पसंदीदा नहीं';
+
+  @override
+  String get myPosts => 'मेरी पोस्ट';
+
+  @override
+  String get noPostsYet => 'अभी तक कोई पोस्ट नहीं';
+
+  @override
+  String get myServices => 'मेरी सेवाएँ';
+
+  @override
+  String get myReels => 'मेरी रील';
+
+  @override
+  String get myRequests => 'मेरे अनुरोध';
+
+  @override
+  String get bannerPromotions => 'बैनर प्रचार';
+
+  @override
+  String get myFavourites => 'मेरे पसंदीदा';
+
+  @override
+  String get deleteCompany => 'कंपनी हटाएं';
+
+  @override
+  String get deleteCompanyConfirm =>
+      'क्या आप वाकई अपनी कंपनी को हटाना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।';
+
+  @override
+  String get myFeedbacks => 'मेरी प्रतिक्रियाएं';
+
+  @override
+  String get deleteAccount => 'खाता हटाएं';
+
+  @override
+  String get independentHouse => 'स्वतंत्र घर';
+
+  @override
+  String get villa => 'विला';
+
+  @override
+  String get villas => 'विला';
+
+  @override
+  String get apartment => 'अपार्टमेंट';
+
+  @override
+  String get apartments => 'अपार्टमेंट';
+
+  @override
+  String get openPlot => 'ओपन प्लॉट';
+
+  @override
+  String get agricultureLand => 'कृषि भूमि';
+
+  @override
+  String get commercial => 'वाणिज्यिक';
+
+  @override
+  String get industrial => 'औद्योगिक';
+
+  @override
+  String get all => 'सभी';
+
+  @override
+  String get sell => 'बेचें';
+
+  @override
+  String get rent => 'किराया';
+
+  @override
+  String get lease => 'लीज';
+
+  @override
+  String get sales => 'बिक्री';
+
+  @override
+  String get buy => 'खरीदें';
+
+  @override
+  String get loan => 'ऋण';
+
+  @override
+  String get realEstate => 'रियल एस्टेट';
+
+  @override
+  String get plots => 'प्लॉट';
+
+  @override
+  String get sand => 'रेत';
+
+  @override
+  String get rocks => 'चट्टान';
+
+  @override
+  String get steel => 'स्टील';
+
+  @override
+  String get cement => 'सीमेंट';
+
+  @override
+  String get buildingMaterialSupply => 'भवन निर्माण सामग्री आपूर्ति';
+
+  @override
+  String get legal => 'कानूनी';
+
+  @override
+  String get documentVerification => 'दस्तावेज़ सत्यापन';
+
+  @override
+  String get advocate => 'अधिवक्ता';
+
+  @override
+  String get constructionContractor => 'निर्माण ठेकेदार';
+
+  @override
+  String get propertyValuation => 'संपत्ति मूल्यांकन';
+
+  @override
+  String get leasing => 'लीजिंग';
+
+  @override
+  String get house => 'घर';
+
+  @override
+  String get land => 'भूमि';
 }

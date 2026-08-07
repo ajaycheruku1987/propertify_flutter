@@ -310,7 +310,7 @@ class _PropertyCardState extends State<PropertyCard> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  widget.listingType!,
+                  widget.listingType!.translate(context),
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
@@ -395,7 +395,7 @@ class _PropertyCardState extends State<PropertyCard> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
-                widget.propertyType!.toTitleCase(),
+                widget.propertyType!.translate(context),
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,

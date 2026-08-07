@@ -74,7 +74,7 @@ class _RequestTileWidgetState extends State<RequestTileWidget> {
                   ),
                   const SizedBox(height: 4),
                   // Type
-                  Text(widget.type, style: const TextStyle(fontSize: 12)),
+                  Text(widget.type.translate(context), style: const TextStyle(fontSize: 12)),
                 ],
               ),
 

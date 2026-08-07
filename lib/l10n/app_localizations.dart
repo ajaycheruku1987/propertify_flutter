@@ -1515,6 +1515,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Categories'**
   String get categories;
+
+  /// No description provided for @favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// No description provided for @noFavoritesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites yet'**
+  String get noFavoritesYet;
+
+  /// No description provided for @myPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'My Posts'**
+  String get myPosts;
+
+  /// No description provided for @noPostsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts yet'**
+  String get noPostsYet;
+
+  /// No description provided for @myServices.
+  ///
+  /// In en, this message translates to:
+  /// **'My Services'**
+  String get myServices;
+
+  /// No description provided for @myReels.
+  ///
+  /// In en, this message translates to:
+  /// **'My Reels'**
+  String get myReels;
+
+  /// No description provided for @myRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'My Requests'**
+  String get myRequests;
+
+  /// No description provided for @bannerPromotions.
+  ///
+  /// In en, this message translates to:
+  /// **'Banner Promotions'**
+  String get bannerPromotions;
+
+  /// No description provided for @myFavourites.
+  ///
+  /// In en, this message translates to:
+  /// **'My Favourites'**
+  String get myFavourites;
+
+  /// No description provided for @deleteCompany.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Company'**
+  String get deleteCompany;
+
+  /// No description provided for @deleteCompanyConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete your company? This action cannot be undone.'**
+  String get deleteCompanyConfirm;
+
+  /// No description provided for @myFeedbacks.
+  ///
+  /// In en, this message translates to:
+  /// **'My Feedbacks'**
+  String get myFeedbacks;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteAccount;
+
+  /// No description provided for @independentHouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Independent House'**
+  String get independentHouse;
+
+  /// No description provided for @villa.
+  ///
+  /// In en, this message translates to:
+  /// **'Villa'**
+  String get villa;
+
+  /// No description provided for @villas.
+  ///
+  /// In en, this message translates to:
+  /// **'Villas'**
+  String get villas;
+
+  /// No description provided for @apartment.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment'**
+  String get apartment;
+
+  /// No description provided for @apartments.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartments'**
+  String get apartments;
+
+  /// No description provided for @openPlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Plot'**
+  String get openPlot;
+
+  /// No description provided for @agricultureLand.
+  ///
+  /// In en, this message translates to:
+  /// **'Agriculture Land'**
+  String get agricultureLand;
+
+  /// No description provided for @commercial.
+  ///
+  /// In en, this message translates to:
+  /// **'Commercial'**
+  String get commercial;
+
+  /// No description provided for @industrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Industrial'**
+  String get industrial;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @sell.
+  ///
+  /// In en, this message translates to:
+  /// **'Sell'**
+  String get sell;
+
+  /// No description provided for @rent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get rent;
+
+  /// No description provided for @lease.
+  ///
+  /// In en, this message translates to:
+  /// **'Lease'**
+  String get lease;
+
+  /// No description provided for @sales.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales'**
+  String get sales;
+
+  /// No description provided for @buy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy'**
+  String get buy;
+
+  /// No description provided for @loan.
+  ///
+  /// In en, this message translates to:
+  /// **'Loan'**
+  String get loan;
+
+  /// No description provided for @realEstate.
+  ///
+  /// In en, this message translates to:
+  /// **'Real estate'**
+  String get realEstate;
+
+  /// No description provided for @plots.
+  ///
+  /// In en, this message translates to:
+  /// **'Plots'**
+  String get plots;
+
+  /// No description provided for @sand.
+  ///
+  /// In en, this message translates to:
+  /// **'Sand'**
+  String get sand;
+
+  /// No description provided for @rocks.
+  ///
+  /// In en, this message translates to:
+  /// **'Rocks'**
+  String get rocks;
+
+  /// No description provided for @steel.
+  ///
+  /// In en, this message translates to:
+  /// **'Steel'**
+  String get steel;
+
+  /// No description provided for @cement.
+  ///
+  /// In en, this message translates to:
+  /// **'Cement'**
+  String get cement;
+
+  /// No description provided for @buildingMaterialSupply.
+  ///
+  /// In en, this message translates to:
+  /// **'Building Material Supply'**
+  String get buildingMaterialSupply;
+
+  /// No description provided for @legal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get legal;
+
+  /// No description provided for @documentVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Document Verification'**
+  String get documentVerification;
+
+  /// No description provided for @advocate.
+  ///
+  /// In en, this message translates to:
+  /// **'Advocate'**
+  String get advocate;
+
+  /// No description provided for @constructionContractor.
+  ///
+  /// In en, this message translates to:
+  /// **'Construction Contractor'**
+  String get constructionContractor;
+
+  /// No description provided for @propertyValuation.
+  ///
+  /// In en, this message translates to:
+  /// **'Property valuation'**
+  String get propertyValuation;
+
+  /// No description provided for @leasing.
+  ///
+  /// In en, this message translates to:
+  /// **'Leasing'**
+  String get leasing;
+
+  /// No description provided for @house.
+  ///
+  /// In en, this message translates to:
+  /// **'House'**
+  String get house;
+
+  /// No description provided for @land.
+  ///
+  /// In en, this message translates to:
+  /// **'Land'**
+  String get land;
 }
 
 class _AppLocalizationsDelegate

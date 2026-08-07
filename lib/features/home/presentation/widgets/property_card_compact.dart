@@ -119,7 +119,7 @@ class PropertyCardCompact extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        propertyType!.toTitleCase(),
+                        propertyType!.translate(context),
                         style: TextStyle(
                           fontSize: 9,
                           fontWeight: FontWeight.w600,
@@ -352,7 +352,7 @@ class PropertyCardCompact extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  listingType!,
+                  listingType!.translate(context),
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,

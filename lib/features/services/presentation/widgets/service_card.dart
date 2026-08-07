@@ -231,7 +231,7 @@ class ServiceCard extends StatelessWidget {
           category
               .replaceAll(',', ' | ')
               .split(' | ')
-              .map((cat) => cat.trim().toTitleCase())
+              .map((cat) => cat.trim().translate(context))
               .join(' | '),
           style: TextStyle(
             fontSize: 12,

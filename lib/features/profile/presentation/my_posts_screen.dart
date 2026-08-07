@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -70,6 +71,7 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -79,9 +81,9 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => context.pop(),
         ),
-        title: const Text(
-          'My Posts',
-          style: TextStyle(
+        title: Text(
+          l10n.myPosts,
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -105,10 +107,10 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
 
             final items = state.myPropertiesList;
             if (items.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
-                  'No posts yet',
-                  style: TextStyle(color: Colors.black54),
+                  l10n.noPostsYet,
+                  style: const TextStyle(color: Colors.black54),
                 ),
               );
             }
