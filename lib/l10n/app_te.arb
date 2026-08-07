@@ -248,13 +248,17 @@
   "deleteCompanyConfirm": "మీరు ఖచ్చితంగా మీ కంపెనీని తొలగించాలనుకుంటున్నారా? ఈ చర్యను తిరిగి పొందలేము.",
   "myFeedbacks": "నా అభిప్రాయాలు",
   "deleteAccount": "ఖాతాను తొలగించండి",
+  "editProfile": "ప్రొఫైల్‌ను సవరించండి",
   "myDashboard": "నా డాష్‌బోర్డ్",
   "independentHouse": "ఇండిపెండెంట్ హౌస్",
   "villa": "విల్లా",
   "villas": "విల్లాలు",
   "apartment": "అపార్ట్‌మెంట్",
   "apartments": "అపార్ట్‌మెంట్లు",
+  "flats": "ఫ్లాట్లు",
+  "apartmentFlat": "అపార్ట్‌మెంట్ ఫ్లాట్",
   "openPlot": "ఓపెన్ ప్లాట్",
+  "openPlots": "ఓపెన్ ప్లాట్లు",
   "agricultureLand": "వ్యవసాయ భూమి",
   "commercial": "కమర్షియల్",
   "industrial": "ఇండస్ట్రియల్",
@@ -263,6 +267,7 @@
   "rent": "అద్దె",
   "lease": "లీజు",
   "sales": "సేల్స్",
+  "sale": "అమ్మకం",
   "buy": "కొనుగోలు",
   "loan": "లోన్",
   "realEstate": "రియల్ ఎస్టేట్",
@@ -279,5 +284,6 @@
   "propertyValuation": "ఆస్తి మూల్యాంకనం",
   "leasing": "లీజింగ్",
   "house": "ఇల్లు",
-  "land": "భూమి"
+  "land": "భూమి",
+  "construction": "నిర్మాణం"
 }

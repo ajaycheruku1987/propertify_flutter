@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/app_theme.dart';
@@ -218,7 +219,7 @@ class _RequestsFilterState extends State<RequestsFilter> {
                   ),
                 ),
                 child: Text(
-                  type,
+                  type.translate(context),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

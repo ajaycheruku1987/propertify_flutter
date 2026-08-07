@@ -11,6 +11,8 @@ import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/utils/image_picker_util.dart';
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 
 class EditFeedScreen extends StatefulWidget {
@@ -41,7 +43,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final List<String> _listingTypes = AppCategories.lookingFor;
-  final List<Map<String, dynamic>> _propertyTypeOptions = AppCategories.propertyTypes;
+  final List<Map<String, dynamic>> _propertyTypeOptions = AppCategories.propertyType;
 
   @override
   void initState() {
@@ -75,6 +77,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocConsumer<FeedBloc, FeedState>(
       listenWhen: (previous, current) =>
           previous.isLoading != current.isLoading ||
@@ -97,9 +100,9 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
               icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: isLoading ? null : () => Navigator.pop(context),
             ),
-            title: const Text(
-              'Edit Property',
-              style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+            title: Text(
+              l10n.edit,
+              style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
             ),
             centerTitle: true,
           ),
@@ -114,25 +117,25 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                     children: [
                       CommonTextFormField(
                         controller: _titleController,
-                        label: 'Title *',
-                        hintText: 'Enter property title',
+                        label: '${l10n.title} *',
+                        hintText: l10n.enterPropertyTitle,
                         maxLength: 30,
                         isRequired: true,
-                        validator: (value) => (value == null || value.isEmpty) ? 'Please enter a title' : null,
+                        validator: (value) => (value == null || value.isEmpty) ? l10n.titleRequired : null,
                       ),
                       const SizedBox(height: 24),
-                      _buildPropertyTypeSelector(),
+                      _buildPropertyTypeSelector(l10n),
                       const SizedBox(height: 24),
-                      _buildLookingForSelector(),
+                      _buildLookingForSelector(l10n),
                       const SizedBox(height: 24),
                       CommonTextFormField(
                         controller: _priceController,
-                        label: 'Expected Price *',
-                        hintText: 'Enter Expected Price',
+                        label: '${l10n.price} *',
+                        hintText: l10n.price,
                         isRequired: true,
                         keyboardType: TextInputType.number,
                         textInputFormatter: [FilteringTextInputFormatter.digitsOnly],
-                        validator: (value) => (value == null || value.isEmpty) ? 'Please Enter Valid Price' : null,
+                        validator: (value) => (value == null || value.isEmpty) ? l10n.priceRequired : null,
                       ),
                       const SizedBox(height: 24),
                       AddressInput(
@@ -147,15 +150,15 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                       const SizedBox(height: 16),
                       CommonTextFormField(
                         controller: _cityController,
-                        label: 'City',
+                        label: l10n.city,
                         isRequired: true,
                         readOnly: true,
-                        validator: (v) => (v == null || v.isEmpty) ? 'Please choose address' : null,
+                        validator: (v) => (v == null || v.isEmpty) ? l10n.pleaseChooseAddress : null,
                       ),
                       const SizedBox(height: 32),
-                      const Text(
-                        'Description',
-                        style: TextStyle(
+                      Text(
+                        l10n.description,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
@@ -171,18 +174,18 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                         child: TextFormField(
                           controller: _descriptionController,
                           maxLines: 8,
-                          decoration: const InputDecoration(
-                            hintText: 'Write a description for your property...',
-                            hintStyle: TextStyle(color: Color(0xFF999999), fontSize: 14),
+                          decoration: InputDecoration(
+                            hintText: l10n.writeDescription,
+                            hintStyle: const TextStyle(color: Color(0xFF999999), fontSize: 14),
                             border: InputBorder.none,
-                            contentPadding: EdgeInsets.all(16),
+                            contentPadding: const EdgeInsets.all(16),
                           ),
                         ),
                       ),
                       const SizedBox(height: 32),
-                      const Text('Images', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                      Text(l10n.addImages, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 16),
-                      _buildImagesSection(),
+                      _buildImagesSection(l10n),
                       const SizedBox(height: 32),
                       SizedBox(
                         width: double.infinity,
@@ -220,7 +223,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                               );
                             }
                           },
-                          buttonLabel: 'Update Property',
+                          buttonLabel: l10n.edit,
                         ),
                       ),
                       const SizedBox(height: 40),
@@ -240,7 +243,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
     );
   }
 
-  Widget _buildImagesSection() {
+  Widget _buildImagesSection(AppLocalizations l10n) {
     return Column(
       children: [
         if (_existingImages.isEmpty && _newImages.isEmpty)
@@ -259,7 +262,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                 children: [
                   Icon(Icons.add_a_photo, size: 40, color: Theme.of(context).primaryColor),
                   const SizedBox(height: 8),
-                  Text('Add Images', style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600)),
+                  Text(l10n.addImages, style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600)),
                 ],
               ),
             ),
@@ -282,7 +285,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                     children: [
                       Icon(Icons.add_a_photo, size: 24, color: Theme.of(context).primaryColor),
                       const SizedBox(width: 8),
-                      Text('Add more images', style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600)),
+                      Text(l10n.addMoreImages, style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600)),
                     ],
                   ),
                 ),
@@ -367,13 +370,13 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
     }
   }
 
-  Widget _buildLookingForSelector() {
+  Widget _buildLookingForSelector(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Looking For',
-          style: TextStyle(
+        Text(
+          l10n.lookingFor,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -409,7 +412,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                   ),
                 ),
                 child: Text(
-                  option,
+                  option.translate(context),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -426,13 +429,13 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
     );
   }
 
-  Widget _buildPropertyTypeSelector() {
+  Widget _buildPropertyTypeSelector(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Property Type *',
-          style: TextStyle(
+        Text(
+          '${l10n.propertyType} *',
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -468,7 +471,7 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
                   ),
                 ),
                 child: Text(
-                  type['name'],
+                  (type['name'] as String).translate(context),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,

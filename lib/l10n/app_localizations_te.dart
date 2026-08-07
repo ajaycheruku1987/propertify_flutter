@@ -783,6 +783,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get deleteAccount => 'ఖాతాను తొలగించండి';
 
   @override
+  String get editProfile => 'ప్రొఫైల్‌ను సవరించండి';
+
+  @override
   String get independentHouse => 'ఇండిపెండెంట్ హౌస్';
 
   @override
@@ -798,7 +801,16 @@ class AppLocalizationsTe extends AppLocalizations {
   String get apartments => 'అపార్ట్‌మెంట్లు';
 
   @override
+  String get flats => 'ఫ్లాట్లు';
+
+  @override
+  String get apartmentFlat => 'అపార్ట్‌మెంట్ ఫ్లాట్';
+
+  @override
   String get openPlot => 'ఓపెన్ ప్లాట్';
+
+  @override
+  String get openPlots => 'ఓపెన్ ప్లాట్లు';
 
   @override
   String get agricultureLand => 'వ్యవసాయ భూమి';
@@ -823,6 +835,9 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get sales => 'సేల్స్';
+
+  @override
+  String get sale => 'అమ్మకం';
 
   @override
   String get buy => 'కొనుగోలు';
@@ -874,4 +889,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get land => 'భూమి';
+
+  @override
+  String get construction => 'నిర్మాణం';
 }

@@ -32,7 +32,7 @@ class PostDetailsScreen extends StatefulWidget {
 
   final String postId;
 
-  const PostDetailsScreen({Key? key, required this.postId}) : super(key: key);
+  const PostDetailsScreen({super.key, required this.postId});
 
   @override
   State<PostDetailsScreen> createState() => _PostDetailsScreenState();
@@ -179,10 +179,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                Text(
-                  l10n.whyReporting,
-                  style: const TextStyle(fontSize: 14, color: Colors.black87),
-                ),
+                      Text(
+                        l10n.whyReporting,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black87,
+                        ),
+                      ),
                       const SizedBox(height: 12),
                       ...[
                         l10n.spamMisleading,
@@ -332,7 +335,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: const Color(0x1A000000),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),

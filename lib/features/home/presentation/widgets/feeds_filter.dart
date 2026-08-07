@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
@@ -61,7 +62,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
   double? _longitude;
   bool _isLocationCustom = false;
 
-  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
+  final List<String> _propertyTypes = AppCategories.propertyTypeFilterName;
 
   final List<String> _lookingForOptions = AppCategories.lookingForFilter;
 
@@ -262,7 +263,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
                   ),
                 ),
                 child: Text(
-                  type,
+                  type.translate(context),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -314,7 +315,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
                   ),
                   child: Center(
                     child: Text(
-                      option,
+                      option.translate(context),
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

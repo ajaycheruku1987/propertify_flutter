@@ -781,6 +781,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteAccount => 'खाता हटाएं';
 
   @override
+  String get editProfile => 'प्रोफ़ाइल संपादित करें';
+
+  @override
   String get independentHouse => 'स्वतंत्र घर';
 
   @override
@@ -796,7 +799,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get apartments => 'अपार्टमेंट';
 
   @override
+  String get flats => 'फ्लैट';
+
+  @override
+  String get apartmentFlat => 'अपार्टमेंट फ्लैट';
+
+  @override
   String get openPlot => 'ओपन प्लॉट';
+
+  @override
+  String get openPlots => 'ओपन प्लॉट';
 
   @override
   String get agricultureLand => 'कृषि भूमि';
@@ -821,6 +833,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get sales => 'बिक्री';
+
+  @override
+  String get sale => 'बिक्री';
 
   @override
   String get buy => 'खरीदें';
@@ -872,4 +887,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get land => 'भूमि';
+
+  @override
+  String get construction => 'निर्माण';
 }

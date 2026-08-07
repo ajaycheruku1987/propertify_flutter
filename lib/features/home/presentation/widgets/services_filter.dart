@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
@@ -411,7 +412,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                   ),
                 ),
                 child: Text(
-                  category,
+                  category.translate(context),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

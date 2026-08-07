@@ -311,7 +311,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
             return owner.username ?? 'Unknown Provider';
           }(),
           budget: request.budget?.toString() ?? 'Unknown Budget',
-          location: '${request.city ?? ''}',
+          location: request.city ?? '',
           description: request.description ?? 'Unknown Description',
           type: request.category ?? 'General',
           createdAt: request.createdAt ?? 'Unknown Date',
@@ -319,7 +319,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
               request.owner?.id ==
                   context.read<ProfileBloc>().state.userProfile?.id
               ? () {
-                  // Navigate to edit screen
                   context.push(EditRequest.routeName, extra: request);
                 }
               : null,
@@ -327,7 +326,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
               request.owner?.id ==
                   context.read<ProfileBloc>().state.userProfile?.id
               ? () {
-                  // Show confirmation dialog before deleting
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -359,13 +357,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   );
                 }
               : null,
-
           onCallPressed:
               request.owner?.id ==
                       context.read<ProfileBloc>().state.userProfile?.id
                   ? null
                   : () {
-                      debugPrint('Calling ${request.phoneNumber}');
                       if (!context.read<HomeBloc>().state.showAddButton) {
                         context.push(AuthScreen.routeName);
                         return;
@@ -381,7 +377,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
                       context.read<ProfileBloc>().state.userProfile?.id
                   ? null
                   : () {
-                      debugPrint('WhatsApp to ${request.phoneNumber}');
                       if (!context.read<HomeBloc>().state.showAddButton) {
                         context.push(AuthScreen.routeName);
                         return;

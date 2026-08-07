@@ -777,6 +777,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteAccount => 'Delete Account';
 
   @override
+  String get editProfile => 'Edit Profile';
+
+  @override
   String get independentHouse => 'Independent House';
 
   @override
@@ -792,7 +795,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get apartments => 'Apartments';
 
   @override
+  String get flats => 'Flats';
+
+  @override
+  String get apartmentFlat => 'Apartment Flat';
+
+  @override
   String get openPlot => 'Open Plot';
+
+  @override
+  String get openPlots => 'Open Plots';
 
   @override
   String get agricultureLand => 'Agriculture Land';
@@ -817,6 +829,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sales => 'Sales';
+
+  @override
+  String get sale => 'Sale';
 
   @override
   String get buy => 'Buy';
@@ -868,4 +883,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get land => 'Land';
+
+  @override
+  String get construction => 'Construction';
 }

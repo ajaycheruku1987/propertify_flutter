@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +32,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -40,9 +42,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => context.pop(),
         ),
-        title: const Text(
-          'Favorites',
-          style: TextStyle(
+        title: Text(
+          l10n.favorites,
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -57,7 +59,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           }
           final items = state.favouritesList;
           if (items.isEmpty) {
-            return const Center(child: Text('No favorites yet'));
+            return Center(child: Text(l10n.noFavoritesYet));
           }
           return ListView.separated(
             padding: const EdgeInsets.all(16),

@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/app_theme.dart';
@@ -61,7 +62,7 @@ class NavigationTabs extends StatelessWidget {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          tabs[index],
+                          tabs[index].translate(context),
                           style: TextStyle(
                             color: selectedIndex == index
                                 ? Theme.of(context).primaryColor

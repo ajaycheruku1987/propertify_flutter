@@ -272,13 +272,17 @@
   "deleteCompanyConfirm": "Are you sure you want to delete your company? This action cannot be undone.",
   "myFeedbacks": "My Feedbacks",
   "deleteAccount": "Delete Account",
+  "editProfile": "Edit Profile",
   "myDashboard": "My Dashboard",
   "independentHouse": "Independent House",
   "villa": "Villa",
   "villas": "Villas",
   "apartment": "Apartment",
   "apartments": "Apartments",
+  "flats": "Flats",
+  "apartmentFlat": "Apartment Flat",
   "openPlot": "Open Plot",
+  "openPlots": "Open Plots",
   "agricultureLand": "Agriculture Land",
   "commercial": "Commercial",
   "industrial": "Industrial",
@@ -287,6 +291,7 @@
   "rent": "Rent",
   "lease": "Lease",
   "sales": "Sales",
+  "sale": "Sale",
   "buy": "Buy",
   "loan": "Loan",
   "realEstate": "Real estate",
@@ -303,5 +308,6 @@
   "propertyValuation": "Property valuation",
   "leasing": "Leasing",
   "house": "House",
-  "land": "Land"
+  "land": "Land",
+  "construction": "Construction"
 }

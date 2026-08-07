@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
 import 'package:propertify/features/services/models/create_service_data_model.dart';
 import 'package:propertify/features/services/models/services_response_model.dart';
@@ -105,6 +107,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<ServicesBloc, ServicesState>(
       listenWhen: (previous, current) =>
           previous.isLoading != current.isLoading ||
@@ -126,9 +129,9 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: isLoading ? null : () => Navigator.pop(context),
               ),
-              title: const Text(
-                'Edit Service',
-                style: TextStyle(
+              title: Text(
+                l10n.edit,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -145,9 +148,9 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Agent Details',
-                          style: TextStyle(
+                        Text(
+                          l10n.agentDetails,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.black87,
@@ -157,13 +160,13 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
 
                         CommonTextFormField(
                           controller: _titleController,
-                          label: 'Agent / Shop Name',
-                          hintText: 'Enter service title',
+                          label: l10n.agentShopName,
+                          hintText: l10n.enterServiceTitle,
                           isRequired: true,
                           maxLength: 30,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter service title';
+                              return l10n.pleaseEnterServiceTitle;
                             }
                             return null;
                           },
@@ -172,22 +175,22 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
 
                         CommonTextFormField(
                           controller: _descriptionController,
-                          label: 'Description',
-                          hintText: 'Enter service description',
+                          label: l10n.description,
+                          hintText: l10n.enterRequestDescription,
                           maxlines: 4,
                           isRequired: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter description';
+                              return l10n.pleaseEnterDescription;
                             }
                             return null;
                           },
                         ),
                         const SizedBox(height: 20),
 
-                        const Text(
-                          'Category',
-                          style: TextStyle(
+                        Text(
+                          l10n.category,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -228,7 +231,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                                   ),
                                 ),
                                 child: Text(
-                                  category,
+                                  category.translate(context),
                                   style: TextStyle(
                                     color: isSelected
                                         ? Colors.white
@@ -267,30 +270,30 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
 
                         CommonTextFormField(
                           controller: _cityController,
-                          label: 'City',
+                          label: l10n.city,
                           isRequired: true,
                           readOnly: true,
                           validator: (v) => (v == null || v.isEmpty)
-                              ? 'Please choose address'
+                              ? l10n.pleaseChooseAddress
                               : null,
                         ),
                         const SizedBox(height: 20),
 
                         CommonTextFormField(
                           controller: _stateController,
-                          label: 'State',
+                          label: l10n.state,
                           isRequired: true,
                           readOnly: true,
                           validator: (v) => (v == null || v.isEmpty)
-                              ? 'Please choose address'
+                              ? l10n.pleaseChooseAddress
                               : null,
                         ),
                         const SizedBox(height: 20),
 
                         CommonTextFormField(
                           controller: _pinCodeController,
-                          label: 'Pin Code',
-                          hintText: 'Enter pin code',
+                          label: l10n.pinCode,
+                          hintText: l10n.enterPinCode,
                           isRequired: true,
                           maxLength: 6,
                           keyboardType: TextInputType.number,
@@ -298,14 +301,14 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                             FilteringTextInputFormatter.digitsOnly,
                           ],
                           validator: (v) => (v == null || v.isEmpty)
-                              ? 'Please enter pin code'
+                              ? l10n.pleaseEnterPinCode
                               : null,
                         ),
                         const SizedBox(height: 32),
 
-                        const Text(
-                          'Social Media',
-                          style: TextStyle(
+                        Text(
+                          l10n.inviteFriends, // Assuming social section title
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -331,15 +334,15 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                         ),
                         const SizedBox(height: 32),
 
-                        const Text(
-                          'Media Gallery',
-                          style: TextStyle(
+                        Text(
+                          l10n.addImages,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 16),
-                        _buildImagesSection(),
+                        _buildImagesSection(l10n),
                         const SizedBox(height: 32),
 
                         SizedBox(
@@ -378,11 +381,11 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                                 );
                               } else if (_selectedCategories.isEmpty) {
                                 CustomToast.showErrorToast(
-                                  msg: 'Please select at least one category',
+                                  msg: l10n.selectAtLeastOneCategory,
                                 );
                               }
                             },
-                            buttonLabel: 'Update Service',
+                            buttonLabel: l10n.edit,
                           ),
                         ),
                         const SizedBox(height: 40),
@@ -407,7 +410,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
     );
   }
 
-  Widget _buildImagesSection() {
+  Widget _buildImagesSection(AppLocalizations l10n) {
     return Column(
       children: [
         if (_existingImages.isEmpty && _newImages.isEmpty)
@@ -431,7 +434,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Add Images',
+                    l10n.addImages,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w600,
@@ -464,7 +467,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Add more images',
+                        l10n.addMoreImages,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.w600,

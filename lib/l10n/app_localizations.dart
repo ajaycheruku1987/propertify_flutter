@@ -1594,6 +1594,12 @@ abstract class AppLocalizations {
   /// **'Delete Account'**
   String get deleteAccount;
 
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
   /// No description provided for @independentHouse.
   ///
   /// In en, this message translates to:
@@ -1624,11 +1630,29 @@ abstract class AppLocalizations {
   /// **'Apartments'**
   String get apartments;
 
+  /// No description provided for @flats.
+  ///
+  /// In en, this message translates to:
+  /// **'Flats'**
+  String get flats;
+
+  /// No description provided for @apartmentFlat.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment Flat'**
+  String get apartmentFlat;
+
   /// No description provided for @openPlot.
   ///
   /// In en, this message translates to:
   /// **'Open Plot'**
   String get openPlot;
+
+  /// No description provided for @openPlots.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Plots'**
+  String get openPlots;
 
   /// No description provided for @agricultureLand.
   ///
@@ -1677,6 +1701,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sales'**
   String get sales;
+
+  /// No description provided for @sale.
+  ///
+  /// In en, this message translates to:
+  /// **'Sale'**
+  String get sale;
 
   /// No description provided for @buy.
   ///
@@ -1779,6 +1809,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Land'**
   String get land;
+
+  /// No description provided for @construction.
+  ///
+  /// In en, this message translates to:
+  /// **'Construction'**
+  String get construction;
 }
 
 class _AppLocalizationsDelegate

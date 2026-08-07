@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,6 +66,7 @@ class _EditRequestState extends State<EditRequest> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -74,9 +76,9 @@ class _EditRequestState extends State<EditRequest> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Edit Request',
-          style: TextStyle(
+        title: Text(
+          l10n.edit,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -94,12 +96,12 @@ class _EditRequestState extends State<EditRequest> {
               // Title Field
               CommonTextFormField(
                 controller: _titleController,
-                label: 'Title',
-                hintText: 'Enter request title',
+                label: l10n.title,
+                hintText: l10n.enterRequestTitle,
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
+                    return l10n.pleaseEnterTitle;
                   }
                   return null;
                 },
@@ -138,14 +140,14 @@ class _EditRequestState extends State<EditRequest> {
               // Description Field
               CommonTextFormField(
                 controller: _descriptionController,
-                label: 'Description',
-                hintText: 'Enter request description',
+                label: l10n.description,
+                hintText: l10n.enterRequestDescription,
                 keyboardType: TextInputType.multiline,
                 maxlines: 4,
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a description';
+                    return l10n.pleaseEnterDescription;
                   }
                   return null;
                 },
@@ -155,13 +157,13 @@ class _EditRequestState extends State<EditRequest> {
               // Budget Price Field
               CommonTextFormField(
                 controller: _budgetController,
-                label: 'Budget Price',
-                hintText: 'Enter your budget price',
+                label: l10n.budgetPrice,
+                hintText: l10n.enterBudgetPrice,
                 keyboardType: TextInputType.number,
                 isRequired: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter budget price';
+                    return l10n.pleaseEnterBudgetPrice;
                   }
                   return null;
                 },
@@ -181,10 +183,10 @@ class _EditRequestState extends State<EditRequest> {
                         _titleController.text.isNotEmpty) {
                       _updateRequest();
                     } else {
-                      _showValidationError();
+                      _showValidationError(l10n);
                     }
                   },
-                  buttonLabel: 'Update Request',
+                  buttonLabel: l10n.edit,
                 ),
               ),
               const SizedBox(height: 20),
@@ -216,19 +218,19 @@ class _EditRequestState extends State<EditRequest> {
     CustomToast.showSuccessToast(msg: 'Updating request...');
   }
 
-  void _showValidationError() {
+  void _showValidationError(AppLocalizations l10n) {
     String errorMessage = '';
 
     if (_titleController.text.isEmpty) {
-      errorMessage = 'Please enter a title';
+      errorMessage = l10n.pleaseEnterTitle;
     } else if (_selectedRequestCategory == null) {
-      errorMessage = 'Please select a request category';
+      errorMessage = l10n.pleaseSelectCategory;
     } else if (_addressController.text.isEmpty) {
-      errorMessage = 'Please enter an address';
+      errorMessage = l10n.pleaseEnterAddress;
     } else if (_descriptionController.text.isEmpty) {
-      errorMessage = 'Please enter a description';
+      errorMessage = l10n.pleaseEnterDescription;
     } else if (_budgetController.text.isEmpty) {
-      errorMessage = 'Please enter a budget price';
+      errorMessage = l10n.pleaseEnterBudgetPrice;
     }
 
     if (errorMessage.isNotEmpty) {

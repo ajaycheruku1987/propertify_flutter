@@ -1,3 +1,5 @@
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class RequestCategorySelector extends StatelessWidget {
@@ -16,12 +18,13 @@ class RequestCategorySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Request Category *',
-          style: TextStyle(
+        Text(
+          '${l10n.category} *',
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -55,7 +58,7 @@ class RequestCategorySelector extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  type['name'],
+                  (type['name'] as String).translate(context),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -70,11 +73,11 @@ class RequestCategorySelector extends StatelessWidget {
           }).toList(),
         ),
         if (selectedPropertyType == null || selectedPropertyType!.isEmpty)
-          const Padding(
-            padding: EdgeInsets.only(top: 8.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              'Property type is required',
-              style: TextStyle(color: Colors.red, fontSize: 12),
+              l10n.propertyTypeRequired,
+              style: const TextStyle(color: Colors.red, fontSize: 12),
             ),
           ),
       ],

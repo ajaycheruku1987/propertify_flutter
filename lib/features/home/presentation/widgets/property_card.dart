@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/utils/custom_toast.dart';
-import '../../../../utils/string_extensions.dart';
-import '../../../../core/app_theme.dart';
-import '../../../../utils/common_widgets/logo_placeholder.dart';
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/core/app_theme.dart';
+import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
 
 class PropertyCard extends StatefulWidget {
   final List<String> imageUrls;
@@ -90,7 +90,7 @@ class _PropertyCardState extends State<PropertyCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Section
-            _buildImageSection(context, l10n),
+            _buildImageSection(context),
 
             // Content Section
             _buildContentSection(),
@@ -111,7 +111,8 @@ class _PropertyCardState extends State<PropertyCard> {
     );
   }
 
-  Widget _buildImageSection(BuildContext context, AppLocalizations l10n) {
+  Widget _buildImageSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final hasMultipleImages = widget.imageUrls.length > 1;
 
     return Container(
@@ -426,44 +427,6 @@ class _PropertyCardState extends State<PropertyCard> {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPromotionDates(AppLocalizations l10n) {
-    final DateTime? start = widget.promotedAt != null
-        ? DateTime.tryParse(widget.promotedAt!)
-        : (widget.createdAt != null
-              ? DateTime.tryParse(widget.createdAt!)
-              : null);
-    final DateTime? end = widget.promotedUntil != null
-        ? DateTime.tryParse(widget.promotedUntil!)
-        : null;
-    final formatter = DateFormat('MMM d, yyyy');
-
-    if (start == null && end == null) return const SizedBox.shrink();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.calendar_today, size: 12, color: Colors.blue.shade700),
-          const SizedBox(width: 4),
-          Text(
-            '${start != null ? "${l10n.started}: ${formatter.format(start)}" : ""} ${end != null ? " ${l10n.expires}: ${formatter.format(end)}" : ""}'
-                .trim(),
-            style: TextStyle(
-              color: Colors.blue.shade700,
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-            ),
           ),
         ],
       ),

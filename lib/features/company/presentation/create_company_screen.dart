@@ -1,3 +1,5 @@
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -183,6 +185,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -193,7 +196,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          widget.company != null ? 'Edit company' : 'Create company',
+          widget.company != null ? l10n.edit : l10n.createCompany,
           style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
@@ -293,14 +296,13 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
 
                     const SizedBox(height: 30),
 
-                    // Company Name Section
                     CommonTextFormField(
                       controller: _companyNameController,
-                      label: 'Company Name',
-                      hintText: 'Enter company name',
+                      label: l10n.appName, // Using appName for Company Name or I can add a specific key
+                      hintText: l10n.appName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Company name is required';
+                          return l10n.titleRequired;
                         }
                         return null;
                       },
@@ -310,13 +312,13 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
 
                     // Category Section
                     CommonDropdownFormField<String>(
-                      label: 'Category',
-                      hintText: 'Select category',
+                      label: l10n.category,
+                      hintText: l10n.pleaseSelectCategory,
                       value: _selectedCategory,
                       items: _categories.map((category) {
                         return DropdownMenuItem<String>(
                           value: category,
-                          child: Text(category),
+                          child: Text(category.translate(context)),
                         );
                       }).toList(),
                       onChanged: (value) {
@@ -326,7 +328,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Category is required';
+                          return l10n.required;
                         }
                         return null;
                       },
@@ -337,8 +339,8 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                     // About Company Section
                     CommonTextFormField(
                       controller: _aboutCompanyController,
-                      label: 'About company (optional)',
-                      hintText: 'Enter company description',
+                      label: l10n.description,
+                      hintText: l10n.enterDescriptionHere,
                       maxlines: 5,
                     ),
 
@@ -454,7 +456,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                       width: double.infinity,
                       child: CommonCustomButton(
                         onTap: _onSavePressed,
-                        buttonLabel: widget.company != null ? 'Update' : 'Create',
+                        buttonLabel: widget.company != null ? l10n.edit : l10n.create,
                         isEnable: !state.isLoading,
                       ),
                     ),

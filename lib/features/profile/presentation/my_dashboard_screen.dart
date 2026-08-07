@@ -1,3 +1,4 @@
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,7 @@ class MyDashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return MultiBlocListener(
       listeners: [
         BlocListener<CompanyBloc, CompanyState>(
@@ -44,37 +46,37 @@ class MyDashboardScreen extends StatelessWidget {
             builder: (context, companyState) {
               final List<Map<String, dynamic>> items = [
                 {
-                  'title': 'My Posts',
+                  'title': l10n.myPosts,
                   'icon': Icons.grid_view_rounded,
                   'onTap': () => context.push(MyPostsScreen.routeName),
                 },
                 {
-                  'title': 'My Reels',
+                  'title': l10n.myReels,
                   'icon': Icons.movie_outlined,
                   'onTap': () => context.push(MyReelsScreen.routeName),
                 },
                 {
-                  'title': 'My Requests',
+                  'title': l10n.myRequests,
                   'icon': Icons.description_outlined,
                   'onTap': () => context.push(MyRequestsScreen.routeName),
                 },
                 {
-                  'title': 'My Services',
+                  'title': l10n.myServices,
                   'icon': Icons.home_repair_service_outlined,
                   'onTap': () => context.push(MyServicesScreen.routeName),
                 },
                 {
-                  'title': 'Banner Promotions',
+                  'title': l10n.bannerPromotions,
                   'icon': Icons.campaign_outlined,
                   'onTap': () => context.push(MyBannerAdsScreen.routeName),
                 },
                 {
-                  'title': 'My Favourites',
+                  'title': l10n.myFavourites,
                   'icon': Icons.favorite_outline,
                   'onTap': () => context.push(FavoritesScreen.routeName),
                 },
                 {
-                  'title': 'Edit Profile',
+                  'title': l10n.editProfile,
                   'icon': Icons.person_outline,
                   'onTap': () {
                     if (profileState.userProfile != null) {
@@ -87,22 +89,23 @@ class MyDashboardScreen extends StatelessWidget {
                 },
                 if (companyState.myCompany != null)
                   {
-                    'title': 'Delete Company',
+                    'title': l10n.deleteCompany,
                     'icon': Icons.delete_sweep_outlined,
                     'onTap': () {
                       _showDeleteCompanyDialog(
                         context,
                         companyState.myCompany!.id!,
+                        l10n,
                       );
                     },
                   },
                 {
-                  'title': 'My Feedbacks',
+                  'title': l10n.myFeedbacks,
                   'icon': Icons.feedback_outlined,
                   'onTap': () => context.push(FeedbackListScreen.routeName),
                 },
                 {
-                  'title': 'Delete Account',
+                  'title': l10n.deleteAccount,
                   'icon': Icons.delete_outline_rounded,
                   'onTap': () => context.push('/deactivate-account'),
                 },
@@ -115,9 +118,9 @@ class MyDashboardScreen extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () => context.pop(),
                   ),
-                  title: const Text(
-                    'My Dashboard',
-                    style: TextStyle(
+                  title: Text(
+                    l10n.myDashboard,
+                    style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -156,19 +159,19 @@ class MyDashboardScreen extends StatelessWidget {
     );
   }
 
-  void _showDeleteCompanyDialog(BuildContext context, String companyId) {
+  void _showDeleteCompanyDialog(BuildContext context, String companyId, AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Delete Company'),
-          content: const Text(
-            'Are you sure you want to delete your company? This action cannot be undone.',
+          title: Text(l10n.deleteCompany),
+          content: Text(
+            l10n.deleteCompanyConfirm,
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -177,9 +180,9 @@ class MyDashboardScreen extends StatelessWidget {
                 );
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
+              child: Text(
+                l10n.delete,
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/common_widgets/common_custom_button.dart';
-import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class LookingForSelector extends StatelessWidget {
@@ -56,7 +57,7 @@ class LookingForSelector extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      option,
+                      option.translate(context),
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,

@@ -2,30 +2,45 @@ import 'package:flutter/material.dart';
 
 class AppCategories {
   // Feed / Property Types (Display name, Icon)
-  static const List<Map<String, dynamic>> propertyTypes = [
+  static const List<Map<String, dynamic>> propertyType = [
     {'name': 'Independent House', 'icon': Icons.home_outlined},
-    {'name': 'Villas', 'icon': Icons.villa_outlined},
-    {'name': 'Apartments', 'icon': Icons.apartment_outlined},
+    {'name': 'Villa', 'icon': Icons.villa_outlined},
+    {'name': 'Apartment Flat', 'icon': Icons.apartment_outlined},
     {'name': 'Open Plot', 'icon': Icons.business_outlined},
     {'name': 'Agriculture Land', 'icon': Icons.landscape_outlined},
     {'name': 'Commercial', 'icon': Icons.storefront_outlined},
     {'name': 'Industrial', 'icon': Icons.factory_outlined},
   ];
 
-  static const List<String> propertyTypeFilterNames = [
+  static const List<String> propertyTypeFilterName = [
     'All',
     'Independent House',
-    'Villas',
-    'Apartments',
+    'Villa',
+    'Apartment Flat',
     'Open Plot',
     'Agriculture Land',
     'Commercial',
     'Industrial',
   ];
 
+  static const List<Map<String, dynamic>> propertyTypeForProject = [
+    {'name': 'Villas', 'icon': Icons.villa_outlined},
+    {'name': 'Flats', 'icon': Icons.apartment_outlined},
+    {'name': 'Open Plots', 'icon': Icons.business_outlined},
+    {'name': 'Commercial', 'icon': Icons.storefront_outlined},
+  ];
+
+  static const List<String> propertyTypeFilterNameForProject = [
+    'All',
+    'Villas',
+    'Flats',
+    'Open Plots',
+    'Commercial',
+  ];
+
   // Feed / Looking For options
   static const List<String> lookingFor = ['Sell', 'Rent', 'Lease'];
-  static const List<String> lookingForFilter = ['All', 'Sales', 'Rent', 'Lease'];
+  static const List<String> lookingForFilter = ['All', 'Sale', 'Rent', 'Lease'];
 
   // Request categories
   static const List<Map<String, dynamic>> requestCategories = [
@@ -56,7 +71,7 @@ class AppCategories {
     'Construction Contractor',
     'Property valuation',
     'Leasing',
-    'Villas',
+    'Villa',
   ];
 
   static const List<String> serviceCategoriesFilter = [
@@ -74,16 +89,13 @@ class AppCategories {
     'Construction Contractor',
     'Property valuation',
     'Leasing',
-    'Villas',
+    'Villa',
   ];
 
   // Company categories
   static const List<String> companyCategories = [
-    'Apartment',
-    'Villas',
-    'House',
+    'Construction'
+    'Open Plots',
     'Commercial',
-    'Land',
-    'Industrial',
   ];
 }

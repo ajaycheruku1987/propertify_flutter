@@ -16,7 +16,10 @@ extension StringCapitalization on String {
       case 'villas': return l10n.villas;
       case 'apartment': return l10n.apartment;
       case 'apartments': return l10n.apartments;
+      case 'flats': return l10n.flats;
+      case 'apartmentflat': return l10n.apartmentFlat;
       case 'openplot': return l10n.openPlot;
+      case 'openplots': return l10n.openPlots;
       case 'agricultureland': return l10n.agricultureLand;
       case 'commercial': return l10n.commercial;
       case 'industrial': return l10n.industrial;
@@ -24,6 +27,7 @@ extension StringCapitalization on String {
       case 'sell': return l10n.sell;
       case 'rent': return l10n.rent;
       case 'lease': return l10n.lease;
+      case 'sale': return l10n.sale;
       case 'sales': return l10n.sales;
       case 'buy': return l10n.buy;
       case 'loan': return l10n.loan;
@@ -43,6 +47,7 @@ extension StringCapitalization on String {
       case 'leasing': return l10n.leasing;
       case 'house': return l10n.house;
       case 'land': return l10n.land;
+      case 'construction': return l10n.construction;
       default: return this;
     }
   }

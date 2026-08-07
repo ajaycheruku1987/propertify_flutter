@@ -730,6 +730,7 @@ class ReelViewState extends State<ReelView>
               right: 16,
               child: BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, profileState) {
+                  final l10n = AppLocalizations.of(context)!;
                   final currentUserId = profileState.userProfile?.id;
                   final isOwner =
                       currentUserId != null &&
@@ -788,6 +789,7 @@ class ReelViewState extends State<ReelView>
             bottom: 200,
             child: BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, profileState) {
+                final l10n = AppLocalizations.of(context)!;
                 final currentUserId = profileState.userProfile?.id;
                 final isOwner =
                     currentUserId != null &&
@@ -871,7 +873,6 @@ class ReelViewState extends State<ReelView>
                           _showContactBottomSheet(
                             context,
                             widget.reel.owner?.phoneNumber,
-                            l10n,
                           );
                         },
                       ),
@@ -941,7 +942,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  void _showContactBottomSheet(BuildContext context, String? phoneNumber, AppLocalizations l10n) {
+  void _showContactBottomSheet(BuildContext context, String? phoneNumber) {
+    final l10n = AppLocalizations.of(context)!;
     if (phoneNumber == null || phoneNumber.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.contactNumberNotAvailable)),

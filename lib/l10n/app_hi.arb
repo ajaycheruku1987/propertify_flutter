@@ -248,13 +248,17 @@
   "deleteCompanyConfirm": "क्या आप वाकई अपनी कंपनी को हटाना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।",
   "myFeedbacks": "मेरी प्रतिक्रियाएं",
   "deleteAccount": "खाता हटाएं",
+  "editProfile": "प्रोफ़ाइल संपादित करें",
   "myDashboard": "मेरा डैशबोर्ड",
   "independentHouse": "स्वतंत्र घर",
   "villa": "विला",
   "villas": "विला",
   "apartment": "अपार्टमेंट",
   "apartments": "अपार्टमेंट",
+  "flats": "फ्लैट",
+  "apartmentFlat": "अपार्टमेंट फ्लैट",
   "openPlot": "ओपन प्लॉट",
+  "openPlots": "ओपन प्लॉट",
   "agricultureLand": "कृषि भूमि",
   "commercial": "वाणिज्यिक",
   "industrial": "औद्योगिक",
@@ -263,6 +267,7 @@
   "rent": "किराया",
   "lease": "लीज",
   "sales": "बिक्री",
+  "sale": "बिक्री",
   "buy": "खरीदें",
   "loan": "ऋण",
   "realEstate": "रियल एस्टेट",
@@ -279,5 +284,6 @@
   "propertyValuation": "संपत्ति मूल्यांकन",
   "leasing": "लीजिंग",
   "house": "घर",
-  "land": "भूमि"
+  "land": "भूमि",
+  "construction": "निर्माण"
 }

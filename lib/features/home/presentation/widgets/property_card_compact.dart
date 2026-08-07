@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/utils/string_extensions.dart';
-import '../../../../core/app_theme.dart';
-import '../../../../utils/common_widgets/logo_placeholder.dart';
+import 'package:propertify/core/app_theme.dart';
+import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
 
 /// Compact version of PropertyCard optimized for grid view
 class PropertyCardCompact extends StatelessWidget {

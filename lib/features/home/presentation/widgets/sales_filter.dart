@@ -1,3 +1,4 @@
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
@@ -56,7 +57,7 @@ class _SalesFilterState extends State<SalesFilter> {
 
   List<String> _selectedPropertyTypes = [];
 
-  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNames;
+  final List<String> _propertyTypes = AppCategories.propertyTypeFilterNameForProject;
 
   @override
   void initState() {
@@ -227,7 +228,7 @@ class _SalesFilterState extends State<SalesFilter> {
                   ),
                 ),
                 child: Text(
-                  type,
+                  type.translate(context),
                   style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black87,
                     fontWeight:

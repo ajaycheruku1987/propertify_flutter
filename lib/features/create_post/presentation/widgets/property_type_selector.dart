@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/core/constants/app_categories.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class PropertyTypeSelector extends StatelessWidget {
   const PropertyTypeSelector({super.key});
 
-  final List<Map<String, dynamic>> propertyTypes = AppCategories.propertyTypes;
+  final List<Map<String, dynamic>> propertyTypes = AppCategories.propertyTypeForProject;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class PropertyTypeSelector extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      type['name'],
+                      (type['name'] as String).translate(context),
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
