@@ -6,12 +6,12 @@ import 'package:propertify/utils/string_extensions.dart';
 import '../../bloc/create_post_bloc.dart';
 
 class PropertyTypeSelector extends StatelessWidget {
-  const PropertyTypeSelector({super.key});
-
-  final List<Map<String, dynamic>> propertyTypes = AppCategories.propertyTypeForProject;
+  final List<Map<String, dynamic>>? propertyTypes;
+  const PropertyTypeSelector({super.key, this.propertyTypes});
 
   @override
   Widget build(BuildContext context) {
+    final types = propertyTypes ?? AppCategories.propertyTypeForProject;
     final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<CreatePostBloc, CreatePostState>(
       builder: (context, state) {
@@ -30,7 +30,7 @@ class PropertyTypeSelector extends StatelessWidget {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: propertyTypes.map((type) {
+              children: types.map((type) {
                 final isSelected = state.selectedPropertyType == type['name'];
                 return GestureDetector(
                   onTap: () {

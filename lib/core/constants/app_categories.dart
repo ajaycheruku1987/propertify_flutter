@@ -94,7 +94,7 @@ class AppCategories {
 
   // Company categories
   static const List<String> companyCategories = [
-    'Construction'
+    'Construction',
     'Open Plots',
     'Commercial',
   ];

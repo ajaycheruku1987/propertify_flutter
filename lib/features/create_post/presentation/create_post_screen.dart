@@ -7,8 +7,8 @@ import 'package:propertify/utils/common_widgets/post_success_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/core/constants/app_categories.dart';
 import '../bloc/create_post_bloc.dart';
-import '../../../core/service_locator.dart';
 import 'create_post_details_screen.dart';
 import 'widgets/title_input.dart';
 import 'widgets/property_type_selector.dart';
@@ -51,7 +51,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+        backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -94,7 +94,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   const SizedBox(height: 24),
 
                   // Property Type Section
-                  const PropertyTypeSelector(),
+                  const PropertyTypeSelector(
+                    propertyTypes: AppCategories.propertyType,
+                  ),
 
                   const SizedBox(height: 24),
 
