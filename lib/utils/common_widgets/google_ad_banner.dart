@@ -3,7 +3,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../ad_helper.dart';
 
 class GoogleAdBanner extends StatefulWidget {
-  const GoogleAdBanner({super.key});
+  final AdSize adSize;
+  const GoogleAdBanner({super.key, this.adSize = AdSize.mediumRectangle});
 
   @override
   State<GoogleAdBanner> createState() => _GoogleAdBannerState();
@@ -23,7 +24,7 @@ class _GoogleAdBannerState extends State<GoogleAdBanner> {
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: AdHelper.adRequest,
-      size: AdSize.banner,
+      size: widget.adSize,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
           setState(() {

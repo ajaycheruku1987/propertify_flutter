@@ -790,7 +790,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         ),
 
                         const SizedBox(height: 16),
-                        const Center(child: GoogleAdBanner()),
+                        Center(child: GoogleAdBanner()),
 
                         const SizedBox(height: 32),
                       ],
