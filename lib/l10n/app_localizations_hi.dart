@@ -784,6 +784,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get editProfile => 'प्रोफ़ाइल संपादित करें';
 
   @override
+  String get viewProfile => 'प्रोफ़ाइल देखें';
+
+  @override
   String get available => 'उपलब्ध';
 
   @override

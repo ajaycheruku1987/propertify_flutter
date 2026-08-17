@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
+import 'package:propertify/features/create_post/presentation/widgets/city_input.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../../core/services/razorpay_service.dart';
 import '../../../utils/image_picker_util.dart';
@@ -24,11 +26,20 @@ class CreateBannerAdScreen extends StatefulWidget {
 
 class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final List<File> _selectedImages = [];
   String? _selectedPlanId;
   bool _termsAccepted = false;
   late RazorpayService _razorpayService;
   bool _isProcessingPayment = false;
+
+  // Location details
+  double? _latitude;
+  double? _longitude;
+  String? _city;
+  String? _state;
+  String? _village;
+  String? _address;
 
   // Store order details for payment confirmation
   String? _currentOrderId;
@@ -60,6 +71,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
   @override
   void dispose() {
     _descriptionController.dispose();
+    _addressController.dispose();
     _razorpayService.dispose();
     super.dispose();
   }
@@ -156,6 +168,31 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                     ),
                     const SizedBox(height: 12),
                     _buildDescriptionSection(),
+                    const SizedBox(height: 24),
+
+                    // Location Section
+                    const Text(
+                      'Location',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    AddressInput(
+                      controller: _addressController,
+                      onLocationSelected: (locationData) {
+                        setState(() {
+                          _address = locationData['address'] as String;
+                          _city = locationData['city'] as String;
+                          _state = locationData['state'] as String;
+                          _village = locationData['village'] as String;
+                          _latitude = double.parse(locationData['lat'] as String);
+                          _longitude = double.parse(locationData['long'] as String);
+                        });
+                      },
+                    ),
                     const SizedBox(height: 24),
 
                     // Select Plan Section
@@ -533,6 +570,12 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
       planDays: int.parse(selectedPlan['days']),
       amount: double.parse(selectedPlan['price']),
       termsAccepted: _termsAccepted,
+      latitude: _latitude,
+      longitude: _longitude,
+      city: _city,
+      state: _state,
+      village: _village,
+      address: _address,
     );
 
     // Trigger banner ad creation in bloc

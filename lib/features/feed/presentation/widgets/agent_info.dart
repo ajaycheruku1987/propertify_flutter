@@ -120,7 +120,7 @@ class AgentInfo extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: Text(
-                              l10n.editProfile, // or add a viewProfile key if available. editProfile is close enough if translating to "View Profile"
+                              l10n.viewProfile,
                               style: TextStyle(
                                 fontSize: 13,
                                 color: Theme.of(context).primaryColor,

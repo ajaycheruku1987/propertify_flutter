@@ -93,6 +93,12 @@ class ProfileRepo {
     required int planDays,
     required double amount,
     required bool termsAccepted,
+    double? latitude,
+    double? longitude,
+    String? city,
+    String? state,
+    String? village,
+    String? address,
   }) async {
     try {
       // Prepare multipart form data
@@ -118,6 +124,13 @@ class ProfileRepo {
       formData.fields.add(MapEntry('amount', amount.toString()));
       formData.fields.add(MapEntry('terms_accepted', termsAccepted.toString()));
 
+      if (latitude != null) formData.fields.add(MapEntry('latitude', latitude.toString()));
+      if (longitude != null) formData.fields.add(MapEntry('longitude', longitude.toString()));
+      if (city != null) formData.fields.add(MapEntry('city', city));
+      if (state != null) formData.fields.add(MapEntry('state', state));
+      if (village != null) formData.fields.add(MapEntry('village', village));
+      if (address != null) formData.fields.add(MapEntry('address', address));
+
       final response = await ftPyroApiRequest.post(
         '/banner-ads',
         data: formData,
@@ -132,8 +145,20 @@ class ProfileRepo {
   }
 
   /// Get Banner Ads API
-  Future<Either<Failure, List<BannerAdModel>>> getBannerAds() async {
-    final response = await ftPyroApiRequest.get('/banner-ads');
+  Future<Either<Failure, List<BannerAdModel>>> getBannerAds({
+    double? latitude,
+    double? longitude,
+    double? radiusKm,
+  }) async {
+    final queryParams = <String, dynamic>{};
+    if (latitude != null) queryParams['lat'] = latitude;
+    if (longitude != null) queryParams['lng'] = longitude;
+    if (radiusKm != null) queryParams['radius'] = radiusKm;
+
+    final response = await ftPyroApiRequest.get(
+      '/banner-ads',
+      queryParameters: queryParams.isNotEmpty ? queryParams : null,
+    );
     final responseData = await response.getResponse();
     return responseData.fold((failure) => Left(failure), (right) {
       final List<dynamic> data = right as List<dynamic>;

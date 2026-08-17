@@ -786,6 +786,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get editProfile => 'ప్రొఫైల్‌ను సవరించండి';
 
   @override
+  String get viewProfile => 'ప్రొఫైల్‌ను చూడండి';
+
+  @override
   String get available => 'అందుబాటులో ఉంది';
 
   @override

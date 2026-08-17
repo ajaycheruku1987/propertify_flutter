@@ -780,6 +780,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editProfile => 'Edit Profile';
 
   @override
+  String get viewProfile => 'View Profile';
+
+  @override
   String get available => 'Available';
 
   @override

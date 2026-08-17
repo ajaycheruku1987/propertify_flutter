@@ -75,6 +75,7 @@ class ApiRequest {
     Options? options,
     bool considerToken = true,
     Object? data,
+    Map<String, dynamic>? queryParameters,
   }) async {
     // if (considerToken && !tokenExists) {
     //   Response dummyResponse = Response(
@@ -90,6 +91,7 @@ class ApiRequest {
       path,
       onReceiveProgress: onReceiveProgress,
       options: options,
+      queryParameters: queryParameters,
     );
     if (firstResponse.statusCode == 401) {
       bool tokenStatus = await updateToken();
@@ -98,6 +100,7 @@ class ApiRequest {
           path,
           onReceiveProgress: onReceiveProgress,
           options: options,
+          queryParameters: queryParameters,
         );
         return secondResponse;
       }
@@ -338,11 +341,13 @@ class ApiRequest {
     String path, {
     void Function(int, int)? onReceiveProgress,
     Options? options,
+    Map<String, dynamic>? queryParameters,
   }) async {
     return await _dio.get(
       path,
       onReceiveProgress: onReceiveProgress,
       options: options,
+      queryParameters: queryParameters,
     );
   }
 

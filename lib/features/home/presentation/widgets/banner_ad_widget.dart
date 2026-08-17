@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../utils/env.dart';
 import '../../../../utils/string_extensions.dart';
 
@@ -70,25 +72,78 @@ class BannerAdWidget extends StatelessWidget {
               bottom: 16,
               left: 16,
               right: 16,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: Row(
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(width: 8),
+                  // Call Button
+                  _buildContactIcon(
+                    icon: Icons.phone_outlined,
+                    onTap: () {
+                      final phone = bannerAd.owner?.phoneNumber;
+                      if (phone != null && phone.isNotEmpty) {
+                        launchUrl(Uri.parse('tel:$phone'));
+                      }
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  // WhatsApp Button
+                  _buildContactIcon(
+                    icon: FontAwesomeIcons.whatsapp,
+                    isFontAwesome: true,
+                    onTap: () async {
+                      final phone = bannerAd.owner?.phoneNumber;
+                      if (phone != null && phone.isNotEmpty) {
+                        final cleanPhone = phone.replaceAll(RegExp(r'\D'), '');
+                        final url = Uri.parse('https://wa.me/$cleanPhone');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        }
+                      }
+                    },
                   ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildContactIcon({
+    required dynamic icon,
+    bool isFontAwesome = false,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.9),
+          shape: BoxShape.circle,
+        ),
+        child: isFontAwesome
+            ? FaIcon(icon as FaIconData?, size: 16, color: const Color(0xFF25D366))
+            : Icon(icon as IconData?, size: 16, color: const Color(0xFF6C5CE7)),
       ),
     );
   }
