@@ -52,12 +52,12 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
 
   bool get isCurrentlyPromoted {
     if (isPromoted == null || !isPromoted!) return false;
-    if (promotedUntil == null) return true;
+    if (promotedUntil == null || promotedUntil!.isEmpty) return false;
     try {
       final expiryDate = DateTime.parse(promotedUntil!);
       return expiryDate.isAfter(DateTime.now());
     } catch (e) {
-      return true; // Fallback if parsing fails but isPromoted is true
+      return false;
     }
   }
 }

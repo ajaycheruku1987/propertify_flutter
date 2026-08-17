@@ -252,10 +252,32 @@ class PropertyCardCompact extends StatelessWidget {
                 : const LogoPlaceholder(width: double.infinity, height: 110),
           ),
 
+          // Top Ad Badge
+          if (isTopAd)
+            Positioned(
+              top: 8,
+              left: 8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  l10n.topAds,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+
           // Featured Badge
           if (isFeatured)
             Positioned(
-              top: 8,
+              top: isTopAd ? 32 : 8,
               left: 8,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
