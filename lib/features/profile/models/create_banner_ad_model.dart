@@ -41,14 +41,14 @@ class CreateBannerAdDataModel {
 @freezed
 class CreateBannerAdResponseModel with _$CreateBannerAdResponseModel {
   const factory CreateBannerAdResponseModel({
-    required String id,
-    required String description,
-    required List<String> imageUrls,
-    required String planName,
-    required int planDays,
     required double amount,
-    required String status,
     required DateTime createdAt,
+    required String description,
+    required String id,
+    required List<String> imageUrls,
+    required int planDays,
+    required String planName,
+    required String status,
   }) = _CreateBannerAdResponseModel;
 
   factory CreateBannerAdResponseModel.fromJson(Map<String, dynamic> json) =>

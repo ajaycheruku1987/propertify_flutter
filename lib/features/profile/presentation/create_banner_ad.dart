@@ -7,7 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/features/create_post/presentation/widgets/address_input.dart';
-import 'package:propertify/features/create_post/presentation/widgets/city_input.dart';
+import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../../core/services/razorpay_service.dart';
 import '../../../utils/image_picker_util.dart';
@@ -27,6 +28,7 @@ class CreateBannerAdScreen extends StatefulWidget {
 class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
   final List<File> _selectedImages = [];
   String? _selectedPlanId;
   bool _termsAccepted = false;
@@ -72,12 +74,14 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
   void dispose() {
     _descriptionController.dispose();
     _addressController.dispose();
+    _cityController.dispose();
     _razorpayService.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -110,7 +114,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
               if (state.createdBannerAd != null &&
                   state.notifyStatus?.message ==
                       'Banner ad created. Please complete payment.') {
-                _initiatePayment(state.createdBannerAd!);
+                _initiatePayment(state.createdBannerAd!, l10n);
                 return;
               }
 
@@ -145,35 +149,35 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Add Photo Section
-                    const Text(
-                      'Add Photo',
-                      style: TextStyle(
+                    Text(
+                      l10n.addImages,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 12),
-                    _buildImageUploadSection(),
+                    _buildImageUploadSection(l10n),
                     const SizedBox(height: 24),
 
                     // Description Section
-                    const Text(
-                      'Description',
-                      style: TextStyle(
+                    Text(
+                      l10n.description,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 12),
-                    _buildDescriptionSection(),
+                    _buildDescriptionSection(l10n),
                     const SizedBox(height: 24),
 
                     // Location Section
-                    const Text(
-                      'Location',
-                      style: TextStyle(
+                    Text(
+                      l10n.location,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -190,7 +194,21 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                           _village = locationData['village'] as String;
                           _latitude = double.parse(locationData['lat'] as String);
                           _longitude = double.parse(locationData['long'] as String);
+                          _cityController.text = '$_village, $_city';
                         });
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    CommonTextFormField(
+                      label: l10n.city,
+                      controller: _cityController,
+                      readOnly: true,
+                      isRequired: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return l10n.pleaseChooseAddress;
+                        }
+                        return null;
                       },
                     ),
                     const SizedBox(height: 24),
@@ -213,7 +231,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                     const SizedBox(height: 32),
 
                     // Post Button
-                    _buildPostButton(state),
+                    _buildPostButton(state, l10n),
                     const SizedBox(height: 20),
                   ],
                 ),
@@ -225,7 +243,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
     );
   }
 
-  Widget _buildImageUploadSection() {
+  Widget _buildImageUploadSection(AppLocalizations l10n) {
     return GestureDetector(
       onTap: _pickImages,
       child: Container(
@@ -242,9 +260,9 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                 children: [
                   Image.asset('assets/images/upload_images.png', width: 120),
                   const SizedBox(height: 12),
-                  const Text(
-                    'Upload images',
-                    style: TextStyle(
+                  Text(
+                    l10n.uploadImages,
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0xFF8B5CF6),
@@ -253,29 +271,29 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                   const SizedBox(height: 8),
                   RichText(
                     textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      style: TextStyle(fontSize: 12, color: Color(0xFF666666)),
+                    text: TextSpan(
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF666666)),
                       children: [
-                        TextSpan(text: 'Just tap to Here to '),
+                        TextSpan(text: l10n.justTapToHere),
                         TextSpan(
-                          text: 'Browse',
-                          style: TextStyle(
+                          text: l10n.browse,
+                          style: const TextStyle(
                             color: Color(0xFF8B5CF6),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        TextSpan(text: ' the Gallery to\nUpload image'),
+                        TextSpan(text: l10n.galleryToUpload),
                       ],
                     ),
                   ),
                 ],
               )
-            : _buildSelectedImages(),
+            : _buildSelectedImages(l10n),
       ),
     );
   }
 
-  Widget _buildSelectedImages() {
+  Widget _buildSelectedImages(AppLocalizations l10n) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -334,9 +352,9 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
           TextButton.icon(
             onPressed: _pickImages,
             icon: const Icon(Icons.add, color: Color(0xFF8B5CF6)),
-            label: const Text(
-              'Add more images',
-              style: TextStyle(
+            label: Text(
+              l10n.addMoreImages,
+              style: const TextStyle(
                 color: Color(0xFF8B5CF6),
                 fontWeight: FontWeight.w500,
               ),
@@ -347,7 +365,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
     );
   }
 
-  Widget _buildDescriptionSection() {
+  Widget _buildDescriptionSection(AppLocalizations l10n) {
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFF5F5F5),
@@ -358,12 +376,12 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
         controller: _descriptionController,
         maxLines: 5,
         maxLength: 400,
-        decoration: const InputDecoration(
-          hintText: 'Dummy Text',
-          hintStyle: TextStyle(color: Color(0xFF999999), fontSize: 14),
+        decoration: InputDecoration(
+          hintText: l10n.writeDescription,
+          hintStyle: const TextStyle(color: Color(0xFF999999), fontSize: 14),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.all(16),
-          counterStyle: TextStyle(fontSize: 12, color: Color(0xFF999999)),
+          contentPadding: const EdgeInsets.all(16),
+          counterStyle: const TextStyle(fontSize: 12, color: Color(0xFF999999)),
         ),
       ),
     );
@@ -484,7 +502,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
     );
   }
 
-  Widget _buildPostButton(ProfileState state) {
+  Widget _buildPostButton(ProfileState state, AppLocalizations l10n) {
     final isEnabled =
         _selectedImages.isNotEmpty &&
         _descriptionController.text.isNotEmpty &&
@@ -517,7 +535,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                 ),
               )
             : Text(
-                'Post',
+                l10n.post,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -589,7 +607,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
     );
   }
 
-  void _initiatePayment(BannerAdModel bannerAd) async {
+  void _initiatePayment(BannerAdModel bannerAd, AppLocalizations l10n) async {
     try {
       if (bannerAd.amount == null ||
           bannerAd.id == null ||

@@ -244,28 +244,30 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           );
                         }
                       },
-                      child: Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.grey[300],
-                          image: profile.profilepic?.isNotEmpty ?? false
-                              ? DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                    profile.profilepic!,
-                                  ),
-                                  fit: BoxFit.cover,
-                                )
-                              : null,
+                      child: ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: profile.profilepic ?? '',
+                          width: 120,
+                          height: 120,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.grey[300],
+                            child: const Center(
+                                child: CircularProgressIndicator()),
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.grey[300],
+                            child: Icon(
+                              Icons.person,
+                              size: 60,
+                              color: Colors.grey[600],
+                            ),
+                          ),
                         ),
-                        child: profile.profilepic?.isEmpty ?? true
-                            ? Icon(
-                                Icons.person,
-                                size: 60,
-                                color: Colors.grey[600],
-                              )
-                            : null,
                       ),
                     ),
                     const SizedBox(height: 16),

@@ -297,21 +297,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     try {
       emit(state.copyWith(isLoading: true));
-      Either<Failure, BannerAdModel>      createBannerAdEither = await _profileRepo
-          .createBannerAd(
-            images: event.bannerAdData.images,
-            description: event.bannerAdData.description,
-            planName: event.bannerAdData.planName ?? '',
-            planDays: event.bannerAdData.planDays ?? 0,
-            amount: event.bannerAdData.amount ?? 0.0,
-            termsAccepted: event.bannerAdData.termsAccepted,
-            latitude: event.bannerAdData.latitude,
-            longitude: event.bannerAdData.longitude,
-            city: event.bannerAdData.city,
-            state: event.bannerAdData.state,
-            village: event.bannerAdData.village,
-            address: event.bannerAdData.address,
-          );
+      Either<Failure, BannerAdModel>      createBannerAdEither = await _profileRepo.createBannerAd(
+        images: event.bannerAdData.images,
+        description: event.bannerAdData.description,
+        planName: event.bannerAdData.planName ?? '',
+        planDays: event.bannerAdData.planDays ?? 0,
+        amount: event.bannerAdData.amount ?? 0.0,
+        termsAccepted: event.bannerAdData.termsAccepted,
+        latitude: event.bannerAdData.latitude,
+        longitude: event.bannerAdData.longitude,
+        city: event.bannerAdData.city,
+        state: event.bannerAdData.state,
+        village: event.bannerAdData.village,
+        address: event.bannerAdData.address,
+      );
 
       createBannerAdEither.fold(
         (failure) {

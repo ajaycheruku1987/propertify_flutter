@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:propertify/features/home/bloc/home_bloc.dart';
+import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,108 +25,133 @@ class BannerAdWidget extends StatelessWidget {
       onTap: () => context.push(BannerAdDetailView.routeName, extra: bannerAd),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
-        decoration: BoxDecoration(
+        child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(
-            image: NetworkImage(imageUrl),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Gradient Overlay
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
-                  stops: const [0.6, 1.0],
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              CachedNetworkImage(
+                imageUrl: imageUrl,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(
+                  color: Colors.grey.shade200,
+                  child: const Center(
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey.shade200,
+                  child: const Icon(Icons.broken_image,
+                      color: Colors.grey, size: 50),
                 ),
               ),
-            ),
-
-            // Top Ads Badge
-            Positioned(
-              top: 12,
-              left: 12,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
+              // Gradient Overlay
+              Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.6),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Text(
-                  'Top Ads',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                    stops: const [0.6, 1.0],
                   ),
                 ),
               ),
-            ),
 
-            // Text Content
-            Positioned(
-              bottom: 16,
-              left: 16,
-              right: 16,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+              // Top Ads Badge
+              Positioned(
+                top: 12,
+                left: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    'Top Ads',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  // Call Button
-                  _buildContactIcon(
-                    icon: Icons.phone_outlined,
-                    onTap: () {
-                      final phone = bannerAd.owner?.phoneNumber;
-                      if (phone != null && phone.isNotEmpty) {
-                        launchUrl(Uri.parse('tel:$phone'));
-                      }
-                    },
-                  ),
-                  const SizedBox(width: 8),
-                  // WhatsApp Button
-                  _buildContactIcon(
-                    icon: FontAwesomeIcons.whatsapp,
-                    isFontAwesome: true,
-                    onTap: () async {
-                      final phone = bannerAd.owner?.phoneNumber;
-                      if (phone != null && phone.isNotEmpty) {
-                        final cleanPhone = phone.replaceAll(RegExp(r'\D'), '');
-                        final url = Uri.parse('https://wa.me/$cleanPhone');
-                        if (await canLaunchUrl(url)) {
-                          await launchUrl(url, mode: LaunchMode.externalApplication);
-                        }
-                      }
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
+
+              // Text Content
+              Positioned(
+                bottom: 16,
+                left: 16,
+                right: 16,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    // Call Button
+                    _buildContactIcon(
+                      icon: Icons.phone_outlined,
+                      onTap: () {
+                        final isLoggedIn =
+                            context.read<HomeBloc>().state.showAddButton;
+                        if (!isLoggedIn) {
+                          context.push(AuthScreen.routeName);
+                          return;
+                        }
+                        final phone = bannerAd.owner?.phoneNumber;
+                        if (phone != null && phone.isNotEmpty) {
+                          launchUrl(Uri.parse('tel:$phone'));
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 8),
+                    // WhatsApp Button
+                    _buildContactIcon(
+                      icon: FontAwesomeIcons.whatsapp,
+                      isFontAwesome: true,
+                      onTap: () async {
+                        final isLoggedIn =
+                            context.read<HomeBloc>().state.showAddButton;
+                        if (!isLoggedIn) {
+                          context.push(AuthScreen.routeName);
+                          return;
+                        }
+                        final phone = bannerAd.owner?.phoneNumber;
+                        if (phone != null && phone.isNotEmpty) {
+                          final cleanPhone =
+                              phone.replaceAll(RegExp(r'\D'), '');
+                          final url = Uri.parse('https://wa.me/$cleanPhone');
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url,
+                                mode: LaunchMode.externalApplication);
+                          }
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

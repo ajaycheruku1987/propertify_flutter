@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -72,25 +73,28 @@ class AgentInfo extends StatelessWidget {
                       );
                     }
                   },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey[300],
-                      image: agentImage.isNotEmpty
-                          ? DecorationImage(
-                              image: NetworkImage(agentImage),
-                              fit: BoxFit.cover,
-                              onError: (exception, stackTrace) {
-                                // Handle image loading error
-                              },
-                            )
-                          : null,
+                  child: ClipOval(
+                    child: CachedNetworkImage(
+                      imageUrl: agentImage,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        width: 50,
+                        height: 50,
+                        color: Colors.grey[300],
+                        child: const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        width: 50,
+                        height: 50,
+                        color: Colors.grey[300],
+                        child: Icon(Icons.person,
+                            color: Colors.grey[600], size: 24),
+                      ),
                     ),
-                    child: agentImage.isEmpty
-                        ? Icon(Icons.person, color: Colors.grey[600], size: 24)
-                        : null,
                   ),
                 ),
 

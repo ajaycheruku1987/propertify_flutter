@@ -18,19 +18,19 @@ class BannerAdModel with _$BannerAdModel {
   const BannerAdModel._();
 
   const factory BannerAdModel({
-    @JsonKey(name: "id") String? id,
-    @JsonKey(name: "user_id") String? userId,
-    @JsonKey(name: "image_urls") List<String>? imageUrls,
-    @JsonKey(name: "description") String? description,
-    @JsonKey(name: "plan_name") String? planName,
-    @JsonKey(name: "plan_days") int? planDays,
     @JsonKey(name: "amount") double? amount,
-    @JsonKey(name: "terms_accepted") bool? termsAccepted,
-    @JsonKey(name: "created_at") String? createdAt,
-    @JsonKey(name: "expires_at") String? expiresAt,
     @JsonKey(name: "approved") bool? approved,
+    @JsonKey(name: "created_at") String? createdAt,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "expires_at") String? expiresAt,
+    @JsonKey(name: "id") String? id,
+    @JsonKey(name: "image_urls") List<String>? imageUrls,
     @JsonKey(name: "is_paid") bool? isPaid,
     @JsonKey(name: "owner") Owner? owner,
+    @JsonKey(name: "plan_days") int? planDays,
+    @JsonKey(name: "plan_name") String? planName,
+    @JsonKey(name: "terms_accepted") bool? termsAccepted,
+    @JsonKey(name: "user_id") String? userId,
   }) = _BannerAdModel;
 
   factory BannerAdModel.fromJson(Map<String, dynamic> json) =>
@@ -47,18 +47,17 @@ class BannerAdModel with _$BannerAdModel {
   }
 }
 
-
 @freezed
 class Owner with _$Owner {
   const factory Owner({
-    @JsonKey(name: "id") String? id,
-    @JsonKey(name: "first_name") String? firstName,
-    @JsonKey(name: "last_name") String? lastName,
-    @JsonKey(name: "email") String? email,
-    @JsonKey(name: "phone_number") String? phoneNumber,
     @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
-    @JsonKey(name: "username") String? username,
+    @JsonKey(name: "email") String? email,
+    @JsonKey(name: "first_name") String? firstName,
+    @JsonKey(name: "id") String? id,
+    @JsonKey(name: "last_name") String? lastName,
+    @JsonKey(name: "phone_number") String? phoneNumber,
     @JsonKey(name: "profilepic") String? profileImage,
+    @JsonKey(name: "username") String? username,
   }) = _Owner;
 
   factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);

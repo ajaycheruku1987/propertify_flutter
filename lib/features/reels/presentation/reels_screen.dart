@@ -12,6 +12,7 @@ import 'package:propertify/core/content_type.dart';
 import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../bloc/reels_bloc.dart';
 import 'widgets/reel_comments_bottom_sheet.dart';
@@ -306,15 +307,20 @@ class _ReelsScreenState extends State<ReelsScreen> {
 
                 return ListTile(
                   dense: true,
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white12,
-                    backgroundImage:
-                        reel.owner?.profilepic?.trim().isNotEmpty == true
-                        ? NetworkImage(reel.owner!.profilepic!.trim())
-                        : null,
-                    child: reel.owner?.profilepic?.trim().isNotEmpty == true
-                        ? null
-                        : const Icon(Icons.person, color: Colors.white70),
+                  leading: CachedNetworkImage(
+                    imageUrl: reel.owner?.profilepic?.trim() ?? '',
+                    imageBuilder: (context, imageProvider) => CircleAvatar(
+                      backgroundColor: Colors.white12,
+                      backgroundImage: imageProvider,
+                    ),
+                    placeholder: (context, url) => const CircleAvatar(
+                      backgroundColor: Colors.white12,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    errorWidget: (context, url, error) => const CircleAvatar(
+                      backgroundColor: Colors.white12,
+                      child: Icon(Icons.person, color: Colors.white70),
+                    ),
                   ),
                   title: Text(
                     title,
@@ -1121,17 +1127,17 @@ class _BottomInfo extends StatelessWidget {
               );
             }
           },
-          child: CircleAvatar(
-            backgroundImage:
-                reel.owner?.profilepic != null &&
-                    reel.owner!.profilepic!.isNotEmpty
-                ? NetworkImage(reel.owner!.profilepic!)
-                : null,
-            child:
-                reel.owner?.profilepic == null ||
-                    reel.owner!.profilepic!.isEmpty
-                ? const Icon(Icons.person)
-                : null,
+          child: CachedNetworkImage(
+            imageUrl: reel.owner?.profilepic ?? '',
+            imageBuilder: (context, imageProvider) => CircleAvatar(
+              backgroundImage: imageProvider,
+            ),
+            placeholder: (context, url) => const CircleAvatar(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            errorWidget: (context, url, error) => const CircleAvatar(
+              child: Icon(Icons.person),
+            ),
           ),
         ),
         const SizedBox(width: 12),
