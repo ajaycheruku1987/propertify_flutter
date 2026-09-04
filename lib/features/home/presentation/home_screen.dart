@@ -7,6 +7,7 @@ import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
+import '../../feed/presentation/favorites_screen.dart';
 import '../../services/presentation/builder_smart_screen.dart';
 import 'package:propertify/features/feed/presentation/feed_list_widget.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
@@ -124,9 +125,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     final l10n = AppLocalizations.of(context)!;
     final List<String> tabs = [
       l10n.feeds,
-      l10n.requests,
-      l10n.projects,
-      l10n.services,
+      // l10n.requests,
+      // l10n.projects,
+      // l10n.services,
     ];
 
     return BlocBuilder<HomeBloc, HomeState>(
@@ -282,12 +283,14 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     switch (tabIndex) {
       case 0: // Feeds
         return _buildFeedsContent();
+      /*
       case 1:
         return const RequestsScreen();
       case 2: // Request
         return _buildSalesContent();
       case 3: // Services
         return _buildServicesContent();
+      */
       default:
         return _buildFeedsContent();
     }
@@ -489,7 +492,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       hasActiveFilter = state.activeServicesFilter != null;
     }
 
-    final maxHeight = 245.0;
+    final maxHeight = 150.0;
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -498,7 +501,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             sliver: SliverAppBar(
               expandedHeight: maxHeight,
-              collapsedHeight: 70.0,
+              collapsedHeight: 80.0,
               pinned: true,
               backgroundColor: Colors.white,
               elevation: innerBoxIsScrolled ? 2.0 : 0.0,
@@ -507,7 +510,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                 builder: (context, constraints) {
                   // Calculate scroll progress
                   final currentHeight = constraints.maxHeight;
-                  final minHeight = 70.0;
+                  final minHeight = 80.0;
                   final progress =
                       ((maxHeight - currentHeight) / (maxHeight - minHeight))
                           .clamp(0.0, 1.0);
@@ -568,6 +571,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                             ),
 
                           // Navigation Tabs - fades out
+                          /*
                           if (fadeOpacity > 0)
                             SizedBox(
                               height: 95.0 * fadeOpacity,
@@ -590,6 +594,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                 ),
                               ),
                             ),
+                          */
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 16,
@@ -946,7 +951,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       case 1:
         return ReelsScreen();
       case 2:
-        return const BuilderSmartScreen();
+        return FavoritesScreen();
       case 3:
         return ProfileScreen();
       default:

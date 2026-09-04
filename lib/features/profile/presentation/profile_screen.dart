@@ -183,6 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // Menu Items
                     if (homeState.showAddButton) const Divider(),
 
+                    /*
                     BlocBuilder<CompanyBloc, CompanyState>(
                       builder: (context, companyState) {
                         return Column(
@@ -462,6 +463,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         );
                       },
                     ),
+                    */
 
                     if (homeState.showAddButton) const Divider(),
                     Column(
@@ -490,6 +492,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       );
                                     },
                                   ),
+                                /*
                                 if (role == 'seller')
                                   ProfileMenuItem(
                                     icon: Icons.dashboard_outlined,
@@ -510,6 +513,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       );
                                     },
                                   ),
+                                */
                                 if (role == 'admin' || role == 'seller' || role == 'marketing')
                                   Divider(
                                     height: 20,

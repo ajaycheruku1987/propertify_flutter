@@ -119,6 +119,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                   // Second Row
                   Row(
                     children: [
+                      /*
                       Expanded(
                         child: _buildOptionCard(
                           context: context,
@@ -135,6 +136,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
+                      */
                       Expanded(
                         child: _buildOptionCard(
                           context: context,
@@ -153,6 +155,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
 
                   const SizedBox(height: 12),
 
+                  /*
                   // Third Row
                   Row(
                     children: [
@@ -279,6 +282,7 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                       ),
                     ],
                   ),
+                  */
                 ],
               ),
             ),

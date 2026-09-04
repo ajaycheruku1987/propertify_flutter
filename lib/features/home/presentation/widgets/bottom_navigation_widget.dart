@@ -48,9 +48,9 @@ class BottomNavigationWidget extends StatelessWidget {
               const SizedBox(width: 60), // Space for FAB
               _buildNavItem(
                 index: 2,
-                icon: Icons.insights_outlined,
-                activeIcon: Icons.insights,
-                label: l10n.builderSmart,
+                icon: Icons.favorite_outline,
+                activeIcon: Icons.favorite,
+                label: l10n.myFavourites,
               ),
               _buildNavItem(
                 index: 3,
