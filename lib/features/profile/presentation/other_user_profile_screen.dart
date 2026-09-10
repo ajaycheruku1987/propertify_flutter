@@ -20,6 +20,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import '../../company/bloc/company_bloc.dart';
 import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import 'widgets/profile_shimmer.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
@@ -193,7 +194,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           if (state.isLoadingOtherProfile) {
-            return const Center(child: CircularProgressIndicator());
+            return const OtherProfileShimmer();
           }
 
           if (state.otherUserProfile == null) {
