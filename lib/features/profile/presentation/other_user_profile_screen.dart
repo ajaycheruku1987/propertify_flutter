@@ -42,7 +42,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
 
     // Load other user's profile
     context.read<ProfileBloc>().add(
@@ -369,7 +369,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   tabs: const [
                     Tab(text: 'Posts'),
                     Tab(text: 'Reels'),
-                    Tab(text: 'Services'),
+                    // Tab(text: 'Services'),
                     // Tab(text: 'Projects/Sales'),
                   ],
                 ),
@@ -382,7 +382,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   children: [
                     _buildPostsTab(),
                     _buildReelsTab(),
-                    _buildServicesTab(),
+                    // _buildServicesTab(),
                     // _buildSalesTab(),
                   ],
                 ),
