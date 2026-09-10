@@ -25,6 +25,7 @@ import '../../company/bloc/company_bloc.dart';
 import '../../company/presentation/my_company.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import '../../feed/presentation/widgets/emi_calculator_widget.dart';
 import 'widgets/add_edit_unit_bottom_sheet.dart';
 import 'sale_callback_requests_screen.dart';
 
@@ -429,6 +430,16 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           // Address Section
           _buildAddressSection(sale),
           const SizedBox(height: 24),
+
+          // EMI Calculator Section
+          if (context.read<ProfileBloc>().state.userProfile?.id !=
+              (sale.userId ?? sale.owner?.id))
+            EmiCalculatorWidget(
+              propertyPrice: (sale.minPrice ?? 0).toDouble(),
+            ),
+          if (context.read<ProfileBloc>().state.userProfile?.id !=
+              (sale.userId ?? sale.owner?.id))
+            const SizedBox(height: 24),
 
           // Builder/Company Section
           _buildBuilderSection(sale),

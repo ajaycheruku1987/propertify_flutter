@@ -18,6 +18,7 @@ import '../../home/presentation/widgets/property_card_compact.dart';
 import '../bloc/feed_bloc.dart';
 import 'post_details.dart';
 import 'widgets/comments_bottom_sheet.dart';
+import 'widgets/feed_shimmer.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'dart:async';
@@ -175,9 +176,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                   ),
 
                 if (state.isLoading && state.feedsList.isEmpty)
-                  const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()),
-                  )
+                  FeedShimmer(isGridView: _isGridView)
                 else if (state.notifyStatus != null && state.feedsList.isEmpty)
                   SliverFillRemaining(
                     child: Center(
