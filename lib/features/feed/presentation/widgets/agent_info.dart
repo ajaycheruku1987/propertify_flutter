@@ -39,11 +39,9 @@ class AgentInfo extends StatelessWidget {
           // Section Title
           Text(
             l10n.postedBy,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
 
           const SizedBox(height: 16),
@@ -52,9 +50,12 @@ class AgentInfo extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[50],
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey[200]!, width: 1),
+              border: Border.all(
+                color: Theme.of(context).dividerColor,
+                width: 1,
+              ),
             ),
             child: Row(
               children: [
@@ -107,11 +108,9 @@ class AgentInfo extends StatelessWidget {
                     children: [
                       Text(
                         agentName.toTitleCase(),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                       if (userId != null && userId!.isNotEmpty)
                         GestureDetector(
@@ -181,55 +180,6 @@ class AgentInfo extends StatelessWidget {
                     ),
                   ),
                 ],
-
-                // Rating and View Button
-                // Column(
-                //   crossAxisAlignment: CrossAxisAlignment.end,
-                //   children: [
-                //     // Rating
-                //     Container(
-                //       padding: const EdgeInsets.symmetric(
-                //         horizontal: 8,
-                //         vertical: 4,
-                //       ),
-                //       decoration: BoxDecoration(
-                //         color: const Color(0xFF6C5CE7),
-                //         borderRadius: BorderRadius.circular(12),
-                //       ),
-                //       child: Row(
-                //         mainAxisSize: MainAxisSize.min,
-                //         children: [
-                //           const Icon(
-                //             Icons.visibility,
-                //             color: Colors.white,
-                //             size: 12,
-                //           ),
-                //           const SizedBox(width: 4),
-                //           Text(
-                //             rating,
-                //             style: const TextStyle(
-                //               color: Colors.white,
-                //               fontSize: 12,
-                //               fontWeight: FontWeight.w600,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-
-                //     const SizedBox(height: 8),
-
-                //     // View Count
-                //     Text(
-                //       '234',
-                //       style: TextStyle(
-                //         fontSize: 12,
-                //         color: Colors.grey[600],
-                //         fontWeight: FontWeight.w500,
-                //       ),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ),

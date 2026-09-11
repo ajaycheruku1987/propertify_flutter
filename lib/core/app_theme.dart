@@ -174,37 +174,4 @@ class AppTheme {
   static get borderColor => const Color(0xFF6941C6).withOpacity(0.3);
   static TextStyle? inputLabelStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodySmall;
-
-  // static kBigTextStyleWithPurple() => TextStyle(
-  //     fontSize: getFontSize(35),
-  //     color: const Color(0xff483AA7),
-  //     fontWeight: FontWeight.bold);
-  // static knormalStyleWithWhiteColor() => TextStyle(
-  //       fontSize: getFontSize(18),
-  //       color: whiteColor,
-  //     );
-  // static knormalStyleWithBlackColor() => TextStyle(
-  //       fontSize: getFontSize(18),
-  //       color: blackColor,
-  //     );
-  // static kboldStyleWithBlackColor() => TextStyle(
-  //     fontSize: getFontSize(25),
-  //     color: blackColor,
-  //     fontWeight: FontWeight.bold);
-  // static kboldStyleWithBlackColorWithFontSize(double font) => TextStyle(
-  //     fontSize: getFontSize(font),
-  //     color: blackColor,
-  //     fontWeight: FontWeight.w500);
-  // static knormalGreyStyleForhintText() => TextStyle(
-  //       fontSize: getFontSize(18),
-  //       color: const Color(0xff334554).withOpacity(0.3),
-  //     );
-  // static knormalGreyStyleWithFontSize(double font) => TextStyle(
-  //       fontSize: getFontSize(font),
-  //       color: const Color(0xff334554).withOpacity(0.5),
-  //     );
-  // static knormalBlueStyleWithFontSize(double font) => TextStyle(
-  //       fontSize: getFontSize(font),
-  //       color: const Color(0xff1DA1F2),
-  //     );
 }
