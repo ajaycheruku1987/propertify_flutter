@@ -22,6 +22,7 @@ import 'widgets/feed_shimmer.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'dart:async';
+import 'package:propertify/core/constants/app_categories.dart';
 
 class FeedListWidget extends StatefulWidget {
   final VoidCallback? onRefresh;
@@ -148,6 +149,15 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeBloc>().state;
     final l10n = AppLocalizations.of(context)!;
+
+    // Derive selected category from active filter
+    final activeFilter = homeState.activeFeedsFilter;
+    final propertyTypes = activeFilter?['propertyTypes'] as List?;
+    final String currentSelectedCategory =
+        (propertyTypes != null && propertyTypes.isNotEmpty)
+            ? propertyTypes.first as String
+            : 'All';
+
     return BlocBuilder<FeedBloc, FeedState>(
       builder: (context, state) {
         return RefreshIndicator(
@@ -163,7 +173,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     context,
                   ),
                 ),
-                if (homeState.activeFeedsFilter != null)
+                if (_hasVisibleChips(homeState))
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: _StickyChipHeaderDelegate(
@@ -232,6 +242,10 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                       delegate: SliverChildListDelegate([
                         // Banner Ads Section
                         _buildBannerAds(context, l10n),
+
+                        // Categories Section
+                        _buildCategorySelector(context, currentSelectedCategory),
+                        const SizedBox(height: 16),
 
                         // Feeds Section Header with Grid/List Toggle
                         Row(
@@ -650,6 +664,79 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
+  Widget _buildCategorySelector(BuildContext context, String selectedCategory) {
+    final List<String> categories = [
+      'All',
+      ...AppCategories.propertyType.map((e) => e['name'] as String),
+    ];
+
+    return SizedBox(
+      height: 40,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final categoryName = categories[index];
+          final bool isSelected = selectedCategory == categoryName;
+          final theme = Theme.of(context);
+
+          return GestureDetector(
+            onTap: () {
+              if (categoryName == 'All') {
+                // Completely reset all filters when 'All' is selected
+                context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+                context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
+                context.read<FeedBloc>().add(
+                      FeedEvent.getFeedsEvent(
+                        latitude: context.read<HomeBloc>().state.currentLat,
+                        longitude: context.read<HomeBloc>().state.currentLng,
+                      ),
+                    );
+                return;
+              }
+
+              final currentFilter =
+                  context.read<HomeBloc>().state.activeFeedsFilter ?? {};
+              final newFilter = Map<String, dynamic>.from(currentFilter);
+              newFilter['propertyTypes'] = [categoryName];
+
+              _applyFeedsFilter(context, newFilter);
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color:
+                    isSelected
+                        ? theme.primaryColor
+                        : theme.primaryColor.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color:
+                      isSelected
+                          ? theme.primaryColor
+                          : theme.primaryColor.withOpacity(0.1),
+                  width: 1,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  categoryName.translate(context),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    color: isSelected ? Colors.white : Colors.black87,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   String _resolveLocation(String? city, String? address) {
     if (city == null || city.isEmpty) return '';
 
@@ -738,6 +825,25 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
   }
 
+  bool _hasVisibleChips(HomeState state) {
+    if (state.activeFeedsFilter == null) return false;
+    final filter = state.activeFeedsFilter!;
+
+    if (filter['isLocationCustom'] == true && filter['location'] != null) {
+      return true;
+    }
+    final lookingFor = filter['lookingFor'] as String?;
+    if (lookingFor != null && lookingFor != 'All' && lookingFor.isNotEmpty) {
+      return true;
+    }
+    final priceRange = filter['priceRange'] as Map?;
+    if (priceRange != null &&
+        (priceRange['min'] != 100000 || priceRange['max'] != 50000000)) {
+      return true;
+    }
+    return false;
+  }
+
   Widget _buildActiveFilterChips(BuildContext context, HomeState state, AppLocalizations l10n) {
     if (state.activeFeedsFilter == null) return const SizedBox.shrink();
 
@@ -768,6 +874,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       );
     }
     final propertyTypes = filter['propertyTypes'] as List?;
+    /* 
+    // Removed redundancy: Categories are now shown in the horizontal selector, 
+    // so we don't need them as individual chips above the results.
     if (propertyTypes != null &&
         propertyTypes.isNotEmpty &&
         !propertyTypes.contains('All')) {
@@ -783,6 +892,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         );
       }
     }
+    */
     final priceRange = filter['priceRange'] as Map?;
     if (priceRange != null &&
         (priceRange['min'] != 100000 || priceRange['max'] != 50000000)) {
