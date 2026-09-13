@@ -79,6 +79,8 @@ _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(
           : DateTime.parse(json['date_of_birth'] as String),
       username: json['username'] as String?,
       profileImage: json['profilepic'] as String?,
+      memberSince: json['member_since'] as String?,
+      postsCount: (json['posts_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
@@ -91,4 +93,6 @@ Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
       'date_of_birth': instance.dateOfBirth?.toIso8601String(),
       'username': instance.username,
       'profilepic': instance.profileImage,
+      'member_since': instance.memberSince,
+      'posts_count': instance.postsCount,
     };

@@ -17,6 +17,8 @@ _$UserProfileModelImpl _$$UserProfileModelImplFromJson(
       phoneNumber: json['phone_number'] as String?,
       profilepic: json['profilepic'] as String?,
       role: json['role'] as String?,
+      memberSince: json['member_since'] as String?,
+      postsCount: (json['posts_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UserProfileModelImplToJson(
@@ -30,4 +32,6 @@ Map<String, dynamic> _$$UserProfileModelImplToJson(
       'phone_number': instance.phoneNumber,
       'profilepic': instance.profilepic,
       'role': instance.role,
+      'member_since': instance.memberSince,
+      'posts_count': instance.postsCount,
     };

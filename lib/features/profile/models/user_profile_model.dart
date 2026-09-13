@@ -25,6 +25,8 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "phone_number") String? phoneNumber,
     @JsonKey(name: "profilepic") String? profilepic,
     @JsonKey(name: "role") String? role,
+    @JsonKey(name: "member_since") String? memberSince,
+    @JsonKey(name: "posts_count") int? postsCount,
   }) = _UserProfileModel;
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) =>

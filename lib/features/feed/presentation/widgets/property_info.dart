@@ -6,6 +6,8 @@ class PropertyInfo extends StatelessWidget {
   final String title;
   final String location;
   final String price;
+  final String? category;
+  final String? listingType;
   final bool canEdit;
   final bool canDelete;
   final bool canReport;
@@ -18,6 +20,8 @@ class PropertyInfo extends StatelessWidget {
     required this.title,
     required this.location,
     required this.price,
+    this.category,
+    this.listingType,
     this.canEdit = false,
     this.canDelete = false,
     this.canReport = false,
@@ -34,47 +38,128 @@ class PropertyInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Property Title
+          // Category and Listing Type Labels
+          Row(
+            children: [
+              if (listingType != null && listingType!.isNotEmpty)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: listingType!.toLowerCase() == 'rent'
+                        ? Colors.orange.withOpacity(0.1)
+                        : Colors.green.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    listingType!.translate(context).toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: listingType!.toLowerCase() == 'rent'
+                          ? Colors.orange
+                          : Colors.green,
+                    ),
+                  ),
+                ),
+              if (listingType != null &&
+                  listingType!.isNotEmpty &&
+                  category != null &&
+                  category!.isNotEmpty)
+                const SizedBox(width: 8),
+              if (category != null && category!.isNotEmpty)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6C5CE7).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    category!.translate(context).toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF6C5CE7),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Property Title and Price Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Text(
-                  title.translate(context),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title.translate(context),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFF1A1A1A),
+                        letterSpacing: -0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    // Location with icon
+                    Row(
+                      children: [
+                        Icon(Icons.location_on, color: Colors.grey[400], size: 16),
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            location.translate(context),
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     '₹$price',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF6C5CE7),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).primaryColor,
+                      letterSpacing: -0.5,
                     ),
                   ),
+                  const SizedBox(height: 4),
                   if (canEdit || canDelete || canReport)
                     PopupMenuButton<String>(
                       color: Colors.white,
                       position: PopupMenuPosition.under,
-                      elevation: 4,
+                      elevation: 8,
+                      shadowColor: Colors.black.withOpacity(0.1),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      icon: const Icon(
-                        Icons.more_vert,
-                        color: Colors.black87,
-                        size: 20,
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.more_horiz,
+                          color: Colors.black87,
+                          size: 20,
+                        ),
                       ),
                       onSelected: (value) {
                         if (value == 'edit' && onEditPressed != null) {
@@ -91,9 +176,9 @@ class PropertyInfo extends StatelessWidget {
                             value: 'edit',
                             child: Row(
                               children: [
-                                const Icon(Icons.edit, size: 18, color: Colors.blue),
-                                const SizedBox(width: 8),
-                                Text(l10n.edit),
+                                const Icon(Icons.edit_outlined, size: 18, color: Colors.blue),
+                                const SizedBox(width: 12),
+                                Text(l10n.edit, style: const TextStyle(fontWeight: FontWeight.w600)),
                               ],
                             ),
                           ),
@@ -102,9 +187,9 @@ class PropertyInfo extends StatelessWidget {
                             value: 'delete',
                             child: Row(
                               children: [
-                                const Icon(Icons.delete, size: 18, color: Colors.red),
-                                const SizedBox(width: 8),
-                                Text(l10n.delete, style: const TextStyle(color: Colors.red)),
+                                const Icon(Icons.delete_outline, size: 18, color: Colors.red),
+                                const SizedBox(width: 12),
+                                Text(l10n.delete, style: const TextStyle(color: Colors.red, fontWeight: FontWeight.w600)),
                               ],
                             ),
                           ),
@@ -113,35 +198,15 @@ class PropertyInfo extends StatelessWidget {
                             value: 'report',
                             child: Row(
                               children: [
-                                const Icon(Icons.report, size: 18, color: Colors.orange),
-                                const SizedBox(width: 8),
-                                Text(l10n.report),
+                                const Icon(Icons.report_outlined, size: 18, color: Colors.orange),
+                                const SizedBox(width: 12),
+                                Text(l10n.report, style: const TextStyle(fontWeight: FontWeight.w600)),
                               ],
                             ),
                           ),
                       ],
                     ),
                 ],
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 8),
-
-          // Location with icon
-          Row(
-            children: [
-              Icon(Icons.location_on, color: Colors.grey[600], size: 16),
-              const SizedBox(width: 4),
-              Expanded(
-                child: Text(
-                  location.translate(context),
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
               ),
             ],
           ),

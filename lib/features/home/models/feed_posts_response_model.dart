@@ -73,6 +73,8 @@ class Owner with _$Owner {
     @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
     @JsonKey(name: "username") String? username,
     @JsonKey(name: "profilepic") String? profileImage,
+    @JsonKey(name: "member_since") String? memberSince,
+    @JsonKey(name: "posts_count") int? postsCount,
   }) = _Owner;
 
   factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);

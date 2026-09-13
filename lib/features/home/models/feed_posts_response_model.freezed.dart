@@ -784,6 +784,10 @@ mixin _$Owner {
   String? get username => throw _privateConstructorUsedError;
   @JsonKey(name: "profilepic")
   String? get profileImage => throw _privateConstructorUsedError;
+  @JsonKey(name: "member_since")
+  String? get memberSince => throw _privateConstructorUsedError;
+  @JsonKey(name: "posts_count")
+  int? get postsCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -803,7 +807,9 @@ abstract class $OwnerCopyWith<$Res> {
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
       @JsonKey(name: "username") String? username,
-      @JsonKey(name: "profilepic") String? profileImage});
+      @JsonKey(name: "profilepic") String? profileImage,
+      @JsonKey(name: "member_since") String? memberSince,
+      @JsonKey(name: "posts_count") int? postsCount});
 }
 
 /// @nodoc
@@ -827,6 +833,8 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
     Object? dateOfBirth = freezed,
     Object? username = freezed,
     Object? profileImage = freezed,
+    Object? memberSince = freezed,
+    Object? postsCount = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -861,6 +869,14 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
               as String?,
+      memberSince: freezed == memberSince
+          ? _value.memberSince
+          : memberSince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -880,7 +896,9 @@ abstract class _$$OwnerImplCopyWith<$Res> implements $OwnerCopyWith<$Res> {
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
       @JsonKey(name: "username") String? username,
-      @JsonKey(name: "profilepic") String? profileImage});
+      @JsonKey(name: "profilepic") String? profileImage,
+      @JsonKey(name: "member_since") String? memberSince,
+      @JsonKey(name: "posts_count") int? postsCount});
 }
 
 /// @nodoc
@@ -902,6 +920,8 @@ class __$$OwnerImplCopyWithImpl<$Res>
     Object? dateOfBirth = freezed,
     Object? username = freezed,
     Object? profileImage = freezed,
+    Object? memberSince = freezed,
+    Object? postsCount = freezed,
   }) {
     return _then(_$OwnerImpl(
       id: freezed == id
@@ -936,6 +956,14 @@ class __$$OwnerImplCopyWithImpl<$Res>
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
               as String?,
+      memberSince: freezed == memberSince
+          ? _value.memberSince
+          : memberSince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -951,7 +979,9 @@ class _$OwnerImpl implements _Owner {
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "date_of_birth") this.dateOfBirth,
       @JsonKey(name: "username") this.username,
-      @JsonKey(name: "profilepic") this.profileImage});
+      @JsonKey(name: "profilepic") this.profileImage,
+      @JsonKey(name: "member_since") this.memberSince,
+      @JsonKey(name: "posts_count") this.postsCount});
 
   factory _$OwnerImpl.fromJson(Map<String, dynamic> json) =>
       _$$OwnerImplFromJson(json);
@@ -980,10 +1010,16 @@ class _$OwnerImpl implements _Owner {
   @override
   @JsonKey(name: "profilepic")
   final String? profileImage;
+  @override
+  @JsonKey(name: "member_since")
+  final String? memberSince;
+  @override
+  @JsonKey(name: "posts_count")
+  final int? postsCount;
 
   @override
   String toString() {
-    return 'Owner(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, dateOfBirth: $dateOfBirth, username: $username, profileImage: $profileImage)';
+    return 'Owner(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, dateOfBirth: $dateOfBirth, username: $username, profileImage: $profileImage, memberSince: $memberSince, postsCount: $postsCount)';
   }
 
   @override
@@ -1004,13 +1040,27 @@ class _$OwnerImpl implements _Owner {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.profileImage, profileImage) ||
-                other.profileImage == profileImage));
+                other.profileImage == profileImage) &&
+            (identical(other.memberSince, memberSince) ||
+                other.memberSince == memberSince) &&
+            (identical(other.postsCount, postsCount) ||
+                other.postsCount == postsCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email,
-      phoneNumber, dateOfBirth, username, profileImage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      dateOfBirth,
+      username,
+      profileImage,
+      memberSince,
+      postsCount);
 
   @JsonKey(ignore: true)
   @override
@@ -1035,7 +1085,9 @@ abstract class _Owner implements Owner {
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "date_of_birth") final DateTime? dateOfBirth,
       @JsonKey(name: "username") final String? username,
-      @JsonKey(name: "profilepic") final String? profileImage}) = _$OwnerImpl;
+      @JsonKey(name: "profilepic") final String? profileImage,
+      @JsonKey(name: "member_since") final String? memberSince,
+      @JsonKey(name: "posts_count") final int? postsCount}) = _$OwnerImpl;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
@@ -1063,6 +1115,12 @@ abstract class _Owner implements Owner {
   @override
   @JsonKey(name: "profilepic")
   String? get profileImage;
+  @override
+  @JsonKey(name: "member_since")
+  String? get memberSince;
+  @override
+  @JsonKey(name: "posts_count")
+  int? get postsCount;
   @override
   @JsonKey(ignore: true)
   _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>

@@ -163,54 +163,84 @@ class _EmiCalculatorWidgetState extends State<EmiCalculatorWidget> {
     if (widget.propertyPrice <= 0) return const SizedBox.shrink();
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
-        color: theme.primaryColor.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: theme.primaryColor.withOpacity(0.1)),
+        color: const Color(0xFFF0F2FF),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: theme.primaryColor.withOpacity(0.05)),
       ),
       child: Theme(
-        data: theme.copyWith(dividerColor: Colors.transparent),
+        data: theme.copyWith(
+          dividerColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
+        ),
         child: ExpansionTile(
-          tilePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-          leading: Icon(
-            Icons.calculate_outlined,
-            color: theme.primaryColor,
-            size: 24,
+          tilePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          leading: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              Icons.calculate_rounded,
+              color: theme.primaryColor,
+              size: 20,
+            ),
           ),
           title: const Text(
-            'Home Loan EMI Calculator',
+            'EMI Calculator',
             style: TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF1A1A1A),
+              letterSpacing: -0.5,
             ),
           ),
           childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           children: [
-            const Divider(height: 1),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             // Monthly EMI Result Display
-            Center(
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.primaryColor.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
               child: Column(
                 children: [
                   Text(
-                    'Estimated Monthly EMI',
-                    style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                    'ESTIMATED MONTHLY EMI',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.grey.shade500,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1,
+                    ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Text(
                     _currencyFormat.format(_emi),
                     style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
                       color: theme.primaryColor,
+                      letterSpacing: -1,
                     ),
                   ),
                 ],
               ),
             ),
-            const Divider(height: 32),
+            const SizedBox(height: 24),
 
             // Principal Amount Info
             _buildInfoRow(

@@ -112,28 +112,36 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     Share.share(shareMessage, subject: postTitle);
   }
 
-  Widget _buildInteractionItem({
+  Widget _buildInteractionButton({
+    required BuildContext context,
     required FaIconData icon,
     required String label,
     required Color color,
     VoidCallback? onTap,
   }) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FaIcon(icon, size: 18, color: color),
-          const SizedBox(width: 6),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: color,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            FaIcon(icon, size: 16, color: color),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -528,36 +536,56 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Image Carousel Section
-                  SizedBox(
-                    height: 340,
-                    child: ImageCarousel(
-                      images: postDetails.imageUrls ?? [],
-                      createdAt: postDetails.createdAt,
-                      isFavourited: postDetails.isFavourited ?? false,
-                      showActionButtons: true,
-                      onFavoriteToggle: () {
-                        if (!context.read<HomeBloc>().state.showAddButton) {
-                          CustomToast.showErrorToast(
-                            msg: l10n.pleaseLoginToFavorite,
-                          );
-                          context.push(AuthScreen.routeName);
-                          return;
-                        }
-                        if (postDetails.id != null) {
-                          context.read<FeedBloc>().add(
-                            FeedEvent.toggleFavorite(
-                              propertyId: postDetails.id!,
+                  Stack(
+                    children: [
+                      SizedBox(
+                        height: 380,
+                        child: ImageCarousel(
+                          images: postDetails.imageUrls ?? [],
+                          createdAt: postDetails.createdAt,
+                          isFavourited: postDetails.isFavourited ?? false,
+                          showActionButtons: true,
+                          onFavoriteToggle: () {
+                            if (!context.read<HomeBloc>().state.showAddButton) {
+                              CustomToast.showErrorToast(
+                                msg: l10n.pleaseLoginToFavorite,
+                              );
+                              context.push(AuthScreen.routeName);
+                              return;
+                            }
+                            if (postDetails.id != null) {
+                              context.read<FeedBloc>().add(
+                                FeedEvent.toggleFavorite(
+                                  propertyId: postDetails.id!,
+                                ),
+                              );
+                            }
+                          },
+                          onShare: () => _handleShare(postDetails),
+                        ),
+                      ),
+                      // Gradient overlay for better text visibility if needed, or rounded corners
+                      Positioned(
+                        bottom: -1,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          height: 30,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
                             ),
-                          );
-                        }
-                      },
-                      onShare: () => _handleShare(postDetails),
-                    ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
-                  // Content
+                  // Main Content
                   Container(
-                    decoration: const BoxDecoration(color: Colors.white),
+                    color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -569,9 +597,76 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             postDetails.address,
                           ),
                           price: postDetails.price?.toString() ?? '',
+                          category: postDetails.propertyType,
+                          listingType: postDetails.listingType,
                         ),
 
                         _buildPromotionSection(postDetails, l10n),
+
+                        // Stats/Interaction Row (Luxury Style)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildInteractionButton(
+                                context: context,
+                                icon: postDetails.isLiked == true
+                                    ? FontAwesomeIcons.solidThumbsUp
+                                    : FontAwesomeIcons.thumbsUp,
+                                label: '${postDetails.likesCount ?? 0}',
+                                color: postDetails.isLiked == true
+                                    ? Theme.of(context).primaryColor
+                                    : Colors.grey.shade700,
+                                onTap: () {
+                                  if (!context
+                                      .read<HomeBloc>()
+                                      .state
+                                      .showAddButton) {
+                                    CustomToast.showErrorToast(
+                                      msg: l10n.pleaseLoginToLike,
+                                    );
+                                    context.push(AuthScreen.routeName);
+                                    return;
+                                  }
+                                  context.read<FeedBloc>().add(
+                                    FeedEvent.likeProperty(
+                                      propertyId: postDetails.id!,
+                                    ),
+                                  );
+                                },
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.comment,
+                                label: '${postDetails.commentsCount ?? 0}',
+                                color: Colors.grey.shade700,
+                                onTap: () {
+                                  CommentsBottomSheet.show(
+                                    context,
+                                    postDetails.id!,
+                                    context
+                                        .read<HomeBloc>()
+                                        .state
+                                        .showAddButton,
+                                  );
+                                },
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.eye,
+                                label: '${postDetails.viewsCount ?? 0}',
+                                color: Colors.grey.shade700,
+                                onTap: null,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Divider(height: 32),
+                        ),
 
                         // Description Section
                         DescriptionSection(
@@ -584,8 +679,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           EmiCalculatorWidget(
                             propertyPrice: (postDetails.price ?? 0).toDouble(),
                           ),
-
-                        const SizedBox(height: 16),
 
                         // Agent Info Section
                         AgentInfo(
@@ -606,6 +699,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           agentImage: postDetails.owner?.profileImage ?? '',
                           rating: postDetails.rating?.toString() ?? '-',
                           userId: postDetails.owner?.id,
+                          memberSince: postDetails.owner?.memberSince,
+                          itemsListed: postDetails.owner?.postsCount,
                           onCallPressed: isOwner
                               ? null
                               : () {
@@ -695,90 +790,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               )
                             : Container(),
 
-                        const SizedBox(height: 4),
-                        // Interaction Buttons (Like, Comment, Views)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 12,
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                top: BorderSide(color: Colors.grey.shade200),
-                                bottom: BorderSide(color: Colors.grey.shade200),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                _buildInteractionItem(
-                                  icon: postDetails.isLiked == true
-                                      ? FontAwesomeIcons.solidThumbsUp
-                                      : FontAwesomeIcons.thumbsUp,
-                                  label: '${postDetails.likesCount ?? 0} ${l10n.likes}',
-                                  color: postDetails.isLiked == true
-                                      ? Theme.of(context).primaryColor
-                                      : Colors.grey.shade700,
-                                  onTap: () {
-                                    if (!context
-                                        .read<HomeBloc>()
-                                        .state
-                                        .showAddButton) {
-                                      CustomToast.showErrorToast(
-                                        msg: l10n.pleaseLoginToLike,
-                                      );
-                                      context.push(AuthScreen.routeName);
-                                      return;
-                                    }
-                                    context.read<FeedBloc>().add(
-                                      FeedEvent.likeProperty(
-                                        propertyId: postDetails.id!,
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Container(
-                                  height: 20,
-                                  width: 1,
-                                  color: Colors.grey.shade300,
-                                ),
-                                _buildInteractionItem(
-                                  icon: FontAwesomeIcons.comment,
-                                  label:
-                                      '${postDetails.commentsCount ?? 0} ${l10n.comments}',
-                                  color: Colors.grey.shade700,
-                                  onTap: () {
-                                    CommentsBottomSheet.show(
-                                      context,
-                                      postDetails.id!,
-                                      context
-                                          .read<HomeBloc>()
-                                          .state
-                                          .showAddButton,
-                                    );
-                                  },
-                                ),
-                                Container(
-                                  height: 20,
-                                  width: 1,
-                                  color: Colors.grey.shade300,
-                                ),
-                                _buildInteractionItem(
-                                  icon: FontAwesomeIcons.eye,
-                                  label: '${postDetails.viewsCount ?? 0} ${l10n.views}',
-                                  color: Colors.grey.shade700,
-                                  onTap: null, // View only
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        // Call and WhatsApp Buttons
-                        const SizedBox(height: 16),
-
+                        const SizedBox(height: 24),
                         // Similar Posts by Category Section
                         if (state.similarPostsByCategory.isNotEmpty)
                           Column(
@@ -794,13 +806,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         // Similar Properties Section
                         SimilarProperties(
-                          similarProperties: state.similarProperties ?? [],
+                          similarProperties: state.similarProperties,
                         ),
 
                         const SizedBox(height: 16),
                         Center(child: GoogleAdBanner()),
 
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 48),
                       ],
                     ),
                   ),

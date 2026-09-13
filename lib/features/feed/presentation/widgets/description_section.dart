@@ -27,12 +27,13 @@ class _DescriptionSectionState extends State<DescriptionSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          Text(
-            l10n.description,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          const Text(
+            'About this Property',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF1A1A1A),
+              letterSpacing: -0.5,
             ),
           ),
 

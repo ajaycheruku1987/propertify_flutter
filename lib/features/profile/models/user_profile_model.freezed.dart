@@ -36,6 +36,10 @@ mixin _$UserProfileModel {
   String? get profilepic => throw _privateConstructorUsedError;
   @JsonKey(name: "role")
   String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: "member_since")
+  String? get memberSince => throw _privateConstructorUsedError;
+  @JsonKey(name: "posts_count")
+  int? get postsCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +61,9 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic,
-      @JsonKey(name: "role") String? role});
+      @JsonKey(name: "role") String? role,
+      @JsonKey(name: "member_since") String? memberSince,
+      @JsonKey(name: "posts_count") int? postsCount});
 }
 
 /// @nodoc
@@ -81,6 +87,8 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
     Object? role = freezed,
+    Object? memberSince = freezed,
+    Object? postsCount = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -115,6 +123,14 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      memberSince: freezed == memberSince
+          ? _value.memberSince
+          : memberSince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -135,7 +151,9 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "profilepic") String? profilepic,
-      @JsonKey(name: "role") String? role});
+      @JsonKey(name: "role") String? role,
+      @JsonKey(name: "member_since") String? memberSince,
+      @JsonKey(name: "posts_count") int? postsCount});
 }
 
 /// @nodoc
@@ -157,6 +175,8 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? profilepic = freezed,
     Object? role = freezed,
+    Object? memberSince = freezed,
+    Object? postsCount = freezed,
   }) {
     return _then(_$UserProfileModelImpl(
       id: freezed == id
@@ -191,6 +211,14 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      memberSince: freezed == memberSince
+          ? _value.memberSince
+          : memberSince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -206,7 +234,9 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "email") this.email,
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "profilepic") this.profilepic,
-      @JsonKey(name: "role") this.role});
+      @JsonKey(name: "role") this.role,
+      @JsonKey(name: "member_since") this.memberSince,
+      @JsonKey(name: "posts_count") this.postsCount});
 
   factory _$UserProfileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileModelImplFromJson(json);
@@ -235,10 +265,16 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @override
   @JsonKey(name: "role")
   final String? role;
+  @override
+  @JsonKey(name: "member_since")
+  final String? memberSince;
+  @override
+  @JsonKey(name: "posts_count")
+  final int? postsCount;
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount)';
   }
 
   @override
@@ -258,13 +294,17 @@ class _$UserProfileModelImpl implements _UserProfileModel {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.profilepic, profilepic) ||
                 other.profilepic == profilepic) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.memberSince, memberSince) ||
+                other.memberSince == memberSince) &&
+            (identical(other.postsCount, postsCount) ||
+                other.postsCount == postsCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, username, firstName,
-      lastName, email, phoneNumber, profilepic, role);
+      lastName, email, phoneNumber, profilepic, role, memberSince, postsCount);
 
   @JsonKey(ignore: true)
   @override
@@ -283,14 +323,17 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
 abstract class _UserProfileModel implements UserProfileModel {
   const factory _UserProfileModel(
-      {@JsonKey(name: "id") final String? id,
-      @JsonKey(name: "username") final String? username,
-      @JsonKey(name: "first_name") final String? firstName,
-      @JsonKey(name: "last_name") final String? lastName,
-      @JsonKey(name: "email") final String? email,
-      @JsonKey(name: "phone_number") final String? phoneNumber,
-      @JsonKey(name: "profilepic") final String? profilepic,
-      @JsonKey(name: "role") final String? role}) = _$UserProfileModelImpl;
+          {@JsonKey(name: "id") final String? id,
+          @JsonKey(name: "username") final String? username,
+          @JsonKey(name: "first_name") final String? firstName,
+          @JsonKey(name: "last_name") final String? lastName,
+          @JsonKey(name: "email") final String? email,
+          @JsonKey(name: "phone_number") final String? phoneNumber,
+          @JsonKey(name: "profilepic") final String? profilepic,
+          @JsonKey(name: "role") final String? role,
+          @JsonKey(name: "member_since") final String? memberSince,
+          @JsonKey(name: "posts_count") final int? postsCount}) =
+      _$UserProfileModelImpl;
 
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$UserProfileModelImpl.fromJson;
@@ -319,6 +362,12 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   @JsonKey(name: "role")
   String? get role;
+  @override
+  @JsonKey(name: "member_since")
+  String? get memberSince;
+  @override
+  @JsonKey(name: "posts_count")
+  int? get postsCount;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileModelImplCopyWith<_$UserProfileModelImpl> get copyWith =>
