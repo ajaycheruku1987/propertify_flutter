@@ -8,6 +8,8 @@ import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/core/app_theme.dart';
 import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 /// Compact version of PropertyCard optimized for grid view
 class PropertyCardCompact extends StatelessWidget {
@@ -237,17 +239,26 @@ class PropertyCardCompact extends StatelessWidget {
               topRight: Radius.circular(12),
             ),
             child: imageUrls.isNotEmpty
-                ? Image.network(
-                    imageUrls.first,
+                ? CachedNetworkImage(
+                    imageUrl: imageUrls.first,
                     width: double.infinity,
                     height: 110,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const LogoPlaceholder(
+                    memCacheWidth: 400,
+                    maxWidthDiskCache: 600,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
                         width: double.infinity,
                         height: 110,
-                      );
-                    },
+                        color: Colors.white,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => const LogoPlaceholder(
+                      width: double.infinity,
+                      height: 110,
+                    ),
                   )
                 : const LogoPlaceholder(width: double.infinity, height: 110),
           ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:propertify/utils/env.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'full_screen_image_viewer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ImageCarousel extends StatefulWidget {
   final List<String> images;
@@ -85,12 +87,21 @@ class _ImageCarouselState extends State<ImageCarousel> {
                         child: Stack(
                           fit: StackFit.expand,
                           children: [
-                            Image.network(
-                              imageUrl,
+                            CachedNetworkImage(
+                              imageUrl: imageUrl,
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const LogoPlaceholder();
-                              },
+                              memCacheWidth: 1000,
+                              maxWidthDiskCache: 1200,
+                              placeholder: (context, url) => Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => const LogoPlaceholder(),
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -226,12 +237,21 @@ class _ImageCarouselState extends State<ImageCarousel> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          imageUrl,
+                        child: CachedNetworkImage(
+                          imageUrl: imageUrl,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const LogoPlaceholder();
-                          },
+                          memCacheWidth: 150,
+                          maxWidthDiskCache: 200,
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(
+                              width: 72,
+                              height: 72,
+                              color: Colors.white,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => const LogoPlaceholder(),
                         ),
                       ),
                     ),

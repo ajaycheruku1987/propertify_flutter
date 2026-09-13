@@ -37,6 +37,9 @@ class ApiRequest {
     _dio.options = BaseOptions(
       baseUrl: env.baseUrl,
       receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 30),
       validateStatus: (value) {
         return value! <= 500;
       },

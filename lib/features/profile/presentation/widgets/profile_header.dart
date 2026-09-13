@@ -2,6 +2,8 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import '../../models/user_profile_model.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileHeader extends StatelessWidget {
   final UserProfileModel? userProfile;
@@ -35,26 +37,20 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 child: ClipOval(
                   child: userProfile?.profilepic != null
-                      ? Image.network(
-                          _getCacheBustedUrl(userProfile!.profilepic!),
+                      ? CachedNetworkImage(
+                          imageUrl: userProfile!.profilepic!,
                           key: ValueKey(userProfile!.profilepic),
                           fit: BoxFit.cover,
-                          cacheWidth: null,
-                          cacheHeight: null,
-                          errorBuilder: (context, error, stackTrace) {
-                            return _buildDefaultAvatar();
-                          },
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              color: Colors.white,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => _buildDefaultAvatar(),
                         )
                       : _buildDefaultAvatar(),
                 ),
@@ -161,18 +157,6 @@ class ProfileHeader extends StatelessWidget {
       return (userProfile?.username ?? 'Propertify User').toTitleCase();
     }
     return fullName.toTitleCase();
-  }
-
-  String _getCacheBustedUrl(String url) {
-    final uri = Uri.parse(url);
-    final timestamp = DateTime.now().millisecondsSinceEpoch;
-
-    // Add timestamp as query parameter
-    final newUri = uri.replace(
-      queryParameters: {...uri.queryParameters, 't': timestamp.toString()},
-    );
-
-    return newUri.toString();
   }
 
   Widget _buildDefaultAvatar() {

@@ -57,7 +57,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   bool _handleScrollNotification(ScrollNotification notification) {
     if (notification is ScrollEndNotification) {
       final metrics = notification.metrics;
-      if (metrics.pixels >= metrics.maxScrollExtent - 300) {
+      if (metrics.pixels >= metrics.maxScrollExtent - 600) {
         final feedState = context.read<FeedBloc>().state;
         if (!feedState.isLoading && feedState.hasMoreData) {
           context.read<FeedBloc>().add(
