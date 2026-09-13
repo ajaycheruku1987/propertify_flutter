@@ -37,155 +37,160 @@ class AgentInfo extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: GestureDetector(
-        onTap: () {
-          if (userId != null && userId!.isNotEmpty) {
-            context.push(
-              OtherUserProfileScreen.routeName,
-              extra: userId,
-            );
-          }
-        },
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF8F9FE),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: Theme.of(context).primaryColor.withOpacity(0.05),
-              width: 1,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).primaryColor.withOpacity(0.03),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            if (userId != null && userId!.isNotEmpty) {
+              context.push(
+                OtherUserProfileScreen.routeName,
+                extra: userId,
+              );
+            }
+          },
+          borderRadius: BorderRadius.circular(20),
+          mouseCursor: SystemMouseCursors.click,
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF8F9FE),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Theme.of(context).primaryColor.withOpacity(0.05),
+                width: 1,
               ),
-            ],
-          ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  // Agent Avatar
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: agentImage,
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(
-                          width: 60,
-                          height: 60,
-                          color: Colors.grey[200],
-                          child: const Center(
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => Container(
-                          width: 60,
-                          height: 60,
-                          color: Colors.grey[200],
-                          child: Icon(Icons.person,
-                              color: Colors.grey[400], size: 30),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Agent Details
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.postedBy.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          agentName.toTitleCase(),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF1A1A1A),
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -0.5,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          memberSince != null && memberSince!.isNotEmpty
-                              ? 'Member since $memberSince'
-                              : 'New Member',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Action Buttons (Luxurious Style)
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (onCallPressed != null)
-                        _buildActionButton(
-                          icon: Icons.phone_in_talk_rounded,
-                          color: Theme.of(context).primaryColor,
-                          onTap: onCallPressed!,
-                        ),
-                      const SizedBox(width: 8),
-                      if (onWhatsAppPressed != null)
-                        _buildActionButton(
-                          icon: FontAwesomeIcons.whatsapp,
-                          color: const Color(0xFF25D366),
-                          onTap: onWhatsAppPressed!,
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).primaryColor.withOpacity(0.03),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    _buildStatItem(
-                      label: 'Total Listings',
-                      value: '${itemsListed ?? 0}',
-                      context: context,
+                    // Agent Avatar
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: agentImage,
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            width: 60,
+                            height: 60,
+                            color: Colors.grey[200],
+                            child: const Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            width: 60,
+                            height: 60,
+                            color: Colors.grey[200],
+                            child: Icon(Icons.person,
+                                color: Colors.grey[400], size: 30),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    // Agent Details
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l10n.postedBy.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            agentName.toTitleCase(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF1A1A1A),
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            memberSince != null && memberSince!.isNotEmpty
+                                ? 'Member since $memberSince'
+                                : 'New Member',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Action Buttons (Luxurious Style)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (onCallPressed != null)
+                          _buildActionButton(
+                            icon: Icons.phone_in_talk_rounded,
+                            color: Theme.of(context).primaryColor,
+                            onTap: onCallPressed!,
+                          ),
+                        const SizedBox(width: 8),
+                        if (onWhatsAppPressed != null)
+                          _buildActionButton(
+                            icon: FontAwesomeIcons.whatsapp,
+                            color: const Color(0xFF25D366),
+                            onTap: onWhatsAppPressed!,
+                          ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildStatItem(
+                        label: 'Total Listings',
+                        value: '${itemsListed ?? 0}',
+                        context: context,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

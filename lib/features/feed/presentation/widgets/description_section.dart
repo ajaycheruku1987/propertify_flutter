@@ -69,20 +69,23 @@ class _DescriptionSectionState extends State<DescriptionSection> {
 
           // Read More/Less Button
           if (isLongText)
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isExpanded = !_isExpanded;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  _isExpanded ? l10n.less : l10n.more,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF6C5CE7),
-                    fontWeight: FontWeight.w600,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    _isExpanded ? l10n.less : l10n.more,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF6C5CE7),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),

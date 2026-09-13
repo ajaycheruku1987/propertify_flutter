@@ -775,16 +775,19 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                     postDetails.owner?.id &&
                                 !postDetails.isCurrentlyPromoted
                             ? Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // Navigate to SelectPlanScreen when boost post is tapped
-                                    final postId = postDetails.id ?? '';
-                                    context.push(
-                                      '${SelectPlanScreen.routeName}?contentType=${ContentType.FEED.value}&contentId=$postId',
-                                    );
-                                  },
-                                  child: SvgPicture.asset(
-                                    'assets/images/boost_post.svg',
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      // Navigate to SelectPlanScreen when boost post is tapped
+                                      final postId = postDetails.id ?? '';
+                                      context.push(
+                                        '${SelectPlanScreen.routeName}?contentType=${ContentType.FEED.value}&contentId=$postId',
+                                      );
+                                    },
+                                    child: SvgPicture.asset(
+                                      'assets/images/boost_post.svg',
+                                    ),
                                   ),
                                 ),
                               )
