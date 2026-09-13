@@ -99,7 +99,7 @@ class PropertyInfo extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        fontSize: 22,
+                        fontSize: 18,
                         fontWeight: FontWeight.w900,
                         color: Color(0xFF1A1A1A),
                         letterSpacing: -0.5,
@@ -133,7 +133,7 @@ class PropertyInfo extends StatelessWidget {
                   Text(
                     '₹$price',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 17,
                       fontWeight: FontWeight.w900,
                       color: Theme.of(context).primaryColor,
                       letterSpacing: -0.5,
