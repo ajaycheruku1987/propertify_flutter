@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/core/app_cache_service.dart';
 
@@ -12,10 +13,11 @@ import '../models/feed_posts_response_model.dart';
 import '../repo/home_repo.dart';
 
 part 'home_bloc.freezed.dart';
+part 'home_bloc.g.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class HomeBloc extends HydratedBloc<HomeEvent, HomeState> {
   final HomeRepo _homeRepo;
   HomeBloc(this._homeRepo) : super(const HomeState()) {
     on<_IsLoading>(_onIsLoading);
@@ -33,6 +35,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_UpdateSearchQuery>(_onUpdateSearchQuery);
     on<_SetLocale>(_onSetLocale);
     on<_Reset>(_onReset);
+  }
+
+  @override
+  HomeState? fromJson(Map<String, dynamic> json) {
+    try {
+      return HomeState.fromJson(json);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  @override
+  Map<String, dynamic>? toJson(HomeState state) {
+    try {
+      return state.toJson();
+    } catch (_) {
+      return null;
+    }
   }
 
   void _onSetLocale(_SetLocale event, Emitter<HomeState> emit) {

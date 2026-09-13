@@ -6334,10 +6334,17 @@ abstract class _DeletePropertyEvent implements FeedEvent {
       throw _privateConstructorUsedError;
 }
 
+FeedState _$FeedStateFromJson(Map<String, dynamic> json) {
+  return _FeedState.fromJson(json);
+}
+
 /// @nodoc
 mixin _$FeedState {
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isError => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isSuccess => throw _privateConstructorUsedError;
   FeedPostsResponseModel? get postDetails => throw _privateConstructorUsedError;
   List<FeedPostsResponseModel> get similarProperties =>
@@ -6353,15 +6360,21 @@ mixin _$FeedState {
   Set<String> get likedPostIds => throw _privateConstructorUsedError;
   int get currentOffset => throw _privateConstructorUsedError;
   bool get hasMoreData => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   NotifyStatus? get notifyStatus => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get commentsLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isPostLoading => throw _privateConstructorUsedError;
   List<FeedCommentModel> get feedComments => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get sendCommentLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isFavouritesLoading => throw _privateConstructorUsedError;
   int get myPropertiesOffset => throw _privateConstructorUsedError;
   bool get hasMoreMyProperties => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FeedStateCopyWith<FeedState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -6373,9 +6386,9 @@ abstract class $FeedStateCopyWith<$Res> {
       _$FeedStateCopyWithImpl<$Res, FeedState>;
   @useResult
   $Res call(
-      {bool isLoading,
-      bool isError,
-      bool isSuccess,
+      {@JsonKey(includeFromJson: false, includeToJson: false) bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isError,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isSuccess,
       FeedPostsResponseModel? postDetails,
       List<FeedPostsResponseModel> similarProperties,
       List<FeedPostsResponseModel> similarPostsByCategory,
@@ -6385,11 +6398,15 @@ abstract class $FeedStateCopyWith<$Res> {
       Set<String> likedPostIds,
       int currentOffset,
       bool hasMoreData,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       NotifyStatus? notifyStatus,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool commentsLoading,
-      bool isPostLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isPostLoading,
       List<FeedCommentModel> feedComments,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool sendCommentLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool isFavouritesLoading,
       int myPropertiesOffset,
       bool hasMoreMyProperties});
@@ -6537,9 +6554,9 @@ abstract class _$$FeedStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
-      bool isError,
-      bool isSuccess,
+      {@JsonKey(includeFromJson: false, includeToJson: false) bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isError,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isSuccess,
       FeedPostsResponseModel? postDetails,
       List<FeedPostsResponseModel> similarProperties,
       List<FeedPostsResponseModel> similarPostsByCategory,
@@ -6549,11 +6566,15 @@ abstract class _$$FeedStateImplCopyWith<$Res>
       Set<String> likedPostIds,
       int currentOffset,
       bool hasMoreData,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       NotifyStatus? notifyStatus,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool commentsLoading,
-      bool isPostLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false) bool isPostLoading,
       List<FeedCommentModel> feedComments,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool sendCommentLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool isFavouritesLoading,
       int myPropertiesOffset,
       bool hasMoreMyProperties});
@@ -6680,11 +6701,14 @@ class __$$FeedStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$FeedStateImpl implements _FeedState {
   const _$FeedStateImpl(
-      {this.isLoading = false,
+      {@JsonKey(includeFromJson: false, includeToJson: false)
+      this.isLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.isError = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.isSuccess = false,
       this.postDetails,
       final List<FeedPostsResponseModel> similarProperties = const [],
@@ -6695,11 +6719,15 @@ class _$FeedStateImpl implements _FeedState {
       final Set<String> likedPostIds = const <String>{},
       this.currentOffset = 0,
       this.hasMoreData = false,
-      this.notifyStatus,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.notifyStatus,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.commentsLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.isPostLoading = false,
       final List<FeedCommentModel> feedComments = const [],
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.sendCommentLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.isFavouritesLoading = false,
       this.myPropertiesOffset = 0,
       this.hasMoreMyProperties = false})
@@ -6711,14 +6739,17 @@ class _$FeedStateImpl implements _FeedState {
         _likedPostIds = likedPostIds,
         _feedComments = feedComments;
 
+  factory _$FeedStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FeedStateImplFromJson(json);
+
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isLoading;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isError;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isSuccess;
   @override
   final FeedPostsResponseModel? postDetails;
@@ -6786,12 +6817,13 @@ class _$FeedStateImpl implements _FeedState {
   @JsonKey()
   final bool hasMoreData;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final NotifyStatus? notifyStatus;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool commentsLoading;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isPostLoading;
   final List<FeedCommentModel> _feedComments;
   @override
@@ -6803,10 +6835,10 @@ class _$FeedStateImpl implements _FeedState {
   }
 
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool sendCommentLoading;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isFavouritesLoading;
   @override
   @JsonKey()
@@ -6866,6 +6898,7 @@ class _$FeedStateImpl implements _FeedState {
                 other.hasMoreMyProperties == hasMoreMyProperties));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -6896,12 +6929,21 @@ class _$FeedStateImpl implements _FeedState {
   @pragma('vm:prefer-inline')
   _$$FeedStateImplCopyWith<_$FeedStateImpl> get copyWith =>
       __$$FeedStateImplCopyWithImpl<_$FeedStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FeedStateImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _FeedState implements FeedState {
   const factory _FeedState(
-      {final bool isLoading,
-      final bool isError,
+      {@JsonKey(includeFromJson: false, includeToJson: false)
+      final bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false) final bool isError,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isSuccess,
       final FeedPostsResponseModel? postDetails,
       final List<FeedPostsResponseModel> similarProperties,
@@ -6912,20 +6954,31 @@ abstract class _FeedState implements FeedState {
       final Set<String> likedPostIds,
       final int currentOffset,
       final bool hasMoreData,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final NotifyStatus? notifyStatus,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool commentsLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isPostLoading,
       final List<FeedCommentModel> feedComments,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool sendCommentLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isFavouritesLoading,
       final int myPropertiesOffset,
       final bool hasMoreMyProperties}) = _$FeedStateImpl;
 
+  factory _FeedState.fromJson(Map<String, dynamic> json) =
+      _$FeedStateImpl.fromJson;
+
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isError;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isSuccess;
   @override
   FeedPostsResponseModel? get postDetails;
@@ -6946,16 +6999,21 @@ abstract class _FeedState implements FeedState {
   @override
   bool get hasMoreData;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   NotifyStatus? get notifyStatus;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get commentsLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isPostLoading;
   @override
   List<FeedCommentModel> get feedComments;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get sendCommentLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isFavouritesLoading;
   @override
   int get myPropertiesOffset;

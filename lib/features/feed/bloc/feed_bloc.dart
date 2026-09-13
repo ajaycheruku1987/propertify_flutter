@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
@@ -13,10 +14,11 @@ import '../../../features/feed/models/like_feed_post_response_model.dart';
 import '../../../features/feed/models/feed_comment_model.dart';
 
 part 'feed_bloc.freezed.dart';
+part 'feed_bloc.g.dart';
 part 'feed_event.dart';
 part 'feed_state.dart';
 
-class FeedBloc extends Bloc<FeedEvent, FeedState> {
+class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   final FeedRepo _feedRepo;
 
   String? _lastCity;
@@ -43,6 +45,24 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
     on<_UpdatePropertyEvent>(_onUpdatePropertyEvent);
     on<_DeletePropertyEvent>(_onDeletePropertyEvent);
     on<_Reset>(_onReset);
+  }
+
+  @override
+  FeedState? fromJson(Map<String, dynamic> json) {
+    try {
+      return FeedState.fromJson(json);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  @override
+  Map<String, dynamic>? toJson(FeedState state) {
+    try {
+      return state.toJson();
+    } catch (_) {
+      return null;
+    }
   }
 
   void _onReset(_Reset event, Emitter<FeedState> emit) {

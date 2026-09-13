@@ -20,32 +20,32 @@ BannerAdModel _$BannerAdModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BannerAdModel {
-  @JsonKey(name: "id")
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "user_id")
-  String? get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_urls")
-  List<String>? get imageUrls => throw _privateConstructorUsedError;
-  @JsonKey(name: "description")
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: "plan_name")
-  String? get planName => throw _privateConstructorUsedError;
-  @JsonKey(name: "plan_days")
-  int? get planDays => throw _privateConstructorUsedError;
   @JsonKey(name: "amount")
   double? get amount => throw _privateConstructorUsedError;
-  @JsonKey(name: "terms_accepted")
-  bool? get termsAccepted => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
-  String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "expires_at")
-  String? get expiresAt => throw _privateConstructorUsedError;
   @JsonKey(name: "approved")
   bool? get approved => throw _privateConstructorUsedError;
+  @JsonKey(name: "created_at")
+  String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "description")
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: "expires_at")
+  String? get expiresAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "id")
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_urls")
+  List<String>? get imageUrls => throw _privateConstructorUsedError;
   @JsonKey(name: "is_paid")
   bool? get isPaid => throw _privateConstructorUsedError;
   @JsonKey(name: "owner")
   Owner? get owner => throw _privateConstructorUsedError;
+  @JsonKey(name: "plan_days")
+  int? get planDays => throw _privateConstructorUsedError;
+  @JsonKey(name: "plan_name")
+  String? get planName => throw _privateConstructorUsedError;
+  @JsonKey(name: "terms_accepted")
+  bool? get termsAccepted => throw _privateConstructorUsedError;
+  @JsonKey(name: "user_id")
+  String? get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,19 +60,19 @@ abstract class $BannerAdModelCopyWith<$Res> {
       _$BannerAdModelCopyWithImpl<$Res, BannerAdModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "user_id") String? userId,
-      @JsonKey(name: "image_urls") List<String>? imageUrls,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "plan_name") String? planName,
-      @JsonKey(name: "plan_days") int? planDays,
-      @JsonKey(name: "amount") double? amount,
-      @JsonKey(name: "terms_accepted") bool? termsAccepted,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "expires_at") String? expiresAt,
+      {@JsonKey(name: "amount") double? amount,
       @JsonKey(name: "approved") bool? approved,
+      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "description") String? description,
+      @JsonKey(name: "expires_at") String? expiresAt,
+      @JsonKey(name: "id") String? id,
+      @JsonKey(name: "image_urls") List<String>? imageUrls,
       @JsonKey(name: "is_paid") bool? isPaid,
-      @JsonKey(name: "owner") Owner? owner});
+      @JsonKey(name: "owner") Owner? owner,
+      @JsonKey(name: "plan_days") int? planDays,
+      @JsonKey(name: "plan_name") String? planName,
+      @JsonKey(name: "terms_accepted") bool? termsAccepted,
+      @JsonKey(name: "user_id") String? userId});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -90,65 +90,49 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
-    Object? imageUrls = freezed,
-    Object? description = freezed,
-    Object? planName = freezed,
-    Object? planDays = freezed,
     Object? amount = freezed,
-    Object? termsAccepted = freezed,
-    Object? createdAt = freezed,
-    Object? expiresAt = freezed,
     Object? approved = freezed,
+    Object? createdAt = freezed,
+    Object? description = freezed,
+    Object? expiresAt = freezed,
+    Object? id = freezed,
+    Object? imageUrls = freezed,
     Object? isPaid = freezed,
     Object? owner = freezed,
+    Object? planDays = freezed,
+    Object? planName = freezed,
+    Object? termsAccepted = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrls: freezed == imageUrls
-          ? _value.imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      planName: freezed == planName
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      planDays: freezed == planDays
-          ? _value.planDays
-          : planDays // ignore: cast_nullable_to_non_nullable
-              as int?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double?,
-      termsAccepted: freezed == termsAccepted
-          ? _value.termsAccepted
-          : termsAccepted // ignore: cast_nullable_to_non_nullable
+      approved: freezed == approved
+          ? _value.approved
+          : approved // ignore: cast_nullable_to_non_nullable
               as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       expiresAt: freezed == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      approved: freezed == approved
-          ? _value.approved
-          : approved // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrls: freezed == imageUrls
+          ? _value.imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       isPaid: freezed == isPaid
           ? _value.isPaid
           : isPaid // ignore: cast_nullable_to_non_nullable
@@ -157,6 +141,22 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner?,
+      planDays: freezed == planDays
+          ? _value.planDays
+          : planDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      planName: freezed == planName
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsAccepted: freezed == termsAccepted
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -182,19 +182,19 @@ abstract class _$$BannerAdModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "user_id") String? userId,
-      @JsonKey(name: "image_urls") List<String>? imageUrls,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "plan_name") String? planName,
-      @JsonKey(name: "plan_days") int? planDays,
-      @JsonKey(name: "amount") double? amount,
-      @JsonKey(name: "terms_accepted") bool? termsAccepted,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "expires_at") String? expiresAt,
+      {@JsonKey(name: "amount") double? amount,
       @JsonKey(name: "approved") bool? approved,
+      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "description") String? description,
+      @JsonKey(name: "expires_at") String? expiresAt,
+      @JsonKey(name: "id") String? id,
+      @JsonKey(name: "image_urls") List<String>? imageUrls,
       @JsonKey(name: "is_paid") bool? isPaid,
-      @JsonKey(name: "owner") Owner? owner});
+      @JsonKey(name: "owner") Owner? owner,
+      @JsonKey(name: "plan_days") int? planDays,
+      @JsonKey(name: "plan_name") String? planName,
+      @JsonKey(name: "terms_accepted") bool? termsAccepted,
+      @JsonKey(name: "user_id") String? userId});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -211,65 +211,49 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
-    Object? imageUrls = freezed,
-    Object? description = freezed,
-    Object? planName = freezed,
-    Object? planDays = freezed,
     Object? amount = freezed,
-    Object? termsAccepted = freezed,
-    Object? createdAt = freezed,
-    Object? expiresAt = freezed,
     Object? approved = freezed,
+    Object? createdAt = freezed,
+    Object? description = freezed,
+    Object? expiresAt = freezed,
+    Object? id = freezed,
+    Object? imageUrls = freezed,
     Object? isPaid = freezed,
     Object? owner = freezed,
+    Object? planDays = freezed,
+    Object? planName = freezed,
+    Object? termsAccepted = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_$BannerAdModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrls: freezed == imageUrls
-          ? _value._imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      planName: freezed == planName
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      planDays: freezed == planDays
-          ? _value.planDays
-          : planDays // ignore: cast_nullable_to_non_nullable
-              as int?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double?,
-      termsAccepted: freezed == termsAccepted
-          ? _value.termsAccepted
-          : termsAccepted // ignore: cast_nullable_to_non_nullable
+      approved: freezed == approved
+          ? _value.approved
+          : approved // ignore: cast_nullable_to_non_nullable
               as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       expiresAt: freezed == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      approved: freezed == approved
-          ? _value.approved
-          : approved // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrls: freezed == imageUrls
+          ? _value._imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       isPaid: freezed == isPaid
           ? _value.isPaid
           : isPaid // ignore: cast_nullable_to_non_nullable
@@ -278,6 +262,22 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner?,
+      planDays: freezed == planDays
+          ? _value.planDays
+          : planDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      planName: freezed == planName
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsAccepted: freezed == termsAccepted
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -286,19 +286,19 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BannerAdModelImpl extends _BannerAdModel {
   const _$BannerAdModelImpl(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "user_id") this.userId,
-      @JsonKey(name: "image_urls") final List<String>? imageUrls,
-      @JsonKey(name: "description") this.description,
-      @JsonKey(name: "plan_name") this.planName,
-      @JsonKey(name: "plan_days") this.planDays,
-      @JsonKey(name: "amount") this.amount,
-      @JsonKey(name: "terms_accepted") this.termsAccepted,
-      @JsonKey(name: "created_at") this.createdAt,
-      @JsonKey(name: "expires_at") this.expiresAt,
+      {@JsonKey(name: "amount") this.amount,
       @JsonKey(name: "approved") this.approved,
+      @JsonKey(name: "created_at") this.createdAt,
+      @JsonKey(name: "description") this.description,
+      @JsonKey(name: "expires_at") this.expiresAt,
+      @JsonKey(name: "id") this.id,
+      @JsonKey(name: "image_urls") final List<String>? imageUrls,
       @JsonKey(name: "is_paid") this.isPaid,
-      @JsonKey(name: "owner") this.owner})
+      @JsonKey(name: "owner") this.owner,
+      @JsonKey(name: "plan_days") this.planDays,
+      @JsonKey(name: "plan_name") this.planName,
+      @JsonKey(name: "terms_accepted") this.termsAccepted,
+      @JsonKey(name: "user_id") this.userId})
       : _imageUrls = imageUrls,
         super._();
 
@@ -306,11 +306,23 @@ class _$BannerAdModelImpl extends _BannerAdModel {
       _$$BannerAdModelImplFromJson(json);
 
   @override
+  @JsonKey(name: "amount")
+  final double? amount;
+  @override
+  @JsonKey(name: "approved")
+  final bool? approved;
+  @override
+  @JsonKey(name: "created_at")
+  final String? createdAt;
+  @override
+  @JsonKey(name: "description")
+  final String? description;
+  @override
+  @JsonKey(name: "expires_at")
+  final String? expiresAt;
+  @override
   @JsonKey(name: "id")
   final String? id;
-  @override
-  @JsonKey(name: "user_id")
-  final String? userId;
   final List<String>? _imageUrls;
   @override
   @JsonKey(name: "image_urls")
@@ -323,39 +335,27 @@ class _$BannerAdModelImpl extends _BannerAdModel {
   }
 
   @override
-  @JsonKey(name: "description")
-  final String? description;
-  @override
-  @JsonKey(name: "plan_name")
-  final String? planName;
-  @override
-  @JsonKey(name: "plan_days")
-  final int? planDays;
-  @override
-  @JsonKey(name: "amount")
-  final double? amount;
-  @override
-  @JsonKey(name: "terms_accepted")
-  final bool? termsAccepted;
-  @override
-  @JsonKey(name: "created_at")
-  final String? createdAt;
-  @override
-  @JsonKey(name: "expires_at")
-  final String? expiresAt;
-  @override
-  @JsonKey(name: "approved")
-  final bool? approved;
-  @override
   @JsonKey(name: "is_paid")
   final bool? isPaid;
   @override
   @JsonKey(name: "owner")
   final Owner? owner;
+  @override
+  @JsonKey(name: "plan_days")
+  final int? planDays;
+  @override
+  @JsonKey(name: "plan_name")
+  final String? planName;
+  @override
+  @JsonKey(name: "terms_accepted")
+  final bool? termsAccepted;
+  @override
+  @JsonKey(name: "user_id")
+  final String? userId;
 
   @override
   String toString() {
-    return 'BannerAdModel(id: $id, userId: $userId, imageUrls: $imageUrls, description: $description, planName: $planName, planDays: $planDays, amount: $amount, termsAccepted: $termsAccepted, createdAt: $createdAt, expiresAt: $expiresAt, approved: $approved, isPaid: $isPaid, owner: $owner)';
+    return 'BannerAdModel(amount: $amount, approved: $approved, createdAt: $createdAt, description: $description, expiresAt: $expiresAt, id: $id, imageUrls: $imageUrls, isPaid: $isPaid, owner: $owner, planDays: $planDays, planName: $planName, termsAccepted: $termsAccepted, userId: $userId)';
   }
 
   @override
@@ -363,46 +363,46 @@ class _$BannerAdModelImpl extends _BannerAdModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BannerAdModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            const DeepCollectionEquality()
-                .equals(other._imageUrls, _imageUrls) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.planName, planName) ||
-                other.planName == planName) &&
-            (identical(other.planDays, planDays) ||
-                other.planDays == planDays) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.termsAccepted, termsAccepted) ||
-                other.termsAccepted == termsAccepted) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.expiresAt, expiresAt) ||
-                other.expiresAt == expiresAt) &&
             (identical(other.approved, approved) ||
                 other.approved == approved) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrls, _imageUrls) &&
             (identical(other.isPaid, isPaid) || other.isPaid == isPaid) &&
-            (identical(other.owner, owner) || other.owner == owner));
+            (identical(other.owner, owner) || other.owner == owner) &&
+            (identical(other.planDays, planDays) ||
+                other.planDays == planDays) &&
+            (identical(other.planName, planName) ||
+                other.planName == planName) &&
+            (identical(other.termsAccepted, termsAccepted) ||
+                other.termsAccepted == termsAccepted) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      userId,
-      const DeepCollectionEquality().hash(_imageUrls),
-      description,
-      planName,
-      planDays,
       amount,
-      termsAccepted,
-      createdAt,
-      expiresAt,
       approved,
+      createdAt,
+      description,
+      expiresAt,
+      id,
+      const DeepCollectionEquality().hash(_imageUrls),
       isPaid,
-      owner);
+      owner,
+      planDays,
+      planName,
+      termsAccepted,
+      userId);
 
   @JsonKey(ignore: true)
   @override
@@ -420,63 +420,63 @@ class _$BannerAdModelImpl extends _BannerAdModel {
 
 abstract class _BannerAdModel extends BannerAdModel {
   const factory _BannerAdModel(
-      {@JsonKey(name: "id") final String? id,
-      @JsonKey(name: "user_id") final String? userId,
-      @JsonKey(name: "image_urls") final List<String>? imageUrls,
-      @JsonKey(name: "description") final String? description,
-      @JsonKey(name: "plan_name") final String? planName,
-      @JsonKey(name: "plan_days") final int? planDays,
-      @JsonKey(name: "amount") final double? amount,
-      @JsonKey(name: "terms_accepted") final bool? termsAccepted,
-      @JsonKey(name: "created_at") final String? createdAt,
-      @JsonKey(name: "expires_at") final String? expiresAt,
+      {@JsonKey(name: "amount") final double? amount,
       @JsonKey(name: "approved") final bool? approved,
+      @JsonKey(name: "created_at") final String? createdAt,
+      @JsonKey(name: "description") final String? description,
+      @JsonKey(name: "expires_at") final String? expiresAt,
+      @JsonKey(name: "id") final String? id,
+      @JsonKey(name: "image_urls") final List<String>? imageUrls,
       @JsonKey(name: "is_paid") final bool? isPaid,
-      @JsonKey(name: "owner") final Owner? owner}) = _$BannerAdModelImpl;
+      @JsonKey(name: "owner") final Owner? owner,
+      @JsonKey(name: "plan_days") final int? planDays,
+      @JsonKey(name: "plan_name") final String? planName,
+      @JsonKey(name: "terms_accepted") final bool? termsAccepted,
+      @JsonKey(name: "user_id") final String? userId}) = _$BannerAdModelImpl;
   const _BannerAdModel._() : super._();
 
   factory _BannerAdModel.fromJson(Map<String, dynamic> json) =
       _$BannerAdModelImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
-  String? get id;
-  @override
-  @JsonKey(name: "user_id")
-  String? get userId;
-  @override
-  @JsonKey(name: "image_urls")
-  List<String>? get imageUrls;
-  @override
-  @JsonKey(name: "description")
-  String? get description;
-  @override
-  @JsonKey(name: "plan_name")
-  String? get planName;
-  @override
-  @JsonKey(name: "plan_days")
-  int? get planDays;
-  @override
   @JsonKey(name: "amount")
   double? get amount;
   @override
-  @JsonKey(name: "terms_accepted")
-  bool? get termsAccepted;
+  @JsonKey(name: "approved")
+  bool? get approved;
   @override
   @JsonKey(name: "created_at")
   String? get createdAt;
   @override
+  @JsonKey(name: "description")
+  String? get description;
+  @override
   @JsonKey(name: "expires_at")
   String? get expiresAt;
   @override
-  @JsonKey(name: "approved")
-  bool? get approved;
+  @JsonKey(name: "id")
+  String? get id;
+  @override
+  @JsonKey(name: "image_urls")
+  List<String>? get imageUrls;
   @override
   @JsonKey(name: "is_paid")
   bool? get isPaid;
   @override
   @JsonKey(name: "owner")
   Owner? get owner;
+  @override
+  @JsonKey(name: "plan_days")
+  int? get planDays;
+  @override
+  @JsonKey(name: "plan_name")
+  String? get planName;
+  @override
+  @JsonKey(name: "terms_accepted")
+  bool? get termsAccepted;
+  @override
+  @JsonKey(name: "user_id")
+  String? get userId;
   @override
   @JsonKey(ignore: true)
   _$$BannerAdModelImplCopyWith<_$BannerAdModelImpl> get copyWith =>
@@ -489,22 +489,22 @@ Owner _$OwnerFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Owner {
-  @JsonKey(name: "id")
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "first_name")
-  String? get firstName => throw _privateConstructorUsedError;
-  @JsonKey(name: "last_name")
-  String? get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: "email")
-  String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone_number")
-  String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "date_of_birth")
   DateTime? get dateOfBirth => throw _privateConstructorUsedError;
-  @JsonKey(name: "username")
-  String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "email")
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "first_name")
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "id")
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
+  String? get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: "phone_number")
+  String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "profilepic")
   String? get profileImage => throw _privateConstructorUsedError;
+  @JsonKey(name: "username")
+  String? get username => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -517,14 +517,14 @@ abstract class $OwnerCopyWith<$Res> {
       _$OwnerCopyWithImpl<$Res, Owner>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "first_name") String? firstName,
-      @JsonKey(name: "last_name") String? lastName,
+      {@JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
       @JsonKey(name: "email") String? email,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "id") String? id,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "phone_number") String? phoneNumber,
-      @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
-      @JsonKey(name: "username") String? username,
-      @JsonKey(name: "profilepic") String? profileImage});
+      @JsonKey(name: "profilepic") String? profileImage,
+      @JsonKey(name: "username") String? username});
 }
 
 /// @nodoc
@@ -540,47 +540,47 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
     Object? dateOfBirth = freezed,
-    Object? username = freezed,
+    Object? email = freezed,
+    Object? firstName = freezed,
+    Object? id = freezed,
+    Object? lastName = freezed,
+    Object? phoneNumber = freezed,
     Object? profileImage = freezed,
+    Object? username = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateOfBirth: freezed == dateOfBirth
-          ? _value.dateOfBirth
-          : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -594,14 +594,14 @@ abstract class _$$OwnerImplCopyWith<$Res> implements $OwnerCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "first_name") String? firstName,
-      @JsonKey(name: "last_name") String? lastName,
+      {@JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
       @JsonKey(name: "email") String? email,
+      @JsonKey(name: "first_name") String? firstName,
+      @JsonKey(name: "id") String? id,
+      @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "phone_number") String? phoneNumber,
-      @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
-      @JsonKey(name: "username") String? username,
-      @JsonKey(name: "profilepic") String? profileImage});
+      @JsonKey(name: "profilepic") String? profileImage,
+      @JsonKey(name: "username") String? username});
 }
 
 /// @nodoc
@@ -615,47 +615,47 @@ class __$$OwnerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
     Object? dateOfBirth = freezed,
-    Object? username = freezed,
+    Object? email = freezed,
+    Object? firstName = freezed,
+    Object? id = freezed,
+    Object? lastName = freezed,
+    Object? phoneNumber = freezed,
     Object? profileImage = freezed,
+    Object? username = freezed,
   }) {
     return _then(_$OwnerImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateOfBirth: freezed == dateOfBirth
-          ? _value.dateOfBirth
-          : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -665,46 +665,46 @@ class __$$OwnerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OwnerImpl implements _Owner {
   const _$OwnerImpl(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "first_name") this.firstName,
-      @JsonKey(name: "last_name") this.lastName,
+      {@JsonKey(name: "date_of_birth") this.dateOfBirth,
       @JsonKey(name: "email") this.email,
+      @JsonKey(name: "first_name") this.firstName,
+      @JsonKey(name: "id") this.id,
+      @JsonKey(name: "last_name") this.lastName,
       @JsonKey(name: "phone_number") this.phoneNumber,
-      @JsonKey(name: "date_of_birth") this.dateOfBirth,
-      @JsonKey(name: "username") this.username,
-      @JsonKey(name: "profilepic") this.profileImage});
+      @JsonKey(name: "profilepic") this.profileImage,
+      @JsonKey(name: "username") this.username});
 
   factory _$OwnerImpl.fromJson(Map<String, dynamic> json) =>
       _$$OwnerImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
-  final String? id;
-  @override
-  @JsonKey(name: "first_name")
-  final String? firstName;
-  @override
-  @JsonKey(name: "last_name")
-  final String? lastName;
+  @JsonKey(name: "date_of_birth")
+  final DateTime? dateOfBirth;
   @override
   @JsonKey(name: "email")
   final String? email;
   @override
+  @JsonKey(name: "first_name")
+  final String? firstName;
+  @override
+  @JsonKey(name: "id")
+  final String? id;
+  @override
+  @JsonKey(name: "last_name")
+  final String? lastName;
+  @override
   @JsonKey(name: "phone_number")
   final String? phoneNumber;
   @override
-  @JsonKey(name: "date_of_birth")
-  final DateTime? dateOfBirth;
+  @JsonKey(name: "profilepic")
+  final String? profileImage;
   @override
   @JsonKey(name: "username")
   final String? username;
-  @override
-  @JsonKey(name: "profilepic")
-  final String? profileImage;
 
   @override
   String toString() {
-    return 'Owner(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, dateOfBirth: $dateOfBirth, username: $username, profileImage: $profileImage)';
+    return 'Owner(dateOfBirth: $dateOfBirth, email: $email, firstName: $firstName, id: $id, lastName: $lastName, phoneNumber: $phoneNumber, profileImage: $profileImage, username: $username)';
   }
 
   @override
@@ -712,26 +712,26 @@ class _$OwnerImpl implements _Owner {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OwnerImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.profileImage, profileImage) ||
-                other.profileImage == profileImage));
+                other.profileImage == profileImage) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email,
-      phoneNumber, dateOfBirth, username, profileImage);
+  int get hashCode => Object.hash(runtimeType, dateOfBirth, email, firstName,
+      id, lastName, phoneNumber, profileImage, username);
 
   @JsonKey(ignore: true)
   @override
@@ -749,41 +749,41 @@ class _$OwnerImpl implements _Owner {
 
 abstract class _Owner implements Owner {
   const factory _Owner(
-      {@JsonKey(name: "id") final String? id,
-      @JsonKey(name: "first_name") final String? firstName,
-      @JsonKey(name: "last_name") final String? lastName,
+      {@JsonKey(name: "date_of_birth") final DateTime? dateOfBirth,
       @JsonKey(name: "email") final String? email,
+      @JsonKey(name: "first_name") final String? firstName,
+      @JsonKey(name: "id") final String? id,
+      @JsonKey(name: "last_name") final String? lastName,
       @JsonKey(name: "phone_number") final String? phoneNumber,
-      @JsonKey(name: "date_of_birth") final DateTime? dateOfBirth,
-      @JsonKey(name: "username") final String? username,
-      @JsonKey(name: "profilepic") final String? profileImage}) = _$OwnerImpl;
+      @JsonKey(name: "profilepic") final String? profileImage,
+      @JsonKey(name: "username") final String? username}) = _$OwnerImpl;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
-  String? get id;
-  @override
-  @JsonKey(name: "first_name")
-  String? get firstName;
-  @override
-  @JsonKey(name: "last_name")
-  String? get lastName;
+  @JsonKey(name: "date_of_birth")
+  DateTime? get dateOfBirth;
   @override
   @JsonKey(name: "email")
   String? get email;
   @override
+  @JsonKey(name: "first_name")
+  String? get firstName;
+  @override
+  @JsonKey(name: "id")
+  String? get id;
+  @override
+  @JsonKey(name: "last_name")
+  String? get lastName;
+  @override
   @JsonKey(name: "phone_number")
   String? get phoneNumber;
   @override
-  @JsonKey(name: "date_of_birth")
-  DateTime? get dateOfBirth;
+  @JsonKey(name: "profilepic")
+  String? get profileImage;
   @override
   @JsonKey(name: "username")
   String? get username;
-  @override
-  @JsonKey(name: "profilepic")
-  String? get profileImage;
   @override
   @JsonKey(ignore: true)
   _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>

@@ -3220,9 +3220,15 @@ abstract class _SetLocale implements HomeEvent {
       throw _privateConstructorUsedError;
 }
 
+HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
+  return _HomeState.fromJson(json);
+}
+
 /// @nodoc
 mixin _$HomeState {
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   NotifyStatus? get notifyStatus => throw _privateConstructorUsedError;
   int get homeIndex => throw _privateConstructorUsedError;
   int get bottomNavIndex => throw _privateConstructorUsedError;
@@ -3232,9 +3238,12 @@ mixin _$HomeState {
   String get currentCity => throw _privateConstructorUsedError;
   String get currentState => throw _privateConstructorUsedError;
   String get currentVillage => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel>? get otherUserPosts =>
       throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoadingOtherUserPosts => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get hasMoreOtherUserPosts => throw _privateConstructorUsedError;
   Map<String, dynamic>? get activeFeedsFilter =>
       throw _privateConstructorUsedError;
@@ -3245,8 +3254,10 @@ mixin _$HomeState {
   Map<String, dynamic>? get activeSalesFilter =>
       throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Locale? get locale => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3258,7 +3269,8 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {bool isLoading,
+      {@JsonKey(includeFromJson: false, includeToJson: false) bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       NotifyStatus? notifyStatus,
       int homeIndex,
       int bottomNavIndex,
@@ -3268,15 +3280,18 @@ abstract class $HomeStateCopyWith<$Res> {
       String currentCity,
       String currentState,
       String currentVillage,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel>? otherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool isLoadingOtherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool hasMoreOtherUserPosts,
       Map<String, dynamic>? activeFeedsFilter,
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
       Map<String, dynamic>? activeSalesFilter,
       String searchQuery,
-      Locale? locale});
+      @JsonKey(includeFromJson: false, includeToJson: false) Locale? locale});
 }
 
 /// @nodoc
@@ -3402,7 +3417,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
+      {@JsonKey(includeFromJson: false, includeToJson: false) bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       NotifyStatus? notifyStatus,
       int homeIndex,
       int bottomNavIndex,
@@ -3412,15 +3428,18 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       String currentCity,
       String currentState,
       String currentVillage,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel>? otherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool isLoadingOtherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       bool hasMoreOtherUserPosts,
       Map<String, dynamic>? activeFeedsFilter,
       Map<String, dynamic>? activeServicesFilter,
       Map<String, dynamic>? activeRequestsFilter,
       Map<String, dynamic>? activeSalesFilter,
       String searchQuery,
-      Locale? locale});
+      @JsonKey(includeFromJson: false, includeToJson: false) Locale? locale});
 }
 
 /// @nodoc
@@ -3536,11 +3555,12 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {this.isLoading = false,
-      this.notifyStatus,
+      {@JsonKey(includeFromJson: false, includeToJson: false)
+      this.isLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.notifyStatus,
       this.homeIndex = 0,
       this.bottomNavIndex = 0,
       this.showAddButton = false,
@@ -3549,25 +3569,32 @@ class _$HomeStateImpl implements _HomeState {
       this.currentCity = '',
       this.currentState = '',
       this.currentVillage = '',
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel>? otherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.isLoadingOtherUserPosts = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       this.hasMoreOtherUserPosts = false,
       final Map<String, dynamic>? activeFeedsFilter,
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
       final Map<String, dynamic>? activeSalesFilter,
       this.searchQuery = '',
-      this.locale})
+      @JsonKey(includeFromJson: false, includeToJson: false) this.locale})
       : _otherUserPosts = otherUserPosts,
         _activeFeedsFilter = activeFeedsFilter,
         _activeServicesFilter = activeServicesFilter,
         _activeRequestsFilter = activeRequestsFilter,
         _activeSalesFilter = activeSalesFilter;
 
+  factory _$HomeStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HomeStateImplFromJson(json);
+
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final NotifyStatus? notifyStatus;
   @override
   @JsonKey()
@@ -3595,6 +3622,7 @@ class _$HomeStateImpl implements _HomeState {
   final String currentVillage;
   final List<FeedPostsResponseModel>? _otherUserPosts;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel>? get otherUserPosts {
     final value = _otherUserPosts;
     if (value == null) return null;
@@ -3604,10 +3632,10 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isLoadingOtherUserPosts;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool hasMoreOtherUserPosts;
   final Map<String, dynamic>? _activeFeedsFilter;
   @override
@@ -3657,6 +3685,7 @@ class _$HomeStateImpl implements _HomeState {
   @JsonKey()
   final String searchQuery;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final Locale? locale;
 
   @override
@@ -3709,6 +3738,7 @@ class _$HomeStateImpl implements _HomeState {
             (identical(other.locale, locale) || other.locale == locale));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -3738,11 +3768,20 @@ class _$HomeStateImpl implements _HomeState {
   @pragma('vm:prefer-inline')
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HomeStateImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {final bool isLoading,
+      {@JsonKey(includeFromJson: false, includeToJson: false)
+      final bool isLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final NotifyStatus? notifyStatus,
       final int homeIndex,
       final int bottomNavIndex,
@@ -3752,19 +3791,28 @@ abstract class _HomeState implements HomeState {
       final String currentCity,
       final String currentState,
       final String currentVillage,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel>? otherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isLoadingOtherUserPosts,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final bool hasMoreOtherUserPosts,
       final Map<String, dynamic>? activeFeedsFilter,
       final Map<String, dynamic>? activeServicesFilter,
       final Map<String, dynamic>? activeRequestsFilter,
       final Map<String, dynamic>? activeSalesFilter,
       final String searchQuery,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final Locale? locale}) = _$HomeStateImpl;
 
+  factory _HomeState.fromJson(Map<String, dynamic> json) =
+      _$HomeStateImpl.fromJson;
+
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   NotifyStatus? get notifyStatus;
   @override
   int get homeIndex;
@@ -3783,10 +3831,13 @@ abstract class _HomeState implements HomeState {
   @override
   String get currentVillage;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel>? get otherUserPosts;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isLoadingOtherUserPosts;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool get hasMoreOtherUserPosts;
   @override
   Map<String, dynamic>? get activeFeedsFilter;
@@ -3799,6 +3850,7 @@ abstract class _HomeState implements HomeState {
   @override
   String get searchQuery;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Locale? get locale;
   @override
   @JsonKey(ignore: true)

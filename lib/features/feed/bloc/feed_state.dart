@@ -3,9 +3,9 @@ part of 'feed_bloc.dart';
 @freezed
 class FeedState with _$FeedState {
   const factory FeedState({
-    @Default(false) bool isLoading,
-    @Default(false) bool isError,
-    @Default(false) bool isSuccess,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isError,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isSuccess,
     FeedPostsResponseModel? postDetails,
     @Default([]) List<FeedPostsResponseModel> similarProperties,
     @Default([]) List<FeedPostsResponseModel> similarPostsByCategory,
@@ -15,13 +15,15 @@ class FeedState with _$FeedState {
     @Default(<String>{}) Set<String> likedPostIds,
     @Default(0) int currentOffset,
     @Default(false) bool hasMoreData,
-    NotifyStatus? notifyStatus,
-    @Default(false) bool commentsLoading,
-    @Default(false) bool isPostLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) NotifyStatus? notifyStatus,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool commentsLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isPostLoading,
     @Default([]) List<FeedCommentModel> feedComments,
-    @Default(false) bool sendCommentLoading,
-    @Default(false) bool isFavouritesLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool sendCommentLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isFavouritesLoading,
     @Default(0) int myPropertiesOffset,
     @Default(false) bool hasMoreMyProperties,
   }) = _FeedState;
+
+  factory FeedState.fromJson(Map<String, dynamic> json) => _$FeedStateFromJson(json);
 }
