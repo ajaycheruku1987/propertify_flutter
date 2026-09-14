@@ -603,69 +603,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         _buildPromotionSection(postDetails, l10n),
 
-                        // Stats/Interaction Row (Luxury Style)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _buildInteractionButton(
-                                context: context,
-                                icon: postDetails.isLiked == true
-                                    ? FontAwesomeIcons.solidThumbsUp
-                                    : FontAwesomeIcons.thumbsUp,
-                                label: '${postDetails.likesCount ?? 0}',
-                                color: postDetails.isLiked == true
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey.shade700,
-                                onTap: () {
-                                  if (!context
-                                      .read<HomeBloc>()
-                                      .state
-                                      .showAddButton) {
-                                    CustomToast.showErrorToast(
-                                      msg: l10n.pleaseLoginToLike,
-                                    );
-                                    context.push(AuthScreen.routeName);
-                                    return;
-                                  }
-                                  context.read<FeedBloc>().add(
-                                    FeedEvent.likeProperty(
-                                      propertyId: postDetails.id!,
-                                    ),
-                                  );
-                                },
-                              ),
-                              _buildInteractionButton(
-                                context: context,
-                                icon: FontAwesomeIcons.comment,
-                                label: '${postDetails.commentsCount ?? 0}',
-                                color: Colors.grey.shade700,
-                                onTap: () {
-                                  CommentsBottomSheet.show(
-                                    context,
-                                    postDetails.id!,
-                                    context
-                                        .read<HomeBloc>()
-                                        .state
-                                        .showAddButton,
-                                  );
-                                },
-                              ),
-                              _buildInteractionButton(
-                                context: context,
-                                icon: FontAwesomeIcons.eye,
-                                label: '${postDetails.viewsCount ?? 0}',
-                                color: Colors.grey.shade700,
-                                onTap: null,
-                              ),
-                            ],
-                          ),
-                        ),
-
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Divider(height: 32),
+                          child: Divider(height: 16),
                         ),
 
                         // Description Section
@@ -768,8 +708,67 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   }
                                 },
                         ),
+                        // Stats/Interaction Row (Luxury Style)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildInteractionButton(
+                                context: context,
+                                icon: postDetails.isLiked == true
+                                    ? FontAwesomeIcons.solidThumbsUp
+                                    : FontAwesomeIcons.thumbsUp,
+                                label: '${postDetails.likesCount ?? 0}',
+                                color: postDetails.isLiked == true
+                                    ? Theme.of(context).primaryColor
+                                    : Colors.grey.shade700,
+                                onTap: () {
+                                  if (!context
+                                      .read<HomeBloc>()
+                                      .state
+                                      .showAddButton) {
+                                    CustomToast.showErrorToast(
+                                      msg: l10n.pleaseLoginToLike,
+                                    );
+                                    context.push(AuthScreen.routeName);
+                                    return;
+                                  }
+                                  context.read<FeedBloc>().add(
+                                    FeedEvent.likeProperty(
+                                      propertyId: postDetails.id!,
+                                    ),
+                                  );
+                                },
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.comment,
+                                label: '${postDetails.commentsCount ?? 0}',
+                                color: Colors.grey.shade700,
+                                onTap: () {
+                                  CommentsBottomSheet.show(
+                                    context,
+                                    postDetails.id!,
+                                    context
+                                        .read<HomeBloc>()
+                                        .state
+                                        .showAddButton,
+                                  );
+                                },
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.eye,
+                                label: '${postDetails.viewsCount ?? 0}',
+                                color: Colors.grey.shade700,
+                                onTap: null,
+                              ),
+                            ],
+                          ),
+                        ),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
 
                         context.read<ProfileBloc>().state.userProfile?.id ==
                                     postDetails.owner?.id &&
