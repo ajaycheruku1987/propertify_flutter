@@ -447,9 +447,16 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
         (similarProperties) {
           // Strict client-side filtering to ensure category matches and current post is excluded
           final filteredProperties = similarProperties.where((post) {
-            final matchesType = post.propertyType?.toLowerCase() == event.propertyType?.toLowerCase();
-            final matchesListing = event.listingType == null || post.listingType?.toLowerCase() == event.listingType?.toLowerCase();
+            final postType = post.propertyType?.trim().toLowerCase();
+            final targetType = event.propertyType?.trim().toLowerCase();
+            final postListing = post.listingType?.trim().toLowerCase();
+            final targetListing = event.listingType?.trim().toLowerCase();
+
+            final matchesType = postType == targetType;
+            // Relaxed listing type check: if target is null, match any; otherwise strict match
+            final matchesListing = targetListing == null || postListing == targetListing;
             final isNotCurrent = post.id != event.excludePostId;
+            
             return matchesType && isNotCurrent && matchesListing;
           }).toList();
 
@@ -599,9 +606,16 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
         (similarPosts) {
           // Strict client-side filtering to ensure category matches and current post is excluded
           final filteredPosts = similarPosts.where((post) {
-            final matchesType = post.propertyType?.toLowerCase() == event.propertyType?.toLowerCase();
-            final matchesListing = event.listingType == null || post.listingType?.toLowerCase() == event.listingType?.toLowerCase();
+            final postType = post.propertyType?.trim().toLowerCase();
+            final targetType = event.propertyType?.trim().toLowerCase();
+            final postListing = post.listingType?.trim().toLowerCase();
+            final targetListing = event.listingType?.trim().toLowerCase();
+
+            final matchesType = postType == targetType;
+            // Relaxed listing type check: if target is null, match any; otherwise strict match
+            final matchesListing = targetListing == null || postListing == targetListing;
             final isNotCurrent = post.id != event.excludePostId;
+            
             return matchesType && isNotCurrent && matchesListing;
           }).toList();
 

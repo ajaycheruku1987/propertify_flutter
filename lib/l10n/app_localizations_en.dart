@@ -910,4 +910,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get construction => 'Construction';
+
+  @override
+  String get yourPost => 'Your Post';
+
+  @override
+  String get viewingYourOwnPost => 'You are viewing your own post';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get unread => 'Unread';
+
+  @override
+  String get read => 'Read';
+
+  @override
+  String get markAllAsRead => 'Mark all as read';
+
+  @override
+  String get noNotifications => 'No notifications yet';
 }

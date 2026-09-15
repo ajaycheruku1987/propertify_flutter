@@ -317,5 +317,12 @@
   "leasing": "Leasing",
   "house": "House",
   "land": "Land",
-  "construction": "Construction"
+  "construction": "Construction",
+  "yourPost": "Your Post",
+  "viewingYourOwnPost": "You are viewing your own post",
+  "notifications": "Notifications",
+  "unread": "Unread",
+  "read": "Read",
+  "markAllAsRead": "Mark all as read",
+  "noNotifications": "No notifications yet"
 }

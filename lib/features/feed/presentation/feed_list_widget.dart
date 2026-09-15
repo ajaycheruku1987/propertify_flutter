@@ -22,6 +22,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'dart:async';
 import 'package:propertify/core/constants/app_categories.dart';
+import '../../../core/notification_service.dart';
 
 class FeedListWidget extends StatefulWidget {
   final VoidCallback? onRefresh;
@@ -450,6 +451,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildPropertyCard(dynamic feed) {
+    final l10n = AppLocalizations.of(context)!;
     return PropertyCard(
       imageUrls: (feed.imageUrls != null && feed.imageUrls!.isNotEmpty)
           ? feed.imageUrls!

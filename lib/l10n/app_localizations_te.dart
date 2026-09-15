@@ -916,4 +916,25 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get construction => 'నిర్మాణం';
+
+  @override
+  String get yourPost => 'మీ పోస్ట్';
+
+  @override
+  String get viewingYourOwnPost => 'మీరు మీ స్వంత పోస్ట్‌ను చూస్తున్నారు';
+
+  @override
+  String get notifications => 'నోటిఫికేషన్లు';
+
+  @override
+  String get unread => 'చదవనివి';
+
+  @override
+  String get read => 'చదివినవి';
+
+  @override
+  String get markAllAsRead => 'అన్నీ చదివినట్లుగా గుర్తించు';
+
+  @override
+  String get noNotifications => 'ఇంకా నోటిఫికేషన్‌లు లేవు';
 }

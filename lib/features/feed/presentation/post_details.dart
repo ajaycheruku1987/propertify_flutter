@@ -14,6 +14,7 @@ import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/feed/repo/feed_repo.dart';
+import 'package:propertify/core/notification_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'widgets/comments_bottom_sheet.dart';
@@ -41,6 +42,7 @@ class PostDetailsScreen extends StatefulWidget {
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
   String? _fetchedSimilarityPostId;
+  String? _notifiedPostId;
 
   @override
   void initState() {
@@ -512,35 +514,49 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             return;
           }
 
-          // When post details are loaded, fetch similar posts and similar posts by category
-          if (state.postDetails != null &&
-              state.postDetails?.id != null &&
-              state.postDetails?.propertyType != null &&
-              _fetchedSimilarityPostId != state.postDetails!.id) {
+          final postDetails = state.postDetails;
+          if (postDetails != null) {
+            // Trigger notification if it's user's own post and we haven't notified for this ID yet
+            final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
+            final isOwner = postDetails.owner?.id != null && postDetails.owner?.id == currentUserId;
             
-            // Mark as fetched to prevent loops
-            _fetchedSimilarityPostId = state.postDetails!.id;
+            if (isOwner && _notifiedPostId != postDetails.id) {
+              _notifiedPostId = postDetails.id;
+              NotificationService().showLocalNotification(
+                title: l10n.yourPost,
+                body: '${l10n.viewingYourOwnPost}: ${postDetails.title}',
+              );
+            }
 
-            // Fetch similar posts by category
-            context.read<FeedBloc>().add(
-              FeedEvent.getSimilarPostsByCategoryEvent(
-                propertyType: state.postDetails!.propertyType,
-                listingType: state.postDetails!.listingType,
-                excludePostId: widget.postId,
-                limit: 10,
-              ),
-            );
+            // When post details are loaded, fetch similar posts and similar posts by category
+            if (postDetails.id != null &&
+                postDetails.propertyType != null &&
+                _fetchedSimilarityPostId != postDetails.id) {
+              
+              // Mark as fetched to prevent loops
+              _fetchedSimilarityPostId = postDetails.id;
 
-            // Fetch similar properties
-            context.read<FeedBloc>().add(
-              FeedEvent.getSimilarPropertiesEvent(
-                propertyType: state.postDetails!.propertyType,
-                listingType: state.postDetails!.listingType,
-                city: state.postDetails!.city,
-                excludePostId: widget.postId,
-                limit: 6,
-              ),
-            );
+              // Fetch similar posts by category
+              context.read<FeedBloc>().add(
+                FeedEvent.getSimilarPostsByCategoryEvent(
+                  propertyType: postDetails.propertyType,
+                  listingType: postDetails.listingType,
+                  excludePostId: widget.postId,
+                  limit: 10,
+                ),
+              );
+
+              // Fetch similar properties
+              context.read<FeedBloc>().add(
+                FeedEvent.getSimilarPropertiesEvent(
+                  propertyType: postDetails.propertyType,
+                  listingType: postDetails.listingType,
+                  city: postDetails.city,
+                  excludePostId: widget.postId,
+                  limit: 6,
+                ),
+              );
+            }
           }
         },
         child: BlocBuilder<FeedBloc, FeedState>(

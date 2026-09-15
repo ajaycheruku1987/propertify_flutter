@@ -293,5 +293,12 @@
   "leasing": "लीजिंग",
   "house": "घर",
   "land": "भूमि",
-  "construction": "निर्माण"
+  "construction": "निर्माण",
+  "yourPost": "आपकी पोस्ट",
+  "viewingYourOwnPost": "आप अपनी खुद की पोस्ट देख रहे हैं",
+  "notifications": "सूचनाएं",
+  "unread": "अपठित",
+  "read": "पढ़ा हुआ",
+  "markAllAsRead": "सभी को पढ़ा हुआ मानें",
+  "noNotifications": "अभी तक कोई सूचना नहीं"
 }

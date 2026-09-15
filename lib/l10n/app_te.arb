@@ -293,5 +293,12 @@
   "leasing": "లీజింగ్",
   "house": "ఇల్లు",
   "land": "భూమి",
-  "construction": "నిర్మాణం"
+  "construction": "నిర్మాణం",
+  "yourPost": "మీ పోస్ట్",
+  "viewingYourOwnPost": "మీరు మీ స్వంత పోస్ట్‌ను చూస్తున్నారు",
+  "notifications": "నోటిఫికేషన్లు",
+  "unread": "చదవనివి",
+  "read": "చదివినవి",
+  "markAllAsRead": "అన్నీ చదివినట్లుగా గుర్తించు",
+  "noNotifications": "ఇంకా నోటిఫికేషన్‌లు లేవు"
 }

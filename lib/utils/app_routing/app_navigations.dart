@@ -75,6 +75,7 @@ import '../../features/services/presentation/my_services_screen.dart';
 import '../../features/services/presentation/edit_service_screen.dart';
 import '../../features/feed/presentation/edit_feed_screen.dart';
 import '../../features/feed/presentation/favorites_screen.dart';
+import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/requests/presentation/my_requests_screen.dart';
 import '../../features/home/models/feed_posts_response_model.dart';
 import '../../features/reels/presentation/create_reel.dart';

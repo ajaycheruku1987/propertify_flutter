@@ -22,8 +22,10 @@ import 'package:propertify/features/reels/bloc/reels_bloc.dart';
 import 'package:propertify/features/reels/repo/reels_repo.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/company/repo/company_repository.dart';
+import 'package:propertify/features/notifications/bloc/notifications_bloc.dart';
 
 final List<BlocProvider> blocInjectors = [
+  BlocProvider<NotificationsBloc>(create: (context) => NotificationsBloc()),
   BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
   BlocProvider<CreatePostBloc>(
     create: (context) => CreatePostBloc(CreatePostRepositoryImpl()),

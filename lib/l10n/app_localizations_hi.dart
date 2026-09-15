@@ -914,4 +914,25 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get construction => 'निर्माण';
+
+  @override
+  String get yourPost => 'आपकी पोस्ट';
+
+  @override
+  String get viewingYourOwnPost => 'आप अपनी खुद की पोस्ट देख रहे हैं';
+
+  @override
+  String get notifications => 'सूचनाएं';
+
+  @override
+  String get unread => 'अपठित';
+
+  @override
+  String get read => 'पढ़ा हुआ';
+
+  @override
+  String get markAllAsRead => 'सभी को पढ़ा हुआ मानें';
+
+  @override
+  String get noNotifications => 'अभी तक कोई सूचना नहीं';
 }

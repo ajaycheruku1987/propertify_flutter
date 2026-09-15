@@ -214,8 +214,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           ),
           const SizedBox(width: 8),
           _buildLanguageSelector(),
-          if (false)
-            Stack(
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () {
+              // TODO: Navigate to Notifications screen
+            },
+            child: Stack(
               children: [
                 Container(
                   padding: const EdgeInsets.all(8),
@@ -224,7 +228,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(color: Colors.grey.shade300),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.notifications_outlined,
                     size: 24,
                     color: Colors.black54,
@@ -244,6 +248,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                 ),
               ],
             ),
+          ),
         ],
       ),
     );

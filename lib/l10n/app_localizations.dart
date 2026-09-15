@@ -1863,6 +1863,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Construction'**
   String get construction;
+
+  /// No description provided for @yourPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Post'**
+  String get yourPost;
+
+  /// No description provided for @viewingYourOwnPost.
+  ///
+  /// In en, this message translates to:
+  /// **'You are viewing your own post'**
+  String get viewingYourOwnPost;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @unread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unread'**
+  String get unread;
+
+  /// No description provided for @read.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get read;
+
+  /// No description provided for @markAllAsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all as read'**
+  String get markAllAsRead;
+
+  /// No description provided for @noNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications yet'**
+  String get noNotifications;
 }
 
 class _AppLocalizationsDelegate
