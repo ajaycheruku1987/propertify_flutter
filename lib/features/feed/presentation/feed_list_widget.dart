@@ -148,6 +148,14 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeBloc>().state;
     final l10n = AppLocalizations.of(context)!;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Calculate dynamic aspect ratio to remove extra space on different devices
+    // horizontal padding 16*2=32, cross axis spacing 15
+    final double itemWidth = (screenWidth - 32 - 15) / 2;
+    // Estimated height: Image(110) + Content(~90) + Actions(~30) = ~230
+    final double estimatedHeight = 230;
+    final double dynamicAspectRatio = itemWidth / estimatedHeight;
 
     // Derive selected category from active filter
     final activeFilter = homeState.activeFeedsFilter;
@@ -306,9 +314,9 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       sliver: SliverGrid(
                         gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                            SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              childAspectRatio: 0.68,
+                              childAspectRatio: dynamicAspectRatio,
                               crossAxisSpacing: 15,
                               mainAxisSpacing: 15,
                             ),

@@ -49,7 +49,7 @@ class SimilarPostsByCategory extends StatelessWidget {
 
           // Horizontal Grid View
           SizedBox(
-            height: 250, // Adjusted height to fit the compact card
+            height: 235, // Adjusted height to fit the compact card without extra space
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: similarPosts.length,

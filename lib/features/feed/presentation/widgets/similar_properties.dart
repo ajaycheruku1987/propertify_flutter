@@ -35,7 +35,7 @@ class SimilarProperties extends StatelessWidget {
 
           // Similar Properties List
           SizedBox(
-            height: 200,
+            height: 180, // Adjusted height to remove extra space below price
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: similarProperties.length,
