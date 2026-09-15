@@ -93,13 +93,13 @@ class AgentInfo extends StatelessWidget {
                           width: 60,
                           height: 60,
                           fit: BoxFit.cover,
+                          memCacheWidth: 180,
+                          maxWidthDiskCache: 200,
+                          fadeInDuration: const Duration(milliseconds: 300),
                           placeholder: (context, url) => Container(
                             width: 60,
                             height: 60,
-                            color: Colors.grey[200],
-                            child: const Center(
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            ),
+                            color: Colors.grey[100],
                           ),
                           errorWidget: (context, url, error) => Container(
                             width: 60,

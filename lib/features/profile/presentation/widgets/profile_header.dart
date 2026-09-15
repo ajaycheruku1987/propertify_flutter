@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/user_profile_model.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ProfileHeader extends StatelessWidget {
   final UserProfileModel? userProfile;
@@ -41,14 +40,10 @@ class ProfileHeader extends StatelessWidget {
                           imageUrl: userProfile!.profilepic!,
                           key: ValueKey(userProfile!.profilepic),
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Container(
-                              width: 120,
-                              height: 120,
-                              color: Colors.white,
-                            ),
+                          placeholder: (context, url) => Container(
+                            width: 120,
+                            height: 120,
+                            color: Colors.grey[100],
                           ),
                           errorWidget: (context, url, error) => _buildDefaultAvatar(),
                         )

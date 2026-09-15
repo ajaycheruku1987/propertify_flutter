@@ -20,7 +20,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
-import 'widgets/profile_shimmer.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
@@ -61,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
               if (state.isLoading && state.userProfile == null) {
-                return const ProfileShimmer();
+                return const Center(child: CircularProgressIndicator());
               }
               return SingleChildScrollView(
                 child: Column(

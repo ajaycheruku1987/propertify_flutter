@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/utils/extensions/date_time_extensions.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../bloc/feed_bloc.dart';
 import '../../models/feed_comment_model.dart';
 
@@ -109,11 +108,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
             child: BlocBuilder<FeedBloc, FeedState>(
               builder: (context, state) {
                 if (state.commentsLoading) {
-                  return ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: 3,
-                    itemBuilder: (context, index) => _buildCommentShimmer(),
-                  );
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (state.feedComments.isEmpty) {
@@ -459,63 +454,5 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
     } catch (e) {
       return '4m ago';
     }
-  }
-
-  Widget _buildCommentShimmer() {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Avatar shimmer
-            Container(
-              width: 40,
-              height: 40,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 120,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    width: double.infinity,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Container(
-                    width: double.infinity * 0.7,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

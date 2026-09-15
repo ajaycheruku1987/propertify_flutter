@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
@@ -430,14 +429,10 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                         ? CachedNetworkImage(
                             imageUrl: imageUrl,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Container(
-                                width: 80,
-                                height: 80,
-                                color: Colors.white,
-                              ),
+                            placeholder: (context, url) => Container(
+                              width: 80,
+                              height: 80,
+                              color: Colors.grey[100],
                             ),
                             errorWidget: (context, url, error) =>
                                 const LogoPlaceholder(),
@@ -886,14 +881,10 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
                         imageUrl: project.imageUrls!.first,
                         width: double.infinity,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[100]!,
-                          child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            color: Colors.white,
-                          ),
+                        placeholder: (context, url) => Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.grey[100],
                         ),
                         errorWidget: (context, url, error) =>
                             const LogoPlaceholder(),

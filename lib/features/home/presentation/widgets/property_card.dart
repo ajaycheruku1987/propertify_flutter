@@ -10,7 +10,6 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/core/app_theme.dart';
 import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PropertyCard extends StatefulWidget {
   final List<String> imageUrls;
@@ -155,16 +154,13 @@ class _PropertyCardState extends State<PropertyCard> {
                             imageUrl: widget.imageUrls[index],
                             fit: BoxFit.cover,
                             width: double.infinity,
-                            memCacheWidth: 600,
-                            maxWidthDiskCache: 800,
-                            placeholder: (context, url) => Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Container(
-                                width: double.infinity,
-                                height: 200,
-                                color: Colors.white,
-                              ),
+                            memCacheWidth: 500,
+                            maxWidthDiskCache: 600,
+                            fadeInDuration: const Duration(milliseconds: 300),
+                            placeholder: (context, url) => Container(
+                              width: double.infinity,
+                              height: 200,
+                              color: Colors.grey[100],
                             ),
                             errorWidget: (context, url, error) => const LogoPlaceholder(
                               width: double.infinity,

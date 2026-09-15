@@ -3,7 +3,6 @@ import 'package:propertify/utils/env.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'full_screen_image_viewer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ImageCarousel extends StatefulWidget {
   final List<String> images;
@@ -92,16 +91,14 @@ class _ImageCarouselState extends State<ImageCarousel> {
                               CachedNetworkImage(
                                 imageUrl: imageUrl,
                                 fit: BoxFit.cover,
-                                memCacheWidth: 1000,
-                                maxWidthDiskCache: 1200,
-                                placeholder: (context, url) => Shimmer.fromColors(
-                                  baseColor: Colors.grey[300]!,
-                                  highlightColor: Colors.grey[100]!,
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    color: Colors.white,
-                                  ),
+                                memCacheWidth: 800,
+                                maxWidthDiskCache: 800,
+                                fadeInDuration: const Duration(milliseconds: 300),
+                                fadeOutDuration: const Duration(milliseconds: 100),
+                                placeholder: (context, url) => Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  color: Colors.grey[100],
                                 ),
                                 errorWidget: (context, url, error) =>
                                     const LogoPlaceholder(),
@@ -244,16 +241,13 @@ class _ImageCarouselState extends State<ImageCarousel> {
                         child: CachedNetworkImage(
                           imageUrl: imageUrl,
                           fit: BoxFit.cover,
-                          memCacheWidth: 150,
-                          maxWidthDiskCache: 200,
-                          placeholder: (context, url) => Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Container(
-                              width: 72,
-                              height: 72,
-                              color: Colors.white,
-                            ),
+                          memCacheWidth: 120,
+                          maxWidthDiskCache: 120,
+                          fadeInDuration: const Duration(milliseconds: 200),
+                          placeholder: (context, url) => Container(
+                            width: 72,
+                            height: 72,
+                            color: Colors.grey[100],
                           ),
                           errorWidget: (context, url, error) => const LogoPlaceholder(),
                         ),
