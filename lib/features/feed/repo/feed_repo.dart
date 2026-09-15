@@ -87,6 +87,7 @@ class FeedRepo {
   Future<Either<Failure, List<FeedPostsResponseModel>>> getSimilarProperties({
     String? city,
     String? propertyType,
+    String? listingType,
     String? excludePostId,
     int? limit,
   }) async {
@@ -94,10 +95,27 @@ class FeedRepo {
       // Build query parameters map
       Map<String, dynamic> queryParams = {};
 
-      if (city != null) queryParams['city'] = city;
-      if (propertyType != null) queryParams['property_type'] = propertyType;
-      if (excludePostId != null) queryParams['exclude_id'] = excludePostId;
+      if (city != null && city.isNotEmpty) {
+        // Clean leading commas and spaces
+        String cleanedCity = city.trim();
+        while (cleanedCity.startsWith(',')) {
+          cleanedCity = cleanedCity.replaceFirst(RegExp(r'^,\s*'), '').trim();
+        }
+        if (cleanedCity.isNotEmpty) {
+          queryParams['city'] = cleanedCity;
+        }
+      }
+
+      if (propertyType != null && propertyType.isNotEmpty && propertyType != 'All') {
+        queryParams['property_type'] = propertyType;
+      }
+      
+      if (listingType != null && listingType.isNotEmpty && listingType != 'All') {
+        queryParams['listing_type'] = listingType;
+      }
+
       if (limit != null) queryParams['limit'] = limit;
+      if (excludePostId != null) queryParams['exclude_id'] = excludePostId;
 
       // Build query string manually since get method doesn't support queryParameters
       String queryString = '';
@@ -111,7 +129,7 @@ class FeedRepo {
                 .join('&');
       }
 
-      final response = await ftPyroApiRequest.get('/posts/similar$queryString');
+      final response = await ftPyroApiRequest.get('/feeds$queryString');
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),

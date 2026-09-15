@@ -33,7 +33,7 @@ mixin _$FeedEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -44,8 +44,8 @@ mixin _$FeedEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -93,8 +93,8 @@ mixin _$FeedEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -104,7 +104,8 @@ mixin _$FeedEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -152,8 +153,8 @@ mixin _$FeedEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -163,7 +164,8 @@ mixin _$FeedEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -338,7 +340,7 @@ class _$ResetImpl implements _Reset {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -349,8 +351,8 @@ class _$ResetImpl implements _Reset {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -401,8 +403,8 @@ class _$ResetImpl implements _Reset {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -412,7 +414,8 @@ class _$ResetImpl implements _Reset {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -463,8 +466,8 @@ class _$ResetImpl implements _Reset {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -474,7 +477,8 @@ class _$ResetImpl implements _Reset {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -777,7 +781,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -788,8 +792,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -841,8 +845,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -852,7 +856,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -904,8 +909,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -915,7 +920,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -1145,7 +1151,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -1156,8 +1162,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -1208,8 +1214,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -1219,7 +1225,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -1270,8 +1277,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -1281,7 +1288,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -1420,7 +1428,11 @@ abstract class _$$GetSimilarPropertiesEventImplCopyWith<$Res> {
       __$$GetSimilarPropertiesEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String? city, String? propertyType, String? excludePostId, int? limit});
+      {String? city,
+      String? propertyType,
+      String? listingType,
+      String? excludePostId,
+      int? limit});
 }
 
 /// @nodoc
@@ -1437,6 +1449,7 @@ class __$$GetSimilarPropertiesEventImplCopyWithImpl<$Res>
   $Res call({
     Object? city = freezed,
     Object? propertyType = freezed,
+    Object? listingType = freezed,
     Object? excludePostId = freezed,
     Object? limit = freezed,
   }) {
@@ -1448,6 +1461,10 @@ class __$$GetSimilarPropertiesEventImplCopyWithImpl<$Res>
       propertyType: freezed == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      listingType: freezed == listingType
+          ? _value.listingType
+          : listingType // ignore: cast_nullable_to_non_nullable
               as String?,
       excludePostId: freezed == excludePostId
           ? _value.excludePostId
@@ -1465,12 +1482,18 @@ class __$$GetSimilarPropertiesEventImplCopyWithImpl<$Res>
 
 class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
   const _$GetSimilarPropertiesEventImpl(
-      {this.city, this.propertyType, this.excludePostId, this.limit});
+      {this.city,
+      this.propertyType,
+      this.listingType,
+      this.excludePostId,
+      this.limit});
 
   @override
   final String? city;
   @override
   final String? propertyType;
+  @override
+  final String? listingType;
   @override
   final String? excludePostId;
   @override
@@ -1478,7 +1501,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
 
   @override
   String toString() {
-    return 'FeedEvent.getSimilarPropertiesEvent(city: $city, propertyType: $propertyType, excludePostId: $excludePostId, limit: $limit)';
+    return 'FeedEvent.getSimilarPropertiesEvent(city: $city, propertyType: $propertyType, listingType: $listingType, excludePostId: $excludePostId, limit: $limit)';
   }
 
   @override
@@ -1489,14 +1512,16 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
+            (identical(other.listingType, listingType) ||
+                other.listingType == listingType) &&
             (identical(other.excludePostId, excludePostId) ||
                 other.excludePostId == excludePostId) &&
             (identical(other.limit, limit) || other.limit == limit));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, city, propertyType, excludePostId, limit);
+  int get hashCode => Object.hash(
+      runtimeType, city, propertyType, listingType, excludePostId, limit);
 
   @JsonKey(ignore: true)
   @override
@@ -1523,7 +1548,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -1534,8 +1559,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -1566,7 +1591,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
   }) {
-    return getSimilarPropertiesEvent(city, propertyType, excludePostId, limit);
+    return getSimilarPropertiesEvent(
+        city, propertyType, listingType, excludePostId, limit);
   }
 
   @override
@@ -1586,8 +1612,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -1597,7 +1623,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -1629,7 +1656,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
     TResult? Function(String propertyId)? deleteProperty,
   }) {
     return getSimilarPropertiesEvent?.call(
-        city, propertyType, excludePostId, limit);
+        city, propertyType, listingType, excludePostId, limit);
   }
 
   @override
@@ -1649,8 +1676,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -1660,7 +1687,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -1694,7 +1722,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
   }) {
     if (getSimilarPropertiesEvent != null) {
       return getSimilarPropertiesEvent(
-          city, propertyType, excludePostId, limit);
+          city, propertyType, listingType, excludePostId, limit);
     }
     return orElse();
   }
@@ -1786,11 +1814,13 @@ abstract class _GetSimilarPropertiesEvent implements FeedEvent {
   const factory _GetSimilarPropertiesEvent(
       {final String? city,
       final String? propertyType,
+      final String? listingType,
       final String? excludePostId,
       final int? limit}) = _$GetSimilarPropertiesEventImpl;
 
   String? get city;
   String? get propertyType;
+  String? get listingType;
   String? get excludePostId;
   int? get limit;
   @JsonKey(ignore: true)
@@ -1878,7 +1908,7 @@ class _$LikePropertyImpl implements _LikeProperty {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -1889,8 +1919,8 @@ class _$LikePropertyImpl implements _LikeProperty {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -1941,8 +1971,8 @@ class _$LikePropertyImpl implements _LikeProperty {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -1952,7 +1982,8 @@ class _$LikePropertyImpl implements _LikeProperty {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -2003,8 +2034,8 @@ class _$LikePropertyImpl implements _LikeProperty {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -2014,7 +2045,8 @@ class _$LikePropertyImpl implements _LikeProperty {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -2226,7 +2258,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -2237,8 +2269,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -2289,8 +2321,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -2300,7 +2332,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -2351,8 +2384,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -2362,7 +2395,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -2584,7 +2618,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -2595,8 +2629,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -2647,8 +2681,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -2658,7 +2692,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -2709,8 +2744,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -2720,7 +2755,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -2934,7 +2970,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -2945,8 +2981,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -2997,8 +3033,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -3008,7 +3044,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -3059,8 +3096,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -3070,7 +3107,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -3254,7 +3292,7 @@ class _$IsLoadingImpl implements _IsLoading {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -3265,8 +3303,8 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -3317,8 +3355,8 @@ class _$IsLoadingImpl implements _IsLoading {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -3328,7 +3366,8 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -3379,8 +3418,8 @@ class _$IsLoadingImpl implements _IsLoading {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -3390,7 +3429,8 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -3603,7 +3643,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -3614,8 +3654,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -3666,8 +3706,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -3677,7 +3717,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -3728,8 +3769,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -3739,7 +3780,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -3924,7 +3966,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -3935,8 +3977,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -3987,8 +4029,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -3998,7 +4040,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -4049,8 +4092,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -4060,7 +4103,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -4266,7 +4310,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -4277,8 +4321,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -4329,8 +4373,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -4340,7 +4384,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -4391,8 +4436,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -4402,7 +4447,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -4540,7 +4586,11 @@ abstract class _$$GetSimilarPostsByCategoryEventImplCopyWith<$Res> {
           $Res Function(_$GetSimilarPostsByCategoryEventImpl) then) =
       __$$GetSimilarPostsByCategoryEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? propertyType, String? excludePostId, int? limit});
+  $Res call(
+      {String? propertyType,
+      String? listingType,
+      String? excludePostId,
+      int? limit});
 }
 
 /// @nodoc
@@ -4556,6 +4606,7 @@ class __$$GetSimilarPostsByCategoryEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? propertyType = freezed,
+    Object? listingType = freezed,
     Object? excludePostId = freezed,
     Object? limit = freezed,
   }) {
@@ -4563,6 +4614,10 @@ class __$$GetSimilarPostsByCategoryEventImplCopyWithImpl<$Res>
       propertyType: freezed == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      listingType: freezed == listingType
+          ? _value.listingType
+          : listingType // ignore: cast_nullable_to_non_nullable
               as String?,
       excludePostId: freezed == excludePostId
           ? _value.excludePostId
@@ -4581,10 +4636,12 @@ class __$$GetSimilarPostsByCategoryEventImplCopyWithImpl<$Res>
 class _$GetSimilarPostsByCategoryEventImpl
     implements _GetSimilarPostsByCategoryEvent {
   const _$GetSimilarPostsByCategoryEventImpl(
-      {this.propertyType, this.excludePostId, this.limit});
+      {this.propertyType, this.listingType, this.excludePostId, this.limit});
 
   @override
   final String? propertyType;
+  @override
+  final String? listingType;
   @override
   final String? excludePostId;
   @override
@@ -4592,7 +4649,7 @@ class _$GetSimilarPostsByCategoryEventImpl
 
   @override
   String toString() {
-    return 'FeedEvent.getSimilarPostsByCategoryEvent(propertyType: $propertyType, excludePostId: $excludePostId, limit: $limit)';
+    return 'FeedEvent.getSimilarPostsByCategoryEvent(propertyType: $propertyType, listingType: $listingType, excludePostId: $excludePostId, limit: $limit)';
   }
 
   @override
@@ -4602,6 +4659,8 @@ class _$GetSimilarPostsByCategoryEventImpl
             other is _$GetSimilarPostsByCategoryEventImpl &&
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
+            (identical(other.listingType, listingType) ||
+                other.listingType == listingType) &&
             (identical(other.excludePostId, excludePostId) ||
                 other.excludePostId == excludePostId) &&
             (identical(other.limit, limit) || other.limit == limit));
@@ -4609,7 +4668,7 @@ class _$GetSimilarPostsByCategoryEventImpl
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, propertyType, excludePostId, limit);
+      Object.hash(runtimeType, propertyType, listingType, excludePostId, limit);
 
   @JsonKey(ignore: true)
   @override
@@ -4637,7 +4696,7 @@ class _$GetSimilarPostsByCategoryEventImpl
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -4648,8 +4707,8 @@ class _$GetSimilarPostsByCategoryEventImpl
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -4680,7 +4739,8 @@ class _$GetSimilarPostsByCategoryEventImpl
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
   }) {
-    return getSimilarPostsByCategoryEvent(propertyType, excludePostId, limit);
+    return getSimilarPostsByCategoryEvent(
+        propertyType, listingType, excludePostId, limit);
   }
 
   @override
@@ -4700,8 +4760,8 @@ class _$GetSimilarPostsByCategoryEventImpl
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -4711,7 +4771,8 @@ class _$GetSimilarPostsByCategoryEventImpl
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -4743,7 +4804,7 @@ class _$GetSimilarPostsByCategoryEventImpl
     TResult? Function(String propertyId)? deleteProperty,
   }) {
     return getSimilarPostsByCategoryEvent?.call(
-        propertyType, excludePostId, limit);
+        propertyType, listingType, excludePostId, limit);
   }
 
   @override
@@ -4763,8 +4824,8 @@ class _$GetSimilarPostsByCategoryEventImpl
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -4774,7 +4835,8 @@ class _$GetSimilarPostsByCategoryEventImpl
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -4807,7 +4869,8 @@ class _$GetSimilarPostsByCategoryEventImpl
     required TResult orElse(),
   }) {
     if (getSimilarPostsByCategoryEvent != null) {
-      return getSimilarPostsByCategoryEvent(propertyType, excludePostId, limit);
+      return getSimilarPostsByCategoryEvent(
+          propertyType, listingType, excludePostId, limit);
     }
     return orElse();
   }
@@ -4898,10 +4961,12 @@ class _$GetSimilarPostsByCategoryEventImpl
 abstract class _GetSimilarPostsByCategoryEvent implements FeedEvent {
   const factory _GetSimilarPostsByCategoryEvent(
       {final String? propertyType,
+      final String? listingType,
       final String? excludePostId,
       final int? limit}) = _$GetSimilarPostsByCategoryEventImpl;
 
   String? get propertyType;
+  String? get listingType;
   String? get excludePostId;
   int? get limit;
   @JsonKey(ignore: true)
@@ -4967,7 +5032,7 @@ class _$ResetSimilarPostsByCategoryImpl
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -4978,8 +5043,8 @@ class _$ResetSimilarPostsByCategoryImpl
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -5030,8 +5095,8 @@ class _$ResetSimilarPostsByCategoryImpl
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -5041,7 +5106,8 @@ class _$ResetSimilarPostsByCategoryImpl
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -5092,8 +5158,8 @@ class _$ResetSimilarPostsByCategoryImpl
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -5103,7 +5169,8 @@ class _$ResetSimilarPostsByCategoryImpl
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -5601,7 +5668,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -5612,8 +5679,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -5688,8 +5755,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -5699,7 +5766,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -5774,8 +5842,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -5785,7 +5853,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -6067,7 +6136,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         getFeedsEvent,
     required TResult Function(String postId) getPostDetailsEvent,
     required TResult Function(String? city, String? propertyType,
-            String? excludePostId, int? limit)
+            String? listingType, String? excludePostId, int? limit)
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
@@ -6078,8 +6147,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
     required TResult Function(int? limit, int? offset) getMyProperties,
     required TResult Function() getFavourites,
     required TResult Function(String propertyId) recordPropertyView,
-    required TResult Function(
-            String? propertyType, String? excludePostId, int? limit)
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
         getSimilarPostsByCategoryEvent,
     required TResult Function() resetSimilarPostsByCategory,
     required TResult Function(
@@ -6130,8 +6199,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             double? longitude)?
         getFeedsEvent,
     TResult? Function(String postId)? getPostDetailsEvent,
-    TResult? Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
@@ -6141,7 +6210,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
     TResult? Function(int? limit, int? offset)? getMyProperties,
     TResult? Function()? getFavourites,
     TResult? Function(String propertyId)? recordPropertyView,
-    TResult? Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult? Function()? resetSimilarPostsByCategory,
     TResult? Function(
@@ -6192,8 +6262,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             double? longitude)?
         getFeedsEvent,
     TResult Function(String postId)? getPostDetailsEvent,
-    TResult Function(String? city, String? propertyType, String? excludePostId,
-            int? limit)?
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
@@ -6203,7 +6273,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
     TResult Function(int? limit, int? offset)? getMyProperties,
     TResult Function()? getFavourites,
     TResult Function(String propertyId)? recordPropertyView,
-    TResult Function(String? propertyType, String? excludePostId, int? limit)?
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
         getSimilarPostsByCategoryEvent,
     TResult Function()? resetSimilarPostsByCategory,
     TResult Function(
@@ -6371,6 +6442,10 @@ mixin _$FeedState {
   bool get sendCommentLoading => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isFavouritesLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool get similarPropertiesLoading => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool get similarPostsByCategoryLoading => throw _privateConstructorUsedError;
   int get myPropertiesOffset => throw _privateConstructorUsedError;
   bool get hasMoreMyProperties => throw _privateConstructorUsedError;
 
@@ -6408,6 +6483,10 @@ abstract class $FeedStateCopyWith<$Res> {
       bool sendCommentLoading,
       @JsonKey(includeFromJson: false, includeToJson: false)
       bool isFavouritesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      bool similarPropertiesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      bool similarPostsByCategoryLoading,
       int myPropertiesOffset,
       bool hasMoreMyProperties});
 
@@ -6445,6 +6524,8 @@ class _$FeedStateCopyWithImpl<$Res, $Val extends FeedState>
     Object? feedComments = null,
     Object? sendCommentLoading = null,
     Object? isFavouritesLoading = null,
+    Object? similarPropertiesLoading = null,
+    Object? similarPostsByCategoryLoading = null,
     Object? myPropertiesOffset = null,
     Object? hasMoreMyProperties = null,
   }) {
@@ -6521,6 +6602,14 @@ class _$FeedStateCopyWithImpl<$Res, $Val extends FeedState>
           ? _value.isFavouritesLoading
           : isFavouritesLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      similarPropertiesLoading: null == similarPropertiesLoading
+          ? _value.similarPropertiesLoading
+          : similarPropertiesLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      similarPostsByCategoryLoading: null == similarPostsByCategoryLoading
+          ? _value.similarPostsByCategoryLoading
+          : similarPostsByCategoryLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       myPropertiesOffset: null == myPropertiesOffset
           ? _value.myPropertiesOffset
           : myPropertiesOffset // ignore: cast_nullable_to_non_nullable
@@ -6576,6 +6665,10 @@ abstract class _$$FeedStateImplCopyWith<$Res>
       bool sendCommentLoading,
       @JsonKey(includeFromJson: false, includeToJson: false)
       bool isFavouritesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      bool similarPropertiesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      bool similarPostsByCategoryLoading,
       int myPropertiesOffset,
       bool hasMoreMyProperties});
 
@@ -6612,6 +6705,8 @@ class __$$FeedStateImplCopyWithImpl<$Res>
     Object? feedComments = null,
     Object? sendCommentLoading = null,
     Object? isFavouritesLoading = null,
+    Object? similarPropertiesLoading = null,
+    Object? similarPostsByCategoryLoading = null,
     Object? myPropertiesOffset = null,
     Object? hasMoreMyProperties = null,
   }) {
@@ -6688,6 +6783,14 @@ class __$$FeedStateImplCopyWithImpl<$Res>
           ? _value.isFavouritesLoading
           : isFavouritesLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      similarPropertiesLoading: null == similarPropertiesLoading
+          ? _value.similarPropertiesLoading
+          : similarPropertiesLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      similarPostsByCategoryLoading: null == similarPostsByCategoryLoading
+          ? _value.similarPostsByCategoryLoading
+          : similarPostsByCategoryLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       myPropertiesOffset: null == myPropertiesOffset
           ? _value.myPropertiesOffset
           : myPropertiesOffset // ignore: cast_nullable_to_non_nullable
@@ -6729,6 +6832,10 @@ class _$FeedStateImpl implements _FeedState {
       this.sendCommentLoading = false,
       @JsonKey(includeFromJson: false, includeToJson: false)
       this.isFavouritesLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      this.similarPropertiesLoading = false,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      this.similarPostsByCategoryLoading = false,
       this.myPropertiesOffset = 0,
       this.hasMoreMyProperties = false})
       : _similarProperties = similarProperties,
@@ -6841,6 +6948,12 @@ class _$FeedStateImpl implements _FeedState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isFavouritesLoading;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final bool similarPropertiesLoading;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final bool similarPostsByCategoryLoading;
+  @override
   @JsonKey()
   final int myPropertiesOffset;
   @override
@@ -6849,7 +6962,7 @@ class _$FeedStateImpl implements _FeedState {
 
   @override
   String toString() {
-    return 'FeedState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, postDetails: $postDetails, similarProperties: $similarProperties, similarPostsByCategory: $similarPostsByCategory, feedsList: $feedsList, myPropertiesList: $myPropertiesList, favouritesList: $favouritesList, likedPostIds: $likedPostIds, currentOffset: $currentOffset, hasMoreData: $hasMoreData, notifyStatus: $notifyStatus, commentsLoading: $commentsLoading, isPostLoading: $isPostLoading, feedComments: $feedComments, sendCommentLoading: $sendCommentLoading, isFavouritesLoading: $isFavouritesLoading, myPropertiesOffset: $myPropertiesOffset, hasMoreMyProperties: $hasMoreMyProperties)';
+    return 'FeedState(isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, postDetails: $postDetails, similarProperties: $similarProperties, similarPostsByCategory: $similarPostsByCategory, feedsList: $feedsList, myPropertiesList: $myPropertiesList, favouritesList: $favouritesList, likedPostIds: $likedPostIds, currentOffset: $currentOffset, hasMoreData: $hasMoreData, notifyStatus: $notifyStatus, commentsLoading: $commentsLoading, isPostLoading: $isPostLoading, feedComments: $feedComments, sendCommentLoading: $sendCommentLoading, isFavouritesLoading: $isFavouritesLoading, similarPropertiesLoading: $similarPropertiesLoading, similarPostsByCategoryLoading: $similarPostsByCategoryLoading, myPropertiesOffset: $myPropertiesOffset, hasMoreMyProperties: $hasMoreMyProperties)';
   }
 
   @override
@@ -6892,6 +7005,13 @@ class _$FeedStateImpl implements _FeedState {
                 other.sendCommentLoading == sendCommentLoading) &&
             (identical(other.isFavouritesLoading, isFavouritesLoading) ||
                 other.isFavouritesLoading == isFavouritesLoading) &&
+            (identical(
+                    other.similarPropertiesLoading, similarPropertiesLoading) ||
+                other.similarPropertiesLoading == similarPropertiesLoading) &&
+            (identical(other.similarPostsByCategoryLoading,
+                    similarPostsByCategoryLoading) ||
+                other.similarPostsByCategoryLoading ==
+                    similarPostsByCategoryLoading) &&
             (identical(other.myPropertiesOffset, myPropertiesOffset) ||
                 other.myPropertiesOffset == myPropertiesOffset) &&
             (identical(other.hasMoreMyProperties, hasMoreMyProperties) ||
@@ -6920,6 +7040,8 @@ class _$FeedStateImpl implements _FeedState {
         const DeepCollectionEquality().hash(_feedComments),
         sendCommentLoading,
         isFavouritesLoading,
+        similarPropertiesLoading,
+        similarPostsByCategoryLoading,
         myPropertiesOffset,
         hasMoreMyProperties
       ]);
@@ -6965,6 +7087,10 @@ abstract class _FeedState implements FeedState {
       final bool sendCommentLoading,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isFavouritesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final bool similarPropertiesLoading,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final bool similarPostsByCategoryLoading,
       final int myPropertiesOffset,
       final bool hasMoreMyProperties}) = _$FeedStateImpl;
 
@@ -7015,6 +7141,12 @@ abstract class _FeedState implements FeedState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isFavouritesLoading;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool get similarPropertiesLoading;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool get similarPostsByCategoryLoading;
   @override
   int get myPropertiesOffset;
   @override

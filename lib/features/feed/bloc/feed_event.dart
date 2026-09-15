@@ -22,6 +22,7 @@ class FeedEvent with _$FeedEvent {
   const factory FeedEvent.getSimilarPropertiesEvent({
     String? city,
     String? propertyType,
+    String? listingType,
     String? excludePostId,
     int? limit,
   }) = _GetSimilarPropertiesEvent;
@@ -51,6 +52,7 @@ class FeedEvent with _$FeedEvent {
 
   const factory FeedEvent.getSimilarPostsByCategoryEvent({
     String? propertyType,
+    String? listingType,
     String? excludePostId,
     int? limit,
   }) = _GetSimilarPostsByCategoryEvent;

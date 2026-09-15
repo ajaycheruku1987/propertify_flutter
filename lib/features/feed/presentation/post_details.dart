@@ -40,20 +40,23 @@ class PostDetailsScreen extends StatefulWidget {
 }
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
+  String? _fetchedSimilarityPostId;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Reset similar posts by category on screen load
+      // Clear previous similar posts to ensure we fetch fresh data for this specific post
       context.read<FeedBloc>().add(
         const FeedEvent.resetSimilarPostsByCategory(),
       );
 
-      // Load post details when screen initializes
+      // Load main post details
       context.read<FeedBloc>().add(
         FeedEvent.getPostDetailsEvent(postId: widget.postId),
       );
-      // Record property view for analytics/tracking
+      
+      // Record property view
       if (context.read<HomeBloc>().state.showAddButton) {
         context.read<FeedBloc>().add(
           FeedEvent.recordPropertyView(propertyId: widget.postId),
@@ -492,21 +495,50 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         ],
       ),
       body: BlocListener<FeedBloc, FeedState>(
+        listenWhen: (previous, current) {
+          // Case 1: Property was deleted
+          if (current.notifyStatus?.message == 'Property deleted successfully') {
+            return true;
+          }
+          // Case 2: Post details just loaded or changed
+          // We only trigger if the ID changes OR if we haven't fetched similarities for this post yet
+          return (previous.postDetails?.id != current.postDetails?.id || 
+                 _fetchedSimilarityPostId != current.postDetails?.id) &&
+              current.postDetails != null;
+        },
         listener: (context, state) {
           if (state.notifyStatus?.message == 'Property deleted successfully') {
             context.pop();
             return;
           }
 
-          // When post details are loaded, fetch similar posts by category
+          // When post details are loaded, fetch similar posts and similar posts by category
           if (state.postDetails != null &&
+              state.postDetails?.id != null &&
               state.postDetails?.propertyType != null &&
-              state.similarPostsByCategory.isEmpty) {
+              _fetchedSimilarityPostId != state.postDetails!.id) {
+            
+            // Mark as fetched to prevent loops
+            _fetchedSimilarityPostId = state.postDetails!.id;
+
+            // Fetch similar posts by category
             context.read<FeedBloc>().add(
               FeedEvent.getSimilarPostsByCategoryEvent(
                 propertyType: state.postDetails!.propertyType,
+                listingType: state.postDetails!.listingType,
                 excludePostId: widget.postId,
                 limit: 10,
+              ),
+            );
+
+            // Fetch similar properties
+            context.read<FeedBloc>().add(
+              FeedEvent.getSimilarPropertiesEvent(
+                propertyType: state.postDetails!.propertyType,
+                listingType: state.postDetails!.listingType,
+                city: state.postDetails!.city,
+                excludePostId: widget.postId,
+                limit: 6,
               ),
             );
           }

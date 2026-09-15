@@ -21,6 +21,8 @@ class FeedState with _$FeedState {
     @Default([]) List<FeedCommentModel> feedComments,
     @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool sendCommentLoading,
     @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isFavouritesLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool similarPropertiesLoading,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool similarPostsByCategoryLoading,
     @Default(0) int myPropertiesOffset,
     @Default(false) bool hasMoreMyProperties,
   }) = _FeedState;
