@@ -15,6 +15,7 @@ import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/core/notification_service.dart';
+import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'widgets/comments_bottom_sheet.dart';
@@ -447,6 +448,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       );
                     } else if (value == 'report') {
                       _handleReportProperty(widget.postId);
+                    } else if (value == 'view_profile') {
+                      if (state.postDetails?.owner?.id != null) {
+                        context.push(
+                          OtherUserProfileScreen.routeName,
+                          extra: state.postDetails!.owner!.id,
+                        );
+                      }
                     }
                   },
                   itemBuilder: (BuildContext context) =>
@@ -476,7 +484,21 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             ),
                           ),
                         ],
-                        if (!isOwner)
+                        if (!isOwner) ...[
+                          PopupMenuItem<String>(
+                            value: 'view_profile',
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.account_circle_outlined,
+                                  size: 18,
+                                  color: Colors.blue,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(l10n.viewProfile),
+                              ],
+                            ),
+                          ),
                           PopupMenuItem<String>(
                             value: 'report',
                             child: Row(
@@ -491,6 +513,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               ],
                             ),
                           ),
+                        ],
                       ],
                 ),
               );
@@ -816,6 +839,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             }
                             return (owner.username ?? 'Owner').toTitleCase();
                           }()),
+                          userId: postDetails.owner?.id,
                         ),
 
                         context.read<ProfileBloc>().state.userProfile?.id ==

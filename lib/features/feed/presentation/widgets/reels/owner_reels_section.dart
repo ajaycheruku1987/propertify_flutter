@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
-import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../reels/bloc/reels_bloc.dart';
 import '../../../../reels/models/reel_response_model.dart';
 
 class OwnerReelsSection extends StatelessWidget {
   final String ownerName;
+  final String? userId;
 
   const OwnerReelsSection({
-    Key? key,
+    super.key,
     required this.ownerName,
-  }) : super(key: key);
+    this.userId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +37,36 @@ class OwnerReelsSection extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  const Icon(Icons.movie_outlined, size: 20, color: Colors.black87),
-                  const SizedBox(width: 8),
-                  Text(
-                    '${l10n.reels} by $ownerName',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+              child: GestureDetector(
+                onTap: () {
+                  if (userId != null && userId!.isNotEmpty) {
+                    context.push(
+                      OtherUserProfileScreen.routeName,
+                      extra: userId,
+                    );
+                  }
+                },
+                child: Row(
+                  children: [
+                    const Icon(Icons.movie_outlined, size: 20, color: Colors.black87),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        '${l10n.reels} by $ownerName',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Colors.grey.shade400,
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 16),

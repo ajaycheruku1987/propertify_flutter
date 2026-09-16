@@ -178,15 +178,57 @@ class AgentInfo extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildStatItem(
-                        label: 'Total Listings',
-                        value: '${itemsListed ?? 0}',
-                        context: context,
-                      ),
-                    ],
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: _buildStatItem(
+                            label: 'Total Listings',
+                            value: '${itemsListed ?? 0}',
+                            context: context,
+                          ),
+                        ),
+                        VerticalDivider(
+                          color: Colors.grey.shade200,
+                          thickness: 1,
+                          indent: 8,
+                          endIndent: 8,
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              if (userId != null && userId!.isNotEmpty) {
+                                context.push(
+                                  OtherUserProfileScreen.routeName,
+                                  extra: userId,
+                                );
+                              }
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.account_circle_outlined,
+                                  color: Theme.of(context).primaryColor,
+                                  size: 26,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'VIEW PROFILE',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
