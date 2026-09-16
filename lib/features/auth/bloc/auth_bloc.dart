@@ -5,13 +5,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/core/api_request/api_request.dart';
 import 'package:propertify/core/app_cache_service.dart';
 
-import '../../../core/failure.dart';
-import '../../../core/notify_message.dart';
-import '../../../core/service_locator.dart';
+import 'package:propertify/core/failure.dart';
+import 'package:propertify/core/notify_message.dart';
+import 'package:propertify/core/service_locator.dart';
 import '../models/forgot_password_response_model.dart';
 import '../models/login_response_model.dart';
 import '../repo/auth_repo.dart';
-import '../../../core/notification_service.dart';
+import 'package:propertify/core/notification_service.dart';
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -71,7 +71,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(state.copyWith(isLoading: true));
 
       // Get FCM Token before login
-      final fcmToken = await NotificationService().getToken();
+      final fcmToken = await NotificationService.instance.getToken();
 
       Either<Failure, LoginResponseModel> loginResponseEither = await _authRepo
           .login(
@@ -122,7 +122,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(state.copyWith(isLoading: true));
 
       // Get FCM Token before signup
-      final fcmToken = await NotificationService().getToken();
+      final fcmToken = await NotificationService.instance.getToken();
 
       Either<Failure, LoginResponseModel> signupResponseEither = await _authRepo
           .signup(

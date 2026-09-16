@@ -37,7 +37,7 @@ void main() async {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     // Do NOT await this here. Awaiting requestPermission() before runApp()
     // causes a deadlock (white screen) on iOS when the permission dialog needs to show.
-    NotificationService().initialize().catchError((e) {
+    NotificationService.instance.initialize().catchError((e) {
       debugPrint("Notification init error: $e");
     });
   } catch (e) {

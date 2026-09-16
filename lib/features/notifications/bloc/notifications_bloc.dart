@@ -1,20 +1,19 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import '../models/notification_model.dart';
+import 'notifications_event.dart';
+import 'notifications_state.dart';
 
-part 'notifications_bloc.freezed.dart';
-part 'notifications_bloc.g.dart';
-part 'notifications_event.dart';
-part 'notifications_state.dart';
+export 'notifications_event.dart';
+export 'notifications_state.dart';
 
 class NotificationsBloc extends HydratedBloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc() : super(const NotificationsState()) {
-    on<_AddNotification>((event, emit) {
+    on<AddNotification>((event, emit) {
       final updatedList = [event.notification, ...state.notifications];
       emit(state.copyWith(notifications: updatedList));
     });
 
-    on<_MarkAsRead>((event, emit) {
+    on<MarkAsRead>((event, emit) {
       final updatedList = state.notifications.map((n) {
         if (n.id == event.notificationId) {
           return n.copyWith(isRead: true);
@@ -24,12 +23,12 @@ class NotificationsBloc extends HydratedBloc<NotificationsEvent, NotificationsSt
       emit(state.copyWith(notifications: updatedList));
     });
 
-    on<_MarkAllAsRead>((event, emit) {
+    on<MarkAllAsRead>((event, emit) {
       final updatedList = state.notifications.map((n) => n.copyWith(isRead: true)).toList();
       emit(state.copyWith(notifications: updatedList));
     });
 
-    on<_ClearNotifications>((event, emit) {
+    on<ClearNotifications>((event, emit) {
       emit(state.copyWith(notifications: []));
     });
   }

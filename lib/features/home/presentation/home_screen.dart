@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
 import '../../feed/presentation/favorites_screen.dart';
+import '../../notifications/bloc/notifications_bloc.dart';
+import '../../notifications/presentation/notifications_screen.dart';
 import '../../services/presentation/builder_smart_screen.dart';
 import 'package:propertify/features/feed/presentation/feed_list_widget.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
@@ -215,39 +218,57 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           const SizedBox(width: 8),
           _buildLanguageSelector(),
           const SizedBox(width: 8),
-          GestureDetector(
-            onTap: () {
-              // TODO: Navigate to Notifications screen
-            },
-            child: Stack(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    size: 24,
-                    color: Colors.black54,
-                  ),
-                ),
-                Positioned(
-                  right: 3,
-                  top: 3,
-                  child: Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
+          BlocBuilder<NotificationsBloc, NotificationsState>(
+            builder: (context, state) {
+              final unreadCount = state.unreadNotifications.length;
+              return GestureDetector(
+                onTap: () {
+                  context.push(NotificationsScreen.routeName);
+                },
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: const Icon(
+                        Icons.notifications_outlined,
+                        size: 24,
+                        color: Colors.black54,
+                      ),
                     ),
-                  ),
+                    if (unreadCount > 0)
+                      Positioned(
+                        right: 3,
+                        top: 3,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          constraints: const BoxConstraints(
+                            minWidth: 16,
+                            minHeight: 16,
+                          ),
+                          child: Text(
+                            '$unreadCount',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ],
       ),

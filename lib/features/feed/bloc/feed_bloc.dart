@@ -6,12 +6,13 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
-import '../../../core/failure.dart';
-import '../../../core/notify_message.dart';
-import '../../home/models/feed_posts_response_model.dart';
-import '../repo/feed_repo.dart';
-import '../../../features/feed/models/like_feed_post_response_model.dart';
-import '../../../features/feed/models/feed_comment_model.dart';
+import 'package:propertify/core/failure.dart';
+import 'package:propertify/core/notify_message.dart';
+import 'package:propertify/features/home/models/feed_posts_response_model.dart';
+import 'package:propertify/features/feed/repo/feed_repo.dart';
+import 'package:propertify/core/notification_service.dart';
+import 'package:propertify/features/feed/models/like_feed_post_response_model.dart';
+import 'package:propertify/features/feed/models/feed_comment_model.dart';
 
 part 'feed_bloc.freezed.dart';
 part 'feed_bloc.g.dart';
@@ -158,6 +159,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             if (post?.id == event.propertyId) {
               final bool wasLiked = post?.isLiked == true;
               final int currentCount = post?.likesCount ?? 0;
+              
               return post?.copyWith(
                 isLiked: !wasLiked,
                 likesCount: wasLiked ? currentCount - 1 : currentCount + 1,

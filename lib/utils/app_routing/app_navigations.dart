@@ -177,6 +177,10 @@ final router = GoRouter(
       builder: (context, state) => const FavoritesScreen(),
     ),
     GoRoute(
+      path: NotificationsScreen.routeName,
+      builder: (context, state) => const NotificationsScreen(),
+    ),
+    GoRoute(
       path: FeedbackScreen.routeName,
       builder: (context, state) {
         final feedback = state.extra as FeedbackModel?;

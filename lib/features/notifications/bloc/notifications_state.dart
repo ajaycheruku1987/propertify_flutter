@@ -1,18 +1,38 @@
-part of 'notifications_bloc.dart';
+import '../models/notification_model.dart';
 
-@freezed
-class NotificationsState with _$NotificationsState {
-  const factory NotificationsState({
-    @Default([]) List<NotificationModel> notifications,
-  }) = _NotificationsState;
+class NotificationsState {
+  final List<NotificationModel> notifications;
 
-  factory NotificationsState.fromJson(Map<String, dynamic> json) => _$NotificationsStateFromJson(json);
+  const NotificationsState({
+    this.notifications = const [],
+  });
 
-  const NotificationsState._();
+  NotificationsState copyWith({
+    List<NotificationModel>? notifications,
+  }) {
+    return NotificationsState(
+      notifications: notifications ?? this.notifications,
+    );
+  }
 
   List<NotificationModel> get unreadNotifications =>
       notifications.where((n) => !n.isRead).toList();
 
   List<NotificationModel> get readNotifications =>
       notifications.where((n) => n.isRead).toList();
+
+  Map<String, dynamic> toJson() {
+    return {
+      'notifications': notifications.map((n) => n.toJson()).toList(),
+    };
+  }
+
+  factory NotificationsState.fromJson(Map<String, dynamic> json) {
+    return NotificationsState(
+      notifications: (json['notifications'] as List<dynamic>?)
+              ?.map((n) => NotificationModel.fromJson(n as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+  }
 }

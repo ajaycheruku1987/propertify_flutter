@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/core/api_request/api_request.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/notification_service.dart';
+import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/presentation/home_screen.dart';
 import 'package:propertify/features/admin/presentation/admin_dashboard_screen.dart';
@@ -55,6 +58,13 @@ class _SplashScreenState extends State<SplashScreen>
         accessToken: token,
       );
       final role = appCache.getRole()?.toLowerCase();
+
+      // Refresh FCM token on start
+      final fcmToken = await NotificationService.instance.getToken();
+      if (fcmToken != null && mounted) {
+        context.read<AuthBloc>().add(AuthEvent.updateFcmToken(fcmToken: fcmToken));
+      }
+      
       // if (role == 'admin' || role == 'seller') {
       //   context.go(AdminDashboardScreen.routeName);
       //   return;

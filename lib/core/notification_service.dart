@@ -1,11 +1,16 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:propertify/app.dart';
+import 'package:propertify/features/notifications/bloc/notifications_bloc.dart';
+import 'package:propertify/features/notifications/models/notification_model.dart';
 
 class NotificationService {
-  static final NotificationService _instance = NotificationService._internal();
-  factory NotificationService() => _instance;
+  static final NotificationService instance = NotificationService._internal();
+  factory NotificationService() => instance;
   NotificationService._internal();
 
   FirebaseMessaging? _fcm;
@@ -56,38 +61,13 @@ class NotificationService {
     // Handle Foreground Messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       log('Received foreground message: ${message.notification?.title}');
-
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-
-      if (notification != null) {
-        _localNotifications.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              channelDescription: channel.description,
-              importance: Importance.high,
-              priority: Priority.high,
-              icon: '@mipmap/ic_launcher',
-            ),
-            iOS: const DarwinNotificationDetails(
-              presentAlert: true,
-              presentBadge: true,
-              presentSound: true,
-            ),
-          ),
-          payload: message.data.toString(),
-        );
-      }
+      _handleNotificationMessage(message, isForeground: true);
     });
 
     // Handle Background Messages (when app is opened from notification)
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       log('Notification opened from background: ${message.notification?.title}');
+      _handleNotificationMessage(message);
     });
 
     // Request permission for iOS and Android 13+
@@ -115,6 +95,43 @@ class NotificationService {
       log(
         'App opened from terminated state by notification: ${initialMessage.notification?.title}',
       );
+      _handleNotificationMessage(initialMessage);
+    }
+  }
+
+  void _handleNotificationMessage(RemoteMessage message, {bool isForeground = false}) {
+    RemoteNotification? notification = message.notification;
+    if (notification == null) return;
+
+    _addToNotificationsBloc(
+      title: notification.title ?? '',
+      body: notification.body ?? '',
+      type: message.data['type'] as String?,
+      referenceId: message.data['reference_id'] as String?,
+    );
+
+    if (isForeground) {
+      _localNotifications.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        NotificationDetails(
+          android: const AndroidNotificationDetails(
+            'high_importance_channel',
+            'High Importance Notifications',
+            channelDescription: 'This channel is used for important notifications.',
+            importance: Importance.high,
+            priority: Priority.high,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: const DarwinNotificationDetails(
+            presentAlert: true,
+            presentBadge: true,
+            presentSound: true,
+          ),
+        ),
+        payload: message.data.toString(),
+      );
     }
   }
 
@@ -122,7 +139,16 @@ class NotificationService {
     required String title,
     required String body,
     String? payload,
+    String? type,
+    String? referenceId,
   }) async {
+    _addToNotificationsBloc(
+      title: title,
+      body: body,
+      type: type,
+      referenceId: referenceId,
+    );
+
     const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
       'high_importance_channel',
       'High Importance Notifications',
@@ -150,6 +176,33 @@ class NotificationService {
       details,
       payload: payload,
     );
+  }
+
+  void _addToNotificationsBloc({
+    required String title,
+    required String body,
+    String? type,
+    String? referenceId,
+  }) {
+    try {
+      final context = navigationKey.currentContext;
+      if (context != null) {
+        context.read<NotificationsBloc>().add(
+              AddNotification(
+                NotificationModel(
+                  id: DateTime.now().microsecondsSinceEpoch.toString(),
+                  title: title,
+                  body: body,
+                  timestamp: DateTime.now(),
+                  type: type,
+                  referenceId: referenceId,
+                ),
+              ),
+            );
+      }
+    } catch (e) {
+      log('Error adding to notifications bloc: $e');
+    }
   }
 
   Future<String?> getToken() async {

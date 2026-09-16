@@ -516,18 +516,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
           final postDetails = state.postDetails;
           if (postDetails != null) {
-            // Trigger notification if it's user's own post and we haven't notified for this ID yet
-            final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
-            final isOwner = postDetails.owner?.id != null && postDetails.owner?.id == currentUserId;
-            
-            if (isOwner && _notifiedPostId != postDetails.id) {
-              _notifiedPostId = postDetails.id;
-              NotificationService().showLocalNotification(
-                title: l10n.yourPost,
-                body: '${l10n.viewingYourOwnPost}: ${postDetails.title}',
-              );
-            }
-
             // When post details are loaded, fetch similar posts and similar posts by category
             if (postDetails.id != null &&
                 postDetails.propertyType != null &&

@@ -1,9 +1,23 @@
-part of 'notifications_bloc.dart';
+import '../models/notification_model.dart';
 
-@freezed
-class NotificationsEvent with _$NotificationsEvent {
-  const factory NotificationsEvent.addNotification(NotificationModel notification) = _AddNotification;
-  const factory NotificationsEvent.markAsRead(String notificationId) = _MarkAsRead;
-  const factory NotificationsEvent.markAllAsRead() = _MarkAllAsRead;
-  const factory NotificationsEvent.clearNotifications() = _ClearNotifications;
+abstract class NotificationsEvent {
+  const NotificationsEvent();
+}
+
+class AddNotification extends NotificationsEvent {
+  final NotificationModel notification;
+  const AddNotification(this.notification);
+}
+
+class MarkAsRead extends NotificationsEvent {
+  final String notificationId;
+  const MarkAsRead(this.notificationId);
+}
+
+class MarkAllAsRead extends NotificationsEvent {
+  const MarkAllAsRead();
+}
+
+class ClearNotifications extends NotificationsEvent {
+  const ClearNotifications();
 }

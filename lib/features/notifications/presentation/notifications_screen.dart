@@ -18,25 +18,38 @@ class NotificationsScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.white),
           title: Text(
             l10n.notifications,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           bottom: TabBar(
             tabs: [
               Tab(text: l10n.unread),
               Tab(text: l10n.read),
             ],
-            labelColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Theme.of(context).primaryColor,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white.withOpacity(0.7),
+            indicatorColor: Colors.white,
+            indicatorWeight: 3,
           ),
           actions: [
             TextButton(
               onPressed: () {
-                context.read<NotificationsBloc>().add(const NotificationsEvent.markAllAsRead());
+                context.read<NotificationsBloc>().add(const MarkAllAsRead());
               },
-              child: Text(l10n.markAllAsRead),
+              child: Text(
+                l10n.markAllAsRead,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ],
         ),
@@ -106,7 +119,7 @@ class _NotificationCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (!notification.isRead) {
-          context.read<NotificationsBloc>().add(NotificationsEvent.markAsRead(notification.id));
+          context.read<NotificationsBloc>().add(MarkAsRead(notification.id));
         }
         // Handle navigation based on type if needed
       },
