@@ -22,7 +22,9 @@ import '../../admin/bloc/admin_bloc.dart';
 import '../../../../utils/string_extensions.dart';
 
 class ReelsScreen extends StatefulWidget {
-  const ReelsScreen({super.key});
+  static const String routeName = '/reels';
+  final String? initialReelId;
+  const ReelsScreen({super.key, this.initialReelId});
 
   @override
   State<ReelsScreen> createState() => _ReelsScreenState();
@@ -34,6 +36,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
   final FocusNode _searchFocusNode = FocusNode();
   int _currentIndex = 0;
   bool _isSearchExpanded = false;
+  bool _hasScrolledToInitial = false;
 
   @override
   void initState() {
@@ -41,6 +44,21 @@ class _ReelsScreenState extends State<ReelsScreen> {
     _searchController.addListener(_handleSearchFieldChange);
     _searchFocusNode.addListener(_handleSearchFieldChange);
     _loadReels();
+  }
+
+  void _scrollToInitialReel(List<ReelResponseModel> reels) {
+    if (widget.initialReelId != null && !_hasScrolledToInitial) {
+      final index = reels.indexWhere((r) => r.id == widget.initialReelId);
+      if (index != -1) {
+        _hasScrolledToInitial = true;
+        _currentIndex = index;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_pageController.hasClients) {
+            _pageController.jumpToPage(index);
+          }
+        });
+      }
+    }
   }
 
   @override
@@ -141,6 +159,10 @@ class _ReelsScreenState extends State<ReelsScreen> {
         body: BlocBuilder<ReelsBloc, ReelsState>(
           builder: (context, state) {
             final reels = state.reelsList;
+            
+            if (reels.isNotEmpty) {
+              _scrollToInitialReel(reels);
+            }
 
             return Stack(
               children: [

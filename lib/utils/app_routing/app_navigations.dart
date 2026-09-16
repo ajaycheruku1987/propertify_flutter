@@ -79,6 +79,7 @@ import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/requests/presentation/my_requests_screen.dart';
 import '../../features/home/models/feed_posts_response_model.dart';
 import '../../features/reels/presentation/create_reel.dart';
+import '../../features/reels/presentation/reels_screen.dart';
 import '../../features/reels/presentation/my_reels_screen.dart';
 import '../../utils/common_widgets/post_success_screen.dart';
 import '../../utils/common_widgets/select_plan_screen.dart';
@@ -320,6 +321,13 @@ final router = GoRouter(
       path: CreateReelScreen.routeName,
       builder: (context, state) {
         return CreateReelScreen();
+      },
+    ),
+    GoRoute(
+      path: ReelsScreen.routeName,
+      builder: (context, state) {
+        final initialReelId = state.uri.queryParameters['reelId'];
+        return ReelsScreen(initialReelId: initialReelId);
       },
     ),
     GoRoute(

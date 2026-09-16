@@ -26,8 +26,10 @@ import 'widgets/emi_calculator_widget.dart';
 import 'widgets/agent_info.dart';
 import 'widgets/similar_properties.dart';
 import 'widgets/similar_posts_by_category.dart';
+import 'widgets/reels/owner_reels_section.dart';
 import 'widgets/action_buttons.dart';
 import '../../../utils/common_widgets/google_ad_banner.dart';
+import '../../reels/bloc/reels_bloc.dart';
 
 class PostDetailsScreen extends StatefulWidget {
   static const String routeName = '/post-details';
@@ -534,16 +536,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 ),
               );
 
-              // Fetch similar properties
-              context.read<FeedBloc>().add(
-                FeedEvent.getSimilarPropertiesEvent(
-                  propertyType: postDetails.propertyType,
-                  listingType: postDetails.listingType,
-                  city: postDetails.city,
-                  excludePostId: widget.postId,
-                  limit: 6,
-                ),
-              );
+              // Fetch owner's reels
+              if (postDetails.owner?.id != null) {
+                context.read<ReelsBloc>().add(
+                  ReelsEvent.loadOtherUserReels(userId: postDetails.owner!.id!),
+                );
+              }
             }
           }
         },
@@ -806,6 +804,20 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         const SizedBox(height: 8),
 
+                        // Owner Reels Section
+                        OwnerReelsSection(
+                          ownerName: (() {
+                            final owner = postDetails.owner;
+                            if (owner == null) return 'Owner';
+                            final firstName = owner.firstName?.trim() ?? '';
+                            final lastName = owner.lastName?.trim() ?? '';
+                            if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                              return '$firstName $lastName'.trim();
+                            }
+                            return (owner.username ?? 'Owner').toTitleCase();
+                          }()),
+                        ),
+
                         context.read<ProfileBloc>().state.userProfile?.id ==
                                     postDetails.owner?.id &&
                                 !postDetails.isCurrentlyPromoted
@@ -828,8 +840,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               )
                             : Container(),
 
-                        const SizedBox(height: 24),
-                        // Similar Posts by Category Section
+                        // Similar Posts by Category Section (Consolidated Similarity)
                         if (state.similarPostsByCategory.isNotEmpty)
                           Column(
                             children: [
@@ -841,11 +852,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               const SizedBox(height: 24),
                             ],
                           ),
-
-                        // Similar Properties Section
-                        SimilarProperties(
-                          similarProperties: state.similarProperties,
-                        ),
 
                         const SizedBox(height: 16),
                         Center(child: GoogleAdBanner()),
