@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
@@ -338,7 +339,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 12),
                             ],
                           );
                         }
@@ -346,7 +347,90 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       },
                     ),
 
-                    // Phone Number
+                    // User ID and Member Since
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildInfoChip(
+                          icon: Icons.person_outline,
+                          label: profile.username ?? '',
+                        ),
+                        const SizedBox(width: 8),
+                        _buildInfoChip(
+                          icon: Icons.calendar_today_outlined,
+                          label: profile.memberSince != null
+                              ? 'Joined ${profile.memberSince}'
+                              : 'New Member',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Call & WhatsApp Buttons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildContactButton(
+                          icon: Icons.phone_in_talk_rounded,
+                          label: 'Call',
+                          color: Theme.of(context).primaryColor,
+                          onTap: () => _makePhoneCall(profile.phoneNumber ?? ''),
+                        ),
+                        const SizedBox(width: 16),
+                        _buildContactButton(
+                          icon: FontAwesomeIcons.whatsapp,
+                          label: 'WhatsApp',
+                          color: const Color(0xFF25D366),
+                          onTap: () => _openWhatsApp(profile.phoneNumber ?? ''),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Stats Section
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, homeState) {
+                        return BlocBuilder<ReelsBloc, ReelsState>(
+                          builder: (context, reelsState) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF8F9FE),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.05),
+                                ),
+                              ),
+                              child: IntrinsicHeight(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    _buildStatItem(
+                                      label: 'Posts',
+                                      value:
+                                          '${homeState.otherUserPosts?.length ?? 0}',
+                                    ),
+                                    VerticalDivider(
+                                      color: Colors.grey.shade300,
+                                      thickness: 1,
+                                      indent: 4,
+                                      endIndent: 4,
+                                    ),
+                                    _buildStatItem(
+                                      label: 'Reels',
+                                      value:
+                                          '${reelsState.otherUserReels.length}',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -819,8 +903,10 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   Future<void> _makePhoneCall(String phoneNumber) async {
     if (!mounted) return;
 
+    final l10n = AppLocalizations.of(context)!;
     final homeState = context.read<HomeBloc>().state;
     if (!homeState.showAddButton) {
+      CustomToast.showErrorToast(msg: l10n.pleaseLoginToReport);
       context.push(AuthScreen.routeName);
       return;
     }
@@ -844,8 +930,10 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   Future<void> _openWhatsApp(String phoneNumber) async {
     if (!mounted) return;
 
+    final l10n = AppLocalizations.of(context)!;
     final homeState = context.read<HomeBloc>().state;
     if (!homeState.showAddButton) {
+      CustomToast.showErrorToast(msg: l10n.pleaseLoginToReport);
       context.push(AuthScreen.routeName);
       return;
     }
@@ -869,6 +957,101 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     } catch (e) {
       CustomToast.showErrorToast(msg: 'Error launching WhatsApp');
     }
+  }
+
+  Widget _buildInfoChip({required IconData icon, required String label}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: Colors.grey.shade600),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              color: Colors.grey.shade700,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactButton({
+    required dynamic icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: color.withOpacity(0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            icon is IconData
+                ? Icon(icon, color: Colors.white, size: 18)
+                : FaIcon(icon as FaIconData, color: Colors.white, size: 18),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatItem({required String label, required String value}) {
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label.toUpperCase(),
+            style: TextStyle(
+              fontSize: 10,
+              color: Colors.grey.shade500,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildSocialLinks(dynamic company) {
