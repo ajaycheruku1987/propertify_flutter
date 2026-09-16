@@ -327,7 +327,11 @@ final router = GoRouter(
       path: ReelsScreen.routeName,
       builder: (context, state) {
         final initialReelId = state.uri.queryParameters['reelId'];
-        return ReelsScreen(initialReelId: initialReelId);
+        final showBackButton = state.uri.queryParameters['showBackButton'] == 'true' || initialReelId != null;
+        return ReelsScreen(
+          initialReelId: initialReelId,
+          showBackButton: showBackButton,
+        );
       },
     ),
     GoRoute(

@@ -24,7 +24,8 @@ import '../../../../utils/string_extensions.dart';
 class ReelsScreen extends StatefulWidget {
   static const String routeName = '/reels';
   final String? initialReelId;
-  const ReelsScreen({super.key, this.initialReelId});
+  final bool showBackButton;
+  const ReelsScreen({super.key, this.initialReelId, this.showBackButton = false});
 
   @override
   State<ReelsScreen> createState() => _ReelsScreenState();
@@ -209,6 +210,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       return ReelView(
                         key: ValueKey(reel.id ?? index.toString()),
                         reel: reel,
+                        showBackButton: widget.showBackButton,
                         onSearchTap: _isSearchExpanded
                             ? null
                             : () {
