@@ -707,6 +707,21 @@ class AppLocalizationsTe extends AppLocalizations {
   String get similarProperties => 'ఇలాంటి ఆస్తులు';
 
   @override
+  String similarInCategory(String category) {
+    return 'ఇలాంటి $category';
+  }
+
+  @override
+  String morePropertiesInCity(String city) {
+    return '$cityలో మరిన్ని ఆస్తులు';
+  }
+
+  @override
+  String otherInCategoryInCity(String category, String city) {
+    return '$cityలో $category';
+  }
+
+  @override
   String get requestsFilter => 'అభ్యర్థనల ఫిల్టర్';
 
   @override

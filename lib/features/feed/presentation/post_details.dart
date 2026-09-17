@@ -46,6 +46,7 @@ class PostDetailsScreen extends StatefulWidget {
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
   String? _fetchedSimilarityPostId;
   String? _notifiedPostId;
+  String? _selectedSimilarityCategory;
 
   @override
   void initState() {
@@ -541,21 +542,19 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
           final postDetails = state.postDetails;
           if (postDetails != null) {
-            // When post details are loaded, fetch similar posts and similar posts by category
+            // When post details are loaded, fetch similar properties
             if (postDetails.id != null &&
-                postDetails.propertyType != null &&
                 _fetchedSimilarityPostId != postDetails.id) {
               
-              // Mark as fetched to prevent loops
               _fetchedSimilarityPostId = postDetails.id;
+              _selectedSimilarityCategory = postDetails.propertyType;
 
-              // Fetch similar posts by category
+              // Fetch similar properties in the same city (all categories)
               context.read<FeedBloc>().add(
-                FeedEvent.getSimilarPostsByCategoryEvent(
-                  propertyType: postDetails.propertyType,
-                  listingType: postDetails.listingType,
+                FeedEvent.getSimilarPropertiesEvent(
+                  city: postDetails.city,
                   excludePostId: widget.postId,
-                  limit: 10,
+                  limit: 40,
                 ),
               );
 
@@ -864,18 +863,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               )
                             : Container(),
 
-                        // Similar Posts by Category Section (Consolidated Similarity)
-                        if (state.similarPostsByCategory.isNotEmpty)
-                          Column(
-                            children: [
-                              SimilarPostsByCategory(
-                                similarPosts: state.similarPostsByCategory,
-                                categoryName:
-                                    postDetails.propertyType ?? 'Related',
-                              ),
-                              const SizedBox(height: 24),
-                            ],
-                          ),
+                        // Similar Properties Section
+                        _buildSimilaritySection(state, postDetails),
 
                         const SizedBox(height: 16),
                         Center(child: GoogleAdBanner()),
@@ -997,5 +986,119 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
 
     return city;
+  }
+
+  Widget _buildSimilaritySection(FeedState state, FeedPostsResponseModel postDetails) {
+    final l10n = AppLocalizations.of(context)!;
+    final String cleanCity = _getCleanCityName(postDetails.city) ?? '';
+
+    if (state.similarPropertiesLoading) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            child: Text(
+              l10n.morePropertiesInCity(cleanCity),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 150,
+            child: Center(child: CircularProgressIndicator()),
+          ),
+        ],
+      );
+    }
+
+    if (state.similarProperties.isEmpty) return const SizedBox.shrink();
+
+    // Get all unique categories from similarity results
+    final categories = state.similarProperties
+        .map((e) => e.propertyType ?? 'Other')
+        .toSet()
+        .toList();
+
+    // Ensure the current selected category exists in the results, otherwise pick the first one
+    if (_selectedSimilarityCategory == null || !categories.contains(_selectedSimilarityCategory)) {
+      _selectedSimilarityCategory = categories.isNotEmpty ? categories.first : null;
+    }
+
+    final filteredProperties = state.similarProperties
+        .where((e) => (e.propertyType ?? 'Other') == _selectedSimilarityCategory)
+        .toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: Text(
+            l10n.morePropertiesInCity(cleanCity),
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+
+        // Category Chips
+        if (categories.length > 1)
+          Container(
+            height: 50,
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final category = categories[index];
+                final isSelected = _selectedSimilarityCategory == category;
+                return Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ChoiceChip(
+                    label: Text(category.translate(context)),
+                    selected: isSelected,
+                    onSelected: (selected) {
+                      if (selected) {
+                        setState(() {
+                          _selectedSimilarityCategory = category;
+                        });
+                      }
+                    },
+                    selectedColor: Theme.of(context).primaryColor,
+                    labelStyle: TextStyle(
+                      color: isSelected ? Colors.white : Colors.black87,
+                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+        const SizedBox(height: 8),
+
+        SimilarPostsByCategory(
+          similarPosts: filteredProperties,
+        ),
+        
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+
+  String? _getCleanCityName(String? city) {
+    if (city == null || city.isEmpty) return null;
+    final parts = city.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
+    if (parts.length > 1) {
+      return parts.last;
+    }
+    return parts.first;
   }
 }

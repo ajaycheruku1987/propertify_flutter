@@ -701,6 +701,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get similarProperties => 'Similar Properties';
 
   @override
+  String similarInCategory(String category) {
+    return 'Similar $category';
+  }
+
+  @override
+  String morePropertiesInCity(String city) {
+    return 'More Properties in $city';
+  }
+
+  @override
+  String otherInCategoryInCity(String category, String city) {
+    return '$category in $city';
+  }
+
+  @override
   String get requestsFilter => 'Requests Filter';
 
   @override

@@ -419,14 +419,22 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      if (state.similarPropertiesLoading || event.propertyType == null) return;
+      if (state.similarPropertiesLoading) return;
       
-      emit(state.copyWith(similarPropertiesLoading: true));
+      emit(state.copyWith(
+        similarPropertiesLoading: true,
+        similarProperties: [], // Clear stale data immediately
+      ));
 
-      // Clean city name if it has leading comma/space
+      // Clean city name more robustly
       String? cleanedCity = event.city;
-      if (cleanedCity != null && cleanedCity.trim().startsWith(',')) {
-        cleanedCity = cleanedCity.trim().replaceFirst(RegExp(r'^,\s*'), '').trim();
+      if (cleanedCity != null && cleanedCity.isNotEmpty) {
+        final parts = cleanedCity.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
+        if (parts.length > 1) {
+          // Try to use the second-to-last or last part as the primary city name
+          // e.g., "Mayur Vihar, New Delhi" -> "New Delhi"
+          cleanedCity = parts.last;
+        }
       }
 
       Either<Failure, List<FeedPostsResponseModel>> similarPropertiesEither =
@@ -435,7 +443,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             propertyType: event.propertyType,
             listingType: event.listingType,
             excludePostId: event.excludePostId,
-            limit: event.limit ?? 12, // Fetch more to allow for client-side filtering
+            limit: event.limit ?? 20,
           );
 
       similarPropertiesEither.fold(
@@ -447,19 +455,24 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           );
         },
         (similarProperties) {
-          // Strict client-side filtering to ensure category matches and current post is excluded
+          // Client-side filtering: exclude current post and match listing type if provided
           final filteredProperties = similarProperties.where((post) {
-            final postType = post.propertyType?.trim().toLowerCase();
-            final targetType = event.propertyType?.trim().toLowerCase();
             final postListing = post.listingType?.trim().toLowerCase();
             final targetListing = event.listingType?.trim().toLowerCase();
 
-            final matchesType = postType == targetType;
             // Relaxed listing type check: if target is null, match any; otherwise strict match
             final matchesListing = targetListing == null || postListing == targetListing;
             final isNotCurrent = post.id != event.excludePostId;
+
+            // Strict city check to avoid global results when API filter is loose
+            bool matchesCity = true;
+            if (cleanedCity != null && cleanedCity.isNotEmpty && post.city != null) {
+              final postCity = post.city!.toLowerCase();
+              final targetCity = cleanedCity.toLowerCase();
+              matchesCity = postCity.contains(targetCity) || targetCity.contains(postCity);
+            }
             
-            return matchesType && isNotCurrent && matchesListing;
+            return isNotCurrent && matchesListing && matchesCity;
           }).toList();
 
           emit(state.copyWith(
@@ -584,11 +597,14 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      if (state.similarPostsByCategoryLoading || event.propertyType == null) return;
+      if (state.similarPostsByCategoryLoading) return;
       
-      emit(state.copyWith(similarPostsByCategoryLoading: true));
+      emit(state.copyWith(
+        similarPostsByCategoryLoading: true,
+        similarPostsByCategory: [], // Clear stale data immediately
+      ));
       
-      final int limit = event.limit ?? 15; // Fetch more to allow for client-side filtering
+      final int limit = event.limit ?? 20;
 
       Either<Failure, List<FeedPostsResponseModel>> similarPostsEither =
           await _feedRepo.getFeeds(
@@ -606,19 +622,10 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           );
         },
         (similarPosts) {
-          // Strict client-side filtering to ensure category matches and current post is excluded
+          // Client-side filtering to exclude current post
           final filteredPosts = similarPosts.where((post) {
-            final postType = post.propertyType?.trim().toLowerCase();
-            final targetType = event.propertyType?.trim().toLowerCase();
-            final postListing = post.listingType?.trim().toLowerCase();
-            final targetListing = event.listingType?.trim().toLowerCase();
-
-            final matchesType = postType == targetType;
-            // Relaxed listing type check: if target is null, match any; otherwise strict match
-            final matchesListing = targetListing == null || postListing == targetListing;
             final isNotCurrent = post.id != event.excludePostId;
-            
-            return matchesType && isNotCurrent && matchesListing;
+            return isNotCurrent;
           }).toList();
 
           emit(state.copyWith(

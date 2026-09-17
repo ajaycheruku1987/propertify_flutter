@@ -705,6 +705,21 @@ class AppLocalizationsHi extends AppLocalizations {
   String get similarProperties => 'समान संपत्तियां';
 
   @override
+  String similarInCategory(String category) {
+    return 'समान $category';
+  }
+
+  @override
+  String morePropertiesInCity(String city) {
+    return '$city में और संपत्तियां';
+  }
+
+  @override
+  String otherInCategoryInCity(String category, String city) {
+    return '$city में $category';
+  }
+
+  @override
   String get requestsFilter => 'अनुरोध फ़िल्टर';
 
   @override

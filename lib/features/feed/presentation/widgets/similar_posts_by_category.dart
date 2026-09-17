@@ -16,12 +16,10 @@ import 'package:share_plus/share_plus.dart';
 
 class SimilarPostsByCategory extends StatelessWidget {
   final List<FeedPostsResponseModel> similarPosts;
-  final String categoryName;
 
   const SimilarPostsByCategory({
     Key? key,
     required this.similarPosts,
-    required this.categoryName,
   }) : super(key: key);
 
   @override
@@ -35,18 +33,6 @@ class SimilarPostsByCategory extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Title
-          Text(
-            AppLocalizations.of(context)!.similarProperties,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
           // Horizontal Grid View
           SizedBox(
             height: 235, // Adjusted height to fit the compact card without extra space

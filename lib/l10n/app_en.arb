@@ -247,6 +247,33 @@
   "comingSoon": "Wholesale prices coming soon!",
   "disclaimer": "Disclaimer: These building insights are collected from various internet sources and may be right or wrong. Please verify with a professional before making construction decisions.",
   "similarProperties": "Similar Properties",
+  "similarInCategory": "Similar {category}",
+  "morePropertiesInCity": "More Properties in {city}",
+  "otherInCategoryInCity": "{category} in {city}",
+  "@similarInCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "@morePropertiesInCity": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "@otherInCategoryInCity": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      },
+      "city": {
+        "type": "String"
+      }
+    }
+  },
   "requestsFilter": "Requests Filter",
   "categoryType": "Category Type",
   "reset": "Reset",

@@ -1444,6 +1444,24 @@ abstract class AppLocalizations {
   /// **'Similar Properties'**
   String get similarProperties;
 
+  /// No description provided for @similarInCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Similar {category}'**
+  String similarInCategory(String category);
+
+  /// No description provided for @morePropertiesInCity.
+  ///
+  /// In en, this message translates to:
+  /// **'More Properties in {city}'**
+  String morePropertiesInCity(String city);
+
+  /// No description provided for @otherInCategoryInCity.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} in {city}'**
+  String otherInCategoryInCity(String category, String city);
+
   /// No description provided for @requestsFilter.
   ///
   /// In en, this message translates to:
