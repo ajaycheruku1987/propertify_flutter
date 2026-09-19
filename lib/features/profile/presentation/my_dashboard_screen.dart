@@ -12,6 +12,7 @@ import 'package:propertify/features/profile/presentation/feedback_list_screen.da
 import 'package:propertify/utils/custom_toast.dart';
 import '../bloc/profile_bloc.dart';
 import '../../feed/presentation/favorites_screen.dart';
+import '../../feed/presentation/my_post_comments_screen.dart';
 import '../../services/presentation/my_services_screen.dart';
 
 class MyDashboardScreen extends StatelessWidget {
@@ -54,6 +55,11 @@ class MyDashboardScreen extends StatelessWidget {
                   'title': l10n.myReels,
                   'icon': Icons.movie_outlined,
                   'onTap': () => context.push(MyReelsScreen.routeName),
+                },
+                {
+                  'title': l10n.comments,
+                  'icon': Icons.comment_outlined,
+                  'onTap': () => context.push(MyPostCommentsScreen.routeName),
                 },
                 /*
                 {

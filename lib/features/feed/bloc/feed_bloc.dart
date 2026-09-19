@@ -206,7 +206,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      emit(state.copyWith(commentsLoading: true));
+      emit(state.copyWith(commentsLoading: true, feedComments: []));
 
       final Either<Failure, List<FeedCommentModel>> commentsEither =
           await _feedRepo.getCommentsById(propertyId: event.propertyId);
@@ -261,10 +261,33 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           );
         },
         (commentResponse) {
+          FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
+            if (post?.id == event.propertyId) {
+              final int currentCount = post?.commentsCount ?? 0;
+              return post?.copyWith(
+                commentsCount: currentCount + 1,
+              );
+            }
+            return post;
+          }
+
+          final updatedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final updatedPostDetails = updatePost(state.postDetails);
+
           emit(
             state.copyWith(
               sendCommentLoading: false,
               feedComments: [commentResponse, ...state.feedComments],
+              feedsList: updatedFeedsList,
+              favouritesList: updatedFavouritesList,
+              myPropertiesList: updatedMyPropertiesList,
+              similarProperties: updatedSimilarProperties,
+              similarPostsByCategory: updatedSimilarPostsByCategory,
+              postDetails: updatedPostDetails,
               notifyStatus: NotifyStatus(
                 message: 'Comment added successfully',
                 type: NotifyType.success,

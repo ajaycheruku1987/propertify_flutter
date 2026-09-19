@@ -9,6 +9,7 @@ import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
 import '../../feed/presentation/favorites_screen.dart';
+import '../../feed/presentation/my_post_comments_screen.dart';
 import '../../notifications/bloc/notifications_bloc.dart';
 import '../../notifications/presentation/notifications_screen.dart';
 import '../../services/presentation/builder_smart_screen.dart';
@@ -977,7 +978,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       case 1:
         return ReelsScreen();
       case 2:
-        return FavoritesScreen();
+        return const MyPostCommentsScreen();
       case 3:
         return ProfileScreen();
       default:

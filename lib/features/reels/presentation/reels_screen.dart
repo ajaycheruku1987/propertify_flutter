@@ -25,7 +25,13 @@ class ReelsScreen extends StatefulWidget {
   static const String routeName = '/reels';
   final String? initialReelId;
   final bool showBackButton;
-  const ReelsScreen({super.key, this.initialReelId, this.showBackButton = false});
+  final bool isMyReels;
+  const ReelsScreen({
+    super.key,
+    this.initialReelId,
+    this.showBackButton = false,
+    this.isMyReels = false,
+  });
 
   @override
   State<ReelsScreen> createState() => _ReelsScreenState();
@@ -81,7 +87,13 @@ class _ReelsScreenState extends State<ReelsScreen> {
   }
 
   void _loadReels({String? query}) {
-    context.read<ReelsBloc>().add(ReelsEvent.getReels(limit: 5, search: query));
+    if (widget.isMyReels) {
+      context.read<ReelsBloc>().add(const ReelsEvent.getMyReels());
+    } else {
+      context
+          .read<ReelsBloc>()
+          .add(ReelsEvent.getReels(limit: 5, search: query));
+    }
   }
 
   void _submitSearch([String? query]) {
@@ -159,15 +171,17 @@ class _ReelsScreenState extends State<ReelsScreen> {
         backgroundColor: Colors.black,
         body: BlocBuilder<ReelsBloc, ReelsState>(
           builder: (context, state) {
-            final reels = state.reelsList;
+            final reels = widget.isMyReels ? state.myReels : state.reelsList;
             
             if (reels.isNotEmpty) {
               _scrollToInitialReel(reels);
             }
 
+            final bool isLoading = widget.isMyReels ? state.isLoadingMyReels : state.isLoading;
+
             return Stack(
               children: [
-                if (state.isLoading && reels.isEmpty)
+                if (isLoading && reels.isEmpty)
                   const Center(child: CircularProgressIndicator())
                 else if (reels.isEmpty)
                   Center(

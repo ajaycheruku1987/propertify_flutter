@@ -50,7 +50,7 @@ class FeedCommentModel {
         id: json["id"],
         propertyId: json["property_id"],
         userId: json["user_id"],
-        comment: json["comment"],
+        comment: json["comment"] ?? json["text"],
         createdAt: json["created_at"],
         username: json["username"],
       );

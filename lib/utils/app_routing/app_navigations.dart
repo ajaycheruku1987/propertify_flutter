@@ -75,6 +75,7 @@ import '../../features/services/presentation/my_services_screen.dart';
 import '../../features/services/presentation/edit_service_screen.dart';
 import '../../features/feed/presentation/edit_feed_screen.dart';
 import '../../features/feed/presentation/favorites_screen.dart';
+import '../../features/feed/presentation/my_post_comments_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/requests/presentation/my_requests_screen.dart';
 import '../../features/home/models/feed_posts_response_model.dart';
@@ -176,6 +177,10 @@ final router = GoRouter(
     GoRoute(
       path: FavoritesScreen.routeName,
       builder: (context, state) => const FavoritesScreen(),
+    ),
+    GoRoute(
+      path: MyPostCommentsScreen.routeName,
+      builder: (context, state) => const MyPostCommentsScreen(),
     ),
     GoRoute(
       path: NotificationsScreen.routeName,
@@ -327,10 +332,12 @@ final router = GoRouter(
       path: ReelsScreen.routeName,
       builder: (context, state) {
         final initialReelId = state.uri.queryParameters['reelId'];
+        final isMyReels = state.uri.queryParameters['isMyReels'] == 'true';
         final showBackButton = state.uri.queryParameters['showBackButton'] == 'true' || initialReelId != null;
         return ReelsScreen(
           initialReelId: initialReelId,
           showBackButton: showBackButton,
+          isMyReels: isMyReels,
         );
       },
     ),
