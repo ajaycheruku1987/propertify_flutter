@@ -461,13 +461,25 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                                         context.push('${ReelsScreen.routeName}?reelId=${reel.id}&showBackButton=true&isMyReels=true');
                                       }
                                     },
-                                    child: Text(
-                                      'View Reel Video',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: Theme.of(context).primaryColor,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange.withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: Colors.orange.withOpacity(0.2),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        'View Reel Video',
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: Colors.orange,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
