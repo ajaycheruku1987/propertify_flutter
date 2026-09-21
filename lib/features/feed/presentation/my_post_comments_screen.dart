@@ -63,7 +63,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
             unselectedLabelColor: Colors.grey,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: const [
-              Tab(text: 'Live Comments'),
+              Tab(text: 'Comments'),
               Tab(text: 'Alerts History'),
             ],
           ),
