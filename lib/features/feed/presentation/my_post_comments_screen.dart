@@ -289,13 +289,25 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                                         context.push('${PostDetailsScreen.routeName}?postId=${post.id}');
                                       }
                                     },
-                                    child: Text(
-                                      'View Post Details',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: Theme.of(context).primaryColor,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: Theme.of(context).primaryColor.withOpacity(0.2),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'View Post Details',
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: Theme.of(context).primaryColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
