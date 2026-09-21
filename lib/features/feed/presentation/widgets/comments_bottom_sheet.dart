@@ -48,6 +48,7 @@ class CommentsBottomSheet extends StatefulWidget {
 class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
   final TextEditingController _commentController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  final FocusNode _commentFocusNode = FocusNode();
 
   // Emoji list matching the design
   final List<String> _emojis = [
@@ -66,6 +67,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
   void dispose() {
     _commentController.dispose();
     _scrollController.dispose();
+    _commentFocusNode.dispose();
     super.dispose();
   }
 
@@ -254,6 +256,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
                     ),
                     child: TextField(
                       controller: _commentController,
+                      focusNode: _commentFocusNode,
                       maxLines: null,
                       decoration: InputDecoration(
                         hintText: 'write a comment....',
@@ -324,107 +327,139 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
   }
 
   Widget _buildCommentItem(FeedCommentModel comment) {
+    final bool isReply = (comment.comment ?? '').trim().startsWith('@');
+
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Column(
+      margin: EdgeInsets.only(bottom: 16, left: isReply ? 40 : 0),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // User Avatar
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color(0xFF6C5CE7),
-                ),
-                child: Center(
-                  child: Text(
-                    (comment.username ?? 'U').substring(0, 1).toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+          // User Avatar
+          Container(
+            width: isReply ? 32 : 40,
+            height: isReply ? 32 : 40,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFF6C5CE7),
+            ),
+            child: Center(
+              child: Text(
+                (comment.username ?? 'U').substring(0, 1).toUpperCase(),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: isReply ? 14 : 16,
                 ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          (comment.username ?? 'Propertify User'),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          _formatDate(comment.createdAt ?? ''),
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
                     Text(
-                      comment.comment ?? '',
+                      (comment.username ?? 'Propertify User'),
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black87,
-                        height: 1.4,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    // Row(
-                    //   children: [
-                    //     _buildActionButton('Like'),
-                    //     const SizedBox(width: 16),
-                    //     _buildActionButton('Reply'),
-                    //   ],
-                    // ),
+                    const SizedBox(width: 8),
+                    Text(
+                      _formatDate(comment.createdAt ?? ''),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.grey[500],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-              // Delete button (if needed)
-              context.read<HomeBloc>().state.showAddButton &&
-                      comment.userId ==
-                          context.read<ProfileBloc>().state.userProfile?.id
-                  ? IconButton(
-                      icon: Icon(
-                        Icons.delete_outline,
-                        color: Colors.grey[400],
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        // Handle delete
-                      },
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    )
-                  : const SizedBox(),
-            ],
+                const SizedBox(height: 4),
+                _buildCommentText(comment.comment ?? ''),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    _buildActionButton('Reply', onTap: () {
+                      if (comment.username != null) {
+                        _commentController.text = '@${comment.username} ';
+                        _commentController.selection = TextSelection.fromPosition(
+                          TextPosition(offset: _commentController.text.length),
+                        );
+                        _commentFocusNode.requestFocus();
+                      }
+                    }),
+                  ],
+                ),
+              ],
+            ),
           ),
+          // Delete button (if needed)
+          context.read<HomeBloc>().state.showAddButton &&
+                  comment.userId ==
+                      context.read<ProfileBloc>().state.userProfile?.id
+              ? IconButton(
+                  icon: Icon(
+                    Icons.delete_outline,
+                    color: Colors.grey[400],
+                    size: 18,
+                  ),
+                  onPressed: () {
+                    // Handle delete
+                  },
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                )
+              : const SizedBox(),
         ],
       ),
     );
   }
 
-  Widget _buildActionButton(String text) {
+  Widget _buildCommentText(String text) {
+    if (text.startsWith('@')) {
+      final parts = text.split(' ');
+      if (parts.isNotEmpty) {
+        final tag = parts[0];
+        final remainingText = parts.skip(1).join(' ');
+        return Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: tag,
+                style: const TextStyle(
+                  color: Color(0xFF6C5CE7),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(text: ' $remainingText'),
+            ],
+          ),
+          style: const TextStyle(
+            fontSize: 14,
+            color: Colors.black87,
+            height: 1.4,
+          ),
+        );
+      }
+    }
+
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 14,
+        color: Colors.black87,
+        height: 1.4,
+      ),
+    );
+  }
+
+  Widget _buildActionButton(String text, {VoidCallback? onTap}) {
     return InkWell(
-      onTap: () {
-        // Handle action
-      },
+      onTap: onTap,
       child: Text(
         text,
         style: TextStyle(

@@ -278,7 +278,8 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
           );
         },
         (comments) {
-          emit(_mergeState(commentsLoading: false, reelComments: comments));
+          final sorted = _groupReelComments(comments);
+          emit(_mergeState(commentsLoading: false, reelComments: sorted));
         },
       );
     } catch (e) {
@@ -292,6 +293,55 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
         ),
       );
     }
+  }
+
+  List<ReelCommentModel> _groupReelComments(List<ReelCommentModel> comments) {
+    if (comments.isEmpty) return [];
+
+    // Sort by date ascending to process chronologically
+    final all = List<ReelCommentModel>.from(comments);
+    all.sort((a, b) => (a.createdAt ?? '').compareTo(b.createdAt ?? ''));
+
+    final List<ReelCommentModel> roots = [];
+    final Map<String, List<ReelCommentModel>> repliesMap = {};
+
+    for (var comment in all) {
+      final text = (comment.comment ?? '').trim();
+      if (text.startsWith('@')) {
+        final parts = text.split(' ');
+        final mention = parts[0].substring(1); // Remove @
+        
+        // Find the latest root by this user
+        ReelCommentModel? parent;
+        for (var i = roots.length - 1; i >= 0; i--) {
+          if (roots[i].username == mention) {
+            parent = roots[i];
+            break;
+          }
+        }
+
+        if (parent != null && parent.id != null) {
+          repliesMap.putIfAbsent(parent.id!, () => []).add(comment);
+        } else {
+          roots.add(comment);
+        }
+      } else {
+        roots.add(comment);
+      }
+    }
+
+    // Now flatten: Newest threads first
+    roots.sort((a, b) => (b.createdAt ?? '').compareTo(a.createdAt ?? ''));
+    
+    final List<ReelCommentModel> result = [];
+    for (var root in roots) {
+      result.add(root);
+      if (root.id != null && repliesMap.containsKey(root.id)) {
+        // Replies under a root stay chronological (ascending)
+        result.addAll(repliesMap[root.id]!);
+      }
+    }
+    return result;
   }
 
   Future<void> _onAddCommentToReel(
@@ -316,8 +366,8 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
           );
         },
         (newComment) {
-          // Add the new comment to the existing list
-          final updatedComments = [...state.reelComments, newComment];
+          // Add the new comment and re-group
+          final updatedComments = _groupReelComments([...state.reelComments, newComment]);
 
           // Update the commentsCount in the reel
           final updatedReelsList = state.reelsList.map((reel) {

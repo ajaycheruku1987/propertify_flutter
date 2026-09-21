@@ -221,10 +221,12 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           );
         },
         (commentsResponse) {
+          // Sort comments: Group replies under their parents
+          final List<FeedCommentModel> sortedComments = _groupComments(commentsResponse);
           emit(
             state.copyWith(
               commentsLoading: false,
-              feedComments: commentsResponse,
+              feedComments: sortedComments,
             ),
           );
         },
@@ -239,6 +241,55 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
         ),
       );
     }
+  }
+
+  List<FeedCommentModel> _groupComments(List<FeedCommentModel> comments) {
+    if (comments.isEmpty) return [];
+
+    // Sort by date ascending to process chronologically
+    final all = List<FeedCommentModel>.from(comments);
+    all.sort((a, b) => (a.createdAt ?? '').compareTo(b.createdAt ?? ''));
+
+    final List<FeedCommentModel> roots = [];
+    final Map<String, List<FeedCommentModel>> repliesMap = {};
+
+    for (var comment in all) {
+      final text = (comment.comment ?? '').trim();
+      if (text.startsWith('@')) {
+        final parts = text.split(' ');
+        final mention = parts[0].substring(1); // Remove @
+        
+        // Find the latest root by this user
+        FeedCommentModel? parent;
+        for (var i = roots.length - 1; i >= 0; i--) {
+          if (roots[i].username == mention) {
+            parent = roots[i];
+            break;
+          }
+        }
+
+        if (parent != null && parent.id != null) {
+          repliesMap.putIfAbsent(parent.id!, () => []).add(comment);
+        } else {
+          roots.add(comment);
+        }
+      } else {
+        roots.add(comment);
+      }
+    }
+
+    // Now flatten: Newest threads first
+    roots.sort((a, b) => (b.createdAt ?? '').compareTo(a.createdAt ?? ''));
+    
+    final List<FeedCommentModel> result = [];
+    for (var root in roots) {
+      result.add(root);
+      if (root.id != null && repliesMap.containsKey(root.id)) {
+        // Replies under a root stay chronological (ascending)
+        result.addAll(repliesMap[root.id]!);
+      }
+    }
+    return result;
   }
 
   Future<void> _onAddCommentToProperty(
@@ -278,10 +329,13 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
           final updatedPostDetails = updatePost(state.postDetails);
 
+          // Add new comment and re-sort
+          final List<FeedCommentModel> updatedComments = _groupComments([...state.feedComments, commentResponse]);
+
           emit(
             state.copyWith(
               sendCommentLoading: false,
-              feedComments: [commentResponse, ...state.feedComments],
+              feedComments: updatedComments,
               feedsList: updatedFeedsList,
               favouritesList: updatedFavouritesList,
               myPropertiesList: updatedMyPropertiesList,
