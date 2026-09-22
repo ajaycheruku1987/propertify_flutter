@@ -246,7 +246,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   List<FeedCommentModel> _groupComments(List<FeedCommentModel> comments) {
     if (comments.isEmpty) return [];
 
-    // Sort by date ascending to process chronologically
+    // 1. Sort by date ascending to process chronologically
     final all = List<FeedCommentModel>.from(comments);
     all.sort((a, b) => (a.createdAt ?? '').compareTo(b.createdAt ?? ''));
 
@@ -257,12 +257,15 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       final text = (comment.comment ?? '').trim();
       if (text.startsWith('@')) {
         final parts = text.split(' ');
-        final mention = parts[0].substring(1); // Remove @
+        // Clean mention: @Swathi, -> swathi
+        String mention = parts[0].substring(1).toLowerCase();
+        mention = mention.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
         
-        // Find the latest root by this user
+        // Find the latest potential parent in the root list
         FeedCommentModel? parent;
         for (var i = roots.length - 1; i >= 0; i--) {
-          if (roots[i].username == mention) {
+          final rootUsername = (roots[i].username ?? '').toLowerCase().replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
+          if (rootUsername == mention) {
             parent = roots[i];
             break;
           }
@@ -271,6 +274,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
         if (parent != null && parent.id != null) {
           repliesMap.putIfAbsent(parent.id!, () => []).add(comment);
         } else {
+          // If no parent found, treat it as a root (no @ or failed to match)
           roots.add(comment);
         }
       } else {
@@ -278,14 +282,26 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       }
     }
 
-    // Now flatten: Newest threads first
-    roots.sort((a, b) => (b.createdAt ?? '').compareTo(a.createdAt ?? ''));
+    // 2. Sort threads by LATEST activity (newest reply or root time) Descending
+    roots.sort((a, b) {
+      String latestA = a.createdAt ?? '';
+      if (a.id != null && repliesMap.containsKey(a.id) && repliesMap[a.id]!.isNotEmpty) {
+        latestA = repliesMap[a.id]!.last.createdAt ?? latestA;
+      }
+      
+      String latestB = b.createdAt ?? '';
+      if (b.id != null && repliesMap.containsKey(b.id) && repliesMap[b.id]!.isNotEmpty) {
+        latestB = repliesMap[b.id]!.last.createdAt ?? latestB;
+      }
+      
+      return latestB.compareTo(latestA);
+    });
     
+    // 3. Flatten threads
     final List<FeedCommentModel> result = [];
     for (var root in roots) {
       result.add(root);
       if (root.id != null && repliesMap.containsKey(root.id)) {
-        // Replies under a root stay chronological (ascending)
         result.addAll(repliesMap[root.id]!);
       }
     }
