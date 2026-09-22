@@ -138,10 +138,10 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                       controller: _tabController,
                       children: [
                         _buildBannerAdsList(state.bannerAds ?? []),
-                        _buildPropertiesList(state.properties ?? []),
-                        _buildServicesList(state.services ?? []),
-                        _buildReelsList(state.adminReels ?? []),
-                        _buildProjectsList(state.projects ?? []),
+                        _buildPropertiesList(state),
+                        _buildServicesList(state),
+                        _buildReelsList(state),
+                        _buildProjectsList(state),
                       ],
                     ),
                   ),
@@ -256,17 +256,28 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     );
   }
 
-  Widget _buildPropertiesList(List<FeedPostsResponseModel> properties) {
+  Widget _buildPropertiesList(AdminState state) {
+    final properties = state.properties ?? [];
     final allBoosted = properties.where((p) => p.isPromoted == true).toList();
-    if (allBoosted.isEmpty) return _buildEmptyState('No boosted feeds found');
+
+    if (allBoosted.isEmpty && !state.hasMoreProperties) {
+      return _buildEmptyState('No boosted feeds found');
+    }
 
     final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
 
     return ListView(
       controller: _scrollController,
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       children: [
+        if (allBoosted.isEmpty && state.hasMoreProperties) ...[
+          SizedBox(
+            height: 150,
+            child: _buildEmptyState('No boosted feeds on this page. Load more to search.'),
+          ),
+        ],
         if (activeItems.isNotEmpty) ...[
           const Padding(
             padding: EdgeInsets.only(bottom: 12, left: 4),
@@ -341,21 +352,50 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             ),
           )),
         ],
+        if (state.hasMoreProperties)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: state.isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        context.read<AdminBloc>().add(
+                              AdminEvent.getAdminProperties(
+                                page: state.currentPropertiesPage + 1,
+                              ),
+                            );
+                      },
+                      child: const Text('Load More Feeds'),
+                    ),
+            ),
+          ),
       ],
     );
   }
 
-  Widget _buildServicesList(List<ServicesResponseModel> services) {
+  Widget _buildServicesList(AdminState state) {
+    final services = state.services ?? [];
     final allBoosted = services.where((s) => s.isPromoted == true).toList();
-    if (allBoosted.isEmpty) return _buildEmptyState('No boosted services found');
+
+    if (allBoosted.isEmpty && !state.hasMoreServices) {
+      return _buildEmptyState('No boosted services found');
+    }
 
     final activeItems = allBoosted.where((s) => s.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((s) => !s.isCurrentlyPromoted).toList();
 
     return ListView(
       controller: _scrollController,
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       children: [
+        if (allBoosted.isEmpty && state.hasMoreServices) ...[
+          SizedBox(
+            height: 150,
+            child: _buildEmptyState('No boosted services on this page. Load more to search.'),
+          ),
+        ],
         if (activeItems.isNotEmpty) ...[
           const Padding(
             padding: EdgeInsets.only(bottom: 12, left: 4),
@@ -430,21 +470,50 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             ),
           )),
         ],
+        if (state.hasMoreServices)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: state.isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        context.read<AdminBloc>().add(
+                              AdminEvent.getServices(
+                                page: state.currentServicesPage + 1,
+                              ),
+                            );
+                      },
+                      child: const Text('Load More Services'),
+                    ),
+            ),
+          ),
       ],
     );
   }
 
-  Widget _buildReelsList(List<ReelResponseModel> reels) {
+  Widget _buildReelsList(AdminState state) {
+    final reels = state.adminReels ?? [];
     final allBoosted = reels.where((r) => r.isPromoted == true).toList();
-    if (allBoosted.isEmpty) return _buildEmptyState('No boosted reels found');
+
+    if (allBoosted.isEmpty && !state.hasMoreAdminReels) {
+      return _buildEmptyState('No boosted reels found');
+    }
 
     final activeItems = allBoosted.where((r) => r.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((r) => !r.isCurrentlyPromoted).toList();
 
     return ListView(
       controller: _scrollController,
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       children: [
+        if (allBoosted.isEmpty && state.hasMoreAdminReels) ...[
+          SizedBox(
+            height: 150,
+            child: _buildEmptyState('No boosted reels on this page. Load more to search.'),
+          ),
+        ],
         if (activeItems.isNotEmpty) ...[
           const Padding(
             padding: EdgeInsets.only(bottom: 12, left: 4),
@@ -519,21 +588,50 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             ),
           )),
         ],
+        if (state.hasMoreAdminReels)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: state.isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        context.read<AdminBloc>().add(
+                              AdminEvent.getAdminReels(
+                                page: state.currentAdminReelsPage + 1,
+                              ),
+                            );
+                      },
+                      child: const Text('Load More Reels'),
+                    ),
+            ),
+          ),
       ],
     );
   }
 
-  Widget _buildProjectsList(List<ProjectsAdminViewModel> projects) {
+  Widget _buildProjectsList(AdminState state) {
+    final projects = state.projects ?? [];
     final allBoosted = projects.where((p) => p.isPromoted == true).toList();
-    if (allBoosted.isEmpty) return _buildEmptyState('No boosted projects found');
+
+    if (allBoosted.isEmpty && !state.hasMoreProjects) {
+      return _buildEmptyState('No boosted projects found');
+    }
 
     final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
 
     return ListView(
       controller: _scrollController,
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       children: [
+        if (allBoosted.isEmpty && state.hasMoreProjects) ...[
+          SizedBox(
+            height: 150,
+            child: _buildEmptyState('No boosted projects on this page. Load more to search.'),
+          ),
+        ],
         if (activeItems.isNotEmpty) ...[
           const Padding(
             padding: EdgeInsets.only(bottom: 12, left: 4),
@@ -575,7 +673,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
           const Padding(
             padding: EdgeInsets.only(top: 8, bottom: 12, left: 4),
             child: Text(
-              'Expired Projects',
+              'Appeared/Expired Projects',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
             ),
           ),
@@ -608,6 +706,24 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             ),
           )),
         ],
+        if (state.hasMoreProjects)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: state.isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        context.read<AdminBloc>().add(
+                              AdminEvent.getProjects(
+                                page: state.currentProjectsPage + 1,
+                              ),
+                            );
+                      },
+                      child: const Text('Load More Projects'),
+                    ),
+            ),
+          ),
       ],
     );
   }
