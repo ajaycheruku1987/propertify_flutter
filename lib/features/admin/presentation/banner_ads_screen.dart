@@ -34,9 +34,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     _tabController = TabController(length: 5, vsync: this);
     _loadTabContent(0);
     _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _loadTabContent(_tabController.index);
-      }
+      _loadTabContent(_tabController.index);
     });
     _scrollController.addListener(_onScroll);
   }

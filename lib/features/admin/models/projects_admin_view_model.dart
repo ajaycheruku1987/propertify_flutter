@@ -57,10 +57,19 @@ class ProjectsAdminViewModel with _$ProjectsAdminViewModel {
 
   bool get isCurrentlyPromoted {
     if (isPromoted != true) return false;
-    if (promotedUntil == null) return true;
+    if (promotedUntil == null || promotedUntil!.isEmpty) return true;
     try {
-      final expiryDate = DateTime.parse(promotedUntil!);
-      return DateTime.now().isBefore(expiryDate);
+      String dateStr = promotedUntil!;
+      if (!dateStr.contains('Z') && !dateStr.contains('+')) {
+        dateStr = dateStr.replaceAll(' ', 'T');
+        if (!dateStr.contains('T')) {
+          dateStr += 'T23:59:59Z';
+        } else {
+          dateStr += 'Z';
+        }
+      }
+      final expiryDate = DateTime.parse(dateStr).toUtc();
+      return expiryDate.isAfter(DateTime.now().toUtc());
     } catch (e) {
       return true;
     }

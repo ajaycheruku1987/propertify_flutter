@@ -54,8 +54,17 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     if (isPromoted == null || !isPromoted!) return false;
     if (promotedUntil == null || promotedUntil!.isEmpty) return false;
     try {
-      final expiryDate = DateTime.parse(promotedUntil!);
-      return expiryDate.isAfter(DateTime.now());
+      String dateStr = promotedUntil!;
+      if (!dateStr.contains('Z') && !dateStr.contains('+')) {
+        dateStr = dateStr.replaceAll(' ', 'T');
+        if (!dateStr.contains('T')) {
+          dateStr += 'T23:59:59Z';
+        } else {
+          dateStr += 'Z';
+        }
+      }
+      final expiryDate = DateTime.parse(dateStr).toUtc();
+      return expiryDate.isAfter(DateTime.now().toUtc());
     } catch (e) {
       return false;
     }
