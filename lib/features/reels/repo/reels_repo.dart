@@ -334,7 +334,7 @@ class ReelsRepoImpl implements ReelsRepo {
     try {
       final apiRequest = serviceLocator<ApiRequest>();
       final response = await apiRequest.delete(
-        '/comments/$commentId',
+        '/reels/comments/$commentId',
       );
       final responseData = await response.getResponse();
 
