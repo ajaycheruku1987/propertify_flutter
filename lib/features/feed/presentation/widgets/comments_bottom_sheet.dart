@@ -408,12 +408,42 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
                     size: 18,
                   ),
                   onPressed: () {
-                    // Handle delete
+                    _showDeleteDialog(comment);
                   },
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 )
               : const SizedBox(),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteDialog(FeedCommentModel comment) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Comment'),
+        content: const Text('Are you sure you want to delete this comment?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (comment.id != null) {
+                context.read<FeedBloc>().add(
+                      FeedEvent.deleteComment(
+                        propertyId: widget.propertyId,
+                        commentId: comment.id!,
+                      ),
+                    );
+              }
+              Navigator.pop(context);
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          ),
         ],
       ),
     );

@@ -60,6 +60,11 @@ abstract class ReelsRepo {
 
   Future<Either<Failure, bool>> deleteReel({required String reelId});
 
+  Future<Either<Failure, bool>> deleteReelComment({
+    required String reelId,
+    required String commentId,
+  });
+
   Future<Either<Failure, List<ReelResponseModel>>> getMyReels();
 }
 
@@ -310,6 +315,27 @@ class ReelsRepoImpl implements ReelsRepo {
     try {
       final apiRequest = serviceLocator<ApiRequest>();
       final response = await apiRequest.delete('/reels/$reelId');
+      final responseData = await response.getResponse();
+
+      return responseData.fold(
+        (failure) => Left(failure),
+        (data) => const Right(true),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteReelComment({
+    required String reelId,
+    required String commentId,
+  }) async {
+    try {
+      final apiRequest = serviceLocator<ApiRequest>();
+      final response = await apiRequest.delete(
+        '/comments/$commentId',
+      );
       final responseData = await response.getResponse();
 
       return responseData.fold(

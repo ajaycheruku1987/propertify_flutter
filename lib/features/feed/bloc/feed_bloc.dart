@@ -43,8 +43,14 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     on<_RecordPropertyView>(_onRecordPropertyView);
     on<_GetSimilarPostsByCategoryEvent>(_onGetSimilarPostsByCategoryEvent);
     on<_ResetSimilarPostsByCategory>(_onResetSimilarPostsByCategory);
-    on<_UpdatePropertyEvent>(_onUpdatePropertyEvent);
     on<_DeletePropertyEvent>(_onDeletePropertyEvent);
+    on<FeedEvent>((event, emit) async {
+      await event.maybeWhen(
+        deleteComment: (propertyId, commentId) =>
+            _onDeleteComment(propertyId, commentId, emit),
+        orElse: () {},
+      );
+    });
     on<_Reset>(_onReset);
   }
 
@@ -370,6 +376,98 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       emit(
         state.copyWith(
           isLoading: false,
+          notifyStatus: NotifyStatus(
+            message: 'An error occurred: ${e.toString()}',
+            type: NotifyType.error,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onDeleteComment(
+    String propertyId,
+    String commentId,
+    Emitter<FeedState> emit,
+  ) async {
+    try {
+      final Either<Failure, bool> result = await _feedRepo.deleteComment(
+        propertyId: propertyId,
+        commentId: commentId,
+      );
+
+      result.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (success) {
+          FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
+            if (post?.id == propertyId) {
+              final int currentCount = post?.commentsCount ?? 0;
+              return post?.copyWith(
+                commentsCount: currentCount > 0 ? currentCount - 1 : 0,
+              );
+            }
+            return post;
+          }
+
+          final updatedFeedsList =
+              state.feedsList
+                  .map(updatePost)
+                  .whereType<FeedPostsResponseModel>()
+                  .toList();
+          final updatedFavouritesList =
+              state.favouritesList
+                  .map(updatePost)
+                  .whereType<FeedPostsResponseModel>()
+                  .toList();
+          final updatedMyPropertiesList =
+              state.myPropertiesList
+                  .map(updatePost)
+                  .whereType<FeedPostsResponseModel>()
+                  .toList();
+          final updatedSimilarProperties =
+              state.similarProperties
+                  .map(updatePost)
+                  .whereType<FeedPostsResponseModel>()
+                  .toList();
+          final updatedSimilarPostsByCategory =
+              state.similarPostsByCategory
+                  .map(updatePost)
+                  .whereType<FeedPostsResponseModel>()
+                  .toList();
+          final updatedPostDetails = updatePost(state.postDetails);
+
+          final List<FeedCommentModel> updatedComments =
+              state.feedComments.where((c) => c.id != commentId).toList();
+          final List<FeedCommentModel> sortedComments = _groupComments(
+            updatedComments,
+          );
+
+          emit(
+            state.copyWith(
+              feedComments: sortedComments,
+              feedsList: updatedFeedsList,
+              favouritesList: updatedFavouritesList,
+              myPropertiesList: updatedMyPropertiesList,
+              similarProperties: updatedSimilarProperties,
+              similarPostsByCategory: updatedSimilarPostsByCategory,
+              postDetails: updatedPostDetails,
+              notifyStatus: NotifyStatus(
+                message: 'Comment deleted successfully',
+                type: NotifyType.success,
+              ),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
           notifyStatus: NotifyStatus(
             message: 'An error occurred: ${e.toString()}',
             type: NotifyType.error,

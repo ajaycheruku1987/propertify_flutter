@@ -75,6 +75,8 @@ mixin _$FeedEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,6 +137,7 @@ mixin _$FeedEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -195,6 +198,7 @@ mixin _$FeedEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,6 +223,7 @@ mixin _$FeedEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -242,6 +247,7 @@ mixin _$FeedEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -265,6 +271,7 @@ mixin _$FeedEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -382,6 +389,8 @@ class _$ResetImpl implements _Reset {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return reset();
   }
@@ -445,6 +454,7 @@ class _$ResetImpl implements _Reset {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return reset?.call();
   }
@@ -508,6 +518,7 @@ class _$ResetImpl implements _Reset {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -538,6 +549,7 @@ class _$ResetImpl implements _Reset {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return reset(this);
   }
@@ -564,6 +576,7 @@ class _$ResetImpl implements _Reset {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return reset?.call(this);
   }
@@ -590,6 +603,7 @@ class _$ResetImpl implements _Reset {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -823,6 +837,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getFeedsEvent(city, listingType, propertyType, minPrice, maxPrice,
         search, limit, offset, latitude, longitude);
@@ -887,6 +903,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getFeedsEvent?.call(city, listingType, propertyType, minPrice,
         maxPrice, search, limit, offset, latitude, longitude);
@@ -951,6 +968,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getFeedsEvent != null) {
@@ -982,6 +1000,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getFeedsEvent(this);
   }
@@ -1008,6 +1027,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getFeedsEvent?.call(this);
   }
@@ -1034,6 +1054,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getFeedsEvent != null) {
@@ -1193,6 +1214,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getPostDetailsEvent(postId);
   }
@@ -1256,6 +1279,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getPostDetailsEvent?.call(postId);
   }
@@ -1319,6 +1343,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getPostDetailsEvent != null) {
@@ -1349,6 +1374,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getPostDetailsEvent(this);
   }
@@ -1375,6 +1401,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getPostDetailsEvent?.call(this);
   }
@@ -1401,6 +1428,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getPostDetailsEvent != null) {
@@ -1590,6 +1618,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getSimilarPropertiesEvent(
         city, propertyType, listingType, excludePostId, limit);
@@ -1654,6 +1684,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getSimilarPropertiesEvent?.call(
         city, propertyType, listingType, excludePostId, limit);
@@ -1718,6 +1749,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getSimilarPropertiesEvent != null) {
@@ -1749,6 +1781,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getSimilarPropertiesEvent(this);
   }
@@ -1775,6 +1808,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getSimilarPropertiesEvent?.call(this);
   }
@@ -1801,6 +1835,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getSimilarPropertiesEvent != null) {
@@ -1950,6 +1985,8 @@ class _$LikePropertyImpl implements _LikeProperty {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return likeProperty(propertyId);
   }
@@ -2013,6 +2050,7 @@ class _$LikePropertyImpl implements _LikeProperty {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return likeProperty?.call(propertyId);
   }
@@ -2076,6 +2114,7 @@ class _$LikePropertyImpl implements _LikeProperty {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (likeProperty != null) {
@@ -2106,6 +2145,7 @@ class _$LikePropertyImpl implements _LikeProperty {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return likeProperty(this);
   }
@@ -2132,6 +2172,7 @@ class _$LikePropertyImpl implements _LikeProperty {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return likeProperty?.call(this);
   }
@@ -2158,6 +2199,7 @@ class _$LikePropertyImpl implements _LikeProperty {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (likeProperty != null) {
@@ -2300,6 +2342,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getCommentsById(propertyId);
   }
@@ -2363,6 +2407,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getCommentsById?.call(propertyId);
   }
@@ -2426,6 +2471,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getCommentsById != null) {
@@ -2456,6 +2502,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getCommentsById(this);
   }
@@ -2482,6 +2529,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getCommentsById?.call(this);
   }
@@ -2508,6 +2556,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getCommentsById != null) {
@@ -2660,6 +2709,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return addCommentToProperty(propertyId, text);
   }
@@ -2723,6 +2774,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return addCommentToProperty?.call(propertyId, text);
   }
@@ -2786,6 +2838,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (addCommentToProperty != null) {
@@ -2816,6 +2869,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return addCommentToProperty(this);
   }
@@ -2842,6 +2896,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return addCommentToProperty?.call(this);
   }
@@ -2868,6 +2923,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (addCommentToProperty != null) {
@@ -3012,6 +3068,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return toggleFavorite(propertyId);
   }
@@ -3075,6 +3133,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return toggleFavorite?.call(propertyId);
   }
@@ -3138,6 +3197,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (toggleFavorite != null) {
@@ -3168,6 +3228,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return toggleFavorite(this);
   }
@@ -3194,6 +3255,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return toggleFavorite?.call(this);
   }
@@ -3220,6 +3282,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (toggleFavorite != null) {
@@ -3334,6 +3397,8 @@ class _$IsLoadingImpl implements _IsLoading {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return isLoading();
   }
@@ -3397,6 +3462,7 @@ class _$IsLoadingImpl implements _IsLoading {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return isLoading?.call();
   }
@@ -3460,6 +3526,7 @@ class _$IsLoadingImpl implements _IsLoading {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -3490,6 +3557,7 @@ class _$IsLoadingImpl implements _IsLoading {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return isLoading(this);
   }
@@ -3516,6 +3584,7 @@ class _$IsLoadingImpl implements _IsLoading {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return isLoading?.call(this);
   }
@@ -3542,6 +3611,7 @@ class _$IsLoadingImpl implements _IsLoading {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -3685,6 +3755,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getMyProperties(limit, offset);
   }
@@ -3748,6 +3820,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getMyProperties?.call(limit, offset);
   }
@@ -3811,6 +3884,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getMyProperties != null) {
@@ -3841,6 +3915,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getMyProperties(this);
   }
@@ -3867,6 +3942,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getMyProperties?.call(this);
   }
@@ -3893,6 +3969,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getMyProperties != null) {
@@ -4008,6 +4085,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getFavourites();
   }
@@ -4071,6 +4150,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getFavourites?.call();
   }
@@ -4134,6 +4214,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getFavourites != null) {
@@ -4164,6 +4245,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getFavourites(this);
   }
@@ -4190,6 +4272,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getFavourites?.call(this);
   }
@@ -4216,6 +4299,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getFavourites != null) {
@@ -4352,6 +4436,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return recordPropertyView(propertyId);
   }
@@ -4415,6 +4501,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return recordPropertyView?.call(propertyId);
   }
@@ -4478,6 +4565,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (recordPropertyView != null) {
@@ -4508,6 +4596,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return recordPropertyView(this);
   }
@@ -4534,6 +4623,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return recordPropertyView?.call(this);
   }
@@ -4560,6 +4650,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (recordPropertyView != null) {
@@ -4738,6 +4829,8 @@ class _$GetSimilarPostsByCategoryEventImpl
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return getSimilarPostsByCategoryEvent(
         propertyType, listingType, excludePostId, limit);
@@ -4802,6 +4895,7 @@ class _$GetSimilarPostsByCategoryEventImpl
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return getSimilarPostsByCategoryEvent?.call(
         propertyType, listingType, excludePostId, limit);
@@ -4866,6 +4960,7 @@ class _$GetSimilarPostsByCategoryEventImpl
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (getSimilarPostsByCategoryEvent != null) {
@@ -4897,6 +4992,7 @@ class _$GetSimilarPostsByCategoryEventImpl
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return getSimilarPostsByCategoryEvent(this);
   }
@@ -4923,6 +5019,7 @@ class _$GetSimilarPostsByCategoryEventImpl
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return getSimilarPostsByCategoryEvent?.call(this);
   }
@@ -4949,6 +5046,7 @@ class _$GetSimilarPostsByCategoryEventImpl
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (getSimilarPostsByCategoryEvent != null) {
@@ -5074,6 +5172,8 @@ class _$ResetSimilarPostsByCategoryImpl
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return resetSimilarPostsByCategory();
   }
@@ -5137,6 +5237,7 @@ class _$ResetSimilarPostsByCategoryImpl
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return resetSimilarPostsByCategory?.call();
   }
@@ -5200,6 +5301,7 @@ class _$ResetSimilarPostsByCategoryImpl
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (resetSimilarPostsByCategory != null) {
@@ -5230,6 +5332,7 @@ class _$ResetSimilarPostsByCategoryImpl
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return resetSimilarPostsByCategory(this);
   }
@@ -5256,6 +5359,7 @@ class _$ResetSimilarPostsByCategoryImpl
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return resetSimilarPostsByCategory?.call(this);
   }
@@ -5282,6 +5386,7 @@ class _$ResetSimilarPostsByCategoryImpl
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (resetSimilarPostsByCategory != null) {
@@ -5710,6 +5815,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return updateProperty(
         propertyId,
@@ -5797,6 +5904,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return updateProperty?.call(
         propertyId,
@@ -5884,6 +5992,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (updateProperty != null) {
@@ -5938,6 +6047,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return updateProperty(this);
   }
@@ -5964,6 +6074,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return updateProperty?.call(this);
   }
@@ -5990,6 +6101,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (updateProperty != null) {
@@ -6178,6 +6290,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             double areaSqft)
         updateProperty,
     required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
   }) {
     return deleteProperty(propertyId);
   }
@@ -6241,6 +6355,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             double areaSqft)?
         updateProperty,
     TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
     return deleteProperty?.call(propertyId);
   }
@@ -6304,6 +6419,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             double areaSqft)?
         updateProperty,
     TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
     required TResult orElse(),
   }) {
     if (deleteProperty != null) {
@@ -6334,6 +6450,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         resetSimilarPostsByCategory,
     required TResult Function(_UpdatePropertyEvent value) updateProperty,
     required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
   }) {
     return deleteProperty(this);
   }
@@ -6360,6 +6477,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         resetSimilarPostsByCategory,
     TResult? Function(_UpdatePropertyEvent value)? updateProperty,
     TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
   }) {
     return deleteProperty?.call(this);
   }
@@ -6386,6 +6504,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         resetSimilarPostsByCategory,
     TResult Function(_UpdatePropertyEvent value)? updateProperty,
     TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
     required TResult orElse(),
   }) {
     if (deleteProperty != null) {
@@ -6402,6 +6521,374 @@ abstract class _DeletePropertyEvent implements FeedEvent {
   String get propertyId;
   @JsonKey(ignore: true)
   _$$DeletePropertyEventImplCopyWith<_$DeletePropertyEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteCommentImplCopyWith<$Res> {
+  factory _$$DeleteCommentImplCopyWith(
+          _$DeleteCommentImpl value, $Res Function(_$DeleteCommentImpl) then) =
+      __$$DeleteCommentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String propertyId, String commentId});
+}
+
+/// @nodoc
+class __$$DeleteCommentImplCopyWithImpl<$Res>
+    extends _$FeedEventCopyWithImpl<$Res, _$DeleteCommentImpl>
+    implements _$$DeleteCommentImplCopyWith<$Res> {
+  __$$DeleteCommentImplCopyWithImpl(
+      _$DeleteCommentImpl _value, $Res Function(_$DeleteCommentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? propertyId = null,
+    Object? commentId = null,
+  }) {
+    return _then(_$DeleteCommentImpl(
+      propertyId: null == propertyId
+          ? _value.propertyId
+          : propertyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      commentId: null == commentId
+          ? _value.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCommentImpl implements _DeleteComment {
+  const _$DeleteCommentImpl(
+      {required this.propertyId, required this.commentId});
+
+  @override
+  final String propertyId;
+  @override
+  final String commentId;
+
+  @override
+  String toString() {
+    return 'FeedEvent.deleteComment(propertyId: $propertyId, commentId: $commentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCommentImpl &&
+            (identical(other.propertyId, propertyId) ||
+                other.propertyId == propertyId) &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, propertyId, commentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCommentImplCopyWith<_$DeleteCommentImpl> get copyWith =>
+      __$$DeleteCommentImplCopyWithImpl<_$DeleteCommentImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(
+            String? city,
+            String? listingType,
+            String? propertyType,
+            double? minPrice,
+            double? maxPrice,
+            String? search,
+            int? limit,
+            int? offset,
+            double? latitude,
+            double? longitude)
+        getFeedsEvent,
+    required TResult Function(String postId) getPostDetailsEvent,
+    required TResult Function(String? city, String? propertyType,
+            String? listingType, String? excludePostId, int? limit)
+        getSimilarPropertiesEvent,
+    required TResult Function(String propertyId) likeProperty,
+    required TResult Function(String propertyId) getCommentsById,
+    required TResult Function(String propertyId, String text)
+        addCommentToProperty,
+    required TResult Function(String propertyId) toggleFavorite,
+    required TResult Function() isLoading,
+    required TResult Function(int? limit, int? offset) getMyProperties,
+    required TResult Function() getFavourites,
+    required TResult Function(String propertyId) recordPropertyView,
+    required TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)
+        getSimilarPostsByCategoryEvent,
+    required TResult Function() resetSimilarPostsByCategory,
+    required TResult Function(
+            String propertyId,
+            String availableFrom,
+            int totalFloors,
+            bool isFeatured,
+            String propertyType,
+            int bathrooms,
+            int price,
+            String city,
+            int floor,
+            double latitude,
+            int propertyAgeYears,
+            String furnishing,
+            double longitude,
+            String address,
+            String listingType,
+            String amenities,
+            List<File> newImages,
+            int bedrooms,
+            String title,
+            bool isPromoted,
+            List<String> existingImageUrls,
+            String description,
+            bool isVerified,
+            double areaSqft)
+        updateProperty,
+    required TResult Function(String propertyId) deleteProperty,
+    required TResult Function(String propertyId, String commentId)
+        deleteComment,
+  }) {
+    return deleteComment(propertyId, commentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function(
+            String? city,
+            String? listingType,
+            String? propertyType,
+            double? minPrice,
+            double? maxPrice,
+            String? search,
+            int? limit,
+            int? offset,
+            double? latitude,
+            double? longitude)?
+        getFeedsEvent,
+    TResult? Function(String postId)? getPostDetailsEvent,
+    TResult? Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
+        getSimilarPropertiesEvent,
+    TResult? Function(String propertyId)? likeProperty,
+    TResult? Function(String propertyId)? getCommentsById,
+    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId)? toggleFavorite,
+    TResult? Function()? isLoading,
+    TResult? Function(int? limit, int? offset)? getMyProperties,
+    TResult? Function()? getFavourites,
+    TResult? Function(String propertyId)? recordPropertyView,
+    TResult? Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
+        getSimilarPostsByCategoryEvent,
+    TResult? Function()? resetSimilarPostsByCategory,
+    TResult? Function(
+            String propertyId,
+            String availableFrom,
+            int totalFloors,
+            bool isFeatured,
+            String propertyType,
+            int bathrooms,
+            int price,
+            String city,
+            int floor,
+            double latitude,
+            int propertyAgeYears,
+            String furnishing,
+            double longitude,
+            String address,
+            String listingType,
+            String amenities,
+            List<File> newImages,
+            int bedrooms,
+            String title,
+            bool isPromoted,
+            List<String> existingImageUrls,
+            String description,
+            bool isVerified,
+            double areaSqft)?
+        updateProperty,
+    TResult? Function(String propertyId)? deleteProperty,
+    TResult? Function(String propertyId, String commentId)? deleteComment,
+  }) {
+    return deleteComment?.call(propertyId, commentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(
+            String? city,
+            String? listingType,
+            String? propertyType,
+            double? minPrice,
+            double? maxPrice,
+            String? search,
+            int? limit,
+            int? offset,
+            double? latitude,
+            double? longitude)?
+        getFeedsEvent,
+    TResult Function(String postId)? getPostDetailsEvent,
+    TResult Function(String? city, String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
+        getSimilarPropertiesEvent,
+    TResult Function(String propertyId)? likeProperty,
+    TResult Function(String propertyId)? getCommentsById,
+    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId)? toggleFavorite,
+    TResult Function()? isLoading,
+    TResult Function(int? limit, int? offset)? getMyProperties,
+    TResult Function()? getFavourites,
+    TResult Function(String propertyId)? recordPropertyView,
+    TResult Function(String? propertyType, String? listingType,
+            String? excludePostId, int? limit)?
+        getSimilarPostsByCategoryEvent,
+    TResult Function()? resetSimilarPostsByCategory,
+    TResult Function(
+            String propertyId,
+            String availableFrom,
+            int totalFloors,
+            bool isFeatured,
+            String propertyType,
+            int bathrooms,
+            int price,
+            String city,
+            int floor,
+            double latitude,
+            int propertyAgeYears,
+            String furnishing,
+            double longitude,
+            String address,
+            String listingType,
+            String amenities,
+            List<File> newImages,
+            int bedrooms,
+            String title,
+            bool isPromoted,
+            List<String> existingImageUrls,
+            String description,
+            bool isVerified,
+            double areaSqft)?
+        updateProperty,
+    TResult Function(String propertyId)? deleteProperty,
+    TResult Function(String propertyId, String commentId)? deleteComment,
+    required TResult orElse(),
+  }) {
+    if (deleteComment != null) {
+      return deleteComment(propertyId, commentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_GetFeedsEvent value) getFeedsEvent,
+    required TResult Function(_GetPostDetailsEvent value) getPostDetailsEvent,
+    required TResult Function(_GetSimilarPropertiesEvent value)
+        getSimilarPropertiesEvent,
+    required TResult Function(_LikeProperty value) likeProperty,
+    required TResult Function(_GetCommentsById value) getCommentsById,
+    required TResult Function(_AddCommentToProperty value) addCommentToProperty,
+    required TResult Function(_ToggleFavorite value) toggleFavorite,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_GetMyProperties value) getMyProperties,
+    required TResult Function(_GetFavourites value) getFavourites,
+    required TResult Function(_RecordPropertyView value) recordPropertyView,
+    required TResult Function(_GetSimilarPostsByCategoryEvent value)
+        getSimilarPostsByCategoryEvent,
+    required TResult Function(_ResetSimilarPostsByCategory value)
+        resetSimilarPostsByCategory,
+    required TResult Function(_UpdatePropertyEvent value) updateProperty,
+    required TResult Function(_DeletePropertyEvent value) deleteProperty,
+    required TResult Function(_DeleteComment value) deleteComment,
+  }) {
+    return deleteComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_GetFeedsEvent value)? getFeedsEvent,
+    TResult? Function(_GetPostDetailsEvent value)? getPostDetailsEvent,
+    TResult? Function(_GetSimilarPropertiesEvent value)?
+        getSimilarPropertiesEvent,
+    TResult? Function(_LikeProperty value)? likeProperty,
+    TResult? Function(_GetCommentsById value)? getCommentsById,
+    TResult? Function(_AddCommentToProperty value)? addCommentToProperty,
+    TResult? Function(_ToggleFavorite value)? toggleFavorite,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_GetMyProperties value)? getMyProperties,
+    TResult? Function(_GetFavourites value)? getFavourites,
+    TResult? Function(_RecordPropertyView value)? recordPropertyView,
+    TResult? Function(_GetSimilarPostsByCategoryEvent value)?
+        getSimilarPostsByCategoryEvent,
+    TResult? Function(_ResetSimilarPostsByCategory value)?
+        resetSimilarPostsByCategory,
+    TResult? Function(_UpdatePropertyEvent value)? updateProperty,
+    TResult? Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult? Function(_DeleteComment value)? deleteComment,
+  }) {
+    return deleteComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_GetFeedsEvent value)? getFeedsEvent,
+    TResult Function(_GetPostDetailsEvent value)? getPostDetailsEvent,
+    TResult Function(_GetSimilarPropertiesEvent value)?
+        getSimilarPropertiesEvent,
+    TResult Function(_LikeProperty value)? likeProperty,
+    TResult Function(_GetCommentsById value)? getCommentsById,
+    TResult Function(_AddCommentToProperty value)? addCommentToProperty,
+    TResult Function(_ToggleFavorite value)? toggleFavorite,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_GetMyProperties value)? getMyProperties,
+    TResult Function(_GetFavourites value)? getFavourites,
+    TResult Function(_RecordPropertyView value)? recordPropertyView,
+    TResult Function(_GetSimilarPostsByCategoryEvent value)?
+        getSimilarPostsByCategoryEvent,
+    TResult Function(_ResetSimilarPostsByCategory value)?
+        resetSimilarPostsByCategory,
+    TResult Function(_UpdatePropertyEvent value)? updateProperty,
+    TResult Function(_DeletePropertyEvent value)? deleteProperty,
+    TResult Function(_DeleteComment value)? deleteComment,
+    required TResult orElse(),
+  }) {
+    if (deleteComment != null) {
+      return deleteComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteComment implements FeedEvent {
+  const factory _DeleteComment(
+      {required final String propertyId,
+      required final String commentId}) = _$DeleteCommentImpl;
+
+  String get propertyId;
+  String get commentId;
+  @JsonKey(ignore: true)
+  _$$DeleteCommentImplCopyWith<_$DeleteCommentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

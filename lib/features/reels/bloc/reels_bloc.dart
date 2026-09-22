@@ -34,6 +34,13 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     on<_RecordReelView>(_onRecordReelView);
     on<_LoadOtherUserReels>(_onLoadOtherUserReels);
     on<_DeleteReel>(_onDeleteReel);
+    on<ReelsEvent>((event, emit) async {
+      await event.maybeWhen(
+        deleteReelComment: (reelId, commentId) =>
+            _onDeleteReelComment(reelId, commentId, emit),
+        orElse: () {},
+      );
+    });
     on<_GetMyReels>(_onGetMyReels);
     on<_GetSearchSuggestions>(_onGetSearchSuggestions);
     on<_Reset>(_onReset);
@@ -399,6 +406,95 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
             _mergeState(
               reelComments: updatedComments,
               reelsList: updatedReelsList,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        _mergeState(
+          notifyStatus: NotifyStatus(
+            message: 'An error occurred: ${e.toString()}',
+            type: NotifyType.error,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onDeleteReelComment(
+    String reelId,
+    String commentId,
+    Emitter<ReelsState> emit,
+  ) async {
+    try {
+      final result = await _repo.deleteReelComment(
+        reelId: reelId,
+        commentId: commentId,
+      );
+
+      result.fold(
+        (failure) {
+          emit(
+            _mergeState(
+              notifyStatus: NotifyStatus(
+                message: failure.message,
+                type: NotifyType.error,
+              ),
+            ),
+          );
+        },
+        (success) {
+          // Update the commentsCount in the reel
+          final updatedReelsList =
+              state.reelsList.map((reel) {
+                if (reel.id == reelId) {
+                  final int currentCount = reel.commentsCount ?? 0;
+                  return reel.copyWith(
+                    commentsCount: currentCount > 0 ? currentCount - 1 : 0,
+                  );
+                }
+                return reel;
+              }).toList();
+
+          final updatedMyReels =
+              state.myReels.map((reel) {
+                if (reel.id == reelId) {
+                  final int currentCount = reel.commentsCount ?? 0;
+                  return reel.copyWith(
+                    commentsCount: currentCount > 0 ? currentCount - 1 : 0,
+                  );
+                }
+                return reel;
+              }).toList();
+
+          final updatedOtherUserReels =
+              state.otherUserReels.map((reel) {
+                if (reel.id == reelId) {
+                  final int currentCount = reel.commentsCount ?? 0;
+                  return reel.copyWith(
+                    commentsCount: currentCount > 0 ? currentCount - 1 : 0,
+                  );
+                }
+                return reel;
+              }).toList();
+
+          final List<ReelCommentModel> updatedComments =
+              state.reelComments.where((c) => c.id != commentId).toList();
+          final List<ReelCommentModel> sortedComments = _groupReelComments(
+            updatedComments,
+          );
+
+          emit(
+            _mergeState(
+              reelComments: sortedComments,
+              reelsList: updatedReelsList,
+              myReels: updatedMyReels,
+              otherUserReels: updatedOtherUserReels,
+              notifyStatus: NotifyStatus(
+                message: 'Comment deleted successfully',
+                type: NotifyType.success,
+              ),
             ),
           );
         },

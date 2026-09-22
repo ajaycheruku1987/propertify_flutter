@@ -44,6 +44,8 @@ mixin _$ReelsEvent {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) =>
@@ -75,6 +77,7 @@ mixin _$ReelsEvent {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) =>
@@ -106,6 +109,7 @@ mixin _$ReelsEvent {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -124,6 +128,7 @@ mixin _$ReelsEvent {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) =>
@@ -141,6 +146,7 @@ mixin _$ReelsEvent {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) =>
@@ -158,6 +164,7 @@ mixin _$ReelsEvent {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -247,6 +254,8 @@ class _$ResetImpl implements _Reset {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -281,6 +290,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -315,6 +325,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -339,6 +350,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -359,6 +371,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -379,6 +392,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -548,6 +562,8 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -582,6 +598,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -616,6 +633,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -640,6 +658,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -660,6 +679,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -680,6 +700,7 @@ class _$GetReelsEventImpl implements _GetReelsEvent {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -775,6 +796,8 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -809,6 +832,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -843,6 +867,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -867,6 +892,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -887,6 +913,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -907,6 +934,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -1016,6 +1044,8 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -1050,6 +1080,7 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -1084,6 +1115,7 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -1108,6 +1140,7 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -1128,6 +1161,7 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -1148,6 +1182,7 @@ class _$UpdateReelDetailsEventImpl implements _UpdateReelDetailsEvent {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -1391,6 +1426,8 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -1426,6 +1463,7 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -1461,6 +1499,7 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -1486,6 +1525,7 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -1506,6 +1546,7 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -1526,6 +1567,7 @@ class _$CreateReelEventImpl implements _CreateReelEvent {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -1658,6 +1700,8 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -1692,6 +1736,7 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -1726,6 +1771,7 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -1750,6 +1796,7 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -1770,6 +1817,7 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -1790,6 +1838,7 @@ class _$ToggleLikeReelImpl implements _ToggleLikeReel {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -1902,6 +1951,8 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -1936,6 +1987,7 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -1970,6 +2022,7 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -1994,6 +2047,7 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -2014,6 +2068,7 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -2034,6 +2089,7 @@ class _$GetReelCommentsImpl implements _GetReelComments {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -2154,6 +2210,8 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -2188,6 +2246,7 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -2222,6 +2281,7 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -2246,6 +2306,7 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -2266,6 +2327,7 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -2286,6 +2348,7 @@ class _$AddCommentToReelImpl implements _AddCommentToReel {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -2400,6 +2463,8 @@ class _$RecordReelViewImpl implements _RecordReelView {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -2434,6 +2499,7 @@ class _$RecordReelViewImpl implements _RecordReelView {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -2468,6 +2534,7 @@ class _$RecordReelViewImpl implements _RecordReelView {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -2492,6 +2559,7 @@ class _$RecordReelViewImpl implements _RecordReelView {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -2512,6 +2580,7 @@ class _$RecordReelViewImpl implements _RecordReelView {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -2532,6 +2601,7 @@ class _$RecordReelViewImpl implements _RecordReelView {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -2644,6 +2714,8 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -2678,6 +2750,7 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -2712,6 +2785,7 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -2736,6 +2810,7 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -2756,6 +2831,7 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -2776,6 +2852,7 @@ class _$LoadOtherUserReelsImpl implements _LoadOtherUserReels {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -2887,6 +2964,8 @@ class _$DeleteReelImpl implements _DeleteReel {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -2921,6 +3000,7 @@ class _$DeleteReelImpl implements _DeleteReel {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -2955,6 +3035,7 @@ class _$DeleteReelImpl implements _DeleteReel {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -2979,6 +3060,7 @@ class _$DeleteReelImpl implements _DeleteReel {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -2999,6 +3081,7 @@ class _$DeleteReelImpl implements _DeleteReel {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -3019,6 +3102,7 @@ class _$DeleteReelImpl implements _DeleteReel {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -3036,6 +3120,269 @@ abstract class _DeleteReel implements ReelsEvent {
   String get reelId;
   @JsonKey(ignore: true)
   _$$DeleteReelImplCopyWith<_$DeleteReelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteReelCommentImplCopyWith<$Res> {
+  factory _$$DeleteReelCommentImplCopyWith(_$DeleteReelCommentImpl value,
+          $Res Function(_$DeleteReelCommentImpl) then) =
+      __$$DeleteReelCommentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String reelId, String commentId});
+}
+
+/// @nodoc
+class __$$DeleteReelCommentImplCopyWithImpl<$Res>
+    extends _$ReelsEventCopyWithImpl<$Res, _$DeleteReelCommentImpl>
+    implements _$$DeleteReelCommentImplCopyWith<$Res> {
+  __$$DeleteReelCommentImplCopyWithImpl(_$DeleteReelCommentImpl _value,
+      $Res Function(_$DeleteReelCommentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reelId = null,
+    Object? commentId = null,
+  }) {
+    return _then(_$DeleteReelCommentImpl(
+      reelId: null == reelId
+          ? _value.reelId
+          : reelId // ignore: cast_nullable_to_non_nullable
+              as String,
+      commentId: null == commentId
+          ? _value.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteReelCommentImpl implements _DeleteReelComment {
+  const _$DeleteReelCommentImpl(
+      {required this.reelId, required this.commentId});
+
+  @override
+  final String reelId;
+  @override
+  final String commentId;
+
+  @override
+  String toString() {
+    return 'ReelsEvent.deleteReelComment(reelId: $reelId, commentId: $commentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReelCommentImpl &&
+            (identical(other.reelId, reelId) || other.reelId == reelId) &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reelId, commentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteReelCommentImplCopyWith<_$DeleteReelCommentImpl> get copyWith =>
+      __$$DeleteReelCommentImplCopyWithImpl<_$DeleteReelCommentImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)
+        getReels,
+    required TResult Function() isLoading,
+    required TResult Function(CreateReelModel createReelModel)
+        updateReelDetails,
+    required TResult Function(
+            String? description,
+            List<String>? category,
+            String? location,
+            String? city,
+            String? state,
+            String? address,
+            double? latitude,
+            double? longitude,
+            bool? isPromoted,
+            String? promotedUntil,
+            File videoFile)
+        createReel,
+    required TResult Function(String reelId) toggleLikeReel,
+    required TResult Function(String reelId) getReelComments,
+    required TResult Function(String reelId, String text) addCommentToReel,
+    required TResult Function(String reelId) recordReelView,
+    required TResult Function(String userId) loadOtherUserReels,
+    required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
+    required TResult Function() getMyReels,
+    required TResult Function(String query) getSearchSuggestions,
+  }) {
+    return deleteReelComment(reelId, commentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
+    TResult? Function()? isLoading,
+    TResult? Function(CreateReelModel createReelModel)? updateReelDetails,
+    TResult? Function(
+            String? description,
+            List<String>? category,
+            String? location,
+            String? city,
+            String? state,
+            String? address,
+            double? latitude,
+            double? longitude,
+            bool? isPromoted,
+            String? promotedUntil,
+            File videoFile)?
+        createReel,
+    TResult? Function(String reelId)? toggleLikeReel,
+    TResult? Function(String reelId)? getReelComments,
+    TResult? Function(String reelId, String text)? addCommentToReel,
+    TResult? Function(String reelId)? recordReelView,
+    TResult? Function(String userId)? loadOtherUserReels,
+    TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
+    TResult? Function()? getMyReels,
+    TResult? Function(String query)? getSearchSuggestions,
+  }) {
+    return deleteReelComment?.call(reelId, commentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(int? skip, int? limit, String? search,
+            List<String>? categories, double? radiusKm, String? sortBy)?
+        getReels,
+    TResult Function()? isLoading,
+    TResult Function(CreateReelModel createReelModel)? updateReelDetails,
+    TResult Function(
+            String? description,
+            List<String>? category,
+            String? location,
+            String? city,
+            String? state,
+            String? address,
+            double? latitude,
+            double? longitude,
+            bool? isPromoted,
+            String? promotedUntil,
+            File videoFile)?
+        createReel,
+    TResult Function(String reelId)? toggleLikeReel,
+    TResult Function(String reelId)? getReelComments,
+    TResult Function(String reelId, String text)? addCommentToReel,
+    TResult Function(String reelId)? recordReelView,
+    TResult Function(String userId)? loadOtherUserReels,
+    TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
+    TResult Function()? getMyReels,
+    TResult Function(String query)? getSearchSuggestions,
+    required TResult orElse(),
+  }) {
+    if (deleteReelComment != null) {
+      return deleteReelComment(reelId, commentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_GetReelsEvent value) getReels,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_UpdateReelDetailsEvent value) updateReelDetails,
+    required TResult Function(_CreateReelEvent value) createReel,
+    required TResult Function(_ToggleLikeReel value) toggleLikeReel,
+    required TResult Function(_GetReelComments value) getReelComments,
+    required TResult Function(_AddCommentToReel value) addCommentToReel,
+    required TResult Function(_RecordReelView value) recordReelView,
+    required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
+    required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
+    required TResult Function(_GetMyReels value) getMyReels,
+    required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
+  }) {
+    return deleteReelComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_GetReelsEvent value)? getReels,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_UpdateReelDetailsEvent value)? updateReelDetails,
+    TResult? Function(_CreateReelEvent value)? createReel,
+    TResult? Function(_ToggleLikeReel value)? toggleLikeReel,
+    TResult? Function(_GetReelComments value)? getReelComments,
+    TResult? Function(_AddCommentToReel value)? addCommentToReel,
+    TResult? Function(_RecordReelView value)? recordReelView,
+    TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
+    TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
+    TResult? Function(_GetMyReels value)? getMyReels,
+    TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
+  }) {
+    return deleteReelComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_GetReelsEvent value)? getReels,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_UpdateReelDetailsEvent value)? updateReelDetails,
+    TResult Function(_CreateReelEvent value)? createReel,
+    TResult Function(_ToggleLikeReel value)? toggleLikeReel,
+    TResult Function(_GetReelComments value)? getReelComments,
+    TResult Function(_AddCommentToReel value)? addCommentToReel,
+    TResult Function(_RecordReelView value)? recordReelView,
+    TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
+    TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
+    TResult Function(_GetMyReels value)? getMyReels,
+    TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
+    required TResult orElse(),
+  }) {
+    if (deleteReelComment != null) {
+      return deleteReelComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteReelComment implements ReelsEvent {
+  const factory _DeleteReelComment(
+      {required final String reelId,
+      required final String commentId}) = _$DeleteReelCommentImpl;
+
+  String get reelId;
+  String get commentId;
+  @JsonKey(ignore: true)
+  _$$DeleteReelCommentImplCopyWith<_$DeleteReelCommentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3103,6 +3450,8 @@ class _$GetMyReelsImpl implements _GetMyReels {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -3137,6 +3486,7 @@ class _$GetMyReelsImpl implements _GetMyReels {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -3171,6 +3521,7 @@ class _$GetMyReelsImpl implements _GetMyReels {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -3195,6 +3546,7 @@ class _$GetMyReelsImpl implements _GetMyReels {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -3215,6 +3567,7 @@ class _$GetMyReelsImpl implements _GetMyReels {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -3235,6 +3588,7 @@ class _$GetMyReelsImpl implements _GetMyReels {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),
@@ -3342,6 +3696,8 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     required TResult Function(String reelId) recordReelView,
     required TResult Function(String userId) loadOtherUserReels,
     required TResult Function(String reelId) deleteReel,
+    required TResult Function(String reelId, String commentId)
+        deleteReelComment,
     required TResult Function() getMyReels,
     required TResult Function(String query) getSearchSuggestions,
   }) {
@@ -3376,6 +3732,7 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     TResult? Function(String reelId)? recordReelView,
     TResult? Function(String userId)? loadOtherUserReels,
     TResult? Function(String reelId)? deleteReel,
+    TResult? Function(String reelId, String commentId)? deleteReelComment,
     TResult? Function()? getMyReels,
     TResult? Function(String query)? getSearchSuggestions,
   }) {
@@ -3410,6 +3767,7 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     TResult Function(String reelId)? recordReelView,
     TResult Function(String userId)? loadOtherUserReels,
     TResult Function(String reelId)? deleteReel,
+    TResult Function(String reelId, String commentId)? deleteReelComment,
     TResult Function()? getMyReels,
     TResult Function(String query)? getSearchSuggestions,
     required TResult orElse(),
@@ -3434,6 +3792,7 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     required TResult Function(_RecordReelView value) recordReelView,
     required TResult Function(_LoadOtherUserReels value) loadOtherUserReels,
     required TResult Function(_DeleteReel value) deleteReel,
+    required TResult Function(_DeleteReelComment value) deleteReelComment,
     required TResult Function(_GetMyReels value) getMyReels,
     required TResult Function(_GetSearchSuggestions value) getSearchSuggestions,
   }) {
@@ -3454,6 +3813,7 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     TResult? Function(_RecordReelView value)? recordReelView,
     TResult? Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult? Function(_DeleteReel value)? deleteReel,
+    TResult? Function(_DeleteReelComment value)? deleteReelComment,
     TResult? Function(_GetMyReels value)? getMyReels,
     TResult? Function(_GetSearchSuggestions value)? getSearchSuggestions,
   }) {
@@ -3474,6 +3834,7 @@ class _$GetSearchSuggestionsImpl implements _GetSearchSuggestions {
     TResult Function(_RecordReelView value)? recordReelView,
     TResult Function(_LoadOtherUserReels value)? loadOtherUserReels,
     TResult Function(_DeleteReel value)? deleteReel,
+    TResult Function(_DeleteReelComment value)? deleteReelComment,
     TResult Function(_GetMyReels value)? getMyReels,
     TResult Function(_GetSearchSuggestions value)? getSearchSuggestions,
     required TResult orElse(),

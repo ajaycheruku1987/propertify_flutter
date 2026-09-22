@@ -340,7 +340,7 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
                     size: 18,
                   ),
                   onPressed: () {
-                    // Handle delete
+                    _showDeleteDialog(comment);
                   },
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
@@ -351,44 +351,34 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
     );
   }
 
-  Widget _buildCommentText(String text) {
-    if (text.startsWith('@')) {
-      final parts = text.split(' ');
-      if (parts.isNotEmpty) {
-        final tag = parts[0];
-        final remainingText = parts.skip(1).join(' ');
-        return Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: tag,
-                style: const TextStyle(
-                  color: Color(0xFF6C5CE7),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextSpan(text: ' $remainingText'),
-            ],
+  void _showDeleteDialog(ReelCommentModel comment) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Comment'),
+        content: const Text('Are you sure you want to delete this comment?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
           ),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-            height: 1.4,
+          TextButton(
+            onPressed: () {
+              if (comment.id != null) {
+                context.read<ReelsBloc>().add(
+                      ReelsEvent.deleteReelComment(
+                        reelId: widget.reelId,
+                        commentId: comment.id!,
+                      ),
+                    );
+              }
+              Navigator.pop(context);
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
           ),
-        );
-      }
-    }
-
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 14,
-        color: Colors.black87,
-        height: 1.4,
+        ],
       ),
     );
-  }
-
   }
 
   Widget _buildCommentText(String text) {
@@ -462,4 +452,4 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
       return '4m ago';
     }
   }
-
+}

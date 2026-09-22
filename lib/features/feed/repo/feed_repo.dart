@@ -397,6 +397,25 @@ class FeedRepo {
     }
   }
 
+  /// Delete Comment API
+  Future<Either<Failure, bool>> deleteComment({
+    required String propertyId,
+    required String commentId,
+  }) async {
+    try {
+      final response = await ftPyroApiRequest.delete(
+        '/comments/$commentId',
+      );
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => const Right(true),
+      );
+    } catch (e) {
+      return Left(ApiFailure('Error deleting comment: ${e.toString()}'));
+    }
+  }
+
   /// Report Property API
   Future<Either<Failure, bool>> reportProperty({
     required String propertyId,

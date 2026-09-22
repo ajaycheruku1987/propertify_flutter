@@ -58,6 +58,12 @@ class ReelsEvent with _$ReelsEvent {
   // Delete a reel
   const factory ReelsEvent.deleteReel({required String reelId}) = _DeleteReel;
 
+  // Delete a reel comment
+  const factory ReelsEvent.deleteReelComment({
+    required String reelId,
+    required String commentId,
+  }) = _DeleteReelComment;
+
   // Get current user's reels
   const factory ReelsEvent.getMyReels() = _GetMyReels;
 

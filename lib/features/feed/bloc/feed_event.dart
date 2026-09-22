@@ -90,4 +90,9 @@ class FeedEvent with _$FeedEvent {
   const factory FeedEvent.deleteProperty({
     required String propertyId,
   }) = _DeletePropertyEvent;
+
+  const factory FeedEvent.deleteComment({
+    required String propertyId,
+    required String commentId,
+  }) = _DeleteComment;
 }
