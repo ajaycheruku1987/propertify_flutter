@@ -253,6 +253,13 @@ final router = GoRouter(
     GoRoute(
       path: OtherUserProfileScreen.routeName,
       builder: (context, state) {
+        if (state.extra is Map<String, dynamic>) {
+          final args = state.extra as Map<String, dynamic>;
+          return OtherUserProfileScreen(
+            userId: args['userId'] as String,
+            initialTabIndex: args['initialTabIndex'] as int? ?? 0,
+          );
+        }
         final String userId = state.extra as String;
         return OtherUserProfileScreen(userId: userId);
       },

@@ -291,7 +291,10 @@ class BannerAdDetailView extends StatelessWidget {
                                       onTap: () {
                                         context.push(
                                           OtherUserProfileScreen.routeName,
-                                          extra: bannerAd.owner!.id,
+                                          extra: {
+                                            'userId': bannerAd.owner!.id,
+                                            'initialTabIndex': 2,
+                                          },
                                         );
                                       },
                                       child: Padding(

@@ -21,13 +21,19 @@ import 'package:propertify/utils/string_extensions.dart';
 import '../../company/bloc/company_bloc.dart';
 import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
 
   final String userId;
+  final int initialTabIndex;
 
-  const OtherUserProfileScreen({super.key, required this.userId});
+  const OtherUserProfileScreen({
+    super.key,
+    required this.userId,
+    this.initialTabIndex = 0,
+  });
 
   @override
   State<OtherUserProfileScreen> createState() => _OtherUserProfileScreenState();
@@ -43,7 +49,11 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: widget.initialTabIndex.clamp(0, 2),
+    );
 
     // Load other user's profile
     context.read<ProfileBloc>().add(
@@ -55,7 +65,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       CompanyEvent.getUserCompany(userId: widget.userId),
     );
 
-    // Load posts, services, and reels
+    // Load posts, services, reels, and banner ads
     _loadInitialData();
 
     // Setup scroll listeners for lazy loading
@@ -83,6 +93,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     context.read<ReelsBloc>().add(
       ReelsEvent.loadOtherUserReels(userId: widget.userId),
     );
+
+    // Load banner ads
+    context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
 
     // Load sales projects (first page)
     // context.read<SalesBloc>().add(
@@ -292,6 +305,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     const SizedBox(height: 12),
 
                     // View Company Button
+                    /*
                     BlocBuilder<CompanyBloc, CompanyState>(
                       builder: (context, companyState) {
                         final company = companyState.userCompany;
@@ -346,6 +360,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         return const SizedBox.shrink();
                       },
                     ),
+                    */
 
                     // User ID and Member Since
                     Row(
@@ -392,40 +407,59 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       builder: (context, homeState) {
                         return BlocBuilder<ReelsBloc, ReelsState>(
                           builder: (context, reelsState) {
-                            return Container(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF8F9FE),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.05),
-                                ),
-                              ),
-                              child: IntrinsicHeight(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    _buildStatItem(
-                                      label: 'Posts',
-                                      value:
-                                          '${homeState.otherUserPosts?.length ?? 0}',
+                            return BlocBuilder<ProfileBloc, ProfileState>(
+                              builder: (context, profileState) {
+                                final bannerAdsCount = (profileState.bannerAds ?? [])
+                                    .where((ad) =>
+                                        ad.userId == widget.userId ||
+                                        ad.owner?.id == widget.userId)
+                                    .length;
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF8F9FE),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.05),
                                     ),
-                                    VerticalDivider(
-                                      color: Colors.grey.shade300,
-                                      thickness: 1,
-                                      indent: 4,
-                                      endIndent: 4,
+                                  ),
+                                  child: IntrinsicHeight(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        _buildStatItem(
+                                          label: 'Posts',
+                                          value:
+                                              '${profile.postsCount ?? homeState.otherUserPosts?.length ?? 0}',
+                                        ),
+                                        VerticalDivider(
+                                          color: Colors.grey.shade300,
+                                          thickness: 1,
+                                          indent: 4,
+                                          endIndent: 4,
+                                        ),
+                                        _buildStatItem(
+                                          label: 'Reels',
+                                          value:
+                                              '${reelsState.otherUserReels.length}',
+                                        ),
+                                        VerticalDivider(
+                                          color: Colors.grey.shade300,
+                                          thickness: 1,
+                                          indent: 4,
+                                          endIndent: 4,
+                                        ),
+                                        _buildStatItem(
+                                          label: 'Banner Ads',
+                                          value: '$bannerAdsCount',
+                                        ),
+                                      ],
                                     ),
-                                    _buildStatItem(
-                                      label: 'Reels',
-                                      value:
-                                          '${reelsState.otherUserReels.length}',
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                );
+                              },
                             );
                           },
                         );
@@ -453,6 +487,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   tabs: const [
                     Tab(text: 'Posts'),
                     Tab(text: 'Reels'),
+                    Tab(text: 'Banner Ads'),
                     // Tab(text: 'Services'),
                     // Tab(text: 'Projects/Sales'),
                   ],
@@ -466,6 +501,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   children: [
                     _buildPostsTab(),
                     _buildReelsTab(),
+                    _buildBannerAdsTab(),
                     // _buildServicesTab(),
                     // _buildSalesTab(),
                   ],
@@ -655,6 +691,53 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   ),
                 ],
               ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildBannerAdsTab() {
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        if (state.isLoading && (state.bannerAds == null)) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final userBannerAds = (state.bannerAds ?? []).where((ad) {
+          return ad.userId == widget.userId || ad.owner?.id == widget.userId;
+        }).toList();
+
+        if (userBannerAds.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.campaign_outlined,
+                  size: 64,
+                  color: Colors.grey[400],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'No banner ads yet',
+                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return ListView.builder(
+          padding: const EdgeInsets.all(12),
+          itemCount: userBannerAds.length,
+          itemBuilder: (context, index) {
+            final bannerAd = userBannerAds[index];
+            return Container(
+              height: 180,
+              margin: const EdgeInsets.only(bottom: 12),
+              child: BannerAdWidget(bannerAd: bannerAd),
             );
           },
         );
