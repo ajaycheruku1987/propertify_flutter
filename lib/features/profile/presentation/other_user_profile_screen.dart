@@ -22,6 +22,7 @@ import '../../company/bloc/company_bloc.dart';
 import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
+import 'package:propertify/utils/env.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
@@ -54,6 +55,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       vsync: this,
       initialIndex: widget.initialTabIndex.clamp(0, 2),
     );
+
+    // Ensure current user profile is up to date
+    context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
 
     // Load other user's profile
     context.read<ProfileBloc>().add(
@@ -206,11 +210,21 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
-          if (state.isLoadingOtherProfile) {
-            return const Center(child: CircularProgressIndicator());
-          }
+          final currentUserProfile = state.userProfile;
+          final isSelf = currentUserProfile != null &&
+              ((currentUserProfile.id != null &&
+                      currentUserProfile.id == widget.userId) ||
+                  (currentUserProfile.username != null &&
+                      currentUserProfile.username!.toLowerCase() ==
+                          widget.userId.toLowerCase()));
 
-          if (state.otherUserProfile == null) {
+          final profile = isSelf ? currentUserProfile : state.otherUserProfile;
+
+          if (profile == null) {
+            if (state.isLoadingOtherProfile) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -234,8 +248,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
             );
           }
 
-          final profile = state.otherUserProfile!;
-
           return Column(
             children: [
               // Profile Header
@@ -251,7 +263,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                             context,
                             MaterialPageRoute(
                               builder: (context) => FullScreenImageViewer(
-                                images: [profile.profilepic!],
+                                images: [_resolveImageUrl(profile.profilepic!)],
                                 initialIndex: 0,
                               ),
                             ),
@@ -260,7 +272,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       },
                       child: ClipOval(
                         child: CachedNetworkImage(
-                          imageUrl: profile.profilepic ?? '',
+                          imageUrl: _resolveImageUrl(profile.profilepic),
                           width: 120,
                           height: 120,
                           fit: BoxFit.cover,
@@ -432,7 +444,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                         _buildStatItem(
                                           label: 'Posts',
                                           value:
-                                              '${profile.postsCount ?? homeState.otherUserPosts?.length ?? 0}',
+                                              '${homeState.otherUserPosts?.length ?? 0}',
                                         ),
                                         VerticalDivider(
                                           color: Colors.grey.shade300,
@@ -1210,5 +1222,18 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     } catch (e) {
       CustomToast.showErrorToast(msg: 'Error launching URL');
     }
+  }
+
+  String _resolveImageUrl(String? path) {
+    if (path == null || path.isEmpty) return '';
+    if (path.startsWith('http://') || path.startsWith('https://')) return path;
+    final baseUrl = env.baseUrl.replaceAll('/api', '').replaceAll('api', '');
+    if (baseUrl.endsWith('/') && path.startsWith('/')) {
+      return baseUrl + path.substring(1);
+    }
+    if (!baseUrl.endsWith('/') && !path.startsWith('/')) {
+      return '$baseUrl/$path';
+    }
+    return baseUrl + path;
   }
 }

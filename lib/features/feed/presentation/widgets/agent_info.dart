@@ -7,6 +7,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:propertify/utils/env.dart';
 
 class AgentInfo extends StatelessWidget {
   final String agentName;
@@ -89,7 +90,7 @@ class AgentInfo extends StatelessWidget {
                       ),
                       child: ClipOval(
                         child: CachedNetworkImage(
-                          imageUrl: agentImage,
+                          imageUrl: _resolveImageUrl(agentImage),
                           width: 60,
                           height: 60,
                           fit: BoxFit.cover,
@@ -294,5 +295,18 @@ class AgentInfo extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _resolveImageUrl(String path) {
+    if (path.isEmpty) return '';
+    if (path.startsWith('http://') || path.startsWith('https://')) return path;
+    final baseUrl = env.baseUrl.replaceAll('/api', '').replaceAll('api', '');
+    if (baseUrl.endsWith('/') && path.startsWith('/')) {
+      return baseUrl + path.substring(1);
+    }
+    if (!baseUrl.endsWith('/') && !path.startsWith('/')) {
+      return '$baseUrl/$path';
+    }
+    return baseUrl + path;
   }
 }

@@ -381,14 +381,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         actions: [
           BlocBuilder<FeedBloc, FeedState>(
             builder: (context, state) {
-              final currentUserId = context
-                  .read<ProfileBloc>()
-                  .state
-                  .userProfile
-                  ?.id;
-              final isOwner =
-                  state.postDetails?.owner?.id != null &&
-                  state.postDetails?.owner?.id == currentUserId;
+              final isOwner = _checkIsOwner(state.postDetails);
 
               return Container(
                 margin: const EdgeInsets.all(8),
@@ -578,14 +571,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             }
 
             final postDetails = state.postDetails!;
-            final currentUserId = context
-                .read<ProfileBloc>()
-                .state
-                .userProfile
-                ?.id;
-            final isOwner =
-                postDetails.owner?.id != null &&
-                postDetails.owner?.id == currentUserId;
+            final currentUserProfile =
+                context.read<ProfileBloc>().state.userProfile;
+            final isOwner = _checkIsOwner(postDetails);
 
             return SingleChildScrollView(
               child: Column(
@@ -679,6 +667,20 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         // Agent Info Section
                         AgentInfo(
                           agentName: (() {
+                            if (isOwner && currentUserProfile != null) {
+                              final firstName =
+                                  currentUserProfile.firstName?.trim() ?? '';
+                              final lastName =
+                                  currentUserProfile.lastName?.trim() ?? '';
+                              if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                                return '$firstName $lastName'
+                                    .trim()
+                                    .toTitleCase();
+                              }
+                              return (currentUserProfile.username ??
+                                      'Propertify User')
+                                  .toTitleCase();
+                            }
                             final owner = postDetails.owner;
                             if (owner == null) return 'Propertify User';
                             final firstName = owner.firstName?.trim() ?? '';
@@ -692,11 +694,23 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 .toTitleCase();
                           }()).translate(context),
                           agentRole: '',
-                          agentImage: postDetails.owner?.profileImage ?? '',
+                          agentImage: (isOwner &&
+                                  currentUserProfile?.profilepic != null &&
+                                  currentUserProfile!.profilepic!.isNotEmpty)
+                              ? currentUserProfile.profilepic!
+                              : (postDetails.owner?.profileImage ?? ''),
                           rating: postDetails.rating?.toString() ?? '-',
-                          userId: postDetails.owner?.id,
-                          memberSince: postDetails.owner?.memberSince,
-                          itemsListed: postDetails.owner?.postsCount,
+                          userId: isOwner
+                              ? (currentUserProfile?.id ?? postDetails.owner?.id)
+                              : (postDetails.owner?.id ?? postDetails.userId),
+                          memberSince: isOwner &&
+                                  currentUserProfile?.memberSince != null
+                              ? currentUserProfile!.memberSince
+                              : postDetails.owner?.memberSince,
+                          itemsListed: isOwner &&
+                                  currentUserProfile?.postsCount != null
+                              ? currentUserProfile!.postsCount
+                              : postDetails.owner?.postsCount,
                           onCallPressed: isOwner
                               ? null
                               : () {
@@ -884,10 +898,34 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
+  bool _checkIsOwner(FeedPostsResponseModel? postDetails) {
+    if (postDetails == null) return false;
+    final currentUserProfile = context.read<ProfileBloc>().state.userProfile;
+    if (currentUserProfile == null) return false;
+
+    final currentUserId = currentUserProfile.id;
+    final currentUsername = currentUserProfile.username;
+
+    if (currentUserId != null && currentUserId.isNotEmpty) {
+      if (postDetails.owner?.id == currentUserId ||
+          postDetails.userId == currentUserId) {
+        return true;
+      }
+    }
+
+    if (currentUsername != null && currentUsername.isNotEmpty) {
+      if (postDetails.owner?.username != null &&
+          postDetails.owner!.username!.toLowerCase() ==
+              currentUsername.toLowerCase()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   Widget _buildPromotionSection(FeedPostsResponseModel postDetails, AppLocalizations l10n) {
-    final currentUserId = context.read<ProfileBloc>().state.userProfile?.id;
-    final isOwner =
-        currentUserId != null && currentUserId == postDetails.owner?.id;
+    final isOwner = _checkIsOwner(postDetails);
     if (!isOwner) return const SizedBox.shrink();
 
     if (postDetails.promotedUntil == null ||
