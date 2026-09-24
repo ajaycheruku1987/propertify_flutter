@@ -572,7 +572,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
             final postDetails = state.postDetails!;
             final currentUserProfile =
-                context.read<ProfileBloc>().state.userProfile;
+                context.watch<ProfileBloc>().state.userProfile;
             final isOwner = _checkIsOwner(postDetails);
 
             return SingleChildScrollView(
