@@ -218,7 +218,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       currentUserProfile.username!.toLowerCase() ==
                           widget.userId.toLowerCase()));
 
-          final profile = isSelf ? currentUserProfile : state.otherUserProfile;
+          final profile = currentUserProfile;
 
           if (profile == null) {
             if (state.isLoadingOtherProfile) {
