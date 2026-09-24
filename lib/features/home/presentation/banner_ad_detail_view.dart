@@ -280,7 +280,7 @@ class BannerAdDetailView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _getOwnerName(),
+                                    _getOwnerName(profileState.userProfile),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -372,7 +372,15 @@ class BannerAdDetailView extends StatelessWidget {
     );
   }
 
-  String _getOwnerName() {
+  String _getOwnerName(dynamic currentUserProfile) {
+    if (currentUserProfile != null) {
+      final firstName = currentUserProfile.firstName?.trim() ?? '';
+      final lastName = currentUserProfile.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      return (currentUserProfile.username ?? 'Propertify User').toTitleCase();
+    }
     final owner = bannerAd.owner;
     if (owner == null) return 'Propertify User';
     final firstName = owner.firstName?.trim() ?? '';
