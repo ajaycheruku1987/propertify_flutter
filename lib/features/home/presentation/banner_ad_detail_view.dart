@@ -244,10 +244,9 @@ class BannerAdDetailView extends StatelessWidget {
                         child: Row(
                           children: [
                             CachedNetworkImage(
-                              imageUrl: bannerAd.owner?.profileImage != null &&
-                                      bannerAd.owner!.profileImage!.isNotEmpty
-                                  ? _resolveAvatar(bannerAd.owner!.profileImage!)
-                                  : '',
+                              imageUrl: _getOwnerAvatar(
+                                profileState.userProfile,
+                              ),
                               imageBuilder: (context, imageProvider) =>
                                   CircleAvatar(
                                 radius: 25,
@@ -389,6 +388,18 @@ class BannerAdDetailView extends StatelessWidget {
       return '$firstName $lastName'.trim().toTitleCase();
     }
     return (owner.username ?? 'Propertify User').toTitleCase();
+  }
+
+  String _getOwnerAvatar(dynamic currentUserProfile) {
+    if (currentUserProfile?.profilepic != null &&
+        currentUserProfile!.profilepic!.isNotEmpty) {
+      return _resolveAvatar(currentUserProfile.profilepic!);
+    }
+    final ownerAvatar = bannerAd.owner?.profileImage;
+    if (ownerAvatar != null && ownerAvatar.isNotEmpty) {
+      return _resolveAvatar(ownerAvatar);
+    }
+    return '';
   }
 
   Widget _buildStatusRow(
