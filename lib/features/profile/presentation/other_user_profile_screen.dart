@@ -218,10 +218,10 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       currentUserProfile.username!.toLowerCase() ==
                           widget.userId.toLowerCase()));
 
-          final profile = currentUserProfile;
+          final profile = isSelf ? currentUserProfile : state.otherUserProfile;
 
           if (profile == null) {
-            if (state.isLoadingOtherProfile) {
+            if (state.isLoadingOtherProfile || (isSelf && state.isLoading)) {
               return const Center(child: CircularProgressIndicator());
             }
 
