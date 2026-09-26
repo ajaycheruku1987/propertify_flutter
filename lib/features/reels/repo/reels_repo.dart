@@ -121,7 +121,7 @@ class ReelsRepoImpl implements ReelsRepo {
           queryParams['radius_km'] = radiusKm ?? 5;
         }
 
-        path = '/reels${_buildQueryString(queryParams)}';
+        path = '/reels/${_buildQueryString(queryParams)}';
       }
 
       final response = await apiRequest.get(path);
@@ -199,7 +199,7 @@ class ReelsRepoImpl implements ReelsRepo {
         ),
       );
 
-      final response = await apiRequest.post('/reels', data: formData);
+      final response = await apiRequest.post('/reels/', data: formData);
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),
