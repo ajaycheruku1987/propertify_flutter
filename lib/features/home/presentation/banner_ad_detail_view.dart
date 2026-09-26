@@ -16,14 +16,31 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 
-class BannerAdDetailView extends StatelessWidget {
+class BannerAdDetailView extends StatefulWidget {
   static const String routeName = '/banner-ad-detail';
   final BannerAdModel bannerAd;
 
   const BannerAdDetailView({super.key, required this.bannerAd});
 
   @override
+  State<BannerAdDetailView> createState() => _BannerAdDetailViewState();
+}
+
+class _BannerAdDetailViewState extends State<BannerAdDetailView> {
+  @override
+  void initState() {
+    super.initState();
+    final ownerId = widget.bannerAd.owner?.id ?? widget.bannerAd.userId;
+    if (ownerId != null && ownerId.isNotEmpty) {
+      context.read<ProfileBloc>().add(
+        ProfileEvent.loadOtherUserProfile(userId: ownerId),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final bannerAd = widget.bannerAd;
     final imageUrl = _resolveImage(bannerAd.imageUrls);
     final l10n = AppLocalizations.of(context)!;
     final Map<String, dynamic> adJson = bannerAd.toJson();
@@ -88,6 +105,10 @@ class BannerAdDetailView extends StatelessWidget {
               currentUserId != null &&
               (currentUserId == bannerAd.userId ||
                   currentUserId == bannerAd.owner?.id);
+
+          final ownerName = _getOwnerName(profileState.userProfile, profileState.otherUserProfile, isOwner);
+          final ownerAvatar = _getOwnerAvatar(profileState.userProfile, profileState.otherUserProfile, isOwner);
+          final ownerPhone = _getOwnerPhone(profileState.otherUserProfile);
 
           return SingleChildScrollView(
             child: Column(
@@ -245,10 +266,7 @@ class BannerAdDetailView extends StatelessWidget {
                         child: Row(
                           children: [
                             CachedNetworkImage(
-                              imageUrl: _getOwnerAvatar(
-                                profileState.userProfile,
-                                isOwner,
-                              ),
+                              imageUrl: ownerAvatar,
                               imageBuilder: (context, imageProvider) =>
                                   CircleAvatar(
                                 radius: 25,
@@ -281,7 +299,7 @@ class BannerAdDetailView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _getOwnerName(profileState.userProfile, isOwner),
+                                    ownerName,
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -321,7 +339,7 @@ class BannerAdDetailView extends StatelessWidget {
                               Icons.phone_outlined,
                               Theme.of(context).primaryColor.withOpacity(0.1),
                               Theme.of(context).primaryColor,
-                              () => _handleContact(context, bannerAd.owner?.phoneNumber, isCall: true),
+                              () => _handleContact(context, ownerPhone, isCall: true),
                             ),
                             const SizedBox(width: 8),
                             // WhatsApp Icon
@@ -330,7 +348,7 @@ class BannerAdDetailView extends StatelessWidget {
                               FontAwesomeIcons.whatsapp,
                               const Color(0xFF25D366).withOpacity(0.1),
                               const Color(0xFF25D366),
-                              () => _handleContact(context, bannerAd.owner?.phoneNumber, isCall: false),
+                              () => _handleContact(context, ownerPhone, isCall: false),
                             ),
                           ],
                         ),
@@ -373,9 +391,19 @@ class BannerAdDetailView extends StatelessWidget {
     );
   }
 
-  String _getOwnerName(dynamic currentUserProfile, bool isOwner) {
-    if (!isOwner && bannerAd.owner != null) {
-      final owner = bannerAd.owner!;
+  String _getOwnerName(dynamic currentUserProfile, dynamic otherUserProfile, bool isOwner) {
+    if (!isOwner && otherUserProfile != null) {
+      final firstName = otherUserProfile.firstName?.trim() ?? '';
+      final lastName = otherUserProfile.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      if (otherUserProfile.username != null && otherUserProfile.username!.isNotEmpty) {
+        return otherUserProfile.username!.toTitleCase();
+      }
+    }
+    if (!isOwner && widget.bannerAd.owner != null) {
+      final owner = widget.bannerAd.owner!;
       final firstName = owner.firstName?.trim() ?? '';
       final lastName = owner.lastName?.trim() ?? '';
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
@@ -395,7 +423,7 @@ class BannerAdDetailView extends StatelessWidget {
         return currentUserProfile.username!.toTitleCase();
       }
     }
-    final owner = bannerAd.owner;
+    final owner = widget.bannerAd.owner;
     if (owner != null) {
       final firstName = owner.firstName?.trim() ?? '';
       final lastName = owner.lastName?.trim() ?? '';
@@ -417,21 +445,34 @@ class BannerAdDetailView extends StatelessWidget {
     return 'Propertify User';
   }
 
-  String _getOwnerAvatar(dynamic currentUserProfile, bool isOwner) {
-    if (!isOwner && bannerAd.owner?.profileImage != null && bannerAd.owner!.profileImage!.isNotEmpty) {
-      return _resolveAvatar(bannerAd.owner!.profileImage!);
+  String _getOwnerAvatar(dynamic currentUserProfile, dynamic otherUserProfile, bool isOwner) {
+    if (!isOwner && otherUserProfile?.profilepic != null && otherUserProfile!.profilepic!.isNotEmpty) {
+      return _resolveAvatar(otherUserProfile.profilepic!);
+    }
+    if (!isOwner && widget.bannerAd.owner?.profileImage != null && widget.bannerAd.owner!.profileImage!.isNotEmpty) {
+      return _resolveAvatar(widget.bannerAd.owner!.profileImage!);
     }
     if (isOwner && currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
       return _resolveAvatar(currentUserProfile.profilepic!);
     }
-    final ownerAvatar = bannerAd.owner?.profileImage;
+    final ownerAvatar = widget.bannerAd.owner?.profileImage;
     if (ownerAvatar != null && ownerAvatar.isNotEmpty) {
       return _resolveAvatar(ownerAvatar);
+    }
+    if (otherUserProfile?.profilepic != null && otherUserProfile!.profilepic!.isNotEmpty) {
+      return _resolveAvatar(otherUserProfile.profilepic!);
     }
     if (currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
       return _resolveAvatar(currentUserProfile.profilepic!);
     }
     return '';
+  }
+
+  String _getOwnerPhone(dynamic otherUserProfile) {
+    if (otherUserProfile?.phoneNumber != null && otherUserProfile!.phoneNumber!.isNotEmpty) {
+      return otherUserProfile.phoneNumber!;
+    }
+    return widget.bannerAd.owner?.phoneNumber ?? '';
   }
 
   Widget _buildStatusRow(
