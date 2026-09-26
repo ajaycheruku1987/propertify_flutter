@@ -173,46 +173,6 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                     const SizedBox(height: 12),
                     _buildDescriptionSection(l10n),
                     const SizedBox(height: 24),
-
-                    // Location Section
-                    Text(
-                      l10n.location,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    AddressInput(
-                      controller: _addressController,
-                      onLocationSelected: (locationData) {
-                        setState(() {
-                          _address = locationData['address'] as String;
-                          _city = locationData['city'] as String;
-                          _state = locationData['state'] as String;
-                          _village = locationData['village'] as String;
-                          _latitude = double.parse(locationData['lat'] as String);
-                          _longitude = double.parse(locationData['long'] as String);
-                          _cityController.text = '$_village, $_city';
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    CommonTextFormField(
-                      label: l10n.city,
-                      controller: _cityController,
-                      readOnly: true,
-                      isRequired: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return l10n.pleaseChooseAddress;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 24),
-
                     // Select Plan Section
                     const Text(
                       'Select plan',
