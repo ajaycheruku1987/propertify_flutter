@@ -193,10 +193,12 @@ class AdminReelsDetailScreen extends StatefulWidget {
 
 class _AdminReelsDetailScreenState extends State<AdminReelsDetailScreen> {
   late PageController _pageController;
+  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
+    _currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: widget.initialIndex);
   }
 
@@ -234,12 +236,17 @@ class _AdminReelsDetailScreenState extends State<AdminReelsDetailScreen> {
             scrollDirection: Axis.vertical,
             itemCount: reels.length,
             controller: _pageController,
-            onPageChanged: (index) {},
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
             itemBuilder: (context, index) {
               // Safety check for index
               if (index >= reels.length) return const SizedBox.shrink();
               return ReelView(
                 reel: reels[index],
+                isActive: index == _currentIndex,
                 showBackButton: true,
                 isFromAdmin: true,
               );

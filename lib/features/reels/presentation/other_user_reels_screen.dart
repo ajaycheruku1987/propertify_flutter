@@ -21,10 +21,12 @@ class OtherUserReelsScreen extends StatefulWidget {
 
 class _OtherUserReelsScreenState extends State<OtherUserReelsScreen> {
   late PageController _pageController;
+  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
+    _currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: widget.initialIndex);
   }
 
@@ -46,11 +48,17 @@ class _OtherUserReelsScreenState extends State<OtherUserReelsScreen> {
         controller: _pageController,
         scrollDirection: Axis.vertical,
         itemCount: widget.reels.length,
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         itemBuilder: (context, index) {
           final reel = widget.reels[index];
           return ReelView(
             key: ValueKey(reel.id ?? index.toString()),
             reel: reel,
+            isActive: index == _currentIndex,
             showBackButton: true,
           );
         },

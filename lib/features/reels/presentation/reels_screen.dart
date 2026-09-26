@@ -20,6 +20,7 @@ import '../../profile/bloc/profile_bloc.dart';
 import '../../profile/presentation/other_user_profile_screen.dart';
 import '../../admin/bloc/admin_bloc.dart';
 import '../../../../utils/string_extensions.dart';
+import '../../../core/route_observer.dart';
 
 class ReelsScreen extends StatefulWidget {
   static const String routeName = '/reels';
@@ -207,7 +208,9 @@ class _ReelsScreenState extends State<ReelsScreen> {
                     scrollDirection: Axis.vertical,
                     itemCount: reels.length,
                     onPageChanged: (index) {
-                      _currentIndex = index;
+                      setState(() {
+                        _currentIndex = index;
+                      });
                       if (index >= reels.length - 3 &&
                           state.hasMoreData &&
                           !state.isLoading) {
@@ -224,6 +227,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       return ReelView(
                         key: ValueKey(reel.id ?? index.toString()),
                         reel: reel,
+                        isActive: index == _currentIndex,
                         showBackButton: widget.showBackButton,
                         onSearchTap: _isSearchExpanded
                             ? null
@@ -396,12 +400,14 @@ class ReelView extends StatefulWidget {
   final ReelResponseModel reel;
   final bool showBackButton;
   final bool isFromAdmin;
+  final bool isActive;
   final VoidCallback? onSearchTap;
 
   const ReelView({
     required this.reel,
     this.showBackButton = false,
     this.isFromAdmin = false,
+    this.isActive = true,
     this.onSearchTap,
     super.key,
   });
@@ -411,17 +417,20 @@ class ReelView extends StatefulWidget {
 }
 
 class ReelViewState extends State<ReelView>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, RouteAware, WidgetsBindingObserver {
   late VideoPlayerController _controller;
   bool _initialized = false;
   bool _isMuted = false;
   bool _showMuteIcon = false;
+  bool _isRouteActive = true;
+  bool _isAppResumed = true;
   late AnimationController _muteIconController;
   late Animation<double> _muteIconAnimation;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
 
     // Initialize animation controller for mute icon
     _muteIconController = AnimationController(
@@ -446,13 +455,80 @@ class ReelViewState extends State<ReelView>
           ..initialize().then((_) {
             if (mounted) {
               setState(() => _initialized = true);
-              _controller.play();
+              _updatePlaybackState();
             }
           });
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+  }
+
+  @override
+  void didUpdateWidget(ReelView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isActive != widget.isActive) {
+      _updatePlaybackState();
+    }
+  }
+
+  @override
+  void didPushNext() {
+    // Another route was pushed on top of this one (e.g. CreateReelScreen)
+    _isRouteActive = false;
+    _pauseVideo();
+  }
+
+  @override
+  void didPopNext() {
+    // Returned to this route after top route was popped
+    _isRouteActive = true;
+    _updatePlaybackState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.hidden) {
+      _isAppResumed = false;
+      _pauseVideo();
+    } else if (state == AppLifecycleState.resumed) {
+      _isAppResumed = true;
+      _updatePlaybackState();
+    }
+  }
+
+  void _updatePlaybackState() {
+    if (!_initialized) return;
+    if (widget.isActive && _isRouteActive && _isAppResumed) {
+      _playVideo();
+    } else {
+      _pauseVideo();
+    }
+  }
+
+  void _playVideo() {
+    if (_initialized && !_controller.value.isPlaying) {
+      _controller.play();
+    }
+  }
+
+  void _pauseVideo() {
+    if (_initialized && _controller.value.isPlaying) {
+      _controller.pause();
+    }
+  }
+
+  @override
   void dispose() {
+    routeObserver.unsubscribe(this);
+    WidgetsBinding.instance.removeObserver(this);
     _controller.dispose();
     _muteIconController.dispose();
     super.dispose();

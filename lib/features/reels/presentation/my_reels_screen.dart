@@ -156,10 +156,12 @@ class MyReelsDetailScreen extends StatefulWidget {
 
 class _MyReelsDetailScreenState extends State<MyReelsDetailScreen> {
   late PageController _pageController;
+  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
+    _currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: widget.initialIndex);
   }
 
@@ -185,12 +187,6 @@ class _MyReelsDetailScreenState extends State<MyReelsDetailScreen> {
           }
         },
         builder: (context, state) {
-          // We use the passed reels initially, but really we should be observing the bloc's myReels to be safe
-          // However, for consistency with the admin deletion flow requested ("same functionality"),
-          // we pop on delete.
-          // The PageView should use the updated list from state if available, but since we pop on delete,
-          // the immediate visual update isn't as critical as avoiding crashes.
-          // Let's use state.myReels if available and non-empty, else fallback or show empty.
           final reels = state.myReels.isNotEmpty ? state.myReels : widget.reels;
 
           if (reels.isEmpty) {
@@ -206,12 +202,18 @@ class _MyReelsDetailScreenState extends State<MyReelsDetailScreen> {
             scrollDirection: Axis.vertical,
             itemCount: reels.length,
             controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
             itemBuilder: (context, index) {
               if (index >= reels.length) return const SizedBox.shrink();
               final reel = reels[index];
               return ReelView(
                 key: ValueKey(reel.id ?? index.toString()),
                 reel: reel,
+                isActive: index == _currentIndex,
                 showBackButton: true,
                 isFromAdmin:
                     false, // isOwner check inside ReelView is sufficient for delete button

@@ -88,10 +88,12 @@ import '../../utils/common_widgets/payment_success_screen.dart';
 import '../../utils/common_widgets/payment_failed_screen.dart';
 import '../../utils/common_widgets/verification_payment_screen.dart';
 import '../../core/content_type.dart';
+import '../../core/route_observer.dart';
 
 final router = GoRouter(
   initialLocation: SplashScreen.routeName,
   navigatorKey: navigationKey,
+  observers: [routeObserver],
   routes: [
     GoRoute(
       path: SplashScreen.routeName,
