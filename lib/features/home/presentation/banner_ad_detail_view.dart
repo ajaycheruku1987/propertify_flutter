@@ -83,6 +83,7 @@ class BannerAdDetailView extends StatelessWidget {
               serviceLocator<AppCacheService>().getRole();
           final isAdmin = role?.toLowerCase() == 'admin';
           final currentUserId = profileState.userProfile?.id;
+          final ownerId = bannerAd.owner?.id ?? bannerAd.userId;
           final isOwner =
               currentUserId != null &&
               (currentUserId == bannerAd.userId ||
@@ -246,6 +247,7 @@ class BannerAdDetailView extends StatelessWidget {
                             CachedNetworkImage(
                               imageUrl: _getOwnerAvatar(
                                 profileState.userProfile,
+                                isOwner,
                               ),
                               imageBuilder: (context, imageProvider) =>
                                   CircleAvatar(
@@ -279,19 +281,19 @@ class BannerAdDetailView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _getOwnerName(profileState.userProfile),
+                                    _getOwnerName(profileState.userProfile, isOwner),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  if (bannerAd.owner?.id != null)
+                                  if (ownerId != null && ownerId.isNotEmpty)
                                     GestureDetector(
                                       onTap: () {
                                         context.push(
                                           OtherUserProfileScreen.routeName,
                                           extra: {
-                                            'userId': bannerAd.owner!.id,
+                                            'userId': ownerId,
                                             'initialTabIndex': 2,
                                           },
                                         );
@@ -371,7 +373,39 @@ class BannerAdDetailView extends StatelessWidget {
     );
   }
 
-  String _getOwnerName(dynamic currentUserProfile) {
+  String _getOwnerName(dynamic currentUserProfile, bool isOwner) {
+    if (!isOwner && bannerAd.owner != null) {
+      final owner = bannerAd.owner!;
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      if (owner.username != null && owner.username!.isNotEmpty) {
+        return owner.username!.toTitleCase();
+      }
+    }
+    if (isOwner && currentUserProfile != null) {
+      final firstName = currentUserProfile.firstName?.trim() ?? '';
+      final lastName = currentUserProfile.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      if (currentUserProfile.username != null && currentUserProfile.username!.isNotEmpty) {
+        return currentUserProfile.username!.toTitleCase();
+      }
+    }
+    final owner = bannerAd.owner;
+    if (owner != null) {
+      final firstName = owner.firstName?.trim() ?? '';
+      final lastName = owner.lastName?.trim() ?? '';
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      if (owner.username != null && owner.username!.isNotEmpty) {
+        return owner.username!.toTitleCase();
+      }
+    }
     if (currentUserProfile != null) {
       final firstName = currentUserProfile.firstName?.trim() ?? '';
       final lastName = currentUserProfile.lastName?.trim() ?? '';
@@ -380,24 +414,22 @@ class BannerAdDetailView extends StatelessWidget {
       }
       return (currentUserProfile.username ?? 'Propertify User').toTitleCase();
     }
-    final owner = bannerAd.owner;
-    if (owner == null) return 'Propertify User';
-    final firstName = owner.firstName?.trim() ?? '';
-    final lastName = owner.lastName?.trim() ?? '';
-    if (firstName.isNotEmpty || lastName.isNotEmpty) {
-      return '$firstName $lastName'.trim().toTitleCase();
-    }
-    return (owner.username ?? 'Propertify User').toTitleCase();
+    return 'Propertify User';
   }
 
-  String _getOwnerAvatar(dynamic currentUserProfile) {
-    if (currentUserProfile?.profilepic != null &&
-        currentUserProfile!.profilepic!.isNotEmpty) {
+  String _getOwnerAvatar(dynamic currentUserProfile, bool isOwner) {
+    if (!isOwner && bannerAd.owner?.profileImage != null && bannerAd.owner!.profileImage!.isNotEmpty) {
+      return _resolveAvatar(bannerAd.owner!.profileImage!);
+    }
+    if (isOwner && currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
       return _resolveAvatar(currentUserProfile.profilepic!);
     }
     final ownerAvatar = bannerAd.owner?.profileImage;
     if (ownerAvatar != null && ownerAvatar.isNotEmpty) {
       return _resolveAvatar(ownerAvatar);
+    }
+    if (currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
+      return _resolveAvatar(currentUserProfile.profilepic!);
     }
     return '';
   }
