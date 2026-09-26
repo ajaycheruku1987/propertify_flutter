@@ -5,6 +5,7 @@ import '../bloc/profile_bloc.dart';
 import '../models/banner_ad_model.dart';
 import 'create_banner_ad.dart';
 import 'package:intl/intl.dart';
+import '../../../utils/extensions/date_time_extensions.dart';
 
 class MyBannerAdsScreen extends StatefulWidget {
   static const String routeName = '/my-banner-ads';
@@ -141,13 +142,11 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
     final createdDate = bannerAd.createdAt != null
         ? DateTime.tryParse(bannerAd.createdAt!) ?? DateTime.now()
         : DateTime.now();
-    final expiryDate = bannerAd.expiresAt != null
-        ? DateTime.tryParse(bannerAd.expiresAt!) ??
-              DateTime.now().add(const Duration(days: 30))
-        : DateTime.now().add(const Duration(days: 30));
+    final expiryDate = bannerAd.expiresAt.parsePromotionExpiryDate() ??
+        DateTime.now().add(const Duration(days: 30));
 
-    final isExpired = expiryDate.isBefore(DateTime.now());
-    final daysRemaining = expiryDate.difference(DateTime.now()).inDays;
+    final isExpired = bannerAd.expiresAt.isPromotionExpired();
+    final daysRemaining = bannerAd.expiresAt.promotionDaysRemaining();
     final imageUrls = bannerAd.imageUrls ?? [];
     final description = bannerAd.description ?? 'No description';
     final planName = bannerAd.planName ?? 'Unknown';

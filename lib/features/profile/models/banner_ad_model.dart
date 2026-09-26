@@ -4,6 +4,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+import 'package:propertify/utils/extensions/date_time_extensions.dart';
 
 part 'banner_ad_model.freezed.dart';
 part 'banner_ad_model.g.dart';
@@ -37,13 +38,8 @@ class BannerAdModel with _$BannerAdModel {
       _$BannerAdModelFromJson(json);
 
   bool get isCurrentlyActive {
-    if (expiresAt == null) return true;
-    try {
-      final expiryDate = DateTime.parse(expiresAt!);
-      return expiryDate.isAfter(DateTime.now());
-    } catch (e) {
-      return true;
-    }
+    if (expiresAt == null || expiresAt!.trim().isEmpty) return true;
+    return !expiresAt.isPromotionExpired();
   }
 }
 

@@ -6,6 +6,7 @@ import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart
 
 import '../../../profile/models/banner_ad_model.dart';
 import '../../../../utils/string_extensions.dart';
+import '../../../../utils/extensions/date_time_extensions.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 
 class BannerAdCard extends StatelessWidget {
@@ -29,14 +30,12 @@ class BannerAdCard extends StatelessWidget {
     final startDate = bannerAd.createdAt != null
         ? DateTime.tryParse(bannerAd.createdAt!) ?? DateTime.now()
         : DateTime.now();
-    final endDate = bannerAd.expiresAt != null
-        ? DateTime.tryParse(bannerAd.expiresAt!) ??
-              DateTime.now().add(const Duration(days: 15))
-        : DateTime.now().add(const Duration(days: 15));
+    final endDate = bannerAd.expiresAt.parsePromotionExpiryDate() ??
+        DateTime.now().add(const Duration(days: 15));
 
     // Calculate days remaining
-    final isExpired = !bannerAd.isCurrentlyActive;
-    final daysRemaining = endDate.difference(DateTime.now()).inDays;
+    final isExpired = bannerAd.expiresAt.isPromotionExpired();
+    final daysRemaining = bannerAd.expiresAt.promotionDaysRemaining();
     final daysRemainingText = daysRemaining > 0
         ? daysRemaining.toString()
         : '0';

@@ -14,6 +14,7 @@ import 'package:propertify/utils/env.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/utils/extensions/date_time_extensions.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 
 class BannerAdDetailView extends StatefulWidget {
@@ -49,15 +50,14 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
     final startDate = bannerAd.createdAt != null
         ? DateTime.tryParse(bannerAd.createdAt!) ?? DateTime.now()
         : DateTime.now();
-    final endDate = bannerAd.expiresAt != null
-        ? DateTime.tryParse(bannerAd.expiresAt!) ??
-              DateTime.now().add(const Duration(days: 15))
-        : DateTime.now().add(const Duration(days: 15));
+    final endDate = bannerAd.expiresAt.parsePromotionExpiryDate() ??
+        DateTime.now().add(const Duration(days: 15));
 
-    final daysRemaining = endDate.difference(DateTime.now()).inDays;
-    final statusText = daysRemaining > 0
-        ? '${l10n.daysLeft(daysRemaining)}'
-        : l10n.promotionExpired;
+    final isExpired = bannerAd.expiresAt.isPromotionExpired();
+    final daysRemaining = bannerAd.expiresAt.promotionDaysRemaining();
+    final statusText = isExpired
+        ? l10n.promotionExpired
+        : l10n.daysLeft(daysRemaining);
     final startDateStr = DateFormat('dd MMM yyyy').format(startDate);
     final endDateStr = DateFormat('dd MMM yyyy').format(endDate);
 
@@ -220,7 +220,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
                                 Icons.timer_outlined,
                                 'Remaining',
                                 statusText,
-                                color: daysRemaining > 0
+                                color: !isExpired
                                     ? Colors.blue
                                     : Colors.red,
                               ),
