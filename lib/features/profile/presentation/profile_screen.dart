@@ -579,7 +579,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: l10n.termsConditions,
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://propertifyapp.com/terms-and-conditions/',
+                              'https://propertify.in/terms-and-conditions/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
@@ -594,7 +594,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: l10n.privacyPolicy,
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://propertifyapp.com/our-features-one/',
+                              'https://propertify.in/privacy-policy/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
