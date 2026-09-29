@@ -7,6 +7,8 @@ import 'dart:io';
 
 import '../../../core/api_request/api_request.dart';
 import '../../../core/failure.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/profile/models/user_profile_model.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/features/profile/models/feedback_model.dart';
@@ -236,19 +238,22 @@ class ProfileRepo {
 
   /// Get My Feedbacks API
   Future<Either<Failure, List<FeedbackModel>>> getMyFeedbacks() async {
-    var response = await ftPyroApiRequest.get('/feedback/');
+    // Try /feedback/me/ first to get only the current user's/owner's feedbacks
+    var response = await ftPyroApiRequest.get('/feedback/me/');
     var responseData = await response.getResponse();
 
-    // If /feedback/ returns empty or fails, try /feedback/me/ as a fallback
-    if (responseData.isLeft() ||
-        (responseData.isRight() && (responseData.getOrElse(() => []) as List).isEmpty)) {
-      final fallbackResponse = await ftPyroApiRequest.get('/feedback/me/');
+    // If /feedback/me/ fails, try /feedback/ as fallback
+    if (responseData.isLeft()) {
+      final fallbackResponse = await ftPyroApiRequest.get('/feedback/');
       final fallbackData = await fallbackResponse.getResponse();
       if (fallbackData.isRight()) {
         response = fallbackResponse;
         responseData = fallbackData;
       }
     }
+
+    final currentUserId =
+        await serviceLocator<AppCacheService>().getCustomerAccountId();
 
     return responseData.fold((failure) => Left(failure), (right) {
       debugPrint('Feedback response: $right');
@@ -260,9 +265,19 @@ class ProfileRepo {
       } else if (right is Map && right['data'] is List) {
         data = right['data'];
       }
-      final feedbacks = data
+      var feedbacks = data
           .map((item) => FeedbackModel.fromJson(item as Map<String, dynamic>))
           .toList();
+
+      if (currentUserId != null && currentUserId.isNotEmpty) {
+        final userFeedbacks =
+            feedbacks.where((f) => f.user == currentUserId).toList();
+        if (userFeedbacks.isNotEmpty ||
+            feedbacks.any((f) => f.user != null && f.user != currentUserId)) {
+          feedbacks = userFeedbacks;
+        }
+      }
+
       return Right(feedbacks);
     });
   }

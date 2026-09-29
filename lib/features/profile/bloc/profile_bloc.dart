@@ -490,6 +490,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
           // CustomToast moved to UI listener to avoid Navigator race conditions
           add(const ProfileEvent.loadMyFeedbacks());
+          if (state.allFeedbacks != null) {
+            add(const ProfileEvent.loadAllFeedbacks());
+          }
         },
       );
     } catch (e) {
@@ -606,6 +609,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
           // CustomToast moved to UI listener to avoid Navigator race conditions
           add(const ProfileEvent.loadMyFeedbacks());
+          if (state.allFeedbacks != null) {
+            add(const ProfileEvent.loadAllFeedbacks());
+          }
         },
       );
     } catch (e) {
@@ -646,6 +652,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           // Toast remains here as delete usually happens on the list screen
           CustomToast.showSuccessToast(msg: 'Feedback deleted successfully');
           add(const ProfileEvent.loadMyFeedbacks());
+          if (state.allFeedbacks != null) {
+            add(const ProfileEvent.loadAllFeedbacks());
+          }
         },
       );
     } catch (e) {
