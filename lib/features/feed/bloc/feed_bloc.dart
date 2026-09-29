@@ -28,6 +28,8 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   double? _lastMinPrice;
   double? _lastMaxPrice;
   String? _lastSearch;
+  double? _lastLatitude;
+  double? _lastLongitude;
 
   FeedBloc(this._feedRepo) : super(const FeedState()) {
     on<_GetFeedsEvent>(_onGetFeedsEvent);
@@ -488,6 +490,8 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       final double? minPrice = event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
       final double? maxPrice = event.maxPrice ?? (offset == 0 ? null : _lastMinPrice);
       final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
+      final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
+      final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
 
       if (offset == 0) {
         _lastCity = city;
@@ -496,6 +500,8 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
         _lastMinPrice = minPrice;
         _lastMaxPrice = maxPrice;
         _lastSearch = search;
+        _lastLatitude = latitude;
+        _lastLongitude = longitude;
       }
 
       emit(
@@ -515,8 +521,8 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             search: search,
             limit: limit,
             offset: offset,
-            latitude: event.latitude,
-            longitude: event.longitude,
+            latitude: latitude,
+            longitude: longitude,
           );
 
       feedsResponseEither.fold(

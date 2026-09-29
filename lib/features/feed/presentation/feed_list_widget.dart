@@ -43,12 +43,58 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     // Load initial feeds if empty
     final feedBloc = context.read<FeedBloc>();
     if (feedBloc.state.feedsList.isEmpty) {
-      feedBloc.add(
-        FeedEvent.getFeedsEvent(
-          latitude: context.read<HomeBloc>().state.currentLat,
-          longitude: context.read<HomeBloc>().state.currentLng,
-        ),
-      );
+      final homeState = context.read<HomeBloc>().state;
+      if (homeState.currentLat != 0.0 || homeState.currentLng != 0.0) {
+        final filterData = homeState.activeFeedsFilter;
+        String? city;
+        String? listingType;
+        String? propertyType;
+        double? minPrice;
+        double? maxPrice;
+        double? latitude = homeState.currentLat;
+        double? longitude = homeState.currentLng;
+
+        if (filterData != null) {
+          city = filterData['location'] as String?;
+          final lookingFor = filterData['lookingFor'] as String?;
+          listingType = lookingFor == 'Sales'
+              ? 'Sell'
+              : (lookingFor == 'All' || lookingFor == '')
+              ? null
+              : lookingFor;
+
+          final propertyTypes = filterData['propertyTypes'] as List?;
+          propertyType =
+              propertyTypes != null &&
+                  propertyTypes.isNotEmpty &&
+                  !propertyTypes.contains('All')
+              ? propertyTypes.first as String?
+              : null;
+
+          minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
+          maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
+
+          final isLocationCustom = filterData['isLocationCustom'] == true;
+          if (isLocationCustom) {
+            latitude = filterData['latitude'] as double?;
+            longitude = filterData['longitude'] as double?;
+          }
+        }
+
+        feedBloc.add(
+          FeedEvent.getFeedsEvent(
+            offset: 0,
+            search: homeState.searchQuery,
+            city: city,
+            listingType: listingType,
+            propertyType: propertyType,
+            minPrice: minPrice,
+            maxPrice: maxPrice,
+            latitude: latitude,
+            longitude: longitude,
+          ),
+        );
+      }
     }
     // Load Banner Ads
     context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());

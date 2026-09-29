@@ -134,7 +134,17 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       // l10n.services,
     ];
 
-    return BlocBuilder<HomeBloc, HomeState>(
+    return BlocConsumer<HomeBloc, HomeState>(
+      listenWhen: (previous, current) {
+        return (previous.currentLat != current.currentLat ||
+                previous.currentLng != current.currentLng ||
+                previous.currentCity != current.currentCity ||
+                previous.currentVillage != current.currentVillage) &&
+            (current.currentLat != 0.0 || current.currentLng != 0.0);
+      },
+      listener: (context, state) {
+        _fetchDataForCurrentLocation(context, state);
+      },
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
@@ -462,6 +472,80 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     return parts.isNotEmpty ? parts.join(', ') : '';
   }
 
+  void _fetchDataForCurrentLocation(
+    BuildContext context,
+    HomeState homeState,
+  ) {
+    if (homeState.currentLat == 0.0 && homeState.currentLng == 0.0) return;
+
+    final filterData = homeState.activeFeedsFilter;
+
+    String? city;
+    String? listingType;
+    String? propertyType;
+    double? minPrice;
+    double? maxPrice;
+    double? latitude = homeState.currentLat;
+    double? longitude = homeState.currentLng;
+
+    if (filterData != null) {
+      city = filterData['location'] as String?;
+      final lookingFor = filterData['lookingFor'] as String?;
+      listingType = lookingFor == 'Sales'
+          ? 'Sell'
+          : (lookingFor == 'All' || lookingFor == '')
+          ? null
+          : lookingFor;
+
+      final propertyTypes = filterData['propertyTypes'] as List?;
+      propertyType =
+          propertyTypes != null &&
+              propertyTypes.isNotEmpty &&
+              !propertyTypes.contains('All')
+          ? propertyTypes.first as String?
+          : null;
+
+      minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
+      maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
+
+      final isLocationCustom = filterData['isLocationCustom'] == true;
+      if (isLocationCustom) {
+        latitude = filterData['latitude'] as double?;
+        longitude = filterData['longitude'] as double?;
+      }
+    }
+
+    context.read<FeedBloc>().add(
+      FeedEvent.getFeedsEvent(
+        offset: 0,
+        search: homeState.searchQuery,
+        city: city,
+        listingType: listingType,
+        propertyType: propertyType,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        latitude: latitude,
+        longitude: longitude,
+      ),
+    );
+
+    context.read<RequestsBloc>().add(
+      RequestsEvent.getRequests(
+        latitude: latitude,
+        longitude: longitude,
+        radiusKm: 5,
+      ),
+    );
+
+    context.read<ServicesBloc>().add(
+      ServicesEvent.getServicesEvent(
+        latitude: latitude,
+        longitude: longitude,
+        radiusKm: 5,
+      ),
+    );
+  }
+
   Future<void> _openMapScreen() async {
     final result = await Navigator.push<Map<String, dynamic>>(
       context,
@@ -470,6 +554,18 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
     if (result != null && mounted) {
       final Map<String, dynamic> locationData = result;
+
+      final homeState = context.read<HomeBloc>().state;
+      if (homeState.activeFeedsFilter != null) {
+        final newFilter = Map<String, dynamic>.from(
+          homeState.activeFeedsFilter!,
+        );
+        newFilter['isLocationCustom'] = false;
+        newFilter['location'] = null;
+        newFilter['latitude'] = null;
+        newFilter['longitude'] = null;
+        context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(newFilter));
+      }
 
       context.read<HomeBloc>().add(
         HomeEvent.updateCurrentLocation(
@@ -480,29 +576,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           village: locationData['village'],
         ),
       );
-
-      Future.delayed(Duration(seconds: 1), () {
-        context.read<FeedBloc>().add(
-          FeedEvent.getFeedsEvent(
-            latitude: context.read<HomeBloc>().state.currentLat,
-            longitude: context.read<HomeBloc>().state.currentLng,
-          ),
-        );
-        context.read<RequestsBloc>().add(
-          RequestsEvent.getRequests(
-            latitude: context.read<HomeBloc>().state.currentLat,
-            longitude: context.read<HomeBloc>().state.currentLng,
-            radiusKm: 5,
-          ),
-        );
-        context.read<ServicesBloc>().add(
-          ServicesEvent.getServicesEvent(
-            latitude: context.read<HomeBloc>().state.currentLat,
-            longitude: context.read<HomeBloc>().state.currentLng,
-            radiusKm: 5,
-          ),
-        );
-      });
     }
   }
 
