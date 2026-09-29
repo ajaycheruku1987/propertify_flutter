@@ -88,12 +88,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     prefixIcon: Icon(Icons.alternate_email),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.trim().isEmpty) {
                       return 'Please enter your username';
                     }
                     return null;
                   },
-                  enabled: false,
                 ),
                 const SizedBox(height: 20),
                 Row(
