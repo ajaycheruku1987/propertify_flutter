@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
-import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import 'package:propertify/features/profile/presentation/my_banner_ads_screen.dart';
 import 'package:propertify/features/profile/presentation/my_posts_screen.dart';
 import 'package:propertify/features/reels/presentation/my_reels_screen.dart';
@@ -82,18 +81,6 @@ class MyDashboardScreen extends StatelessWidget {
                   'title': l10n.myFavourites,
                   'icon': Icons.favorite_outline,
                   'onTap': () => context.push(FavoritesScreen.routeName),
-                },
-                {
-                  'title': l10n.editProfile,
-                  'icon': Icons.person_outline,
-                  'onTap': () {
-                    if (profileState.userProfile != null) {
-                      context.push(
-                        EditProfileScreen.routeName,
-                        extra: profileState.userProfile,
-                      );
-                    }
-                  },
                 },
                 /*
                 if (companyState.myCompany != null)

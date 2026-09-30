@@ -22,6 +22,7 @@ import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
+import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
@@ -524,7 +525,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           }(),
                         ],
 
-                        if (homeState.showAddButton)
+                        if (homeState.showAddButton) ...[
+                          ProfileMenuItem(
+                            icon: Icons.person_outline,
+                            title: l10n.editProfile,
+                            onTap: () {
+                              if (state.userProfile != null) {
+                                context.push(
+                                  EditProfileScreen.routeName,
+                                  extra: state.userProfile,
+                                );
+                              }
+                            },
+                          ),
                           ProfileMenuItem(
                             icon: Icons.dashboard_outlined,
                             title: l10n.myDashboard,
@@ -532,6 +545,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context.push(MyDashboardScreen.routeName);
                             },
                           ),
+                        ],
                         ProfileMenuItem(
                           icon: Icons.feedback_outlined,
                           title: l10n.suggestionsFeedback,
@@ -564,7 +578,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: l10n.contactUs,
                           onTap: () async {
                             final Uri url = Uri.parse(
-                              'https://propertifyapp.com/contact-us-two/',
+                              'https://propertify.in/contact-us-two/',
                             );
                             if (await canLaunchUrl(url)) {
                               await launchUrl(
