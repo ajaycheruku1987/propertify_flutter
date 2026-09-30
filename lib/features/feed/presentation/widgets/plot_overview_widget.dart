@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/features/home/models/feed_posts_response_model.dart';
-import 'package:propertify/utils/string_extensions.dart';
 
 class PlotOverviewWidget extends StatelessWidget {
   final FeedPostsResponseModel postDetails;
@@ -20,9 +19,12 @@ class PlotOverviewWidget extends StatelessWidget {
     final hasPlotData = (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty) ||
         (postDetails.facing != null && postDetails.facing!.isNotEmpty) ||
         (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty) ||
-        (postDetails.approvalStatus != null && postDetails.approvalStatus!.isNotEmpty);
+        (postDetails.approvalStatus != null && postDetails.approvalStatus!.isNotEmpty) ||
+        (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty) ||
+        (postDetails.isCornerPlot ?? false) ||
+        (postDetails.isGatedCommunity ?? false);
 
-    if (!isPlotCategory && !hasPlotData) {
+    if (!hasPlotData) {
       return const SizedBox.shrink();
     }
 

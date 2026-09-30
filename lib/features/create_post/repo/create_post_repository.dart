@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:propertify/core/api_request/api_request.dart';
 import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
@@ -118,14 +119,20 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
       return responseData.fold((failure) => Left(failure), (right) {
         final addPostResponse = AddPostResponse.fromJson(right);
 
-        // Social auto-posting (Facebook/Instagram) moved to the backend.
-        // serviceLocator<MetaService>().autoPostToSocials(
-        //   title: title,
-        //   description: description ?? '',
-        //   imageUrl: addPostResponse.imageUrls?.isNotEmpty == true
-        //       ? addPostResponse.imageUrls!.first
-        //       : null,
-        // );
+        // Cache plot specs locally since backend doesn't store/return them yet
+        if (addPostResponse.id != null) {
+          final prefs = serviceLocator<SharedPreferences>();
+          final postId = addPostResponse.id!;
+          if (plotArea != null && plotArea.isNotEmpty) prefs.setString('plot_area_$postId', plotArea);
+          if (areaUnit != null && areaUnit.isNotEmpty) prefs.setString('area_unit_$postId', areaUnit);
+          if (facing != null && facing.isNotEmpty) prefs.setString('facing_$postId', facing);
+          if (roadWidth != null && roadWidth.isNotEmpty) prefs.setString('road_width_$postId', roadWidth);
+          if (postedBy != null && postedBy.isNotEmpty) prefs.setString('posted_by_$postId', postedBy);
+          if (approvalStatus != null && approvalStatus.isNotEmpty) prefs.setString('approval_status_$postId', approvalStatus);
+          if (dimensions != null && dimensions.isNotEmpty) prefs.setString('dimensions_$postId', dimensions);
+          if (isCornerPlot != null) prefs.setBool('is_corner_plot_$postId', isCornerPlot);
+          if (isGatedCommunity != null) prefs.setBool('is_gated_community_$postId', isGatedCommunity);
+        }
 
         return Right(addPostResponse);
       });

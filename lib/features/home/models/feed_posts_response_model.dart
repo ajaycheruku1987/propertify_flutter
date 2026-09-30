@@ -56,8 +56,10 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
   }) = _FeedPostsResponseModel;
 
-  factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$FeedPostsResponseModelFromJson(json);
+  factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) {
+    print('PROPERTY JSON RESPONSE: $json');
+    return _$FeedPostsResponseModelFromJson(json);
+  }
 
   bool get isCurrentlyPromoted {
     if (isPromoted == null || !isPromoted!) return false;

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
 
@@ -76,7 +77,29 @@ class FeedRepo {
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),
-        (right) => Right(FeedPostsResponseModel.fromJson(right)),
+        (right) {
+          print('GET POST DETAILS RAW JSON: $right');
+          FeedPostsResponseModel model = FeedPostsResponseModel.fromJson(right);
+
+          // Fallback to local cache if plot fields are missing from backend response
+          final prefs = serviceLocator<SharedPreferences>();
+          final cachedPlotArea = prefs.getString('plot_area_$postId');
+          if ((model.plotArea == null || model.plotArea!.isEmpty) && cachedPlotArea != null) {
+            model = model.copyWith(
+              plotArea: cachedPlotArea,
+              areaUnit: prefs.getString('area_unit_$postId'),
+              facing: prefs.getString('facing_$postId'),
+              roadWidth: prefs.getString('road_width_$postId'),
+              postedBy: prefs.getString('posted_by_$postId'),
+              approvalStatus: prefs.getString('approval_status_$postId'),
+              dimensions: prefs.getString('dimensions_$postId'),
+              isCornerPlot: prefs.getBool('is_corner_plot_$postId') ?? false,
+              isGatedCommunity: prefs.getBool('is_gated_community_$postId') ?? false,
+            );
+          }
+
+          return Right(model);
+        },
       );
     } catch (e) {
       return Left(Exception('An error occurred: ${e.toString()}'));
