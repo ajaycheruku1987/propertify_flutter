@@ -382,59 +382,22 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         actions: [
           BlocBuilder<FeedBloc, FeedState>(
             builder: (context, state) {
-              final postDetails = state.postDetails;
-              final isOwner = _checkIsOwner(postDetails);
-              final showCalculator = postDetails != null &&
-                  (postDetails.listingType?.toLowerCase() == 'sell' ||
-                      postDetails.listingType?.toLowerCase() == 'sale') &&
-                  (postDetails.price ?? 0) > 0;
+              final isOwner = _checkIsOwner(state.postDetails);
 
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (showCalculator)
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.calculate_rounded,
-                          color: Theme.of(context).primaryColor,
-                          size: 20,
-                        ),
-                        tooltip: 'EMI Calculator',
-                        onPressed: () {
-                          _showEmiCalculatorBottomSheet(
-                            context,
-                            (postDetails.price ?? 0).toDouble(),
-                          );
-                        },
-                      ),
+              return Container(
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
                     ),
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: PopupMenuButton<String>(
+                  ],
+                ),
+                child: PopupMenuButton<String>(
                   color: Colors.white,
                   padding: EdgeInsets.zero,
                   position: PopupMenuPosition.under,
@@ -548,9 +511,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         ],
                       ],
                 ),
-              ),
-            ],
-          );
+              );
             },
           ),
         ],
@@ -683,6 +644,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           price: postDetails.price?.toString() ?? '',
                           category: postDetails.propertyType,
                           listingType: postDetails.listingType,
+                          showCalculator: (postDetails.listingType?.toLowerCase() == 'sell' ||
+                              postDetails.listingType?.toLowerCase() == 'sale') &&
+                              (postDetails.price ?? 0) > 0,
+                          onCalculatorPressed: () {
+                            _showEmiCalculatorBottomSheet(
+                              context,
+                              (postDetails.price ?? 0).toDouble(),
+                            );
+                          },
                         ),
 
                         // Plot Specifications Widget (for Plot / Land listings)
