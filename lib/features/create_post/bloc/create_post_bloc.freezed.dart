@@ -28,6 +28,15 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -48,6 +57,15 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -68,6 +86,15 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -89,6 +116,17 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -109,6 +147,15 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -129,6 +176,15 @@ mixin _$CreatePostEvent {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -206,6 +262,15 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -229,6 +294,15 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -252,6 +326,15 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -279,6 +362,17 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -302,6 +396,15 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -325,6 +428,15 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -392,6 +504,15 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -415,6 +536,15 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -438,6 +568,15 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -465,6 +604,17 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -488,6 +638,15 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -511,6 +670,15 @@ class _$ResetStateImpl implements _ResetState {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -604,6 +772,15 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -627,6 +804,15 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -650,6 +836,15 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -677,6 +872,17 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -700,6 +906,15 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -723,6 +938,15 @@ class _$TitleChangedImpl implements _TitleChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -824,6 +1048,15 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -847,6 +1080,15 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -870,6 +1112,15 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -897,6 +1148,17 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -920,6 +1182,15 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -943,6 +1214,15 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -1044,6 +1324,15 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -1067,6 +1356,15 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -1090,6 +1388,15 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -1117,6 +1424,17 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -1140,6 +1458,15 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -1163,6 +1490,15 @@ class _$LookingForChangedImpl implements _LookingForChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -1263,6 +1599,15 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -1286,6 +1631,15 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -1309,6 +1663,15 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -1336,6 +1699,17 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -1359,6 +1733,15 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -1382,6 +1765,15 @@ class _$AddressChangedImpl implements _AddressChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -1504,6 +1896,15 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -1527,6 +1928,15 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -1550,6 +1960,15 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -1577,6 +1996,17 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -1600,6 +2030,15 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -1623,6 +2062,15 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -1728,6 +2176,15 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -1751,6 +2208,15 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -1774,6 +2240,15 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -1801,6 +2276,17 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -1824,6 +2310,15 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -1847,6 +2342,15 @@ class _$LocationChangedImpl implements _LocationChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -1946,6 +2450,15 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -1969,6 +2482,15 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -1992,6 +2514,15 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -2019,6 +2550,17 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -2042,6 +2584,15 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -2065,6 +2616,15 @@ class _$PriceChangedImpl implements _PriceChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -2088,6 +2648,2491 @@ abstract class _PriceChanged implements CreatePostEvent {
   @JsonKey(ignore: true)
   _$$PriceChangedImplCopyWith<_$PriceChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PlotAreaChangedImplCopyWith<$Res> {
+  factory _$$PlotAreaChangedImplCopyWith(_$PlotAreaChangedImpl value,
+          $Res Function(_$PlotAreaChangedImpl) then) =
+      __$$PlotAreaChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String plotArea});
+}
+
+/// @nodoc
+class __$$PlotAreaChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$PlotAreaChangedImpl>
+    implements _$$PlotAreaChangedImplCopyWith<$Res> {
+  __$$PlotAreaChangedImplCopyWithImpl(
+      _$PlotAreaChangedImpl _value, $Res Function(_$PlotAreaChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? plotArea = null,
+  }) {
+    return _then(_$PlotAreaChangedImpl(
+      plotArea: null == plotArea
+          ? _value.plotArea
+          : plotArea // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PlotAreaChangedImpl implements _PlotAreaChanged {
+  const _$PlotAreaChangedImpl({required this.plotArea});
+
+  @override
+  final String plotArea;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.plotAreaChanged(plotArea: $plotArea)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlotAreaChangedImpl &&
+            (identical(other.plotArea, plotArea) ||
+                other.plotArea == plotArea));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, plotArea);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlotAreaChangedImplCopyWith<_$PlotAreaChangedImpl> get copyWith =>
+      __$$PlotAreaChangedImplCopyWithImpl<_$PlotAreaChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return plotAreaChanged(plotArea);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return plotAreaChanged?.call(plotArea);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (plotAreaChanged != null) {
+      return plotAreaChanged(plotArea);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return plotAreaChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return plotAreaChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (plotAreaChanged != null) {
+      return plotAreaChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlotAreaChanged implements CreatePostEvent {
+  const factory _PlotAreaChanged({required final String plotArea}) =
+      _$PlotAreaChangedImpl;
+
+  String get plotArea;
+  @JsonKey(ignore: true)
+  _$$PlotAreaChangedImplCopyWith<_$PlotAreaChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AreaUnitChangedImplCopyWith<$Res> {
+  factory _$$AreaUnitChangedImplCopyWith(_$AreaUnitChangedImpl value,
+          $Res Function(_$AreaUnitChangedImpl) then) =
+      __$$AreaUnitChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String areaUnit});
+}
+
+/// @nodoc
+class __$$AreaUnitChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$AreaUnitChangedImpl>
+    implements _$$AreaUnitChangedImplCopyWith<$Res> {
+  __$$AreaUnitChangedImplCopyWithImpl(
+      _$AreaUnitChangedImpl _value, $Res Function(_$AreaUnitChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? areaUnit = null,
+  }) {
+    return _then(_$AreaUnitChangedImpl(
+      areaUnit: null == areaUnit
+          ? _value.areaUnit
+          : areaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AreaUnitChangedImpl implements _AreaUnitChanged {
+  const _$AreaUnitChangedImpl({required this.areaUnit});
+
+  @override
+  final String areaUnit;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.areaUnitChanged(areaUnit: $areaUnit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AreaUnitChangedImpl &&
+            (identical(other.areaUnit, areaUnit) ||
+                other.areaUnit == areaUnit));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, areaUnit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AreaUnitChangedImplCopyWith<_$AreaUnitChangedImpl> get copyWith =>
+      __$$AreaUnitChangedImplCopyWithImpl<_$AreaUnitChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return areaUnitChanged(areaUnit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return areaUnitChanged?.call(areaUnit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (areaUnitChanged != null) {
+      return areaUnitChanged(areaUnit);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return areaUnitChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return areaUnitChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (areaUnitChanged != null) {
+      return areaUnitChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AreaUnitChanged implements CreatePostEvent {
+  const factory _AreaUnitChanged({required final String areaUnit}) =
+      _$AreaUnitChangedImpl;
+
+  String get areaUnit;
+  @JsonKey(ignore: true)
+  _$$AreaUnitChangedImplCopyWith<_$AreaUnitChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FacingChangedImplCopyWith<$Res> {
+  factory _$$FacingChangedImplCopyWith(
+          _$FacingChangedImpl value, $Res Function(_$FacingChangedImpl) then) =
+      __$$FacingChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String facing});
+}
+
+/// @nodoc
+class __$$FacingChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$FacingChangedImpl>
+    implements _$$FacingChangedImplCopyWith<$Res> {
+  __$$FacingChangedImplCopyWithImpl(
+      _$FacingChangedImpl _value, $Res Function(_$FacingChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? facing = null,
+  }) {
+    return _then(_$FacingChangedImpl(
+      facing: null == facing
+          ? _value.facing
+          : facing // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FacingChangedImpl implements _FacingChanged {
+  const _$FacingChangedImpl({required this.facing});
+
+  @override
+  final String facing;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.facingChanged(facing: $facing)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FacingChangedImpl &&
+            (identical(other.facing, facing) || other.facing == facing));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, facing);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FacingChangedImplCopyWith<_$FacingChangedImpl> get copyWith =>
+      __$$FacingChangedImplCopyWithImpl<_$FacingChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return facingChanged(facing);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return facingChanged?.call(facing);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (facingChanged != null) {
+      return facingChanged(facing);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return facingChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return facingChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (facingChanged != null) {
+      return facingChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FacingChanged implements CreatePostEvent {
+  const factory _FacingChanged({required final String facing}) =
+      _$FacingChangedImpl;
+
+  String get facing;
+  @JsonKey(ignore: true)
+  _$$FacingChangedImplCopyWith<_$FacingChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RoadWidthChangedImplCopyWith<$Res> {
+  factory _$$RoadWidthChangedImplCopyWith(_$RoadWidthChangedImpl value,
+          $Res Function(_$RoadWidthChangedImpl) then) =
+      __$$RoadWidthChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String roadWidth});
+}
+
+/// @nodoc
+class __$$RoadWidthChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$RoadWidthChangedImpl>
+    implements _$$RoadWidthChangedImplCopyWith<$Res> {
+  __$$RoadWidthChangedImplCopyWithImpl(_$RoadWidthChangedImpl _value,
+      $Res Function(_$RoadWidthChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roadWidth = null,
+  }) {
+    return _then(_$RoadWidthChangedImpl(
+      roadWidth: null == roadWidth
+          ? _value.roadWidth
+          : roadWidth // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RoadWidthChangedImpl implements _RoadWidthChanged {
+  const _$RoadWidthChangedImpl({required this.roadWidth});
+
+  @override
+  final String roadWidth;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.roadWidthChanged(roadWidth: $roadWidth)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RoadWidthChangedImpl &&
+            (identical(other.roadWidth, roadWidth) ||
+                other.roadWidth == roadWidth));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, roadWidth);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RoadWidthChangedImplCopyWith<_$RoadWidthChangedImpl> get copyWith =>
+      __$$RoadWidthChangedImplCopyWithImpl<_$RoadWidthChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return roadWidthChanged(roadWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return roadWidthChanged?.call(roadWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (roadWidthChanged != null) {
+      return roadWidthChanged(roadWidth);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return roadWidthChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return roadWidthChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (roadWidthChanged != null) {
+      return roadWidthChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RoadWidthChanged implements CreatePostEvent {
+  const factory _RoadWidthChanged({required final String roadWidth}) =
+      _$RoadWidthChangedImpl;
+
+  String get roadWidth;
+  @JsonKey(ignore: true)
+  _$$RoadWidthChangedImplCopyWith<_$RoadWidthChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PostedByChangedImplCopyWith<$Res> {
+  factory _$$PostedByChangedImplCopyWith(_$PostedByChangedImpl value,
+          $Res Function(_$PostedByChangedImpl) then) =
+      __$$PostedByChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String postedBy});
+}
+
+/// @nodoc
+class __$$PostedByChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$PostedByChangedImpl>
+    implements _$$PostedByChangedImplCopyWith<$Res> {
+  __$$PostedByChangedImplCopyWithImpl(
+      _$PostedByChangedImpl _value, $Res Function(_$PostedByChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postedBy = null,
+  }) {
+    return _then(_$PostedByChangedImpl(
+      postedBy: null == postedBy
+          ? _value.postedBy
+          : postedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PostedByChangedImpl implements _PostedByChanged {
+  const _$PostedByChangedImpl({required this.postedBy});
+
+  @override
+  final String postedBy;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.postedByChanged(postedBy: $postedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PostedByChangedImpl &&
+            (identical(other.postedBy, postedBy) ||
+                other.postedBy == postedBy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postedBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PostedByChangedImplCopyWith<_$PostedByChangedImpl> get copyWith =>
+      __$$PostedByChangedImplCopyWithImpl<_$PostedByChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return postedByChanged(postedBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return postedByChanged?.call(postedBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (postedByChanged != null) {
+      return postedByChanged(postedBy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return postedByChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return postedByChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (postedByChanged != null) {
+      return postedByChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PostedByChanged implements CreatePostEvent {
+  const factory _PostedByChanged({required final String postedBy}) =
+      _$PostedByChangedImpl;
+
+  String get postedBy;
+  @JsonKey(ignore: true)
+  _$$PostedByChangedImplCopyWith<_$PostedByChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApprovalStatusChangedImplCopyWith<$Res> {
+  factory _$$ApprovalStatusChangedImplCopyWith(
+          _$ApprovalStatusChangedImpl value,
+          $Res Function(_$ApprovalStatusChangedImpl) then) =
+      __$$ApprovalStatusChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String approvalStatus});
+}
+
+/// @nodoc
+class __$$ApprovalStatusChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$ApprovalStatusChangedImpl>
+    implements _$$ApprovalStatusChangedImplCopyWith<$Res> {
+  __$$ApprovalStatusChangedImplCopyWithImpl(_$ApprovalStatusChangedImpl _value,
+      $Res Function(_$ApprovalStatusChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approvalStatus = null,
+  }) {
+    return _then(_$ApprovalStatusChangedImpl(
+      approvalStatus: null == approvalStatus
+          ? _value.approvalStatus
+          : approvalStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
+  const _$ApprovalStatusChangedImpl({required this.approvalStatus});
+
+  @override
+  final String approvalStatus;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.approvalStatusChanged(approvalStatus: $approvalStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApprovalStatusChangedImpl &&
+            (identical(other.approvalStatus, approvalStatus) ||
+                other.approvalStatus == approvalStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, approvalStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApprovalStatusChangedImplCopyWith<_$ApprovalStatusChangedImpl>
+      get copyWith => __$$ApprovalStatusChangedImplCopyWithImpl<
+          _$ApprovalStatusChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return approvalStatusChanged(approvalStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return approvalStatusChanged?.call(approvalStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (approvalStatusChanged != null) {
+      return approvalStatusChanged(approvalStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return approvalStatusChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return approvalStatusChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (approvalStatusChanged != null) {
+      return approvalStatusChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApprovalStatusChanged implements CreatePostEvent {
+  const factory _ApprovalStatusChanged({required final String approvalStatus}) =
+      _$ApprovalStatusChangedImpl;
+
+  String get approvalStatus;
+  @JsonKey(ignore: true)
+  _$$ApprovalStatusChangedImplCopyWith<_$ApprovalStatusChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DimensionsChangedImplCopyWith<$Res> {
+  factory _$$DimensionsChangedImplCopyWith(_$DimensionsChangedImpl value,
+          $Res Function(_$DimensionsChangedImpl) then) =
+      __$$DimensionsChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String dimensions});
+}
+
+/// @nodoc
+class __$$DimensionsChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$DimensionsChangedImpl>
+    implements _$$DimensionsChangedImplCopyWith<$Res> {
+  __$$DimensionsChangedImplCopyWithImpl(_$DimensionsChangedImpl _value,
+      $Res Function(_$DimensionsChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dimensions = null,
+  }) {
+    return _then(_$DimensionsChangedImpl(
+      dimensions: null == dimensions
+          ? _value.dimensions
+          : dimensions // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DimensionsChangedImpl implements _DimensionsChanged {
+  const _$DimensionsChangedImpl({required this.dimensions});
+
+  @override
+  final String dimensions;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.dimensionsChanged(dimensions: $dimensions)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DimensionsChangedImpl &&
+            (identical(other.dimensions, dimensions) ||
+                other.dimensions == dimensions));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dimensions);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DimensionsChangedImplCopyWith<_$DimensionsChangedImpl> get copyWith =>
+      __$$DimensionsChangedImplCopyWithImpl<_$DimensionsChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return dimensionsChanged(dimensions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return dimensionsChanged?.call(dimensions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (dimensionsChanged != null) {
+      return dimensionsChanged(dimensions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return dimensionsChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return dimensionsChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (dimensionsChanged != null) {
+      return dimensionsChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DimensionsChanged implements CreatePostEvent {
+  const factory _DimensionsChanged({required final String dimensions}) =
+      _$DimensionsChangedImpl;
+
+  String get dimensions;
+  @JsonKey(ignore: true)
+  _$$DimensionsChangedImplCopyWith<_$DimensionsChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$IsCornerPlotChangedImplCopyWith<$Res> {
+  factory _$$IsCornerPlotChangedImplCopyWith(_$IsCornerPlotChangedImpl value,
+          $Res Function(_$IsCornerPlotChangedImpl) then) =
+      __$$IsCornerPlotChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isCornerPlot});
+}
+
+/// @nodoc
+class __$$IsCornerPlotChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$IsCornerPlotChangedImpl>
+    implements _$$IsCornerPlotChangedImplCopyWith<$Res> {
+  __$$IsCornerPlotChangedImplCopyWithImpl(_$IsCornerPlotChangedImpl _value,
+      $Res Function(_$IsCornerPlotChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCornerPlot = null,
+  }) {
+    return _then(_$IsCornerPlotChangedImpl(
+      isCornerPlot: null == isCornerPlot
+          ? _value.isCornerPlot
+          : isCornerPlot // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
+  const _$IsCornerPlotChangedImpl({required this.isCornerPlot});
+
+  @override
+  final bool isCornerPlot;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.isCornerPlotChanged(isCornerPlot: $isCornerPlot)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IsCornerPlotChangedImpl &&
+            (identical(other.isCornerPlot, isCornerPlot) ||
+                other.isCornerPlot == isCornerPlot));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isCornerPlot);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IsCornerPlotChangedImplCopyWith<_$IsCornerPlotChangedImpl> get copyWith =>
+      __$$IsCornerPlotChangedImplCopyWithImpl<_$IsCornerPlotChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return isCornerPlotChanged(isCornerPlot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return isCornerPlotChanged?.call(isCornerPlot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isCornerPlotChanged != null) {
+      return isCornerPlotChanged(isCornerPlot);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return isCornerPlotChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return isCornerPlotChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isCornerPlotChanged != null) {
+      return isCornerPlotChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsCornerPlotChanged implements CreatePostEvent {
+  const factory _IsCornerPlotChanged({required final bool isCornerPlot}) =
+      _$IsCornerPlotChangedImpl;
+
+  bool get isCornerPlot;
+  @JsonKey(ignore: true)
+  _$$IsCornerPlotChangedImplCopyWith<_$IsCornerPlotChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$IsGatedCommunityChangedImplCopyWith<$Res> {
+  factory _$$IsGatedCommunityChangedImplCopyWith(
+          _$IsGatedCommunityChangedImpl value,
+          $Res Function(_$IsGatedCommunityChangedImpl) then) =
+      __$$IsGatedCommunityChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isGatedCommunity});
+}
+
+/// @nodoc
+class __$$IsGatedCommunityChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$IsGatedCommunityChangedImpl>
+    implements _$$IsGatedCommunityChangedImplCopyWith<$Res> {
+  __$$IsGatedCommunityChangedImplCopyWithImpl(
+      _$IsGatedCommunityChangedImpl _value,
+      $Res Function(_$IsGatedCommunityChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isGatedCommunity = null,
+  }) {
+    return _then(_$IsGatedCommunityChangedImpl(
+      isGatedCommunity: null == isGatedCommunity
+          ? _value.isGatedCommunity
+          : isGatedCommunity // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
+  const _$IsGatedCommunityChangedImpl({required this.isGatedCommunity});
+
+  @override
+  final bool isGatedCommunity;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.isGatedCommunityChanged(isGatedCommunity: $isGatedCommunity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IsGatedCommunityChangedImpl &&
+            (identical(other.isGatedCommunity, isGatedCommunity) ||
+                other.isGatedCommunity == isGatedCommunity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isGatedCommunity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IsGatedCommunityChangedImplCopyWith<_$IsGatedCommunityChangedImpl>
+      get copyWith => __$$IsGatedCommunityChangedImplCopyWithImpl<
+          _$IsGatedCommunityChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return isGatedCommunityChanged(isGatedCommunity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return isGatedCommunityChanged?.call(isGatedCommunity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isGatedCommunityChanged != null) {
+      return isGatedCommunityChanged(isGatedCommunity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return isGatedCommunityChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return isGatedCommunityChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isGatedCommunityChanged != null) {
+      return isGatedCommunityChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsGatedCommunityChanged implements CreatePostEvent {
+  const factory _IsGatedCommunityChanged(
+      {required final bool isGatedCommunity}) = _$IsGatedCommunityChangedImpl;
+
+  bool get isGatedCommunity;
+  @JsonKey(ignore: true)
+  _$$IsGatedCommunityChangedImplCopyWith<_$IsGatedCommunityChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2138,6 +5183,15 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -2161,6 +5215,15 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -2184,6 +5247,15 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -2211,6 +5283,17 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -2234,6 +5317,15 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -2257,6 +5349,15 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -2356,6 +5457,15 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -2379,6 +5489,15 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -2402,6 +5521,15 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -2429,6 +5557,17 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -2452,6 +5591,15 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -2475,6 +5623,15 @@ class _$AddImagesImpl implements _AddImages {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -2574,6 +5731,15 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -2597,6 +5763,15 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -2620,6 +5795,15 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -2647,6 +5831,17 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -2670,6 +5865,15 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -2693,6 +5897,15 @@ class _$RemoveImageImpl implements _RemoveImage {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -2793,6 +6006,15 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -2816,6 +6038,15 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -2839,6 +6070,15 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -2866,6 +6106,17 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -2889,6 +6140,15 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -2912,6 +6172,15 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -2985,6 +6254,15 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -3008,6 +6286,15 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -3031,6 +6318,15 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -3058,6 +6354,17 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -3081,6 +6388,15 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -3104,6 +6420,15 @@ class _$ProceedToNextImpl implements _ProceedToNext {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -3198,6 +6523,15 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
     required TResult Function() validateAndProceed,
     required TResult Function(List<File> images) addImages,
     required TResult Function(int index) removeImage,
@@ -3221,6 +6555,15 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult? Function()? validateAndProceed,
     TResult? Function(List<File> images)? addImages,
     TResult? Function(int index)? removeImage,
@@ -3244,6 +6587,15 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
     TResult Function()? validateAndProceed,
     TResult Function(List<File> images)? addImages,
     TResult Function(int index)? removeImage,
@@ -3271,6 +6623,17 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
     required TResult Function(_ValidateAndProceed value) validateAndProceed,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
@@ -3294,6 +6657,15 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult? Function(_ValidateAndProceed value)? validateAndProceed,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
@@ -3317,6 +6689,15 @@ class _$CreatePostImpl implements _CreatePost {
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
     TResult Function(_ValidateAndProceed value)? validateAndProceed,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_RemoveImage value)? removeImage,
@@ -3358,6 +6739,15 @@ mixin _$CreatePostState {
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   AddPostResponse? get addPostResponse => throw _privateConstructorUsedError;
+  String get plotArea => throw _privateConstructorUsedError;
+  String get selectedAreaUnit => throw _privateConstructorUsedError;
+  String get selectedFacing => throw _privateConstructorUsedError;
+  String get roadWidth => throw _privateConstructorUsedError;
+  String get selectedPostedBy => throw _privateConstructorUsedError;
+  String get selectedApprovalStatus => throw _privateConstructorUsedError;
+  String get dimensions => throw _privateConstructorUsedError;
+  bool get isCornerPlot => throw _privateConstructorUsedError;
+  bool get isGatedCommunity => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreatePostStateCopyWith<CreatePostState> get copyWith =>
@@ -3384,7 +6774,16 @@ abstract class $CreatePostStateCopyWith<$Res> {
       bool isValid,
       double? latitude,
       double? longitude,
-      AddPostResponse? addPostResponse});
+      AddPostResponse? addPostResponse,
+      String plotArea,
+      String selectedAreaUnit,
+      String selectedFacing,
+      String roadWidth,
+      String selectedPostedBy,
+      String selectedApprovalStatus,
+      String dimensions,
+      bool isCornerPlot,
+      bool isGatedCommunity});
 
   $AddPostResponseCopyWith<$Res>? get addPostResponse;
 }
@@ -3416,6 +6815,15 @@ class _$CreatePostStateCopyWithImpl<$Res, $Val extends CreatePostState>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? addPostResponse = freezed,
+    Object? plotArea = null,
+    Object? selectedAreaUnit = null,
+    Object? selectedFacing = null,
+    Object? roadWidth = null,
+    Object? selectedPostedBy = null,
+    Object? selectedApprovalStatus = null,
+    Object? dimensions = null,
+    Object? isCornerPlot = null,
+    Object? isGatedCommunity = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -3474,6 +6882,42 @@ class _$CreatePostStateCopyWithImpl<$Res, $Val extends CreatePostState>
           ? _value.addPostResponse
           : addPostResponse // ignore: cast_nullable_to_non_nullable
               as AddPostResponse?,
+      plotArea: null == plotArea
+          ? _value.plotArea
+          : plotArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedAreaUnit: null == selectedAreaUnit
+          ? _value.selectedAreaUnit
+          : selectedAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedFacing: null == selectedFacing
+          ? _value.selectedFacing
+          : selectedFacing // ignore: cast_nullable_to_non_nullable
+              as String,
+      roadWidth: null == roadWidth
+          ? _value.roadWidth
+          : roadWidth // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPostedBy: null == selectedPostedBy
+          ? _value.selectedPostedBy
+          : selectedPostedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedApprovalStatus: null == selectedApprovalStatus
+          ? _value.selectedApprovalStatus
+          : selectedApprovalStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      dimensions: null == dimensions
+          ? _value.dimensions
+          : dimensions // ignore: cast_nullable_to_non_nullable
+              as String,
+      isCornerPlot: null == isCornerPlot
+          ? _value.isCornerPlot
+          : isCornerPlot // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGatedCommunity: null == isGatedCommunity
+          ? _value.isGatedCommunity
+          : isGatedCommunity // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -3512,7 +6956,16 @@ abstract class _$$CreatePostStateImplCopyWith<$Res>
       bool isValid,
       double? latitude,
       double? longitude,
-      AddPostResponse? addPostResponse});
+      AddPostResponse? addPostResponse,
+      String plotArea,
+      String selectedAreaUnit,
+      String selectedFacing,
+      String roadWidth,
+      String selectedPostedBy,
+      String selectedApprovalStatus,
+      String dimensions,
+      bool isCornerPlot,
+      bool isGatedCommunity});
 
   @override
   $AddPostResponseCopyWith<$Res>? get addPostResponse;
@@ -3543,6 +6996,15 @@ class __$$CreatePostStateImplCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? addPostResponse = freezed,
+    Object? plotArea = null,
+    Object? selectedAreaUnit = null,
+    Object? selectedFacing = null,
+    Object? roadWidth = null,
+    Object? selectedPostedBy = null,
+    Object? selectedApprovalStatus = null,
+    Object? dimensions = null,
+    Object? isCornerPlot = null,
+    Object? isGatedCommunity = null,
   }) {
     return _then(_$CreatePostStateImpl(
       title: null == title
@@ -3601,6 +7063,42 @@ class __$$CreatePostStateImplCopyWithImpl<$Res>
           ? _value.addPostResponse
           : addPostResponse // ignore: cast_nullable_to_non_nullable
               as AddPostResponse?,
+      plotArea: null == plotArea
+          ? _value.plotArea
+          : plotArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedAreaUnit: null == selectedAreaUnit
+          ? _value.selectedAreaUnit
+          : selectedAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedFacing: null == selectedFacing
+          ? _value.selectedFacing
+          : selectedFacing // ignore: cast_nullable_to_non_nullable
+              as String,
+      roadWidth: null == roadWidth
+          ? _value.roadWidth
+          : roadWidth // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPostedBy: null == selectedPostedBy
+          ? _value.selectedPostedBy
+          : selectedPostedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedApprovalStatus: null == selectedApprovalStatus
+          ? _value.selectedApprovalStatus
+          : selectedApprovalStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      dimensions: null == dimensions
+          ? _value.dimensions
+          : dimensions // ignore: cast_nullable_to_non_nullable
+              as String,
+      isCornerPlot: null == isCornerPlot
+          ? _value.isCornerPlot
+          : isCornerPlot // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGatedCommunity: null == isGatedCommunity
+          ? _value.isGatedCommunity
+          : isGatedCommunity // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -3622,7 +7120,16 @@ class _$CreatePostStateImpl implements _CreatePostState {
       this.isValid = false,
       this.latitude,
       this.longitude,
-      this.addPostResponse})
+      this.addPostResponse,
+      this.plotArea = '',
+      this.selectedAreaUnit = 'Sq.Yds',
+      this.selectedFacing = '',
+      this.roadWidth = '',
+      this.selectedPostedBy = 'Owner',
+      this.selectedApprovalStatus = '',
+      this.dimensions = '',
+      this.isCornerPlot = false,
+      this.isGatedCommunity = false})
       : _selectedImages = selectedImages;
 
   @override
@@ -3669,10 +7176,37 @@ class _$CreatePostStateImpl implements _CreatePostState {
   final double? longitude;
   @override
   final AddPostResponse? addPostResponse;
+  @override
+  @JsonKey()
+  final String plotArea;
+  @override
+  @JsonKey()
+  final String selectedAreaUnit;
+  @override
+  @JsonKey()
+  final String selectedFacing;
+  @override
+  @JsonKey()
+  final String roadWidth;
+  @override
+  @JsonKey()
+  final String selectedPostedBy;
+  @override
+  @JsonKey()
+  final String selectedApprovalStatus;
+  @override
+  @JsonKey()
+  final String dimensions;
+  @override
+  @JsonKey()
+  final bool isCornerPlot;
+  @override
+  @JsonKey()
+  final bool isGatedCommunity;
 
   @override
   String toString() {
-    return 'CreatePostState(title: $title, selectedPropertyType: $selectedPropertyType, selectedLookingFor: $selectedLookingFor, address: $address, selectedLocation: $selectedLocation, price: $price, selectedImages: $selectedImages, description: $description, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, latitude: $latitude, longitude: $longitude, addPostResponse: $addPostResponse)';
+    return 'CreatePostState(title: $title, selectedPropertyType: $selectedPropertyType, selectedLookingFor: $selectedLookingFor, address: $address, selectedLocation: $selectedLocation, price: $price, selectedImages: $selectedImages, description: $description, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, latitude: $latitude, longitude: $longitude, addPostResponse: $addPostResponse, plotArea: $plotArea, selectedAreaUnit: $selectedAreaUnit, selectedFacing: $selectedFacing, roadWidth: $roadWidth, selectedPostedBy: $selectedPostedBy, selectedApprovalStatus: $selectedApprovalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity)';
   }
 
   @override
@@ -3703,26 +7237,54 @@ class _$CreatePostStateImpl implements _CreatePostState {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.addPostResponse, addPostResponse) ||
-                other.addPostResponse == addPostResponse));
+                other.addPostResponse == addPostResponse) &&
+            (identical(other.plotArea, plotArea) ||
+                other.plotArea == plotArea) &&
+            (identical(other.selectedAreaUnit, selectedAreaUnit) ||
+                other.selectedAreaUnit == selectedAreaUnit) &&
+            (identical(other.selectedFacing, selectedFacing) ||
+                other.selectedFacing == selectedFacing) &&
+            (identical(other.roadWidth, roadWidth) ||
+                other.roadWidth == roadWidth) &&
+            (identical(other.selectedPostedBy, selectedPostedBy) ||
+                other.selectedPostedBy == selectedPostedBy) &&
+            (identical(other.selectedApprovalStatus, selectedApprovalStatus) ||
+                other.selectedApprovalStatus == selectedApprovalStatus) &&
+            (identical(other.dimensions, dimensions) ||
+                other.dimensions == dimensions) &&
+            (identical(other.isCornerPlot, isCornerPlot) ||
+                other.isCornerPlot == isCornerPlot) &&
+            (identical(other.isGatedCommunity, isGatedCommunity) ||
+                other.isGatedCommunity == isGatedCommunity));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      selectedPropertyType,
-      selectedLookingFor,
-      address,
-      selectedLocation,
-      price,
-      const DeepCollectionEquality().hash(_selectedImages),
-      description,
-      isLoading,
-      errorMessage,
-      isValid,
-      latitude,
-      longitude,
-      addPostResponse);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        title,
+        selectedPropertyType,
+        selectedLookingFor,
+        address,
+        selectedLocation,
+        price,
+        const DeepCollectionEquality().hash(_selectedImages),
+        description,
+        isLoading,
+        errorMessage,
+        isValid,
+        latitude,
+        longitude,
+        addPostResponse,
+        plotArea,
+        selectedAreaUnit,
+        selectedFacing,
+        roadWidth,
+        selectedPostedBy,
+        selectedApprovalStatus,
+        dimensions,
+        isCornerPlot,
+        isGatedCommunity
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -3747,7 +7309,16 @@ abstract class _CreatePostState implements CreatePostState {
       final bool isValid,
       final double? latitude,
       final double? longitude,
-      final AddPostResponse? addPostResponse}) = _$CreatePostStateImpl;
+      final AddPostResponse? addPostResponse,
+      final String plotArea,
+      final String selectedAreaUnit,
+      final String selectedFacing,
+      final String roadWidth,
+      final String selectedPostedBy,
+      final String selectedApprovalStatus,
+      final String dimensions,
+      final bool isCornerPlot,
+      final bool isGatedCommunity}) = _$CreatePostStateImpl;
 
   @override
   String get title;
@@ -3777,6 +7348,24 @@ abstract class _CreatePostState implements CreatePostState {
   double? get longitude;
   @override
   AddPostResponse? get addPostResponse;
+  @override
+  String get plotArea;
+  @override
+  String get selectedAreaUnit;
+  @override
+  String get selectedFacing;
+  @override
+  String get roadWidth;
+  @override
+  String get selectedPostedBy;
+  @override
+  String get selectedApprovalStatus;
+  @override
+  String get dimensions;
+  @override
+  bool get isCornerPlot;
+  @override
+  bool get isGatedCommunity;
   @override
   @JsonKey(ignore: true)
   _$$CreatePostStateImplCopyWith<_$CreatePostStateImpl> get copyWith =>

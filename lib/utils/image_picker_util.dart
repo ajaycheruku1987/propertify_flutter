@@ -12,6 +12,8 @@ class ImagePickerUtil {
   }) async {
     try {
       final List<XFile> pickedFiles = await _picker.pickMultiImage(
+        maxWidth: 1920,
+        maxHeight: 1920,
         imageQuality: imageQuality,
       );
 
@@ -36,6 +38,8 @@ class ImagePickerUtil {
     try {
       final XFile? pickedFile = await _picker.pickImage(
         source: ImageSource.gallery,
+        maxWidth: 1920,
+        maxHeight: 1920,
         imageQuality: imageQuality,
       );
 
@@ -54,6 +58,8 @@ class ImagePickerUtil {
     try {
       final XFile? pickedFile = await _picker.pickImage(
         source: ImageSource.camera,
+        maxWidth: 1920,
+        maxHeight: 1920,
         imageQuality: imageQuality,
       );
 

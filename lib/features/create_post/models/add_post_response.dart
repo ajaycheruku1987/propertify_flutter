@@ -51,6 +51,24 @@ class AddPostResponse with _$AddPostResponse {
         dynamic promotedUntil,
         @JsonKey(name: "owner")
         Owner? owner,
+        @JsonKey(name: "plot_area")
+        String? plotArea,
+        @JsonKey(name: "area_unit")
+        String? areaUnit,
+        @JsonKey(name: "facing")
+        String? facing,
+        @JsonKey(name: "road_width")
+        String? roadWidth,
+        @JsonKey(name: "posted_by")
+        String? postedBy,
+        @JsonKey(name: "approval_status")
+        String? approvalStatus,
+        @JsonKey(name: "dimensions")
+        String? dimensions,
+        @JsonKey(name: "is_corner_plot")
+        bool? isCornerPlot,
+        @JsonKey(name: "is_gated_community")
+        bool? isGatedCommunity,
     }) = _AddPostResponse;
 
     factory AddPostResponse.fromJson(Map<String, dynamic> json) => _$AddPostResponseFromJson(json);

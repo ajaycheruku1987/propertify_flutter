@@ -10,6 +10,15 @@ class CreatePostModel {
   final String status;
   final double? latitude;
   final double? longitude;
+  final String? plotArea;
+  final String? areaUnit;
+  final String? facing;
+  final String? roadWidth;
+  final String? postedBy;
+  final String? approvalStatus;
+  final String? dimensions;
+  final bool? isCornerPlot;
+  final bool? isGatedCommunity;
 
   const CreatePostModel({
     required this.id,
@@ -23,6 +32,15 @@ class CreatePostModel {
     this.status = 'draft',
     this.latitude,
     this.longitude,
+    this.plotArea,
+    this.areaUnit,
+    this.facing,
+    this.roadWidth,
+    this.postedBy,
+    this.approvalStatus,
+    this.dimensions,
+    this.isCornerPlot,
+    this.isGatedCommunity,
   });
 
   factory CreatePostModel.fromJson(Map<String, dynamic> json) {
@@ -38,6 +56,15 @@ class CreatePostModel {
       status: json['status'] ?? 'draft',
       latitude: json['latitude']?.toDouble(),
       longitude: json['longitude']?.toDouble(),
+      plotArea: json['plotArea'] ?? json['plot_area'],
+      areaUnit: json['areaUnit'] ?? json['area_unit'],
+      facing: json['facing'],
+      roadWidth: json['roadWidth'] ?? json['road_width'],
+      postedBy: json['postedBy'] ?? json['posted_by'],
+      approvalStatus: json['approvalStatus'] ?? json['approval_status'],
+      dimensions: json['dimensions'],
+      isCornerPlot: json['isCornerPlot'] ?? json['is_corner_plot'],
+      isGatedCommunity: json['isGatedCommunity'] ?? json['is_gated_community'],
     );
   }
 
@@ -54,6 +81,15 @@ class CreatePostModel {
       'status': status,
       'latitude': latitude,
       'longitude': longitude,
+      'plot_area': plotArea,
+      'area_unit': areaUnit,
+      'facing': facing,
+      'road_width': roadWidth,
+      'posted_by': postedBy,
+      'approval_status': approvalStatus,
+      'dimensions': dimensions,
+      'is_corner_plot': isCornerPlot,
+      'is_gated_community': isGatedCommunity,
     };
   }
 
@@ -69,6 +105,15 @@ class CreatePostModel {
     String? status,
     double? latitude,
     double? longitude,
+    String? plotArea,
+    String? areaUnit,
+    String? facing,
+    String? roadWidth,
+    String? postedBy,
+    String? approvalStatus,
+    String? dimensions,
+    bool? isCornerPlot,
+    bool? isGatedCommunity,
   }) {
     return CreatePostModel(
       id: id ?? this.id,
@@ -82,6 +127,15 @@ class CreatePostModel {
       status: status ?? this.status,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
+      plotArea: plotArea ?? this.plotArea,
+      areaUnit: areaUnit ?? this.areaUnit,
+      facing: facing ?? this.facing,
+      roadWidth: roadWidth ?? this.roadWidth,
+      postedBy: postedBy ?? this.postedBy,
+      approvalStatus: approvalStatus ?? this.approvalStatus,
+      dimensions: dimensions ?? this.dimensions,
+      isCornerPlot: isCornerPlot ?? this.isCornerPlot,
+      isGatedCommunity: isGatedCommunity ?? this.isGatedCommunity,
     );
   }
 }

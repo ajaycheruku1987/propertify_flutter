@@ -35,6 +35,42 @@ class CreatePostEvent with _$CreatePostEvent {
   const factory CreatePostEvent.priceChanged({
     required String price,
   }) = _PriceChanged;
+
+  const factory CreatePostEvent.plotAreaChanged({
+    required String plotArea,
+  }) = _PlotAreaChanged;
+
+  const factory CreatePostEvent.areaUnitChanged({
+    required String areaUnit,
+  }) = _AreaUnitChanged;
+
+  const factory CreatePostEvent.facingChanged({
+    required String facing,
+  }) = _FacingChanged;
+
+  const factory CreatePostEvent.roadWidthChanged({
+    required String roadWidth,
+  }) = _RoadWidthChanged;
+
+  const factory CreatePostEvent.postedByChanged({
+    required String postedBy,
+  }) = _PostedByChanged;
+
+  const factory CreatePostEvent.approvalStatusChanged({
+    required String approvalStatus,
+  }) = _ApprovalStatusChanged;
+
+  const factory CreatePostEvent.dimensionsChanged({
+    required String dimensions,
+  }) = _DimensionsChanged;
+
+  const factory CreatePostEvent.isCornerPlotChanged({
+    required bool isCornerPlot,
+  }) = _IsCornerPlotChanged;
+
+  const factory CreatePostEvent.isGatedCommunityChanged({
+    required bool isGatedCommunity,
+  }) = _IsGatedCommunityChanged;
   
   const factory CreatePostEvent.validateAndProceed() = _ValidateAndProceed;
   

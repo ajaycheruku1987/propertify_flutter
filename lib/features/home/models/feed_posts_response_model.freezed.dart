@@ -69,6 +69,24 @@ mixin _$FeedPostsResponseModel {
   int? get commentsCount => throw _privateConstructorUsedError;
   @JsonKey(name: "views_count")
   int? get viewsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "plot_area")
+  String? get plotArea => throw _privateConstructorUsedError;
+  @JsonKey(name: "area_unit")
+  String? get areaUnit => throw _privateConstructorUsedError;
+  @JsonKey(name: "facing")
+  String? get facing => throw _privateConstructorUsedError;
+  @JsonKey(name: "road_width")
+  String? get roadWidth => throw _privateConstructorUsedError;
+  @JsonKey(name: "posted_by")
+  String? get postedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: "approval_status")
+  String? get approvalStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "dimensions")
+  String? get dimensions => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_corner_plot")
+  bool? get isCornerPlot => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_gated_community")
+  bool? get isGatedCommunity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -106,7 +124,16 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "is_liked") bool? isLiked,
       @JsonKey(name: "likes_count") int? likesCount,
       @JsonKey(name: "comments_count") int? commentsCount,
-      @JsonKey(name: "views_count") int? viewsCount});
+      @JsonKey(name: "views_count") int? viewsCount,
+      @JsonKey(name: "plot_area") String? plotArea,
+      @JsonKey(name: "area_unit") String? areaUnit,
+      @JsonKey(name: "facing") String? facing,
+      @JsonKey(name: "road_width") String? roadWidth,
+      @JsonKey(name: "posted_by") String? postedBy,
+      @JsonKey(name: "approval_status") String? approvalStatus,
+      @JsonKey(name: "dimensions") String? dimensions,
+      @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
+      @JsonKey(name: "is_gated_community") bool? isGatedCommunity});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -149,6 +176,15 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
     Object? likesCount = freezed,
     Object? commentsCount = freezed,
     Object? viewsCount = freezed,
+    Object? plotArea = freezed,
+    Object? areaUnit = freezed,
+    Object? facing = freezed,
+    Object? roadWidth = freezed,
+    Object? postedBy = freezed,
+    Object? approvalStatus = freezed,
+    Object? dimensions = freezed,
+    Object? isCornerPlot = freezed,
+    Object? isGatedCommunity = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -247,6 +283,42 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
           ? _value.viewsCount
           : viewsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      plotArea: freezed == plotArea
+          ? _value.plotArea
+          : plotArea // ignore: cast_nullable_to_non_nullable
+              as String?,
+      areaUnit: freezed == areaUnit
+          ? _value.areaUnit
+          : areaUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facing: freezed == facing
+          ? _value.facing
+          : facing // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roadWidth: freezed == roadWidth
+          ? _value.roadWidth
+          : roadWidth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postedBy: freezed == postedBy
+          ? _value.postedBy
+          : postedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvalStatus: freezed == approvalStatus
+          ? _value.approvalStatus
+          : approvalStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dimensions: freezed == dimensions
+          ? _value.dimensions
+          : dimensions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isCornerPlot: freezed == isCornerPlot
+          ? _value.isCornerPlot
+          : isCornerPlot // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isGatedCommunity: freezed == isGatedCommunity
+          ? _value.isGatedCommunity
+          : isGatedCommunity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -296,7 +368,16 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "is_liked") bool? isLiked,
       @JsonKey(name: "likes_count") int? likesCount,
       @JsonKey(name: "comments_count") int? commentsCount,
-      @JsonKey(name: "views_count") int? viewsCount});
+      @JsonKey(name: "views_count") int? viewsCount,
+      @JsonKey(name: "plot_area") String? plotArea,
+      @JsonKey(name: "area_unit") String? areaUnit,
+      @JsonKey(name: "facing") String? facing,
+      @JsonKey(name: "road_width") String? roadWidth,
+      @JsonKey(name: "posted_by") String? postedBy,
+      @JsonKey(name: "approval_status") String? approvalStatus,
+      @JsonKey(name: "dimensions") String? dimensions,
+      @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
+      @JsonKey(name: "is_gated_community") bool? isGatedCommunity});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -339,6 +420,15 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
     Object? likesCount = freezed,
     Object? commentsCount = freezed,
     Object? viewsCount = freezed,
+    Object? plotArea = freezed,
+    Object? areaUnit = freezed,
+    Object? facing = freezed,
+    Object? roadWidth = freezed,
+    Object? postedBy = freezed,
+    Object? approvalStatus = freezed,
+    Object? dimensions = freezed,
+    Object? isCornerPlot = freezed,
+    Object? isGatedCommunity = freezed,
   }) {
     return _then(_$FeedPostsResponseModelImpl(
       id: freezed == id
@@ -437,6 +527,42 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
           ? _value.viewsCount
           : viewsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      plotArea: freezed == plotArea
+          ? _value.plotArea
+          : plotArea // ignore: cast_nullable_to_non_nullable
+              as String?,
+      areaUnit: freezed == areaUnit
+          ? _value.areaUnit
+          : areaUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facing: freezed == facing
+          ? _value.facing
+          : facing // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roadWidth: freezed == roadWidth
+          ? _value.roadWidth
+          : roadWidth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postedBy: freezed == postedBy
+          ? _value.postedBy
+          : postedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvalStatus: freezed == approvalStatus
+          ? _value.approvalStatus
+          : approvalStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dimensions: freezed == dimensions
+          ? _value.dimensions
+          : dimensions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isCornerPlot: freezed == isCornerPlot
+          ? _value.isCornerPlot
+          : isCornerPlot // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isGatedCommunity: freezed == isGatedCommunity
+          ? _value.isGatedCommunity
+          : isGatedCommunity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -468,7 +594,16 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "is_liked") this.isLiked,
       @JsonKey(name: "likes_count") this.likesCount,
       @JsonKey(name: "comments_count") this.commentsCount,
-      @JsonKey(name: "views_count") this.viewsCount})
+      @JsonKey(name: "views_count") this.viewsCount,
+      @JsonKey(name: "plot_area") this.plotArea,
+      @JsonKey(name: "area_unit") this.areaUnit,
+      @JsonKey(name: "facing") this.facing,
+      @JsonKey(name: "road_width") this.roadWidth,
+      @JsonKey(name: "posted_by") this.postedBy,
+      @JsonKey(name: "approval_status") this.approvalStatus,
+      @JsonKey(name: "dimensions") this.dimensions,
+      @JsonKey(name: "is_corner_plot") this.isCornerPlot,
+      @JsonKey(name: "is_gated_community") this.isGatedCommunity})
       : _imageUrls = imageUrls,
         super._();
 
@@ -555,10 +690,37 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @override
   @JsonKey(name: "views_count")
   final int? viewsCount;
+  @override
+  @JsonKey(name: "plot_area")
+  final String? plotArea;
+  @override
+  @JsonKey(name: "area_unit")
+  final String? areaUnit;
+  @override
+  @JsonKey(name: "facing")
+  final String? facing;
+  @override
+  @JsonKey(name: "road_width")
+  final String? roadWidth;
+  @override
+  @JsonKey(name: "posted_by")
+  final String? postedBy;
+  @override
+  @JsonKey(name: "approval_status")
+  final String? approvalStatus;
+  @override
+  @JsonKey(name: "dimensions")
+  final String? dimensions;
+  @override
+  @JsonKey(name: "is_corner_plot")
+  final bool? isCornerPlot;
+  @override
+  @JsonKey(name: "is_gated_community")
+  final bool? isGatedCommunity;
 
   @override
   String toString() {
-    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount)';
+    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity)';
   }
 
   @override
@@ -604,7 +766,24 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
             (identical(other.commentsCount, commentsCount) ||
                 other.commentsCount == commentsCount) &&
             (identical(other.viewsCount, viewsCount) ||
-                other.viewsCount == viewsCount));
+                other.viewsCount == viewsCount) &&
+            (identical(other.plotArea, plotArea) ||
+                other.plotArea == plotArea) &&
+            (identical(other.areaUnit, areaUnit) ||
+                other.areaUnit == areaUnit) &&
+            (identical(other.facing, facing) || other.facing == facing) &&
+            (identical(other.roadWidth, roadWidth) ||
+                other.roadWidth == roadWidth) &&
+            (identical(other.postedBy, postedBy) ||
+                other.postedBy == postedBy) &&
+            (identical(other.approvalStatus, approvalStatus) ||
+                other.approvalStatus == approvalStatus) &&
+            (identical(other.dimensions, dimensions) ||
+                other.dimensions == dimensions) &&
+            (identical(other.isCornerPlot, isCornerPlot) ||
+                other.isCornerPlot == isCornerPlot) &&
+            (identical(other.isGatedCommunity, isGatedCommunity) ||
+                other.isGatedCommunity == isGatedCommunity));
   }
 
   @JsonKey(ignore: true)
@@ -634,7 +813,16 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
         isLiked,
         likesCount,
         commentsCount,
-        viewsCount
+        viewsCount,
+        plotArea,
+        areaUnit,
+        facing,
+        roadWidth,
+        postedBy,
+        approvalStatus,
+        dimensions,
+        isCornerPlot,
+        isGatedCommunity
       ]);
 
   @JsonKey(ignore: true)
@@ -677,7 +865,16 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
           @JsonKey(name: "is_liked") final bool? isLiked,
           @JsonKey(name: "likes_count") final int? likesCount,
           @JsonKey(name: "comments_count") final int? commentsCount,
-          @JsonKey(name: "views_count") final int? viewsCount}) =
+          @JsonKey(name: "views_count") final int? viewsCount,
+          @JsonKey(name: "plot_area") final String? plotArea,
+          @JsonKey(name: "area_unit") final String? areaUnit,
+          @JsonKey(name: "facing") final String? facing,
+          @JsonKey(name: "road_width") final String? roadWidth,
+          @JsonKey(name: "posted_by") final String? postedBy,
+          @JsonKey(name: "approval_status") final String? approvalStatus,
+          @JsonKey(name: "dimensions") final String? dimensions,
+          @JsonKey(name: "is_corner_plot") final bool? isCornerPlot,
+          @JsonKey(name: "is_gated_community") final bool? isGatedCommunity}) =
       _$FeedPostsResponseModelImpl;
   const _FeedPostsResponseModel._() : super._();
 
@@ -756,6 +953,33 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @override
   @JsonKey(name: "views_count")
   int? get viewsCount;
+  @override
+  @JsonKey(name: "plot_area")
+  String? get plotArea;
+  @override
+  @JsonKey(name: "area_unit")
+  String? get areaUnit;
+  @override
+  @JsonKey(name: "facing")
+  String? get facing;
+  @override
+  @JsonKey(name: "road_width")
+  String? get roadWidth;
+  @override
+  @JsonKey(name: "posted_by")
+  String? get postedBy;
+  @override
+  @JsonKey(name: "approval_status")
+  String? get approvalStatus;
+  @override
+  @JsonKey(name: "dimensions")
+  String? get dimensions;
+  @override
+  @JsonKey(name: "is_corner_plot")
+  bool? get isCornerPlot;
+  @override
+  @JsonKey(name: "is_gated_community")
+  bool? get isGatedCommunity;
   @override
   @JsonKey(ignore: true)
   _$$FeedPostsResponseModelImplCopyWith<_$FeedPostsResponseModelImpl>

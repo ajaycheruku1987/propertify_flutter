@@ -21,6 +21,15 @@ abstract class CreatePostRepository {
     double? latitude,
     double? longitude,
     required List<File> images,
+    String? plotArea,
+    String? areaUnit,
+    String? facing,
+    String? roadWidth,
+    String? postedBy,
+    String? approvalStatus,
+    String? dimensions,
+    bool? isCornerPlot,
+    bool? isGatedCommunity,
   });
 
   Future<List<String>> getLocations();
@@ -42,6 +51,15 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
     double? latitude,
     double? longitude,
     required List<File> images,
+    String? plotArea,
+    String? areaUnit,
+    String? facing,
+    String? roadWidth,
+    String? postedBy,
+    String? approvalStatus,
+    String? dimensions,
+    bool? isCornerPlot,
+    bool? isGatedCommunity,
   }) async {
     try {
       // Create FormData for multipart request
@@ -60,6 +78,15 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         if (description != null) 'description': description,
         if (latitude != null) 'latitude': latitude.toString(),
         if (longitude != null) 'longitude': longitude.toString(),
+        if (plotArea != null && plotArea.isNotEmpty) 'plot_area': plotArea,
+        if (areaUnit != null && areaUnit.isNotEmpty) 'area_unit': areaUnit,
+        if (facing != null && facing.isNotEmpty) 'facing': facing,
+        if (roadWidth != null && roadWidth.isNotEmpty) 'road_width': roadWidth,
+        if (postedBy != null && postedBy.isNotEmpty) 'posted_by': postedBy,
+        if (approvalStatus != null && approvalStatus.isNotEmpty) 'approval_status': approvalStatus,
+        if (dimensions != null && dimensions.isNotEmpty) 'dimensions': dimensions,
+        if (isCornerPlot != null) 'is_corner_plot': isCornerPlot,
+        if (isGatedCommunity != null) 'is_gated_community': isGatedCommunity,
       });
 
       // Add image files to FormData
@@ -81,6 +108,10 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
       final response = await _apiRequest.post(
         '/properties', // Replace with actual endpoint path
         data: formData,
+        options: Options(
+          sendTimeout: const Duration(seconds: 120),
+          receiveTimeout: const Duration(seconds: 120),
+        ),
       );
 
       final responseData = await response.getResponse();

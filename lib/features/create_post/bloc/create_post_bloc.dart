@@ -21,6 +21,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     on<_LocationCoordinatesChanged>(_onLocationCoordinatesChanged);
     on<_LocationChanged>(_onLocationChanged);
     on<_PriceChanged>(_onPriceChanged);
+    on<_PlotAreaChanged>(_onPlotAreaChanged);
+    on<_AreaUnitChanged>(_onAreaUnitChanged);
+    on<_FacingChanged>(_onFacingChanged);
+    on<_RoadWidthChanged>(_onRoadWidthChanged);
+    on<_PostedByChanged>(_onPostedByChanged);
+    on<_ApprovalStatusChanged>(_onApprovalStatusChanged);
+    on<_DimensionsChanged>(_onDimensionsChanged);
+    on<_IsCornerPlotChanged>(_onIsCornerPlotChanged);
+    on<_IsGatedCommunityChanged>(_onIsGatedCommunityChanged);
     on<_ValidateAndProceed>(_onValidateAndProceed);
     on<_AddImages>(_onAddImages);
     on<_RemoveImage>(_onRemoveImage);
@@ -120,6 +129,42 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     );
   }
 
+  void _onPlotAreaChanged(_PlotAreaChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(plotArea: event.plotArea));
+  }
+
+  void _onAreaUnitChanged(_AreaUnitChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(selectedAreaUnit: event.areaUnit));
+  }
+
+  void _onFacingChanged(_FacingChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(selectedFacing: event.facing));
+  }
+
+  void _onRoadWidthChanged(_RoadWidthChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(roadWidth: event.roadWidth));
+  }
+
+  void _onPostedByChanged(_PostedByChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(selectedPostedBy: event.postedBy));
+  }
+
+  void _onApprovalStatusChanged(_ApprovalStatusChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(selectedApprovalStatus: event.approvalStatus));
+  }
+
+  void _onDimensionsChanged(_DimensionsChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(dimensions: event.dimensions));
+  }
+
+  void _onIsCornerPlotChanged(_IsCornerPlotChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(isCornerPlot: event.isCornerPlot));
+  }
+
+  void _onIsGatedCommunityChanged(_IsGatedCommunityChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(isGatedCommunity: event.isGatedCommunity));
+  }
+
   void _onValidateAndProceed(
     _ValidateAndProceed event,
     Emitter<CreatePostState> emit,
@@ -180,6 +225,8 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     _CreatePost event,
     Emitter<CreatePostState> emit,
   ) async {
+    if (state.isLoading) return; // Prevent duplicate concurrent posts
+
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
     try {
@@ -244,6 +291,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         latitude: state.latitude,
         longitude: state.longitude,
         images: state.selectedImages,
+        plotArea: state.plotArea,
+        areaUnit: state.selectedAreaUnit,
+        facing: state.selectedFacing,
+        roadWidth: state.roadWidth,
+        postedBy: state.selectedPostedBy,
+        approvalStatus: state.selectedApprovalStatus,
+        dimensions: state.dimensions,
+        isCornerPlot: state.isCornerPlot,
+        isGatedCommunity: state.isGatedCommunity,
       );
 
       createPostResponse.fold(

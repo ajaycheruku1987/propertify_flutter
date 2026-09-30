@@ -17,5 +17,14 @@ class CreatePostState with _$CreatePostState {
     double? latitude,
     double? longitude,
     AddPostResponse? addPostResponse,
+    @Default('') String plotArea,
+    @Default('Sq.Yds') String selectedAreaUnit,
+    @Default('') String selectedFacing,
+    @Default('') String roadWidth,
+    @Default('Owner') String selectedPostedBy,
+    @Default('') String selectedApprovalStatus,
+    @Default('') String dimensions,
+    @Default(false) bool isCornerPlot,
+    @Default(false) bool isGatedCommunity,
   }) = _CreatePostState;
 }

@@ -45,6 +45,15 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "likes_count") int? likesCount,
     @JsonKey(name: "comments_count") int? commentsCount,
     @JsonKey(name: "views_count") int? viewsCount,
+    @JsonKey(name: "plot_area") String? plotArea,
+    @JsonKey(name: "area_unit") String? areaUnit,
+    @JsonKey(name: "facing") String? facing,
+    @JsonKey(name: "road_width") String? roadWidth,
+    @JsonKey(name: "posted_by") String? postedBy,
+    @JsonKey(name: "approval_status") String? approvalStatus,
+    @JsonKey(name: "dimensions") String? dimensions,
+    @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
+    @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
   }) = _FeedPostsResponseModel;
 
   factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>

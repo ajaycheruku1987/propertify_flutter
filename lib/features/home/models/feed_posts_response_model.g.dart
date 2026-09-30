@@ -37,6 +37,15 @@ _$FeedPostsResponseModelImpl _$$FeedPostsResponseModelImplFromJson(
       likesCount: (json['likes_count'] as num?)?.toInt(),
       commentsCount: (json['comments_count'] as num?)?.toInt(),
       viewsCount: (json['views_count'] as num?)?.toInt(),
+      plotArea: json['plot_area'] as String?,
+      areaUnit: json['area_unit'] as String?,
+      facing: json['facing'] as String?,
+      roadWidth: json['road_width'] as String?,
+      postedBy: json['posted_by'] as String?,
+      approvalStatus: json['approval_status'] as String?,
+      dimensions: json['dimensions'] as String?,
+      isCornerPlot: json['is_corner_plot'] as bool?,
+      isGatedCommunity: json['is_gated_community'] as bool?,
     );
 
 Map<String, dynamic> _$$FeedPostsResponseModelImplToJson(
@@ -66,6 +75,15 @@ Map<String, dynamic> _$$FeedPostsResponseModelImplToJson(
       'likes_count': instance.likesCount,
       'comments_count': instance.commentsCount,
       'views_count': instance.viewsCount,
+      'plot_area': instance.plotArea,
+      'area_unit': instance.areaUnit,
+      'facing': instance.facing,
+      'road_width': instance.roadWidth,
+      'posted_by': instance.postedBy,
+      'approval_status': instance.approvalStatus,
+      'dimensions': instance.dimensions,
+      'is_corner_plot': instance.isCornerPlot,
+      'is_gated_community': instance.isGatedCommunity,
     };
 
 _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(

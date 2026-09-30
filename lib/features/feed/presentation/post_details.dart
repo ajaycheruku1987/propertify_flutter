@@ -22,6 +22,7 @@ import 'widgets/comments_bottom_sheet.dart';
 import '../bloc/feed_bloc.dart';
 import 'widgets/image_carousel.dart';
 import 'widgets/property_info.dart';
+import 'widgets/plot_overview_widget.dart';
 import 'widgets/description_section.dart';
 import 'widgets/emi_calculator_widget.dart';
 import 'widgets/agent_info.dart';
@@ -644,6 +645,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           category: postDetails.propertyType,
                           listingType: postDetails.listingType,
                         ),
+
+                        // Plot Specifications Widget (for Plot / Land listings)
+                        PlotOverviewWidget(postDetails: postDetails),
 
                         _buildPromotionSection(postDetails, l10n),
 

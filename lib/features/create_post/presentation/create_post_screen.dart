@@ -16,6 +16,7 @@ import 'widgets/looking_for_selector.dart';
 import 'widgets/address_input.dart';
 import 'widgets/city_input.dart';
 import 'widgets/price_input.dart';
+import 'widgets/plot_details_input.dart';
 
 class CreatePostScreen extends StatefulWidget {
   static const String routeName = '/create-post';
@@ -143,6 +144,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
                   // Price Section
                   const PriceInput(),
+
+                  const SizedBox(height: 16),
+
+                  // Plot & Land Details Section (Conditional for Open Plot / Land)
+                  const PlotDetailsInput(),
 
                   const SizedBox(height: 40),
 

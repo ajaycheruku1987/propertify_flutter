@@ -31,6 +31,15 @@ _$AddPostResponseImpl _$$AddPostResponseImplFromJson(
       owner: json['owner'] == null
           ? null
           : Owner.fromJson(json['owner'] as Map<String, dynamic>),
+      plotArea: json['plot_area'] as String?,
+      areaUnit: json['area_unit'] as String?,
+      facing: json['facing'] as String?,
+      roadWidth: json['road_width'] as String?,
+      postedBy: json['posted_by'] as String?,
+      approvalStatus: json['approval_status'] as String?,
+      dimensions: json['dimensions'] as String?,
+      isCornerPlot: json['is_corner_plot'] as bool?,
+      isGatedCommunity: json['is_gated_community'] as bool?,
     );
 
 Map<String, dynamic> _$$AddPostResponseImplToJson(
@@ -54,6 +63,15 @@ Map<String, dynamic> _$$AddPostResponseImplToJson(
       'is_promoted': instance.isPromoted,
       'promoted_until': instance.promotedUntil,
       'owner': instance.owner,
+      'plot_area': instance.plotArea,
+      'area_unit': instance.areaUnit,
+      'facing': instance.facing,
+      'road_width': instance.roadWidth,
+      'posted_by': instance.postedBy,
+      'approval_status': instance.approvalStatus,
+      'dimensions': instance.dimensions,
+      'is_corner_plot': instance.isCornerPlot,
+      'is_gated_community': instance.isGatedCommunity,
     };
 
 _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(
