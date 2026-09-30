@@ -74,12 +74,15 @@ class _PlotDetailsInputState extends State<PlotDetailsInput> {
 
     return BlocBuilder<CreatePostBloc, CreatePostState>(
       builder: (context, state) {
-        // Show plot details only for plot/land categories
+        // Show plot details only for plot/land categories and Sell listing type
         final isPlotOrLand = state.selectedPropertyType == 'Open Plot' ||
             state.selectedPropertyType == 'Agriculture Land' ||
             state.selectedPropertyType == 'Open Plots';
 
-        if (!isPlotOrLand) {
+        final isSellListing = state.selectedLookingFor.toLowerCase() == 'sell' ||
+            state.selectedLookingFor.toLowerCase() == 'sale';
+
+        if (!isPlotOrLand || !isSellListing) {
           return const SizedBox.shrink();
         }
 

@@ -382,22 +382,59 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         actions: [
           BlocBuilder<FeedBloc, FeedState>(
             builder: (context, state) {
-              final isOwner = _checkIsOwner(state.postDetails);
+              final postDetails = state.postDetails;
+              final isOwner = _checkIsOwner(postDetails);
+              final showCalculator = postDetails != null &&
+                  (postDetails.listingType?.toLowerCase() == 'sell' ||
+                      postDetails.listingType?.toLowerCase() == 'sale') &&
+                  (postDetails.price ?? 0) > 0;
 
-              return Container(
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (showCalculator)
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 4,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.calculate_rounded,
+                          color: Theme.of(context).primaryColor,
+                          size: 20,
+                        ),
+                        tooltip: 'EMI Calculator',
+                        onPressed: () {
+                          _showEmiCalculatorBottomSheet(
+                            context,
+                            (postDetails.price ?? 0).toDouble(),
+                          );
+                        },
+                      ),
                     ),
-                  ],
-                ),
-                child: PopupMenuButton<String>(
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: PopupMenuButton<String>(
                   color: Colors.white,
                   padding: EdgeInsets.zero,
                   position: PopupMenuPosition.under,
@@ -511,7 +548,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         ],
                       ],
                 ),
-              );
+              ),
+            ],
+          );
             },
           ),
         ],
@@ -660,13 +699,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         DescriptionSection(
                           description: postDetails.description ?? '',
                         ),
-
-                        if (!isOwner &&
-                            (postDetails.listingType?.toLowerCase() == 'sell' ||
-                                postDetails.listingType?.toLowerCase() == 'sale'))
-                          EmiCalculatorWidget(
-                            propertyPrice: (postDetails.price ?? 0).toDouble(),
-                          ),
 
                         // Agent Info Section
                         AgentInfo(
@@ -926,6 +958,49 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
 
     return false;
+  }
+
+  void _showEmiCalculatorBottomSheet(BuildContext context, double propertyPrice) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        padding: const EdgeInsets.only(top: 16),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  'EMI Calculator',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                EmiCalculatorWidget(propertyPrice: propertyPrice),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildPromotionSection(FeedPostsResponseModel postDetails, AppLocalizations l10n) {
