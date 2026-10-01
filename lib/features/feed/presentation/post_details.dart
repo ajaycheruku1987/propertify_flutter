@@ -657,11 +657,18 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           },
                         ),
 
-                        // Plot Specifications Widget (for Plot / Land listings)
-                        PlotOverviewWidget(postDetails: postDetails),
-
-                        // General Property Overview (for Residential, Commercial, Industrial)
-                        PropertyDetailsOverviewWidget(postDetails: postDetails),
+                        // Plot Specifications Widget (for Plot / Land listings) or General Property Overview
+                        if (postDetails.mainCategory == 'Land & Plots' ||
+                            postDetails.propertyType == 'Open Plot' ||
+                            postDetails.propertyType == 'Agriculture Land' ||
+                            postDetails.propertyType == 'Open Plots' ||
+                            postDetails.propertyType == 'Residential Plot' ||
+                            postDetails.propertyType == 'Commercial Plot' ||
+                            postDetails.propertyType == 'Agricultural Land' ||
+                            postDetails.propertyType == 'Farm Land')
+                          PlotOverviewWidget(postDetails: postDetails)
+                        else
+                          PropertyDetailsOverviewWidget(postDetails: postDetails),
 
                         _buildPromotionSection(postDetails, l10n),
 
