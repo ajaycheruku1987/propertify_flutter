@@ -172,7 +172,7 @@ class PropertyInfo extends StatelessWidget {
           const SizedBox(height: 12),
           // Property Title (Full width)
           Text(
-            title.translate(context),
+            title.capitalize().translate(context),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(

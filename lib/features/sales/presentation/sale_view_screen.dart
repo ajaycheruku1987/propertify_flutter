@@ -61,7 +61,7 @@ class _SaleViewScreenState extends State<SaleViewScreen> {
   void _handleShare(SaleRecord? sale) {
     if (sale == null) return;
 
-    final String projectTitle = (sale.projectName ?? 'Project').translate(context);
+    final String projectTitle = (sale.projectName ?? 'Project').capitalize().translate(context);
     final String projectDescription =
         (sale.description ?? 'Check out this project').translate(context);
     String postedBy = 'Propertify User';

@@ -100,7 +100,7 @@ class PropertyCardCompact extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            title.translate(context),
+                            title.capitalize().translate(context),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,

@@ -12,6 +12,7 @@ import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/features/feed/presentation/widgets/comments_bottom_sheet.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyPostsScreen extends StatefulWidget {
@@ -183,7 +184,7 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                     }
                   },
                   onSharePressed: () {
-                    final String postTitle = post.title ?? 'Property';
+                    final String postTitle = (post.title ?? 'Property').capitalize();
                     final String postDescription =
                         post.description ?? 'Check out this property';
                     final String postedBy = () {

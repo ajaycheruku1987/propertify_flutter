@@ -105,7 +105,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 },
                 onSharePressed: () {
                   // Prepare share content
-                  final String postTitle = post.title ?? 'Property';
+                  final String postTitle = (post.title ?? 'Property').capitalize();
                   final String postDescription =
                       post.description ?? 'Check out this property';
                   final String postedBy = () {

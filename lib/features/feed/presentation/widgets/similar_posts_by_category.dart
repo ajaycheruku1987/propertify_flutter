@@ -82,7 +82,7 @@ class SimilarPostsByCategory extends StatelessWidget {
                       }
                     },
                     onSharePressed: () {
-                      final String postTitle = post.title ?? 'Property';
+                      final String postTitle = (post.title ?? 'Property').capitalize();
                       final String postDescription =
                           post.description ?? 'Check out this property';
                       

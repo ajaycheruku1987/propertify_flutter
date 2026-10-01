@@ -82,7 +82,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
     if (postDetails == null) return;
     final l10n = AppLocalizations.of(context)!;
 
-    final String postTitle = (postDetails.title as String? ?? 'Property').translate(context);
+    final String postTitle = ((postDetails.title as String? ?? 'Property')).capitalize().translate(context);
     final String postDescription =
         (postDetails.description as String? ?? 'Check out this property').translate(context);
     String postedBy = 'Propertify User';

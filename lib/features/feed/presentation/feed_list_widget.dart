@@ -449,7 +449,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         }
       },
       onSharePressed: () {
-        final String postTitle = feed.title ?? 'Property';
+        final String postTitle = (feed.title ?? 'Property').capitalize();
         final String postDescription =
             feed.description ?? 'Check out this property';
         final String postedBy = () {
@@ -541,7 +541,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         }
       },
       onSharePressed: () {
-        final String postTitle = feed.title ?? 'Property';
+        final String postTitle = (feed.title ?? 'Property').capitalize();
         final String postDescription =
             feed.description ?? 'Check out this property';
         final String postedBy = () {

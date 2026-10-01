@@ -6,6 +6,7 @@ import 'package:propertify/features/feed/presentation/post_details.dart';
 import 'package:propertify/features/home/presentation/widgets/property_card.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/utils/debouncer.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -201,7 +202,7 @@ class _PropertiesListViewScreenState extends State<PropertiesListViewScreen> {
                   );
                 },
                 onSharePressed: () {
-                  Share.share('Check out this property: ${property.title}');
+                  Share.share('Check out this property: ${property.title?.capitalize() ?? 'Property'}');
                 },
                 onLikePressed: () {},
                 onCommentPressed: () {},

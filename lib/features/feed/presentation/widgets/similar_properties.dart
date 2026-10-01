@@ -177,7 +177,7 @@ class SimilarProperties extends StatelessWidget {
                       left: 8,
                       right: 8,
                       child: Text(
-                        (property.title ?? 'Property Name').translate(context),
+                        (property.title ?? 'Property Name').capitalize().translate(context),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
