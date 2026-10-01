@@ -192,32 +192,67 @@ class PlotOverviewWidget extends StatelessWidget {
           ),
 
           // Highlights / Badges
-          if ((postDetails.isCornerPlot ?? false) ||
-              (postDetails.isGatedCommunity ?? false)) ...[
-            const SizedBox(height: 14),
-            const Divider(height: 1),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
+          (() {
+            final isNegotiable = postDetails.isNegotiable ?? false;
+            final hasContactPref = (postDetails.contactViaPhone ?? false) ||
+                (postDetails.contactViaWhatsApp ?? false);
+            final hasFeatures = (postDetails.isCornerPlot ?? false) ||
+                (postDetails.isGatedCommunity ?? false) ||
+                isNegotiable ||
+                hasContactPref;
+
+            if (!hasFeatures) return const SizedBox.shrink();
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (postDetails.isCornerPlot ?? false)
-                  _buildFeatureBadge(
-                    context,
-                    icon: Icons.turn_right_rounded,
-                    label: 'Corner Plot',
-                    color: Colors.amber.shade800,
-                  ),
-                if (postDetails.isGatedCommunity ?? false)
-                  _buildFeatureBadge(
-                    context,
-                    icon: Icons.fence_rounded,
-                    label: 'Gated Layout / Boundary Wall',
-                    color: Colors.green.shade700,
-                  ),
+                const SizedBox(height: 14),
+                const Divider(height: 1),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    if (postDetails.isCornerPlot ?? false)
+                      _buildFeatureBadge(
+                        context,
+                        icon: Icons.turn_right_rounded,
+                        label: 'Corner Plot',
+                        color: Colors.amber.shade800,
+                      ),
+                    if (postDetails.isGatedCommunity ?? false)
+                      _buildFeatureBadge(
+                        context,
+                        icon: Icons.fence_rounded,
+                        label: 'Gated Layout / Boundary Wall',
+                        color: Colors.green.shade700,
+                      ),
+                    if (isNegotiable)
+                      _buildFeatureBadge(
+                        context,
+                        icon: Icons.handshake_outlined,
+                        label: 'Price Negotiable',
+                        color: Colors.green.shade700,
+                      ),
+                    if (postDetails.contactViaPhone ?? false)
+                      _buildFeatureBadge(
+                        context,
+                        icon: Icons.phone_in_talk_outlined,
+                        label: 'Call Preferred',
+                        color: primaryColor,
+                      ),
+                    if (postDetails.contactViaWhatsApp ?? false)
+                      _buildFeatureBadge(
+                        context,
+                        icon: Icons.chat_outlined,
+                        label: 'WhatsApp Preferred',
+                        color: const Color(0xFF25D366),
+                      ),
+                  ],
+                ),
               ],
-            ),
-          ],
+            );
+          })(),
         ],
       ),
     );
