@@ -16,6 +16,8 @@ List<FeedPostsResponseModel> feedPostsResponseModelFromJson(String str) =>
 String feedPostsResponseModelToJson(List<FeedPostsResponseModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+String? _toString(dynamic value) => value?.toString();
+
 @freezed
 class FeedPostsResponseModel with _$FeedPostsResponseModel {
   const FeedPostsResponseModel._();
@@ -45,24 +47,24 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "likes_count") int? likesCount,
     @JsonKey(name: "comments_count") int? commentsCount,
     @JsonKey(name: "views_count") int? viewsCount,
-    @JsonKey(name: "plot_area") String? plotArea,
-    @JsonKey(name: "area_unit") String? areaUnit,
-    @JsonKey(name: "facing") String? facing,
-    @JsonKey(name: "road_width") String? roadWidth,
-    @JsonKey(name: "posted_by") String? postedBy,
-    @JsonKey(name: "approval_status") String? approvalStatus,
-    @JsonKey(name: "dimensions") String? dimensions,
+    @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
+    @JsonKey(name: "area_unit", fromJson: _toString) String? areaUnit,
+    @JsonKey(name: "facing", fromJson: _toString) String? facing,
+    @JsonKey(name: "road_width", fromJson: _toString) String? roadWidth,
+    @JsonKey(name: "posted_by", fromJson: _toString) String? postedBy,
+    @JsonKey(name: "approval_status", fromJson: _toString) String? approvalStatus,
+    @JsonKey(name: "dimensions", fromJson: _toString) String? dimensions,
     @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
     @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
-    @JsonKey(name: "main_category") String? mainCategory,
-    @JsonKey(name: "sub_category") String? subCategory,
+    @JsonKey(name: "main_category", fromJson: _toString) String? mainCategory,
+    @JsonKey(name: "sub_category", fromJson: _toString) String? subCategory,
     @JsonKey(name: "is_negotiable") bool? isNegotiable,
-    @JsonKey(name: "security_deposit") String? securityDeposit,
-    @JsonKey(name: "property_status") String? propertyStatus,
+    @JsonKey(name: "security_deposit", fromJson: _toString) String? securityDeposit,
+    @JsonKey(name: "property_status", fromJson: _toString) String? propertyStatus,
     @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
     @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
-    @JsonKey(name: "carpet_area") String? carpetArea,
-    @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit,
+    @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
+    @JsonKey(name: "carpet_area_unit", fromJson: _toString) String? carpetAreaUnit,
   }) = _FeedPostsResponseModel;
 
   factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -93,11 +95,11 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
 class Owner with _$Owner {
   const factory Owner({
     @JsonKey(name: "id") String? id,
-    @JsonKey(name: "first_name") String? firstName,
-    @JsonKey(name: "last_name") String? lastName,
+    @JsonKey(name: "first_name") dynamic firstName,
+    @JsonKey(name: "last_name") dynamic lastName,
     @JsonKey(name: "email") String? email,
     @JsonKey(name: "phone_number") String? phoneNumber,
-    @JsonKey(name: "date_of_birth") DateTime? dateOfBirth,
+    @JsonKey(name: "date_of_birth") dynamic dateOfBirth,
     @JsonKey(name: "username") String? username,
     @JsonKey(name: "profilepic") String? profileImage,
     @JsonKey(name: "member_since") String? memberSince,

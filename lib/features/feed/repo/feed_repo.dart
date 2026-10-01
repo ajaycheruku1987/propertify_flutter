@@ -81,6 +81,59 @@ class FeedRepo {
           print('GET POST DETAILS RAW JSON: $right');
           FeedPostsResponseModel model = FeedPostsResponseModel.fromJson(right);
 
+          // Parse embedded property metadata from description if present
+          if (model.description != null && model.description!.contains('__PROPS__')) {
+            try {
+              final parts = model.description!.split('__PROPS__');
+              if (parts.length > 1) {
+                final jsonMap = jsonDecode(parts[1].trim()) as Map<String, dynamic>;
+                model = model.copyWith(
+                  plotArea: (model.plotArea == null || model.plotArea!.isEmpty) ? jsonMap['plot_area']?.toString() : model.plotArea,
+                  areaUnit: (model.areaUnit == null || model.areaUnit!.isEmpty) ? jsonMap['area_unit']?.toString() : model.areaUnit,
+                  facing: (model.facing == null || model.facing!.isEmpty) ? jsonMap['facing']?.toString() : model.facing,
+                  roadWidth: (model.roadWidth == null || model.roadWidth!.isEmpty) ? jsonMap['road_width']?.toString() : model.roadWidth,
+                  postedBy: (model.postedBy == null || model.postedBy!.isEmpty) ? jsonMap['posted_by']?.toString() : model.postedBy,
+                  approvalStatus: (model.approvalStatus == null || model.approvalStatus!.isEmpty) ? jsonMap['approval_status']?.toString() : model.approvalStatus,
+                  dimensions: (model.dimensions == null || model.dimensions!.isEmpty) ? jsonMap['dimensions']?.toString() : model.dimensions,
+                  isCornerPlot: model.isCornerPlot ?? jsonMap['is_corner_plot'] ?? false,
+                  isGatedCommunity: model.isGatedCommunity ?? jsonMap['is_gated_community'] ?? false,
+                  mainCategory: (model.mainCategory == null || model.mainCategory!.isEmpty) ? jsonMap['main_category']?.toString() : model.mainCategory,
+                  subCategory: (model.subCategory == null || model.subCategory!.isEmpty) ? jsonMap['sub_category']?.toString() : model.subCategory,
+                  isNegotiable: model.isNegotiable ?? jsonMap['is_negotiable'] ?? false,
+                  securityDeposit: (model.securityDeposit == null || model.securityDeposit!.isEmpty) ? jsonMap['security_deposit']?.toString() : model.securityDeposit,
+                  propertyStatus: (model.propertyStatus == null || model.propertyStatus!.isEmpty) ? jsonMap['property_status']?.toString() : model.propertyStatus,
+                  contactViaPhone: model.contactViaPhone ?? jsonMap['contact_via_phone'] ?? false,
+                  contactViaWhatsApp: model.contactViaWhatsApp ?? jsonMap['contact_via_whatsapp'] ?? false,
+                  carpetArea: (model.carpetArea == null || model.carpetArea!.isEmpty) ? jsonMap['carpet_area']?.toString() : model.carpetArea,
+                  carpetAreaUnit: (model.carpetAreaUnit == null || model.carpetAreaUnit!.isEmpty) ? jsonMap['carpet_area_unit']?.toString() : model.carpetAreaUnit,
+                );
+
+                // Save to local prefs cache so subsequent loads have it instantly
+                final prefs = serviceLocator<SharedPreferences>();
+                if (model.plotArea != null) prefs.setString('plot_area_$postId', model.plotArea!);
+                if (model.areaUnit != null) prefs.setString('area_unit_$postId', model.areaUnit!);
+                if (model.facing != null) prefs.setString('facing_$postId', model.facing!);
+                if (model.roadWidth != null) prefs.setString('road_width_$postId', model.roadWidth!);
+                if (model.postedBy != null) prefs.setString('posted_by_$postId', model.postedBy!);
+                if (model.approvalStatus != null) prefs.setString('approval_status_$postId', model.approvalStatus!);
+                if (model.dimensions != null) prefs.setString('dimensions_$postId', model.dimensions!);
+                if (model.isCornerPlot != null) prefs.setBool('is_corner_plot_$postId', model.isCornerPlot!);
+                if (model.isGatedCommunity != null) prefs.setBool('is_gated_community_$postId', model.isGatedCommunity!);
+                if (model.mainCategory != null) prefs.setString('main_category_$postId', model.mainCategory!);
+                if (model.subCategory != null) prefs.setString('sub_category_$postId', model.subCategory!);
+                if (model.isNegotiable != null) prefs.setBool('is_negotiable_$postId', model.isNegotiable!);
+                if (model.securityDeposit != null) prefs.setString('security_deposit_$postId', model.securityDeposit!);
+                if (model.propertyStatus != null) prefs.setString('property_status_$postId', model.propertyStatus!);
+                if (model.contactViaPhone != null) prefs.setBool('contact_via_phone_$postId', model.contactViaPhone!);
+                if (model.contactViaWhatsApp != null) prefs.setBool('contact_via_whatsapp_$postId', model.contactViaWhatsApp!);
+                if (model.carpetArea != null) prefs.setString('carpet_area_$postId', model.carpetArea!);
+                if (model.carpetAreaUnit != null) prefs.setString('carpet_area_unit_$postId', model.carpetAreaUnit!);
+              }
+            } catch (e) {
+              print('Error parsing metadata from description: $e');
+            }
+          }
+
           // Fallback to local cache if plot fields are missing from backend response
           final prefs = serviceLocator<SharedPreferences>();
           final cachedPlotArea = prefs.getString('plot_area_$postId');

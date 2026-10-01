@@ -15,11 +15,18 @@ class DescriptionSection extends StatefulWidget {
 class _DescriptionSectionState extends State<DescriptionSection> {
   bool _isExpanded = false;
 
+  String get _cleanDescription {
+    if (widget.description.contains('__PROPS__')) {
+      return widget.description.split('__PROPS__').first.trim();
+    }
+    return widget.description;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     const int maxLines = 3;
-    final bool isLongText = widget.description.length > 150;
+    final bool isLongText = _cleanDescription.length > 150;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -42,7 +49,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
           // Description Text
           AnimatedCrossFade(
             firstChild: Text(
-              widget.description.translate(context),
+              _cleanDescription.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],
@@ -53,7 +60,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               overflow: TextOverflow.ellipsis,
             ),
             secondChild: Text(
-              widget.description.translate(context),
+              _cleanDescription.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],

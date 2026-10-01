@@ -33,8 +33,9 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
             return null;
           })();
 
-    final hasCarpetArea = postDetails.carpetArea != null &&
-        postDetails.carpetArea!.isNotEmpty;
+    final hasCarpetArea = (postDetails.carpetArea != null &&
+            postDetails.carpetArea!.isNotEmpty) ||
+        (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty);
     final hasStatus = postDetails.propertyStatus != null &&
         postDetails.propertyStatus!.isNotEmpty;
     final isNegotiable = postDetails.isNegotiable ?? false;
@@ -65,28 +66,49 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: primaryColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(
-                  Icons.info_outline_rounded,
-                  color: primaryColor,
-                  size: 20,
-                ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: primaryColor.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.info_outline_rounded,
+                      color: primaryColor,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Property Overview',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A1A1A),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 10),
-              const Text(
-                'Property Overview',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A1A),
+              if (postDetails.postedBy != null && postDetails.postedBy!.isNotEmpty)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.purple.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    'By ${postDetails.postedBy}',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple,
+                    ),
+                  ),
                 ),
-              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -124,25 +146,32 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
                   value: subCategoryStr.translate(context),
                 ),
 
-              // 4. Carpet Area / Built-Up Area
+              // 4. Carpet Area / Area
               if (hasCarpetArea)
                 (() {
-                  String ratePerSqFt = '';
+                  final hasCarp = postDetails.carpetArea != null &&
+                      postDetails.carpetArea!.isNotEmpty;
+                  final areaStr = hasCarp ? postDetails.carpetArea! : postDetails.plotArea!;
+                  final unitStr = hasCarp
+                      ? (postDetails.carpetAreaUnit ?? "Sq.Ft")
+                      : (postDetails.areaUnit ?? "Sq.Yds");
+
+                  String ratePerUnit = '';
                   if (postDetails.price != null) {
                     final double? areaNum = double.tryParse(
-                      postDetails.carpetArea!.replaceAll(RegExp(r'[^0-9.]'), ''),
+                      areaStr.replaceAll(RegExp(r'[^0-9.]'), ''),
                     );
                     if (areaNum != null && areaNum > 0) {
                       final double rate = postDetails.price! / areaNum;
-                      ratePerSqFt = '₹${rate.toStringAsFixed(0)} / ${postDetails.carpetAreaUnit ?? "Sq.Ft"}';
+                      ratePerUnit = '₹${rate.toStringAsFixed(0)} / $unitStr';
                     }
                   }
                   return _buildSpecTile(
                     context,
                     icon: Icons.square_foot_rounded,
-                    label: 'Carpet Area',
-                    value: '${postDetails.carpetArea} ${postDetails.carpetAreaUnit ?? "Sq.Ft"}',
-                    subtitle: ratePerSqFt.isNotEmpty ? ratePerSqFt : null,
+                    label: postDetails.mainCategory == 'Industrial' ? 'Area' : 'Carpet Area',
+                    value: '$areaStr $unitStr',
+                    subtitle: ratePerUnit.isNotEmpty ? ratePerUnit : null,
                   );
                 })(),
 

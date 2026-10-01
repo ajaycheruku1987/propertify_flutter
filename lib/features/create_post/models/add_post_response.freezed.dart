@@ -56,41 +56,41 @@ mixin _$AddPostResponse {
   dynamic get promotedUntil => throw _privateConstructorUsedError;
   @JsonKey(name: "owner")
   Owner? get owner => throw _privateConstructorUsedError;
-  @JsonKey(name: "plot_area")
+  @JsonKey(name: "plot_area", fromJson: _toString)
   String? get plotArea => throw _privateConstructorUsedError;
-  @JsonKey(name: "area_unit")
+  @JsonKey(name: "area_unit", fromJson: _toString)
   String? get areaUnit => throw _privateConstructorUsedError;
-  @JsonKey(name: "facing")
+  @JsonKey(name: "facing", fromJson: _toString)
   String? get facing => throw _privateConstructorUsedError;
-  @JsonKey(name: "road_width")
+  @JsonKey(name: "road_width", fromJson: _toString)
   String? get roadWidth => throw _privateConstructorUsedError;
-  @JsonKey(name: "posted_by")
+  @JsonKey(name: "posted_by", fromJson: _toString)
   String? get postedBy => throw _privateConstructorUsedError;
-  @JsonKey(name: "approval_status")
+  @JsonKey(name: "approval_status", fromJson: _toString)
   String? get approvalStatus => throw _privateConstructorUsedError;
-  @JsonKey(name: "dimensions")
+  @JsonKey(name: "dimensions", fromJson: _toString)
   String? get dimensions => throw _privateConstructorUsedError;
   @JsonKey(name: "is_corner_plot")
   bool? get isCornerPlot => throw _privateConstructorUsedError;
   @JsonKey(name: "is_gated_community")
   bool? get isGatedCommunity => throw _privateConstructorUsedError;
-  @JsonKey(name: "main_category")
+  @JsonKey(name: "main_category", fromJson: _toString)
   String? get mainCategory => throw _privateConstructorUsedError;
-  @JsonKey(name: "sub_category")
+  @JsonKey(name: "sub_category", fromJson: _toString)
   String? get subCategory => throw _privateConstructorUsedError;
   @JsonKey(name: "is_negotiable")
   bool? get isNegotiable => throw _privateConstructorUsedError;
-  @JsonKey(name: "security_deposit")
+  @JsonKey(name: "security_deposit", fromJson: _toString)
   String? get securityDeposit => throw _privateConstructorUsedError;
-  @JsonKey(name: "property_status")
+  @JsonKey(name: "property_status", fromJson: _toString)
   String? get propertyStatus => throw _privateConstructorUsedError;
   @JsonKey(name: "contact_via_phone")
   bool? get contactViaPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "contact_via_whatsapp")
   bool? get contactViaWhatsApp => throw _privateConstructorUsedError;
-  @JsonKey(name: "carpet_area")
+  @JsonKey(name: "carpet_area", fromJson: _toString)
   String? get carpetArea => throw _privateConstructorUsedError;
-  @JsonKey(name: "carpet_area_unit")
+  @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   String? get carpetAreaUnit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -124,24 +124,28 @@ abstract class $AddPostResponseCopyWith<$Res> {
       @JsonKey(name: "is_promoted") bool? isPromoted,
       @JsonKey(name: "promoted_until") dynamic promotedUntil,
       @JsonKey(name: "owner") Owner? owner,
-      @JsonKey(name: "plot_area") String? plotArea,
-      @JsonKey(name: "area_unit") String? areaUnit,
-      @JsonKey(name: "facing") String? facing,
-      @JsonKey(name: "road_width") String? roadWidth,
-      @JsonKey(name: "posted_by") String? postedBy,
-      @JsonKey(name: "approval_status") String? approvalStatus,
-      @JsonKey(name: "dimensions") String? dimensions,
+      @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
+      @JsonKey(name: "area_unit", fromJson: _toString) String? areaUnit,
+      @JsonKey(name: "facing", fromJson: _toString) String? facing,
+      @JsonKey(name: "road_width", fromJson: _toString) String? roadWidth,
+      @JsonKey(name: "posted_by", fromJson: _toString) String? postedBy,
+      @JsonKey(name: "approval_status", fromJson: _toString)
+      String? approvalStatus,
+      @JsonKey(name: "dimensions", fromJson: _toString) String? dimensions,
       @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
       @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
-      @JsonKey(name: "main_category") String? mainCategory,
-      @JsonKey(name: "sub_category") String? subCategory,
+      @JsonKey(name: "main_category", fromJson: _toString) String? mainCategory,
+      @JsonKey(name: "sub_category", fromJson: _toString) String? subCategory,
       @JsonKey(name: "is_negotiable") bool? isNegotiable,
-      @JsonKey(name: "security_deposit") String? securityDeposit,
-      @JsonKey(name: "property_status") String? propertyStatus,
+      @JsonKey(name: "security_deposit", fromJson: _toString)
+      String? securityDeposit,
+      @JsonKey(name: "property_status", fromJson: _toString)
+      String? propertyStatus,
       @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
       @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
-      @JsonKey(name: "carpet_area") String? carpetArea,
-      @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit});
+      @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
+      @JsonKey(name: "carpet_area_unit", fromJson: _toString)
+      String? carpetAreaUnit});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -384,24 +388,28 @@ abstract class _$$AddPostResponseImplCopyWith<$Res>
       @JsonKey(name: "is_promoted") bool? isPromoted,
       @JsonKey(name: "promoted_until") dynamic promotedUntil,
       @JsonKey(name: "owner") Owner? owner,
-      @JsonKey(name: "plot_area") String? plotArea,
-      @JsonKey(name: "area_unit") String? areaUnit,
-      @JsonKey(name: "facing") String? facing,
-      @JsonKey(name: "road_width") String? roadWidth,
-      @JsonKey(name: "posted_by") String? postedBy,
-      @JsonKey(name: "approval_status") String? approvalStatus,
-      @JsonKey(name: "dimensions") String? dimensions,
+      @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
+      @JsonKey(name: "area_unit", fromJson: _toString) String? areaUnit,
+      @JsonKey(name: "facing", fromJson: _toString) String? facing,
+      @JsonKey(name: "road_width", fromJson: _toString) String? roadWidth,
+      @JsonKey(name: "posted_by", fromJson: _toString) String? postedBy,
+      @JsonKey(name: "approval_status", fromJson: _toString)
+      String? approvalStatus,
+      @JsonKey(name: "dimensions", fromJson: _toString) String? dimensions,
       @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
       @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
-      @JsonKey(name: "main_category") String? mainCategory,
-      @JsonKey(name: "sub_category") String? subCategory,
+      @JsonKey(name: "main_category", fromJson: _toString) String? mainCategory,
+      @JsonKey(name: "sub_category", fromJson: _toString) String? subCategory,
       @JsonKey(name: "is_negotiable") bool? isNegotiable,
-      @JsonKey(name: "security_deposit") String? securityDeposit,
-      @JsonKey(name: "property_status") String? propertyStatus,
+      @JsonKey(name: "security_deposit", fromJson: _toString)
+      String? securityDeposit,
+      @JsonKey(name: "property_status", fromJson: _toString)
+      String? propertyStatus,
       @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
       @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
-      @JsonKey(name: "carpet_area") String? carpetArea,
-      @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit});
+      @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
+      @JsonKey(name: "carpet_area_unit", fromJson: _toString)
+      String? carpetAreaUnit});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -626,24 +634,28 @@ class _$AddPostResponseImpl implements _AddPostResponse {
       @JsonKey(name: "is_promoted") this.isPromoted,
       @JsonKey(name: "promoted_until") this.promotedUntil,
       @JsonKey(name: "owner") this.owner,
-      @JsonKey(name: "plot_area") this.plotArea,
-      @JsonKey(name: "area_unit") this.areaUnit,
-      @JsonKey(name: "facing") this.facing,
-      @JsonKey(name: "road_width") this.roadWidth,
-      @JsonKey(name: "posted_by") this.postedBy,
-      @JsonKey(name: "approval_status") this.approvalStatus,
-      @JsonKey(name: "dimensions") this.dimensions,
+      @JsonKey(name: "plot_area", fromJson: _toString) this.plotArea,
+      @JsonKey(name: "area_unit", fromJson: _toString) this.areaUnit,
+      @JsonKey(name: "facing", fromJson: _toString) this.facing,
+      @JsonKey(name: "road_width", fromJson: _toString) this.roadWidth,
+      @JsonKey(name: "posted_by", fromJson: _toString) this.postedBy,
+      @JsonKey(name: "approval_status", fromJson: _toString)
+      this.approvalStatus,
+      @JsonKey(name: "dimensions", fromJson: _toString) this.dimensions,
       @JsonKey(name: "is_corner_plot") this.isCornerPlot,
       @JsonKey(name: "is_gated_community") this.isGatedCommunity,
-      @JsonKey(name: "main_category") this.mainCategory,
-      @JsonKey(name: "sub_category") this.subCategory,
+      @JsonKey(name: "main_category", fromJson: _toString) this.mainCategory,
+      @JsonKey(name: "sub_category", fromJson: _toString) this.subCategory,
       @JsonKey(name: "is_negotiable") this.isNegotiable,
-      @JsonKey(name: "security_deposit") this.securityDeposit,
-      @JsonKey(name: "property_status") this.propertyStatus,
+      @JsonKey(name: "security_deposit", fromJson: _toString)
+      this.securityDeposit,
+      @JsonKey(name: "property_status", fromJson: _toString)
+      this.propertyStatus,
       @JsonKey(name: "contact_via_phone") this.contactViaPhone,
       @JsonKey(name: "contact_via_whatsapp") this.contactViaWhatsApp,
-      @JsonKey(name: "carpet_area") this.carpetArea,
-      @JsonKey(name: "carpet_area_unit") this.carpetAreaUnit})
+      @JsonKey(name: "carpet_area", fromJson: _toString) this.carpetArea,
+      @JsonKey(name: "carpet_area_unit", fromJson: _toString)
+      this.carpetAreaUnit})
       : _imageUrls = imageUrls;
 
   factory _$AddPostResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -712,25 +724,25 @@ class _$AddPostResponseImpl implements _AddPostResponse {
   @JsonKey(name: "owner")
   final Owner? owner;
   @override
-  @JsonKey(name: "plot_area")
+  @JsonKey(name: "plot_area", fromJson: _toString)
   final String? plotArea;
   @override
-  @JsonKey(name: "area_unit")
+  @JsonKey(name: "area_unit", fromJson: _toString)
   final String? areaUnit;
   @override
-  @JsonKey(name: "facing")
+  @JsonKey(name: "facing", fromJson: _toString)
   final String? facing;
   @override
-  @JsonKey(name: "road_width")
+  @JsonKey(name: "road_width", fromJson: _toString)
   final String? roadWidth;
   @override
-  @JsonKey(name: "posted_by")
+  @JsonKey(name: "posted_by", fromJson: _toString)
   final String? postedBy;
   @override
-  @JsonKey(name: "approval_status")
+  @JsonKey(name: "approval_status", fromJson: _toString)
   final String? approvalStatus;
   @override
-  @JsonKey(name: "dimensions")
+  @JsonKey(name: "dimensions", fromJson: _toString)
   final String? dimensions;
   @override
   @JsonKey(name: "is_corner_plot")
@@ -739,19 +751,19 @@ class _$AddPostResponseImpl implements _AddPostResponse {
   @JsonKey(name: "is_gated_community")
   final bool? isGatedCommunity;
   @override
-  @JsonKey(name: "main_category")
+  @JsonKey(name: "main_category", fromJson: _toString)
   final String? mainCategory;
   @override
-  @JsonKey(name: "sub_category")
+  @JsonKey(name: "sub_category", fromJson: _toString)
   final String? subCategory;
   @override
   @JsonKey(name: "is_negotiable")
   final bool? isNegotiable;
   @override
-  @JsonKey(name: "security_deposit")
+  @JsonKey(name: "security_deposit", fromJson: _toString)
   final String? securityDeposit;
   @override
-  @JsonKey(name: "property_status")
+  @JsonKey(name: "property_status", fromJson: _toString)
   final String? propertyStatus;
   @override
   @JsonKey(name: "contact_via_phone")
@@ -760,10 +772,10 @@ class _$AddPostResponseImpl implements _AddPostResponse {
   @JsonKey(name: "contact_via_whatsapp")
   final bool? contactViaWhatsApp;
   @override
-  @JsonKey(name: "carpet_area")
+  @JsonKey(name: "carpet_area", fromJson: _toString)
   final String? carpetArea;
   @override
-  @JsonKey(name: "carpet_area_unit")
+  @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   final String? carpetAreaUnit;
 
   @override
@@ -900,43 +912,50 @@ class _$AddPostResponseImpl implements _AddPostResponse {
 
 abstract class _AddPostResponse implements AddPostResponse {
   const factory _AddPostResponse(
-          {@JsonKey(name: "id") final String? id,
-          @JsonKey(name: "user_id") final String? userId,
-          @JsonKey(name: "title") final String? title,
-          @JsonKey(name: "description") final String? description,
-          @JsonKey(name: "city") final String? city,
-          @JsonKey(name: "address") final String? address,
-          @JsonKey(name: "property_type") final String? propertyType,
-          @JsonKey(name: "listing_type") final String? listingType,
-          @JsonKey(name: "price") final int? price,
-          @JsonKey(name: "image_urls") final List<String>? imageUrls,
-          @JsonKey(name: "is_featured") final bool? isFeatured,
-          @JsonKey(name: "rating") final int? rating,
-          @JsonKey(name: "created_at") final String? createdAt,
-          @JsonKey(name: "latitude") final double? latitude,
-          @JsonKey(name: "longitude") final double? longitude,
-          @JsonKey(name: "is_promoted") final bool? isPromoted,
-          @JsonKey(name: "promoted_until") final dynamic promotedUntil,
-          @JsonKey(name: "owner") final Owner? owner,
-          @JsonKey(name: "plot_area") final String? plotArea,
-          @JsonKey(name: "area_unit") final String? areaUnit,
-          @JsonKey(name: "facing") final String? facing,
-          @JsonKey(name: "road_width") final String? roadWidth,
-          @JsonKey(name: "posted_by") final String? postedBy,
-          @JsonKey(name: "approval_status") final String? approvalStatus,
-          @JsonKey(name: "dimensions") final String? dimensions,
-          @JsonKey(name: "is_corner_plot") final bool? isCornerPlot,
-          @JsonKey(name: "is_gated_community") final bool? isGatedCommunity,
-          @JsonKey(name: "main_category") final String? mainCategory,
-          @JsonKey(name: "sub_category") final String? subCategory,
-          @JsonKey(name: "is_negotiable") final bool? isNegotiable,
-          @JsonKey(name: "security_deposit") final String? securityDeposit,
-          @JsonKey(name: "property_status") final String? propertyStatus,
-          @JsonKey(name: "contact_via_phone") final bool? contactViaPhone,
-          @JsonKey(name: "contact_via_whatsapp") final bool? contactViaWhatsApp,
-          @JsonKey(name: "carpet_area") final String? carpetArea,
-          @JsonKey(name: "carpet_area_unit") final String? carpetAreaUnit}) =
-      _$AddPostResponseImpl;
+      {@JsonKey(name: "id") final String? id,
+      @JsonKey(name: "user_id") final String? userId,
+      @JsonKey(name: "title") final String? title,
+      @JsonKey(name: "description") final String? description,
+      @JsonKey(name: "city") final String? city,
+      @JsonKey(name: "address") final String? address,
+      @JsonKey(name: "property_type") final String? propertyType,
+      @JsonKey(name: "listing_type") final String? listingType,
+      @JsonKey(name: "price") final int? price,
+      @JsonKey(name: "image_urls") final List<String>? imageUrls,
+      @JsonKey(name: "is_featured") final bool? isFeatured,
+      @JsonKey(name: "rating") final int? rating,
+      @JsonKey(name: "created_at") final String? createdAt,
+      @JsonKey(name: "latitude") final double? latitude,
+      @JsonKey(name: "longitude") final double? longitude,
+      @JsonKey(name: "is_promoted") final bool? isPromoted,
+      @JsonKey(name: "promoted_until") final dynamic promotedUntil,
+      @JsonKey(name: "owner") final Owner? owner,
+      @JsonKey(name: "plot_area", fromJson: _toString) final String? plotArea,
+      @JsonKey(name: "area_unit", fromJson: _toString) final String? areaUnit,
+      @JsonKey(name: "facing", fromJson: _toString) final String? facing,
+      @JsonKey(name: "road_width", fromJson: _toString) final String? roadWidth,
+      @JsonKey(name: "posted_by", fromJson: _toString) final String? postedBy,
+      @JsonKey(name: "approval_status", fromJson: _toString)
+      final String? approvalStatus,
+      @JsonKey(name: "dimensions", fromJson: _toString)
+      final String? dimensions,
+      @JsonKey(name: "is_corner_plot") final bool? isCornerPlot,
+      @JsonKey(name: "is_gated_community") final bool? isGatedCommunity,
+      @JsonKey(name: "main_category", fromJson: _toString)
+      final String? mainCategory,
+      @JsonKey(name: "sub_category", fromJson: _toString)
+      final String? subCategory,
+      @JsonKey(name: "is_negotiable") final bool? isNegotiable,
+      @JsonKey(name: "security_deposit", fromJson: _toString)
+      final String? securityDeposit,
+      @JsonKey(name: "property_status", fromJson: _toString)
+      final String? propertyStatus,
+      @JsonKey(name: "contact_via_phone") final bool? contactViaPhone,
+      @JsonKey(name: "contact_via_whatsapp") final bool? contactViaWhatsApp,
+      @JsonKey(name: "carpet_area", fromJson: _toString)
+      final String? carpetArea,
+      @JsonKey(name: "carpet_area_unit", fromJson: _toString)
+      final String? carpetAreaUnit}) = _$AddPostResponseImpl;
 
   factory _AddPostResponse.fromJson(Map<String, dynamic> json) =
       _$AddPostResponseImpl.fromJson;
@@ -996,25 +1015,25 @@ abstract class _AddPostResponse implements AddPostResponse {
   @JsonKey(name: "owner")
   Owner? get owner;
   @override
-  @JsonKey(name: "plot_area")
+  @JsonKey(name: "plot_area", fromJson: _toString)
   String? get plotArea;
   @override
-  @JsonKey(name: "area_unit")
+  @JsonKey(name: "area_unit", fromJson: _toString)
   String? get areaUnit;
   @override
-  @JsonKey(name: "facing")
+  @JsonKey(name: "facing", fromJson: _toString)
   String? get facing;
   @override
-  @JsonKey(name: "road_width")
+  @JsonKey(name: "road_width", fromJson: _toString)
   String? get roadWidth;
   @override
-  @JsonKey(name: "posted_by")
+  @JsonKey(name: "posted_by", fromJson: _toString)
   String? get postedBy;
   @override
-  @JsonKey(name: "approval_status")
+  @JsonKey(name: "approval_status", fromJson: _toString)
   String? get approvalStatus;
   @override
-  @JsonKey(name: "dimensions")
+  @JsonKey(name: "dimensions", fromJson: _toString)
   String? get dimensions;
   @override
   @JsonKey(name: "is_corner_plot")
@@ -1023,19 +1042,19 @@ abstract class _AddPostResponse implements AddPostResponse {
   @JsonKey(name: "is_gated_community")
   bool? get isGatedCommunity;
   @override
-  @JsonKey(name: "main_category")
+  @JsonKey(name: "main_category", fromJson: _toString)
   String? get mainCategory;
   @override
-  @JsonKey(name: "sub_category")
+  @JsonKey(name: "sub_category", fromJson: _toString)
   String? get subCategory;
   @override
   @JsonKey(name: "is_negotiable")
   bool? get isNegotiable;
   @override
-  @JsonKey(name: "security_deposit")
+  @JsonKey(name: "security_deposit", fromJson: _toString)
   String? get securityDeposit;
   @override
-  @JsonKey(name: "property_status")
+  @JsonKey(name: "property_status", fromJson: _toString)
   String? get propertyStatus;
   @override
   @JsonKey(name: "contact_via_phone")
@@ -1044,10 +1063,10 @@ abstract class _AddPostResponse implements AddPostResponse {
   @JsonKey(name: "contact_via_whatsapp")
   bool? get contactViaWhatsApp;
   @override
-  @JsonKey(name: "carpet_area")
+  @JsonKey(name: "carpet_area", fromJson: _toString)
   String? get carpetArea;
   @override
-  @JsonKey(name: "carpet_area_unit")
+  @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   String? get carpetAreaUnit;
   @override
   @JsonKey(ignore: true)

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
@@ -84,6 +85,30 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         price.replaceAll('₹', '').replaceAll(',', '').trim(),
       );
 
+      Map<String, dynamic> metadata = {
+        'plot_area': plotArea,
+        'area_unit': areaUnit,
+        'facing': facing,
+        'road_width': roadWidth,
+        'posted_by': postedBy,
+        'approval_status': approvalStatus,
+        'dimensions': dimensions,
+        'is_corner_plot': isCornerPlot,
+        'is_gated_community': isGatedCommunity,
+        'main_category': mainCategory,
+        'sub_category': subCategory,
+        'is_negotiable': isNegotiable,
+        'security_deposit': securityDeposit,
+        'property_status': propertyStatus,
+        'contact_via_phone': contactViaPhone,
+        'contact_via_whatsapp': contactViaWhatsApp,
+        'carpet_area': carpetArea,
+        'carpet_area_unit': carpetAreaUnit,
+      };
+
+      String encodedMetadata = jsonEncode(metadata);
+      String finalDescription = (description != null && description.trim().isNotEmpty ? description.trim() : '') + '\n\n__PROPS__$encodedMetadata';
+
       FormData formData = FormData.fromMap({
         'title': title,
         'property_type': propertyType,
@@ -91,7 +116,7 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         'address': address,
         'city': city,
         'price': priceValue,
-        if (description != null) 'description': description,
+        'description': finalDescription,
         if (latitude != null) 'latitude': latitude.toString(),
         if (longitude != null) 'longitude': longitude.toString(),
         if (plotArea != null && plotArea.isNotEmpty) 'plot_area': plotArea,

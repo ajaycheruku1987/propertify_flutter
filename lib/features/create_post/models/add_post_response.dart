@@ -12,6 +12,8 @@ AddPostResponse addPostResponseFromJson(String str) => AddPostResponse.fromJson(
 
 String addPostResponseToJson(AddPostResponse data) => json.encode(data.toJson());
 
+String? _toString(dynamic value) => value?.toString();
+
 @freezed
 class AddPostResponse with _$AddPostResponse {
     const factory AddPostResponse({
@@ -51,41 +53,41 @@ class AddPostResponse with _$AddPostResponse {
         dynamic promotedUntil,
         @JsonKey(name: "owner")
         Owner? owner,
-        @JsonKey(name: "plot_area")
+        @JsonKey(name: "plot_area", fromJson: _toString)
         String? plotArea,
-        @JsonKey(name: "area_unit")
+        @JsonKey(name: "area_unit", fromJson: _toString)
         String? areaUnit,
-        @JsonKey(name: "facing")
+        @JsonKey(name: "facing", fromJson: _toString)
         String? facing,
-        @JsonKey(name: "road_width")
+        @JsonKey(name: "road_width", fromJson: _toString)
         String? roadWidth,
-        @JsonKey(name: "posted_by")
+        @JsonKey(name: "posted_by", fromJson: _toString)
         String? postedBy,
-        @JsonKey(name: "approval_status")
+        @JsonKey(name: "approval_status", fromJson: _toString)
         String? approvalStatus,
-        @JsonKey(name: "dimensions")
+        @JsonKey(name: "dimensions", fromJson: _toString)
         String? dimensions,
         @JsonKey(name: "is_corner_plot")
         bool? isCornerPlot,
         @JsonKey(name: "is_gated_community")
         bool? isGatedCommunity,
-        @JsonKey(name: "main_category")
+        @JsonKey(name: "main_category", fromJson: _toString)
         String? mainCategory,
-        @JsonKey(name: "sub_category")
+        @JsonKey(name: "sub_category", fromJson: _toString)
         String? subCategory,
         @JsonKey(name: "is_negotiable")
         bool? isNegotiable,
-        @JsonKey(name: "security_deposit")
+        @JsonKey(name: "security_deposit", fromJson: _toString)
         String? securityDeposit,
-        @JsonKey(name: "property_status")
+        @JsonKey(name: "property_status", fromJson: _toString)
         String? propertyStatus,
         @JsonKey(name: "contact_via_phone")
         bool? contactViaPhone,
         @JsonKey(name: "contact_via_whatsapp")
         bool? contactViaWhatsApp,
-        @JsonKey(name: "carpet_area")
+        @JsonKey(name: "carpet_area", fromJson: _toString)
         String? carpetArea,
-        @JsonKey(name: "carpet_area_unit")
+        @JsonKey(name: "carpet_area_unit", fromJson: _toString)
         String? carpetAreaUnit,
     }) = _AddPostResponse;
 
