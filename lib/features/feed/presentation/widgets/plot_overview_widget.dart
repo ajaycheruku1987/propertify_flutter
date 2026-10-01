@@ -12,19 +12,16 @@ class PlotOverviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasPlotData = (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty) ||
-        (postDetails.facing != null && postDetails.facing!.isNotEmpty) ||
-        (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty) ||
-        (postDetails.approvalStatus != null && postDetails.approvalStatus!.isNotEmpty) ||
-        (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty) ||
-        (postDetails.isCornerPlot ?? false) ||
-        (postDetails.isGatedCommunity ?? false) ||
+    final isPlotOrLand = postDetails.mainCategory == 'Land & Plots' ||
         postDetails.propertyType == 'Open Plot' ||
         postDetails.propertyType == 'Agriculture Land' ||
         postDetails.propertyType == 'Open Plots' ||
-        postDetails.mainCategory == 'Land & Plots';
+        postDetails.propertyType == 'Residential Plot' ||
+        postDetails.propertyType == 'Commercial Plot' ||
+        postDetails.propertyType == 'Agricultural Land' ||
+        postDetails.propertyType == 'Farm Land';
 
-    if (!hasPlotData) {
+    if (!isPlotOrLand) {
       return const SizedBox.shrink();
     }
 

@@ -45,104 +45,60 @@ class PropertyInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Property Title and Price Row
+          // Upper Row: EMI Calculator & Price + Actions Menu
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title.translate(context),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFF1A1A1A),
-                        letterSpacing: -0.5,
-                      ),
+              if (showCalculator && onCalculatorPressed != null)
+                InkWell(
+                  onTap: onCalculatorPressed,
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
                     ),
-                    const SizedBox(height: 8),
-                    // Location with icon
-                    Row(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.location_on, color: Colors.grey[400], size: 16),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            location.translate(context),
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w500,
-                            ),
+                        Icon(
+                          Icons.calculate_rounded,
+                          color: Theme.of(context).primaryColor,
+                          size: 16,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          'EMI Calculator',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (showCalculator && onCalculatorPressed != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: InkWell(
-                            onTap: onCalculatorPressed,
-                            borderRadius: BorderRadius.circular(8),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.calculate_rounded,
-                                    color: Theme.of(context).primaryColor,
-                                    size: 16,
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    'EMI Calculator',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      Text(
-                        '₹$price',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Theme.of(context).primaryColor,
-                          letterSpacing: -0.5,
-                        ),
-                      ),
-                    ],
                   ),
-                  const SizedBox(height: 4),
-                  if (canEdit || canDelete || canReport)
+                )
+              else
+                const SizedBox.shrink(),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '₹$price',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).primaryColor,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                  if (canEdit || canDelete || canReport) ...[
+                    const SizedBox(width: 8),
                     PopupMenuButton<String>(
                       color: Colors.white,
                       position: PopupMenuPosition.under,
@@ -208,7 +164,41 @@ class PropertyInfo extends StatelessWidget {
                           ),
                       ],
                     ),
+                  ],
                 ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Property Title (Full width)
+          Text(
+            title.translate(context),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1A1A1A),
+              letterSpacing: -0.5,
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Location (Single line)
+          Row(
+            children: [
+              Icon(Icons.location_on, color: Colors.grey[400], size: 16),
+              const SizedBox(width: 4),
+              Expanded(
+                child: Text(
+                  location.translate(context),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[600],
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ],
           ),

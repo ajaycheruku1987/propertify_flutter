@@ -165,6 +165,15 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
                       ? postDetails.securityDeposit!
                       : '₹${postDetails.securityDeposit}',
                 ),
+
+              // 7. Facing
+              if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
+                _buildSpecTile(
+                  context,
+                  icon: Icons.compass_calibration_rounded,
+                  label: 'Facing',
+                  value: postDetails.facing!,
+                ),
             ],
           ),
 
