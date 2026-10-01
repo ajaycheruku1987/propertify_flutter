@@ -87,6 +87,24 @@ mixin _$FeedPostsResponseModel {
   bool? get isCornerPlot => throw _privateConstructorUsedError;
   @JsonKey(name: "is_gated_community")
   bool? get isGatedCommunity => throw _privateConstructorUsedError;
+  @JsonKey(name: "main_category")
+  String? get mainCategory => throw _privateConstructorUsedError;
+  @JsonKey(name: "sub_category")
+  String? get subCategory => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_negotiable")
+  bool? get isNegotiable => throw _privateConstructorUsedError;
+  @JsonKey(name: "security_deposit")
+  String? get securityDeposit => throw _privateConstructorUsedError;
+  @JsonKey(name: "property_status")
+  String? get propertyStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "contact_via_phone")
+  bool? get contactViaPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: "contact_via_whatsapp")
+  bool? get contactViaWhatsApp => throw _privateConstructorUsedError;
+  @JsonKey(name: "carpet_area")
+  String? get carpetArea => throw _privateConstructorUsedError;
+  @JsonKey(name: "carpet_area_unit")
+  String? get carpetAreaUnit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -133,7 +151,16 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "approval_status") String? approvalStatus,
       @JsonKey(name: "dimensions") String? dimensions,
       @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
-      @JsonKey(name: "is_gated_community") bool? isGatedCommunity});
+      @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
+      @JsonKey(name: "main_category") String? mainCategory,
+      @JsonKey(name: "sub_category") String? subCategory,
+      @JsonKey(name: "is_negotiable") bool? isNegotiable,
+      @JsonKey(name: "security_deposit") String? securityDeposit,
+      @JsonKey(name: "property_status") String? propertyStatus,
+      @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
+      @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
+      @JsonKey(name: "carpet_area") String? carpetArea,
+      @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -185,6 +212,15 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
     Object? dimensions = freezed,
     Object? isCornerPlot = freezed,
     Object? isGatedCommunity = freezed,
+    Object? mainCategory = freezed,
+    Object? subCategory = freezed,
+    Object? isNegotiable = freezed,
+    Object? securityDeposit = freezed,
+    Object? propertyStatus = freezed,
+    Object? contactViaPhone = freezed,
+    Object? contactViaWhatsApp = freezed,
+    Object? carpetArea = freezed,
+    Object? carpetAreaUnit = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -319,6 +355,42 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
           ? _value.isGatedCommunity
           : isGatedCommunity // ignore: cast_nullable_to_non_nullable
               as bool?,
+      mainCategory: freezed == mainCategory
+          ? _value.mainCategory
+          : mainCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subCategory: freezed == subCategory
+          ? _value.subCategory
+          : subCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isNegotiable: freezed == isNegotiable
+          ? _value.isNegotiable
+          : isNegotiable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      securityDeposit: freezed == securityDeposit
+          ? _value.securityDeposit
+          : securityDeposit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      propertyStatus: freezed == propertyStatus
+          ? _value.propertyStatus
+          : propertyStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactViaPhone: freezed == contactViaPhone
+          ? _value.contactViaPhone
+          : contactViaPhone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contactViaWhatsApp: freezed == contactViaWhatsApp
+          ? _value.contactViaWhatsApp
+          : contactViaWhatsApp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      carpetArea: freezed == carpetArea
+          ? _value.carpetArea
+          : carpetArea // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carpetAreaUnit: freezed == carpetAreaUnit
+          ? _value.carpetAreaUnit
+          : carpetAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -377,7 +449,16 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "approval_status") String? approvalStatus,
       @JsonKey(name: "dimensions") String? dimensions,
       @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
-      @JsonKey(name: "is_gated_community") bool? isGatedCommunity});
+      @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
+      @JsonKey(name: "main_category") String? mainCategory,
+      @JsonKey(name: "sub_category") String? subCategory,
+      @JsonKey(name: "is_negotiable") bool? isNegotiable,
+      @JsonKey(name: "security_deposit") String? securityDeposit,
+      @JsonKey(name: "property_status") String? propertyStatus,
+      @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
+      @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
+      @JsonKey(name: "carpet_area") String? carpetArea,
+      @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -429,6 +510,15 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
     Object? dimensions = freezed,
     Object? isCornerPlot = freezed,
     Object? isGatedCommunity = freezed,
+    Object? mainCategory = freezed,
+    Object? subCategory = freezed,
+    Object? isNegotiable = freezed,
+    Object? securityDeposit = freezed,
+    Object? propertyStatus = freezed,
+    Object? contactViaPhone = freezed,
+    Object? contactViaWhatsApp = freezed,
+    Object? carpetArea = freezed,
+    Object? carpetAreaUnit = freezed,
   }) {
     return _then(_$FeedPostsResponseModelImpl(
       id: freezed == id
@@ -563,6 +653,42 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
           ? _value.isGatedCommunity
           : isGatedCommunity // ignore: cast_nullable_to_non_nullable
               as bool?,
+      mainCategory: freezed == mainCategory
+          ? _value.mainCategory
+          : mainCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subCategory: freezed == subCategory
+          ? _value.subCategory
+          : subCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isNegotiable: freezed == isNegotiable
+          ? _value.isNegotiable
+          : isNegotiable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      securityDeposit: freezed == securityDeposit
+          ? _value.securityDeposit
+          : securityDeposit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      propertyStatus: freezed == propertyStatus
+          ? _value.propertyStatus
+          : propertyStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactViaPhone: freezed == contactViaPhone
+          ? _value.contactViaPhone
+          : contactViaPhone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contactViaWhatsApp: freezed == contactViaWhatsApp
+          ? _value.contactViaWhatsApp
+          : contactViaWhatsApp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      carpetArea: freezed == carpetArea
+          ? _value.carpetArea
+          : carpetArea // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carpetAreaUnit: freezed == carpetAreaUnit
+          ? _value.carpetAreaUnit
+          : carpetAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -603,7 +729,16 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "approval_status") this.approvalStatus,
       @JsonKey(name: "dimensions") this.dimensions,
       @JsonKey(name: "is_corner_plot") this.isCornerPlot,
-      @JsonKey(name: "is_gated_community") this.isGatedCommunity})
+      @JsonKey(name: "is_gated_community") this.isGatedCommunity,
+      @JsonKey(name: "main_category") this.mainCategory,
+      @JsonKey(name: "sub_category") this.subCategory,
+      @JsonKey(name: "is_negotiable") this.isNegotiable,
+      @JsonKey(name: "security_deposit") this.securityDeposit,
+      @JsonKey(name: "property_status") this.propertyStatus,
+      @JsonKey(name: "contact_via_phone") this.contactViaPhone,
+      @JsonKey(name: "contact_via_whatsapp") this.contactViaWhatsApp,
+      @JsonKey(name: "carpet_area") this.carpetArea,
+      @JsonKey(name: "carpet_area_unit") this.carpetAreaUnit})
       : _imageUrls = imageUrls,
         super._();
 
@@ -717,10 +852,37 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @override
   @JsonKey(name: "is_gated_community")
   final bool? isGatedCommunity;
+  @override
+  @JsonKey(name: "main_category")
+  final String? mainCategory;
+  @override
+  @JsonKey(name: "sub_category")
+  final String? subCategory;
+  @override
+  @JsonKey(name: "is_negotiable")
+  final bool? isNegotiable;
+  @override
+  @JsonKey(name: "security_deposit")
+  final String? securityDeposit;
+  @override
+  @JsonKey(name: "property_status")
+  final String? propertyStatus;
+  @override
+  @JsonKey(name: "contact_via_phone")
+  final bool? contactViaPhone;
+  @override
+  @JsonKey(name: "contact_via_whatsapp")
+  final bool? contactViaWhatsApp;
+  @override
+  @JsonKey(name: "carpet_area")
+  final String? carpetArea;
+  @override
+  @JsonKey(name: "carpet_area_unit")
+  final String? carpetAreaUnit;
 
   @override
   String toString() {
-    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity)';
+    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, mainCategory: $mainCategory, subCategory: $subCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, propertyStatus: $propertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, carpetArea: $carpetArea, carpetAreaUnit: $carpetAreaUnit)';
   }
 
   @override
@@ -783,7 +945,25 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
             (identical(other.isCornerPlot, isCornerPlot) ||
                 other.isCornerPlot == isCornerPlot) &&
             (identical(other.isGatedCommunity, isGatedCommunity) ||
-                other.isGatedCommunity == isGatedCommunity));
+                other.isGatedCommunity == isGatedCommunity) &&
+            (identical(other.mainCategory, mainCategory) ||
+                other.mainCategory == mainCategory) &&
+            (identical(other.subCategory, subCategory) ||
+                other.subCategory == subCategory) &&
+            (identical(other.isNegotiable, isNegotiable) ||
+                other.isNegotiable == isNegotiable) &&
+            (identical(other.securityDeposit, securityDeposit) ||
+                other.securityDeposit == securityDeposit) &&
+            (identical(other.propertyStatus, propertyStatus) ||
+                other.propertyStatus == propertyStatus) &&
+            (identical(other.contactViaPhone, contactViaPhone) ||
+                other.contactViaPhone == contactViaPhone) &&
+            (identical(other.contactViaWhatsApp, contactViaWhatsApp) ||
+                other.contactViaWhatsApp == contactViaWhatsApp) &&
+            (identical(other.carpetArea, carpetArea) ||
+                other.carpetArea == carpetArea) &&
+            (identical(other.carpetAreaUnit, carpetAreaUnit) ||
+                other.carpetAreaUnit == carpetAreaUnit));
   }
 
   @JsonKey(ignore: true)
@@ -822,7 +1002,16 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
         approvalStatus,
         dimensions,
         isCornerPlot,
-        isGatedCommunity
+        isGatedCommunity,
+        mainCategory,
+        subCategory,
+        isNegotiable,
+        securityDeposit,
+        propertyStatus,
+        contactViaPhone,
+        contactViaWhatsApp,
+        carpetArea,
+        carpetAreaUnit
       ]);
 
   @JsonKey(ignore: true)
@@ -874,7 +1063,16 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
           @JsonKey(name: "approval_status") final String? approvalStatus,
           @JsonKey(name: "dimensions") final String? dimensions,
           @JsonKey(name: "is_corner_plot") final bool? isCornerPlot,
-          @JsonKey(name: "is_gated_community") final bool? isGatedCommunity}) =
+          @JsonKey(name: "is_gated_community") final bool? isGatedCommunity,
+          @JsonKey(name: "main_category") final String? mainCategory,
+          @JsonKey(name: "sub_category") final String? subCategory,
+          @JsonKey(name: "is_negotiable") final bool? isNegotiable,
+          @JsonKey(name: "security_deposit") final String? securityDeposit,
+          @JsonKey(name: "property_status") final String? propertyStatus,
+          @JsonKey(name: "contact_via_phone") final bool? contactViaPhone,
+          @JsonKey(name: "contact_via_whatsapp") final bool? contactViaWhatsApp,
+          @JsonKey(name: "carpet_area") final String? carpetArea,
+          @JsonKey(name: "carpet_area_unit") final String? carpetAreaUnit}) =
       _$FeedPostsResponseModelImpl;
   const _FeedPostsResponseModel._() : super._();
 
@@ -980,6 +1178,33 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @override
   @JsonKey(name: "is_gated_community")
   bool? get isGatedCommunity;
+  @override
+  @JsonKey(name: "main_category")
+  String? get mainCategory;
+  @override
+  @JsonKey(name: "sub_category")
+  String? get subCategory;
+  @override
+  @JsonKey(name: "is_negotiable")
+  bool? get isNegotiable;
+  @override
+  @JsonKey(name: "security_deposit")
+  String? get securityDeposit;
+  @override
+  @JsonKey(name: "property_status")
+  String? get propertyStatus;
+  @override
+  @JsonKey(name: "contact_via_phone")
+  bool? get contactViaPhone;
+  @override
+  @JsonKey(name: "contact_via_whatsapp")
+  bool? get contactViaWhatsApp;
+  @override
+  @JsonKey(name: "carpet_area")
+  String? get carpetArea;
+  @override
+  @JsonKey(name: "carpet_area_unit")
+  String? get carpetAreaUnit;
   @override
   @JsonKey(ignore: true)
   _$$FeedPostsResponseModelImplCopyWith<_$FeedPostsResponseModelImpl>

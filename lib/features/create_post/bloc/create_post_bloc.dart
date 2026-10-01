@@ -16,11 +16,21 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     on<_ResetState>(_onResetState);
     on<_TitleChanged>(_onTitleChanged);
     on<_PropertyTypeChanged>(_onPropertyTypeChanged);
+    on<_MainCategoryChanged>(_onMainCategoryChanged);
+    on<_SubCategoryChanged>(_onSubCategoryChanged);
     on<_LookingForChanged>(_onLookingForChanged);
     on<_AddressChanged>(_onAddressChanged);
     on<_LocationCoordinatesChanged>(_onLocationCoordinatesChanged);
     on<_LocationChanged>(_onLocationChanged);
     on<_PriceChanged>(_onPriceChanged);
+    on<_IsNegotiableChanged>(_onIsNegotiableChanged);
+    on<_SecurityDepositChanged>(_onSecurityDepositChanged);
+    on<_PropertyStatusChanged>(_onPropertyStatusChanged);
+    on<_ContactViaPhoneChanged>(_onContactViaPhoneChanged);
+    on<_ContactViaWhatsAppChanged>(_onContactViaWhatsAppChanged);
+    on<_StepChanged>(_onStepChanged);
+    on<_CarpetAreaChanged>(_onCarpetAreaChanged);
+    on<_CarpetAreaUnitChanged>(_onCarpetAreaUnitChanged);
     on<_PlotAreaChanged>(_onPlotAreaChanged);
     on<_AreaUnitChanged>(_onAreaUnitChanged);
     on<_FacingChanged>(_onFacingChanged);
@@ -64,6 +74,31 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         selectedPropertyType: event.propertyType,
         isValid: _validateForm(
           state.copyWith(selectedPropertyType: event.propertyType),
+        ),
+      ),
+    );
+  }
+
+  void _onMainCategoryChanged(
+    _MainCategoryChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(selectedMainCategory: event.mainCategory));
+  }
+
+  void _onSubCategoryChanged(
+    _SubCategoryChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedSubCategory: event.subCategory,
+        selectedPropertyType: event.subCategory,
+        isValid: _validateForm(
+          state.copyWith(
+            selectedSubCategory: event.subCategory,
+            selectedPropertyType: event.subCategory,
+          ),
         ),
       ),
     );
@@ -129,6 +164,59 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     );
   }
 
+  void _onIsNegotiableChanged(
+    _IsNegotiableChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(isNegotiable: event.isNegotiable));
+  }
+
+  void _onSecurityDepositChanged(
+    _SecurityDepositChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(securityDeposit: event.securityDeposit));
+  }
+
+  void _onPropertyStatusChanged(
+    _PropertyStatusChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(selectedPropertyStatus: event.propertyStatus));
+  }
+
+  void _onContactViaPhoneChanged(
+    _ContactViaPhoneChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(contactViaPhone: event.contactViaPhone));
+  }
+
+  void _onContactViaWhatsAppChanged(
+    _ContactViaWhatsAppChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(contactViaWhatsApp: event.contactViaWhatsApp));
+  }
+
+  void _onStepChanged(_StepChanged event, Emitter<CreatePostState> emit) {
+    emit(state.copyWith(currentStep: event.step));
+  }
+
+  void _onCarpetAreaChanged(
+    _CarpetAreaChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(carpetArea: event.carpetArea));
+  }
+
+  void _onCarpetAreaUnitChanged(
+    _CarpetAreaUnitChanged event,
+    Emitter<CreatePostState> emit,
+  ) {
+    emit(state.copyWith(selectedCarpetAreaUnit: event.carpetAreaUnit));
+  }
+
   void _onPlotAreaChanged(_PlotAreaChanged event, Emitter<CreatePostState> emit) {
     emit(state.copyWith(plotArea: event.plotArea));
   }
@@ -171,7 +259,6 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   ) {
     if (_validateForm(state)) {
       emit(state.copyWith(isLoading: true, errorMessage: null));
-      // Set isValid to true to trigger navigation
       emit(state.copyWith(isLoading: false, isValid: true));
     } else {
       emit(
@@ -207,7 +294,6 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   void _onProceedToNext(_ProceedToNext event, Emitter<CreatePostState> emit) {
     if (state.selectedImages.isNotEmpty) {
       emit(state.copyWith(isLoading: true));
-      // TODO: Implement final submission logic
       emit(state.copyWith(isLoading: false));
     } else {
       emit(state.copyWith(errorMessage: 'Please add at least one image'));
@@ -215,8 +301,11 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   }
 
   bool _validateForm(CreatePostState state) {
+    final propertyType = state.selectedSubCategory.isNotEmpty
+        ? state.selectedSubCategory
+        : state.selectedPropertyType;
     return state.title.isNotEmpty &&
-        state.selectedPropertyType.isNotEmpty &&
+        propertyType.isNotEmpty &&
         state.address.isNotEmpty &&
         state.price.isNotEmpty;
   }
@@ -225,11 +314,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     _CreatePost event,
     Emitter<CreatePostState> emit,
   ) async {
-    if (state.isLoading) return; // Prevent duplicate concurrent posts
+    if (state.isLoading) return; // Prevent duplicate concurrent submission
 
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
     try {
+      final propertyType = state.selectedSubCategory.isNotEmpty
+          ? state.selectedSubCategory
+          : state.selectedPropertyType;
+
       // Validate required fields
       if (state.title.isEmpty) {
         emit(
@@ -238,7 +331,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         return;
       }
 
-      if (state.selectedPropertyType.isEmpty) {
+      if (propertyType.isEmpty) {
         emit(
           state.copyWith(
             isLoading: false,
@@ -282,7 +375,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
       // Call repository to create post with all data
       final createPostResponse = await _repository.createPost(
         title: state.title,
-        propertyType: state.selectedPropertyType,
+        propertyType: propertyType,
         listingType: state.selectedLookingFor,
         address: state.address,
         city: state.selectedLocation,
@@ -300,6 +393,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         dimensions: state.dimensions,
         isCornerPlot: state.isCornerPlot,
         isGatedCommunity: state.isGatedCommunity,
+        mainCategory: state.selectedMainCategory,
+        subCategory: state.selectedSubCategory,
+        isNegotiable: state.isNegotiable,
+        securityDeposit: state.securityDeposit,
+        propertyStatus: state.selectedPropertyStatus,
+        contactViaPhone: state.contactViaPhone,
+        contactViaWhatsApp: state.contactViaWhatsApp,
+        carpetArea: state.carpetArea,
+        carpetAreaUnit: state.selectedCarpetAreaUnit,
       );
 
       createPostResponse.fold(

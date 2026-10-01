@@ -7,6 +7,7 @@ class PropertyInfo extends StatelessWidget {
   final String location;
   final String price;
   final String? category;
+  final String? mainCategory;
   final String? listingType;
   final bool canEdit;
   final bool canDelete;
@@ -23,6 +24,7 @@ class PropertyInfo extends StatelessWidget {
     required this.location,
     required this.price,
     this.category,
+    this.mainCategory,
     this.listingType,
     this.canEdit = false,
     this.canDelete = false,
@@ -37,98 +39,12 @@ class PropertyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Top Row: Category and Listing Type Labels (Left) & EMI Calculator Button (Right)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  if (listingType != null && listingType!.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: listingType!.toLowerCase() == 'rent'
-                            ? Colors.orange.withOpacity(0.1)
-                            : Colors.green.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        listingType!.translate(context).toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: listingType!.toLowerCase() == 'rent'
-                              ? Colors.orange
-                              : Colors.green,
-                        ),
-                      ),
-                    ),
-                  if (listingType != null &&
-                      listingType!.isNotEmpty &&
-                      category != null &&
-                      category!.isNotEmpty)
-                    const SizedBox(width: 8),
-                  if (category != null && category!.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF6C5CE7).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        category!.translate(context).toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF6C5CE7),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              if (showCalculator && onCalculatorPressed != null)
-                InkWell(
-                  onTap: onCalculatorPressed,
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.calculate_rounded,
-                          color: Theme.of(context).primaryColor,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          'EMI Calculator',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 12),
           // Property Title and Price Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,7 +59,7 @@ class PropertyInfo extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w900,
                         color: Color(0xFF1A1A1A),
                         letterSpacing: -0.5,
@@ -174,14 +90,56 @@ class PropertyInfo extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    '₹$price',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).primaryColor,
-                      letterSpacing: -0.5,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (showCalculator && onCalculatorPressed != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: InkWell(
+                            onTap: onCalculatorPressed,
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.calculate_rounded,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 16,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    'EMI Calculator',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      Text(
+                        '₹$price',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Theme.of(context).primaryColor,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 4),
                   if (canEdit || canDelete || canReport)
@@ -189,7 +147,7 @@ class PropertyInfo extends StatelessWidget {
                       color: Colors.white,
                       position: PopupMenuPosition.under,
                       elevation: 8,
-                      shadowColor: Colors.black.withOpacity(0.1),
+                      shadowColor: Colors.black.withValues(alpha: 0.1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -211,7 +169,7 @@ class PropertyInfo extends StatelessWidget {
                         } else if (value == 'delete' && onDeletePressed != null) {
                           onDeletePressed!();
                         } else if (value == 'report' && onReportPressed != null) {
-                          onReportPressed!(); // wait, let's make sure onReportPressed!() doesn't have a typo slash
+                          onReportPressed!();
                         }
                       },
                       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -228,7 +186,7 @@ class PropertyInfo extends StatelessWidget {
                           ),
                         if (canDelete)
                           PopupMenuItem<String>(
-                            value: 'report', // wait, value == 'delete'
+                            value: 'delete',
                             child: Row(
                               children: [
                                 const Icon(Icons.delete_outline, size: 18, color: Colors.red),

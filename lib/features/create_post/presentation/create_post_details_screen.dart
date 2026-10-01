@@ -1,15 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import '../bloc/create_post_bloc.dart';
 import '../../../utils/image_picker_util.dart';
-import '../../../core/service_locator.dart';
-import '../repo/create_post_repository.dart';
-import '../../../core/api_request/api_request.dart';
-import '../../../core/app_cache_service.dart';
 import '../../../utils/custom_toast.dart';
+import 'widgets/step_progress_bar.dart';
+import 'widgets/contact_preferences_widget.dart';
 
 class CreatePostImagesDescriptionScreen extends StatefulWidget {
   static const String routeName = '/create-post-details';
@@ -61,66 +58,77 @@ class _CreatePostImagesDescriptionScreenState
         centerTitle: false,
       ),
       body: BlocConsumer<CreatePostBloc, CreatePostState>(
-        listener: (context, state) {
-          // Success navigation is handled in create_post_screen.dart
-          // This listener can be used for other state handling if needed
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Image Upload Section
-                _buildImageUploadSection(context, state, l10n),
-                const SizedBox(height: 32),
+          return Column(
+            children: [
+              // Visual Progress Stepper Bar (Step 3: Photos & Publish)
+              const StepProgressBar(currentStep: 3),
+              const Divider(height: 1, color: Color(0xFFEEEEEE)),
 
-                // Description Section
-                _buildDescriptionSection(context, state, l10n),
-                const SizedBox(height: 32),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Image Upload Section
+                      _buildImageUploadSection(context, state, l10n),
+                      const SizedBox(height: 32),
 
-                // Error Message
-                if (state.errorMessage != null)
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.only(bottom: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade50,
-                      border: Border.all(color: Colors.red.shade200),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.error_outline,
-                          color: Colors.red.shade600,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            state.errorMessage!,
-                            style: TextStyle(
-                              color: Colors.red.shade700,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      // Description Section
+                      _buildDescriptionSection(context, state, l10n),
+                      const SizedBox(height: 32),
+
+                      // Contact Preferences (Phone & WhatsApp)
+                      const ContactPreferencesWidget(),
+                      const SizedBox(height: 32),
+
+                      // Error Message
+                      if (state.errorMessage != null)
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          margin: const EdgeInsets.only(bottom: 16),
+                          decoration: BoxDecoration(
+                            color: Colors.red.shade50,
+                            border: Border.all(color: Colors.red.shade200),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.error_outline,
+                                color: Colors.red.shade600,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  state.errorMessage!,
+                                  style: TextStyle(
+                                    color: Colors.red.shade700,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+
+                      // Terms and Conditions
+                      _buildTermsSection(l10n),
+                      const SizedBox(height: 32),
+
+                      // Post Button
+                      _buildPostButton(context, state, l10n),
+                      const SizedBox(height: 20),
+                    ],
                   ),
-
-                // Terms and Conditions
-                _buildTermsSection(l10n),
-                const SizedBox(height: 32),
-
-                // Post Button
-                _buildPostButton(context, state, l10n),
-                const SizedBox(height: 20),
-              ],
-            ),
+                ),
+              ),
+            ],
           );
         },
       ),
@@ -134,7 +142,6 @@ class _CreatePostImagesDescriptionScreenState
   ) {
     return Column(
       children: [
-        // Upload Area
         if (state.selectedImages.isEmpty)
           _buildUploadArea(context, l10n)
         else
@@ -156,9 +163,7 @@ class _CreatePostImagesDescriptionScreenState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Upload Icon
             Image.asset('assets/images/upload_images.png', width: 120),
-
             Text(
               l10n.uploadImages,
               style: const TextStyle(
@@ -199,7 +204,6 @@ class _CreatePostImagesDescriptionScreenState
   ) {
     return Column(
       children: [
-        // Add more images button
         GestureDetector(
           onTap: () => _pickImages(context, l10n),
           child: Container(
@@ -213,7 +217,6 @@ class _CreatePostImagesDescriptionScreenState
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Upload Icon
                 Image.asset('assets/images/upload_images.png', width: 120),
                 const SizedBox(height: 8),
                 Text(
@@ -229,8 +232,6 @@ class _CreatePostImagesDescriptionScreenState
           ),
         ),
         const SizedBox(height: 16),
-
-        // Selected Images Grid
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

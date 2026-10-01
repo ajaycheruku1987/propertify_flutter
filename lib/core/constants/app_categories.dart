@@ -1,6 +1,47 @@
 import 'package:flutter/material.dart';
 
 class AppCategories {
+  // Structured Property Categories & Subcategories Hierarchy
+  static const Map<String, List<String>> propertyCategoryHierarchy = {
+    'Residential': [
+      'Apartment / Flat',
+      'Independent House',
+      'Villa',
+      'Duplex',
+      'Farmhouse',
+      'Builder Floor',
+    ],
+    'Land & Plots': [
+      'Residential Plot',
+      'Commercial Plot',
+      'Gated Community Plot',
+      'Agricultural Land',
+      'Farm Land',
+    ],
+    'Commercial': [
+      'Shop',
+      'Office',
+      'Showroom',
+      'Warehouse',
+      'Commercial Building',
+    ],
+    'Industrial': [
+      'Industrial Plot',
+      'Factory',
+      'Industrial Shed',
+      'Warehouse',
+    ],
+  };
+
+  // Property Construction/Listing Statuses (For non-plot properties)
+  static const List<String> propertyStatuses = [
+    'Ready to Move',
+    'Under Construction',
+    'New',
+    'Resale',
+    'Pre-launch',
+  ];
+
   // Feed / Property Types (Display name, Icon)
   static const List<Map<String, dynamic>> propertyType = [
     {'name': 'Independent House', 'icon': Icons.home_outlined},

@@ -22,12 +22,23 @@ mixin _$CreatePostEvent {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -51,12 +62,22 @@ mixin _$CreatePostEvent {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -80,12 +101,22 @@ mixin _$CreatePostEvent {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -110,12 +141,27 @@ mixin _$CreatePostEvent {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -141,12 +187,23 @@ mixin _$CreatePostEvent {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -170,12 +227,23 @@ mixin _$CreatePostEvent {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -256,12 +324,23 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -288,12 +367,22 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -320,12 +409,22 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -356,12 +455,27 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -390,12 +504,23 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -422,12 +547,23 @@ class _$CreatePostStartedImpl implements _CreatePostStarted {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -498,12 +634,23 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -530,12 +677,22 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -562,12 +719,22 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -598,12 +765,27 @@ class _$ResetStateImpl implements _ResetState {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -632,12 +814,23 @@ class _$ResetStateImpl implements _ResetState {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -664,12 +857,23 @@ class _$ResetStateImpl implements _ResetState {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -766,12 +970,23 @@ class _$TitleChangedImpl implements _TitleChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -798,12 +1013,22 @@ class _$TitleChangedImpl implements _TitleChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -830,12 +1055,22 @@ class _$TitleChangedImpl implements _TitleChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -866,12 +1101,27 @@ class _$TitleChangedImpl implements _TitleChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -900,12 +1150,23 @@ class _$TitleChangedImpl implements _TitleChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -932,12 +1193,23 @@ class _$TitleChangedImpl implements _TitleChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -1042,12 +1314,23 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -1074,12 +1357,22 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -1106,12 +1399,22 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -1142,12 +1445,27 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -1176,12 +1494,23 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -1208,12 +1537,23 @@ class _$PropertyTypeChangedImpl implements _PropertyTypeChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -1245,6 +1585,694 @@ abstract class _PropertyTypeChanged implements CreatePostEvent {
   String get propertyType;
   @JsonKey(ignore: true)
   _$$PropertyTypeChangedImplCopyWith<_$PropertyTypeChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MainCategoryChangedImplCopyWith<$Res> {
+  factory _$$MainCategoryChangedImplCopyWith(_$MainCategoryChangedImpl value,
+          $Res Function(_$MainCategoryChangedImpl) then) =
+      __$$MainCategoryChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mainCategory});
+}
+
+/// @nodoc
+class __$$MainCategoryChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$MainCategoryChangedImpl>
+    implements _$$MainCategoryChangedImplCopyWith<$Res> {
+  __$$MainCategoryChangedImplCopyWithImpl(_$MainCategoryChangedImpl _value,
+      $Res Function(_$MainCategoryChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mainCategory = null,
+  }) {
+    return _then(_$MainCategoryChangedImpl(
+      mainCategory: null == mainCategory
+          ? _value.mainCategory
+          : mainCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MainCategoryChangedImpl implements _MainCategoryChanged {
+  const _$MainCategoryChangedImpl({required this.mainCategory});
+
+  @override
+  final String mainCategory;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.mainCategoryChanged(mainCategory: $mainCategory)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainCategoryChangedImpl &&
+            (identical(other.mainCategory, mainCategory) ||
+                other.mainCategory == mainCategory));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mainCategory);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MainCategoryChangedImplCopyWith<_$MainCategoryChangedImpl> get copyWith =>
+      __$$MainCategoryChangedImplCopyWithImpl<_$MainCategoryChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return mainCategoryChanged(mainCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return mainCategoryChanged?.call(mainCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (mainCategoryChanged != null) {
+      return mainCategoryChanged(mainCategory);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return mainCategoryChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return mainCategoryChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (mainCategoryChanged != null) {
+      return mainCategoryChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MainCategoryChanged implements CreatePostEvent {
+  const factory _MainCategoryChanged({required final String mainCategory}) =
+      _$MainCategoryChangedImpl;
+
+  String get mainCategory;
+  @JsonKey(ignore: true)
+  _$$MainCategoryChangedImplCopyWith<_$MainCategoryChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubCategoryChangedImplCopyWith<$Res> {
+  factory _$$SubCategoryChangedImplCopyWith(_$SubCategoryChangedImpl value,
+          $Res Function(_$SubCategoryChangedImpl) then) =
+      __$$SubCategoryChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String subCategory});
+}
+
+/// @nodoc
+class __$$SubCategoryChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$SubCategoryChangedImpl>
+    implements _$$SubCategoryChangedImplCopyWith<$Res> {
+  __$$SubCategoryChangedImplCopyWithImpl(_$SubCategoryChangedImpl _value,
+      $Res Function(_$SubCategoryChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? subCategory = null,
+  }) {
+    return _then(_$SubCategoryChangedImpl(
+      subCategory: null == subCategory
+          ? _value.subCategory
+          : subCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubCategoryChangedImpl implements _SubCategoryChanged {
+  const _$SubCategoryChangedImpl({required this.subCategory});
+
+  @override
+  final String subCategory;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.subCategoryChanged(subCategory: $subCategory)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubCategoryChangedImpl &&
+            (identical(other.subCategory, subCategory) ||
+                other.subCategory == subCategory));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, subCategory);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubCategoryChangedImplCopyWith<_$SubCategoryChangedImpl> get copyWith =>
+      __$$SubCategoryChangedImplCopyWithImpl<_$SubCategoryChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return subCategoryChanged(subCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return subCategoryChanged?.call(subCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (subCategoryChanged != null) {
+      return subCategoryChanged(subCategory);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return subCategoryChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return subCategoryChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (subCategoryChanged != null) {
+      return subCategoryChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubCategoryChanged implements CreatePostEvent {
+  const factory _SubCategoryChanged({required final String subCategory}) =
+      _$SubCategoryChangedImpl;
+
+  String get subCategory;
+  @JsonKey(ignore: true)
+  _$$SubCategoryChangedImplCopyWith<_$SubCategoryChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1318,12 +2346,23 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -1350,12 +2389,22 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -1382,12 +2431,22 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -1418,12 +2477,27 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -1452,12 +2526,23 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -1484,12 +2569,23 @@ class _$LookingForChangedImpl implements _LookingForChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -1593,12 +2689,23 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -1625,12 +2732,22 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -1657,12 +2774,22 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -1693,12 +2820,27 @@ class _$AddressChangedImpl implements _AddressChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -1727,12 +2869,23 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -1759,12 +2912,23 @@ class _$AddressChangedImpl implements _AddressChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -1890,12 +3054,23 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -1922,12 +3097,22 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -1954,12 +3139,22 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -1990,12 +3185,27 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -2024,12 +3234,23 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -2056,12 +3277,23 @@ class _$LocationCoordinatesChangedImpl implements _LocationCoordinatesChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -2170,12 +3402,23 @@ class _$LocationChangedImpl implements _LocationChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -2202,12 +3445,22 @@ class _$LocationChangedImpl implements _LocationChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -2234,12 +3487,22 @@ class _$LocationChangedImpl implements _LocationChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -2270,12 +3533,27 @@ class _$LocationChangedImpl implements _LocationChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -2304,12 +3582,23 @@ class _$LocationChangedImpl implements _LocationChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -2336,12 +3625,23 @@ class _$LocationChangedImpl implements _LocationChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -2444,12 +3744,23 @@ class _$PriceChangedImpl implements _PriceChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -2476,12 +3787,22 @@ class _$PriceChangedImpl implements _PriceChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -2508,12 +3829,22 @@ class _$PriceChangedImpl implements _PriceChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -2544,12 +3875,27 @@ class _$PriceChangedImpl implements _PriceChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -2578,12 +3924,23 @@ class _$PriceChangedImpl implements _PriceChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -2610,12 +3967,23 @@ class _$PriceChangedImpl implements _PriceChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -2648,6 +4016,2764 @@ abstract class _PriceChanged implements CreatePostEvent {
   @JsonKey(ignore: true)
   _$$PriceChangedImplCopyWith<_$PriceChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$IsNegotiableChangedImplCopyWith<$Res> {
+  factory _$$IsNegotiableChangedImplCopyWith(_$IsNegotiableChangedImpl value,
+          $Res Function(_$IsNegotiableChangedImpl) then) =
+      __$$IsNegotiableChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isNegotiable});
+}
+
+/// @nodoc
+class __$$IsNegotiableChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$IsNegotiableChangedImpl>
+    implements _$$IsNegotiableChangedImplCopyWith<$Res> {
+  __$$IsNegotiableChangedImplCopyWithImpl(_$IsNegotiableChangedImpl _value,
+      $Res Function(_$IsNegotiableChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isNegotiable = null,
+  }) {
+    return _then(_$IsNegotiableChangedImpl(
+      isNegotiable: null == isNegotiable
+          ? _value.isNegotiable
+          : isNegotiable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IsNegotiableChangedImpl implements _IsNegotiableChanged {
+  const _$IsNegotiableChangedImpl({required this.isNegotiable});
+
+  @override
+  final bool isNegotiable;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.isNegotiableChanged(isNegotiable: $isNegotiable)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IsNegotiableChangedImpl &&
+            (identical(other.isNegotiable, isNegotiable) ||
+                other.isNegotiable == isNegotiable));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isNegotiable);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IsNegotiableChangedImplCopyWith<_$IsNegotiableChangedImpl> get copyWith =>
+      __$$IsNegotiableChangedImplCopyWithImpl<_$IsNegotiableChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return isNegotiableChanged(isNegotiable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return isNegotiableChanged?.call(isNegotiable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isNegotiableChanged != null) {
+      return isNegotiableChanged(isNegotiable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return isNegotiableChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return isNegotiableChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (isNegotiableChanged != null) {
+      return isNegotiableChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsNegotiableChanged implements CreatePostEvent {
+  const factory _IsNegotiableChanged({required final bool isNegotiable}) =
+      _$IsNegotiableChangedImpl;
+
+  bool get isNegotiable;
+  @JsonKey(ignore: true)
+  _$$IsNegotiableChangedImplCopyWith<_$IsNegotiableChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SecurityDepositChangedImplCopyWith<$Res> {
+  factory _$$SecurityDepositChangedImplCopyWith(
+          _$SecurityDepositChangedImpl value,
+          $Res Function(_$SecurityDepositChangedImpl) then) =
+      __$$SecurityDepositChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String securityDeposit});
+}
+
+/// @nodoc
+class __$$SecurityDepositChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$SecurityDepositChangedImpl>
+    implements _$$SecurityDepositChangedImplCopyWith<$Res> {
+  __$$SecurityDepositChangedImplCopyWithImpl(
+      _$SecurityDepositChangedImpl _value,
+      $Res Function(_$SecurityDepositChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? securityDeposit = null,
+  }) {
+    return _then(_$SecurityDepositChangedImpl(
+      securityDeposit: null == securityDeposit
+          ? _value.securityDeposit
+          : securityDeposit // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SecurityDepositChangedImpl implements _SecurityDepositChanged {
+  const _$SecurityDepositChangedImpl({required this.securityDeposit});
+
+  @override
+  final String securityDeposit;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.securityDepositChanged(securityDeposit: $securityDeposit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SecurityDepositChangedImpl &&
+            (identical(other.securityDeposit, securityDeposit) ||
+                other.securityDeposit == securityDeposit));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, securityDeposit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SecurityDepositChangedImplCopyWith<_$SecurityDepositChangedImpl>
+      get copyWith => __$$SecurityDepositChangedImplCopyWithImpl<
+          _$SecurityDepositChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return securityDepositChanged(securityDeposit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return securityDepositChanged?.call(securityDeposit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (securityDepositChanged != null) {
+      return securityDepositChanged(securityDeposit);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return securityDepositChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return securityDepositChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (securityDepositChanged != null) {
+      return securityDepositChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SecurityDepositChanged implements CreatePostEvent {
+  const factory _SecurityDepositChanged(
+      {required final String securityDeposit}) = _$SecurityDepositChangedImpl;
+
+  String get securityDeposit;
+  @JsonKey(ignore: true)
+  _$$SecurityDepositChangedImplCopyWith<_$SecurityDepositChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PropertyStatusChangedImplCopyWith<$Res> {
+  factory _$$PropertyStatusChangedImplCopyWith(
+          _$PropertyStatusChangedImpl value,
+          $Res Function(_$PropertyStatusChangedImpl) then) =
+      __$$PropertyStatusChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String propertyStatus});
+}
+
+/// @nodoc
+class __$$PropertyStatusChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$PropertyStatusChangedImpl>
+    implements _$$PropertyStatusChangedImplCopyWith<$Res> {
+  __$$PropertyStatusChangedImplCopyWithImpl(_$PropertyStatusChangedImpl _value,
+      $Res Function(_$PropertyStatusChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? propertyStatus = null,
+  }) {
+    return _then(_$PropertyStatusChangedImpl(
+      propertyStatus: null == propertyStatus
+          ? _value.propertyStatus
+          : propertyStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PropertyStatusChangedImpl implements _PropertyStatusChanged {
+  const _$PropertyStatusChangedImpl({required this.propertyStatus});
+
+  @override
+  final String propertyStatus;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.propertyStatusChanged(propertyStatus: $propertyStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PropertyStatusChangedImpl &&
+            (identical(other.propertyStatus, propertyStatus) ||
+                other.propertyStatus == propertyStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, propertyStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PropertyStatusChangedImplCopyWith<_$PropertyStatusChangedImpl>
+      get copyWith => __$$PropertyStatusChangedImplCopyWithImpl<
+          _$PropertyStatusChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return propertyStatusChanged(propertyStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return propertyStatusChanged?.call(propertyStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (propertyStatusChanged != null) {
+      return propertyStatusChanged(propertyStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return propertyStatusChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return propertyStatusChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (propertyStatusChanged != null) {
+      return propertyStatusChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PropertyStatusChanged implements CreatePostEvent {
+  const factory _PropertyStatusChanged({required final String propertyStatus}) =
+      _$PropertyStatusChangedImpl;
+
+  String get propertyStatus;
+  @JsonKey(ignore: true)
+  _$$PropertyStatusChangedImplCopyWith<_$PropertyStatusChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ContactViaPhoneChangedImplCopyWith<$Res> {
+  factory _$$ContactViaPhoneChangedImplCopyWith(
+          _$ContactViaPhoneChangedImpl value,
+          $Res Function(_$ContactViaPhoneChangedImpl) then) =
+      __$$ContactViaPhoneChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool contactViaPhone});
+}
+
+/// @nodoc
+class __$$ContactViaPhoneChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$ContactViaPhoneChangedImpl>
+    implements _$$ContactViaPhoneChangedImplCopyWith<$Res> {
+  __$$ContactViaPhoneChangedImplCopyWithImpl(
+      _$ContactViaPhoneChangedImpl _value,
+      $Res Function(_$ContactViaPhoneChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contactViaPhone = null,
+  }) {
+    return _then(_$ContactViaPhoneChangedImpl(
+      contactViaPhone: null == contactViaPhone
+          ? _value.contactViaPhone
+          : contactViaPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ContactViaPhoneChangedImpl implements _ContactViaPhoneChanged {
+  const _$ContactViaPhoneChangedImpl({required this.contactViaPhone});
+
+  @override
+  final bool contactViaPhone;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.contactViaPhoneChanged(contactViaPhone: $contactViaPhone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContactViaPhoneChangedImpl &&
+            (identical(other.contactViaPhone, contactViaPhone) ||
+                other.contactViaPhone == contactViaPhone));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, contactViaPhone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContactViaPhoneChangedImplCopyWith<_$ContactViaPhoneChangedImpl>
+      get copyWith => __$$ContactViaPhoneChangedImplCopyWithImpl<
+          _$ContactViaPhoneChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return contactViaPhoneChanged(contactViaPhone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return contactViaPhoneChanged?.call(contactViaPhone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (contactViaPhoneChanged != null) {
+      return contactViaPhoneChanged(contactViaPhone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return contactViaPhoneChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return contactViaPhoneChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (contactViaPhoneChanged != null) {
+      return contactViaPhoneChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ContactViaPhoneChanged implements CreatePostEvent {
+  const factory _ContactViaPhoneChanged({required final bool contactViaPhone}) =
+      _$ContactViaPhoneChangedImpl;
+
+  bool get contactViaPhone;
+  @JsonKey(ignore: true)
+  _$$ContactViaPhoneChangedImplCopyWith<_$ContactViaPhoneChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ContactViaWhatsAppChangedImplCopyWith<$Res> {
+  factory _$$ContactViaWhatsAppChangedImplCopyWith(
+          _$ContactViaWhatsAppChangedImpl value,
+          $Res Function(_$ContactViaWhatsAppChangedImpl) then) =
+      __$$ContactViaWhatsAppChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool contactViaWhatsApp});
+}
+
+/// @nodoc
+class __$$ContactViaWhatsAppChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$ContactViaWhatsAppChangedImpl>
+    implements _$$ContactViaWhatsAppChangedImplCopyWith<$Res> {
+  __$$ContactViaWhatsAppChangedImplCopyWithImpl(
+      _$ContactViaWhatsAppChangedImpl _value,
+      $Res Function(_$ContactViaWhatsAppChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contactViaWhatsApp = null,
+  }) {
+    return _then(_$ContactViaWhatsAppChangedImpl(
+      contactViaWhatsApp: null == contactViaWhatsApp
+          ? _value.contactViaWhatsApp
+          : contactViaWhatsApp // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ContactViaWhatsAppChangedImpl implements _ContactViaWhatsAppChanged {
+  const _$ContactViaWhatsAppChangedImpl({required this.contactViaWhatsApp});
+
+  @override
+  final bool contactViaWhatsApp;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.contactViaWhatsAppChanged(contactViaWhatsApp: $contactViaWhatsApp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContactViaWhatsAppChangedImpl &&
+            (identical(other.contactViaWhatsApp, contactViaWhatsApp) ||
+                other.contactViaWhatsApp == contactViaWhatsApp));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, contactViaWhatsApp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContactViaWhatsAppChangedImplCopyWith<_$ContactViaWhatsAppChangedImpl>
+      get copyWith => __$$ContactViaWhatsAppChangedImplCopyWithImpl<
+          _$ContactViaWhatsAppChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return contactViaWhatsAppChanged(contactViaWhatsApp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return contactViaWhatsAppChanged?.call(contactViaWhatsApp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (contactViaWhatsAppChanged != null) {
+      return contactViaWhatsAppChanged(contactViaWhatsApp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return contactViaWhatsAppChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return contactViaWhatsAppChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (contactViaWhatsAppChanged != null) {
+      return contactViaWhatsAppChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ContactViaWhatsAppChanged implements CreatePostEvent {
+  const factory _ContactViaWhatsAppChanged(
+          {required final bool contactViaWhatsApp}) =
+      _$ContactViaWhatsAppChangedImpl;
+
+  bool get contactViaWhatsApp;
+  @JsonKey(ignore: true)
+  _$$ContactViaWhatsAppChangedImplCopyWith<_$ContactViaWhatsAppChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$StepChangedImplCopyWith<$Res> {
+  factory _$$StepChangedImplCopyWith(
+          _$StepChangedImpl value, $Res Function(_$StepChangedImpl) then) =
+      __$$StepChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int step});
+}
+
+/// @nodoc
+class __$$StepChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$StepChangedImpl>
+    implements _$$StepChangedImplCopyWith<$Res> {
+  __$$StepChangedImplCopyWithImpl(
+      _$StepChangedImpl _value, $Res Function(_$StepChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? step = null,
+  }) {
+    return _then(_$StepChangedImpl(
+      step: null == step
+          ? _value.step
+          : step // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StepChangedImpl implements _StepChanged {
+  const _$StepChangedImpl({required this.step});
+
+  @override
+  final int step;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.stepChanged(step: $step)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StepChangedImpl &&
+            (identical(other.step, step) || other.step == step));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, step);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StepChangedImplCopyWith<_$StepChangedImpl> get copyWith =>
+      __$$StepChangedImplCopyWithImpl<_$StepChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return stepChanged(step);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return stepChanged?.call(step);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (stepChanged != null) {
+      return stepChanged(step);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return stepChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return stepChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (stepChanged != null) {
+      return stepChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StepChanged implements CreatePostEvent {
+  const factory _StepChanged({required final int step}) = _$StepChangedImpl;
+
+  int get step;
+  @JsonKey(ignore: true)
+  _$$StepChangedImplCopyWith<_$StepChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CarpetAreaChangedImplCopyWith<$Res> {
+  factory _$$CarpetAreaChangedImplCopyWith(_$CarpetAreaChangedImpl value,
+          $Res Function(_$CarpetAreaChangedImpl) then) =
+      __$$CarpetAreaChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String carpetArea});
+}
+
+/// @nodoc
+class __$$CarpetAreaChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$CarpetAreaChangedImpl>
+    implements _$$CarpetAreaChangedImplCopyWith<$Res> {
+  __$$CarpetAreaChangedImplCopyWithImpl(_$CarpetAreaChangedImpl _value,
+      $Res Function(_$CarpetAreaChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? carpetArea = null,
+  }) {
+    return _then(_$CarpetAreaChangedImpl(
+      carpetArea: null == carpetArea
+          ? _value.carpetArea
+          : carpetArea // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CarpetAreaChangedImpl implements _CarpetAreaChanged {
+  const _$CarpetAreaChangedImpl({required this.carpetArea});
+
+  @override
+  final String carpetArea;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.carpetAreaChanged(carpetArea: $carpetArea)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CarpetAreaChangedImpl &&
+            (identical(other.carpetArea, carpetArea) ||
+                other.carpetArea == carpetArea));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, carpetArea);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CarpetAreaChangedImplCopyWith<_$CarpetAreaChangedImpl> get copyWith =>
+      __$$CarpetAreaChangedImplCopyWithImpl<_$CarpetAreaChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return carpetAreaChanged(carpetArea);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return carpetAreaChanged?.call(carpetArea);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (carpetAreaChanged != null) {
+      return carpetAreaChanged(carpetArea);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return carpetAreaChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return carpetAreaChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (carpetAreaChanged != null) {
+      return carpetAreaChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CarpetAreaChanged implements CreatePostEvent {
+  const factory _CarpetAreaChanged({required final String carpetArea}) =
+      _$CarpetAreaChangedImpl;
+
+  String get carpetArea;
+  @JsonKey(ignore: true)
+  _$$CarpetAreaChangedImplCopyWith<_$CarpetAreaChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CarpetAreaUnitChangedImplCopyWith<$Res> {
+  factory _$$CarpetAreaUnitChangedImplCopyWith(
+          _$CarpetAreaUnitChangedImpl value,
+          $Res Function(_$CarpetAreaUnitChangedImpl) then) =
+      __$$CarpetAreaUnitChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String carpetAreaUnit});
+}
+
+/// @nodoc
+class __$$CarpetAreaUnitChangedImplCopyWithImpl<$Res>
+    extends _$CreatePostEventCopyWithImpl<$Res, _$CarpetAreaUnitChangedImpl>
+    implements _$$CarpetAreaUnitChangedImplCopyWith<$Res> {
+  __$$CarpetAreaUnitChangedImplCopyWithImpl(_$CarpetAreaUnitChangedImpl _value,
+      $Res Function(_$CarpetAreaUnitChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? carpetAreaUnit = null,
+  }) {
+    return _then(_$CarpetAreaUnitChangedImpl(
+      carpetAreaUnit: null == carpetAreaUnit
+          ? _value.carpetAreaUnit
+          : carpetAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CarpetAreaUnitChangedImpl implements _CarpetAreaUnitChanged {
+  const _$CarpetAreaUnitChangedImpl({required this.carpetAreaUnit});
+
+  @override
+  final String carpetAreaUnit;
+
+  @override
+  String toString() {
+    return 'CreatePostEvent.carpetAreaUnitChanged(carpetAreaUnit: $carpetAreaUnit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CarpetAreaUnitChangedImpl &&
+            (identical(other.carpetAreaUnit, carpetAreaUnit) ||
+                other.carpetAreaUnit == carpetAreaUnit));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, carpetAreaUnit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CarpetAreaUnitChangedImplCopyWith<_$CarpetAreaUnitChangedImpl>
+      get copyWith => __$$CarpetAreaUnitChangedImplCopyWithImpl<
+          _$CarpetAreaUnitChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resetState,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
+    required TResult Function(String lookingFor) lookingForChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(String address, double latitude, double longitude)
+        locationCoordinatesChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
+    required TResult Function(String plotArea) plotAreaChanged,
+    required TResult Function(String areaUnit) areaUnitChanged,
+    required TResult Function(String facing) facingChanged,
+    required TResult Function(String roadWidth) roadWidthChanged,
+    required TResult Function(String postedBy) postedByChanged,
+    required TResult Function(String approvalStatus) approvalStatusChanged,
+    required TResult Function(String dimensions) dimensionsChanged,
+    required TResult Function(bool isCornerPlot) isCornerPlotChanged,
+    required TResult Function(bool isGatedCommunity) isGatedCommunityChanged,
+    required TResult Function() validateAndProceed,
+    required TResult Function(List<File> images) addImages,
+    required TResult Function(int index) removeImage,
+    required TResult Function(String description) descriptionChanged,
+    required TResult Function() proceedToNext,
+    required TResult Function(String description) createPost,
+  }) {
+    return carpetAreaUnitChanged(carpetAreaUnit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resetState,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
+    TResult? Function(String lookingFor)? lookingForChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult? Function(String plotArea)? plotAreaChanged,
+    TResult? Function(String areaUnit)? areaUnitChanged,
+    TResult? Function(String facing)? facingChanged,
+    TResult? Function(String roadWidth)? roadWidthChanged,
+    TResult? Function(String postedBy)? postedByChanged,
+    TResult? Function(String approvalStatus)? approvalStatusChanged,
+    TResult? Function(String dimensions)? dimensionsChanged,
+    TResult? Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult? Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult? Function()? validateAndProceed,
+    TResult? Function(List<File> images)? addImages,
+    TResult? Function(int index)? removeImage,
+    TResult? Function(String description)? descriptionChanged,
+    TResult? Function()? proceedToNext,
+    TResult? Function(String description)? createPost,
+  }) {
+    return carpetAreaUnitChanged?.call(carpetAreaUnit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resetState,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
+    TResult Function(String lookingFor)? lookingForChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(String address, double latitude, double longitude)?
+        locationCoordinatesChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
+    TResult Function(String plotArea)? plotAreaChanged,
+    TResult Function(String areaUnit)? areaUnitChanged,
+    TResult Function(String facing)? facingChanged,
+    TResult Function(String roadWidth)? roadWidthChanged,
+    TResult Function(String postedBy)? postedByChanged,
+    TResult Function(String approvalStatus)? approvalStatusChanged,
+    TResult Function(String dimensions)? dimensionsChanged,
+    TResult Function(bool isCornerPlot)? isCornerPlotChanged,
+    TResult Function(bool isGatedCommunity)? isGatedCommunityChanged,
+    TResult Function()? validateAndProceed,
+    TResult Function(List<File> images)? addImages,
+    TResult Function(int index)? removeImage,
+    TResult Function(String description)? descriptionChanged,
+    TResult Function()? proceedToNext,
+    TResult Function(String description)? createPost,
+    required TResult orElse(),
+  }) {
+    if (carpetAreaUnitChanged != null) {
+      return carpetAreaUnitChanged(carpetAreaUnit);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatePostStarted value) started,
+    required TResult Function(_ResetState value) resetState,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
+    required TResult Function(_LookingForChanged value) lookingForChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_LocationCoordinatesChanged value)
+        locationCoordinatesChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
+    required TResult Function(_PlotAreaChanged value) plotAreaChanged,
+    required TResult Function(_AreaUnitChanged value) areaUnitChanged,
+    required TResult Function(_FacingChanged value) facingChanged,
+    required TResult Function(_RoadWidthChanged value) roadWidthChanged,
+    required TResult Function(_PostedByChanged value) postedByChanged,
+    required TResult Function(_ApprovalStatusChanged value)
+        approvalStatusChanged,
+    required TResult Function(_DimensionsChanged value) dimensionsChanged,
+    required TResult Function(_IsCornerPlotChanged value) isCornerPlotChanged,
+    required TResult Function(_IsGatedCommunityChanged value)
+        isGatedCommunityChanged,
+    required TResult Function(_ValidateAndProceed value) validateAndProceed,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_DescriptionChanged value) descriptionChanged,
+    required TResult Function(_ProceedToNext value) proceedToNext,
+    required TResult Function(_CreatePost value) createPost,
+  }) {
+    return carpetAreaUnitChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreatePostStarted value)? started,
+    TResult? Function(_ResetState value)? resetState,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult? Function(_LookingForChanged value)? lookingForChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult? Function(_FacingChanged value)? facingChanged,
+    TResult? Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult? Function(_PostedByChanged value)? postedByChanged,
+    TResult? Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult? Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult? Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult? Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult? Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_DescriptionChanged value)? descriptionChanged,
+    TResult? Function(_ProceedToNext value)? proceedToNext,
+    TResult? Function(_CreatePost value)? createPost,
+  }) {
+    return carpetAreaUnitChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatePostStarted value)? started,
+    TResult Function(_ResetState value)? resetState,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
+    TResult Function(_LookingForChanged value)? lookingForChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_LocationCoordinatesChanged value)?
+        locationCoordinatesChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
+    TResult Function(_PlotAreaChanged value)? plotAreaChanged,
+    TResult Function(_AreaUnitChanged value)? areaUnitChanged,
+    TResult Function(_FacingChanged value)? facingChanged,
+    TResult Function(_RoadWidthChanged value)? roadWidthChanged,
+    TResult Function(_PostedByChanged value)? postedByChanged,
+    TResult Function(_ApprovalStatusChanged value)? approvalStatusChanged,
+    TResult Function(_DimensionsChanged value)? dimensionsChanged,
+    TResult Function(_IsCornerPlotChanged value)? isCornerPlotChanged,
+    TResult Function(_IsGatedCommunityChanged value)? isGatedCommunityChanged,
+    TResult Function(_ValidateAndProceed value)? validateAndProceed,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_DescriptionChanged value)? descriptionChanged,
+    TResult Function(_ProceedToNext value)? proceedToNext,
+    TResult Function(_CreatePost value)? createPost,
+    required TResult orElse(),
+  }) {
+    if (carpetAreaUnitChanged != null) {
+      return carpetAreaUnitChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CarpetAreaUnitChanged implements CreatePostEvent {
+  const factory _CarpetAreaUnitChanged({required final String carpetAreaUnit}) =
+      _$CarpetAreaUnitChangedImpl;
+
+  String get carpetAreaUnit;
+  @JsonKey(ignore: true)
+  _$$CarpetAreaUnitChangedImplCopyWith<_$CarpetAreaUnitChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2720,12 +6846,23 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -2752,12 +6889,22 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -2784,12 +6931,22 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -2820,12 +6977,27 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -2854,12 +7026,23 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -2886,12 +7069,23 @@ class _$PlotAreaChangedImpl implements _PlotAreaChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -2996,12 +7190,23 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -3028,12 +7233,22 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -3060,12 +7275,22 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -3096,12 +7321,27 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -3130,12 +7370,23 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -3162,12 +7413,23 @@ class _$AreaUnitChangedImpl implements _AreaUnitChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -3270,12 +7532,23 @@ class _$FacingChangedImpl implements _FacingChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -3302,12 +7575,22 @@ class _$FacingChangedImpl implements _FacingChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -3334,12 +7617,22 @@ class _$FacingChangedImpl implements _FacingChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -3370,12 +7663,27 @@ class _$FacingChangedImpl implements _FacingChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -3404,12 +7712,23 @@ class _$FacingChangedImpl implements _FacingChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -3436,12 +7755,23 @@ class _$FacingChangedImpl implements _FacingChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -3546,12 +7876,23 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -3578,12 +7919,22 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -3610,12 +7961,22 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -3646,12 +8007,27 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -3680,12 +8056,23 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -3712,12 +8099,23 @@ class _$RoadWidthChangedImpl implements _RoadWidthChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -3822,12 +8220,23 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -3854,12 +8263,22 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -3886,12 +8305,22 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -3922,12 +8351,27 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -3956,12 +8400,23 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -3988,12 +8443,23 @@ class _$PostedByChangedImpl implements _PostedByChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -4099,12 +8565,23 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -4131,12 +8608,22 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -4163,12 +8650,22 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -4199,12 +8696,27 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -4233,12 +8745,23 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -4265,12 +8788,23 @@ class _$ApprovalStatusChangedImpl implements _ApprovalStatusChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -4375,12 +8909,23 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -4407,12 +8952,22 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -4439,12 +8994,22 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -4475,12 +9040,27 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -4509,12 +9089,23 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -4541,12 +9132,23 @@ class _$DimensionsChangedImpl implements _DimensionsChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -4651,12 +9253,23 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -4683,12 +9296,22 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -4715,12 +9338,22 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -4751,12 +9384,27 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -4785,12 +9433,23 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -4817,12 +9476,23 @@ class _$IsCornerPlotChangedImpl implements _IsCornerPlotChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -4929,12 +9599,23 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -4961,12 +9642,22 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -4993,12 +9684,22 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -5029,12 +9730,27 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -5063,12 +9779,23 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -5095,12 +9822,23 @@ class _$IsGatedCommunityChangedImpl implements _IsGatedCommunityChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -5177,12 +9915,23 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -5209,12 +9958,22 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -5241,12 +10000,22 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -5277,12 +10046,27 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -5311,12 +10095,23 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -5343,12 +10138,23 @@ class _$ValidateAndProceedImpl implements _ValidateAndProceed {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -5451,12 +10257,23 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -5483,12 +10300,22 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -5515,12 +10342,22 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -5551,12 +10388,27 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -5585,12 +10437,23 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -5617,12 +10480,23 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -5725,12 +10599,23 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -5757,12 +10642,22 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -5789,12 +10684,22 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -5825,12 +10730,27 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -5859,12 +10779,23 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -5891,12 +10822,23 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -6000,12 +10942,23 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -6032,12 +10985,22 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -6064,12 +11027,22 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -6100,12 +11073,27 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -6134,12 +11122,23 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -6166,12 +11165,23 @@ class _$DescriptionChangedImpl implements _DescriptionChanged {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -6248,12 +11258,23 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -6280,12 +11301,22 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -6312,12 +11343,22 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -6348,12 +11389,27 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -6382,12 +11438,23 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -6414,12 +11481,23 @@ class _$ProceedToNextImpl implements _ProceedToNext {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -6517,12 +11595,23 @@ class _$CreatePostImpl implements _CreatePost {
     required TResult Function() resetState,
     required TResult Function(String title) titleChanged,
     required TResult Function(String propertyType) propertyTypeChanged,
+    required TResult Function(String mainCategory) mainCategoryChanged,
+    required TResult Function(String subCategory) subCategoryChanged,
     required TResult Function(String lookingFor) lookingForChanged,
     required TResult Function(String address) addressChanged,
     required TResult Function(String address, double latitude, double longitude)
         locationCoordinatesChanged,
     required TResult Function(String location) locationChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(bool isNegotiable) isNegotiableChanged,
+    required TResult Function(String securityDeposit) securityDepositChanged,
+    required TResult Function(String propertyStatus) propertyStatusChanged,
+    required TResult Function(bool contactViaPhone) contactViaPhoneChanged,
+    required TResult Function(bool contactViaWhatsApp)
+        contactViaWhatsAppChanged,
+    required TResult Function(int step) stepChanged,
+    required TResult Function(String carpetArea) carpetAreaChanged,
+    required TResult Function(String carpetAreaUnit) carpetAreaUnitChanged,
     required TResult Function(String plotArea) plotAreaChanged,
     required TResult Function(String areaUnit) areaUnitChanged,
     required TResult Function(String facing) facingChanged,
@@ -6549,12 +11638,22 @@ class _$CreatePostImpl implements _CreatePost {
     TResult? Function()? resetState,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String propertyType)? propertyTypeChanged,
+    TResult? Function(String mainCategory)? mainCategoryChanged,
+    TResult? Function(String subCategory)? subCategoryChanged,
     TResult? Function(String lookingFor)? lookingForChanged,
     TResult? Function(String address)? addressChanged,
     TResult? Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult? Function(String location)? locationChanged,
     TResult? Function(String price)? priceChanged,
+    TResult? Function(bool isNegotiable)? isNegotiableChanged,
+    TResult? Function(String securityDeposit)? securityDepositChanged,
+    TResult? Function(String propertyStatus)? propertyStatusChanged,
+    TResult? Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult? Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult? Function(int step)? stepChanged,
+    TResult? Function(String carpetArea)? carpetAreaChanged,
+    TResult? Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult? Function(String plotArea)? plotAreaChanged,
     TResult? Function(String areaUnit)? areaUnitChanged,
     TResult? Function(String facing)? facingChanged,
@@ -6581,12 +11680,22 @@ class _$CreatePostImpl implements _CreatePost {
     TResult Function()? resetState,
     TResult Function(String title)? titleChanged,
     TResult Function(String propertyType)? propertyTypeChanged,
+    TResult Function(String mainCategory)? mainCategoryChanged,
+    TResult Function(String subCategory)? subCategoryChanged,
     TResult Function(String lookingFor)? lookingForChanged,
     TResult Function(String address)? addressChanged,
     TResult Function(String address, double latitude, double longitude)?
         locationCoordinatesChanged,
     TResult Function(String location)? locationChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(bool isNegotiable)? isNegotiableChanged,
+    TResult Function(String securityDeposit)? securityDepositChanged,
+    TResult Function(String propertyStatus)? propertyStatusChanged,
+    TResult Function(bool contactViaPhone)? contactViaPhoneChanged,
+    TResult Function(bool contactViaWhatsApp)? contactViaWhatsAppChanged,
+    TResult Function(int step)? stepChanged,
+    TResult Function(String carpetArea)? carpetAreaChanged,
+    TResult Function(String carpetAreaUnit)? carpetAreaUnitChanged,
     TResult Function(String plotArea)? plotAreaChanged,
     TResult Function(String areaUnit)? areaUnitChanged,
     TResult Function(String facing)? facingChanged,
@@ -6617,12 +11726,27 @@ class _$CreatePostImpl implements _CreatePost {
     required TResult Function(_ResetState value) resetState,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_PropertyTypeChanged value) propertyTypeChanged,
+    required TResult Function(_MainCategoryChanged value) mainCategoryChanged,
+    required TResult Function(_SubCategoryChanged value) subCategoryChanged,
     required TResult Function(_LookingForChanged value) lookingForChanged,
     required TResult Function(_AddressChanged value) addressChanged,
     required TResult Function(_LocationCoordinatesChanged value)
         locationCoordinatesChanged,
     required TResult Function(_LocationChanged value) locationChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_IsNegotiableChanged value) isNegotiableChanged,
+    required TResult Function(_SecurityDepositChanged value)
+        securityDepositChanged,
+    required TResult Function(_PropertyStatusChanged value)
+        propertyStatusChanged,
+    required TResult Function(_ContactViaPhoneChanged value)
+        contactViaPhoneChanged,
+    required TResult Function(_ContactViaWhatsAppChanged value)
+        contactViaWhatsAppChanged,
+    required TResult Function(_StepChanged value) stepChanged,
+    required TResult Function(_CarpetAreaChanged value) carpetAreaChanged,
+    required TResult Function(_CarpetAreaUnitChanged value)
+        carpetAreaUnitChanged,
     required TResult Function(_PlotAreaChanged value) plotAreaChanged,
     required TResult Function(_AreaUnitChanged value) areaUnitChanged,
     required TResult Function(_FacingChanged value) facingChanged,
@@ -6651,12 +11775,23 @@ class _$CreatePostImpl implements _CreatePost {
     TResult? Function(_ResetState value)? resetState,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult? Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult? Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult? Function(_LookingForChanged value)? lookingForChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
     TResult? Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
     TResult? Function(_PriceChanged value)? priceChanged,
+    TResult? Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult? Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult? Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult? Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult? Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult? Function(_StepChanged value)? stepChanged,
+    TResult? Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult? Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult? Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult? Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult? Function(_FacingChanged value)? facingChanged,
@@ -6683,12 +11818,23 @@ class _$CreatePostImpl implements _CreatePost {
     TResult Function(_ResetState value)? resetState,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_PropertyTypeChanged value)? propertyTypeChanged,
+    TResult Function(_MainCategoryChanged value)? mainCategoryChanged,
+    TResult Function(_SubCategoryChanged value)? subCategoryChanged,
     TResult Function(_LookingForChanged value)? lookingForChanged,
     TResult Function(_AddressChanged value)? addressChanged,
     TResult Function(_LocationCoordinatesChanged value)?
         locationCoordinatesChanged,
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_IsNegotiableChanged value)? isNegotiableChanged,
+    TResult Function(_SecurityDepositChanged value)? securityDepositChanged,
+    TResult Function(_PropertyStatusChanged value)? propertyStatusChanged,
+    TResult Function(_ContactViaPhoneChanged value)? contactViaPhoneChanged,
+    TResult Function(_ContactViaWhatsAppChanged value)?
+        contactViaWhatsAppChanged,
+    TResult Function(_StepChanged value)? stepChanged,
+    TResult Function(_CarpetAreaChanged value)? carpetAreaChanged,
+    TResult Function(_CarpetAreaUnitChanged value)? carpetAreaUnitChanged,
     TResult Function(_PlotAreaChanged value)? plotAreaChanged,
     TResult Function(_AreaUnitChanged value)? areaUnitChanged,
     TResult Function(_FacingChanged value)? facingChanged,
@@ -6748,6 +11894,16 @@ mixin _$CreatePostState {
   String get dimensions => throw _privateConstructorUsedError;
   bool get isCornerPlot => throw _privateConstructorUsedError;
   bool get isGatedCommunity => throw _privateConstructorUsedError;
+  String get selectedMainCategory => throw _privateConstructorUsedError;
+  String get selectedSubCategory => throw _privateConstructorUsedError;
+  bool get isNegotiable => throw _privateConstructorUsedError;
+  String get securityDeposit => throw _privateConstructorUsedError;
+  String get selectedPropertyStatus => throw _privateConstructorUsedError;
+  bool get contactViaPhone => throw _privateConstructorUsedError;
+  bool get contactViaWhatsApp => throw _privateConstructorUsedError;
+  int get currentStep => throw _privateConstructorUsedError;
+  String get carpetArea => throw _privateConstructorUsedError;
+  String get selectedCarpetAreaUnit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreatePostStateCopyWith<CreatePostState> get copyWith =>
@@ -6783,7 +11939,17 @@ abstract class $CreatePostStateCopyWith<$Res> {
       String selectedApprovalStatus,
       String dimensions,
       bool isCornerPlot,
-      bool isGatedCommunity});
+      bool isGatedCommunity,
+      String selectedMainCategory,
+      String selectedSubCategory,
+      bool isNegotiable,
+      String securityDeposit,
+      String selectedPropertyStatus,
+      bool contactViaPhone,
+      bool contactViaWhatsApp,
+      int currentStep,
+      String carpetArea,
+      String selectedCarpetAreaUnit});
 
   $AddPostResponseCopyWith<$Res>? get addPostResponse;
 }
@@ -6824,6 +11990,16 @@ class _$CreatePostStateCopyWithImpl<$Res, $Val extends CreatePostState>
     Object? dimensions = null,
     Object? isCornerPlot = null,
     Object? isGatedCommunity = null,
+    Object? selectedMainCategory = null,
+    Object? selectedSubCategory = null,
+    Object? isNegotiable = null,
+    Object? securityDeposit = null,
+    Object? selectedPropertyStatus = null,
+    Object? contactViaPhone = null,
+    Object? contactViaWhatsApp = null,
+    Object? currentStep = null,
+    Object? carpetArea = null,
+    Object? selectedCarpetAreaUnit = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -6918,6 +12094,46 @@ class _$CreatePostStateCopyWithImpl<$Res, $Val extends CreatePostState>
           ? _value.isGatedCommunity
           : isGatedCommunity // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedMainCategory: null == selectedMainCategory
+          ? _value.selectedMainCategory
+          : selectedMainCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedSubCategory: null == selectedSubCategory
+          ? _value.selectedSubCategory
+          : selectedSubCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      isNegotiable: null == isNegotiable
+          ? _value.isNegotiable
+          : isNegotiable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      securityDeposit: null == securityDeposit
+          ? _value.securityDeposit
+          : securityDeposit // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPropertyStatus: null == selectedPropertyStatus
+          ? _value.selectedPropertyStatus
+          : selectedPropertyStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      contactViaPhone: null == contactViaPhone
+          ? _value.contactViaPhone
+          : contactViaPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      contactViaWhatsApp: null == contactViaWhatsApp
+          ? _value.contactViaWhatsApp
+          : contactViaWhatsApp // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentStep: null == currentStep
+          ? _value.currentStep
+          : currentStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      carpetArea: null == carpetArea
+          ? _value.carpetArea
+          : carpetArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedCarpetAreaUnit: null == selectedCarpetAreaUnit
+          ? _value.selectedCarpetAreaUnit
+          : selectedCarpetAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -6965,7 +12181,17 @@ abstract class _$$CreatePostStateImplCopyWith<$Res>
       String selectedApprovalStatus,
       String dimensions,
       bool isCornerPlot,
-      bool isGatedCommunity});
+      bool isGatedCommunity,
+      String selectedMainCategory,
+      String selectedSubCategory,
+      bool isNegotiable,
+      String securityDeposit,
+      String selectedPropertyStatus,
+      bool contactViaPhone,
+      bool contactViaWhatsApp,
+      int currentStep,
+      String carpetArea,
+      String selectedCarpetAreaUnit});
 
   @override
   $AddPostResponseCopyWith<$Res>? get addPostResponse;
@@ -7005,6 +12231,16 @@ class __$$CreatePostStateImplCopyWithImpl<$Res>
     Object? dimensions = null,
     Object? isCornerPlot = null,
     Object? isGatedCommunity = null,
+    Object? selectedMainCategory = null,
+    Object? selectedSubCategory = null,
+    Object? isNegotiable = null,
+    Object? securityDeposit = null,
+    Object? selectedPropertyStatus = null,
+    Object? contactViaPhone = null,
+    Object? contactViaWhatsApp = null,
+    Object? currentStep = null,
+    Object? carpetArea = null,
+    Object? selectedCarpetAreaUnit = null,
   }) {
     return _then(_$CreatePostStateImpl(
       title: null == title
@@ -7099,6 +12335,46 @@ class __$$CreatePostStateImplCopyWithImpl<$Res>
           ? _value.isGatedCommunity
           : isGatedCommunity // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedMainCategory: null == selectedMainCategory
+          ? _value.selectedMainCategory
+          : selectedMainCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedSubCategory: null == selectedSubCategory
+          ? _value.selectedSubCategory
+          : selectedSubCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      isNegotiable: null == isNegotiable
+          ? _value.isNegotiable
+          : isNegotiable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      securityDeposit: null == securityDeposit
+          ? _value.securityDeposit
+          : securityDeposit // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPropertyStatus: null == selectedPropertyStatus
+          ? _value.selectedPropertyStatus
+          : selectedPropertyStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      contactViaPhone: null == contactViaPhone
+          ? _value.contactViaPhone
+          : contactViaPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      contactViaWhatsApp: null == contactViaWhatsApp
+          ? _value.contactViaWhatsApp
+          : contactViaWhatsApp // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentStep: null == currentStep
+          ? _value.currentStep
+          : currentStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      carpetArea: null == carpetArea
+          ? _value.carpetArea
+          : carpetArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedCarpetAreaUnit: null == selectedCarpetAreaUnit
+          ? _value.selectedCarpetAreaUnit
+          : selectedCarpetAreaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -7129,7 +12405,17 @@ class _$CreatePostStateImpl implements _CreatePostState {
       this.selectedApprovalStatus = '',
       this.dimensions = '',
       this.isCornerPlot = false,
-      this.isGatedCommunity = false})
+      this.isGatedCommunity = false,
+      this.selectedMainCategory = 'Residential',
+      this.selectedSubCategory = 'Apartment / Flat',
+      this.isNegotiable = false,
+      this.securityDeposit = '',
+      this.selectedPropertyStatus = 'Ready to Move',
+      this.contactViaPhone = true,
+      this.contactViaWhatsApp = true,
+      this.currentStep = 0,
+      this.carpetArea = '',
+      this.selectedCarpetAreaUnit = 'Sq.Ft'})
       : _selectedImages = selectedImages;
 
   @override
@@ -7203,10 +12489,40 @@ class _$CreatePostStateImpl implements _CreatePostState {
   @override
   @JsonKey()
   final bool isGatedCommunity;
+  @override
+  @JsonKey()
+  final String selectedMainCategory;
+  @override
+  @JsonKey()
+  final String selectedSubCategory;
+  @override
+  @JsonKey()
+  final bool isNegotiable;
+  @override
+  @JsonKey()
+  final String securityDeposit;
+  @override
+  @JsonKey()
+  final String selectedPropertyStatus;
+  @override
+  @JsonKey()
+  final bool contactViaPhone;
+  @override
+  @JsonKey()
+  final bool contactViaWhatsApp;
+  @override
+  @JsonKey()
+  final int currentStep;
+  @override
+  @JsonKey()
+  final String carpetArea;
+  @override
+  @JsonKey()
+  final String selectedCarpetAreaUnit;
 
   @override
   String toString() {
-    return 'CreatePostState(title: $title, selectedPropertyType: $selectedPropertyType, selectedLookingFor: $selectedLookingFor, address: $address, selectedLocation: $selectedLocation, price: $price, selectedImages: $selectedImages, description: $description, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, latitude: $latitude, longitude: $longitude, addPostResponse: $addPostResponse, plotArea: $plotArea, selectedAreaUnit: $selectedAreaUnit, selectedFacing: $selectedFacing, roadWidth: $roadWidth, selectedPostedBy: $selectedPostedBy, selectedApprovalStatus: $selectedApprovalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity)';
+    return 'CreatePostState(title: $title, selectedPropertyType: $selectedPropertyType, selectedLookingFor: $selectedLookingFor, address: $address, selectedLocation: $selectedLocation, price: $price, selectedImages: $selectedImages, description: $description, isLoading: $isLoading, errorMessage: $errorMessage, isValid: $isValid, latitude: $latitude, longitude: $longitude, addPostResponse: $addPostResponse, plotArea: $plotArea, selectedAreaUnit: $selectedAreaUnit, selectedFacing: $selectedFacing, roadWidth: $roadWidth, selectedPostedBy: $selectedPostedBy, selectedApprovalStatus: $selectedApprovalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, selectedMainCategory: $selectedMainCategory, selectedSubCategory: $selectedSubCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, selectedPropertyStatus: $selectedPropertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, currentStep: $currentStep, carpetArea: $carpetArea, selectedCarpetAreaUnit: $selectedCarpetAreaUnit)';
   }
 
   @override
@@ -7255,7 +12571,27 @@ class _$CreatePostStateImpl implements _CreatePostState {
             (identical(other.isCornerPlot, isCornerPlot) ||
                 other.isCornerPlot == isCornerPlot) &&
             (identical(other.isGatedCommunity, isGatedCommunity) ||
-                other.isGatedCommunity == isGatedCommunity));
+                other.isGatedCommunity == isGatedCommunity) &&
+            (identical(other.selectedMainCategory, selectedMainCategory) ||
+                other.selectedMainCategory == selectedMainCategory) &&
+            (identical(other.selectedSubCategory, selectedSubCategory) ||
+                other.selectedSubCategory == selectedSubCategory) &&
+            (identical(other.isNegotiable, isNegotiable) ||
+                other.isNegotiable == isNegotiable) &&
+            (identical(other.securityDeposit, securityDeposit) ||
+                other.securityDeposit == securityDeposit) &&
+            (identical(other.selectedPropertyStatus, selectedPropertyStatus) ||
+                other.selectedPropertyStatus == selectedPropertyStatus) &&
+            (identical(other.contactViaPhone, contactViaPhone) ||
+                other.contactViaPhone == contactViaPhone) &&
+            (identical(other.contactViaWhatsApp, contactViaWhatsApp) ||
+                other.contactViaWhatsApp == contactViaWhatsApp) &&
+            (identical(other.currentStep, currentStep) ||
+                other.currentStep == currentStep) &&
+            (identical(other.carpetArea, carpetArea) ||
+                other.carpetArea == carpetArea) &&
+            (identical(other.selectedCarpetAreaUnit, selectedCarpetAreaUnit) ||
+                other.selectedCarpetAreaUnit == selectedCarpetAreaUnit));
   }
 
   @override
@@ -7283,7 +12619,17 @@ class _$CreatePostStateImpl implements _CreatePostState {
         selectedApprovalStatus,
         dimensions,
         isCornerPlot,
-        isGatedCommunity
+        isGatedCommunity,
+        selectedMainCategory,
+        selectedSubCategory,
+        isNegotiable,
+        securityDeposit,
+        selectedPropertyStatus,
+        contactViaPhone,
+        contactViaWhatsApp,
+        currentStep,
+        carpetArea,
+        selectedCarpetAreaUnit
       ]);
 
   @JsonKey(ignore: true)
@@ -7318,7 +12664,17 @@ abstract class _CreatePostState implements CreatePostState {
       final String selectedApprovalStatus,
       final String dimensions,
       final bool isCornerPlot,
-      final bool isGatedCommunity}) = _$CreatePostStateImpl;
+      final bool isGatedCommunity,
+      final String selectedMainCategory,
+      final String selectedSubCategory,
+      final bool isNegotiable,
+      final String securityDeposit,
+      final String selectedPropertyStatus,
+      final bool contactViaPhone,
+      final bool contactViaWhatsApp,
+      final int currentStep,
+      final String carpetArea,
+      final String selectedCarpetAreaUnit}) = _$CreatePostStateImpl;
 
   @override
   String get title;
@@ -7366,6 +12722,26 @@ abstract class _CreatePostState implements CreatePostState {
   bool get isCornerPlot;
   @override
   bool get isGatedCommunity;
+  @override
+  String get selectedMainCategory;
+  @override
+  String get selectedSubCategory;
+  @override
+  bool get isNegotiable;
+  @override
+  String get securityDeposit;
+  @override
+  String get selectedPropertyStatus;
+  @override
+  bool get contactViaPhone;
+  @override
+  bool get contactViaWhatsApp;
+  @override
+  int get currentStep;
+  @override
+  String get carpetArea;
+  @override
+  String get selectedCarpetAreaUnit;
   @override
   @JsonKey(ignore: true)
   _$$CreatePostStateImplCopyWith<_$CreatePostStateImpl> get copyWith =>

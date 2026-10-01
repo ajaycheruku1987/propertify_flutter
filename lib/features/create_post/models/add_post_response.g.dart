@@ -40,6 +40,15 @@ _$AddPostResponseImpl _$$AddPostResponseImplFromJson(
       dimensions: json['dimensions'] as String?,
       isCornerPlot: json['is_corner_plot'] as bool?,
       isGatedCommunity: json['is_gated_community'] as bool?,
+      mainCategory: json['main_category'] as String?,
+      subCategory: json['sub_category'] as String?,
+      isNegotiable: json['is_negotiable'] as bool?,
+      securityDeposit: json['security_deposit'] as String?,
+      propertyStatus: json['property_status'] as String?,
+      contactViaPhone: json['contact_via_phone'] as bool?,
+      contactViaWhatsApp: json['contact_via_whatsapp'] as bool?,
+      carpetArea: json['carpet_area'] as String?,
+      carpetAreaUnit: json['carpet_area_unit'] as String?,
     );
 
 Map<String, dynamic> _$$AddPostResponseImplToJson(
@@ -72,6 +81,15 @@ Map<String, dynamic> _$$AddPostResponseImplToJson(
       'dimensions': instance.dimensions,
       'is_corner_plot': instance.isCornerPlot,
       'is_gated_community': instance.isGatedCommunity,
+      'main_category': instance.mainCategory,
+      'sub_category': instance.subCategory,
+      'is_negotiable': instance.isNegotiable,
+      'security_deposit': instance.securityDeposit,
+      'property_status': instance.propertyStatus,
+      'contact_via_phone': instance.contactViaPhone,
+      'contact_via_whatsapp': instance.contactViaWhatsApp,
+      'carpet_area': instance.carpetArea,
+      'carpet_area_unit': instance.carpetAreaUnit,
     };
 
 _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(

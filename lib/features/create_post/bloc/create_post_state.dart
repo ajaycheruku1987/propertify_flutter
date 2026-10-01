@@ -26,5 +26,15 @@ class CreatePostState with _$CreatePostState {
     @Default('') String dimensions,
     @Default(false) bool isCornerPlot,
     @Default(false) bool isGatedCommunity,
+    @Default('Residential') String selectedMainCategory,
+    @Default('Apartment / Flat') String selectedSubCategory,
+    @Default(false) bool isNegotiable,
+    @Default('') String securityDeposit,
+    @Default('Ready to Move') String selectedPropertyStatus,
+    @Default(true) bool contactViaPhone,
+    @Default(true) bool contactViaWhatsApp,
+    @Default(0) int currentStep,
+    @Default('') String carpetArea,
+    @Default('Sq.Ft') String selectedCarpetAreaUnit,
   }) = _CreatePostState;
 }

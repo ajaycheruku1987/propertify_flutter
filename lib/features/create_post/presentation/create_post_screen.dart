@@ -7,15 +7,17 @@ import 'package:propertify/utils/common_widgets/post_success_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/l10n/app_localizations.dart';
-import 'package:propertify/core/constants/app_categories.dart';
 import '../bloc/create_post_bloc.dart';
 import 'create_post_details_screen.dart';
+import 'widgets/step_progress_bar.dart';
 import 'widgets/title_input.dart';
-import 'widgets/property_type_selector.dart';
+import 'widgets/category_selector_widget.dart';
 import 'widgets/looking_for_selector.dart';
+import 'widgets/pricing_section_widget.dart';
+import 'widgets/carpet_area_input_widget.dart';
+import 'widgets/property_status_widget.dart';
 import 'widgets/address_input.dart';
 import 'widgets/city_input.dart';
-import 'widgets/price_input.dart';
 import 'widgets/plot_details_input.dart';
 
 class CreatePostScreen extends StatefulWidget {
@@ -34,7 +36,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   void initState() {
     super.initState();
-    // Reset bloc state when screen is visited
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CreatePostBloc>().add(const CreatePostEvent.resetState());
     });
@@ -52,7 +53,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -74,7 +75,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             CustomToast.showErrorToast(msg: state.errorMessage!);
           }
           if (state.addPostResponse != null) {
-            // Navigate to success screen using GoRouter
             final postId = state.addPostResponse?.id ?? '';
             context.go(
               '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent(l10n.postedSuccessfully)}&message=${Uri.encodeComponent(l10n.postCreatedSuccess)}&contentType=${ContentType.FEED.value}&contentId=$postId&homeRoute=${Uri.encodeComponent('${HomeScreen.routeName}?refresh=true')}',
@@ -84,98 +84,111 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         builder: (context, state) {
           return Form(
             key: _formKey,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title Section
-                  const TitleInput(),
+            child: Column(
+              children: [
+                // Visual Progress Stepper Bar
+                const StepProgressBar(currentStep: 0),
+                const Divider(height: 1, color: Color(0xFFEEEEEE)),
 
-                  const SizedBox(height: 24),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Title Section
+                        const TitleInput(),
 
-                  // Property Type Section
-                  const PropertyTypeSelector(
-                    propertyTypes: AppCategories.propertyType,
-                  ),
+                        const SizedBox(height: 24),
 
-                  const SizedBox(height: 24),
+                        // Hierarchical Category & Subcategory Selector
+                        const CategorySelectorWidget(),
 
-                  // Looking For Section
-                  const LookingForSelector(),
+                        const SizedBox(height: 24),
 
-                  const SizedBox(height: 24),
+                        // Looking For Section (Sell / Rent / Lease)
+                        const LookingForSelector(),
 
-                  // Address Section
-                  AddressInput(
-                    controller: _addressController,
-                    onLocationSelected: (locationData) {
-                      final address = locationData['address'] as String;
-                      final city =
-                          '${locationData['village']}, ${locationData['city']}';
-                      final latitude = double.parse(
-                        locationData['lat'] as String,
-                      );
-                      final longitude = double.parse(
-                        locationData['long'] as String,
-                      );
+                        const SizedBox(height: 24),
 
-                      context.read<CreatePostBloc>().add(
-                        CreatePostEvent.locationCoordinatesChanged(
-                          address: address,
-                          latitude: latitude,
-                          longitude: longitude,
+                        // Pricing Section (Price + Negotiable / Rent + Deposit)
+                        const PricingSectionWidget(),
+
+                        const SizedBox(height: 24),
+
+                        // Carpet Area / Built-Up Area Section (For Residential, Commercial, Industrial)
+                        const CarpetAreaInputWidget(),
+
+                        // Property Construction Status (Ready to Move, Under Construction, etc.)
+                        const PropertyStatusWidget(),
+
+                        // Location & Address Section
+                        AddressInput(
+                          controller: _addressController,
+                          onLocationSelected: (locationData) {
+                            final address = locationData['address'] as String;
+                            final city =
+                                '${locationData['village']}, ${locationData['city']}';
+                            final latitude = double.parse(
+                              locationData['lat'] as String,
+                            );
+                            final longitude = double.parse(
+                              locationData['long'] as String,
+                            );
+
+                            context.read<CreatePostBloc>().add(
+                              CreatePostEvent.locationCoordinatesChanged(
+                                address: address,
+                                latitude: latitude,
+                                longitude: longitude,
+                              ),
+                            );
+
+                            context.read<CreatePostBloc>().add(
+                              CreatePostEvent.locationChanged(location: city),
+                            );
+                          },
                         ),
-                      );
 
-                      // Update city/location
-                      context.read<CreatePostBloc>().add(
-                        CreatePostEvent.locationChanged(location: city),
-                      );
-                    },
-                  ),
+                        const SizedBox(height: 16),
 
-                  const SizedBox(height: 16),
+                        // City Input
+                        const CityInput(),
 
-                  // City Input
-                  const CityInput(),
+                        const SizedBox(height: 20),
 
-                  const SizedBox(height: 24),
+                        // Plot Details Section (Conditional for Open Plot / Land & Sell)
+                        const PlotDetailsInput(),
 
-                  // Price Section
-                  const PriceInput(),
+                        const SizedBox(height: 32),
 
-                  const SizedBox(height: 16),
+                        // Next Button
+                        SizedBox(
+                          width: double.infinity,
+                          child: CommonCustomButton(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                if (state.isValid) {
+                                  context.push(
+                                    CreatePostImagesDescriptionScreen.routeName,
+                                  );
+                                } else {
+                                  CustomToast.showErrorToast(
+                                    msg: l10n.fillAllFields,
+                                  );
+                                }
+                              }
+                            },
+                            buttonLabel: l10n.next,
+                          ),
+                        ),
 
-                  // Plot & Land Details Section (Conditional for Open Plot / Land)
-                  const PlotDetailsInput(),
-
-                  const SizedBox(height: 40),
-
-                  // Next Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: CommonCustomButton(
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          if (state.isValid) {
-                            context.push(
-                              CreatePostImagesDescriptionScreen.routeName,
-                            );
-                          } else {
-                            CustomToast.showErrorToast(
-                              msg: l10n.fillAllFields,
-                            );
-                          }
-                        }
-                      },
-                      buttonLabel: l10n.next,
+                        const SizedBox(height: 20),
+                      ],
                     ),
                   ),
-
-                  const SizedBox(height: 20),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

@@ -54,12 +54,19 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "dimensions") String? dimensions,
     @JsonKey(name: "is_corner_plot") bool? isCornerPlot,
     @JsonKey(name: "is_gated_community") bool? isGatedCommunity,
+    @JsonKey(name: "main_category") String? mainCategory,
+    @JsonKey(name: "sub_category") String? subCategory,
+    @JsonKey(name: "is_negotiable") bool? isNegotiable,
+    @JsonKey(name: "security_deposit") String? securityDeposit,
+    @JsonKey(name: "property_status") String? propertyStatus,
+    @JsonKey(name: "contact_via_phone") bool? contactViaPhone,
+    @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
+    @JsonKey(name: "carpet_area") String? carpetArea,
+    @JsonKey(name: "carpet_area_unit") String? carpetAreaUnit,
   }) = _FeedPostsResponseModel;
 
-  factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) {
-    print('PROPERTY JSON RESPONSE: $json');
-    return _$FeedPostsResponseModelFromJson(json);
-  }
+  factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$FeedPostsResponseModelFromJson(json);
 
   bool get isCurrentlyPromoted {
     if (isPromoted == null || !isPromoted!) return false;

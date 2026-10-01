@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propertify/features/home/models/feed_posts_response_model.dart';
+import 'package:propertify/utils/string_extensions.dart';
 
 class PlotOverviewWidget extends StatelessWidget {
   final FeedPostsResponseModel postDetails;
@@ -11,24 +12,29 @@ class PlotOverviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if this post is an open plot / land or has plot parameters
-    final isPlotCategory = postDetails.propertyType == 'Open Plot' ||
-        postDetails.propertyType == 'Agriculture Land' ||
-        postDetails.propertyType == 'Open Plots';
-
     final hasPlotData = (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty) ||
         (postDetails.facing != null && postDetails.facing!.isNotEmpty) ||
         (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty) ||
         (postDetails.approvalStatus != null && postDetails.approvalStatus!.isNotEmpty) ||
         (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty) ||
         (postDetails.isCornerPlot ?? false) ||
-        (postDetails.isGatedCommunity ?? false);
+        (postDetails.isGatedCommunity ?? false) ||
+        postDetails.propertyType == 'Open Plot' ||
+        postDetails.propertyType == 'Agriculture Land' ||
+        postDetails.propertyType == 'Open Plots' ||
+        postDetails.mainCategory == 'Land & Plots';
 
     if (!hasPlotData) {
       return const SizedBox.shrink();
     }
 
     final primaryColor = Theme.of(context).primaryColor;
+
+    final listingTypeStr = postDetails.listingType != null && postDetails.listingType!.isNotEmpty
+        ? (postDetails.listingType!.toLowerCase() == 'sell' ? 'For Sale' : 'For ${postDetails.listingType}')
+        : '';
+
+    final subCategoryStr = postDetails.propertyType ?? postDetails.subCategory ?? '';
 
     // Calculate Rate Per Unit if price and area exist
     String ratePerUnitStr = '';
@@ -118,7 +124,26 @@ class PlotOverviewWidget extends StatelessWidget {
             spacing: 12,
             runSpacing: 12,
             children: [
-              // 1. Plot Area
+              // 1. Listing Type
+              if (listingTypeStr.isNotEmpty)
+                _buildSpecTile(
+                  context,
+                  icon: Icons.sell_outlined,
+                  label: 'Listing Type',
+                  value: listingTypeStr.translate(context),
+                  valueColor: listingTypeStr.contains('Rent') ? Colors.orange : Colors.green.shade700,
+                ),
+
+              // 2. Plot Sub-Type
+              if (subCategoryStr.isNotEmpty)
+                _buildSpecTile(
+                  context,
+                  icon: Icons.category_outlined,
+                  label: 'Plot Type',
+                  value: subCategoryStr.translate(context),
+                ),
+
+              // 3. Plot Area
               if (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty)
                 _buildSpecTile(
                   context,
@@ -128,7 +153,7 @@ class PlotOverviewWidget extends StatelessWidget {
                   subtitle: ratePerUnitStr.isNotEmpty ? ratePerUnitStr : null,
                 ),
 
-              // 2. Facing
+              // 4. Facing
               if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
                 _buildSpecTile(
                   context,
@@ -137,7 +162,7 @@ class PlotOverviewWidget extends StatelessWidget {
                   value: postDetails.facing!,
                 ),
 
-              // 3. Road Size
+              // 5. Road Size
               if (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty)
                 _buildSpecTile(
                   context,
@@ -148,7 +173,7 @@ class PlotOverviewWidget extends StatelessWidget {
                       : '${postDetails.roadWidth} Ft Road',
                 ),
 
-              // 4. Approval Status
+              // 6. Approval Status
               if (postDetails.approvalStatus != null &&
                   postDetails.approvalStatus!.isNotEmpty)
                 _buildSpecTile(
@@ -158,7 +183,7 @@ class PlotOverviewWidget extends StatelessWidget {
                   value: postDetails.approvalStatus!,
                 ),
 
-              // 5. Dimensions
+              // 7. Dimensions
               if (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty)
                 _buildSpecTile(
                   context,
@@ -207,6 +232,7 @@ class PlotOverviewWidget extends StatelessWidget {
     required String label,
     required String value,
     String? subtitle,
+    Color? valueColor,
   }) {
     return Container(
       width: (MediaQuery.of(context).size.width - 76) / 2,
@@ -241,10 +267,10 @@ class PlotOverviewWidget extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: valueColor ?? Colors.black87,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

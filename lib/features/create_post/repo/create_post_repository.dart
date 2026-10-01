@@ -8,7 +8,6 @@ import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/create_post/models/add_post_response.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
-// import 'package:propertify/core/services/meta_service.dart'; // moved to backend
 
 abstract class CreatePostRepository {
   Future<Either<Failure, AddPostResponse>> createPost({
@@ -31,6 +30,15 @@ abstract class CreatePostRepository {
     String? dimensions,
     bool? isCornerPlot,
     bool? isGatedCommunity,
+    String? mainCategory,
+    String? subCategory,
+    bool? isNegotiable,
+    String? securityDeposit,
+    String? propertyStatus,
+    bool? contactViaPhone,
+    bool? contactViaWhatsApp,
+    String? carpetArea,
+    String? carpetAreaUnit,
   });
 
   Future<List<String>> getLocations();
@@ -61,10 +69,17 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
     String? dimensions,
     bool? isCornerPlot,
     bool? isGatedCommunity,
+    String? mainCategory,
+    String? subCategory,
+    bool? isNegotiable,
+    String? securityDeposit,
+    String? propertyStatus,
+    bool? contactViaPhone,
+    bool? contactViaWhatsApp,
+    String? carpetArea,
+    String? carpetAreaUnit,
   }) async {
     try {
-      // Create FormData for multipart request
-      // Convert price string to double by removing currency symbol and commas
       final double priceValue = double.parse(
         price.replaceAll('₹', '').replaceAll(',', '').trim(),
       );
@@ -88,6 +103,15 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         if (dimensions != null && dimensions.isNotEmpty) 'dimensions': dimensions,
         if (isCornerPlot != null) 'is_corner_plot': isCornerPlot,
         if (isGatedCommunity != null) 'is_gated_community': isGatedCommunity,
+        if (mainCategory != null && mainCategory.isNotEmpty) 'main_category': mainCategory,
+        if (subCategory != null && subCategory.isNotEmpty) 'sub_category': subCategory,
+        if (isNegotiable != null) 'is_negotiable': isNegotiable,
+        if (securityDeposit != null && securityDeposit.isNotEmpty) 'security_deposit': securityDeposit,
+        if (propertyStatus != null && propertyStatus.isNotEmpty) 'property_status': propertyStatus,
+        if (contactViaPhone != null) 'contact_via_phone': contactViaPhone,
+        if (contactViaWhatsApp != null) 'contact_via_whatsapp': contactViaWhatsApp,
+        if (carpetArea != null && carpetArea.isNotEmpty) 'carpet_area': carpetArea,
+        if (carpetAreaUnit != null && carpetAreaUnit.isNotEmpty) 'carpet_area_unit': carpetAreaUnit,
       });
 
       // Add image files to FormData
@@ -107,7 +131,7 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
 
       // Send request using ApiRequest
       final response = await _apiRequest.post(
-        '/properties', // Replace with actual endpoint path
+        '/properties',
         data: formData,
         options: Options(
           sendTimeout: const Duration(seconds: 120),
@@ -119,7 +143,7 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
       return responseData.fold((failure) => Left(failure), (right) {
         final addPostResponse = AddPostResponse.fromJson(right);
 
-        // Cache plot specs locally since backend doesn't store/return them yet
+        // Cache plot & property specs locally as fallback
         if (addPostResponse.id != null) {
           final prefs = serviceLocator<SharedPreferences>();
           final postId = addPostResponse.id!;
@@ -132,6 +156,13 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
           if (dimensions != null && dimensions.isNotEmpty) prefs.setString('dimensions_$postId', dimensions);
           if (isCornerPlot != null) prefs.setBool('is_corner_plot_$postId', isCornerPlot);
           if (isGatedCommunity != null) prefs.setBool('is_gated_community_$postId', isGatedCommunity);
+          if (propertyStatus != null && propertyStatus.isNotEmpty) prefs.setString('property_status_$postId', propertyStatus);
+          if (securityDeposit != null && securityDeposit.isNotEmpty) prefs.setString('security_deposit_$postId', securityDeposit);
+          if (isNegotiable != null) prefs.setBool('is_negotiable_$postId', isNegotiable);
+          if (contactViaPhone != null) prefs.setBool('contact_via_phone_$postId', contactViaPhone);
+          if (contactViaWhatsApp != null) prefs.setBool('contact_via_whatsapp_$postId', contactViaWhatsApp);
+          if (carpetArea != null && carpetArea.isNotEmpty) prefs.setString('carpet_area_$postId', carpetArea);
+          if (carpetAreaUnit != null && carpetAreaUnit.isNotEmpty) prefs.setString('carpet_area_unit_$postId', carpetAreaUnit);
         }
 
         return Right(addPostResponse);
@@ -144,7 +175,6 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
 
   @override
   Future<List<String>> getLocations() async {
-    // TODO: Implement API call to get locations
     await Future.delayed(const Duration(milliseconds: 500));
     return [
       'Hyderabad',
@@ -160,7 +190,6 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
 
   @override
   Future<List<String>> getPropertyTypes() async {
-    // TODO: Implement API call to get property types
     await Future.delayed(const Duration(milliseconds: 500));
     return ['House', 'Villas', 'Apartments', 'Properties'];
   }

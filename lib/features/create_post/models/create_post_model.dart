@@ -19,6 +19,15 @@ class CreatePostModel {
   final String? dimensions;
   final bool? isCornerPlot;
   final bool? isGatedCommunity;
+  final String? mainCategory;
+  final String? subCategory;
+  final bool? isNegotiable;
+  final String? securityDeposit;
+  final String? propertyStatus;
+  final bool? contactViaPhone;
+  final bool? contactViaWhatsApp;
+  final String? carpetArea;
+  final String? carpetAreaUnit;
 
   const CreatePostModel({
     required this.id,
@@ -41,18 +50,27 @@ class CreatePostModel {
     this.dimensions,
     this.isCornerPlot,
     this.isGatedCommunity,
+    this.mainCategory,
+    this.subCategory,
+    this.isNegotiable,
+    this.securityDeposit,
+    this.propertyStatus,
+    this.contactViaPhone,
+    this.contactViaWhatsApp,
+    this.carpetArea,
+    this.carpetAreaUnit,
   });
 
   factory CreatePostModel.fromJson(Map<String, dynamic> json) {
     return CreatePostModel(
       id: json['id'] ?? '',
-      propertyType: json['propertyType'] ?? '',
-      lookingFor: json['lookingFor'] ?? '',
+      propertyType: json['propertyType'] ?? json['property_type'] ?? '',
+      lookingFor: json['lookingFor'] ?? json['listing_type'] ?? '',
       address: json['address'] ?? '',
-      location: json['location'] ?? '',
-      price: json['price'] ?? '',
-      createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
-      userId: json['userId'] ?? '',
+      location: json['location'] ?? json['city'] ?? '',
+      price: json['price']?.toString() ?? '',
+      createdAt: DateTime.parse(json['createdAt'] ?? json['created_at'] ?? DateTime.now().toIso8601String()),
+      userId: json['userId'] ?? json['user_id'] ?? '',
       status: json['status'] ?? 'draft',
       latitude: json['latitude']?.toDouble(),
       longitude: json['longitude']?.toDouble(),
@@ -65,6 +83,15 @@ class CreatePostModel {
       dimensions: json['dimensions'],
       isCornerPlot: json['isCornerPlot'] ?? json['is_corner_plot'],
       isGatedCommunity: json['isGatedCommunity'] ?? json['is_gated_community'],
+      mainCategory: json['mainCategory'] ?? json['main_category'],
+      subCategory: json['subCategory'] ?? json['sub_category'],
+      isNegotiable: json['isNegotiable'] ?? json['is_negotiable'],
+      securityDeposit: json['securityDeposit'] ?? json['security_deposit'],
+      propertyStatus: json['propertyStatus'] ?? json['property_status'],
+      contactViaPhone: json['contactViaPhone'] ?? json['contact_via_phone'],
+      contactViaWhatsApp: json['contactViaWhatsApp'] ?? json['contact_via_whatsapp'],
+      carpetArea: json['carpetArea'] ?? json['carpet_area'],
+      carpetAreaUnit: json['carpetAreaUnit'] ?? json['carpet_area_unit'],
     );
   }
 
@@ -90,6 +117,15 @@ class CreatePostModel {
       'dimensions': dimensions,
       'is_corner_plot': isCornerPlot,
       'is_gated_community': isGatedCommunity,
+      'main_category': mainCategory,
+      'sub_category': subCategory,
+      'is_negotiable': isNegotiable,
+      'security_deposit': securityDeposit,
+      'property_status': propertyStatus,
+      'contact_via_phone': contactViaPhone,
+      'contact_via_whatsapp': contactViaWhatsApp,
+      'carpet_area': carpetArea,
+      'carpet_area_unit': carpetAreaUnit,
     };
   }
 
@@ -114,6 +150,15 @@ class CreatePostModel {
     String? dimensions,
     bool? isCornerPlot,
     bool? isGatedCommunity,
+    String? mainCategory,
+    String? subCategory,
+    bool? isNegotiable,
+    String? securityDeposit,
+    String? propertyStatus,
+    bool? contactViaPhone,
+    bool? contactViaWhatsApp,
+    String? carpetArea,
+    String? carpetAreaUnit,
   }) {
     return CreatePostModel(
       id: id ?? this.id,
@@ -136,6 +181,15 @@ class CreatePostModel {
       dimensions: dimensions ?? this.dimensions,
       isCornerPlot: isCornerPlot ?? this.isCornerPlot,
       isGatedCommunity: isGatedCommunity ?? this.isGatedCommunity,
+      mainCategory: mainCategory ?? this.mainCategory,
+      subCategory: subCategory ?? this.subCategory,
+      isNegotiable: isNegotiable ?? this.isNegotiable,
+      securityDeposit: securityDeposit ?? this.securityDeposit,
+      propertyStatus: propertyStatus ?? this.propertyStatus,
+      contactViaPhone: contactViaPhone ?? this.contactViaPhone,
+      contactViaWhatsApp: contactViaWhatsApp ?? this.contactViaWhatsApp,
+      carpetArea: carpetArea ?? this.carpetArea,
+      carpetAreaUnit: carpetAreaUnit ?? this.carpetAreaUnit,
     );
   }
 }

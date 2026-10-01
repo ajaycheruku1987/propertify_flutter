@@ -13,6 +13,14 @@ class CreatePostEvent with _$CreatePostEvent {
   const factory CreatePostEvent.propertyTypeChanged({
     required String propertyType,
   }) = _PropertyTypeChanged;
+
+  const factory CreatePostEvent.mainCategoryChanged({
+    required String mainCategory,
+  }) = _MainCategoryChanged;
+
+  const factory CreatePostEvent.subCategoryChanged({
+    required String subCategory,
+  }) = _SubCategoryChanged;
   
   const factory CreatePostEvent.lookingForChanged({
     required String lookingFor,
@@ -35,6 +43,38 @@ class CreatePostEvent with _$CreatePostEvent {
   const factory CreatePostEvent.priceChanged({
     required String price,
   }) = _PriceChanged;
+
+  const factory CreatePostEvent.isNegotiableChanged({
+    required bool isNegotiable,
+  }) = _IsNegotiableChanged;
+
+  const factory CreatePostEvent.securityDepositChanged({
+    required String securityDeposit,
+  }) = _SecurityDepositChanged;
+
+  const factory CreatePostEvent.propertyStatusChanged({
+    required String propertyStatus,
+  }) = _PropertyStatusChanged;
+
+  const factory CreatePostEvent.contactViaPhoneChanged({
+    required bool contactViaPhone,
+  }) = _ContactViaPhoneChanged;
+
+  const factory CreatePostEvent.contactViaWhatsAppChanged({
+    required bool contactViaWhatsApp,
+  }) = _ContactViaWhatsAppChanged;
+
+  const factory CreatePostEvent.stepChanged({
+    required int step,
+  }) = _StepChanged;
+
+  const factory CreatePostEvent.carpetAreaChanged({
+    required String carpetArea,
+  }) = _CarpetAreaChanged;
+
+  const factory CreatePostEvent.carpetAreaUnitChanged({
+    required String carpetAreaUnit,
+  }) = _CarpetAreaUnitChanged;
 
   const factory CreatePostEvent.plotAreaChanged({
     required String plotArea,

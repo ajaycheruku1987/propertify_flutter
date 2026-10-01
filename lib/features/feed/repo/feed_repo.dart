@@ -98,6 +98,25 @@ class FeedRepo {
             );
           }
 
+          // General Property Overview specs fallback
+          final cachedPropertyStatus = prefs.getString('property_status_$postId');
+          final cachedSecurityDeposit = prefs.getString('security_deposit_$postId');
+          final cachedIsNegotiable = prefs.getBool('is_negotiable_$postId');
+          final cachedContactPhone = prefs.getBool('contact_via_phone_$postId');
+          final cachedContactWhatsApp = prefs.getBool('contact_via_whatsapp_$postId');
+          final cachedCarpetArea = prefs.getString('carpet_area_$postId');
+          final cachedCarpetAreaUnit = prefs.getString('carpet_area_unit_$postId');
+
+          model = model.copyWith(
+            propertyStatus: model.propertyStatus ?? cachedPropertyStatus,
+            securityDeposit: model.securityDeposit ?? cachedSecurityDeposit,
+            isNegotiable: model.isNegotiable ?? cachedIsNegotiable,
+            contactViaPhone: model.contactViaPhone ?? cachedContactPhone,
+            contactViaWhatsApp: model.contactViaWhatsApp ?? cachedContactWhatsApp,
+            carpetArea: model.carpetArea ?? cachedCarpetArea,
+            carpetAreaUnit: model.carpetAreaUnit ?? cachedCarpetAreaUnit,
+          );
+
           return Right(model);
         },
       );
