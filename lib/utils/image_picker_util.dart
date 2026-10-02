@@ -8,12 +8,12 @@ class ImagePickerUtil {
   /// Pick multiple images from gallery
   static Future<List<File>> pickMultipleImages({
     int? maxImages,
-    int imageQuality = 80,
+    int imageQuality = 75,
   }) async {
     try {
       final List<XFile> pickedFiles = await _picker.pickMultiImage(
-        maxWidth: 1920,
-        maxHeight: 1920,
+        maxWidth: 1280,
+        maxHeight: 1280,
         imageQuality: imageQuality,
       );
 
@@ -34,12 +34,12 @@ class ImagePickerUtil {
   }
 
   /// Pick a single image from gallery
-  static Future<File?> pickSingleImage({int imageQuality = 80}) async {
+  static Future<File?> pickSingleImage({int imageQuality = 75}) async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
         source: ImageSource.gallery,
-        maxWidth: 1920,
-        maxHeight: 1920,
+        maxWidth: 1280,
+        maxHeight: 1280,
         imageQuality: imageQuality,
       );
 
@@ -54,12 +54,12 @@ class ImagePickerUtil {
   }
 
   /// Pick image from camera
-  static Future<File?> pickImageFromCamera({int imageQuality = 80}) async {
+  static Future<File?> pickImageFromCamera({int imageQuality = 75}) async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
         source: ImageSource.camera,
-        maxWidth: 1920,
-        maxHeight: 1920,
+        maxWidth: 1280,
+        maxHeight: 1280,
         imageQuality: imageQuality,
       );
 

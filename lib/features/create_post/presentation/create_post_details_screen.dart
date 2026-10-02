@@ -386,13 +386,27 @@ class _CreatePostImagesDescriptionScreenState
           elevation: 0,
         ),
         child: state.isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                  strokeWidth: 2,
-                ),
+            ? const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 22,
+                    height: 22,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  Text(
+                    'Uploading post...',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               )
             : Text(
                 l10n.post,
@@ -410,7 +424,6 @@ class _CreatePostImagesDescriptionScreenState
     try {
       final images = await ImagePickerUtil.pickMultipleImages(
         maxImages: 10,
-        imageQuality: 80,
       );
 
       if (images.isNotEmpty && context.mounted) {
