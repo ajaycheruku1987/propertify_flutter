@@ -40,7 +40,11 @@ class HomeBloc extends HydratedBloc<HomeEvent, HomeState> {
   @override
   HomeState? fromJson(Map<String, dynamic> json) {
     try {
-      return HomeState.fromJson(json);
+      final state = HomeState.fromJson(json);
+      return state.copyWith(
+        homeIndex: 0,
+        bottomNavIndex: 0,
+      );
     } catch (_) {
       return null;
     }
