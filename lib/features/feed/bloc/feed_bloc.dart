@@ -11,6 +11,8 @@ import 'package:propertify/core/notify_message.dart';
 import 'package:propertify/features/home/models/feed_posts_response_model.dart';
 import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/core/notification_service.dart';
+import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/services/review_service.dart';
 import 'package:propertify/features/feed/models/like_feed_post_response_model.dart';
 import 'package:propertify/features/feed/models/feed_comment_model.dart';
 
@@ -124,6 +126,9 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
               postDetails: updatedPostDetails,
             ),
           );
+
+          // Record happy action for in-app review
+          serviceLocator<ReviewService>().recordHappyAction();
         },
       );
     } catch (e) {
@@ -194,6 +199,9 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
               postDetails: updatedPostDetails,
             ),
           );
+
+          // Record happy action for in-app review
+          serviceLocator<ReviewService>().recordHappyAction();
         },
       );
     } catch (e) {

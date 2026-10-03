@@ -73,6 +73,7 @@ dependencies:
   flutter_map: 8.2.1
   font_awesome_flutter: ^11.0.0
   carousel_slider:
+  in_app_review: ^2.0.9
   url_launcher: 6.2.5
   animated_rating_stars: 1.0.1
   dropdown_button2: ^2.3.9
