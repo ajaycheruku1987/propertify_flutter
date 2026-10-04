@@ -79,6 +79,12 @@ class PropertyInfo extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
+                        const SizedBox(width: 2),
+                        Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: Theme.of(context).primaryColor,
+                          size: 18,
+                        ),
                       ],
                     ),
                   ),
