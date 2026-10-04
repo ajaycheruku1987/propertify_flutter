@@ -13,6 +13,7 @@ import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/core/notification_service.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/services/review_service.dart';
+import 'package:propertify/core/services/block_service.dart';
 import 'package:propertify/features/feed/models/like_feed_post_response_model.dart';
 import 'package:propertify/features/feed/models/feed_comment_model.dart';
 
@@ -552,6 +553,14 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             // Add to existing list for pagination
             updatedFeedsList = [...state.feedsList, ...success];
           }
+
+          final blockService = serviceLocator<BlockService>();
+          updatedFeedsList = updatedFeedsList.where((post) {
+            final isPostBlocked = blockService.isPostBlocked(post.id);
+            final isUserBlocked = blockService.isUserBlocked(post.userId) ||
+                blockService.isUserBlocked(post.owner?.id);
+            return !isPostBlocked && !isUserBlocked;
+          }).toList();
 
           final bool hasMoreData = success.length == limit;
 

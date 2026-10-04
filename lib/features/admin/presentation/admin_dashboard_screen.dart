@@ -17,6 +17,7 @@ import 'admin_reels_screen.dart';
 import 'gst_verification_requests_screen.dart';
 import 'services_verification_requests_screen.dart';
 import 'manage_material_prices_screen.dart';
+import 'reported_properties_screen.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   static const String routeName = '/admin-dashboard';
@@ -75,6 +76,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           'title': 'Properties',
           'icon': Icons.home_outlined,
           'route': PropertiesListViewScreen.routeName,
+        },
+        {
+          'title': 'Reported Posts',
+          'icon': Icons.report_problem_outlined,
+          'route': ReportedPropertiesScreen.routeName,
         },
         {
           'title': 'Reels',

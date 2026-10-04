@@ -15,6 +15,8 @@ import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/core/notification_service.dart';
+import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/services/block_service.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
@@ -308,10 +310,17 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   msg: failure.message,
                                 );
                               },
-                              (success) {
-                                CustomToast.showSuccessToast(
-                                  msg: l10n.postReportedSuccess,
-                                );
+                              (success) async {
+                                await serviceLocator<BlockService>().blockPost(propertyId);
+                                if (context.mounted) {
+                                  context.read<FeedBloc>().add(
+                                        const FeedEvent.getFeedsEvent(offset: 0),
+                                      );
+                                  Navigator.pop(context);
+                                  CustomToast.showSuccessToast(
+                                    msg: l10n.postReportedSuccess,
+                                  );
+                                }
                               },
                             );
                           }
@@ -336,6 +345,52 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               ],
             );
           },
+        );
+      },
+    );
+  }
+
+  void _handleBlockUser(String userId, String userName) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.block, color: Colors.red),
+              SizedBox(width: 8),
+              Text('Block User'),
+            ],
+          ),
+          content: Text(
+            'Are you sure you want to block $userName? You will no longer see posts from this user.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () async {
+                Navigator.pop(dialogContext);
+                await serviceLocator<BlockService>().blockUser(
+                  userId: userId,
+                  userName: userName,
+                );
+                if (mounted) {
+                  context.read<FeedBloc>().add(
+                        const FeedEvent.getFeedsEvent(offset: 0),
+                      );
+                  Navigator.pop(context);
+                  CustomToast.showSuccessToast(
+                    msg: '$userName has been blocked.',
+                  );
+                }
+              },
+              child: const Text('Block', style: TextStyle(color: Colors.white)),
+            ),
+          ],
         );
       },
     );
@@ -444,6 +499,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       );
                     } else if (value == 'report') {
                       _handleReportProperty(widget.postId);
+                    } else if (value == 'block_user') {
+                      final ownerId =
+                          state.postDetails?.owner?.id ?? state.postDetails?.userId;
+                      final ownerName = state.postDetails?.owner?.username ??
+                          state.postDetails?.owner?.phoneNumber ??
+                          'User';
+                      if (ownerId != null) {
+                        _handleBlockUser(ownerId, ownerName);
+                      }
                     } else if (value == 'view_profile') {
                       if (state.postDetails?.owner?.id != null) {
                         context.push(
@@ -506,6 +570,23 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 ),
                                 const SizedBox(width: 8),
                                 Text(l10n.report),
+                              ],
+                            ),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'block_user',
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.block,
+                                  size: 18,
+                                  color: Colors.red,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Block User',
+                                  style: TextStyle(color: Colors.red),
+                                ),
                               ],
                             ),
                           ),

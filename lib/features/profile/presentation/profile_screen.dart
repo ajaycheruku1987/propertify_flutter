@@ -24,6 +24,7 @@ import 'package:propertify/features/feed/presentation/widgets/full_screen_image_
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
+import 'package:propertify/features/profile/presentation/blocked_accounts_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 

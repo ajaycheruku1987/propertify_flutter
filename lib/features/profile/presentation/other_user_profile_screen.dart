@@ -23,6 +23,9 @@ import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
 import 'package:propertify/utils/env.dart';
+import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/services/block_service.dart';
+import 'package:propertify/features/feed/bloc/feed_bloc.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
@@ -173,6 +176,52 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     super.dispose();
   }
 
+  void _confirmBlockUser(String userId, String userName) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.block, color: Colors.red),
+              SizedBox(width: 8),
+              Text('Block User'),
+            ],
+          ),
+          content: Text(
+            'Are you sure you want to block $userName? You will no longer see posts from this user.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () async {
+                Navigator.pop(dialogContext);
+                await serviceLocator<BlockService>().blockUser(
+                  userId: userId,
+                  userName: userName,
+                );
+                if (mounted) {
+                  context.read<FeedBloc>().add(
+                        const FeedEvent.getFeedsEvent(offset: 0),
+                      );
+                  Navigator.pop(context);
+                  CustomToast.showSuccessToast(
+                    msg: '$userName has been blocked.',
+                  );
+                }
+              },
+              child: const Text('Block', style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,6 +256,48 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
           ),
         ),
         centerTitle: true,
+        actions: [
+          BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              final currentUserProfile = state.userProfile;
+              final isSelf = currentUserProfile != null &&
+                  ((currentUserProfile.id != null &&
+                          currentUserProfile.id == widget.userId) ||
+                      (currentUserProfile.username != null &&
+                          currentUserProfile.username!.toLowerCase() ==
+                              widget.userId.toLowerCase()));
+
+              if (isSelf) return const SizedBox.shrink();
+
+              final otherUser = state.otherUserProfile;
+              final displayName = otherUser?.username ??
+                  otherUser?.firstName ??
+                  otherUser?.phoneNumber ??
+                  'User';
+
+              return PopupMenuButton<String>(
+                icon: const Icon(Icons.more_vert, color: Colors.black),
+                onSelected: (value) {
+                  if (value == 'block') {
+                    _confirmBlockUser(widget.userId, displayName);
+                  }
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem<String>(
+                    value: 'block',
+                    child: Row(
+                      children: [
+                        Icon(Icons.block, color: Colors.red, size: 20),
+                        SizedBox(width: 8),
+                        Text('Block User', style: TextStyle(color: Colors.red)),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {

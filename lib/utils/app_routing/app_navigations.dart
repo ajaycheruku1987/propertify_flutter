@@ -56,6 +56,8 @@ import '../../features/admin/presentation/admin_reels_screen.dart';
 import '../../features/admin/presentation/gst_verification_requests_screen.dart';
 import '../../features/admin/presentation/services_verification_requests_screen.dart';
 import '../../features/admin/presentation/manage_material_prices_screen.dart';
+import '../../features/admin/presentation/reported_properties_screen.dart';
+import 'package:propertify/features/profile/presentation/blocked_accounts_screen.dart';
 
 import '../../features/auth/presentation/auth_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
@@ -558,6 +560,14 @@ final router = GoRouter(
     GoRoute(
       path: ManageMaterialPricesScreen.routeName,
       builder: (context, state) => const ManageMaterialPricesScreen(),
+    ),
+    GoRoute(
+      path: BlockedAccountsScreen.routeName,
+      builder: (context, state) => const BlockedAccountsScreen(),
+    ),
+    GoRoute(
+      path: ReportedPropertiesScreen.routeName,
+      builder: (context, state) => const ReportedPropertiesScreen(),
     ),
   ],
 );
