@@ -66,13 +66,13 @@ class PropertyInfo extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.calculate_rounded,
+                          Icons.calculate_outlined,
                           color: Theme.of(context).primaryColor,
                           size: 16,
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'EMI Calculator',
+                          'Calculator',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

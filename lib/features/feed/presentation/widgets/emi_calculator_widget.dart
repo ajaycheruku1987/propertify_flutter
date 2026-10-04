@@ -190,7 +190,7 @@ class _EmiCalculatorWidgetState extends State<EmiCalculatorWidget> {
             ),
           ),
           title: const Text(
-            'EMI Calculator',
+            'Calculator',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w800,

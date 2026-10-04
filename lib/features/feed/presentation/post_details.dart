@@ -28,6 +28,7 @@ import 'widgets/plot_overview_widget.dart';
 import 'widgets/property_details_overview_widget.dart';
 import 'widgets/description_section.dart';
 import 'widgets/emi_calculator_widget.dart';
+import 'widgets/stamp_duty_calculator_widget.dart';
 import 'widgets/agent_info.dart';
 import 'widgets/similar_properties.dart';
 import 'widgets/similar_posts_by_category.dart';
@@ -1049,7 +1050,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'EMI Calculator',
+                  'Financial Calculators',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -1057,6 +1058,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 ),
                 const SizedBox(height: 12),
                 EmiCalculatorWidget(propertyPrice: propertyPrice),
+                const SizedBox(height: 8),
+                StampDutyCalculatorWidget(propertyPrice: propertyPrice),
                 const SizedBox(height: 20),
               ],
             ),
