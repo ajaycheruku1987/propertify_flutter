@@ -27,6 +27,7 @@ import 'widgets/property_info.dart';
 import 'widgets/plot_overview_widget.dart';
 import 'widgets/property_details_overview_widget.dart';
 import 'widgets/description_section.dart';
+import '../../sales/presentation/widgets/static_location_map_view.dart';
 import 'widgets/emi_calculator_widget.dart';
 import 'widgets/stamp_duty_calculator_widget.dart';
 import 'widgets/agent_info.dart';
@@ -979,6 +980,30 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         // Similar Properties Section
                         _buildSimilaritySection(state, postDetails),
+
+                        // Static Location Map View Widget
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Location & Map',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF1A1A1A),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              StaticLocationMapView(
+                                latitude: postDetails.latitude != null ? postDetails.latitude!.toDouble() : 17.3850,
+                                longitude: postDetails.longitude != null ? postDetails.longitude!.toDouble() : 78.4867,
+                                locationName: _resolveLocation(postDetails.city, postDetails.address),
+                              ),
+                            ],
+                          ),
+                        ),
 
                         const SizedBox(height: 16),
                         Center(child: GoogleAdBanner()),
