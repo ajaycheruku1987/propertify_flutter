@@ -397,7 +397,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     ];
 
     return SizedBox(
-      height: 38,
+      height: 30,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -405,7 +405,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         itemBuilder: (context, index) {
           final cat = categories[index];
           final categoryName = cat['name'] as String;
-          final IconData icon = cat['icon'] as IconData;
           final bool isSelected = currentSelectedCategory == categoryName;
           final theme = Theme.of(context);
 
@@ -432,41 +431,32 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(right: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              margin: const EdgeInsets.only(right: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
                 color: isSelected ? theme.primaryColor : Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: isSelected ? theme.primaryColor : Colors.grey.shade300,
-                  width: 1,
+                  width: 0.8,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+                    color: Colors.black.withOpacity(0.03),
+                    blurRadius: 3,
+                    offset: const Offset(0, 1),
                   ),
                 ],
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    icon,
-                    size: 16,
-                    color: isSelected ? Colors.white : theme.primaryColor,
+              child: Center(
+                child: Text(
+                  categoryName.translate(context),
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    color: isSelected ? Colors.white : Colors.black87,
                   ),
-                  const SizedBox(width: 6),
-                  Text(
-                    categoryName.translate(context),
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
-                      color: isSelected ? Colors.white : Colors.black87,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           );
