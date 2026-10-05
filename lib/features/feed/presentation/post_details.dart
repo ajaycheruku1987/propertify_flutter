@@ -941,21 +941,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         const SizedBox(height: 8),
 
-                        // Owner Reels Section
-                        OwnerReelsSection(
-                          ownerName: (() {
-                            final owner = postDetails.owner;
-                            if (owner == null) return 'Owner';
-                            final firstName = owner.firstName?.trim() ?? '';
-                            final lastName = owner.lastName?.trim() ?? '';
-                            if (firstName.isNotEmpty || lastName.isNotEmpty) {
-                              return '$firstName $lastName'.trim();
-                            }
-                            return (owner.username ?? 'Owner').toTitleCase();
-                          }()),
-                          userId: postDetails.owner?.id,
-                        ),
-
                         context.read<ProfileBloc>().state.userProfile?.id ==
                                     postDetails.owner?.id &&
                                 !postDetails.isCurrentlyPromoted

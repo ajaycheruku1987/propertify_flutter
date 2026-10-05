@@ -1,12 +1,15 @@
-import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
-import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
-import 'package:propertify/utils/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:video_player/video_player.dart';
+import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
+import 'package:propertify/features/reels/bloc/reels_bloc.dart';
+import 'package:propertify/features/reels/models/reel_response_model.dart';
+import 'package:propertify/features/reels/presentation/other_user_reels_screen.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/utils/env.dart';
 
 class AgentInfo extends StatelessWidget {
@@ -32,6 +35,85 @@ class AgentInfo extends StatelessWidget {
     this.onCallPressed,
     this.onWhatsAppPressed,
   });
+
+  void _showOwnerReelsBottomSheet(BuildContext context, List<ReelResponseModel> reels) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.6,
+          minChildSize: 0.4,
+          maxChildSize: 0.9,
+          expand: false,
+          builder: (context, scrollController) {
+            return Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 12),
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Text(
+                    'Reels',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+                const Divider(),
+                Expanded(
+                  child: reels.isEmpty
+                      ? const Center(child: Text('No reels posted by this owner'))
+                      : GridView.builder(
+                          controller: scrollController,
+                          padding: const EdgeInsets.all(16),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 12,
+                            childAspectRatio: 0.7,
+                          ),
+                          itemCount: reels.length,
+                          itemBuilder: (context, index) {
+                            final reel = reels[index];
+                            return _BottomSheetReelCard(
+                              reel: reel,
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OtherUserReelsScreen(
+                                      reels: reels,
+                                      initialIndex: index,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +279,74 @@ class AgentInfo extends StatelessWidget {
                           endIndent: 8,
                         ),
                         Expanded(
+                          child: BlocBuilder<ReelsBloc, ReelsState>(
+                            builder: (context, reelsState) {
+                              final reels = reelsState.otherUserReels;
+                              return InkWell(
+                                onTap: () {
+                                  _showOwnerReelsBottomSheet(context, reels);
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.video_collection_outlined,
+                                          color: Theme.of(context).primaryColor,
+                                          size: 24,
+                                        ),
+                                        if (reels.isNotEmpty)
+                                          Positioned(
+                                            right: -4,
+                                            top: -4,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.red,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              constraints: const BoxConstraints(
+                                                minWidth: 16,
+                                                minHeight: 16,
+                                              ),
+                                              child: Text(
+                                                '${reels.length}',
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 8,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'REELS (${reels.length})',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        color: Colors.grey.shade500,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        VerticalDivider(
+                          color: Colors.grey.shade200,
+                          thickness: 1,
+                          indent: 8,
+                          endIndent: 8,
+                        ),
+                        Expanded(
                           child: InkWell(
                             onTap: () {
                               if (userId != null && userId!.isNotEmpty) {
@@ -212,16 +362,16 @@ class AgentInfo extends StatelessWidget {
                                 Icon(
                                   Icons.account_circle_outlined,
                                   color: Theme.of(context).primaryColor,
-                                  size: 26,
+                                  size: 24,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'VIEW PROFILE',
+                                  'PROFILE',
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 9,
                                     color: Colors.grey.shade500,
                                     fontWeight: FontWeight.bold,
-                                    letterSpacing: 1,
+                                    letterSpacing: 0.5,
                                   ),
                                 ),
                               ],
@@ -308,5 +458,122 @@ class AgentInfo extends StatelessWidget {
       return '$baseUrl/$path';
     }
     return baseUrl + path;
+  }
+}
+
+class _BottomSheetReelCard extends StatefulWidget {
+  final ReelResponseModel reel;
+  final VoidCallback onTap;
+
+  const _BottomSheetReelCard({required this.reel, required this.onTap});
+
+  @override
+  State<_BottomSheetReelCard> createState() => _BottomSheetReelCardState();
+}
+
+class _BottomSheetReelCardState extends State<_BottomSheetReelCard> {
+  late VideoPlayerController _controller;
+  bool _initialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.reel.videoUrl != null && widget.reel.videoUrl!.isNotEmpty) {
+      _controller = VideoPlayerController.networkUrl(
+        Uri.parse(widget.reel.videoUrl!),
+      )..initialize().then((_) {
+          if (mounted) {
+            setState(() => _initialized = true);
+          }
+        }).catchError((_) {});
+    }
+  }
+
+  @override
+  void dispose() {
+    if (_initialized) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          color: Colors.black,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (_initialized)
+                FittedBox(
+                  fit: BoxFit.cover,
+                  child: SizedBox(
+                    width: _controller.value.size.width,
+                    height: _controller.value.size.height,
+                    child: VideoPlayer(_controller),
+                  ),
+                )
+              else
+                Container(
+                  color: Colors.grey.shade900,
+                  child: const Center(
+                    child: SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.6)],
+                  ),
+                ),
+              ),
+              const Center(
+                child: Icon(
+                  Icons.play_circle_outline,
+                  color: Colors.white,
+                  size: 36,
+                ),
+              ),
+              Positioned(
+                bottom: 8,
+                left: 8,
+                right: 8,
+                child: Row(
+                  children: [
+                    const Icon(Icons.play_arrow, color: Colors.white, size: 14),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        widget.reel.description ?? 'Reel',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
