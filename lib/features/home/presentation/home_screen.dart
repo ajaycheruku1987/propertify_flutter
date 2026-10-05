@@ -755,7 +755,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       hasActiveFilter = state.activeServicesFilter != null;
     }
 
-    final maxHeight = 215.0;
+    final maxHeight = 235.0;
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -1190,7 +1190,20 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                               },
                             ),
                           ),
-                          _buildCategorySelector(context),
+                          if (fadeOpacity > 0)
+                            SizedBox(
+                              height: 46.0 * fadeOpacity,
+                              child: Opacity(
+                                opacity: fadeOpacity,
+                                child: ClipRect(
+                                  child: OverflowBox(
+                                    maxHeight: 50.0,
+                                    alignment: Alignment.topCenter,
+                                    child: _buildCategorySelector(context),
+                                  ),
+                                ),
+                              ),
+                            ),
                           const SizedBox(height: 8),
                         ],
                       ),

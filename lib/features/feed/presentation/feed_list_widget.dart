@@ -282,7 +282,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                             size: 60,
                             color: Colors.grey,
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 8),
                           Text(
                             l10n.noPropertiesFound,
                             style: const TextStyle(fontSize: 16, color: Colors.grey),
@@ -293,7 +293,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                   )
                 else ...[
                   SliverPadding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
                         // Banner Ads Section
@@ -347,7 +347,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                       ]),
                     ),
                   ),
@@ -710,7 +710,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   );
                 }).toList(),
               ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 8),
           ],
         );
       },
