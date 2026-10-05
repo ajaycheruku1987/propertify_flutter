@@ -299,10 +299,6 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                         // Banner Ads Section
                         _buildBannerAds(context, l10n),
 
-                        // Categories Section
-                        _buildCategorySelector(context, currentSelectedCategory),
-                        const SizedBox(height: 16),
-
                         // Feeds Section Header with Grid/List Toggle
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -721,78 +717,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  Widget _buildCategorySelector(BuildContext context, String selectedCategory) {
-    final List<String> categories = [
-      'All',
-      ...AppCategories.propertyType.map((e) => e['name'] as String),
-    ];
 
-    return SizedBox(
-      height: 40,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final categoryName = categories[index];
-          final bool isSelected = selectedCategory == categoryName;
-          final theme = Theme.of(context);
-
-          return GestureDetector(
-            onTap: () {
-              if (categoryName == 'All') {
-                // Completely reset all filters when 'All' is selected
-                context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
-                context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
-                context.read<FeedBloc>().add(
-                      FeedEvent.getFeedsEvent(
-                        latitude: context.read<HomeBloc>().state.currentLat,
-                        longitude: context.read<HomeBloc>().state.currentLng,
-                      ),
-                    );
-                return;
-              }
-
-              final currentFilter =
-                  context.read<HomeBloc>().state.activeFeedsFilter ?? {};
-              final newFilter = Map<String, dynamic>.from(currentFilter);
-              newFilter['propertyTypes'] = [categoryName];
-
-              _applyFeedsFilter(context, newFilter);
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(right: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color:
-                    isSelected
-                        ? theme.primaryColor
-                        : theme.primaryColor.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color:
-                      isSelected
-                          ? theme.primaryColor
-                          : theme.primaryColor.withOpacity(0.1),
-                  width: 1,
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  categoryName.translate(context),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                    color: isSelected ? Colors.white : Colors.black87,
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
 
   String _resolveLocation(String? city, String? address) {
     if (city == null || city.isEmpty) return '';

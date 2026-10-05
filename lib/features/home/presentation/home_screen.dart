@@ -5,6 +5,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/core/constants/app_categories.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
@@ -227,7 +229,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             ),
           ),
           const SizedBox(width: 8),
-          _buildLanguageSelector(),
+          _buildAddListingButton(),
           const SizedBox(width: 8),
           BlocBuilder<NotificationsBloc, NotificationsState>(
             builder: (context, state) {
@@ -286,32 +288,193 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     );
   }
 
-  Widget _buildLanguageSelector() {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        return PopupMenuButton<Locale>(
-          initialValue: state.locale ?? const Locale('en'),
-          icon: Icon(Icons.language, color: Theme.of(context).primaryColor),
-          onSelected: (Locale locale) {
-            context.read<HomeBloc>().add(HomeEvent.setLocale(locale));
-          },
-          itemBuilder:
-              (BuildContext context) => <PopupMenuEntry<Locale>>[
-                const PopupMenuItem<Locale>(
-                  value: Locale('en'),
-                  child: Text('English'),
-                ),
-                const PopupMenuItem<Locale>(
-                  value: Locale('hi'),
-                  child: Text('हिन्दी (Hindi)'),
-                ),
-                const PopupMenuItem<Locale>(
-                  value: Locale('te'),
-                  child: Text('తెలుగు (Telugu)'),
-                ),
-              ],
-        );
+  Widget _buildAddListingButton() {
+    return GestureDetector(
+      onTap: () async {
+        await CreateOrAddBottomSheet.show(context);
       },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.grey.shade300),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Add Listing',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(width: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Text(
+                'FREE',
+                style: TextStyle(
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _applyFeedsFilter(
+    BuildContext context,
+    Map<String, dynamic> filterData,
+  ) {
+    context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
+    final propertyTypes = filterData['propertyTypes'] as List?;
+    final lookingFor = filterData['lookingFor'] as String?;
+    final isLocationCustom = filterData['isLocationCustom'] == true;
+
+    final homeState = context.read<HomeBloc>().state;
+    final latitude = isLocationCustom
+        ? filterData['latitude'] as double?
+        : homeState.currentLat;
+    final longitude = isLocationCustom
+        ? filterData['longitude'] as double?
+        : homeState.currentLng;
+
+    final mappedLookingFor = lookingFor == 'Sales'
+        ? 'Sell'
+        : (lookingFor == 'All' || lookingFor == '')
+        ? null
+        : lookingFor;
+
+    final propertyType =
+        propertyTypes != null &&
+            propertyTypes.isNotEmpty &&
+            !propertyTypes.contains('All')
+        ? propertyTypes.first as String?
+        : null;
+
+    context.read<FeedBloc>().add(
+          FeedEvent.getFeedsEvent(
+            offset: 0,
+            search: homeState.searchQuery,
+            city: filterData['location'] as String?,
+            listingType: mappedLookingFor,
+            propertyType: propertyType,
+            minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
+            maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
+            latitude: latitude,
+            longitude: longitude,
+          ),
+        );
+  }
+
+  Widget _buildCategorySelector(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
+    final activeFilter = homeState.activeFeedsFilter;
+    final propertyTypes = activeFilter?['propertyTypes'] as List?;
+    final String currentSelectedCategory =
+        (propertyTypes != null && propertyTypes.isNotEmpty)
+            ? propertyTypes.first as String
+            : 'All';
+
+    final List<Map<String, dynamic>> categories = [
+      {'name': 'All', 'icon': Icons.apps},
+      ...AppCategories.propertyType,
+    ];
+
+    return SizedBox(
+      height: 38,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final cat = categories[index];
+          final categoryName = cat['name'] as String;
+          final IconData icon = cat['icon'] as IconData;
+          final bool isSelected = currentSelectedCategory == categoryName;
+          final theme = Theme.of(context);
+
+          return GestureDetector(
+            onTap: () {
+              if (categoryName == 'All') {
+                context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+                context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
+                context.read<FeedBloc>().add(
+                      FeedEvent.getFeedsEvent(
+                        latitude: context.read<HomeBloc>().state.currentLat,
+                        longitude: context.read<HomeBloc>().state.currentLng,
+                      ),
+                    );
+                return;
+              }
+
+              final currentFilter =
+                  context.read<HomeBloc>().state.activeFeedsFilter ?? {};
+              final newFilter = Map<String, dynamic>.from(currentFilter);
+              newFilter['propertyTypes'] = [categoryName];
+
+              _applyFeedsFilter(context, newFilter);
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: isSelected ? theme.primaryColor : Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isSelected ? theme.primaryColor : Colors.grey.shade300,
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    icon,
+                    size: 16,
+                    color: isSelected ? Colors.white : theme.primaryColor,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    categoryName.translate(context),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+                      color: isSelected ? Colors.white : Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -592,7 +755,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       hasActiveFilter = state.activeServicesFilter != null;
     }
 
-    final maxHeight = 150.0;
+    final maxHeight = 215.0;
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -1027,6 +1190,8 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                               },
                             ),
                           ),
+                          _buildCategorySelector(context),
+                          const SizedBox(height: 8),
                         ],
                       ),
                     ],

@@ -548,6 +548,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                         ProfileMenuItem(
+                          icon: Icons.language,
+                          title: 'Language / Translation',
+                          onTap: () {
+                            _showLanguageDialog(context);
+                          },
+                        ),
+                        ProfileMenuItem(
                           icon: Icons.feedback_outlined,
                           title: l10n.suggestionsFeedback,
                           onTap: () {
@@ -786,6 +793,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } catch (e) {
       debugPrint('Error launching social URL: $e');
     }
+  }
+
+  void _showLanguageDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Select Language'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('English'),
+                onTap: () {
+                  context.read<HomeBloc>().add(const HomeEvent.setLocale(Locale('en')));
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('हिन्दी (Hindi)'),
+                onTap: () {
+                  context.read<HomeBloc>().add(const HomeEvent.setLocale(Locale('hi')));
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('తెలుగు (Telugu)'),
+                onTap: () {
+                  context.read<HomeBloc>().add(const HomeEvent.setLocale(Locale('te')));
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _showImagePicker(BuildContext context) async {
