@@ -755,7 +755,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       hasActiveFilter = state.activeServicesFilter != null;
     }
 
-    final maxHeight = 235.0;
+    final maxHeight = 210.0;
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {

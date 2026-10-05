@@ -293,7 +293,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                   )
                 else ...[
                   SliverPadding(
-                    padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
                         // Banner Ads Section
