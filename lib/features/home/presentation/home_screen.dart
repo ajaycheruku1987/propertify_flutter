@@ -294,7 +294,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         await CreateOrAddBottomSheet.show(context);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -310,13 +310,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Add Listing',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
+            Icon(
+              Icons.add,
+              size: 16,
+              color: Theme.of(context).primaryColor,
             ),
             const SizedBox(width: 4),
             Container(
