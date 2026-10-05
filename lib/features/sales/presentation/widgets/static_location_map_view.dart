@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// A static, non-interactive map widget that displays a location marker
@@ -20,6 +23,26 @@ class StaticLocationMapView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final position = LatLng(latitude, longitude);
+
+    String? distanceStr;
+    try {
+      final homeState = context.watch<HomeBloc>().state;
+      if (homeState.currentLat != 0.0 && homeState.currentLng != 0.0) {
+        final distanceInMeters = Geolocator.distanceBetween(
+          homeState.currentLat,
+          homeState.currentLng,
+          latitude,
+          longitude,
+        );
+        final distanceInKm = distanceInMeters / 1000;
+        distanceStr = '${distanceInKm.toStringAsFixed(1)} km away';
+      }
+    } catch (_) {}
+
+    final displayText = [
+      locationName,
+      distanceStr,
+    ].where((s) => s != null && s.isNotEmpty).join(' • ');
 
     return GestureDetector(
       onTap: () => _openMaps(latitude, longitude),
@@ -105,7 +128,9 @@ class StaticLocationMapView extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          locationName ?? 'Tap to open in Maps',
+                          displayText.isNotEmpty
+                              ? displayText
+                              : 'Tap to open in Maps',
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
