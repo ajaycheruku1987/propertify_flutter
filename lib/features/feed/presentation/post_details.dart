@@ -967,6 +967,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         _buildSimilaritySection(state, postDetails),
 
                         // Static Location Map View Widget
+                        if (postDetails.latitude != null &&
+                            postDetails.latitude != 0.0 &&
+                            postDetails.longitude != null &&
+                            postDetails.longitude != 0.0)
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                           child: Column(
@@ -982,8 +986,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               ),
                               const SizedBox(height: 12),
                               StaticLocationMapView(
-                                latitude: postDetails.latitude != null ? postDetails.latitude!.toDouble() : 17.3850,
-                                longitude: postDetails.longitude != null ? postDetails.longitude!.toDouble() : 78.4867,
+                                latitude: postDetails.latitude!,
+                                longitude: postDetails.longitude!,
                                 locationName: _resolveLocation(postDetails.city, postDetails.address),
                               ),
                             ],

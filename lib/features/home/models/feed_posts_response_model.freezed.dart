@@ -47,10 +47,10 @@ mixin _$FeedPostsResponseModel {
   int? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "latitude")
-  int? get latitude => throw _privateConstructorUsedError;
-  @JsonKey(name: "longitude")
-  int? get longitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "latitude", fromJson: _toDouble)
+  double? get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "longitude", fromJson: _toDouble)
+  double? get longitude => throw _privateConstructorUsedError;
   @JsonKey(name: "is_promoted")
   bool? get isPromoted => throw _privateConstructorUsedError;
   @JsonKey(name: "promoted_at")
@@ -132,8 +132,8 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "is_featured") bool? isFeatured,
       @JsonKey(name: "rating") int? rating,
       @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "latitude") int? latitude,
-      @JsonKey(name: "longitude") int? longitude,
+      @JsonKey(name: "latitude", fromJson: _toDouble) double? latitude,
+      @JsonKey(name: "longitude", fromJson: _toDouble) double? longitude,
       @JsonKey(name: "is_promoted") bool? isPromoted,
       @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
@@ -282,11 +282,11 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       isPromoted: freezed == isPromoted
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
@@ -434,8 +434,8 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "is_featured") bool? isFeatured,
       @JsonKey(name: "rating") int? rating,
       @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "latitude") int? latitude,
-      @JsonKey(name: "longitude") int? longitude,
+      @JsonKey(name: "latitude", fromJson: _toDouble) double? latitude,
+      @JsonKey(name: "longitude", fromJson: _toDouble) double? longitude,
       @JsonKey(name: "is_promoted") bool? isPromoted,
       @JsonKey(name: "promoted_at") String? promotedAt,
       @JsonKey(name: "promoted_until") String? promotedUntil,
@@ -584,11 +584,11 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       isPromoted: freezed == isPromoted
           ? _value.isPromoted
           : isPromoted // ignore: cast_nullable_to_non_nullable
@@ -718,8 +718,8 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "is_featured") this.isFeatured,
       @JsonKey(name: "rating") this.rating,
       @JsonKey(name: "created_at") this.createdAt,
-      @JsonKey(name: "latitude") this.latitude,
-      @JsonKey(name: "longitude") this.longitude,
+      @JsonKey(name: "latitude", fromJson: _toDouble) this.latitude,
+      @JsonKey(name: "longitude", fromJson: _toDouble) this.longitude,
       @JsonKey(name: "is_promoted") this.isPromoted,
       @JsonKey(name: "promoted_at") this.promotedAt,
       @JsonKey(name: "promoted_until") this.promotedUntil,
@@ -805,11 +805,11 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @JsonKey(name: "created_at")
   final String? createdAt;
   @override
-  @JsonKey(name: "latitude")
-  final int? latitude;
+  @JsonKey(name: "latitude", fromJson: _toDouble)
+  final double? latitude;
   @override
-  @JsonKey(name: "longitude")
-  final int? longitude;
+  @JsonKey(name: "longitude", fromJson: _toDouble)
+  final double? longitude;
   @override
   @JsonKey(name: "is_promoted")
   final bool? isPromoted;
@@ -1056,8 +1056,8 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
       @JsonKey(name: "is_featured") final bool? isFeatured,
       @JsonKey(name: "rating") final int? rating,
       @JsonKey(name: "created_at") final String? createdAt,
-      @JsonKey(name: "latitude") final int? latitude,
-      @JsonKey(name: "longitude") final int? longitude,
+      @JsonKey(name: "latitude", fromJson: _toDouble) final double? latitude,
+      @JsonKey(name: "longitude", fromJson: _toDouble) final double? longitude,
       @JsonKey(name: "is_promoted") final bool? isPromoted,
       @JsonKey(name: "promoted_at") final String? promotedAt,
       @JsonKey(name: "promoted_until") final String? promotedUntil,
@@ -1138,11 +1138,11 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @JsonKey(name: "created_at")
   String? get createdAt;
   @override
-  @JsonKey(name: "latitude")
-  int? get latitude;
+  @JsonKey(name: "latitude", fromJson: _toDouble)
+  double? get latitude;
   @override
-  @JsonKey(name: "longitude")
-  int? get longitude;
+  @JsonKey(name: "longitude", fromJson: _toDouble)
+  double? get longitude;
   @override
   @JsonKey(name: "is_promoted")
   bool? get isPromoted;

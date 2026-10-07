@@ -18,6 +18,12 @@ String feedPostsResponseModelToJson(List<FeedPostsResponseModel> data) =>
 
 String? _toString(dynamic value) => value?.toString();
 
+double? _toDouble(dynamic value) {
+  if (value is num) return value.toDouble();
+  if (value is String) return double.tryParse(value);
+  return null;
+}
+
 @freezed
 class FeedPostsResponseModel with _$FeedPostsResponseModel {
   const FeedPostsResponseModel._();
@@ -36,8 +42,8 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "is_featured") bool? isFeatured,
     @JsonKey(name: "rating") int? rating,
     @JsonKey(name: "created_at") String? createdAt,
-    @JsonKey(name: "latitude") int? latitude,
-    @JsonKey(name: "longitude") int? longitude,
+    @JsonKey(name: "latitude", fromJson: _toDouble) double? latitude,
+    @JsonKey(name: "longitude", fromJson: _toDouble) double? longitude,
     @JsonKey(name: "is_promoted") bool? isPromoted,
     @JsonKey(name: "promoted_at") String? promotedAt,
     @JsonKey(name: "promoted_until") String? promotedUntil,

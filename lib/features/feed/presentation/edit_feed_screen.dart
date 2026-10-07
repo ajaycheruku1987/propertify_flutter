@@ -54,8 +54,8 @@ class _EditFeedScreenState extends State<EditFeedScreen> {
     _cityController = TextEditingController(text: widget.property.city ?? '');
     _priceController = TextEditingController(text: widget.property.price?.toString() ?? '');
 
-    _latitude = widget.property.latitude?.toDouble();
-    _longitude = widget.property.longitude?.toDouble();
+    _latitude = widget.property.latitude;
+    _longitude = widget.property.longitude;
 
     _listingType = widget.property.listingType ?? 'Sell';
     _propertyType = widget.property.propertyType ?? 'Villas';
