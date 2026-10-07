@@ -9,6 +9,8 @@ export 'notifications_state.dart';
 class NotificationsBloc extends HydratedBloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc() : super(const NotificationsState()) {
     on<AddNotification>((event, emit) {
+      // The same push can arrive in the foreground and again when it is tapped.
+      if (state.notifications.any((n) => n.id == event.notification.id)) return;
       final updatedList = [event.notification, ...state.notifications];
       emit(state.copyWith(notifications: updatedList));
     });

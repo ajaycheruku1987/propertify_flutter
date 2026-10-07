@@ -6,6 +6,9 @@ class NotificationModel {
   final bool isRead;
   final String? type;
   final String? referenceId;
+  final String? imageUrl;
+  // Raw push payload, used to open the related screen when tapped.
+  final Map<String, dynamic>? data;
 
   NotificationModel({
     required this.id,
@@ -15,6 +18,8 @@ class NotificationModel {
     this.isRead = false,
     this.type,
     this.referenceId,
+    this.imageUrl,
+    this.data,
   });
 
   NotificationModel copyWith({
@@ -25,6 +30,8 @@ class NotificationModel {
     bool? isRead,
     String? type,
     String? referenceId,
+    String? imageUrl,
+    Map<String, dynamic>? data,
   }) {
     return NotificationModel(
       id: id ?? this.id,
@@ -34,6 +41,8 @@ class NotificationModel {
       isRead: isRead ?? this.isRead,
       type: type ?? this.type,
       referenceId: referenceId ?? this.referenceId,
+      imageUrl: imageUrl ?? this.imageUrl,
+      data: data ?? this.data,
     );
   }
 
@@ -46,6 +55,8 @@ class NotificationModel {
       'isRead': isRead,
       'type': type,
       'referenceId': referenceId,
+      'imageUrl': imageUrl,
+      'data': data,
     };
   }
 
@@ -58,6 +69,8 @@ class NotificationModel {
       isRead: json['isRead'] as bool? ?? false,
       type: json['type'] as String?,
       referenceId: json['referenceId'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      data: (json['data'] as Map?)?.cast<String, dynamic>(),
     );
   }
 }

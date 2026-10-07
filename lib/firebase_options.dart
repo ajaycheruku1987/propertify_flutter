@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDTGZgS7Lt34tdDK8JBf1CWi6Jofiw40yY',
-    appId: '1:1057378791268:android:c9fb118a4d7fd54ccbd471',
-    messagingSenderId: '1057378791268',
-    projectId: 'placeofsales-realestate',
-    storageBucket: 'placeofsales-realestate.appspot.com',
+    apiKey: 'AIzaSyCx3o2KmyE0k4KFJK0paxJ_pQB8pKcATGc',
+    appId: '1:7884943550:android:e13dcf9a7469b89227eeef',
+    messagingSenderId: '7884943550',
+    projectId: 'propertify-a370e',
+    storageBucket: 'propertify-a370e.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC7C26-H8mv7ahxKwpDobZkXWcrK6GVQn4',
-    appId: '1:1057378791268:ios:5407f41aaa22b5adcbd471',
-    messagingSenderId: '1057378791268',
-    projectId: 'placeofsales-realestate',
-    storageBucket: 'placeofsales-realestate.appspot.com',
+    apiKey: 'AIzaSyAbdlVF-aYCkfZryA39dpe5a0cDKMe7lHo',
+    appId: '1:7884943550:ios:648172f0c7a7727927eeef',
+    messagingSenderId: '7884943550',
+    projectId: 'propertify-a370e',
+    storageBucket: 'propertify-a370e.firebasestorage.app',
     iosBundleId: 'com.avontra.propertify',
-    iosClientId:
-        '1057378791268-a3llhfurt8j5j8njk7tq0pc72v4iov3k.apps.googleusercontent.com',
   );
 }

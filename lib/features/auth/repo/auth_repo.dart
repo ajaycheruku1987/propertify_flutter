@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
@@ -10,6 +11,9 @@ import '../models/login_response_model.dart';
 
 class AuthRepo {
   final ftPyroApiRequest = serviceLocator<ApiRequest>();
+
+  String get _platform =>
+      defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android';
 
   /// Login API
   Future<Either<Failure, LoginResponseModel>> login({
@@ -23,6 +27,7 @@ class AuthRepo {
         "phone_number": mobile,
         "password": password,
         "fcm_token": fcmToken,
+        "platform": _platform,
       },
     );
     final responseData = await response.getResponse();
@@ -80,6 +85,7 @@ class AuthRepo {
         "password": password,
         "otp": otp,
         "fcm_token": fcmToken,
+        "platform": _platform,
       },
     );
     final responseData = await response.getResponse();
@@ -179,12 +185,27 @@ class AuthRepo {
     );
   }
 
-  /// Update FCM Token API
+  /// Register/refresh this device for push notifications
   Future<Either<Failure, Map<String, dynamic>>> updateFcmToken({
     required String fcmToken,
   }) async {
     final response = await ftPyroApiRequest.post(
-      '/update-fcm-token', // Assuming this endpoint
+      '/devices',
+      data: {"fcm_token": fcmToken, "platform": _platform},
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(right as Map<String, dynamic>),
+    );
+  }
+
+  /// Stop push notifications for this device (on logout)
+  Future<Either<Failure, Map<String, dynamic>>> removeFcmToken({
+    required String fcmToken,
+  }) async {
+    final response = await ftPyroApiRequest.delete(
+      '/devices',
       data: {"fcm_token": fcmToken},
     );
     final responseData = await response.getResponse();

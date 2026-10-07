@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/core/api_request/api_request.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/notification_router.dart';
 import 'package:propertify/core/notification_service.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
@@ -70,7 +71,12 @@ class _SplashScreenState extends State<SplashScreen>
       //   return;
       // }
     }
+    if (!mounted) return;
     context.go(HomeScreen.routeName);
+    // Opens the screen of a notification that launched the app, on top of home.
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => NotificationRouter.markAppReady(),
+    );
   }
 
   @override

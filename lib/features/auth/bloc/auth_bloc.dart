@@ -40,7 +40,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      await _authRepo.updateFcmToken(fcmToken: event.fcmToken);
+      final result = await _authRepo.updateFcmToken(fcmToken: event.fcmToken);
+      result.fold(
+        (failure) => print("Error updating FCM token: ${failure.message}"),
+        (_) {},
+      );
     } catch (e) {
       print("Error updating FCM token: $e");
     }
@@ -172,6 +176,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onLogoutEvent(_LogoutEvent event, Emitter<AuthState> emit) async {
+    // Must run before the access token is cleared; never block logout on it.
+    try {
+      final fcmToken = await NotificationService.instance.fcm
+          .getToken()
+          .timeout(const Duration(seconds: 5));
+      if (fcmToken != null) {
+        await _authRepo
+            .removeFcmToken(fcmToken: fcmToken)
+            .timeout(const Duration(seconds: 5));
+      }
+    } catch (e) {
+      print("Error removing FCM token on logout: $e");
+    }
+
     // Clear all auth data
     await _appCacheService.clearAll();
     await _apiRequest.updateAuthorization(clearToken: true);

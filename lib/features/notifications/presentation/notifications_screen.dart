@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:propertify/core/notification_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import '../bloc/notifications_bloc.dart';
 import '../models/notification_model.dart';
@@ -121,7 +122,10 @@ class _NotificationCard extends StatelessWidget {
         if (!notification.isRead) {
           context.read<NotificationsBloc>().add(MarkAsRead(notification.id));
         }
-        // Handle navigation based on type if needed
+        final data = notification.data;
+        if (data != null && data['type'] != null) {
+          NotificationRouter.open(data);
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -198,11 +202,21 @@ class _NotificationCard extends StatelessWidget {
   IconData _getIcon(String? type) {
     switch (type) {
       case 'property':
+      case 'new_post':
         return Icons.home_work_outlined;
       case 'like':
+      case 'reel_like':
         return Icons.thumb_up_outlined;
       case 'comment':
+      case 'reel_comment':
         return Icons.comment_outlined;
+      case 'favourite':
+        return Icons.favorite_border;
+      case 'service_review':
+        return Icons.star_border;
+      case 'verification':
+      case 'gst_verification':
+        return Icons.verified_outlined;
       default:
         return Icons.notifications_outlined;
     }
