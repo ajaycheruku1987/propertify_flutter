@@ -105,6 +105,12 @@ mixin _$FeedPostsResponseModel {
   String? get carpetArea => throw _privateConstructorUsedError;
   @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   String? get carpetAreaUnit => throw _privateConstructorUsedError;
+  @JsonKey(name: "reported_by", fromJson: _toString)
+  String? get reportedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: "report_reason", fromJson: _toString)
+  String? get reportReason => throw _privateConstructorUsedError;
+  @JsonKey(name: "reported_at", fromJson: _toString)
+  String? get reportedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -164,7 +170,10 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
       @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
       @JsonKey(name: "carpet_area_unit", fromJson: _toString)
-      String? carpetAreaUnit});
+      String? carpetAreaUnit,
+      @JsonKey(name: "reported_by", fromJson: _toString) String? reportedBy,
+      @JsonKey(name: "report_reason", fromJson: _toString) String? reportReason,
+      @JsonKey(name: "reported_at", fromJson: _toString) String? reportedAt});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -225,6 +234,9 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
     Object? contactViaWhatsApp = freezed,
     Object? carpetArea = freezed,
     Object? carpetAreaUnit = freezed,
+    Object? reportedBy = freezed,
+    Object? reportReason = freezed,
+    Object? reportedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -395,6 +407,18 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
           ? _value.carpetAreaUnit
           : carpetAreaUnit // ignore: cast_nullable_to_non_nullable
               as String?,
+      reportedBy: freezed == reportedBy
+          ? _value.reportedBy
+          : reportedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportReason: freezed == reportReason
+          ? _value.reportReason
+          : reportReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportedAt: freezed == reportedAt
+          ? _value.reportedAt
+          : reportedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -466,7 +490,10 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
       @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
       @JsonKey(name: "carpet_area_unit", fromJson: _toString)
-      String? carpetAreaUnit});
+      String? carpetAreaUnit,
+      @JsonKey(name: "reported_by", fromJson: _toString) String? reportedBy,
+      @JsonKey(name: "report_reason", fromJson: _toString) String? reportReason,
+      @JsonKey(name: "reported_at", fromJson: _toString) String? reportedAt});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -527,6 +554,9 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
     Object? contactViaWhatsApp = freezed,
     Object? carpetArea = freezed,
     Object? carpetAreaUnit = freezed,
+    Object? reportedBy = freezed,
+    Object? reportReason = freezed,
+    Object? reportedAt = freezed,
   }) {
     return _then(_$FeedPostsResponseModelImpl(
       id: freezed == id
@@ -697,6 +727,18 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
           ? _value.carpetAreaUnit
           : carpetAreaUnit // ignore: cast_nullable_to_non_nullable
               as String?,
+      reportedBy: freezed == reportedBy
+          ? _value.reportedBy
+          : reportedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportReason: freezed == reportReason
+          ? _value.reportReason
+          : reportReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportedAt: freezed == reportedAt
+          ? _value.reportedAt
+          : reportedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -750,7 +792,10 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "contact_via_whatsapp") this.contactViaWhatsApp,
       @JsonKey(name: "carpet_area", fromJson: _toString) this.carpetArea,
       @JsonKey(name: "carpet_area_unit", fromJson: _toString)
-      this.carpetAreaUnit})
+      this.carpetAreaUnit,
+      @JsonKey(name: "reported_by", fromJson: _toString) this.reportedBy,
+      @JsonKey(name: "report_reason", fromJson: _toString) this.reportReason,
+      @JsonKey(name: "reported_at", fromJson: _toString) this.reportedAt})
       : _imageUrls = imageUrls,
         super._();
 
@@ -891,10 +936,19 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @override
   @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   final String? carpetAreaUnit;
+  @override
+  @JsonKey(name: "reported_by", fromJson: _toString)
+  final String? reportedBy;
+  @override
+  @JsonKey(name: "report_reason", fromJson: _toString)
+  final String? reportReason;
+  @override
+  @JsonKey(name: "reported_at", fromJson: _toString)
+  final String? reportedAt;
 
   @override
   String toString() {
-    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, mainCategory: $mainCategory, subCategory: $subCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, propertyStatus: $propertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, carpetArea: $carpetArea, carpetAreaUnit: $carpetAreaUnit)';
+    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, mainCategory: $mainCategory, subCategory: $subCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, propertyStatus: $propertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, carpetArea: $carpetArea, carpetAreaUnit: $carpetAreaUnit, reportedBy: $reportedBy, reportReason: $reportReason, reportedAt: $reportedAt)';
   }
 
   @override
@@ -975,7 +1029,13 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
             (identical(other.carpetArea, carpetArea) ||
                 other.carpetArea == carpetArea) &&
             (identical(other.carpetAreaUnit, carpetAreaUnit) ||
-                other.carpetAreaUnit == carpetAreaUnit));
+                other.carpetAreaUnit == carpetAreaUnit) &&
+            (identical(other.reportedBy, reportedBy) ||
+                other.reportedBy == reportedBy) &&
+            (identical(other.reportReason, reportReason) ||
+                other.reportReason == reportReason) &&
+            (identical(other.reportedAt, reportedAt) ||
+                other.reportedAt == reportedAt));
   }
 
   @JsonKey(ignore: true)
@@ -1023,7 +1083,10 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
         contactViaPhone,
         contactViaWhatsApp,
         carpetArea,
-        carpetAreaUnit
+        carpetAreaUnit,
+        reportedBy,
+        reportReason,
+        reportedAt
       ]);
 
   @JsonKey(ignore: true)
@@ -1092,7 +1155,13 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
       @JsonKey(name: "carpet_area", fromJson: _toString)
       final String? carpetArea,
       @JsonKey(name: "carpet_area_unit", fromJson: _toString)
-      final String? carpetAreaUnit}) = _$FeedPostsResponseModelImpl;
+      final String? carpetAreaUnit,
+      @JsonKey(name: "reported_by", fromJson: _toString)
+      final String? reportedBy,
+      @JsonKey(name: "report_reason", fromJson: _toString)
+      final String? reportReason,
+      @JsonKey(name: "reported_at", fromJson: _toString)
+      final String? reportedAt}) = _$FeedPostsResponseModelImpl;
   const _FeedPostsResponseModel._() : super._();
 
   factory _FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =
@@ -1224,6 +1293,15 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @override
   @JsonKey(name: "carpet_area_unit", fromJson: _toString)
   String? get carpetAreaUnit;
+  @override
+  @JsonKey(name: "reported_by", fromJson: _toString)
+  String? get reportedBy;
+  @override
+  @JsonKey(name: "report_reason", fromJson: _toString)
+  String? get reportReason;
+  @override
+  @JsonKey(name: "reported_at", fromJson: _toString)
+  String? get reportedAt;
   @override
   @JsonKey(ignore: true)
   _$$FeedPostsResponseModelImplCopyWith<_$FeedPostsResponseModelImpl>

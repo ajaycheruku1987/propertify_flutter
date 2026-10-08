@@ -37,13 +37,25 @@ import 'widgets/reels/owner_reels_section.dart';
 import 'widgets/action_buttons.dart';
 import '../../../utils/common_widgets/google_ad_banner.dart';
 import '../../reels/bloc/reels_bloc.dart';
+import '../../admin/bloc/admin_bloc.dart';
 
 class PostDetailsScreen extends StatefulWidget {
   static const String routeName = '/post-details';
 
   final String postId;
+  final bool isReported;
+  final String? reportedBy;
+  final String? reportReason;
+  final String? reportedAt;
 
-  const PostDetailsScreen({super.key, required this.postId});
+  const PostDetailsScreen({
+    super.key,
+    required this.postId,
+    this.isReported = false,
+    this.reportedBy,
+    this.reportReason,
+    this.reportedAt,
+  });
 
   @override
   State<PostDetailsScreen> createState() => _PostDetailsScreenState();
@@ -664,6 +676,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (widget.isReported)
+                    _buildReportedPostBanner(context, postDetails),
+
                   // Image Carousel Section
                   Stack(
                     children: [
@@ -1297,5 +1312,239 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       return parts.last;
     }
     return parts.first;
+  }
+
+  String _formatTime(String? dateStr) {
+    if (dateStr == null || dateStr.isEmpty) return 'Recently';
+    try {
+      final dateTime = DateTime.parse(dateStr).toLocal();
+      return DateFormat('MMM d, yyyy • h:mm a').format(dateTime);
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  Widget _buildReportedPostBanner(
+    BuildContext context,
+    FeedPostsResponseModel postDetails,
+  ) {
+    final String reportedByText =
+        widget.reportedBy ?? postDetails.reportedBy ?? 'Platform User';
+    final String reportReasonText = widget.reportReason ??
+        postDetails.reportReason ??
+        'Flagged by users for admin moderation and review';
+    final String reportedAtText = _formatTime(
+      widget.reportedAt ?? postDetails.reportedAt ?? postDetails.createdAt,
+    );
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.red.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.red.shade200, width: 1.5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.red.withValues(alpha: 0.08),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade100,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.report_problem_rounded,
+                  color: Colors.red,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Reported Post - Admin Moderation',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.red,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'This post was reported by a user on the platform.',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Divider(height: 1, color: Colors.red.shade200),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Icon(Icons.access_time, size: 16, color: Colors.black87),
+              const SizedBox(width: 6),
+              const Text(
+                'Reported At: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Colors.black87,
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  reportedAtText,
+                  style: const TextStyle(fontSize: 13, color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const Icon(Icons.person_outline, size: 16, color: Colors.black87),
+              const SizedBox(width: 6),
+              const Text(
+                'Reported By: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Colors.black87,
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  reportedByText,
+                  style: const TextStyle(fontSize: 13, color: Colors.black87),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(Icons.info_outline, size: 16, color: Colors.black87),
+              const SizedBox(width: 6),
+              const Text(
+                'Reason: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Colors.black87,
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  reportReasonText,
+                  style: const TextStyle(fontSize: 13, color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              OutlinedButton.icon(
+                onPressed: () {
+                  context.read<AdminBloc>().add(
+                        AdminEvent.releaseAdminProperty(
+                          propertyId: widget.postId,
+                        ),
+                      );
+                  CustomToast.showSuccessToast(
+                    msg: 'Property released and kept active.',
+                  );
+                  Navigator.pop(context);
+                },
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.green.shade700,
+                  side: BorderSide(color: Colors.green.shade400),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.check_circle_outline, size: 18),
+                label: const Text('Release / Keep Active'),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton.icon(
+                onPressed: () =>
+                    _confirmDeleteAdminProperty(context, widget.postId),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.delete_outline, size: 18),
+                label: const Text('Delete Post'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _confirmDeleteAdminProperty(BuildContext context, String propertyId) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Delete Reported Property'),
+          content: const Text(
+            'Are you sure you want to delete this reported property from the platform?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () {
+                Navigator.pop(dialogContext);
+                context.read<AdminBloc>().add(
+                      AdminEvent.deleteAdminProperty(propertyId: propertyId),
+                    );
+                CustomToast.showSuccessToast(
+                  msg: 'Property deleted successfully.',
+                );
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

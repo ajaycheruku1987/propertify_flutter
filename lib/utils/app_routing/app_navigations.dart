@@ -206,8 +206,22 @@ final router = GoRouter(
     ),
     GoRoute(
       path: PostDetailsScreen.routeName,
-      builder: (context, state) =>
-          PostDetailsScreen(postId: state.uri.queryParameters['postId']!),
+      builder: (context, state) {
+        final postId = state.uri.queryParameters['postId'] ??
+            state.uri.queryParameters['id'] ??
+            '';
+        final isReported = state.uri.queryParameters['isReported'] == 'true';
+        final reportedBy = state.uri.queryParameters['reportedBy'];
+        final reportReason = state.uri.queryParameters['reportReason'];
+        final reportedAt = state.uri.queryParameters['reportedAt'];
+        return PostDetailsScreen(
+          postId: postId,
+          isReported: isReported,
+          reportedBy: reportedBy,
+          reportReason: reportReason,
+          reportedAt: reportedAt,
+        );
+      },
     ),
     GoRoute(
       path: CreateServiceDetails.routeName,

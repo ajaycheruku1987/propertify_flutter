@@ -68,6 +68,7 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     on<_DeleteServiceEvent>(_onDeleteServiceEvent);
     on<_GetAdminPropertiesEvent>(_onGetAdminPropertiesEvent);
     on<_DeleteAdminPropertyEvent>(_onDeleteAdminPropertyEvent);
+    on<_ReleaseAdminPropertyEvent>(_onReleaseAdminPropertyEvent);
     on<_VerifyServiceEvent>(_onVerifyServiceEvent);
     on<_GetCompaniesEvent>(_onGetCompaniesEvent);
     on<_DeleteCompanyEvent>(_onDeleteCompanyEvent);
@@ -1056,6 +1057,47 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
             properties: updatedProperties,
             notifyStatus: NotifyStatus(
               message: 'Property deleted successfully',
+              type: NotifyType.success,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onReleaseAdminPropertyEvent(
+    _ReleaseAdminPropertyEvent event,
+    Emitter<AdminState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, notifyStatus: null));
+
+    final result = await _adminRepo.releaseAdminProperty(
+      propertyId: event.propertyId,
+    );
+
+    result.fold(
+      (failure) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            notifyStatus: NotifyStatus(
+              message: failure.message,
+              type: NotifyType.error,
+            ),
+          ),
+        );
+      },
+      (success) {
+        final updatedProperties = state.properties
+            ?.where((prop) => prop.id != event.propertyId)
+            .toList();
+
+        emit(
+          state.copyWith(
+            isLoading: false,
+            properties: updatedProperties,
+            notifyStatus: NotifyStatus(
+              message: 'Property released and kept active successfully',
               type: NotifyType.success,
             ),
           ),

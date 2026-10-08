@@ -422,11 +422,16 @@ class AdminRepo {
     required int page,
     required int limit,
     String? search,
+    bool isReported = true,
   }) async {
-    String queryString = '?page=$page&limit=$limit';
-    if (search != null && search.isNotEmpty) {
-      queryString += '&search=${Uri.encodeComponent(search)}';
-    }
+    final queryParams = <String>[
+      'page=$page',
+      'limit=$limit',
+      if (isReported) 'is_reported=true',
+      if (search != null && search.isNotEmpty)
+        'search=${Uri.encodeComponent(search)}',
+    ];
+    final queryString = '?${queryParams.join('&')}';
 
     final response = await ftPyroApiRequest.get(
       '/admin/properties$queryString',
@@ -444,6 +449,20 @@ class AdminRepo {
   }) async {
     final response = await ftPyroApiRequest.delete(
       '/admin/properties/$propertyId',
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(right as Map<String, dynamic>),
+    );
+  }
+
+  /// Release Admin Property API (Unreport / Approve)
+  Future<Either<Failure, Map<String, dynamic>>> releaseAdminProperty({
+    required String propertyId,
+  }) async {
+    final response = await ftPyroApiRequest.patch(
+      '/admin/properties/$propertyId/unreport',
     );
     final responseData = await response.getResponse();
     return responseData.fold(

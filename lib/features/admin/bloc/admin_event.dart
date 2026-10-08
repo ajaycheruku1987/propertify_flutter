@@ -110,6 +110,9 @@ class AdminEvent with _$AdminEvent {
   const factory AdminEvent.deleteAdminProperty({required String propertyId}) =
       _DeleteAdminPropertyEvent;
 
+  const factory AdminEvent.releaseAdminProperty({required String propertyId}) =
+      _ReleaseAdminPropertyEvent;
+
   const factory AdminEvent.verifyService({
     required String serviceId,
     @Default(true) bool isVerified,

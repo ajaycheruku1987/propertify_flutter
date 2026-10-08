@@ -55,6 +55,9 @@ _$FeedPostsResponseModelImpl _$$FeedPostsResponseModelImplFromJson(
       contactViaWhatsApp: json['contact_via_whatsapp'] as bool?,
       carpetArea: _toString(json['carpet_area']),
       carpetAreaUnit: _toString(json['carpet_area_unit']),
+      reportedBy: _toString(json['reported_by']),
+      reportReason: _toString(json['report_reason']),
+      reportedAt: _toString(json['reported_at']),
     );
 
 Map<String, dynamic> _$$FeedPostsResponseModelImplToJson(
@@ -102,6 +105,9 @@ Map<String, dynamic> _$$FeedPostsResponseModelImplToJson(
       'contact_via_whatsapp': instance.contactViaWhatsApp,
       'carpet_area': instance.carpetArea,
       'carpet_area_unit': instance.carpetAreaUnit,
+      'reported_by': instance.reportedBy,
+      'report_reason': instance.reportReason,
+      'reported_at': instance.reportedAt,
     };
 
 _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(

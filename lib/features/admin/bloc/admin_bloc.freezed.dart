@@ -50,6 +50,7 @@ mixin _$AdminEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -99,6 +100,7 @@ mixin _$AdminEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -145,6 +147,7 @@ mixin _$AdminEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -197,6 +200,8 @@ mixin _$AdminEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -244,6 +249,7 @@ mixin _$AdminEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -290,6 +296,7 @@ mixin _$AdminEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -450,6 +457,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -502,6 +510,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -551,6 +560,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -609,6 +619,8 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -659,6 +671,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -708,6 +721,7 @@ class _$GetUserListEventImpl implements _GetUserListEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -843,6 +857,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -895,6 +910,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -944,6 +960,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -1002,6 +1019,8 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -1052,6 +1071,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1101,6 +1121,7 @@ class _$RemoveUserEventImpl implements _RemoveUserEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1230,6 +1251,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -1282,6 +1304,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -1331,6 +1354,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -1389,6 +1413,8 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -1439,6 +1465,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1488,6 +1515,7 @@ class _$IsLoadingEventImpl implements _IsLoadingEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1589,6 +1617,7 @@ class _$ResetEventImpl implements _ResetEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -1641,6 +1670,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -1690,6 +1720,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -1748,6 +1779,8 @@ class _$ResetEventImpl implements _ResetEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -1798,6 +1831,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1847,6 +1881,7 @@ class _$ResetEventImpl implements _ResetEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -1944,6 +1979,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -1996,6 +2032,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -2045,6 +2082,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -2103,6 +2141,8 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -2153,6 +2193,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -2202,6 +2243,7 @@ class _$ClearAdminStateEventImpl implements _ClearAdminStateEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -2335,6 +2377,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -2387,6 +2430,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -2436,6 +2480,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -2494,6 +2539,8 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -2544,6 +2591,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -2593,6 +2641,7 @@ class _$GetPostAdsEventImpl implements _GetPostAdsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -2723,6 +2772,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -2775,6 +2825,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -2824,6 +2875,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -2882,6 +2934,8 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -2932,6 +2986,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -2981,6 +3036,7 @@ class _$DeletePostAdEventImpl implements _DeletePostAdEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -3120,6 +3176,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -3172,6 +3229,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -3221,6 +3279,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -3279,6 +3338,8 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -3329,6 +3390,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -3378,6 +3440,7 @@ class _$GetBannerAdsEventImpl implements _GetBannerAdsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -3509,6 +3572,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -3561,6 +3625,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -3610,6 +3675,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -3668,6 +3734,8 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -3718,6 +3786,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -3767,6 +3836,7 @@ class _$DeleteBannerAdEventImpl implements _DeleteBannerAdEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -3906,6 +3976,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -3958,6 +4029,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -4007,6 +4079,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -4065,6 +4138,8 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -4115,6 +4190,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -4164,6 +4240,7 @@ class _$GetProjectsEventImpl implements _GetProjectsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -4295,6 +4372,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -4347,6 +4425,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -4396,6 +4475,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -4454,6 +4534,8 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -4504,6 +4586,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -4553,6 +4636,7 @@ class _$DeleteProjectEventImpl implements _DeleteProjectEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -4694,6 +4778,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -4746,6 +4831,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -4795,6 +4881,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -4853,6 +4940,8 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -4903,6 +4992,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -4952,6 +5042,7 @@ class _$GetCallbackRequestsEventImpl implements _GetCallbackRequestsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -5085,6 +5176,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -5137,6 +5229,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -5186,6 +5279,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -5244,6 +5338,8 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -5294,6 +5390,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -5343,6 +5440,7 @@ class _$DeleteCallbackRequestEventImpl implements _DeleteCallbackRequestEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -5487,6 +5585,7 @@ class _$GetVerificationRequestsEventImpl
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -5539,6 +5638,7 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -5588,6 +5688,7 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -5646,6 +5747,8 @@ class _$GetVerificationRequestsEventImpl
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -5696,6 +5799,7 @@ class _$GetVerificationRequestsEventImpl
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -5745,6 +5849,7 @@ class _$GetVerificationRequestsEventImpl
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -5882,6 +5987,7 @@ class _$DeleteVerificationRequestEventImpl
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -5934,6 +6040,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -5983,6 +6090,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -6041,6 +6149,8 @@ class _$DeleteVerificationRequestEventImpl
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -6091,6 +6201,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -6140,6 +6251,7 @@ class _$DeleteVerificationRequestEventImpl
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -6285,6 +6397,7 @@ class _$UpdateVerificationStatusEventImpl
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -6337,6 +6450,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -6386,6 +6500,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -6444,6 +6559,8 @@ class _$UpdateVerificationStatusEventImpl
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -6494,6 +6611,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -6543,6 +6661,7 @@ class _$UpdateVerificationStatusEventImpl
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -6685,6 +6804,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -6737,6 +6857,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -6786,6 +6907,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -6844,6 +6966,8 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -6894,6 +7018,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -6943,6 +7068,7 @@ class _$GetHomeLoansEventImpl implements _GetHomeLoansEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -7085,6 +7211,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -7137,6 +7264,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -7186,6 +7314,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -7244,6 +7373,8 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -7294,6 +7425,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -7343,6 +7475,7 @@ class _$GetInteriorDesignsEventImpl implements _GetInteriorDesignsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -7501,6 +7634,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -7553,6 +7687,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -7602,6 +7737,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -7660,6 +7796,8 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -7710,6 +7848,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -7759,6 +7898,7 @@ class _$GetRequestsEventImpl implements _GetRequestsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -7895,6 +8035,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -7947,6 +8088,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -7996,6 +8138,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -8054,6 +8197,8 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -8104,6 +8249,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -8153,6 +8299,7 @@ class _$DeleteRequestEventImpl implements _DeleteRequestEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -8291,6 +8438,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -8343,6 +8491,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -8392,6 +8541,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -8450,6 +8600,8 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -8500,6 +8652,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -8549,6 +8702,7 @@ class _$GetAdsEventImpl implements _GetAdsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -8680,6 +8834,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -8732,6 +8887,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -8781,6 +8937,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -8839,6 +8996,8 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -8889,6 +9048,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -8938,6 +9098,7 @@ class _$RemoveAdUserEventImpl implements _RemoveAdUserEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -9085,6 +9246,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -9137,6 +9299,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -9186,6 +9349,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -9244,6 +9408,8 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -9294,6 +9460,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -9343,6 +9510,7 @@ class _$GetServicesEventImpl implements _GetServicesEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -9477,6 +9645,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -9529,6 +9698,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -9578,6 +9748,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -9636,6 +9807,8 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -9686,6 +9859,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -9735,6 +9909,7 @@ class _$DeleteServiceEventImpl implements _DeleteServiceEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -9885,6 +10060,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -9937,6 +10113,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -9986,6 +10163,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -10044,6 +10222,8 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -10094,6 +10274,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -10143,6 +10324,7 @@ class _$GetAdminPropertiesEventImpl implements _GetAdminPropertiesEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -10279,6 +10461,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -10331,6 +10514,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -10380,6 +10564,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -10438,6 +10623,8 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -10488,6 +10675,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -10537,6 +10725,7 @@ class _$DeleteAdminPropertyEventImpl implements _DeleteAdminPropertyEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -10566,6 +10755,403 @@ abstract class _DeleteAdminPropertyEvent implements AdminEvent {
   String get propertyId;
   @JsonKey(ignore: true)
   _$$DeleteAdminPropertyEventImplCopyWith<_$DeleteAdminPropertyEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ReleaseAdminPropertyEventImplCopyWith<$Res> {
+  factory _$$ReleaseAdminPropertyEventImplCopyWith(
+          _$ReleaseAdminPropertyEventImpl value,
+          $Res Function(_$ReleaseAdminPropertyEventImpl) then) =
+      __$$ReleaseAdminPropertyEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String propertyId});
+}
+
+/// @nodoc
+class __$$ReleaseAdminPropertyEventImplCopyWithImpl<$Res>
+    extends _$AdminEventCopyWithImpl<$Res, _$ReleaseAdminPropertyEventImpl>
+    implements _$$ReleaseAdminPropertyEventImplCopyWith<$Res> {
+  __$$ReleaseAdminPropertyEventImplCopyWithImpl(
+      _$ReleaseAdminPropertyEventImpl _value,
+      $Res Function(_$ReleaseAdminPropertyEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? propertyId = null,
+  }) {
+    return _then(_$ReleaseAdminPropertyEventImpl(
+      propertyId: null == propertyId
+          ? _value.propertyId
+          : propertyId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReleaseAdminPropertyEventImpl implements _ReleaseAdminPropertyEvent {
+  const _$ReleaseAdminPropertyEventImpl({required this.propertyId});
+
+  @override
+  final String propertyId;
+
+  @override
+  String toString() {
+    return 'AdminEvent.releaseAdminProperty(propertyId: $propertyId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReleaseAdminPropertyEventImpl &&
+            (identical(other.propertyId, propertyId) ||
+                other.propertyId == propertyId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, propertyId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReleaseAdminPropertyEventImplCopyWith<_$ReleaseAdminPropertyEventImpl>
+      get copyWith => __$$ReleaseAdminPropertyEventImplCopyWithImpl<
+          _$ReleaseAdminPropertyEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page, int limit, String? role, String? search)
+        getUserList,
+    required TResult Function(String userId) removeUser,
+    required TResult Function(bool flag) isLoading,
+    required TResult Function() reset,
+    required TResult Function() clearAdminState,
+    required TResult Function(int page, int limit) getPostAds,
+    required TResult Function(String postId) deletePostAd,
+    required TResult Function(int page, int limit) getBannerAds,
+    required TResult Function(String bannerAdId) deleteBannerAd,
+    required TResult Function(int page, int limit) getProjects,
+    required TResult Function(String projectId) deleteProject,
+    required TResult Function(int page, int limit) getCallbackRequests,
+    required TResult Function(String callbackRequestId) deleteCallbackRequest,
+    required TResult Function(int page, int limit) getVerificationRequests,
+    required TResult Function(String verificationRequestId)
+        deleteVerificationRequest,
+    required TResult Function(String verificationRequestId, String status)
+        updateVerificationStatus,
+    required TResult Function(int page, int limit) getHomeLoans,
+    required TResult Function(int page, int limit) getInteriorDesigns,
+    required TResult Function(
+            int page, int limit, String? category, String? search)
+        getRequests,
+    required TResult Function(String requestId) deleteRequest,
+    required TResult Function(int page, int limit) getAds,
+    required TResult Function(String adUserId) removeAdUser,
+    required TResult Function(int page, int limit, String? search) getServices,
+    required TResult Function(String serviceId) deleteService,
+    required TResult Function(int page, int limit, String? search)
+        getAdminProperties,
+    required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
+    required TResult Function(String serviceId, bool isVerified) verifyService,
+    required TResult Function(int page, int limit) getCompanies,
+    required TResult Function(String companyId) deleteCompany,
+    required TResult Function(List<String> userIds, String? role)
+        convertToAdmin,
+    required TResult Function(List<String> userIds, String? role)
+        convertToSeller,
+    required TResult Function(List<String> userIds, String? role) convertToUser,
+    required TResult Function(List<String> userIds, String? role)
+        convertToMarketing,
+    required TResult Function(int page, int limit) getAdminReels,
+    required TResult Function(String reelId) deleteAdminReel,
+    required TResult Function(int page, int limit, String? status)
+        getGstPendingCompanies,
+    required TResult Function(String companyId) approveGst,
+    required TResult Function(String companyId) rejectGst,
+  }) {
+    return releaseAdminProperty(propertyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page, int limit, String? role, String? search)?
+        getUserList,
+    TResult? Function(String userId)? removeUser,
+    TResult? Function(bool flag)? isLoading,
+    TResult? Function()? reset,
+    TResult? Function()? clearAdminState,
+    TResult? Function(int page, int limit)? getPostAds,
+    TResult? Function(String postId)? deletePostAd,
+    TResult? Function(int page, int limit)? getBannerAds,
+    TResult? Function(String bannerAdId)? deleteBannerAd,
+    TResult? Function(int page, int limit)? getProjects,
+    TResult? Function(String projectId)? deleteProject,
+    TResult? Function(int page, int limit)? getCallbackRequests,
+    TResult? Function(String callbackRequestId)? deleteCallbackRequest,
+    TResult? Function(int page, int limit)? getVerificationRequests,
+    TResult? Function(String verificationRequestId)? deleteVerificationRequest,
+    TResult? Function(String verificationRequestId, String status)?
+        updateVerificationStatus,
+    TResult? Function(int page, int limit)? getHomeLoans,
+    TResult? Function(int page, int limit)? getInteriorDesigns,
+    TResult? Function(int page, int limit, String? category, String? search)?
+        getRequests,
+    TResult? Function(String requestId)? deleteRequest,
+    TResult? Function(int page, int limit)? getAds,
+    TResult? Function(String adUserId)? removeAdUser,
+    TResult? Function(int page, int limit, String? search)? getServices,
+    TResult? Function(String serviceId)? deleteService,
+    TResult? Function(int page, int limit, String? search)? getAdminProperties,
+    TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
+    TResult? Function(String serviceId, bool isVerified)? verifyService,
+    TResult? Function(int page, int limit)? getCompanies,
+    TResult? Function(String companyId)? deleteCompany,
+    TResult? Function(List<String> userIds, String? role)? convertToAdmin,
+    TResult? Function(List<String> userIds, String? role)? convertToSeller,
+    TResult? Function(List<String> userIds, String? role)? convertToUser,
+    TResult? Function(List<String> userIds, String? role)? convertToMarketing,
+    TResult? Function(int page, int limit)? getAdminReels,
+    TResult? Function(String reelId)? deleteAdminReel,
+    TResult? Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
+    TResult? Function(String companyId)? approveGst,
+    TResult? Function(String companyId)? rejectGst,
+  }) {
+    return releaseAdminProperty?.call(propertyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page, int limit, String? role, String? search)?
+        getUserList,
+    TResult Function(String userId)? removeUser,
+    TResult Function(bool flag)? isLoading,
+    TResult Function()? reset,
+    TResult Function()? clearAdminState,
+    TResult Function(int page, int limit)? getPostAds,
+    TResult Function(String postId)? deletePostAd,
+    TResult Function(int page, int limit)? getBannerAds,
+    TResult Function(String bannerAdId)? deleteBannerAd,
+    TResult Function(int page, int limit)? getProjects,
+    TResult Function(String projectId)? deleteProject,
+    TResult Function(int page, int limit)? getCallbackRequests,
+    TResult Function(String callbackRequestId)? deleteCallbackRequest,
+    TResult Function(int page, int limit)? getVerificationRequests,
+    TResult Function(String verificationRequestId)? deleteVerificationRequest,
+    TResult Function(String verificationRequestId, String status)?
+        updateVerificationStatus,
+    TResult Function(int page, int limit)? getHomeLoans,
+    TResult Function(int page, int limit)? getInteriorDesigns,
+    TResult Function(int page, int limit, String? category, String? search)?
+        getRequests,
+    TResult Function(String requestId)? deleteRequest,
+    TResult Function(int page, int limit)? getAds,
+    TResult Function(String adUserId)? removeAdUser,
+    TResult Function(int page, int limit, String? search)? getServices,
+    TResult Function(String serviceId)? deleteService,
+    TResult Function(int page, int limit, String? search)? getAdminProperties,
+    TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
+    TResult Function(String serviceId, bool isVerified)? verifyService,
+    TResult Function(int page, int limit)? getCompanies,
+    TResult Function(String companyId)? deleteCompany,
+    TResult Function(List<String> userIds, String? role)? convertToAdmin,
+    TResult Function(List<String> userIds, String? role)? convertToSeller,
+    TResult Function(List<String> userIds, String? role)? convertToUser,
+    TResult Function(List<String> userIds, String? role)? convertToMarketing,
+    TResult Function(int page, int limit)? getAdminReels,
+    TResult Function(String reelId)? deleteAdminReel,
+    TResult Function(int page, int limit, String? status)?
+        getGstPendingCompanies,
+    TResult Function(String companyId)? approveGst,
+    TResult Function(String companyId)? rejectGst,
+    required TResult orElse(),
+  }) {
+    if (releaseAdminProperty != null) {
+      return releaseAdminProperty(propertyId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserListEvent value) getUserList,
+    required TResult Function(_RemoveUserEvent value) removeUser,
+    required TResult Function(_IsLoadingEvent value) isLoading,
+    required TResult Function(_ResetEvent value) reset,
+    required TResult Function(_ClearAdminStateEvent value) clearAdminState,
+    required TResult Function(_GetPostAdsEvent value) getPostAds,
+    required TResult Function(_DeletePostAdEvent value) deletePostAd,
+    required TResult Function(_GetBannerAdsEvent value) getBannerAds,
+    required TResult Function(_DeleteBannerAdEvent value) deleteBannerAd,
+    required TResult Function(_GetProjectsEvent value) getProjects,
+    required TResult Function(_DeleteProjectEvent value) deleteProject,
+    required TResult Function(_GetCallbackRequestsEvent value)
+        getCallbackRequests,
+    required TResult Function(_DeleteCallbackRequestEvent value)
+        deleteCallbackRequest,
+    required TResult Function(_GetVerificationRequestsEvent value)
+        getVerificationRequests,
+    required TResult Function(_DeleteVerificationRequestEvent value)
+        deleteVerificationRequest,
+    required TResult Function(_UpdateVerificationStatusEvent value)
+        updateVerificationStatus,
+    required TResult Function(_GetHomeLoansEvent value) getHomeLoans,
+    required TResult Function(_GetInteriorDesignsEvent value)
+        getInteriorDesigns,
+    required TResult Function(_GetRequestsEvent value) getRequests,
+    required TResult Function(_DeleteRequestEvent value) deleteRequest,
+    required TResult Function(_GetAdsEvent value) getAds,
+    required TResult Function(_RemoveAdUserEvent value) removeAdUser,
+    required TResult Function(_GetServicesEvent value) getServices,
+    required TResult Function(_DeleteServiceEvent value) deleteService,
+    required TResult Function(_GetAdminPropertiesEvent value)
+        getAdminProperties,
+    required TResult Function(_DeleteAdminPropertyEvent value)
+        deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
+    required TResult Function(_VerifyServiceEvent value) verifyService,
+    required TResult Function(_GetCompaniesEvent value) getCompanies,
+    required TResult Function(_DeleteCompanyEvent value) deleteCompany,
+    required TResult Function(_ConvertToAdminEvent value) convertToAdmin,
+    required TResult Function(_ConvertToSellerEvent value) convertToSeller,
+    required TResult Function(_ConvertToUserEvent value) convertToUser,
+    required TResult Function(_ConvertToMarketingEvent value)
+        convertToMarketing,
+    required TResult Function(_GetAdminReelsEvent value) getAdminReels,
+    required TResult Function(_DeleteAdminReelEvent value) deleteAdminReel,
+    required TResult Function(_GetGstPendingCompaniesEvent value)
+        getGstPendingCompanies,
+    required TResult Function(_ApproveGstEvent value) approveGst,
+    required TResult Function(_RejectGstEvent value) rejectGst,
+  }) {
+    return releaseAdminProperty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserListEvent value)? getUserList,
+    TResult? Function(_RemoveUserEvent value)? removeUser,
+    TResult? Function(_IsLoadingEvent value)? isLoading,
+    TResult? Function(_ResetEvent value)? reset,
+    TResult? Function(_ClearAdminStateEvent value)? clearAdminState,
+    TResult? Function(_GetPostAdsEvent value)? getPostAds,
+    TResult? Function(_DeletePostAdEvent value)? deletePostAd,
+    TResult? Function(_GetBannerAdsEvent value)? getBannerAds,
+    TResult? Function(_DeleteBannerAdEvent value)? deleteBannerAd,
+    TResult? Function(_GetProjectsEvent value)? getProjects,
+    TResult? Function(_DeleteProjectEvent value)? deleteProject,
+    TResult? Function(_GetCallbackRequestsEvent value)? getCallbackRequests,
+    TResult? Function(_DeleteCallbackRequestEvent value)? deleteCallbackRequest,
+    TResult? Function(_GetVerificationRequestsEvent value)?
+        getVerificationRequests,
+    TResult? Function(_DeleteVerificationRequestEvent value)?
+        deleteVerificationRequest,
+    TResult? Function(_UpdateVerificationStatusEvent value)?
+        updateVerificationStatus,
+    TResult? Function(_GetHomeLoansEvent value)? getHomeLoans,
+    TResult? Function(_GetInteriorDesignsEvent value)? getInteriorDesigns,
+    TResult? Function(_GetRequestsEvent value)? getRequests,
+    TResult? Function(_DeleteRequestEvent value)? deleteRequest,
+    TResult? Function(_GetAdsEvent value)? getAds,
+    TResult? Function(_RemoveAdUserEvent value)? removeAdUser,
+    TResult? Function(_GetServicesEvent value)? getServices,
+    TResult? Function(_DeleteServiceEvent value)? deleteService,
+    TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
+    TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
+    TResult? Function(_VerifyServiceEvent value)? verifyService,
+    TResult? Function(_GetCompaniesEvent value)? getCompanies,
+    TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
+    TResult? Function(_ConvertToAdminEvent value)? convertToAdmin,
+    TResult? Function(_ConvertToSellerEvent value)? convertToSeller,
+    TResult? Function(_ConvertToUserEvent value)? convertToUser,
+    TResult? Function(_ConvertToMarketingEvent value)? convertToMarketing,
+    TResult? Function(_GetAdminReelsEvent value)? getAdminReels,
+    TResult? Function(_DeleteAdminReelEvent value)? deleteAdminReel,
+    TResult? Function(_GetGstPendingCompaniesEvent value)?
+        getGstPendingCompanies,
+    TResult? Function(_ApproveGstEvent value)? approveGst,
+    TResult? Function(_RejectGstEvent value)? rejectGst,
+  }) {
+    return releaseAdminProperty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserListEvent value)? getUserList,
+    TResult Function(_RemoveUserEvent value)? removeUser,
+    TResult Function(_IsLoadingEvent value)? isLoading,
+    TResult Function(_ResetEvent value)? reset,
+    TResult Function(_ClearAdminStateEvent value)? clearAdminState,
+    TResult Function(_GetPostAdsEvent value)? getPostAds,
+    TResult Function(_DeletePostAdEvent value)? deletePostAd,
+    TResult Function(_GetBannerAdsEvent value)? getBannerAds,
+    TResult Function(_DeleteBannerAdEvent value)? deleteBannerAd,
+    TResult Function(_GetProjectsEvent value)? getProjects,
+    TResult Function(_DeleteProjectEvent value)? deleteProject,
+    TResult Function(_GetCallbackRequestsEvent value)? getCallbackRequests,
+    TResult Function(_DeleteCallbackRequestEvent value)? deleteCallbackRequest,
+    TResult Function(_GetVerificationRequestsEvent value)?
+        getVerificationRequests,
+    TResult Function(_DeleteVerificationRequestEvent value)?
+        deleteVerificationRequest,
+    TResult Function(_UpdateVerificationStatusEvent value)?
+        updateVerificationStatus,
+    TResult Function(_GetHomeLoansEvent value)? getHomeLoans,
+    TResult Function(_GetInteriorDesignsEvent value)? getInteriorDesigns,
+    TResult Function(_GetRequestsEvent value)? getRequests,
+    TResult Function(_DeleteRequestEvent value)? deleteRequest,
+    TResult Function(_GetAdsEvent value)? getAds,
+    TResult Function(_RemoveAdUserEvent value)? removeAdUser,
+    TResult Function(_GetServicesEvent value)? getServices,
+    TResult Function(_DeleteServiceEvent value)? deleteService,
+    TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
+    TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
+    TResult Function(_VerifyServiceEvent value)? verifyService,
+    TResult Function(_GetCompaniesEvent value)? getCompanies,
+    TResult Function(_DeleteCompanyEvent value)? deleteCompany,
+    TResult Function(_ConvertToAdminEvent value)? convertToAdmin,
+    TResult Function(_ConvertToSellerEvent value)? convertToSeller,
+    TResult Function(_ConvertToUserEvent value)? convertToUser,
+    TResult Function(_ConvertToMarketingEvent value)? convertToMarketing,
+    TResult Function(_GetAdminReelsEvent value)? getAdminReels,
+    TResult Function(_DeleteAdminReelEvent value)? deleteAdminReel,
+    TResult Function(_GetGstPendingCompaniesEvent value)?
+        getGstPendingCompanies,
+    TResult Function(_ApproveGstEvent value)? approveGst,
+    TResult Function(_RejectGstEvent value)? rejectGst,
+    required TResult orElse(),
+  }) {
+    if (releaseAdminProperty != null) {
+      return releaseAdminProperty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReleaseAdminPropertyEvent implements AdminEvent {
+  const factory _ReleaseAdminPropertyEvent({required final String propertyId}) =
+      _$ReleaseAdminPropertyEventImpl;
+
+  String get propertyId;
+  @JsonKey(ignore: true)
+  _$$ReleaseAdminPropertyEventImplCopyWith<_$ReleaseAdminPropertyEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -10678,6 +11264,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -10730,6 +11317,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -10779,6 +11367,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -10837,6 +11426,8 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -10887,6 +11478,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -10936,6 +11528,7 @@ class _$VerifyServiceEventImpl implements _VerifyServiceEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -11077,6 +11670,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -11129,6 +11723,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -11178,6 +11773,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -11236,6 +11832,8 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -11286,6 +11884,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -11335,6 +11934,7 @@ class _$GetCompaniesEventImpl implements _GetCompaniesEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -11466,6 +12066,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -11518,6 +12119,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -11567,6 +12169,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -11625,6 +12228,8 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -11675,6 +12280,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -11724,6 +12330,7 @@ class _$DeleteCompanyEventImpl implements _DeleteCompanyEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -11870,6 +12477,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -11922,6 +12530,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -11971,6 +12580,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -12029,6 +12639,8 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -12079,6 +12691,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -12128,6 +12741,7 @@ class _$ConvertToAdminEventImpl implements _ConvertToAdminEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -12277,6 +12891,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -12329,6 +12944,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -12378,6 +12994,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -12436,6 +13053,8 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -12486,6 +13105,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -12535,6 +13155,7 @@ class _$ConvertToSellerEventImpl implements _ConvertToSellerEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -12683,6 +13304,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -12735,6 +13357,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -12784,6 +13407,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -12842,6 +13466,8 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -12892,6 +13518,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -12941,6 +13568,7 @@ class _$ConvertToUserEventImpl implements _ConvertToUserEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -13091,6 +13719,7 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -13143,6 +13772,7 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -13192,6 +13822,7 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -13250,6 +13881,8 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -13300,6 +13933,7 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -13349,6 +13983,7 @@ class _$ConvertToMarketingEventImpl implements _ConvertToMarketingEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -13490,6 +14125,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -13542,6 +14178,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -13591,6 +14228,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -13649,6 +14287,8 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -13699,6 +14339,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -13748,6 +14389,7 @@ class _$GetAdminReelsEventImpl implements _GetAdminReelsEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -13879,6 +14521,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -13931,6 +14574,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -13980,6 +14624,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -14038,6 +14683,8 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -14088,6 +14735,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -14137,6 +14785,7 @@ class _$DeleteAdminReelEventImpl implements _DeleteAdminReelEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -14288,6 +14937,7 @@ class _$GetGstPendingCompaniesEventImpl
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -14340,6 +14990,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -14389,6 +15040,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -14447,6 +15099,8 @@ class _$GetGstPendingCompaniesEventImpl
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -14497,6 +15151,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -14546,6 +15201,7 @@ class _$GetGstPendingCompaniesEventImpl
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -14680,6 +15336,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -14732,6 +15389,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -14781,6 +15439,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -14839,6 +15498,8 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -14889,6 +15550,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -14938,6 +15600,7 @@ class _$ApproveGstEventImpl implements _ApproveGstEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -15068,6 +15731,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     required TResult Function(int page, int limit, String? search)
         getAdminProperties,
     required TResult Function(String propertyId) deleteAdminProperty,
+    required TResult Function(String propertyId) releaseAdminProperty,
     required TResult Function(String serviceId, bool isVerified) verifyService,
     required TResult Function(int page, int limit) getCompanies,
     required TResult Function(String companyId) deleteCompany,
@@ -15120,6 +15784,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(String serviceId)? deleteService,
     TResult? Function(int page, int limit, String? search)? getAdminProperties,
     TResult? Function(String propertyId)? deleteAdminProperty,
+    TResult? Function(String propertyId)? releaseAdminProperty,
     TResult? Function(String serviceId, bool isVerified)? verifyService,
     TResult? Function(int page, int limit)? getCompanies,
     TResult? Function(String companyId)? deleteCompany,
@@ -15169,6 +15834,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(String serviceId)? deleteService,
     TResult Function(int page, int limit, String? search)? getAdminProperties,
     TResult Function(String propertyId)? deleteAdminProperty,
+    TResult Function(String propertyId)? releaseAdminProperty,
     TResult Function(String serviceId, bool isVerified)? verifyService,
     TResult Function(int page, int limit)? getCompanies,
     TResult Function(String companyId)? deleteCompany,
@@ -15227,6 +15893,8 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
         getAdminProperties,
     required TResult Function(_DeleteAdminPropertyEvent value)
         deleteAdminProperty,
+    required TResult Function(_ReleaseAdminPropertyEvent value)
+        releaseAdminProperty,
     required TResult Function(_VerifyServiceEvent value) verifyService,
     required TResult Function(_GetCompaniesEvent value) getCompanies,
     required TResult Function(_DeleteCompanyEvent value) deleteCompany,
@@ -15277,6 +15945,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult? Function(_DeleteServiceEvent value)? deleteService,
     TResult? Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult? Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult? Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult? Function(_VerifyServiceEvent value)? verifyService,
     TResult? Function(_GetCompaniesEvent value)? getCompanies,
     TResult? Function(_DeleteCompanyEvent value)? deleteCompany,
@@ -15326,6 +15995,7 @@ class _$RejectGstEventImpl implements _RejectGstEvent {
     TResult Function(_DeleteServiceEvent value)? deleteService,
     TResult Function(_GetAdminPropertiesEvent value)? getAdminProperties,
     TResult Function(_DeleteAdminPropertyEvent value)? deleteAdminProperty,
+    TResult Function(_ReleaseAdminPropertyEvent value)? releaseAdminProperty,
     TResult Function(_VerifyServiceEvent value)? verifyService,
     TResult Function(_GetCompaniesEvent value)? getCompanies,
     TResult Function(_DeleteCompanyEvent value)? deleteCompany,

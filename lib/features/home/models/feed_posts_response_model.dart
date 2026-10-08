@@ -71,6 +71,9 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "contact_via_whatsapp") bool? contactViaWhatsApp,
     @JsonKey(name: "carpet_area", fromJson: _toString) String? carpetArea,
     @JsonKey(name: "carpet_area_unit", fromJson: _toString) String? carpetAreaUnit,
+    @JsonKey(name: "reported_by", fromJson: _toString) String? reportedBy,
+    @JsonKey(name: "report_reason", fromJson: _toString) String? reportReason,
+    @JsonKey(name: "reported_at", fromJson: _toString) String? reportedAt,
   }) = _FeedPostsResponseModel;
 
   factory FeedPostsResponseModel.fromJson(Map<String, dynamic> json) =>
