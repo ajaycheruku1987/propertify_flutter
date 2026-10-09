@@ -14,6 +14,7 @@ import '../../feed/presentation/favorites_screen.dart';
 import '../../feed/presentation/my_post_comments_screen.dart';
 import '../../services/presentation/my_services_screen.dart';
 import 'blocked_accounts_screen.dart';
+import 'deactivate_account_screen.dart';
 
 class MyDashboardScreen extends StatelessWidget {
   static const String routeName = '/my-dashboard';
@@ -105,7 +106,8 @@ class MyDashboardScreen extends StatelessWidget {
                 {
                   'title': l10n.deleteAccount,
                   'icon': Icons.delete_outline_rounded,
-                  'onTap': () => context.push('/deactivate-account'),
+                  'onTap': () =>
+                      context.push(DeactivateAccountScreen.routeName),
                 },
                 {
                   'title': 'Blocked Accounts & Content',

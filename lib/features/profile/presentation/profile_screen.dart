@@ -25,6 +25,7 @@ import 'package:propertify/features/profile/presentation/my_dashboard_screen.dar
 import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
 import 'package:propertify/features/profile/presentation/blocked_accounts_screen.dart';
+import 'package:propertify/features/profile/presentation/deactivate_account_screen.dart';
 import '../../admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
@@ -544,6 +545,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             title: l10n.myDashboard,
                             onTap: () {
                               context.push(MyDashboardScreen.routeName);
+                            },
+                          ),
+                          ProfileMenuItem(
+                            icon: Icons.delete_outline_rounded,
+                            title: l10n.deleteAccount,
+                            textColor: Colors.red,
+                            onTap: () {
+                              context.push(DeactivateAccountScreen.routeName);
                             },
                           ),
                         ],

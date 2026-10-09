@@ -265,7 +265,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           emit(
             state.copyWith(
               isLoading: false,
-              notifyStatus: NotifyStatus(message: failure.message),
+              notifyStatus: NotifyStatus(
+                message: failure.message,
+                type: NotifyType.error,
+              ),
             ),
           );
         },
@@ -276,6 +279,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               userProfile: null,
               notifyStatus: NotifyStatus(
                 message: message,
+                type: NotifyType.success,
               ),
             ),
           );
@@ -285,7 +289,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(
         state.copyWith(
           isLoading: false,
-          notifyStatus: NotifyStatus(message: 'Failed to delete account'),
+          notifyStatus: NotifyStatus(
+            message: 'Failed to delete account',
+            type: NotifyType.error,
+          ),
         ),
       );
     }
