@@ -32,6 +32,7 @@ class _ReportedPropertiesScreenState extends State<ReportedPropertiesScreen> {
           AdminEvent.getAdminProperties(
             page: _currentPage,
             limit: _limit,
+            isReported: true,
           ),
         );
   }

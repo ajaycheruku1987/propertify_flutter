@@ -991,6 +991,7 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
       page: event.page,
       limit: event.limit,
       search: event.search,
+      isReported: event.isReported,
     );
 
     result.fold(

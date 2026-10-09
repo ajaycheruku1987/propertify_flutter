@@ -422,7 +422,7 @@ class AdminRepo {
     required int page,
     required int limit,
     String? search,
-    bool isReported = true,
+    bool isReported = false,
   }) async {
     final queryParams = <String>[
       'page=$page',

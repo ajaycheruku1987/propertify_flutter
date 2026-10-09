@@ -105,6 +105,7 @@ class AdminEvent with _$AdminEvent {
     @Default(1) int page,
     @Default(30) int limit,
     String? search,
+    @Default(false) bool isReported,
   }) = _GetAdminPropertiesEvent;
 
   const factory AdminEvent.deleteAdminProperty({required String propertyId}) =
