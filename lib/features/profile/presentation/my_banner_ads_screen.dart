@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import '../bloc/profile_bloc.dart';
 import '../models/banner_ad_model.dart';
 import 'create_banner_ad.dart';
@@ -154,11 +155,13 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
     final amount = bannerAd.amount ?? 0.0;
     final isApproved = bannerAd.approved ?? false;
 
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Column(
+    return InkWell(
+      onTap: () => context.push(BannerAdDetailView.routeName, extra: bannerAd),
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 16),
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Image Section
@@ -332,8 +335,9 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildStatusChip(String label, Color color) {
     return Container(
