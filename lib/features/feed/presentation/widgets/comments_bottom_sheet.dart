@@ -27,8 +27,8 @@ class CommentsBottomSheet extends StatefulWidget {
   ) {
     // Load comments when bottom sheet is shown
     context.read<FeedBloc>().add(
-      FeedEvent.getCommentsById(propertyId: propertyId),
-    );
+          FeedEvent.getCommentsById(propertyId: propertyId),
+        );
 
     return showModalBottomSheet(
       context: context,
@@ -49,6 +49,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
   final TextEditingController _commentController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final FocusNode _commentFocusNode = FocusNode();
+  FeedCommentModel? _replyingTo;
 
   // Emoji list matching the design
   final List<String> _emojis = [
@@ -75,15 +76,54 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
     if (_commentController.text.trim().isEmpty) return;
 
     context.read<FeedBloc>().add(
-      FeedEvent.addCommentToProperty(
-        propertyId: widget.propertyId,
-        text: _commentController.text.trim(),
-      ),
-    );
+          FeedEvent.addCommentToProperty(
+            propertyId: widget.propertyId,
+            text: _commentController.text.trim(),
+            parentId: _replyingTo?.parentId ?? _replyingTo?.id,
+          ),
+        );
 
     // Clear the input field
     _commentController.clear();
+    setState(() => _replyingTo = null);
     FocusScope.of(context).unfocus();
+  }
+
+  void _startReply(FeedCommentModel comment) {
+    setState(() => _replyingTo = comment);
+    if (comment.username != null) {
+      _commentController.text = '@${comment.username} ';
+      _commentController.selection = TextSelection.fromPosition(
+        TextPosition(offset: _commentController.text.length),
+      );
+    }
+    _commentFocusNode.requestFocus();
+  }
+
+  void _cancelReply() {
+    setState(() => _replyingTo = null);
+    _commentController.clear();
+  }
+
+  Widget _buildReplyingToBar() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              'Replying to ${_replyingTo?.username ?? 'comment'}',
+              style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          InkWell(
+            onTap: _cancelReply,
+            child: Icon(Icons.close, size: 16, color: Colors.grey[600]),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -245,50 +285,56 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
         ],
       ),
       child: context.read<HomeBloc>().state.showAddButton
-          ? Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: TextField(
-                      controller: _commentController,
-                      focusNode: _commentFocusNode,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        hintText: 'write a comment....',
-                        hintStyle: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontSize: 14,
+                if (_replyingTo != null) _buildReplyingToBar(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(24),
                         ),
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
+                        child: TextField(
+                          controller: _commentController,
+                          focusNode: _commentFocusNode,
+                          maxLines: null,
+                          decoration: InputDecoration(
+                            hintText: 'write a comment....',
+                            hintStyle: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 14,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                GestureDetector(
-                  onTap: _sendComment,
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF6C5CE7),
-                      shape: BoxShape.circle,
+                    const SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: _sendComment,
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF6C5CE7),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.send,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
+                  ],
                 ),
               ],
             )
@@ -327,7 +373,7 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
   }
 
   Widget _buildCommentItem(FeedCommentModel comment) {
-    final bool isReply = (comment.comment ?? '').trim().startsWith('@');
+    final bool isReply = comment.isReply;
 
     return Container(
       margin: EdgeInsets.only(bottom: 16, left: isReply ? 40 : 0),
@@ -383,15 +429,10 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    _buildActionButton('Reply', onTap: () {
-                      if (comment.username != null) {
-                        _commentController.text = '@${comment.username} ';
-                        _commentController.selection = TextSelection.fromPosition(
-                          TextPosition(offset: _commentController.text.length),
-                        );
-                        _commentFocusNode.requestFocus();
-                      }
-                    }),
+                    _buildActionButton(
+                      'Reply',
+                      onTap: () => _startReply(comment),
+                    ),
                   ],
                 ),
               ],

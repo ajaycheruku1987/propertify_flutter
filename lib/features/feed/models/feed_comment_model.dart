@@ -17,6 +17,7 @@ class FeedCommentModel {
   String? propertyId;
   String? userId;
   String? comment;
+  String? parentId;
   String? createdAt;
   String? username;
 
@@ -25,25 +26,31 @@ class FeedCommentModel {
     this.propertyId,
     this.userId,
     this.comment,
+    this.parentId,
     this.createdAt,
     this.username,
   });
+
+  bool get isReply => parentId != null;
 
   FeedCommentModel copyWith({
     String? id,
     String? propertyId,
     String? userId,
     String? comment,
+    String? parentId,
     String? createdAt,
     String? username,
-  }) => FeedCommentModel(
-    id: id ?? this.id,
-    propertyId: propertyId ?? this.propertyId,
-    userId: userId ?? this.userId,
-    comment: comment ?? this.comment,
-    createdAt: createdAt ?? this.createdAt,
-    username: username ?? this.username,
-  );
+  }) =>
+      FeedCommentModel(
+        id: id ?? this.id,
+        propertyId: propertyId ?? this.propertyId,
+        userId: userId ?? this.userId,
+        comment: comment ?? this.comment,
+        parentId: parentId ?? this.parentId,
+        createdAt: createdAt ?? this.createdAt,
+        username: username ?? this.username,
+      );
 
   factory FeedCommentModel.fromJson(Map<String, dynamic> json) =>
       FeedCommentModel(
@@ -51,16 +58,18 @@ class FeedCommentModel {
         propertyId: json["property_id"],
         userId: json["user_id"],
         comment: json["comment"] ?? json["text"],
+        parentId: json["parent_id"],
         createdAt: json["created_at"],
         username: json["username"],
       );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "property_id": propertyId,
-    "user_id": userId,
-    "comment": comment,
-    "created_at": createdAt,
-    "username": username,
-  };
+        "id": id,
+        "property_id": propertyId,
+        "user_id": userId,
+        "comment": comment,
+        "parent_id": parentId,
+        "created_at": createdAt,
+        "username": username,
+      };
 }

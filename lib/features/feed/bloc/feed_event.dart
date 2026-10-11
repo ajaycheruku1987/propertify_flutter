@@ -35,6 +35,7 @@ class FeedEvent with _$FeedEvent {
   const factory FeedEvent.addCommentToProperty({
     required String propertyId,
     required String text,
+    String? parentId,
   }) = _AddCommentToProperty;
 
   const factory FeedEvent.toggleFavorite({required String propertyId}) =

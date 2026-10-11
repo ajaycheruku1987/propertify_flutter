@@ -267,35 +267,56 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     final all = List<FeedCommentModel>.from(comments);
     all.sort((a, b) => (a.createdAt ?? '').compareTo(b.createdAt ?? ''));
 
+    String normalize(String? name) =>
+        (name ?? '').toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+
     final List<FeedCommentModel> roots = [];
     final Map<String, List<FeedCommentModel>> repliesMap = {};
+    // comment id -> id of the top-level comment of its thread
+    final Map<String, String> threadOf = {};
+    final Map<String, String> latestRootByUser = {};
+    final Map<String, String> latestThreadByUser = {};
 
     for (var comment in all) {
-      final text = (comment.comment ?? '').trim();
-      if (text.startsWith('@')) {
-        final parts = text.split(' ');
-        // Clean mention: @Swathi, -> swathi
-        String mention = parts[0].substring(1).toLowerCase();
-        mention = mention.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
-        
-        // Find the latest potential parent in the root list
-        FeedCommentModel? parent;
-        for (var i = roots.length - 1; i >= 0; i--) {
-          final rootUsername = (roots[i].username ?? '').toLowerCase().replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
-          if (rootUsername == mention) {
-            parent = roots[i];
-            break;
-          }
-        }
-
-        if (parent != null && parent.id != null) {
-          repliesMap.putIfAbsent(parent.id!, () => []).add(comment);
-        } else {
-          // If no parent found, treat it as a root (no @ or failed to match)
-          roots.add(comment);
-        }
+      String? rootId;
+      if (comment.parentId != null) {
+        rootId = threadOf[comment.parentId];
       } else {
-        roots.add(comment);
+        // Legacy comments have no parent_id; infer the thread from "@username".
+        final text = (comment.comment ?? '').trim();
+        if (text.startsWith('@')) {
+          final mention = normalize(text.split(' ').first);
+          rootId = latestRootByUser[mention] ?? latestThreadByUser[mention];
+        }
+      }
+
+      if (rootId != null) {
+        repliesMap
+            .putIfAbsent(rootId, () => [])
+            .add(comment.copyWith(parentId: rootId));
+      } else {
+        // Parent missing (e.g. deleted) -> show as a top-level comment.
+        roots.add(
+          comment.parentId == null
+              ? comment
+              : FeedCommentModel(
+                  id: comment.id,
+                  propertyId: comment.propertyId,
+                  userId: comment.userId,
+                  comment: comment.comment,
+                  createdAt: comment.createdAt,
+                  username: comment.username,
+                ),
+        );
+      }
+
+      final threadId = rootId ?? comment.id;
+      if (threadId == null) continue;
+      if (comment.id != null) threadOf[comment.id!] = threadId;
+      final user = normalize(comment.username);
+      if (user.isNotEmpty) {
+        latestThreadByUser[user] = threadId;
+        if (rootId == null) latestRootByUser[user] = threadId;
       }
     }
 
@@ -333,7 +354,11 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       emit(state.copyWith(sendCommentLoading: true));
 
       final Either<Failure, FeedCommentModel> commentEither = await _feedRepo
-          .addCommentToProperty(propertyId: event.propertyId, text: event.text);
+          .addCommentToProperty(
+            propertyId: event.propertyId,
+            text: event.text,
+            parentId: event.parentId,
+          );
 
       commentEither.fold(
         (failure) {
@@ -363,7 +388,12 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           final updatedPostDetails = updatePost(state.postDetails);
 
           // Add new comment and re-sort
-          final List<FeedCommentModel> updatedComments = _groupComments([...state.feedComments, commentResponse]);
+          final List<FeedCommentModel> updatedComments = _groupComments([
+            ...state.feedComments,
+            commentResponse.copyWith(
+              parentId: commentResponse.parentId ?? event.parentId,
+            ),
+          ]);
 
           emit(
             state.copyWith(

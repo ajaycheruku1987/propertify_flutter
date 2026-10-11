@@ -284,9 +284,13 @@ class FeedRepo {
   Future<Either<Failure, FeedCommentModel>> addCommentToProperty({
     required String propertyId,
     required String text,
+    String? parentId,
   }) async {
     try {
-      final Map<String, dynamic> data = {'text': text};
+      final Map<String, dynamic> data = {
+        'text': text,
+        if (parentId != null) 'parent_id': parentId,
+      };
 
       final response = await ftPyroApiRequest.post(
         '/properties/$propertyId/comments',

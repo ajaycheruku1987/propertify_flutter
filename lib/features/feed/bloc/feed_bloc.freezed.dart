@@ -37,7 +37,7 @@ mixin _$FeedEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -100,7 +100,8 @@ mixin _$FeedEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -161,7 +162,8 @@ mixin _$FeedEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -351,7 +353,7 @@ class _$ResetImpl implements _Reset {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -417,7 +419,8 @@ class _$ResetImpl implements _Reset {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -481,7 +484,8 @@ class _$ResetImpl implements _Reset {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -799,7 +803,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -866,7 +870,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -931,7 +936,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -1176,7 +1182,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -1242,7 +1248,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -1306,7 +1313,8 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -1580,7 +1588,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -1647,7 +1655,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -1712,7 +1721,8 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -1947,7 +1957,7 @@ class _$LikePropertyImpl implements _LikeProperty {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -2013,7 +2023,8 @@ class _$LikePropertyImpl implements _LikeProperty {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -2077,7 +2088,8 @@ class _$LikePropertyImpl implements _LikeProperty {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -2304,7 +2316,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -2370,7 +2382,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -2434,7 +2447,8 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -2582,7 +2596,7 @@ abstract class _$$AddCommentToPropertyImplCopyWith<$Res> {
           $Res Function(_$AddCommentToPropertyImpl) then) =
       __$$AddCommentToPropertyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String propertyId, String text});
+  $Res call({String propertyId, String text, String? parentId});
 }
 
 /// @nodoc
@@ -2598,6 +2612,7 @@ class __$$AddCommentToPropertyImplCopyWithImpl<$Res>
   $Res call({
     Object? propertyId = null,
     Object? text = null,
+    Object? parentId = freezed,
   }) {
     return _then(_$AddCommentToPropertyImpl(
       propertyId: null == propertyId
@@ -2608,6 +2623,10 @@ class __$$AddCommentToPropertyImplCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2616,16 +2635,18 @@ class __$$AddCommentToPropertyImplCopyWithImpl<$Res>
 
 class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
   const _$AddCommentToPropertyImpl(
-      {required this.propertyId, required this.text});
+      {required this.propertyId, required this.text, this.parentId});
 
   @override
   final String propertyId;
   @override
   final String text;
+  @override
+  final String? parentId;
 
   @override
   String toString() {
-    return 'FeedEvent.addCommentToProperty(propertyId: $propertyId, text: $text)';
+    return 'FeedEvent.addCommentToProperty(propertyId: $propertyId, text: $text, parentId: $parentId)';
   }
 
   @override
@@ -2635,11 +2656,13 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             other is _$AddCommentToPropertyImpl &&
             (identical(other.propertyId, propertyId) ||
                 other.propertyId == propertyId) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, propertyId, text);
+  int get hashCode => Object.hash(runtimeType, propertyId, text, parentId);
 
   @JsonKey(ignore: true)
   @override
@@ -2671,7 +2694,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -2712,7 +2735,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     required TResult Function(String propertyId, String commentId)
         deleteComment,
   }) {
-    return addCommentToProperty(propertyId, text);
+    return addCommentToProperty(propertyId, text, parentId);
   }
 
   @override
@@ -2737,7 +2760,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -2776,7 +2800,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     TResult? Function(String propertyId)? deleteProperty,
     TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
-    return addCommentToProperty?.call(propertyId, text);
+    return addCommentToProperty?.call(propertyId, text, parentId);
   }
 
   @override
@@ -2801,7 +2825,8 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -2842,7 +2867,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
     required TResult orElse(),
   }) {
     if (addCommentToProperty != null) {
-      return addCommentToProperty(propertyId, text);
+      return addCommentToProperty(propertyId, text, parentId);
     }
     return orElse();
   }
@@ -2936,10 +2961,12 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
 abstract class _AddCommentToProperty implements FeedEvent {
   const factory _AddCommentToProperty(
       {required final String propertyId,
-      required final String text}) = _$AddCommentToPropertyImpl;
+      required final String text,
+      final String? parentId}) = _$AddCommentToPropertyImpl;
 
   String get propertyId;
   String get text;
+  String? get parentId;
   @JsonKey(ignore: true)
   _$$AddCommentToPropertyImplCopyWith<_$AddCommentToPropertyImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3030,7 +3057,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -3096,7 +3123,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -3160,7 +3188,8 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -3359,7 +3388,7 @@ class _$IsLoadingImpl implements _IsLoading {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -3425,7 +3454,8 @@ class _$IsLoadingImpl implements _IsLoading {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -3489,7 +3519,8 @@ class _$IsLoadingImpl implements _IsLoading {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -3717,7 +3748,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -3783,7 +3814,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -3847,7 +3879,8 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -4047,7 +4080,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -4113,7 +4146,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -4177,7 +4211,8 @@ class _$GetFavouritesImpl implements _GetFavourites {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -4398,7 +4433,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -4464,7 +4499,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -4528,7 +4564,8 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -4791,7 +4828,7 @@ class _$GetSimilarPostsByCategoryEventImpl
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -4858,7 +4895,8 @@ class _$GetSimilarPostsByCategoryEventImpl
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -4923,7 +4961,8 @@ class _$GetSimilarPostsByCategoryEventImpl
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -5134,7 +5173,7 @@ class _$ResetSimilarPostsByCategoryImpl
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -5200,7 +5239,8 @@ class _$ResetSimilarPostsByCategoryImpl
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -5264,7 +5304,8 @@ class _$ResetSimilarPostsByCategoryImpl
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -5777,7 +5818,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -5867,7 +5908,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -5955,7 +5997,8 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -6252,7 +6295,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -6318,7 +6361,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -6382,7 +6426,8 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
@@ -6618,7 +6663,7 @@ class _$DeleteCommentImpl implements _DeleteComment {
         getSimilarPropertiesEvent,
     required TResult Function(String propertyId) likeProperty,
     required TResult Function(String propertyId) getCommentsById,
-    required TResult Function(String propertyId, String text)
+    required TResult Function(String propertyId, String text, String? parentId)
         addCommentToProperty,
     required TResult Function(String propertyId) toggleFavorite,
     required TResult Function() isLoading,
@@ -6684,7 +6729,8 @@ class _$DeleteCommentImpl implements _DeleteComment {
         getSimilarPropertiesEvent,
     TResult? Function(String propertyId)? likeProperty,
     TResult? Function(String propertyId)? getCommentsById,
-    TResult? Function(String propertyId, String text)? addCommentToProperty,
+    TResult? Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult? Function(String propertyId)? toggleFavorite,
     TResult? Function()? isLoading,
     TResult? Function(int? limit, int? offset)? getMyProperties,
@@ -6748,7 +6794,8 @@ class _$DeleteCommentImpl implements _DeleteComment {
         getSimilarPropertiesEvent,
     TResult Function(String propertyId)? likeProperty,
     TResult Function(String propertyId)? getCommentsById,
-    TResult Function(String propertyId, String text)? addCommentToProperty,
+    TResult Function(String propertyId, String text, String? parentId)?
+        addCommentToProperty,
     TResult Function(String propertyId)? toggleFavorite,
     TResult Function()? isLoading,
     TResult Function(int? limit, int? offset)? getMyProperties,
