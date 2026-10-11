@@ -25,6 +25,7 @@ _$BannerAdModelImpl _$$BannerAdModelImplFromJson(Map<String, dynamic> json) =>
       planName: json['plan_name'] as String?,
       termsAccepted: json['terms_accepted'] as bool?,
       userId: json['user_id'] as String?,
+      address: json['address'] as String?,
     );
 
 Map<String, dynamic> _$$BannerAdModelImplToJson(_$BannerAdModelImpl instance) =>
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$BannerAdModelImplToJson(_$BannerAdModelImpl instance) =>
       'plan_name': instance.planName,
       'terms_accepted': instance.termsAccepted,
       'user_id': instance.userId,
+      'address': instance.address,
     };
 
 _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(

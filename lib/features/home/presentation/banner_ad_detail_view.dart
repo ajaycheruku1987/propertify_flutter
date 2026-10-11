@@ -62,7 +62,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
     final endDateStr = DateFormat('dd MMM yyyy').format(endDate);
 
     // Safely access dynamic fields not yet in Freezed model
-    final String? adAddress = adJson['address'] as String?;
+    final String? adAddress = bannerAd.address ?? adJson['address'] as String?;
 
     return Scaffold(
       backgroundColor: Colors.white,

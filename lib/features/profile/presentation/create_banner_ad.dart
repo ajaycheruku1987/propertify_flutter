@@ -173,6 +173,33 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
                     const SizedBox(height: 12),
                     _buildDescriptionSection(l10n),
                     const SizedBox(height: 24),
+
+                    // Location / Address Section
+                    Text(
+                      l10n.address,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    AddressInput(
+                      controller: _addressController,
+                      onLocationSelected: (locationData) {
+                        setState(() {
+                          _address = locationData['address'] as String?;
+                          _addressController.text = _address ?? '';
+                          _city = locationData['city'] as String?;
+                          _state = locationData['state'] as String?;
+                          _village = locationData['village'] as String?;
+                          _latitude = double.tryParse(locationData['lat']?.toString() ?? '');
+                          _longitude = double.tryParse(locationData['long']?.toString() ?? '');
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 24),
+
                     // Select Plan Section
                     const Text(
                       'Select plan',
@@ -466,6 +493,7 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
     final isEnabled =
         _selectedImages.isNotEmpty &&
         _descriptionController.text.isNotEmpty &&
+        _addressController.text.isNotEmpty &&
         _selectedPlanId != null &&
         _termsAccepted;
 
@@ -527,6 +555,11 @@ class _CreateBannerAdScreenState extends State<CreateBannerAdScreen> {
 
   void _handlePost() {
     if (_isProcessingPayment) return;
+
+    if (_addressController.text.isEmpty) {
+      CustomToast.showErrorToast(msg: 'Please select an address');
+      return;
+    }
 
     if (_selectedPlanId == null) {
       CustomToast.showErrorToast(msg: 'Please select a plan');

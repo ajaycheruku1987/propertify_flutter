@@ -46,6 +46,8 @@ mixin _$BannerAdModel {
   bool? get termsAccepted => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id")
   String? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: "address")
+  String? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,7 +74,8 @@ abstract class $BannerAdModelCopyWith<$Res> {
       @JsonKey(name: "plan_days") int? planDays,
       @JsonKey(name: "plan_name") String? planName,
       @JsonKey(name: "terms_accepted") bool? termsAccepted,
-      @JsonKey(name: "user_id") String? userId});
+      @JsonKey(name: "user_id") String? userId,
+      @JsonKey(name: "address") String? address});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -103,6 +106,7 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
     Object? planName = freezed,
     Object? termsAccepted = freezed,
     Object? userId = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       amount: freezed == amount
@@ -157,6 +161,10 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -194,7 +202,8 @@ abstract class _$$BannerAdModelImplCopyWith<$Res>
       @JsonKey(name: "plan_days") int? planDays,
       @JsonKey(name: "plan_name") String? planName,
       @JsonKey(name: "terms_accepted") bool? termsAccepted,
-      @JsonKey(name: "user_id") String? userId});
+      @JsonKey(name: "user_id") String? userId,
+      @JsonKey(name: "address") String? address});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -224,6 +233,7 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
     Object? planName = freezed,
     Object? termsAccepted = freezed,
     Object? userId = freezed,
+    Object? address = freezed,
   }) {
     return _then(_$BannerAdModelImpl(
       amount: freezed == amount
@@ -278,6 +288,10 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -298,7 +312,8 @@ class _$BannerAdModelImpl extends _BannerAdModel {
       @JsonKey(name: "plan_days") this.planDays,
       @JsonKey(name: "plan_name") this.planName,
       @JsonKey(name: "terms_accepted") this.termsAccepted,
-      @JsonKey(name: "user_id") this.userId})
+      @JsonKey(name: "user_id") this.userId,
+      @JsonKey(name: "address") this.address})
       : _imageUrls = imageUrls,
         super._();
 
@@ -352,10 +367,13 @@ class _$BannerAdModelImpl extends _BannerAdModel {
   @override
   @JsonKey(name: "user_id")
   final String? userId;
+  @override
+  @JsonKey(name: "address")
+  final String? address;
 
   @override
   String toString() {
-    return 'BannerAdModel(amount: $amount, approved: $approved, createdAt: $createdAt, description: $description, expiresAt: $expiresAt, id: $id, imageUrls: $imageUrls, isPaid: $isPaid, owner: $owner, planDays: $planDays, planName: $planName, termsAccepted: $termsAccepted, userId: $userId)';
+    return 'BannerAdModel(amount: $amount, approved: $approved, createdAt: $createdAt, description: $description, expiresAt: $expiresAt, id: $id, imageUrls: $imageUrls, isPaid: $isPaid, owner: $owner, planDays: $planDays, planName: $planName, termsAccepted: $termsAccepted, userId: $userId, address: $address)';
   }
 
   @override
@@ -383,7 +401,8 @@ class _$BannerAdModelImpl extends _BannerAdModel {
                 other.planName == planName) &&
             (identical(other.termsAccepted, termsAccepted) ||
                 other.termsAccepted == termsAccepted) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(ignore: true)
@@ -402,7 +421,8 @@ class _$BannerAdModelImpl extends _BannerAdModel {
       planDays,
       planName,
       termsAccepted,
-      userId);
+      userId,
+      address);
 
   @JsonKey(ignore: true)
   @override
@@ -432,7 +452,8 @@ abstract class _BannerAdModel extends BannerAdModel {
       @JsonKey(name: "plan_days") final int? planDays,
       @JsonKey(name: "plan_name") final String? planName,
       @JsonKey(name: "terms_accepted") final bool? termsAccepted,
-      @JsonKey(name: "user_id") final String? userId}) = _$BannerAdModelImpl;
+      @JsonKey(name: "user_id") final String? userId,
+      @JsonKey(name: "address") final String? address}) = _$BannerAdModelImpl;
   const _BannerAdModel._() : super._();
 
   factory _BannerAdModel.fromJson(Map<String, dynamic> json) =
@@ -477,6 +498,9 @@ abstract class _BannerAdModel extends BannerAdModel {
   @override
   @JsonKey(name: "user_id")
   String? get userId;
+  @override
+  @JsonKey(name: "address")
+  String? get address;
   @override
   @JsonKey(ignore: true)
   _$$BannerAdModelImplCopyWith<_$BannerAdModelImpl> get copyWith =>
