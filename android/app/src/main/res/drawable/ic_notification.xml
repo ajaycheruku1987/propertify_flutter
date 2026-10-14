@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Status bar icons must be white on transparent; Android ignores any other colors. -->
+<!-- Status bar notification small icon must be white on transparent, derived from the app logo (logo.svg). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
+    android:viewportWidth="173"
+    android:viewportHeight="248">
     <path
         android:fillColor="#FFFFFFFF"
-        android:pathData="M10,20v-6h4v6h5v-8h3L12,3 2,12h3v8z" />
+        android:pathData="M86 43L46.9957 63.9089C41.1489 67.0432 37.5 73.1393 37.5 79.7732V157.999V247.499C23.4703 240.895 0 222.555 0 209V64.383C0 53.365 6.03954 43.2337 15.7315 37.9934L86 0V43Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M58.0108 150.207C63.5054 138.773 75.0686 131.5 87.755 131.5H134.5V170H48.5L58.0108 150.207Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M86 43L125.854 63.6249C131.165 66.3735 134.5 71.8546 134.5 77.8348V170C148.613 163.623 173 145.312 173 132.222V98.4211V63.4487C173 52.2562 166.77 41.9945 156.839 36.8314L86 0V43Z" />
 </vector>
