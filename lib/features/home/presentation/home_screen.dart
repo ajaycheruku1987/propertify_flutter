@@ -396,8 +396,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       ...AppCategories.propertyType,
     ];
 
-    return SizedBox(
-      height: 30,
+    return Container(
+      height: 44,
+      padding: EdgeInsets.zero,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -408,55 +409,45 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           final bool isSelected = currentSelectedCategory == categoryName;
           final theme = Theme.of(context);
 
-          return GestureDetector(
-            onTap: () {
-              if (categoryName == 'All') {
-                context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
-                context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
-                context.read<FeedBloc>().add(
-                      FeedEvent.getFeedsEvent(
-                        latitude: context.read<HomeBloc>().state.currentLat,
-                        longitude: context.read<HomeBloc>().state.currentLng,
-                      ),
-                    );
-                return;
-              }
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text(categoryName.translate(context)),
+              selected: isSelected,
+              onSelected: (selected) {
+                if (!selected) return;
+                if (categoryName == 'All') {
+                  context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+                  context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
+                  context.read<FeedBloc>().add(
+                        FeedEvent.getFeedsEvent(
+                          latitude: context.read<HomeBloc>().state.currentLat,
+                          longitude: context.read<HomeBloc>().state.currentLng,
+                        ),
+                      );
+                  return;
+                }
 
-              final currentFilter =
-                  context.read<HomeBloc>().state.activeFeedsFilter ?? {};
-              final newFilter = Map<String, dynamic>.from(currentFilter);
-              newFilter['propertyTypes'] = [categoryName];
+                final currentFilter =
+                    context.read<HomeBloc>().state.activeFeedsFilter ?? {};
+                final newFilter = Map<String, dynamic>.from(currentFilter);
+                newFilter['propertyTypes'] = [categoryName];
 
-              _applyFeedsFilter(context, newFilter);
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(right: 6),
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: isSelected ? theme.primaryColor : Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
+                _applyFeedsFilter(context, newFilter);
+              },
+              selectedColor: theme.primaryColor,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
                   color: isSelected ? theme.primaryColor : Colors.grey.shade300,
-                  width: 0.8,
+                  width: 1,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.03),
-                    blurRadius: 3,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
               ),
-              child: Center(
-                child: Text(
-                  categoryName.translate(context),
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                    color: isSelected ? Colors.white : Colors.black87,
-                  ),
-                ),
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                fontSize: 13,
               ),
             ),
           );
@@ -850,7 +841,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                               left: 16,
                               right: 16,
                               top: 4,
-                              bottom: 12,
+                              bottom: 4,
                             ),
                             child: SearchBarWidget(
                               controller: _searchController,
