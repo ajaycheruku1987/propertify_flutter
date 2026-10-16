@@ -120,7 +120,7 @@ class RegularUserCard extends StatelessWidget {
                   GestureDetector(
                     onTap: onPhoneNumberTap,
                     child: Text(
-                      '${user.phoneNumber ?? ''}${user.postsCount != null ? ' • ${user.postsCount} Posts' : ''}',
+                      user.phoneNumber ?? '',
                       style: TextStyle(
                         fontSize: 14,
                         color: theme.primaryColor,
@@ -130,6 +130,17 @@ class RegularUserCard extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (user.postsCount != null) ...[
+                    const SizedBox(height: 3),
+                    Text(
+                      'Total Posts: ${user.postsCount}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.grey.shade700,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

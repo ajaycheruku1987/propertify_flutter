@@ -129,7 +129,7 @@ class AdminUserCard extends StatelessWidget {
                   GestureDetector(
                     onTap: onPhoneNumberTap,
                     child: Text(
-                      '${user.phoneNumber ?? ''} • ${role.toTitleCase()}${user.postsCount != null ? ' • ${user.postsCount} Posts' : ''}',
+                      '${user.phoneNumber ?? ''} • ${role.toTitleCase()}',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade600,
@@ -139,6 +139,17 @@ class AdminUserCard extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (user.postsCount != null) ...[
+                    const SizedBox(height: 3),
+                    Text(
+                      'Total Posts: ${user.postsCount}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: theme.primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
