@@ -120,7 +120,7 @@ class RegularUserCard extends StatelessWidget {
                   GestureDetector(
                     onTap: onPhoneNumberTap,
                     child: Text(
-                      user.phoneNumber ?? '',
+                      '${user.phoneNumber ?? ''}${user.postsCount != null ? ' • ${user.postsCount} Posts' : ''}',
                       style: TextStyle(
                         fontSize: 14,
                         color: theme.primaryColor,

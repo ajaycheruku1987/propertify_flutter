@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -22,6 +23,7 @@ import '../../company/bloc/company_bloc.dart';
 import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
+import 'package:propertify/utils/common_widgets/google_ad_banner.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/services/block_service.dart';
@@ -226,6 +228,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: SafeArea(
+        child: GoogleAdBanner(adSize: AdSize.banner),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -596,7 +601,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   ],
                 ),
               ),
-
               // Tab Views
               Expanded(
                 child: TabBarView(

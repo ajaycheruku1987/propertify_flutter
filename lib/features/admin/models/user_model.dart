@@ -22,6 +22,7 @@ class UserModel with _$UserModel {
     @JsonKey(name: "phone_number") String? phoneNumber,
     @JsonKey(name: "email") String? email,
     @JsonKey(name: "role") String? role,
+    @JsonKey(name: "posts_count") int? postsCount,
     @JsonKey(name: "created_at") String? createdAt,
     @JsonKey(name: "updated_at") String? updatedAt,
   }) = _UserModel;

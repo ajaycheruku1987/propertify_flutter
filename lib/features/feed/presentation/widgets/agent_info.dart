@@ -267,7 +267,7 @@ class AgentInfo extends StatelessWidget {
                       children: [
                         Expanded(
                           child: _buildStatItem(
-                            label: 'Total Listings',
+                            label: 'Total Posts',
                             value: '${itemsListed ?? 0}',
                             context: context,
                           ),

@@ -15,6 +15,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       role: json['role'] as String?,
+      postsCount: (json['posts_count'] as num?)?.toInt(),
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
     );
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'phone_number': instance.phoneNumber,
       'email': instance.email,
       'role': instance.role,
+      'posts_count': instance.postsCount,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };

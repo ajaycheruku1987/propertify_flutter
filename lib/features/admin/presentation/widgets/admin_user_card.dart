@@ -129,7 +129,7 @@ class AdminUserCard extends StatelessWidget {
                   GestureDetector(
                     onTap: onPhoneNumberTap,
                     child: Text(
-                      '${user.phoneNumber ?? ''} • ${role.toTitleCase()}',
+                      '${user.phoneNumber ?? ''} • ${role.toTitleCase()}${user.postsCount != null ? ' • ${user.postsCount} Posts' : ''}',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade600,

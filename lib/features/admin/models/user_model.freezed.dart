@@ -34,6 +34,8 @@ mixin _$UserModel {
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: "role")
   String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: "posts_count")
+  int? get postsCount => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
@@ -58,6 +60,7 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "role") String? role,
+      @JsonKey(name: "posts_count") int? postsCount,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "updated_at") String? updatedAt});
 }
@@ -82,6 +85,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
+    Object? postsCount = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -114,6 +118,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -142,6 +150,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
       @JsonKey(name: "role") String? role,
+      @JsonKey(name: "posts_count") int? postsCount,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "updated_at") String? updatedAt});
 }
@@ -164,6 +173,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
+    Object? postsCount = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -196,6 +206,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      postsCount: freezed == postsCount
+          ? _value.postsCount
+          : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -219,6 +233,7 @@ class _$UserModelImpl implements _UserModel {
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "email") this.email,
       @JsonKey(name: "role") this.role,
+      @JsonKey(name: "posts_count") this.postsCount,
       @JsonKey(name: "created_at") this.createdAt,
       @JsonKey(name: "updated_at") this.updatedAt});
 
@@ -247,6 +262,9 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey(name: "role")
   final String? role;
   @override
+  @JsonKey(name: "posts_count")
+  final int? postsCount;
+  @override
   @JsonKey(name: "created_at")
   final String? createdAt;
   @override
@@ -255,7 +273,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, role: $role, postsCount: $postsCount, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -274,6 +292,8 @@ class _$UserModelImpl implements _UserModel {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.role, role) || other.role == role) &&
+            (identical(other.postsCount, postsCount) ||
+                other.postsCount == postsCount) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -283,7 +303,7 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, username, firstName,
-      lastName, phoneNumber, email, role, createdAt, updatedAt);
+      lastName, phoneNumber, email, role, postsCount, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -308,6 +328,7 @@ abstract class _UserModel implements UserModel {
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "email") final String? email,
       @JsonKey(name: "role") final String? role,
+      @JsonKey(name: "posts_count") final int? postsCount,
       @JsonKey(name: "created_at") final String? createdAt,
       @JsonKey(name: "updated_at") final String? updatedAt}) = _$UserModelImpl;
 
@@ -335,6 +356,9 @@ abstract class _UserModel implements UserModel {
   @override
   @JsonKey(name: "role")
   String? get role;
+  @override
+  @JsonKey(name: "posts_count")
+  int? get postsCount;
   @override
   @JsonKey(name: "created_at")
   String? get createdAt;
