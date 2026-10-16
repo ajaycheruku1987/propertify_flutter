@@ -30,6 +30,7 @@ import 'widgets/description_section.dart';
 import '../../sales/presentation/widgets/static_location_map_view.dart';
 import 'widgets/emi_calculator_widget.dart';
 import 'widgets/stamp_duty_calculator_widget.dart';
+import 'widgets/unit_conversion_calculator_widget.dart';
 import 'widgets/agent_info.dart';
 import 'widgets/similar_properties.dart';
 import 'widgets/similar_posts_by_category.dart';
@@ -744,9 +745,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           category: postDetails.propertyType,
                           mainCategory: postDetails.mainCategory,
                           listingType: postDetails.listingType,
-                          showCalculator: (postDetails.listingType?.toLowerCase() == 'sell' ||
-                              postDetails.listingType?.toLowerCase() == 'sale') &&
-                              (postDetails.price ?? 0) > 0,
+                          showCalculator: true,
                           onCalculatorPressed: () {
                             _showEmiCalculatorBottomSheet(
                               context,
@@ -1079,16 +1078,20 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Financial Calculators',
+                  'Calculators',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 12),
-                EmiCalculatorWidget(propertyPrice: propertyPrice),
-                const SizedBox(height: 8),
-                StampDutyCalculatorWidget(propertyPrice: propertyPrice),
+                if (propertyPrice > 0) ...[
+                  EmiCalculatorWidget(propertyPrice: propertyPrice),
+                  const SizedBox(height: 8),
+                  StampDutyCalculatorWidget(propertyPrice: propertyPrice),
+                  const SizedBox(height: 8),
+                ],
+                const UnitConversionCalculatorWidget(),
                 const SizedBox(height: 20),
               ],
             ),

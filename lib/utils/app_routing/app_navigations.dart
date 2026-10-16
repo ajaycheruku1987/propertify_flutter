@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:propertify/app.dart';
 
+import 'package:propertify/features/calculator/presentation/conversion_calculator_screen.dart';
 import 'package:propertify/features/company/presentation/create_company_screen.dart';
 import 'package:propertify/features/create_post/presentation/create_post_details_screen.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
@@ -582,6 +583,10 @@ final router = GoRouter(
     GoRoute(
       path: ReportedPropertiesScreen.routeName,
       builder: (context, state) => const ReportedPropertiesScreen(),
+    ),
+    GoRoute(
+      path: ConversionCalculatorScreen.routeName,
+      builder: (context, state) => const ConversionCalculatorScreen(),
     ),
   ],
 );
