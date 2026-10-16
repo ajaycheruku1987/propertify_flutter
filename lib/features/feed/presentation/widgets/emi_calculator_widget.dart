@@ -190,7 +190,7 @@ class _EmiCalculatorWidgetState extends State<EmiCalculatorWidget> {
             ),
           ),
           title: const Text(
-            'Calculator',
+            'Loan Calculator',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w800,
