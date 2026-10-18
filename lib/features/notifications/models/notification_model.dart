@@ -61,10 +61,14 @@ class NotificationModel {
   }
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
+    final rawBody = json['body'] as String? ?? '';
+    final cleanBody = rawBody.contains('__PROPS__')
+        ? rawBody.split('__PROPS__').first.trim()
+        : rawBody;
     return NotificationModel(
       id: json['id'] as String,
       title: json['title'] as String,
-      body: json['body'] as String,
+      body: cleanBody,
       timestamp: DateTime.parse(json['timestamp'] as String),
       isRead: json['isRead'] as bool? ?? false,
       type: json['type'] as String?,

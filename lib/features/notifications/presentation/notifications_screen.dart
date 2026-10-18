@@ -183,7 +183,7 @@ class _NotificationCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    notification.body,
+                    _cleanBody,
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 13,
@@ -197,6 +197,13 @@ class _NotificationCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String get _cleanBody {
+    if (notification.body.contains('__PROPS__')) {
+      return notification.body.split('__PROPS__').first.trim();
+    }
+    return notification.body;
   }
 
   IconData _getIcon(String? type) {

@@ -147,15 +147,18 @@ class NotificationService {
     String? type,
     String? referenceId,
   }) async {
+    final cleanBody = body.contains('__PROPS__')
+        ? body.split('__PROPS__').first.trim()
+        : body;
     final content = PushContent(
       id: DateTime.now().microsecondsSinceEpoch.toString(),
       title: title,
-      body: body,
+      body: cleanBody,
       data: {
         'type': type,
         'reference_id': referenceId,
         'title': title,
-        'body': body,
+        'body': cleanBody,
       },
     );
     _addToNotificationsBloc(content);
@@ -167,12 +170,15 @@ class NotificationService {
       final context = navigationKey.currentContext;
       if (context == null) return;
       final data = content.data;
+      final cleanBody = content.body.contains('__PROPS__')
+          ? content.body.split('__PROPS__').first.trim()
+          : content.body;
       context.read<NotificationsBloc>().add(
             AddNotification(
               NotificationModel(
                 id: content.id,
                 title: content.title,
-                body: content.body,
+                body: cleanBody,
                 timestamp: DateTime.now(),
                 isRead: isRead,
                 type: data['type']?.toString(),
@@ -240,7 +246,10 @@ class PushContent {
   static PushContent? fromMessage(RemoteMessage message) {
     final data = Map<String, dynamic>.from(message.data);
     final title = message.notification?.title ?? data['title']?.toString() ?? '';
-    final body = message.notification?.body ?? data['body']?.toString() ?? '';
+    var body = message.notification?.body ?? data['body']?.toString() ?? '';
+    if (body.contains('__PROPS__')) {
+      body = body.split('__PROPS__').first.trim();
+    }
     if (title.isEmpty && body.isEmpty) return null;
 
     final id = message.messageId ?? DateTime.now().microsecondsSinceEpoch.toString();
@@ -267,11 +276,15 @@ class PushContent {
     try {
       final data = (jsonDecode(payload) as Map).cast<String, dynamic>();
       final image = data['image']?.toString();
+      var body = data['body']?.toString() ?? '';
+      if (body.contains('__PROPS__')) {
+        body = body.split('__PROPS__').first.trim();
+      }
       return PushContent(
         id: data['message_id']?.toString() ??
             DateTime.now().microsecondsSinceEpoch.toString(),
         title: data['title']?.toString() ?? '',
-        body: data['body']?.toString() ?? '',
+        body: body,
         data: data,
         imageUrl: (image == null || image.isEmpty) ? null : image,
       );
