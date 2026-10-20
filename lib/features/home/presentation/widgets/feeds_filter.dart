@@ -62,8 +62,6 @@ class _FeedsFilterState extends State<FeedsFilter> {
   double? _longitude;
   bool _isLocationCustom = false;
 
-  final List<String> _propertyTypes = AppCategories.propertyTypeFilterName;
-
   final List<String> _lookingForOptions = AppCategories.lookingForFilter;
 
   @override
@@ -115,7 +113,7 @@ class _FeedsFilterState extends State<FeedsFilter> {
 
     return SafeArea(
       child: Container(
-        height: screenHeight * 0.6,
+        height: screenHeight * 0.75,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -215,6 +213,9 @@ class _FeedsFilterState extends State<FeedsFilter> {
   }
 
   Widget _buildPropertyTypeSection(AppLocalizations l10n) {
+    final hierarchy = AppCategories.propertyCategoryHierarchy;
+    final isAllSelected = _selectedPropertyTypes.isEmpty;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -230,51 +231,88 @@ class _FeedsFilterState extends State<FeedsFilter> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: _propertyTypes.map((type) {
-            final isSelected =
-                _selectedPropertyTypes.contains(type) ||
-                (type == 'All' && _selectedPropertyTypes.isEmpty);
-            return GestureDetector(
+          children: [
+            _buildTypeChip(
+              label: 'All',
+              isSelected: isAllSelected,
               onTap: () {
-                setState(() {
-                  if (type == 'All') {
-                    _selectedPropertyTypes.clear();
-                  } else {
-                    if (_selectedPropertyTypes.contains(type)) {
-                      _selectedPropertyTypes.remove(type);
-                    } else {
-                      _selectedPropertyTypes.add(type);
-                    }
-                  }
-                });
+                setState(() => _selectedPropertyTypes.clear());
               },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.blueColor : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isSelected
-                        ? AppTheme.blueColor
-                        : Colors.grey.shade300,
-                  ),
-                ),
-                child: Text(
-                  type.translate(context),
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: isSelected ? Colors.white : Colors.black87,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
+            ),
+          ],
         ),
+        const SizedBox(height: 12),
+        ...hierarchy.entries.map((entry) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  entry.key.translate(context),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: entry.value.map((type) {
+                    final isSelected = _selectedPropertyTypes.contains(type);
+                    return _buildTypeChip(
+                      label: type,
+                      isSelected: isSelected,
+                      onTap: () {
+                        setState(() {
+                          if (isSelected) {
+                            _selectedPropertyTypes.remove(type);
+                          } else {
+                            // Single-select to match API `property_type`.
+                            _selectedPropertyTypes
+                              ..clear()
+                              ..add(type);
+                          }
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          );
+        }),
       ],
+    );
+  }
+
+  Widget _buildTypeChip({
+    required String label,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.blueColor : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? AppTheme.blueColor : Colors.grey.shade300,
+          ),
+        ),
+        child: Text(
+          label.translate(context),
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: isSelected ? Colors.white : Colors.black87,
+          ),
+        ),
+      ),
     );
   }
 

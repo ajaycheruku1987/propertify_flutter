@@ -7,6 +7,7 @@ class FeedEvent with _$FeedEvent {
     String? city,
     String? listingType,
     String? propertyType,
+    String? mainCategory,
     double? minPrice,
     double? maxPrice,
     String? search,

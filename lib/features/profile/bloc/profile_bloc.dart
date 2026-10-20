@@ -356,24 +356,29 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
-      Either<Failure, List<BannerAdModel>> bannerAdsEither = await _profileRepo
-          .getBannerAds();
+      // Feed banner ads are global — never filter by user location/radius.
+      Either<Failure, List<BannerAdModel>> bannerAdsEither =
+          await _profileRepo.getBannerAds();
 
       bannerAdsEither.fold(
         (failure) {
+          // Keep previous ads on failure so the carousel does not disappear.
           emit(
             state.copyWith(
-              isLoading: false,
-              notifyStatus: NotifyStatus(message: failure.message),
+              bannerAds: state.bannerAds ?? const [],
+              notifyStatus: null,
             ),
           );
         },
         (bannerAds) {
+          final activeAds = bannerAds
+              .where(
+                (ad) => ad.isCurrentlyActive && (ad.approved ?? true),
+              )
+              .toList();
           emit(
             state.copyWith(
-              isLoading: false,
-              bannerAds: bannerAds,
+              bannerAds: activeAds,
               notifyStatus: null,
             ),
           );
@@ -382,8 +387,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
-          notifyStatus: NotifyStatus(message: 'Failed to load banner ads'),
+          bannerAds: state.bannerAds ?? const [],
+          notifyStatus: null,
         ),
       );
     }

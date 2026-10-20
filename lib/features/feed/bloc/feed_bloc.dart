@@ -6,6 +6,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:propertify/utils/custom_toast.dart';
 
+import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/notify_message.dart';
 import 'package:propertify/features/home/models/feed_posts_response_model.dart';
@@ -28,11 +29,16 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   String? _lastCity;
   String? _lastListingType;
   String? _lastPropertyType;
+  String? _lastMainCategory;
   double? _lastMinPrice;
   double? _lastMaxPrice;
   String? _lastSearch;
   double? _lastLatitude;
   double? _lastLongitude;
+
+  /// Bumps on every similar-properties request so stale responses are ignored.
+  int _similarPropertiesRequestId = 0;
+  int _similarPostsByCategoryRequestId = 0;
 
   FeedBloc(this._feedRepo) : super(const FeedState()) {
     on<_GetFeedsEvent>(_onGetFeedsEvent);
@@ -62,7 +68,11 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   @override
   FeedState? fromJson(Map<String, dynamic> json) {
     try {
-      return FeedState.fromJson(json);
+      // Strip any legacy cached similar posts from disk.
+      final cleaned = Map<String, dynamic>.from(json)
+        ..remove('similarProperties')
+        ..remove('similarPostsByCategory');
+      return FeedState.fromJson(cleaned);
     } catch (_) {
       return null;
     }
@@ -71,7 +81,10 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
   @override
   Map<String, dynamic>? toJson(FeedState state) {
     try {
-      return state.toJson();
+      final json = state.toJson();
+      json.remove('similarProperties');
+      json.remove('similarPostsByCategory');
+      return json;
     } catch (_) {
       return null;
     }
@@ -79,6 +92,40 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
 
   void _onReset(_Reset event, Emitter<FeedState> emit) {
     emit(const FeedState());
+  }
+
+  bool _matchesCategoryFilter(
+    FeedPostsResponseModel post, {
+    String? propertyType,
+    String? mainCategory,
+  }) {
+    if ((propertyType == null || propertyType.isEmpty || propertyType == 'All') &&
+        (mainCategory == null || mainCategory.isEmpty || mainCategory == 'All')) {
+      return true;
+    }
+
+    final postType =
+        (post.propertyType ?? post.subCategory ?? '').trim().toLowerCase();
+    final postMain = (post.mainCategory ?? '').trim().toLowerCase();
+
+    if (mainCategory != null &&
+        mainCategory.isNotEmpty &&
+        mainCategory != 'All') {
+      final wantedMain = mainCategory.toLowerCase();
+      if (postMain == wantedMain) return true;
+
+      final subs =
+          AppCategories.propertyCategoryHierarchy[mainCategory] ?? const [];
+      return subs.any((s) => s.toLowerCase() == postType);
+    }
+
+    if (propertyType != null &&
+        propertyType.isNotEmpty &&
+        propertyType != 'All') {
+      return postType == propertyType.toLowerCase();
+    }
+
+    return true;
   }
 
   Future<void> _onToggleFavorite(
@@ -524,18 +571,27 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       final int limit = event.limit ?? 10;
 
       final String? city = event.city ?? (offset == 0 ? null : _lastCity);
-      final String? listingType = event.listingType ?? (offset == 0 ? null : _lastListingType);
-      final String? propertyType = event.propertyType ?? (offset == 0 ? null : _lastPropertyType);
-      final double? minPrice = event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
-      final double? maxPrice = event.maxPrice ?? (offset == 0 ? null : _lastMinPrice);
+      final String? listingType =
+          event.listingType ?? (offset == 0 ? null : _lastListingType);
+      final String? propertyType =
+          event.propertyType ?? (offset == 0 ? null : _lastPropertyType);
+      final String? mainCategory =
+          event.mainCategory ?? (offset == 0 ? null : _lastMainCategory);
+      final double? minPrice =
+          event.minPrice ?? (offset == 0 ? null : _lastMinPrice);
+      final double? maxPrice =
+          event.maxPrice ?? (offset == 0 ? null : _lastMaxPrice);
       final String? search = event.search ?? (offset == 0 ? null : _lastSearch);
-      final double? latitude = event.latitude ?? (offset == 0 ? null : _lastLatitude);
-      final double? longitude = event.longitude ?? (offset == 0 ? null : _lastLongitude);
+      final double? latitude =
+          event.latitude ?? (offset == 0 ? null : _lastLatitude);
+      final double? longitude =
+          event.longitude ?? (offset == 0 ? null : _lastLongitude);
 
       if (offset == 0) {
         _lastCity = city;
         _lastListingType = listingType;
         _lastPropertyType = propertyType;
+        _lastMainCategory = mainCategory;
         _lastMinPrice = minPrice;
         _lastMaxPrice = maxPrice;
         _lastSearch = search;
@@ -555,6 +611,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             city: city,
             listingType: listingType,
             propertyType: propertyType,
+            mainCategory: mainCategory,
             minPrice: minPrice,
             maxPrice: maxPrice,
             search: search,
@@ -574,14 +631,24 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
           );
         },
         (success) {
+          // Client-side category guard — covers APIs that ignore main_category /
+          // mismatched legacy property_type labels.
+          var filteredSuccess = success.where((post) {
+            return _matchesCategoryFilter(
+              post,
+              propertyType: propertyType,
+              mainCategory: mainCategory,
+            );
+          }).toList();
+
           List<FeedPostsResponseModel> updatedFeedsList;
 
           if (offset == 0) {
             // Replace data for refresh
-            updatedFeedsList = success;
+            updatedFeedsList = filteredSuccess;
           } else {
             // Add to existing list for pagination
-            updatedFeedsList = [...state.feedsList, ...success];
+            updatedFeedsList = [...state.feedsList, ...filteredSuccess];
           }
 
           final blockService = serviceLocator<BlockService>();
@@ -620,7 +687,17 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      // Clear previous post + similar lists so we never flash stale city results.
+      emit(
+        state.copyWith(
+          isLoading: true,
+          postDetails: null,
+          similarProperties: const [],
+          similarPostsByCategory: const [],
+          similarPropertiesLoading: false,
+          similarPostsByCategoryLoading: false,
+        ),
+      );
 
       Either<Failure, FeedPostsResponseModel> postDetailsEither =
           await _feedRepo.getPostDetails(postId: event.postId);
@@ -662,21 +739,24 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     _GetSimilarPropertiesEvent event,
     Emitter<FeedState> emit,
   ) async {
+    final requestId = ++_similarPropertiesRequestId;
     try {
-      if (state.similarPropertiesLoading) return;
-      
-      emit(state.copyWith(
-        similarPropertiesLoading: true,
-        similarProperties: [], // Clear stale data immediately
-      ));
+      emit(
+        state.copyWith(
+          similarPropertiesLoading: true,
+          similarProperties: const [],
+        ),
+      );
 
       // Clean city name more robustly
       String? cleanedCity = event.city;
       if (cleanedCity != null && cleanedCity.isNotEmpty) {
-        final parts = cleanedCity.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
+        final parts = cleanedCity
+            .split(',')
+            .map((e) => e.trim())
+            .where((e) => e.isNotEmpty)
+            .toList();
         if (parts.length > 1) {
-          // Try to use the second-to-last or last part as the primary city name
-          // e.g., "Mayur Vihar, New Delhi" -> "New Delhi"
           cleanedCity = parts.last;
         }
       }
@@ -690,47 +770,47 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             limit: event.limit ?? 20,
           );
 
+      // Drop stale responses from a previous post/city.
+      if (requestId != _similarPropertiesRequestId) return;
+
       similarPropertiesEither.fold(
         (failure) {
-          emit(
-            state.copyWith(
-              similarPropertiesLoading: false,
-            ),
-          );
+          emit(state.copyWith(similarPropertiesLoading: false));
         },
         (similarProperties) {
-          // Client-side filtering: exclude current post and match listing type if provided
           final filteredProperties = similarProperties.where((post) {
             final postListing = post.listingType?.trim().toLowerCase();
             final targetListing = event.listingType?.trim().toLowerCase();
 
-            // Relaxed listing type check: if target is null, match any; otherwise strict match
-            final matchesListing = targetListing == null || postListing == targetListing;
+            final matchesListing =
+                targetListing == null || postListing == targetListing;
             final isNotCurrent = post.id != event.excludePostId;
 
-            // Strict city check to avoid global results when API filter is loose
             bool matchesCity = true;
-            if (cleanedCity != null && cleanedCity.isNotEmpty && post.city != null) {
+            if (cleanedCity != null &&
+                cleanedCity.isNotEmpty &&
+                post.city != null) {
               final postCity = post.city!.toLowerCase();
               final targetCity = cleanedCity.toLowerCase();
-              matchesCity = postCity.contains(targetCity) || targetCity.contains(postCity);
+              matchesCity =
+                  postCity.contains(targetCity) ||
+                  targetCity.contains(postCity);
             }
-            
+
             return isNotCurrent && matchesListing && matchesCity;
           }).toList();
 
-          emit(state.copyWith(
-            similarPropertiesLoading: false,
-            similarProperties: filteredProperties,
-          ));
+          emit(
+            state.copyWith(
+              similarPropertiesLoading: false,
+              similarProperties: filteredProperties,
+            ),
+          );
         },
       );
     } catch (e) {
-      emit(
-        state.copyWith(
-          similarPropertiesLoading: false,
-        ),
-      );
+      if (requestId != _similarPropertiesRequestId) return;
+      emit(state.copyWith(similarPropertiesLoading: false));
     }
   }
 
@@ -840,14 +920,15 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     _GetSimilarPostsByCategoryEvent event,
     Emitter<FeedState> emit,
   ) async {
+    final requestId = ++_similarPostsByCategoryRequestId;
     try {
-      if (state.similarPostsByCategoryLoading) return;
-      
-      emit(state.copyWith(
-        similarPostsByCategoryLoading: true,
-        similarPostsByCategory: [], // Clear stale data immediately
-      ));
-      
+      emit(
+        state.copyWith(
+          similarPostsByCategoryLoading: true,
+          similarPostsByCategory: const [],
+        ),
+      );
+
       final int limit = event.limit ?? 20;
 
       Either<Failure, List<FeedPostsResponseModel>> similarPostsEither =
@@ -857,33 +938,28 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
             limit: limit,
           );
 
+      if (requestId != _similarPostsByCategoryRequestId) return;
+
       similarPostsEither.fold(
         (failure) {
+          emit(state.copyWith(similarPostsByCategoryLoading: false));
+        },
+        (similarPosts) {
+          final filteredPosts = similarPosts.where((post) {
+            return post.id != event.excludePostId;
+          }).toList();
+
           emit(
             state.copyWith(
               similarPostsByCategoryLoading: false,
+              similarPostsByCategory: filteredPosts,
             ),
           );
         },
-        (similarPosts) {
-          // Client-side filtering to exclude current post
-          final filteredPosts = similarPosts.where((post) {
-            final isNotCurrent = post.id != event.excludePostId;
-            return isNotCurrent;
-          }).toList();
-
-          emit(state.copyWith(
-            similarPostsByCategoryLoading: false,
-            similarPostsByCategory: filteredPosts,
-          ));
-        },
       );
     } catch (e) {
-      emit(
-        state.copyWith(
-          similarPostsByCategoryLoading: false,
-        ),
-      );
+      if (requestId != _similarPostsByCategoryRequestId) return;
+      emit(state.copyWith(similarPostsByCategoryLoading: false));
     }
   }
 
@@ -891,10 +967,17 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     _ResetSimilarPostsByCategory event,
     Emitter<FeedState> emit,
   ) {
-    emit(state.copyWith(
-      similarPostsByCategory: [],
-      similarProperties: [],
-    ));
+    // Invalidate any in-flight similar requests.
+    _similarPropertiesRequestId++;
+    _similarPostsByCategoryRequestId++;
+    emit(
+      state.copyWith(
+        similarPostsByCategory: const [],
+        similarProperties: const [],
+        similarPropertiesLoading: false,
+        similarPostsByCategoryLoading: false,
+      ),
+    );
   }
 
   Future<void> _onUpdatePropertyEvent(

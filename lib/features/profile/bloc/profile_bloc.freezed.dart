@@ -30,7 +30,8 @@ mixin _$ProfileEvent {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -59,7 +60,7 @@ mixin _$ProfileEvent {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -87,7 +88,7 @@ mixin _$ProfileEvent {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -233,7 +234,8 @@ class _$ResetImpl implements _Reset {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -265,7 +267,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -296,7 +298,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -444,7 +446,8 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -476,7 +479,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -507,7 +510,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -727,7 +730,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -759,7 +763,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -790,7 +794,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -980,7 +984,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -1012,7 +1017,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -1043,7 +1048,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -1235,7 +1240,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -1267,7 +1273,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -1298,7 +1304,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -1490,7 +1496,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -1522,7 +1529,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -1553,7 +1560,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -1759,7 +1766,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -1791,7 +1799,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -1822,7 +1830,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -1935,6 +1943,8 @@ abstract class _$$LoadBannerAdsImplCopyWith<$Res> {
   factory _$$LoadBannerAdsImplCopyWith(
           _$LoadBannerAdsImpl value, $Res Function(_$LoadBannerAdsImpl) then) =
       __$$LoadBannerAdsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double? latitude, double? longitude});
 }
 
 /// @nodoc
@@ -1944,26 +1954,60 @@ class __$$LoadBannerAdsImplCopyWithImpl<$Res>
   __$$LoadBannerAdsImplCopyWithImpl(
       _$LoadBannerAdsImpl _value, $Res Function(_$LoadBannerAdsImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+  }) {
+    return _then(_$LoadBannerAdsImpl(
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadBannerAdsImpl implements _LoadBannerAds {
-  const _$LoadBannerAdsImpl();
+  const _$LoadBannerAdsImpl({this.latitude, this.longitude});
+
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
 
   @override
   String toString() {
-    return 'ProfileEvent.loadBannerAds()';
+    return 'ProfileEvent.loadBannerAds(latitude: $latitude, longitude: $longitude)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadBannerAdsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadBannerAdsImpl &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadBannerAdsImplCopyWith<_$LoadBannerAdsImpl> get copyWith =>
+      __$$LoadBannerAdsImplCopyWithImpl<_$LoadBannerAdsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1980,7 +2024,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -1994,7 +2039,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
-    return loadBannerAds();
+    return loadBannerAds(latitude, longitude);
   }
 
   @override
@@ -2012,7 +2057,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -2025,7 +2070,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
-    return loadBannerAds?.call();
+    return loadBannerAds?.call(latitude, longitude);
   }
 
   @override
@@ -2043,7 +2088,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -2058,7 +2103,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult orElse(),
   }) {
     if (loadBannerAds != null) {
-      return loadBannerAds();
+      return loadBannerAds(latitude, longitude);
     }
     return orElse();
   }
@@ -2138,7 +2183,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
 }
 
 abstract class _LoadBannerAds implements ProfileEvent {
-  const factory _LoadBannerAds() = _$LoadBannerAdsImpl;
+  const factory _LoadBannerAds(
+      {final double? latitude, final double? longitude}) = _$LoadBannerAdsImpl;
+
+  double? get latitude;
+  double? get longitude;
+  @JsonKey(ignore: true)
+  _$$LoadBannerAdsImplCopyWith<_$LoadBannerAdsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2191,7 +2243,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -2223,7 +2276,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -2254,7 +2307,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -2430,7 +2483,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -2462,7 +2516,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -2493,7 +2547,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -2695,7 +2749,8 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -2727,7 +2782,7 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -2758,7 +2813,7 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -2916,7 +2971,8 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -2948,7 +3004,7 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -2979,7 +3035,7 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -3127,7 +3183,8 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -3159,7 +3216,7 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -3190,7 +3247,7 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -3396,7 +3453,8 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -3428,7 +3486,7 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -3459,7 +3517,7 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -3646,7 +3704,8 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -3678,7 +3737,7 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -3709,7 +3768,7 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?
@@ -3889,7 +3948,8 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(CreateBannerAdDataModel bannerAdData,
             String? paymentId, String? orderId)
         createBannerAd,
-    required TResult Function() loadBannerAds,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
     required TResult Function() loadMyBannerAds,
     required TResult Function(String userId) loadOtherUserProfile,
     required TResult Function(
@@ -3921,7 +3981,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult? Function()? loadBannerAds,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
     TResult? Function()? loadMyBannerAds,
     TResult? Function(String userId)? loadOtherUserProfile,
     TResult? Function(String category, String subject, String description)?
@@ -3952,7 +4012,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
             String? orderId)?
         createBannerAd,
-    TResult Function()? loadBannerAds,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
     TResult Function()? loadMyBannerAds,
     TResult Function(String userId)? loadOtherUserProfile,
     TResult Function(String category, String subject, String description)?

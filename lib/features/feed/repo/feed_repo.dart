@@ -21,6 +21,7 @@ class FeedRepo {
     String? city,
     String? listingType,
     String? propertyType,
+    String? mainCategory,
     double? minPrice,
     double? maxPrice,
     String? search,
@@ -34,7 +35,16 @@ class FeedRepo {
 
     if (city != null) queryParams['city'] = city;
     if (listingType != null) queryParams['listing_type'] = listingType;
-    if (propertyType != null) queryParams['property_type'] = propertyType;
+    if (propertyType != null &&
+        propertyType.isNotEmpty &&
+        propertyType != 'All') {
+      queryParams['property_type'] = propertyType;
+    }
+    if (mainCategory != null &&
+        mainCategory.isNotEmpty &&
+        mainCategory != 'All') {
+      queryParams['main_category'] = mainCategory;
+    }
     if (minPrice != null) queryParams['min_price'] = minPrice;
     if (maxPrice != null) queryParams['max_price'] = maxPrice;
     if (search != null) queryParams['search'] = search;
@@ -46,6 +56,7 @@ class FeedRepo {
       final isFiltering = (city != null && city.isNotEmpty) ||
           (listingType != null && listingType != 'All' && listingType.isNotEmpty) ||
           (propertyType != null && propertyType != 'All' && propertyType.isNotEmpty) ||
+          (mainCategory != null && mainCategory != 'All' && mainCategory.isNotEmpty) ||
           minPrice != null ||
           maxPrice != null ||
           (search != null && search.isNotEmpty);

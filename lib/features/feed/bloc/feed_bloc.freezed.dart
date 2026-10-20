@@ -23,6 +23,7 @@ mixin _$FeedEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -86,6 +87,7 @@ mixin _$FeedEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -148,6 +150,7 @@ mixin _$FeedEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -339,6 +342,7 @@ class _$ResetImpl implements _Reset {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -405,6 +409,7 @@ class _$ResetImpl implements _Reset {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -470,6 +475,7 @@ class _$ResetImpl implements _Reset {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -631,6 +637,7 @@ abstract class _$$GetFeedsEventImplCopyWith<$Res> {
       {String? city,
       String? listingType,
       String? propertyType,
+      String? mainCategory,
       double? minPrice,
       double? maxPrice,
       String? search,
@@ -654,6 +661,7 @@ class __$$GetFeedsEventImplCopyWithImpl<$Res>
     Object? city = freezed,
     Object? listingType = freezed,
     Object? propertyType = freezed,
+    Object? mainCategory = freezed,
     Object? minPrice = freezed,
     Object? maxPrice = freezed,
     Object? search = freezed,
@@ -674,6 +682,10 @@ class __$$GetFeedsEventImplCopyWithImpl<$Res>
       propertyType: freezed == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainCategory: freezed == mainCategory
+          ? _value.mainCategory
+          : mainCategory // ignore: cast_nullable_to_non_nullable
               as String?,
       minPrice: freezed == minPrice
           ? _value.minPrice
@@ -714,6 +726,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
       {this.city,
       this.listingType,
       this.propertyType,
+      this.mainCategory,
       this.minPrice,
       this.maxPrice,
       this.search,
@@ -728,6 +741,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
   final String? listingType;
   @override
   final String? propertyType;
+  @override
+  final String? mainCategory;
   @override
   final double? minPrice;
   @override
@@ -745,7 +760,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
 
   @override
   String toString() {
-    return 'FeedEvent.getFeedsEvent(city: $city, listingType: $listingType, propertyType: $propertyType, minPrice: $minPrice, maxPrice: $maxPrice, search: $search, limit: $limit, offset: $offset, latitude: $latitude, longitude: $longitude)';
+    return 'FeedEvent.getFeedsEvent(city: $city, listingType: $listingType, propertyType: $propertyType, mainCategory: $mainCategory, minPrice: $minPrice, maxPrice: $maxPrice, search: $search, limit: $limit, offset: $offset, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -758,6 +773,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
                 other.listingType == listingType) &&
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
+            (identical(other.mainCategory, mainCategory) ||
+                other.mainCategory == mainCategory) &&
             (identical(other.minPrice, minPrice) ||
                 other.minPrice == minPrice) &&
             (identical(other.maxPrice, maxPrice) ||
@@ -772,8 +789,19 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, city, listingType, propertyType,
-      minPrice, maxPrice, search, limit, offset, latitude, longitude);
+  int get hashCode => Object.hash(
+      runtimeType,
+      city,
+      listingType,
+      propertyType,
+      mainCategory,
+      minPrice,
+      maxPrice,
+      search,
+      limit,
+      offset,
+      latitude,
+      longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -789,6 +817,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -844,8 +873,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     required TResult Function(String propertyId, String commentId)
         deleteComment,
   }) {
-    return getFeedsEvent(city, listingType, propertyType, minPrice, maxPrice,
-        search, limit, offset, latitude, longitude);
+    return getFeedsEvent(city, listingType, propertyType, mainCategory,
+        minPrice, maxPrice, search, limit, offset, latitude, longitude);
   }
 
   @override
@@ -856,6 +885,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -910,8 +940,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     TResult? Function(String propertyId)? deleteProperty,
     TResult? Function(String propertyId, String commentId)? deleteComment,
   }) {
-    return getFeedsEvent?.call(city, listingType, propertyType, minPrice,
-        maxPrice, search, limit, offset, latitude, longitude);
+    return getFeedsEvent?.call(city, listingType, propertyType, mainCategory,
+        minPrice, maxPrice, search, limit, offset, latitude, longitude);
   }
 
   @override
@@ -922,6 +952,7 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -978,8 +1009,8 @@ class _$GetFeedsEventImpl implements _GetFeedsEvent {
     required TResult orElse(),
   }) {
     if (getFeedsEvent != null) {
-      return getFeedsEvent(city, listingType, propertyType, minPrice, maxPrice,
-          search, limit, offset, latitude, longitude);
+      return getFeedsEvent(city, listingType, propertyType, mainCategory,
+          minPrice, maxPrice, search, limit, offset, latitude, longitude);
     }
     return orElse();
   }
@@ -1075,6 +1106,7 @@ abstract class _GetFeedsEvent implements FeedEvent {
       {final String? city,
       final String? listingType,
       final String? propertyType,
+      final String? mainCategory,
       final double? minPrice,
       final double? maxPrice,
       final String? search,
@@ -1086,6 +1118,7 @@ abstract class _GetFeedsEvent implements FeedEvent {
   String? get city;
   String? get listingType;
   String? get propertyType;
+  String? get mainCategory;
   double? get minPrice;
   double? get maxPrice;
   String? get search;
@@ -1168,6 +1201,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1234,6 +1268,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1299,6 +1334,7 @@ class _$GetPostDetailsEventImpl implements _GetPostDetailsEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1574,6 +1610,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1641,6 +1678,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1707,6 +1745,7 @@ class _$GetSimilarPropertiesEventImpl implements _GetSimilarPropertiesEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -1943,6 +1982,7 @@ class _$LikePropertyImpl implements _LikeProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2009,6 +2049,7 @@ class _$LikePropertyImpl implements _LikeProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2074,6 +2115,7 @@ class _$LikePropertyImpl implements _LikeProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2302,6 +2344,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2368,6 +2411,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2433,6 +2477,7 @@ class _$GetCommentsByIdImpl implements _GetCommentsById {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2680,6 +2725,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2746,6 +2792,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -2811,6 +2858,7 @@ class _$AddCommentToPropertyImpl implements _AddCommentToProperty {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3043,6 +3091,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3109,6 +3158,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3174,6 +3224,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3374,6 +3425,7 @@ class _$IsLoadingImpl implements _IsLoading {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3440,6 +3492,7 @@ class _$IsLoadingImpl implements _IsLoading {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3505,6 +3558,7 @@ class _$IsLoadingImpl implements _IsLoading {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3734,6 +3788,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3800,6 +3855,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -3865,6 +3921,7 @@ class _$GetMyPropertiesImpl implements _GetMyProperties {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4066,6 +4123,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4132,6 +4190,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4197,6 +4256,7 @@ class _$GetFavouritesImpl implements _GetFavourites {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4419,6 +4479,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4485,6 +4546,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4550,6 +4612,7 @@ class _$RecordPropertyViewImpl implements _RecordPropertyView {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4814,6 +4877,7 @@ class _$GetSimilarPostsByCategoryEventImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4881,6 +4945,7 @@ class _$GetSimilarPostsByCategoryEventImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -4947,6 +5012,7 @@ class _$GetSimilarPostsByCategoryEventImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5159,6 +5225,7 @@ class _$ResetSimilarPostsByCategoryImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5225,6 +5292,7 @@ class _$ResetSimilarPostsByCategoryImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5290,6 +5358,7 @@ class _$ResetSimilarPostsByCategoryImpl
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5804,6 +5873,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5894,6 +5964,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -5983,6 +6054,7 @@ class _$UpdatePropertyEventImpl implements _UpdatePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6281,6 +6353,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6347,6 +6420,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6412,6 +6486,7 @@ class _$DeletePropertyEventImpl implements _DeletePropertyEvent {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6649,6 +6724,7 @@ class _$DeleteCommentImpl implements _DeleteComment {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6715,6 +6791,7 @@ class _$DeleteCommentImpl implements _DeleteComment {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,
@@ -6780,6 +6857,7 @@ class _$DeleteCommentImpl implements _DeleteComment {
             String? city,
             String? listingType,
             String? propertyType,
+            String? mainCategory,
             double? minPrice,
             double? maxPrice,
             String? search,

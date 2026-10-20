@@ -1,28 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:propertify/l10n/app_localizations.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:propertify/features/home/bloc/home_bloc.dart';
-import 'package:propertify/features/feed/repo/feed_repo.dart';
-import 'package:propertify/utils/custom_toast.dart';
-import 'package:propertify/features/auth/presentation/auth_screen.dart';
+import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:propertify/core/constants/app_categories.dart';
+import 'package:propertify/features/auth/presentation/auth_screen.dart';
+import 'package:propertify/features/feed/repo/feed_repo.dart';
+import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
-import '../../home/presentation/widgets/banner_ad_widget.dart';
-import '../../profile/presentation/create_banner_ad.dart';
+import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/utils/common_widgets/google_ad_banner.dart';
+import 'package:propertify/utils/custom_toast.dart';
+import 'package:propertify/utils/string_extensions.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../core/notification_service.dart';
+import '../../home/presentation/widgets/banner_ad_widget.dart';
 import '../../home/presentation/widgets/property_card.dart';
 import '../../home/presentation/widgets/property_card_compact.dart';
+import '../../profile/presentation/create_banner_ad.dart';
 import '../bloc/feed_bloc.dart';
 import 'post_details.dart';
 import 'widgets/comments_bottom_sheet.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:propertify/utils/string_extensions.dart';
-import 'dart:async';
-import 'package:propertify/core/constants/app_categories.dart';
-import '../../../core/notification_service.dart';
 
 class FeedListWidget extends StatefulWidget {
   final VoidCallback? onRefresh;
@@ -36,6 +39,9 @@ class FeedListWidget extends StatefulWidget {
 class _FeedListWidgetState extends State<FeedListWidget> {
   int _currentBannerIndex = 0;
   bool _isGridView = true; // Track grid/list view mode
+
+  /// Show a Google ad after every N property cards in grid/list.
+  static const int _adInterval = 6;
 
   @override
   void initState() {
@@ -54,22 +60,18 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         double? latitude = homeState.currentLat;
         double? longitude = homeState.currentLng;
 
+        String? mainCategory;
         if (filterData != null) {
           city = filterData['location'] as String?;
-          final lookingFor = filterData['lookingFor'] as String?;
-          listingType = lookingFor == 'Sales'
-              ? 'Sell'
-              : (lookingFor == 'All' || lookingFor == '')
-              ? null
-              : lookingFor;
+          listingType = AppCategories.mapLookingForToListingType(
+            filterData['lookingFor'] as String?,
+          );
 
-          final propertyTypes = filterData['propertyTypes'] as List?;
-          propertyType =
-              propertyTypes != null &&
-                  propertyTypes.isNotEmpty &&
-                  !propertyTypes.contains('All')
-              ? propertyTypes.first as String?
-              : null;
+          final resolved = AppCategories.resolvePropertyFilter(
+            filterData['propertyTypes'] as List?,
+          );
+          propertyType = resolved.propertyType;
+          mainCategory = resolved.mainCategory;
 
           minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
           maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
@@ -88,6 +90,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
             city: city,
             listingType: listingType,
             propertyType: propertyType,
+            mainCategory: mainCategory,
             minPrice: minPrice,
             maxPrice: maxPrice,
             latitude: latitude,
@@ -96,7 +99,11 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         );
       }
     }
-    // Load Banner Ads
+    _loadAllBannerAds();
+  }
+
+  /// Banner ads are location-agnostic — load the full active set.
+  void _loadAllBannerAds() {
     context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
   }
 
@@ -127,6 +134,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     String? city;
     String? listingType;
     String? propertyType;
+    String? mainCategory;
     double? minPrice;
     double? maxPrice;
     double? latitude = homeState.currentLat;
@@ -134,20 +142,15 @@ class _FeedListWidgetState extends State<FeedListWidget> {
 
     if (filterData != null) {
       city = filterData['location'] as String?;
-      final lookingFor = filterData['lookingFor'] as String?;
-      listingType = lookingFor == 'Sales'
-          ? 'Sell'
-          : (lookingFor == 'All' || lookingFor == '')
-          ? null
-          : lookingFor;
+      listingType = AppCategories.mapLookingForToListingType(
+        filterData['lookingFor'] as String?,
+      );
 
-      final propertyTypes = filterData['propertyTypes'] as List?;
-      propertyType =
-          propertyTypes != null &&
-              propertyTypes.isNotEmpty &&
-              !propertyTypes.contains('All')
-          ? propertyTypes.first as String?
-          : null;
+      final resolved = AppCategories.resolvePropertyFilter(
+        filterData['propertyTypes'] as List?,
+      );
+      propertyType = resolved.propertyType;
+      mainCategory = resolved.mainCategory;
 
       minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
       maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
@@ -173,13 +176,14 @@ class _FeedListWidgetState extends State<FeedListWidget> {
         city: city,
         listingType: listingType,
         propertyType: propertyType,
+        mainCategory: mainCategory,
         minPrice: minPrice,
         maxPrice: maxPrice,
         latitude: latitude,
         longitude: longitude,
       ),
     );
-    context.read<ProfileBloc>().add(const ProfileEvent.loadBannerAds());
+    _loadAllBannerAds();
     if (widget.onRefresh != null) {
       widget.onRefresh!();
     }
@@ -239,12 +243,24 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     ),
                   ),
 
+                // Banner ads stay visible even when feeds are loading / empty.
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: _buildBannerAds(context, l10n),
+                  ),
+                ),
+
                 if (state.isLoading && state.feedsList.isEmpty)
-                  const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 48),
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
                   )
                 else if (state.notifyStatus != null && state.feedsList.isEmpty)
                   SliverFillRemaining(
+                    hasScrollBody: false,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -257,7 +273,10 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                           const SizedBox(height: 16),
                           Text(
                             l10n.somethingWentWrong,
-                            style: const TextStyle(fontSize: 16, color: Colors.red),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
@@ -273,6 +292,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                   )
                 else if (state.feedsList.isEmpty)
                   SliverFillRemaining(
+                    hasScrollBody: false,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -285,7 +305,10 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                           const SizedBox(height: 8),
                           Text(
                             l10n.noPropertiesFound,
-                            style: const TextStyle(fontSize: 16, color: Colors.grey),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),
@@ -296,10 +319,6 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                     padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
-                        // Banner Ads Section
-                        _buildBannerAds(context, l10n),
-
-                        // Feeds Section Header with Grid/List Toggle
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -351,38 +370,13 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                       ]),
                     ),
                   ),
-                  // Grid or List View
                   if (_isGridView)
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      sliver: SliverGrid(
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: dynamicAspectRatio,
-                              crossAxisSpacing: 15,
-                              mainAxisSpacing: 15,
-                            ),
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          final feed = state.feedsList[index];
-                          return _buildPropertyCardCompact(feed);
-                        }, childCount: state.feedsList.length),
-                      ),
+                    ..._buildGridWithAds(
+                      feeds: state.feedsList,
+                      aspectRatio: dynamicAspectRatio,
                     )
                   else
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          final feed = state.feedsList[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: _buildPropertyCard(feed),
-                          );
-                        }, childCount: state.feedsList.length),
-                      ),
-                    ),
-                  // Loading indicator
+                    ..._buildListWithAds(feeds: state.feedsList),
                   if (state.isLoading && state.feedsList.isNotEmpty)
                     const SliverToBoxAdapter(
                       child: Padding(
@@ -390,7 +384,6 @@ class _FeedListWidgetState extends State<FeedListWidget> {
                         child: Center(child: CircularProgressIndicator()),
                       ),
                     ),
-                  // Extra space at bottom to ensure scroll works well with FAB
                   const SliverToBoxAdapter(
                     child: SizedBox(height: 80),
                   ),
@@ -400,6 +393,89 @@ class _FeedListWidgetState extends State<FeedListWidget> {
           ),
         );
       },
+    );
+  }
+
+  List<Widget> _buildGridWithAds({
+    required List feeds,
+    required double aspectRatio,
+  }) {
+    final slivers = <Widget>[];
+    for (var start = 0; start < feeds.length; start += _adInterval) {
+      final end = math.min(start + _adInterval, feeds.length);
+      final chunk = feeds.sublist(start, end);
+
+      slivers.add(
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: aspectRatio,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => _buildPropertyCardCompact(chunk[index]),
+              childCount: chunk.length,
+            ),
+          ),
+        ),
+      );
+
+      if (end < feeds.length) {
+        slivers.add(_buildInlineAdSliver(adKey: 'grid_ad_$end'));
+      }
+    }
+    return slivers;
+  }
+
+  List<Widget> _buildListWithAds({required List feeds}) {
+    final itemCount = feeds.length + (feeds.length ~/ _adInterval);
+    return [
+      SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        sliver: SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final adsBefore = index ~/ (_adInterval + 1);
+              final isAdSlot = (index + 1) % (_adInterval + 1) == 0;
+
+              if (isAdSlot) {
+                return _buildInlineAd(adKey: 'list_ad_$index');
+              }
+
+              final feedIndex = index - adsBefore;
+              if (feedIndex < 0 || feedIndex >= feeds.length) {
+                return const SizedBox.shrink();
+              }
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: _buildPropertyCard(feeds[feedIndex]),
+              );
+            },
+            childCount: itemCount,
+          ),
+        ),
+      ),
+    ];
+  }
+
+  Widget _buildInlineAdSliver({required String adKey}) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: _buildInlineAd(adKey: adKey),
+      ),
+    );
+  }
+
+  Widget _buildInlineAd({required String adKey}) {
+    return GoogleAdBanner(
+      key: ValueKey(adKey),
+      adSize: AdSize.mediumRectangle,
+      reserveSpace: true,
     );
   }
 
@@ -586,9 +662,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   Widget _buildBannerAds(BuildContext context, AppLocalizations l10n) {
     return BlocBuilder<ProfileBloc, ProfileState>(
+      buildWhen: (previous, current) =>
+          previous.bannerAds != current.bannerAds,
       builder: (context, state) {
         if (state.bannerAds == null) {
-          return const SizedBox.shrink();
+          // Keep a stable placeholder while first load is in flight.
+          return const SizedBox(
+            height: 200,
+            child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+          );
         }
 
         if (state.bannerAds!.isEmpty) {
@@ -773,18 +855,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     } else {
       context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
 
-      final mappedLookingFor = lookingFor == 'Sales'
-          ? 'Sell'
-          : (lookingFor == 'All' || lookingFor == '')
-          ? null
-          : lookingFor;
-
-      final propertyType =
-          propertyTypes != null &&
-              propertyTypes.isNotEmpty &&
-              !propertyTypes.contains('All')
-          ? propertyTypes.first as String?
-          : null;
+      final mappedLookingFor =
+          AppCategories.mapLookingForToListingType(lookingFor);
+      final resolved = AppCategories.resolvePropertyFilter(propertyTypes);
 
       final latitude = isLocationCustom
           ? filterData['latitude'] as double?
@@ -797,7 +870,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         FeedEvent.getFeedsEvent(
           city: filterData['location'] as String?,
           listingType: mappedLookingFor,
-          propertyType: propertyType,
+          propertyType: resolved.propertyType,
+          mainCategory: resolved.mainCategory,
           minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
           maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
           latitude: latitude,
@@ -816,6 +890,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     }
     final lookingFor = filter['lookingFor'] as String?;
     if (lookingFor != null && lookingFor != 'All' && lookingFor.isNotEmpty) {
+      return true;
+    }
+    final propertyTypes = filter['propertyTypes'] as List?;
+    if (propertyTypes != null &&
+        propertyTypes.isNotEmpty &&
+        !propertyTypes.contains('All')) {
       return true;
     }
     final priceRange = filter['priceRange'] as Map?;

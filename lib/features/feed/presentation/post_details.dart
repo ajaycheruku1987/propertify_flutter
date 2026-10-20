@@ -71,23 +71,38 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Clear previous similar posts to ensure we fetch fresh data for this specific post
-      context.read<FeedBloc>().add(
-        const FeedEvent.resetSimilarPostsByCategory(),
-      );
-
-      // Load main post details
-      context.read<FeedBloc>().add(
-        FeedEvent.getPostDetailsEvent(postId: widget.postId),
-      );
-      
-      // Record property view
-      if (context.read<HomeBloc>().state.showAddButton) {
-        context.read<FeedBloc>().add(
-          FeedEvent.recordPropertyView(propertyId: widget.postId),
-        );
-      }
+      _loadPostAndSimilar(widget.postId);
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant PostDetailsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.postId != widget.postId) {
+      _fetchedSimilarityPostId = null;
+      _selectedSimilarityCategory = null;
+      _loadPostAndSimilar(widget.postId);
+    }
+  }
+
+  void _loadPostAndSimilar(String postId) {
+    _fetchedSimilarityPostId = null;
+    _selectedSimilarityCategory = null;
+
+    // Clear previous similar posts so we never show another city's cache.
+    context.read<FeedBloc>().add(
+      const FeedEvent.resetSimilarPostsByCategory(),
+    );
+
+    context.read<FeedBloc>().add(
+      FeedEvent.getPostDetailsEvent(postId: postId),
+    );
+
+    if (context.read<HomeBloc>().state.showAddButton) {
+      context.read<FeedBloc>().add(
+        FeedEvent.recordPropertyView(propertyId: postId),
+      );
+    }
   }
 
   @override
@@ -619,11 +634,11 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           if (current.notifyStatus?.message == 'Property deleted successfully') {
             return true;
           }
-          // Case 2: Post details just loaded or changed
-          // We only trigger if the ID changes OR if we haven't fetched similarities for this post yet
-          return (previous.postDetails?.id != current.postDetails?.id || 
-                 _fetchedSimilarityPostId != current.postDetails?.id) &&
-              current.postDetails != null;
+          // Only react when THIS screen's post has finished loading.
+          final loadedId = current.postDetails?.id;
+          return loadedId != null &&
+              loadedId == widget.postId &&
+              _fetchedSimilarityPostId != loadedId;
         },
         listener: (context, state) {
           if (state.notifyStatus?.message == 'Property deleted successfully') {
@@ -632,30 +647,28 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           }
 
           final postDetails = state.postDetails;
-          if (postDetails != null) {
-            // When post details are loaded, fetch similar properties
-            if (postDetails.id != null &&
-                _fetchedSimilarityPostId != postDetails.id) {
-              
-              _fetchedSimilarityPostId = postDetails.id;
-              _selectedSimilarityCategory = postDetails.propertyType;
+          if (postDetails == null || postDetails.id != widget.postId) {
+            return;
+          }
 
-              // Fetch similar properties in the same city (all categories)
-              context.read<FeedBloc>().add(
-                FeedEvent.getSimilarPropertiesEvent(
-                  city: postDetails.city,
-                  excludePostId: widget.postId,
-                  limit: 40,
-                ),
-              );
+          if (_fetchedSimilarityPostId == postDetails.id) return;
 
-              // Fetch owner's reels
-              if (postDetails.owner?.id != null) {
-                context.read<ReelsBloc>().add(
-                  ReelsEvent.loadOtherUserReels(userId: postDetails.owner!.id!),
-                );
-              }
-            }
+          _fetchedSimilarityPostId = postDetails.id;
+          _selectedSimilarityCategory = postDetails.propertyType;
+
+          // Always hit API fresh for this post's city — no reuse of prior results.
+          context.read<FeedBloc>().add(
+            FeedEvent.getSimilarPropertiesEvent(
+              city: postDetails.city,
+              excludePostId: widget.postId,
+              limit: 40,
+            ),
+          );
+
+          if (postDetails.owner?.id != null) {
+            context.read<ReelsBloc>().add(
+              ReelsEvent.loadOtherUserReels(userId: postDetails.owner!.id!),
+            );
           }
         },
         child: BlocBuilder<FeedBloc, FeedState>(

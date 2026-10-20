@@ -7,8 +7,13 @@ class FeedState with _$FeedState {
     @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isError,
     @JsonKey(includeFromJson: false, includeToJson: false) @Default(false) bool isSuccess,
     FeedPostsResponseModel? postDetails,
-    @Default([]) List<FeedPostsResponseModel> similarProperties,
-    @Default([]) List<FeedPostsResponseModel> similarPostsByCategory,
+    // Never hydrate similar posts — always fetch fresh per opened post.
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    @Default([])
+    List<FeedPostsResponseModel> similarProperties,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    @Default([])
+    List<FeedPostsResponseModel> similarPostsByCategory,
     @Default([]) List<FeedPostsResponseModel> feedsList,
     @Default([]) List<FeedPostsResponseModel> myPropertiesList,
     @Default([]) List<FeedPostsResponseModel> favouritesList,

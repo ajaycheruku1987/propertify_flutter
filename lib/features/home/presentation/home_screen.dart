@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
+import 'package:propertify/utils/location_service.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
@@ -101,22 +100,17 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
       context.read<AuthBloc>().add(const AuthEvent.clearShowOtpWidget());
-      await _initCurrentLocation();
-
       context.read<HomeBloc>().add(const HomeEvent.checkToken());
       context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
-
-      // Set initial tab (e.g., Services) if provided via routing
       context.read<HomeBloc>().add(
         HomeEvent.setHomeIndex(widget.initialHomeIndex),
       );
 
-      // Load services (ServicesListWidget handles initial fetch when tab is shown)
-
-      // Initialize current location and update HomeBloc
+      // Fetch location in parallel — do not block home UI or other init work.
+      _initCurrentLocation();
     });
   }
 
@@ -138,10 +132,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
     return BlocConsumer<HomeBloc, HomeState>(
       listenWhen: (previous, current) {
+        // Only refetch when coordinates change — address labels update separately.
         return (previous.currentLat != current.currentLat ||
-                previous.currentLng != current.currentLng ||
-                previous.currentCity != current.currentCity ||
-                previous.currentVillage != current.currentVillage) &&
+                previous.currentLng != current.currentLng) &&
             (current.currentLat != 0.0 || current.currentLng != 0.0);
       },
       listener: (context, state) {
@@ -150,29 +143,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
-            child: _isLoadingLocation
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Fetching location...',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : _builBottomNavContent(
-                  bottomNavIndex: state.bottomNavIndex,
-                  tabs: tabs,
-                ),
+            child: _builBottomNavContent(
+              bottomNavIndex: state.bottomNavIndex,
+              tabs: tabs,
+            ),
           ),
           floatingActionButton: _buildFloatingActionButton(),
           floatingActionButtonLocation:
@@ -354,18 +328,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         ? filterData['longitude'] as double?
         : homeState.currentLng;
 
-    final mappedLookingFor = lookingFor == 'Sales'
-        ? 'Sell'
-        : (lookingFor == 'All' || lookingFor == '')
-        ? null
-        : lookingFor;
-
-    final propertyType =
-        propertyTypes != null &&
-            propertyTypes.isNotEmpty &&
-            !propertyTypes.contains('All')
-        ? propertyTypes.first as String?
-        : null;
+    final mappedLookingFor =
+        AppCategories.mapLookingForToListingType(lookingFor);
+    final resolved = AppCategories.resolvePropertyFilter(propertyTypes);
 
     context.read<FeedBloc>().add(
           FeedEvent.getFeedsEvent(
@@ -373,7 +338,8 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             search: homeState.searchQuery,
             city: filterData['location'] as String?,
             listingType: mappedLookingFor,
-            propertyType: propertyType,
+            propertyType: resolved.propertyType,
+            mainCategory: resolved.mainCategory,
             minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
             maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
             latitude: latitude,
@@ -391,8 +357,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             ? propertyTypes.first as String
             : 'All';
 
+    // Show main categories + all subcategories so new types are visible.
     final List<Map<String, dynamic>> categories = [
       {'name': 'All', 'icon': Icons.apps},
+      ...AppCategories.mainPropertyCategories,
       ...AppCategories.propertyType,
     ];
 
@@ -417,8 +385,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
               onSelected: (selected) {
                 if (!selected) return;
                 if (categoryName == 'All') {
-                  context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
-                  context.read<HomeBloc>().add(const HomeEvent.updateSearchQuery(''));
+                  context
+                      .read<HomeBloc>()
+                      .add(const HomeEvent.updateFeedsFilter(null));
+                  context
+                      .read<HomeBloc>()
+                      .add(const HomeEvent.updateSearchQuery(''));
                   context.read<FeedBloc>().add(
                         FeedEvent.getFeedsEvent(
                           latitude: context.read<HomeBloc>().state.currentLat,
@@ -497,82 +469,71 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
   Future<void> _initCurrentLocation() async {
     try {
-      LocationPermission permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-      }
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        // Set loading to false even if permission denied
-        if (mounted) {
-          setState(() {
-            _isLoadingLocation = false;
-          });
-        }
-        return;
-      }
-      final position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
+      final hasPermission = await LocationService.ensurePermission();
+      if (!hasPermission) return;
 
-      // Get address details for current location
-      String city = '';
-      String state = '';
-      String village = '';
-
-      try {
-        List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude,
-          position.longitude,
-        );
-
-        if (placemarks.isNotEmpty) {
-          final placemark = placemarks.first;
-          city =
-              placemark.locality ??
-              placemark.subAdministrativeArea ??
-              placemark.administrativeArea ??
-              '';
-
-          state = placemark.administrativeArea ?? '';
-
-          village =
-              placemark.subLocality ??
-              placemark.thoroughfare ??
-              placemark.subThoroughfare ??
-              '';
-        }
-      } catch (e) {
-        print('Error getting address: $e');
-      }
-
-      if (mounted) {
+      // 1) Use cached last-known immediately (instant on later launches).
+      final lastKnown = await LocationService.getLastKnown();
+      if (lastKnown != null && mounted) {
         context.read<HomeBloc>().add(
-          HomeEvent.updateCurrentLocation(
-            lat: position.latitude,
-            lng: position.longitude,
-            city: city,
-            state: state,
-            village: village,
+          HomeEvent.currentLocationLatLng(
+            lastKnown.latitude,
+            lastKnown.longitude,
           ),
         );
-        // Set loading to false after location is fetched
-        setState(() {
-          _isLoadingLocation = false;
-        });
+        if (mounted) setState(() => _isLoadingLocation = false);
       }
+
+      // 2) Fresh fix with medium accuracy + timeout (fast on first install too).
+      final position = await LocationService.getQuickCurrentPosition(
+        fallback: lastKnown,
+      );
+      if (position == null || !mounted) return;
+
+      final movedSignificantly = lastKnown == null ||
+          (position.latitude - lastKnown.latitude).abs() > 0.001 ||
+          (position.longitude - lastKnown.longitude).abs() > 0.001;
+
+      if (movedSignificantly) {
+        context.read<HomeBloc>().add(
+          HomeEvent.currentLocationLatLng(
+            position.latitude,
+            position.longitude,
+          ),
+        );
+      }
+
+      // 3) Address labels after coords — does not block feeds.
+      final address = await LocationService.reverseGeocode(
+        position.latitude,
+        position.longitude,
+      );
+      if (!mounted) return;
+
+      context.read<HomeBloc>().add(
+        HomeEvent.updateCurrentLocation(
+          lat: position.latitude,
+          lng: position.longitude,
+          city: address.city,
+          state: address.state,
+          village: address.village,
+        ),
+      );
     } catch (_) {
-      // Set loading to false on error
-      if (mounted) {
-        setState(() {
-          _isLoadingLocation = false;
-        });
-      }
+      // Ignore — user can pick a location manually.
+    } finally {
+      if (mounted) setState(() => _isLoadingLocation = false);
     }
   }
 
   String _getLocationText() {
     final state = context.watch<HomeBloc>().state;
+
+    if (_isLoadingLocation &&
+        state.currentLat == 0.0 &&
+        state.currentLng == 0.0) {
+      return 'Detecting...';
+    }
 
     // Build location text from village, city, and state
     final parts = <String>[];
@@ -585,10 +546,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       parts.add(state.currentCity);
     }
 
-    // if (state.currentState.isNotEmpty) {
-    //   parts.add(state.currentState);
-    // }
-
     if (parts.isNotEmpty) {
       return parts.join(', ');
     }
@@ -598,7 +555,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       return '${state.currentLat.toStringAsFixed(2)}, ${state.currentLng.toStringAsFixed(2)}';
     }
 
-    // Default fallback
     return '-';
   }
 
@@ -624,6 +580,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     String? city;
     String? listingType;
     String? propertyType;
+    String? mainCategory;
     double? minPrice;
     double? maxPrice;
     double? latitude = homeState.currentLat;
@@ -631,20 +588,15 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
     if (filterData != null) {
       city = filterData['location'] as String?;
-      final lookingFor = filterData['lookingFor'] as String?;
-      listingType = lookingFor == 'Sales'
-          ? 'Sell'
-          : (lookingFor == 'All' || lookingFor == '')
-          ? null
-          : lookingFor;
+      listingType = AppCategories.mapLookingForToListingType(
+        filterData['lookingFor'] as String?,
+      );
 
-      final propertyTypes = filterData['propertyTypes'] as List?;
-      propertyType =
-          propertyTypes != null &&
-              propertyTypes.isNotEmpty &&
-              !propertyTypes.contains('All')
-          ? propertyTypes.first as String?
-          : null;
+      final resolved = AppCategories.resolvePropertyFilter(
+        filterData['propertyTypes'] as List?,
+      );
+      propertyType = resolved.propertyType;
+      mainCategory = resolved.mainCategory;
 
       minPrice = (filterData['priceRange'] as Map?)?['min']?.toDouble();
       maxPrice = (filterData['priceRange'] as Map?)?['max']?.toDouble();
@@ -663,6 +615,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         city: city,
         listingType: listingType,
         propertyType: propertyType,
+        mainCategory: mainCategory,
         minPrice: minPrice,
         maxPrice: maxPrice,
         latitude: latitude,
@@ -910,57 +863,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                     currentAddress: currentAddress,
                                     currentCity: currentCity,
                                     onApplyFilter: (filterData) {
-                                      context.read<HomeBloc>().add(
-                                        HomeEvent.updateFeedsFilter(filterData),
-                                      );
-                                      final lookingFor =
-                                          filterData['lookingFor'] as String?;
-                                      final mappedLookingFor =
-                                          lookingFor == 'Sales'
-                                          ? 'Sell'
-                                          : (lookingFor == 'All' ||
-                                                lookingFor == '')
-                                          ? null
-                                          : lookingFor;
-
-                                      final propertyTypes =
-                                          filterData['propertyTypes'] as List?;
-                                      final propertyType =
-                                          propertyTypes != null &&
-                                              propertyTypes.isNotEmpty &&
-                                              !propertyTypes.contains('All')
-                                          ? propertyTypes.first as String?
-                                          : null;
-
-                                      final isLocationCustom =
-                                          filterData['isLocationCustom'] ==
-                                          true;
-                                      final latitude = isLocationCustom
-                                          ? filterData['latitude'] as double?
-                                          : homeState.currentLat;
-                                      final longitude = isLocationCustom
-                                          ? filterData['longitude'] as double?
-                                          : homeState.currentLng;
-
-                                      context.read<FeedBloc>().add(
-                                        FeedEvent.getFeedsEvent(
-                                          search: homeState.searchQuery,
-                                          city:
-                                              filterData['location'] as String?,
-                                          listingType: mappedLookingFor,
-                                          propertyType: propertyType,
-                                          minPrice:
-                                              (filterData['priceRange']
-                                                      as Map?)?['min']
-                                                  ?.toDouble(),
-                                          maxPrice:
-                                              (filterData['priceRange']
-                                                      as Map?)?['max']
-                                                  ?.toDouble(),
-                                          latitude: latitude,
-                                          longitude: longitude,
-                                        ),
-                                      );
+                                      _applyFeedsFilter(context, filterData);
                                     },
                                     onResetFilter: () {
                                       context.read<HomeBloc>().add(

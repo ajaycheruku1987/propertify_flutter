@@ -32,7 +32,10 @@ class ProfileEvent with _$ProfileEvent {
     String? orderId,
   }) = _CreateBannerAd;
 
-  const factory ProfileEvent.loadBannerAds() = _LoadBannerAds;
+  const factory ProfileEvent.loadBannerAds({
+    double? latitude,
+    double? longitude,
+  }) = _LoadBannerAds;
   const factory ProfileEvent.loadMyBannerAds() = _LoadMyBannerAds;
 
   const factory ProfileEvent.loadOtherUserProfile({required String userId}) =
