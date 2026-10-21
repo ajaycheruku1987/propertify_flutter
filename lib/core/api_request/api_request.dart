@@ -6,7 +6,6 @@ import 'package:propertify/utils/extensions/http_extension.dart';
 import '../../utils/env.dart';
 import '../app_cache_service.dart';
 import '../failure.dart';
-import '../service_locator.dart';
 import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 
@@ -27,9 +26,8 @@ class ApiRequest {
   }) async {
     if (clearToken) {
       _dio.options.headers.remove('Authorization');
-    } else {
-      String? token = accessToken;
-      _dio.options.headers['Authorization'] = 'Bearer $token';
+    } else if (accessToken != null && accessToken.isNotEmpty) {
+      _dio.options.headers['Authorization'] = 'Bearer $accessToken';
     }
   }
 
@@ -59,6 +57,9 @@ class ApiRequest {
               (RequestOptions options, RequestInterceptorHandler handler) {
                 final token = _appCache.getToken();
                 log('AccessToken: Bearer $token');
+                if (token != null && token.isNotEmpty) {
+                  options.headers['Authorization'] = 'Bearer $token';
+                }
                 return handler.next(options);
               },
           onError: (DioException e, handler) {

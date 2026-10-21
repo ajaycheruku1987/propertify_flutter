@@ -1,15 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../app.dart';
 import '../../core/api_request/api_request.dart';
 import '../../core/app_cache_service.dart';
 import '../../core/failure.dart';
 import '../../core/service_locator.dart';
-import '../../features/auth/presentation/auth_screen.dart';
-import '../custom_toast.dart';
 import 'status_codes_extension.dart';
 
 extension HttpExtension on Response {
@@ -26,12 +22,11 @@ extension HttpExtension on Response {
       return Right(data);
     } else {
       if (statusCode == 403) {
-        final appCache = AppCacheService();
-        await ApiRequest(appCache).updateAuthorization(clearToken: true);
-        await appCache.clearAll();
-        // CustomToast.showErrorToast(msg: 'Session Timed Out').then(
-        //   (value) => navigationKey.currentContext!.go(AuthScreen.routeName),
-        // );
+        final appCache = serviceLocator<AppCacheService>();
+        if (appCache.getToken() != null && appCache.getToken()!.isNotEmpty) {
+          await serviceLocator<ApiRequest>().updateAuthorization(clearToken: true);
+          await appCache.clearAll();
+        }
       }
       return _getErrorMessage();
     }

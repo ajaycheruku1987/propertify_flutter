@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/location_service.dart';
@@ -101,10 +103,14 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
+      final appCache = serviceLocator<AppCacheService>();
+      final token = appCache.getToken();
+      if (token != null && token.isNotEmpty) {
+        context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
+        context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
+      }
       context.read<AuthBloc>().add(const AuthEvent.clearShowOtpWidget());
       context.read<HomeBloc>().add(const HomeEvent.checkToken());
-      context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
       context.read<HomeBloc>().add(
         HomeEvent.setHomeIndex(widget.initialHomeIndex),
       );
