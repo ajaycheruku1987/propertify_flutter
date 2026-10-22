@@ -10,6 +10,7 @@ import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
 import '../../../core/app_cache_service.dart';
+import '../../../core/notification_service.dart';
 import '../../../core/service_locator.dart';
 import '../../feed/presentation/favorites_screen.dart';
 import '../../feed/presentation/my_post_comments_screen.dart';
@@ -477,6 +478,14 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   Future<void> _initCurrentLocation() async {
     try {
       final hasPermission = await LocationService.ensurePermission();
+
+      // Request notification permission next, sequentially after location permission.
+      try {
+        await NotificationService.instance.requestPermission();
+      } catch (e) {
+        debugPrint('Notification permission error: $e');
+      }
+
       if (!hasPermission) return;
 
       // 1) Use cached last-known immediately (instant on later launches).

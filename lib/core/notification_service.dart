@@ -79,14 +79,6 @@ class NotificationService {
       _onMessageOpened(initialMessage);
     }
 
-    // Request permission for iOS and Android 13+
-    final NotificationSettings settings = await fcm.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-    log('Notification permission: ${settings.authorizationStatus}');
-
     final String? token = await getToken();
     log('FCM Token: $token');
 
@@ -99,6 +91,17 @@ class NotificationService {
     }
 
     fcm.onTokenRefresh.listen(_syncTokenWithBackend);
+  }
+
+  /// Request permission for iOS and Android 13+ (called after location permission).
+  Future<NotificationSettings> requestPermission() async {
+    final NotificationSettings settings = await fcm.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    log('Notification permission: ${settings.authorizationStatus}');
+    return settings;
   }
 
   Future<void> _onForegroundMessage(RemoteMessage message) async {
