@@ -25,8 +25,10 @@ import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.d
 import 'package:propertify/utils/common_widgets/google_ad_banner.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/services/block_service.dart';
 import 'package:propertify/features/feed/bloc/feed_bloc.dart';
+import 'package:propertify/utils/safety_disclaimer_helper.dart';
 import 'widgets/social_links_widget.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
@@ -489,25 +491,29 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     ),
                     const SizedBox(height: 20),
 
-                    // Call & WhatsApp Buttons
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildContactButton(
-                          icon: Icons.phone_in_talk_rounded,
-                          label: 'Call',
-                          color: Theme.of(context).primaryColor,
-                          onTap: () => _makePhoneCall(profile.phoneNumber ?? ''),
-                        ),
-                        const SizedBox(width: 16),
-                        _buildContactButton(
-                          icon: FontAwesomeIcons.whatsapp,
-                          label: 'WhatsApp',
-                          color: const Color(0xFF25D366),
-                          onTap: () => _openWhatsApp(profile.phoneNumber ?? ''),
-                        ),
-                      ],
-                    ),
+                    // Call & WhatsApp Buttons (Only if NOT own profile)
+                    if (!(widget.userId == serviceLocator<AppCacheService>().customerAccountId ||
+                          profile.id == serviceLocator<AppCacheService>().customerAccountId)) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildContactButton(
+                            icon: Icons.phone_in_talk_rounded,
+                            label: 'Call',
+                            color: Theme.of(context).primaryColor,
+                            onTap: () => _makePhoneCall(profile.phoneNumber ?? ''),
+                          ),
+                          const SizedBox(width: 16),
+                          _buildContactButton(
+                            icon: FontAwesomeIcons.whatsapp,
+                            label: 'WhatsApp',
+                            color: const Color(0xFF25D366),
+                            onTap: () => _openWhatsApp(profile.phoneNumber ?? ''),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ],
                     SocialLinksWidget(
                       userProfile: profile,
                       isOwner: false,
@@ -1094,7 +1100,15 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     );
   }
 
-  Future<void> _makePhoneCall(String phoneNumber) async {
+  void _makePhoneCall(String phoneNumber) {
+    SafetyDisclaimerHelper.showSafetyDisclaimer(
+      context: context,
+      actionType: 'Call',
+      onContinue: () => _executePhoneCall(phoneNumber),
+    );
+  }
+
+  Future<void> _executePhoneCall(String phoneNumber) async {
     if (!mounted) return;
 
     final l10n = AppLocalizations.of(context)!;
@@ -1121,7 +1135,15 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     }
   }
 
-  Future<void> _openWhatsApp(String phoneNumber) async {
+  void _openWhatsApp(String phoneNumber) {
+    SafetyDisclaimerHelper.showSafetyDisclaimer(
+      context: context,
+      actionType: 'WhatsApp',
+      onContinue: () => _executeWhatsApp(phoneNumber),
+    );
+  }
+
+  Future<void> _executeWhatsApp(String phoneNumber) async {
     if (!mounted) return;
 
     final l10n = AppLocalizations.of(context)!;

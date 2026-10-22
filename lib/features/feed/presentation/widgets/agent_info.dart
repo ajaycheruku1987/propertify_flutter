@@ -11,6 +11,8 @@ import 'package:propertify/features/reels/models/reel_response_model.dart';
 import 'package:propertify/features/reels/presentation/other_user_reels_screen.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/utils/env.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 
 class AgentInfo extends StatelessWidget {
   final String agentName;
@@ -118,13 +120,16 @@ class AgentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final currentUserId = serviceLocator<AppCacheService>().customerAccountId;
+    final isOwnProfile = userId != null && userId == currentUserId;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            if (userId != null && userId!.isNotEmpty) {
+            if (!isOwnProfile && userId != null && userId!.isNotEmpty) {
               context.push(
                 OtherUserProfileScreen.routeName,
                 extra: userId,
@@ -234,24 +239,25 @@ class AgentInfo extends StatelessWidget {
                       ),
                     ),
                     // Action Buttons (Luxurious Style)
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (onCallPressed != null)
-                          _buildActionButton(
-                            icon: Icons.phone_in_talk_rounded,
-                            color: Theme.of(context).primaryColor,
-                            onTap: onCallPressed!,
-                          ),
-                        const SizedBox(width: 8),
-                        if (onWhatsAppPressed != null)
-                          _buildActionButton(
-                            icon: FontAwesomeIcons.whatsapp,
-                            color: const Color(0xFF25D366),
-                            onTap: onWhatsAppPressed!,
-                          ),
-                      ],
-                    ),
+                    if (!isOwnProfile)
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (onCallPressed != null)
+                            _buildActionButton(
+                              icon: Icons.phone_in_talk_rounded,
+                              color: Theme.of(context).primaryColor,
+                              onTap: onCallPressed!,
+                            ),
+                          const SizedBox(width: 8),
+                          if (onWhatsAppPressed != null)
+                            _buildActionButton(
+                              icon: FontAwesomeIcons.whatsapp,
+                              color: const Color(0xFF25D366),
+                              onTap: onWhatsAppPressed!,
+                            ),
+                        ],
+                      ),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -267,7 +273,7 @@ class AgentInfo extends StatelessWidget {
                       children: [
                         Expanded(
                           child: _buildStatItem(
-                            label: 'Total Posts',
+                            label: 'Total\nPosts',
                             value: '${itemsListed ?? 0}',
                             context: context,
                           ),
@@ -340,44 +346,46 @@ class AgentInfo extends StatelessWidget {
                             },
                           ),
                         ),
-                        VerticalDivider(
-                          color: Colors.grey.shade200,
-                          thickness: 1,
-                          indent: 8,
-                          endIndent: 8,
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              if (userId != null && userId!.isNotEmpty) {
-                                context.push(
-                                  OtherUserProfileScreen.routeName,
-                                  extra: userId,
-                                );
-                              }
-                            },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.account_circle_outlined,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 24,
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  'PROFILE',
-                                  style: TextStyle(
-                                    fontSize: 9,
-                                    color: Colors.grey.shade500,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.5,
+                        if (!isOwnProfile) ...[
+                          VerticalDivider(
+                            color: Colors.grey.shade200,
+                            thickness: 1,
+                            indent: 8,
+                            endIndent: 8,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                if (userId != null && userId!.isNotEmpty) {
+                                  context.push(
+                                    OtherUserProfileScreen.routeName,
+                                    extra: userId,
+                                  );
+                                }
+                              },
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.account_circle_outlined,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 24,
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'PROFILE',
+                                    style: TextStyle(
+                                      fontSize: 9,
+                                      color: Colors.grey.shade500,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                   ),

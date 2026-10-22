@@ -28,6 +28,7 @@ import 'widgets/plot_overview_widget.dart';
 import 'widgets/property_details_overview_widget.dart';
 import 'widgets/description_section.dart';
 import '../../sales/presentation/widgets/static_location_map_view.dart';
+import 'package:propertify/utils/safety_disclaimer_helper.dart';
 import 'widgets/emi_calculator_widget.dart';
 import 'widgets/stamp_duty_calculator_widget.dart';
 import 'widgets/unit_conversion_calculator_widget.dart';
@@ -853,9 +854,15 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   String mobile =
                                       postDetails.owner?.phoneNumber ?? '';
                                   if (mobile.isNotEmpty) {
-                                    final Uri launchUri =
-                                        Uri(scheme: 'tel', path: mobile);
-                                    launchUrl(launchUri);
+                                    SafetyDisclaimerHelper.showSafetyDisclaimer(
+                                      context: context,
+                                      actionType: 'Call',
+                                      onContinue: () {
+                                        final Uri launchUri =
+                                            Uri(scheme: 'tel', path: mobile);
+                                        launchUrl(launchUri);
+                                      },
+                                    );
                                   }
                                 },
                           onWhatsAppPressed: isOwner
@@ -871,38 +878,44 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   String mobile =
                                       postDetails.owner?.phoneNumber ?? '';
                                   if (mobile.isNotEmpty) {
-                                    String cleanMobile =
-                                        mobile.replaceAll(RegExp(r'\D'), '');
-                                    var whatsappUrl =
-                                        "whatsapp://send?phone=$cleanMobile";
-                                    var uri = Uri.parse(whatsappUrl);
+                                    SafetyDisclaimerHelper.showSafetyDisclaimer(
+                                      context: context,
+                                      actionType: 'WhatsApp',
+                                      onContinue: () async {
+                                        String cleanMobile =
+                                            mobile.replaceAll(RegExp(r'\D'), '');
+                                        var whatsappUrl =
+                                            "whatsapp://send?phone=$cleanMobile";
+                                        var uri = Uri.parse(whatsappUrl);
 
-                                    try {
-                                      if (await canLaunchUrl(uri)) {
-                                        await launchUrl(uri);
-                                      } else {
-                                        final webUri = Uri.parse(
-                                          'https://wa.me/$cleanMobile',
-                                        );
-                                        if (!await launchUrl(
-                                          webUri,
-                                          mode: LaunchMode.externalApplication,
-                                        )) {
-                                          throw 'Could not launch WhatsApp';
+                                        try {
+                                          if (await canLaunchUrl(uri)) {
+                                            await launchUrl(uri);
+                                          } else {
+                                            final webUri = Uri.parse(
+                                              'https://wa.me/$cleanMobile',
+                                            );
+                                            if (!await launchUrl(
+                                              webUri,
+                                              mode: LaunchMode.externalApplication,
+                                            )) {
+                                              throw 'Could not launch WhatsApp';
+                                            }
+                                          }
+                                        } catch (e) {
+                                          if (context.mounted) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  l10n.couldNotOpenWhatsapp,
+                                                ),
+                                              ),
+                                            );
+                                          }
                                         }
-                                      }
-                                    } catch (e) {
-                                      if (context.mounted) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              l10n.couldNotOpenWhatsapp,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                    }
+                                      },
+                                    );
                                   }
                                 },
                         ),
