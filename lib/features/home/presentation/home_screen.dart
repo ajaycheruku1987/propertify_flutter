@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:propertify/core/app_cache_service.dart';
-import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/location_service.dart';
@@ -11,6 +9,8 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/create_post/presentation/map_screen.dart';
+import '../../../core/app_cache_service.dart';
+import '../../../core/service_locator.dart';
 import '../../feed/presentation/favorites_screen.dart';
 import '../../feed/presentation/my_post_comments_screen.dart';
 import '../../notifications/bloc/notifications_bloc.dart';
@@ -111,6 +111,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       }
       context.read<AuthBloc>().add(const AuthEvent.clearShowOtpWidget());
       context.read<HomeBloc>().add(const HomeEvent.checkToken());
+      context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
       context.read<HomeBloc>().add(
         HomeEvent.setHomeIndex(widget.initialHomeIndex),
       );
@@ -140,7 +141,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       listenWhen: (previous, current) {
         // Only refetch when coordinates change — address labels update separately.
         return (previous.currentLat != current.currentLat ||
-                previous.currentLng != current.currentLng) &&
+            previous.currentLng != current.currentLng) &&
             (current.currentLat != 0.0 || current.currentLng != 0.0);
       },
       listener: (context, state) {
@@ -156,7 +157,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           ),
           floatingActionButton: _buildFloatingActionButton(),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          FloatingActionButtonLocation.centerDocked,
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
           bottomNavigationBar: BottomNavigationWidget(
             selectedIndex: context.watch<HomeBloc>().state.bottomNavIndex,
@@ -318,9 +319,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   void _applyFeedsFilter(
-    BuildContext context,
-    Map<String, dynamic> filterData,
-  ) {
+      BuildContext context,
+      Map<String, dynamic> filterData,
+      ) {
     context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
     final propertyTypes = filterData['propertyTypes'] as List?;
     final lookingFor = filterData['lookingFor'] as String?;
@@ -335,23 +336,23 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
         : homeState.currentLng;
 
     final mappedLookingFor =
-        AppCategories.mapLookingForToListingType(lookingFor);
+    AppCategories.mapLookingForToListingType(lookingFor);
     final resolved = AppCategories.resolvePropertyFilter(propertyTypes);
 
     context.read<FeedBloc>().add(
-          FeedEvent.getFeedsEvent(
-            offset: 0,
-            search: homeState.searchQuery,
-            city: filterData['location'] as String?,
-            listingType: mappedLookingFor,
-            propertyType: resolved.propertyType,
-            mainCategory: resolved.mainCategory,
-            minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
-            maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
-            latitude: latitude,
-            longitude: longitude,
-          ),
-        );
+      FeedEvent.getFeedsEvent(
+        offset: 0,
+        search: homeState.searchQuery,
+        city: filterData['location'] as String?,
+        listingType: mappedLookingFor,
+        propertyType: resolved.propertyType,
+        mainCategory: resolved.mainCategory,
+        minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
+        maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
+        latitude: latitude,
+        longitude: longitude,
+      ),
+    );
   }
 
   Widget _buildCategorySelector(BuildContext context) {
@@ -359,9 +360,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     final activeFilter = homeState.activeFeedsFilter;
     final propertyTypes = activeFilter?['propertyTypes'] as List?;
     final String currentSelectedCategory =
-        (propertyTypes != null && propertyTypes.isNotEmpty)
-            ? propertyTypes.first as String
-            : 'All';
+    (propertyTypes != null && propertyTypes.isNotEmpty)
+        ? propertyTypes.first as String
+        : 'All';
 
     // Show main categories + all subcategories so new types are visible.
     final List<Map<String, dynamic>> categories = [
@@ -398,11 +399,11 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                       .read<HomeBloc>()
                       .add(const HomeEvent.updateSearchQuery(''));
                   context.read<FeedBloc>().add(
-                        FeedEvent.getFeedsEvent(
-                          latitude: context.read<HomeBloc>().state.currentLat,
-                          longitude: context.read<HomeBloc>().state.currentLng,
-                        ),
-                      );
+                    FeedEvent.getFeedsEvent(
+                      latitude: context.read<HomeBloc>().state.currentLat,
+                      longitude: context.read<HomeBloc>().state.currentLng,
+                    ),
+                  );
                   return;
                 }
 
@@ -439,7 +440,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     switch (tabIndex) {
       case 0: // Feeds
         return _buildFeedsContent();
-      /*
+    /*
       case 1:
         return const RequestsScreen();
       case 2: // Request
@@ -576,9 +577,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   void _fetchDataForCurrentLocation(
-    BuildContext context,
-    HomeState homeState,
-  ) {
+      BuildContext context,
+      HomeState homeState,
+      ) {
     if (homeState.currentLat == 0.0 && homeState.currentLng == 0.0) return;
 
     final filterData = homeState.activeFeedsFilter;
@@ -712,8 +713,8 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                   final currentHeight = constraints.maxHeight;
                   final minHeight = 80.0;
                   final progress =
-                      ((maxHeight - currentHeight) / (maxHeight - minHeight))
-                          .clamp(0.0, 1.0);
+                  ((maxHeight - currentHeight) / (maxHeight - minHeight))
+                      .clamp(0.0, 1.0);
                   final fadeOpacity = (1.0 - progress).clamp(0.0, 1.0);
 
                   return Stack(
@@ -858,7 +859,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                   homeState,
                                 );
                                 final currentCity =
-                                    homeState.currentCity.isNotEmpty
+                                homeState.currentCity.isNotEmpty
                                     ? homeState.currentCity
                                     : 'Hyderabad';
 
@@ -891,7 +892,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                   RequestsFilter.show(
                                     context,
                                     activeFilter:
-                                        homeState.activeRequestsFilter,
+                                    homeState.activeRequestsFilter,
                                     currentAddress: currentAddress,
                                     currentCity: currentCity,
                                     onApplyFilter: (filterData) {
@@ -902,7 +903,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       );
                                       final isLocationCustom =
                                           filterData['isLocationCustom'] ==
-                                          true;
+                                              true;
                                       final latitude = isLocationCustom
                                           ? filterData['latitude'] as double?
                                           : homeState.currentLat;
@@ -914,7 +915,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                         RequestsEvent.getRequests(
                                           search: homeState.searchQuery,
                                           city:
-                                              filterData['address'] as String?,
+                                          filterData['address'] as String?,
                                           latitude: latitude,
                                           longitude: longitude,
                                           radiusKm: 15,
@@ -952,13 +953,13 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                                       );
 
                                       final propertyTypes =
-                                          filterData['propertyTypes'] as List?;
+                                      filterData['propertyTypes'] as List?;
                                       final List<String>? types =
-                                          propertyTypes != null &&
-                                                  propertyTypes.isNotEmpty &&
-                                                  !propertyTypes.contains('All')
-                                              ? List<String>.from(propertyTypes)
-                                              : null;
+                                      propertyTypes != null &&
+                                          propertyTypes.isNotEmpty &&
+                                          !propertyTypes.contains('All')
+                                          ? List<String>.from(propertyTypes)
+                                          : null;
 
                                       final isLocationCustom =
                                           filterData['isLocationCustom'] == true;
