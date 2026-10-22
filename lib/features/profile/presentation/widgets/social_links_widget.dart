@@ -22,9 +22,22 @@ class SocialPlatform {
   });
 }
 
-class SocialLinksWidget extends StatelessWidget {
+class SocialLinksWidget extends StatefulWidget {
   final UserProfileModel? userProfile;
   final bool isOwner;
+
+  const SocialLinksWidget({
+    super.key,
+    required this.userProfile,
+    required this.isOwner,
+  });
+
+  @override
+  State<SocialLinksWidget> createState() => _SocialLinksWidgetState();
+}
+
+class _SocialLinksWidgetState extends State<SocialLinksWidget> {
+  bool _isExpanded = false;
 
   static const List<SocialPlatform> platforms = [
     SocialPlatform(
@@ -83,15 +96,9 @@ class SocialLinksWidget extends StatelessWidget {
   static String? _getYoutubeUrl(UserProfileModel? profile) =>
       profile?.youtubeUrl;
 
-  const SocialLinksWidget({
-    super.key,
-    required this.userProfile,
-    required this.isOwner,
-  });
-
   @override
   Widget build(BuildContext context) {
-    if (isOwner) {
+    if (widget.isOwner) {
       return _buildOwnerView(context);
     } else {
       return _buildCustomerView(context);
@@ -102,7 +109,7 @@ class SocialLinksWidget extends StatelessWidget {
   // Shows ONLY social icons that have valid non-empty links
   Widget _buildCustomerView(BuildContext context) {
     final activePlatforms = platforms.where((platform) {
-      final url = platform.getUrl(userProfile);
+      final url = platform.getUrl(widget.userProfile);
       return url != null && url.trim().isNotEmpty;
     }).toList();
 
@@ -144,7 +151,7 @@ class SocialLinksWidget extends StatelessWidget {
             spacing: 16,
             runSpacing: 12,
             children: activePlatforms.map((platform) {
-              final url = platform.getUrl(userProfile)!;
+              final url = platform.getUrl(widget.userProfile)!;
               return _buildCustomerSocialButton(
                 context,
                 platform: platform,
@@ -183,13 +190,16 @@ class SocialLinksWidget extends StatelessWidget {
     );
   }
 
-  // ==================== OWNER VIEW ====================
-  // Shows all 6 platforms with Add, Edit, and Delete options
+  // ==================== OWNER VIEW (EXPAND / COLLAPSE ACCORDION) ====================
   Widget _buildOwnerView(BuildContext context) {
+    final activeCount = platforms.where((platform) {
+      final url = platform.getUrl(widget.userProfile);
+      return url != null && url.trim().isNotEmpty;
+    }).length;
+
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -205,44 +215,100 @@ class SocialLinksWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const Icon(Icons.share_rounded, size: 20, color: Colors.blue),
-              const SizedBox(width: 8),
-              const Text(
-                'Social Media Links',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Add links so customers can visit your social pages',
-            style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
-          ),
-          const SizedBox(height: 16),
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: platforms.length,
-            separatorBuilder: (context, index) => const Divider(height: 16),
-            itemBuilder: (context, index) {
-              final platform = platforms[index];
-              final currentUrl = platform.getUrl(userProfile);
-              final hasLink = currentUrl != null && currentUrl.trim().isNotEmpty;
-
-              return _buildOwnerPlatformRow(
-                context,
-                platform: platform,
-                currentUrl: currentUrl,
-                hasLink: hasLink,
-              );
+          // Expand / Collapse Header
+          InkWell(
+            onTap: () {
+              setState(() {
+                _isExpanded = !_isExpanded;
+              });
             },
+            borderRadius: BorderRadius.circular(16),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.share_rounded, size: 20, color: Colors.blue),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Social Media Links',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          activeCount > 0
+                              ? '$activeCount of ${platforms.length} links added'
+                              : 'Tap to add social links',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: activeCount > 0 ? Colors.blue : Colors.grey.shade600,
+                            fontWeight: activeCount > 0 ? FontWeight.w600 : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    _isExpanded
+                        ? Icons.keyboard_arrow_up_rounded
+                        : Icons.keyboard_arrow_down_rounded,
+                    color: Colors.grey.shade600,
+                    size: 24,
+                  ),
+                ],
+              ),
+            ),
           ),
+
+          // Collapsible Content
+          if (_isExpanded) ...[
+            const Divider(height: 1, thickness: 1),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Add links so customers can visit your social pages',
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                  ),
+                  const SizedBox(height: 16),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: platforms.length,
+                    separatorBuilder: (context, index) => const Divider(height: 16),
+                    itemBuilder: (context, index) {
+                      final platform = platforms[index];
+                      final currentUrl = platform.getUrl(widget.userProfile);
+                      final hasLink = currentUrl != null && currentUrl.trim().isNotEmpty;
+
+                      return _buildOwnerPlatformRow(
+                        context,
+                        platform: platform,
+                        currentUrl: currentUrl,
+                        hasLink: hasLink,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
         ],
       ),
     );
@@ -455,7 +521,7 @@ class SocialLinksWidget extends StatelessWidget {
     required SocialPlatform platform,
     required String url,
   }) {
-    final currentProfile = userProfile;
+    final currentProfile = widget.userProfile;
 
     String? fb = currentProfile?.facebookUrl;
     String? insta = currentProfile?.instagramUrl;
