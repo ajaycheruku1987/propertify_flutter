@@ -33,6 +33,12 @@ class ProfileRepo {
     String? lastName,
     String? email,
     String? phoneNumber,
+    String? facebookUrl,
+    String? instagramUrl,
+    String? whatsappChannelUrl,
+    String? websiteUrl,
+    String? xUrl,
+    String? youtubeUrl,
   }) async {
     final Map<String, dynamic> updateData = {};
 
@@ -41,6 +47,12 @@ class ProfileRepo {
     if (lastName != null) updateData["last_name"] = lastName;
     if (email != null) updateData["email"] = email;
     if (phoneNumber != null) updateData["phone_number"] = phoneNumber;
+    if (facebookUrl != null) updateData["facebook_url"] = facebookUrl;
+    if (instagramUrl != null) updateData["instagram_url"] = instagramUrl;
+    if (whatsappChannelUrl != null) updateData["whatsapp_channel_url"] = whatsappChannelUrl;
+    if (websiteUrl != null) updateData["website_url"] = websiteUrl;
+    if (xUrl != null) updateData["x_url"] = xUrl;
+    if (youtubeUrl != null) updateData["youtube_url"] = youtubeUrl;
 
     final response = await ftPyroApiRequest.put(
       '/profile',

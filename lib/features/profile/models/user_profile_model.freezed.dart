@@ -40,6 +40,18 @@ mixin _$UserProfileModel {
   String? get memberSince => throw _privateConstructorUsedError;
   @JsonKey(name: "posts_count")
   int? get postsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "facebook_url")
+  String? get facebookUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "instagram_url")
+  String? get instagramUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "whatsapp_channel_url")
+  String? get whatsappChannelUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "website_url")
+  String? get websiteUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "x_url")
+  String? get xUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "youtube_url")
+  String? get youtubeUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +75,13 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "profilepic") String? profilepic,
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
-      @JsonKey(name: "posts_count") int? postsCount});
+      @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "facebook_url") String? facebookUrl,
+      @JsonKey(name: "instagram_url") String? instagramUrl,
+      @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
+      @JsonKey(name: "website_url") String? websiteUrl,
+      @JsonKey(name: "x_url") String? xUrl,
+      @JsonKey(name: "youtube_url") String? youtubeUrl});
 }
 
 /// @nodoc
@@ -89,6 +107,12 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? facebookUrl = freezed,
+    Object? instagramUrl = freezed,
+    Object? whatsappChannelUrl = freezed,
+    Object? websiteUrl = freezed,
+    Object? xUrl = freezed,
+    Object? youtubeUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -131,6 +155,30 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      facebookUrl: freezed == facebookUrl
+          ? _value.facebookUrl
+          : facebookUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instagramUrl: freezed == instagramUrl
+          ? _value.instagramUrl
+          : instagramUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      whatsappChannelUrl: freezed == whatsappChannelUrl
+          ? _value.whatsappChannelUrl
+          : whatsappChannelUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      websiteUrl: freezed == websiteUrl
+          ? _value.websiteUrl
+          : websiteUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      xUrl: freezed == xUrl
+          ? _value.xUrl
+          : xUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      youtubeUrl: freezed == youtubeUrl
+          ? _value.youtubeUrl
+          : youtubeUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -153,7 +201,13 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "profilepic") String? profilepic,
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
-      @JsonKey(name: "posts_count") int? postsCount});
+      @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "facebook_url") String? facebookUrl,
+      @JsonKey(name: "instagram_url") String? instagramUrl,
+      @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
+      @JsonKey(name: "website_url") String? websiteUrl,
+      @JsonKey(name: "x_url") String? xUrl,
+      @JsonKey(name: "youtube_url") String? youtubeUrl});
 }
 
 /// @nodoc
@@ -177,6 +231,12 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? facebookUrl = freezed,
+    Object? instagramUrl = freezed,
+    Object? whatsappChannelUrl = freezed,
+    Object? websiteUrl = freezed,
+    Object? xUrl = freezed,
+    Object? youtubeUrl = freezed,
   }) {
     return _then(_$UserProfileModelImpl(
       id: freezed == id
@@ -219,6 +279,30 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      facebookUrl: freezed == facebookUrl
+          ? _value.facebookUrl
+          : facebookUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instagramUrl: freezed == instagramUrl
+          ? _value.instagramUrl
+          : instagramUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      whatsappChannelUrl: freezed == whatsappChannelUrl
+          ? _value.whatsappChannelUrl
+          : whatsappChannelUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      websiteUrl: freezed == websiteUrl
+          ? _value.websiteUrl
+          : websiteUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      xUrl: freezed == xUrl
+          ? _value.xUrl
+          : xUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      youtubeUrl: freezed == youtubeUrl
+          ? _value.youtubeUrl
+          : youtubeUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -236,7 +320,13 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "profilepic") this.profilepic,
       @JsonKey(name: "role") this.role,
       @JsonKey(name: "member_since") this.memberSince,
-      @JsonKey(name: "posts_count") this.postsCount});
+      @JsonKey(name: "posts_count") this.postsCount,
+      @JsonKey(name: "facebook_url") this.facebookUrl,
+      @JsonKey(name: "instagram_url") this.instagramUrl,
+      @JsonKey(name: "whatsapp_channel_url") this.whatsappChannelUrl,
+      @JsonKey(name: "website_url") this.websiteUrl,
+      @JsonKey(name: "x_url") this.xUrl,
+      @JsonKey(name: "youtube_url") this.youtubeUrl});
 
   factory _$UserProfileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileModelImplFromJson(json);
@@ -271,10 +361,28 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @override
   @JsonKey(name: "posts_count")
   final int? postsCount;
+  @override
+  @JsonKey(name: "facebook_url")
+  final String? facebookUrl;
+  @override
+  @JsonKey(name: "instagram_url")
+  final String? instagramUrl;
+  @override
+  @JsonKey(name: "whatsapp_channel_url")
+  final String? whatsappChannelUrl;
+  @override
+  @JsonKey(name: "website_url")
+  final String? websiteUrl;
+  @override
+  @JsonKey(name: "x_url")
+  final String? xUrl;
+  @override
+  @JsonKey(name: "youtube_url")
+  final String? youtubeUrl;
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
   }
 
   @override
@@ -298,13 +406,40 @@ class _$UserProfileModelImpl implements _UserProfileModel {
             (identical(other.memberSince, memberSince) ||
                 other.memberSince == memberSince) &&
             (identical(other.postsCount, postsCount) ||
-                other.postsCount == postsCount));
+                other.postsCount == postsCount) &&
+            (identical(other.facebookUrl, facebookUrl) ||
+                other.facebookUrl == facebookUrl) &&
+            (identical(other.instagramUrl, instagramUrl) ||
+                other.instagramUrl == instagramUrl) &&
+            (identical(other.whatsappChannelUrl, whatsappChannelUrl) ||
+                other.whatsappChannelUrl == whatsappChannelUrl) &&
+            (identical(other.websiteUrl, websiteUrl) ||
+                other.websiteUrl == websiteUrl) &&
+            (identical(other.xUrl, xUrl) || other.xUrl == xUrl) &&
+            (identical(other.youtubeUrl, youtubeUrl) ||
+                other.youtubeUrl == youtubeUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, firstName,
-      lastName, email, phoneNumber, profilepic, role, memberSince, postsCount);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      profilepic,
+      role,
+      memberSince,
+      postsCount,
+      facebookUrl,
+      instagramUrl,
+      whatsappChannelUrl,
+      websiteUrl,
+      xUrl,
+      youtubeUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -323,17 +458,23 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
 abstract class _UserProfileModel implements UserProfileModel {
   const factory _UserProfileModel(
-          {@JsonKey(name: "id") final String? id,
-          @JsonKey(name: "username") final String? username,
-          @JsonKey(name: "first_name") final String? firstName,
-          @JsonKey(name: "last_name") final String? lastName,
-          @JsonKey(name: "email") final String? email,
-          @JsonKey(name: "phone_number") final String? phoneNumber,
-          @JsonKey(name: "profilepic") final String? profilepic,
-          @JsonKey(name: "role") final String? role,
-          @JsonKey(name: "member_since") final String? memberSince,
-          @JsonKey(name: "posts_count") final int? postsCount}) =
-      _$UserProfileModelImpl;
+      {@JsonKey(name: "id") final String? id,
+      @JsonKey(name: "username") final String? username,
+      @JsonKey(name: "first_name") final String? firstName,
+      @JsonKey(name: "last_name") final String? lastName,
+      @JsonKey(name: "email") final String? email,
+      @JsonKey(name: "phone_number") final String? phoneNumber,
+      @JsonKey(name: "profilepic") final String? profilepic,
+      @JsonKey(name: "role") final String? role,
+      @JsonKey(name: "member_since") final String? memberSince,
+      @JsonKey(name: "posts_count") final int? postsCount,
+      @JsonKey(name: "facebook_url") final String? facebookUrl,
+      @JsonKey(name: "instagram_url") final String? instagramUrl,
+      @JsonKey(name: "whatsapp_channel_url") final String? whatsappChannelUrl,
+      @JsonKey(name: "website_url") final String? websiteUrl,
+      @JsonKey(name: "x_url") final String? xUrl,
+      @JsonKey(name: "youtube_url")
+      final String? youtubeUrl}) = _$UserProfileModelImpl;
 
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$UserProfileModelImpl.fromJson;
@@ -368,6 +509,24 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   @JsonKey(name: "posts_count")
   int? get postsCount;
+  @override
+  @JsonKey(name: "facebook_url")
+  String? get facebookUrl;
+  @override
+  @JsonKey(name: "instagram_url")
+  String? get instagramUrl;
+  @override
+  @JsonKey(name: "whatsapp_channel_url")
+  String? get whatsappChannelUrl;
+  @override
+  @JsonKey(name: "website_url")
+  String? get websiteUrl;
+  @override
+  @JsonKey(name: "x_url")
+  String? get xUrl;
+  @override
+  @JsonKey(name: "youtube_url")
+  String? get youtubeUrl;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileModelImplCopyWith<_$UserProfileModelImpl> get copyWith =>

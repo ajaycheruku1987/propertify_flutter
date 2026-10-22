@@ -5,11 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/core/logout.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
-import 'package:propertify/features/company/presentation/gst_verification_screen.dart';
-import 'package:propertify/features/company/presentation/my_company.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
-import 'package:propertify/features/home/presentation/widgets/home_loan_widget.dart';
-import 'package:propertify/utils/common_widgets/common_custom_button.dart';
 import '../bloc/profile_bloc.dart';
 import '../../../utils/image_picker_util.dart';
 import 'package:propertify/core/app_cache_service.dart';
@@ -20,6 +16,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_menu_item.dart';
+import 'widgets/social_links_widget.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
@@ -546,6 +543,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onTap: () {
                               context.push(MyDashboardScreen.routeName);
                             },
+                          ),
+                          SocialLinksWidget(
+                            userProfile: state.userProfile,
+                            isOwner: true,
                           ),
                           ProfileMenuItem(
                             icon: Icons.delete_outline_rounded,

@@ -23,6 +23,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(this._profileRepo) : super(const ProfileState()) {
     on<_LoadProfile>(_onLoadProfile);
     on<_UpdateProfile>(_onUpdateProfile);
+    on<_UpdateSocialLinks>(_onUpdateSocialLinks);
     on<_UploadProfileImage>(_onUploadProfileImage);
     on<_ChangePassword>(_onChangePassword);
     on<_DeleteAccount>(_onDeleteAccount);
@@ -65,10 +66,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           if (profile.id != null) cache.saveCustomerAccountId(profile.id!);
           if (profile.phoneNumber != null) cache.saveUserPhone(profile.phoneNumber!);
 
+          // Merge cached social links
+          final cachedSocials = cache.getSocialLinks();
+          final mergedProfile = profile.copyWith(
+            facebookUrl: profile.facebookUrl ?? cachedSocials['facebook_url'],
+            instagramUrl: profile.instagramUrl ?? cachedSocials['instagram_url'],
+            whatsappChannelUrl: profile.whatsappChannelUrl ?? cachedSocials['whatsapp_channel_url'],
+            websiteUrl: profile.websiteUrl ?? cachedSocials['website_url'],
+            xUrl: profile.xUrl ?? cachedSocials['x_url'],
+            youtubeUrl: profile.youtubeUrl ?? cachedSocials['youtube_url'],
+          );
+
           emit(
             state.copyWith(
               isLoading: false,
-              userProfile: profile,
+              userProfile: mergedProfile,
               notifyStatus: null,
             ),
           );
@@ -164,6 +176,74 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         state.copyWith(
           isLoading: false,
           notifyStatus: NotifyStatus(message: 'Failed to update profile'),
+        ),
+      );
+    }
+  }
+
+  void _onUpdateSocialLinks(
+    _UpdateSocialLinks event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+
+      final cache = serviceLocator<AppCacheService>();
+      await cache.saveSocialLinks(
+        facebookUrl: event.facebookUrl,
+        instagramUrl: event.instagramUrl,
+        whatsappChannelUrl: event.whatsappChannelUrl,
+        websiteUrl: event.websiteUrl,
+        xUrl: event.xUrl,
+        youtubeUrl: event.youtubeUrl,
+      );
+
+      Either<Failure, UserProfileModel> updateResponseEither =
+          await _profileRepo.updateProfile(
+        facebookUrl: event.facebookUrl,
+        instagramUrl: event.instagramUrl,
+        whatsappChannelUrl: event.whatsappChannelUrl,
+        websiteUrl: event.websiteUrl,
+        xUrl: event.xUrl,
+        youtubeUrl: event.youtubeUrl,
+      );
+
+      updateResponseEither.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              notifyStatus: NotifyStatus(message: failure.message),
+            ),
+          );
+        },
+        (updatedProfile) {
+          final cachedSocials = cache.getSocialLinks();
+          final mergedProfile = updatedProfile.copyWith(
+            facebookUrl: event.facebookUrl ?? cachedSocials['facebook_url'] ?? state.userProfile?.facebookUrl,
+            instagramUrl: event.instagramUrl ?? cachedSocials['instagram_url'] ?? state.userProfile?.instagramUrl,
+            whatsappChannelUrl: event.whatsappChannelUrl ?? cachedSocials['whatsapp_channel_url'] ?? state.userProfile?.whatsappChannelUrl,
+            websiteUrl: event.websiteUrl ?? cachedSocials['website_url'] ?? state.userProfile?.websiteUrl,
+            xUrl: event.xUrl ?? cachedSocials['x_url'] ?? state.userProfile?.xUrl,
+            youtubeUrl: event.youtubeUrl ?? cachedSocials['youtube_url'] ?? state.userProfile?.youtubeUrl,
+          );
+
+          emit(
+            state.copyWith(
+              isLoading: false,
+              userProfile: mergedProfile,
+              notifyStatus: NotifyStatus(
+                message: 'Social links updated successfully',
+              ),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          notifyStatus: NotifyStatus(message: 'Failed to update social links'),
         ),
       );
     }
@@ -452,10 +532,26 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
         },
         (profile) {
+          final cache = serviceLocator<AppCacheService>();
+          final currentUserId = cache.customerAccountId;
+          UserProfileModel mergedProfile = profile;
+
+          if (currentUserId != null && currentUserId == profile.id) {
+            final cachedSocials = cache.getSocialLinks();
+            mergedProfile = profile.copyWith(
+              facebookUrl: profile.facebookUrl ?? cachedSocials['facebook_url'],
+              instagramUrl: profile.instagramUrl ?? cachedSocials['instagram_url'],
+              whatsappChannelUrl: profile.whatsappChannelUrl ?? cachedSocials['whatsapp_channel_url'],
+              websiteUrl: profile.websiteUrl ?? cachedSocials['website_url'],
+              xUrl: profile.xUrl ?? cachedSocials['x_url'],
+              youtubeUrl: profile.youtubeUrl ?? cachedSocials['youtube_url'],
+            );
+          }
+
           emit(
             state.copyWith(
               isLoadingOtherProfile: false,
-              otherUserProfile: profile,
+              otherUserProfile: mergedProfile,
               notifyStatus: null,
             ),
           );

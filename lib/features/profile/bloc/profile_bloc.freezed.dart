@@ -23,6 +23,14 @@ mixin _$ProfileEvent {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -53,6 +61,14 @@ mixin _$ProfileEvent {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -81,6 +97,14 @@ mixin _$ProfileEvent {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -108,6 +132,7 @@ mixin _$ProfileEvent {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -128,6 +153,7 @@ mixin _$ProfileEvent {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -148,6 +174,7 @@ mixin _$ProfileEvent {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -227,6 +254,14 @@ class _$ResetImpl implements _Reset {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -260,6 +295,14 @@ class _$ResetImpl implements _Reset {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -291,6 +334,14 @@ class _$ResetImpl implements _Reset {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -324,6 +375,7 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -347,6 +399,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -370,6 +423,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -439,6 +493,14 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -472,6 +534,14 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -503,6 +573,14 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -536,6 +614,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -559,6 +638,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -582,6 +662,7 @@ class _$LoadProfileImpl implements _LoadProfile {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -723,6 +804,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -756,6 +845,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -787,6 +884,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -820,6 +925,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -843,6 +949,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -866,6 +973,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -903,6 +1011,349 @@ abstract class _UpdateProfile implements ProfileEvent {
   String get phoneNumber;
   @JsonKey(ignore: true)
   _$$UpdateProfileImplCopyWith<_$UpdateProfileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateSocialLinksImplCopyWith<$Res> {
+  factory _$$UpdateSocialLinksImplCopyWith(_$UpdateSocialLinksImpl value,
+          $Res Function(_$UpdateSocialLinksImpl) then) =
+      __$$UpdateSocialLinksImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String? facebookUrl,
+      String? instagramUrl,
+      String? whatsappChannelUrl,
+      String? websiteUrl,
+      String? xUrl,
+      String? youtubeUrl});
+}
+
+/// @nodoc
+class __$$UpdateSocialLinksImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$UpdateSocialLinksImpl>
+    implements _$$UpdateSocialLinksImplCopyWith<$Res> {
+  __$$UpdateSocialLinksImplCopyWithImpl(_$UpdateSocialLinksImpl _value,
+      $Res Function(_$UpdateSocialLinksImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? facebookUrl = freezed,
+    Object? instagramUrl = freezed,
+    Object? whatsappChannelUrl = freezed,
+    Object? websiteUrl = freezed,
+    Object? xUrl = freezed,
+    Object? youtubeUrl = freezed,
+  }) {
+    return _then(_$UpdateSocialLinksImpl(
+      facebookUrl: freezed == facebookUrl
+          ? _value.facebookUrl
+          : facebookUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instagramUrl: freezed == instagramUrl
+          ? _value.instagramUrl
+          : instagramUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      whatsappChannelUrl: freezed == whatsappChannelUrl
+          ? _value.whatsappChannelUrl
+          : whatsappChannelUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      websiteUrl: freezed == websiteUrl
+          ? _value.websiteUrl
+          : websiteUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      xUrl: freezed == xUrl
+          ? _value.xUrl
+          : xUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      youtubeUrl: freezed == youtubeUrl
+          ? _value.youtubeUrl
+          : youtubeUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
+  const _$UpdateSocialLinksImpl(
+      {this.facebookUrl,
+      this.instagramUrl,
+      this.whatsappChannelUrl,
+      this.websiteUrl,
+      this.xUrl,
+      this.youtubeUrl});
+
+  @override
+  final String? facebookUrl;
+  @override
+  final String? instagramUrl;
+  @override
+  final String? whatsappChannelUrl;
+  @override
+  final String? websiteUrl;
+  @override
+  final String? xUrl;
+  @override
+  final String? youtubeUrl;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.updateSocialLinks(facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateSocialLinksImpl &&
+            (identical(other.facebookUrl, facebookUrl) ||
+                other.facebookUrl == facebookUrl) &&
+            (identical(other.instagramUrl, instagramUrl) ||
+                other.instagramUrl == instagramUrl) &&
+            (identical(other.whatsappChannelUrl, whatsappChannelUrl) ||
+                other.whatsappChannelUrl == whatsappChannelUrl) &&
+            (identical(other.websiteUrl, websiteUrl) ||
+                other.websiteUrl == websiteUrl) &&
+            (identical(other.xUrl, xUrl) || other.xUrl == xUrl) &&
+            (identical(other.youtubeUrl, youtubeUrl) ||
+                other.youtubeUrl == youtubeUrl));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, facebookUrl, instagramUrl,
+      whatsappChannelUrl, websiteUrl, xUrl, youtubeUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateSocialLinksImplCopyWith<_$UpdateSocialLinksImpl> get copyWith =>
+      __$$UpdateSocialLinksImplCopyWithImpl<_$UpdateSocialLinksImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() loadProfile,
+    required TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)
+        updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
+    required TResult Function(String imagePath) uploadProfileImage,
+    required TResult Function(String currentPassword, String newPassword)
+        changePassword,
+    required TResult Function(String password, String actionType) deleteAccount,
+    required TResult Function(CreateBannerAdDataModel bannerAdData,
+            String? paymentId, String? orderId)
+        createBannerAd,
+    required TResult Function(double? latitude, double? longitude)
+        loadBannerAds,
+    required TResult Function() loadMyBannerAds,
+    required TResult Function(String userId) loadOtherUserProfile,
+    required TResult Function(
+            String category, String subject, String description)
+        submitFeedback,
+    required TResult Function() loadMyFeedbacks,
+    required TResult Function() loadAllFeedbacks,
+    required TResult Function(
+            String id, String category, String subject, String description)
+        updateFeedback,
+    required TResult Function(String id) deleteFeedback,
+    required TResult Function(bool flag) isLoading,
+  }) {
+    return updateSocialLinks(facebookUrl, instagramUrl, whatsappChannelUrl,
+        websiteUrl, xUrl, youtubeUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function()? loadProfile,
+    TResult? Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
+    TResult? Function(String imagePath)? uploadProfileImage,
+    TResult? Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult? Function(String password, String actionType)? deleteAccount,
+    TResult? Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult? Function(double? latitude, double? longitude)? loadBannerAds,
+    TResult? Function()? loadMyBannerAds,
+    TResult? Function(String userId)? loadOtherUserProfile,
+    TResult? Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult? Function()? loadMyFeedbacks,
+    TResult? Function()? loadAllFeedbacks,
+    TResult? Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult? Function(String id)? deleteFeedback,
+    TResult? Function(bool flag)? isLoading,
+  }) {
+    return updateSocialLinks?.call(facebookUrl, instagramUrl,
+        whatsappChannelUrl, websiteUrl, xUrl, youtubeUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? loadProfile,
+    TResult Function(String name, String? firstName, String? lastName,
+            String email, String phoneNumber)?
+        updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
+    TResult Function(String imagePath)? uploadProfileImage,
+    TResult Function(String currentPassword, String newPassword)?
+        changePassword,
+    TResult Function(String password, String actionType)? deleteAccount,
+    TResult Function(CreateBannerAdDataModel bannerAdData, String? paymentId,
+            String? orderId)?
+        createBannerAd,
+    TResult Function(double? latitude, double? longitude)? loadBannerAds,
+    TResult Function()? loadMyBannerAds,
+    TResult Function(String userId)? loadOtherUserProfile,
+    TResult Function(String category, String subject, String description)?
+        submitFeedback,
+    TResult Function()? loadMyFeedbacks,
+    TResult Function()? loadAllFeedbacks,
+    TResult Function(
+            String id, String category, String subject, String description)?
+        updateFeedback,
+    TResult Function(String id)? deleteFeedback,
+    TResult Function(bool flag)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (updateSocialLinks != null) {
+      return updateSocialLinks(facebookUrl, instagramUrl, whatsappChannelUrl,
+          websiteUrl, xUrl, youtubeUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_LoadProfile value) loadProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_ChangePassword value) changePassword,
+    required TResult Function(_DeleteAccount value) deleteAccount,
+    required TResult Function(_CreateBannerAd value) createBannerAd,
+    required TResult Function(_LoadBannerAds value) loadBannerAds,
+    required TResult Function(_LoadMyBannerAds value) loadMyBannerAds,
+    required TResult Function(_LoadOtherUserProfile value) loadOtherUserProfile,
+    required TResult Function(_SubmitFeedback value) submitFeedback,
+    required TResult Function(_LoadMyFeedbacks value) loadMyFeedbacks,
+    required TResult Function(_LoadAllFeedbacks value) loadAllFeedbacks,
+    required TResult Function(_UpdateFeedback value) updateFeedback,
+    required TResult Function(_DeleteFeedback value) deleteFeedback,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return updateSocialLinks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_LoadProfile value)? loadProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_ChangePassword value)? changePassword,
+    TResult? Function(_DeleteAccount value)? deleteAccount,
+    TResult? Function(_CreateBannerAd value)? createBannerAd,
+    TResult? Function(_LoadBannerAds value)? loadBannerAds,
+    TResult? Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult? Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult? Function(_SubmitFeedback value)? submitFeedback,
+    TResult? Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult? Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult? Function(_UpdateFeedback value)? updateFeedback,
+    TResult? Function(_DeleteFeedback value)? deleteFeedback,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return updateSocialLinks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_LoadProfile value)? loadProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_ChangePassword value)? changePassword,
+    TResult Function(_DeleteAccount value)? deleteAccount,
+    TResult Function(_CreateBannerAd value)? createBannerAd,
+    TResult Function(_LoadBannerAds value)? loadBannerAds,
+    TResult Function(_LoadMyBannerAds value)? loadMyBannerAds,
+    TResult Function(_LoadOtherUserProfile value)? loadOtherUserProfile,
+    TResult Function(_SubmitFeedback value)? submitFeedback,
+    TResult Function(_LoadMyFeedbacks value)? loadMyFeedbacks,
+    TResult Function(_LoadAllFeedbacks value)? loadAllFeedbacks,
+    TResult Function(_UpdateFeedback value)? updateFeedback,
+    TResult Function(_DeleteFeedback value)? deleteFeedback,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (updateSocialLinks != null) {
+      return updateSocialLinks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSocialLinks implements ProfileEvent {
+  const factory _UpdateSocialLinks(
+      {final String? facebookUrl,
+      final String? instagramUrl,
+      final String? whatsappChannelUrl,
+      final String? websiteUrl,
+      final String? xUrl,
+      final String? youtubeUrl}) = _$UpdateSocialLinksImpl;
+
+  String? get facebookUrl;
+  String? get instagramUrl;
+  String? get whatsappChannelUrl;
+  String? get websiteUrl;
+  String? get xUrl;
+  String? get youtubeUrl;
+  @JsonKey(ignore: true)
+  _$$UpdateSocialLinksImplCopyWith<_$UpdateSocialLinksImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -977,6 +1428,14 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -1010,6 +1469,14 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1041,6 +1508,14 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1074,6 +1549,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -1097,6 +1573,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -1120,6 +1597,7 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -1233,6 +1711,14 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -1266,6 +1752,14 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1297,6 +1791,14 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1330,6 +1832,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -1353,6 +1856,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -1376,6 +1880,7 @@ class _$ChangePasswordImpl implements _ChangePassword {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -1489,6 +1994,14 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -1522,6 +2035,14 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1553,6 +2074,14 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1586,6 +2115,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -1609,6 +2139,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -1632,6 +2163,7 @@ class _$DeleteAccountImpl implements _DeleteAccount {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -1759,6 +2291,14 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -1792,6 +2332,14 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1823,6 +2371,14 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -1856,6 +2412,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -1879,6 +2436,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -1902,6 +2460,7 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -2017,6 +2576,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -2050,6 +2617,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2081,6 +2656,14 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2114,6 +2697,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -2137,6 +2721,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -2160,6 +2745,7 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -2236,6 +2822,14 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -2269,6 +2863,14 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2300,6 +2902,14 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2333,6 +2943,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -2356,6 +2967,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -2379,6 +2991,7 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -2476,6 +3089,14 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -2509,6 +3130,14 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2540,6 +3169,14 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2573,6 +3210,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -2596,6 +3234,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -2619,6 +3258,7 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -2742,6 +3382,14 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -2775,6 +3423,14 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2806,6 +3462,14 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -2839,6 +3503,7 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -2862,6 +3527,7 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -2885,6 +3551,7 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -2964,6 +3631,14 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -2997,6 +3672,14 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3028,6 +3711,14 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3061,6 +3752,7 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -3084,6 +3776,7 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -3107,6 +3800,7 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -3176,6 +3870,14 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -3209,6 +3911,14 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3240,6 +3950,14 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3273,6 +3991,7 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -3296,6 +4015,7 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -3319,6 +4039,7 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -3446,6 +4167,14 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -3479,6 +4208,14 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3510,6 +4247,14 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3543,6 +4288,7 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -3566,6 +4312,7 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -3589,6 +4336,7 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -3697,6 +4445,14 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -3730,6 +4486,14 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3761,6 +4525,14 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -3794,6 +4566,7 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -3817,6 +4590,7 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -3840,6 +4614,7 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,
@@ -3941,6 +4716,14 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)
         updateProfile,
+    required TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)
+        updateSocialLinks,
     required TResult Function(String imagePath) uploadProfileImage,
     required TResult Function(String currentPassword, String newPassword)
         changePassword,
@@ -3974,6 +4757,14 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult? Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult? Function(String imagePath)? uploadProfileImage,
     TResult? Function(String currentPassword, String newPassword)?
         changePassword,
@@ -4005,6 +4796,14 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(String name, String? firstName, String? lastName,
             String email, String phoneNumber)?
         updateProfile,
+    TResult Function(
+            String? facebookUrl,
+            String? instagramUrl,
+            String? whatsappChannelUrl,
+            String? websiteUrl,
+            String? xUrl,
+            String? youtubeUrl)?
+        updateSocialLinks,
     TResult Function(String imagePath)? uploadProfileImage,
     TResult Function(String currentPassword, String newPassword)?
         changePassword,
@@ -4038,6 +4837,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_Reset value) reset,
     required TResult Function(_LoadProfile value) loadProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UpdateSocialLinks value) updateSocialLinks,
     required TResult Function(_UploadProfileImage value) uploadProfileImage,
     required TResult Function(_ChangePassword value) changePassword,
     required TResult Function(_DeleteAccount value) deleteAccount,
@@ -4061,6 +4861,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_Reset value)? reset,
     TResult? Function(_LoadProfile value)? loadProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult? Function(_UploadProfileImage value)? uploadProfileImage,
     TResult? Function(_ChangePassword value)? changePassword,
     TResult? Function(_DeleteAccount value)? deleteAccount,
@@ -4084,6 +4885,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_Reset value)? reset,
     TResult Function(_LoadProfile value)? loadProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UpdateSocialLinks value)? updateSocialLinks,
     TResult Function(_UploadProfileImage value)? uploadProfileImage,
     TResult Function(_ChangePassword value)? changePassword,
     TResult Function(_DeleteAccount value)? deleteAccount,

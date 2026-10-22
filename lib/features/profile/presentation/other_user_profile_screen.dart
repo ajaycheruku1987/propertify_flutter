@@ -20,7 +20,6 @@ import '../../../../features/auth/presentation/auth_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import '../../company/bloc/company_bloc.dart';
-import '../../company/presentation/my_company.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
 import 'package:propertify/utils/common_widgets/google_ad_banner.dart';
@@ -28,6 +27,7 @@ import 'package:propertify/utils/env.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/services/block_service.dart';
 import 'package:propertify/features/feed/bloc/feed_bloc.dart';
+import 'widgets/social_links_widget.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
@@ -508,7 +508,11 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    SocialLinksWidget(
+                      userProfile: profile,
+                      isOwner: false,
+                    ),
+                    const SizedBox(height: 12),
 
                     // Stats Section
                     BlocBuilder<HomeBloc, HomeState>(

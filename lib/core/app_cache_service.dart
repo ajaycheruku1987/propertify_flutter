@@ -118,4 +118,44 @@ class AppCacheService {
     _phone = null;
     return await sharedPreferences.clear();
   }
+
+  ///[Social Links Cache]
+  Future<void> saveSocialLinks({
+    String? facebookUrl,
+    String? instagramUrl,
+    String? whatsappChannelUrl,
+    String? websiteUrl,
+    String? xUrl,
+    String? youtubeUrl,
+  }) async {
+    if (facebookUrl != null) {
+      await sharedPreferences.setString('social_facebook', facebookUrl);
+    }
+    if (instagramUrl != null) {
+      await sharedPreferences.setString('social_instagram', instagramUrl);
+    }
+    if (whatsappChannelUrl != null) {
+      await sharedPreferences.setString('social_whatsapp', whatsappChannelUrl);
+    }
+    if (websiteUrl != null) {
+      await sharedPreferences.setString('social_website', websiteUrl);
+    }
+    if (xUrl != null) {
+      await sharedPreferences.setString('social_x', xUrl);
+    }
+    if (youtubeUrl != null) {
+      await sharedPreferences.setString('social_youtube', youtubeUrl);
+    }
+  }
+
+  Map<String, String?> getSocialLinks() {
+    return {
+      'facebook_url': sharedPreferences.getString('social_facebook'),
+      'instagram_url': sharedPreferences.getString('social_instagram'),
+      'whatsapp_channel_url': sharedPreferences.getString('social_whatsapp'),
+      'website_url': sharedPreferences.getString('social_website'),
+      'x_url': sharedPreferences.getString('social_x'),
+      'youtube_url': sharedPreferences.getString('social_youtube'),
+    };
+  }
 }

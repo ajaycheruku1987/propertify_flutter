@@ -13,6 +13,15 @@ class ProfileEvent with _$ProfileEvent {
     required String phoneNumber,
   }) = _UpdateProfile;
 
+  const factory ProfileEvent.updateSocialLinks({
+    String? facebookUrl,
+    String? instagramUrl,
+    String? whatsappChannelUrl,
+    String? websiteUrl,
+    String? xUrl,
+    String? youtubeUrl,
+  }) = _UpdateSocialLinks;
+
   const factory ProfileEvent.uploadProfileImage({required String imagePath}) =
       _UploadProfileImage;
 

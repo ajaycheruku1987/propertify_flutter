@@ -19,6 +19,12 @@ _$UserProfileModelImpl _$$UserProfileModelImplFromJson(
       role: json['role'] as String?,
       memberSince: json['member_since'] as String?,
       postsCount: (json['posts_count'] as num?)?.toInt(),
+      facebookUrl: json['facebook_url'] as String?,
+      instagramUrl: json['instagram_url'] as String?,
+      whatsappChannelUrl: json['whatsapp_channel_url'] as String?,
+      websiteUrl: json['website_url'] as String?,
+      xUrl: json['x_url'] as String?,
+      youtubeUrl: json['youtube_url'] as String?,
     );
 
 Map<String, dynamic> _$$UserProfileModelImplToJson(
@@ -34,4 +40,10 @@ Map<String, dynamic> _$$UserProfileModelImplToJson(
       'role': instance.role,
       'member_since': instance.memberSince,
       'posts_count': instance.postsCount,
+      'facebook_url': instance.facebookUrl,
+      'instagram_url': instance.instagramUrl,
+      'whatsapp_channel_url': instance.whatsappChannelUrl,
+      'website_url': instance.websiteUrl,
+      'x_url': instance.xUrl,
+      'youtube_url': instance.youtubeUrl,
     };

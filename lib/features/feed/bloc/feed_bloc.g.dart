@@ -12,16 +12,6 @@ _$FeedStateImpl _$$FeedStateImplFromJson(Map<String, dynamic> json) =>
           ? null
           : FeedPostsResponseModel.fromJson(
               json['postDetails'] as Map<String, dynamic>),
-      similarProperties: (json['similarProperties'] as List<dynamic>?)
-              ?.map((e) =>
-                  FeedPostsResponseModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      similarPostsByCategory: (json['similarPostsByCategory'] as List<dynamic>?)
-              ?.map((e) =>
-                  FeedPostsResponseModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
       feedsList: (json['feedsList'] as List<dynamic>?)
               ?.map((e) =>
                   FeedPostsResponseModel.fromJson(e as Map<String, dynamic>))
@@ -54,8 +44,6 @@ _$FeedStateImpl _$$FeedStateImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$FeedStateImplToJson(_$FeedStateImpl instance) =>
     <String, dynamic>{
       'postDetails': instance.postDetails,
-      'similarProperties': instance.similarProperties,
-      'similarPostsByCategory': instance.similarPostsByCategory,
       'feedsList': instance.feedsList,
       'myPropertiesList': instance.myPropertiesList,
       'favouritesList': instance.favouritesList,

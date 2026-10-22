@@ -7029,9 +7029,12 @@ mixin _$FeedState {
   bool get isError => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   bool get isSuccess => throw _privateConstructorUsedError;
-  FeedPostsResponseModel? get postDetails => throw _privateConstructorUsedError;
+  FeedPostsResponseModel? get postDetails =>
+      throw _privateConstructorUsedError; // Never hydrate similar posts — always fetch fresh per opened post.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarProperties =>
       throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarPostsByCategory =>
       throw _privateConstructorUsedError;
   List<FeedPostsResponseModel> get feedsList =>
@@ -7077,7 +7080,9 @@ abstract class $FeedStateCopyWith<$Res> {
       @JsonKey(includeFromJson: false, includeToJson: false) bool isError,
       @JsonKey(includeFromJson: false, includeToJson: false) bool isSuccess,
       FeedPostsResponseModel? postDetails,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel> similarProperties,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel> similarPostsByCategory,
       List<FeedPostsResponseModel> feedsList,
       List<FeedPostsResponseModel> myPropertiesList,
@@ -7259,7 +7264,9 @@ abstract class _$$FeedStateImplCopyWith<$Res>
       @JsonKey(includeFromJson: false, includeToJson: false) bool isError,
       @JsonKey(includeFromJson: false, includeToJson: false) bool isSuccess,
       FeedPostsResponseModel? postDetails,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel> similarProperties,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<FeedPostsResponseModel> similarPostsByCategory,
       List<FeedPostsResponseModel> feedsList,
       List<FeedPostsResponseModel> myPropertiesList,
@@ -7426,7 +7433,9 @@ class _$FeedStateImpl implements _FeedState {
       @JsonKey(includeFromJson: false, includeToJson: false)
       this.isSuccess = false,
       this.postDetails,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel> similarProperties = const [],
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel> similarPostsByCategory = const [],
       final List<FeedPostsResponseModel> feedsList = const [],
       final List<FeedPostsResponseModel> myPropertiesList = const [],
@@ -7472,9 +7481,11 @@ class _$FeedStateImpl implements _FeedState {
   final bool isSuccess;
   @override
   final FeedPostsResponseModel? postDetails;
+// Never hydrate similar posts — always fetch fresh per opened post.
   final List<FeedPostsResponseModel> _similarProperties;
+// Never hydrate similar posts — always fetch fresh per opened post.
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarProperties {
     if (_similarProperties is EqualUnmodifiableListView)
       return _similarProperties;
@@ -7484,7 +7495,7 @@ class _$FeedStateImpl implements _FeedState {
 
   final List<FeedPostsResponseModel> _similarPostsByCategory;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarPostsByCategory {
     if (_similarPostsByCategory is EqualUnmodifiableListView)
       return _similarPostsByCategory;
@@ -7680,7 +7691,9 @@ abstract class _FeedState implements FeedState {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final bool isSuccess,
       final FeedPostsResponseModel? postDetails,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel> similarProperties,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<FeedPostsResponseModel> similarPostsByCategory,
       final List<FeedPostsResponseModel> feedsList,
       final List<FeedPostsResponseModel> myPropertiesList,
@@ -7720,9 +7733,11 @@ abstract class _FeedState implements FeedState {
   bool get isSuccess;
   @override
   FeedPostsResponseModel? get postDetails;
-  @override
+  @override // Never hydrate similar posts — always fetch fresh per opened post.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarProperties;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<FeedPostsResponseModel> get similarPostsByCategory;
   @override
   List<FeedPostsResponseModel> get feedsList;
