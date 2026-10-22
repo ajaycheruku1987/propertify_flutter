@@ -478,8 +478,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   Future<void> _initCurrentLocation() async {
     try {
       final hasPermission = await LocationService.ensurePermission();
-
-      // Request notification permission next, sequentially after location permission.
       try {
         await NotificationService.instance.requestPermission();
       } catch (e) {
