@@ -525,6 +525,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
 
                         if (homeState.showAddButton) ...[
+                          SocialLinksWidget(
+                            userProfile: state.userProfile,
+                            isOwner: true,
+                          ),
+                          ProfileMenuItem(
+                            icon: Icons.dashboard_outlined,
+                            title: l10n.myDashboard,
+                            onTap: () {
+                              context.push(MyDashboardScreen.routeName);
+                            },
+                          ),
                           ProfileMenuItem(
                             icon: Icons.person_outline,
                             title: l10n.editProfile,
@@ -536,17 +547,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 );
                               }
                             },
-                          ),
-                          ProfileMenuItem(
-                            icon: Icons.dashboard_outlined,
-                            title: l10n.myDashboard,
-                            onTap: () {
-                              context.push(MyDashboardScreen.routeName);
-                            },
-                          ),
-                          SocialLinksWidget(
-                            userProfile: state.userProfile,
-                            isOwner: true,
                           ),
                           ProfileMenuItem(
                             icon: Icons.delete_outline_rounded,
