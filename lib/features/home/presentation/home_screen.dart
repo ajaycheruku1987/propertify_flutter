@@ -557,7 +557,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
     if (_isLoadingLocation &&
         state.currentLat == 0.0 &&
         state.currentLng == 0.0) {
-      return 'Detecting...';
+      return 'Location Fetching...';
     }
 
     // Build location text from village, city, and state
