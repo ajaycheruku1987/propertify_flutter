@@ -112,7 +112,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
       }
       context.read<AuthBloc>().add(const AuthEvent.clearShowOtpWidget());
       context.read<HomeBloc>().add(const HomeEvent.checkToken());
-      context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
       context.read<HomeBloc>().add(
         HomeEvent.setHomeIndex(widget.initialHomeIndex),
       );
@@ -478,10 +477,22 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   Future<void> _initCurrentLocation() async {
     try {
       final hasPermission = await LocationService.ensurePermission();
+      // Request notification permission next, sequentially after location permission.
       try {
         await NotificationService.instance.requestPermission();
       } catch (e) {
         debugPrint('Notification permission error: $e');
+      }
+
+      // Permissions are now fully completed (user answered both location & notification prompts).
+      // Refresh profile, company, and home data so the app refreshes cleanly.
+      if (mounted) {
+        final appCache = serviceLocator<AppCacheService>();
+        final token = appCache.getToken();
+        if (token != null && token.isNotEmpty) {
+          context.read<ProfileBloc>().add(const ProfileEvent.loadProfile());
+          context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
+        }
       }
 
       if (!hasPermission) return;
