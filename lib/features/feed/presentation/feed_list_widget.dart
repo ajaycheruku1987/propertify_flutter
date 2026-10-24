@@ -40,8 +40,8 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   int _currentBannerIndex = 0;
   bool _isGridView = true; // Track grid/list view mode
 
-  /// Show a Google ad after every N property cards in grid/list.
-  static const int _adInterval = 6;
+  /// Show a banner / Google ad after every N property cards in grid/list.
+  static const int _adInterval = 10;
 
   @override
   void initState() {
@@ -401,6 +401,8 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     required double aspectRatio,
   }) {
     final slivers = <Widget>[];
+    int adSlotIndex = 0;
+
     for (var start = 0; start < feeds.length; start += _adInterval) {
       final end = math.min(start + _adInterval, feeds.length);
       final chunk = feeds.sublist(start, end);
@@ -424,7 +426,13 @@ class _FeedListWidgetState extends State<FeedListWidget> {
       );
 
       if (end < feeds.length) {
-        slivers.add(_buildInlineAdSliver(adKey: 'grid_ad_$end'));
+        slivers.add(
+          _buildInlineAdSliver(
+            adKey: 'grid_ad_$end',
+            adIndex: adSlotIndex,
+          ),
+        );
+        adSlotIndex++;
       }
     }
     return slivers;
@@ -442,7 +450,13 @@ class _FeedListWidgetState extends State<FeedListWidget> {
               final isAdSlot = (index + 1) % (_adInterval + 1) == 0;
 
               if (isAdSlot) {
-                return _buildInlineAd(adKey: 'list_ad_$index');
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _buildInlineAd(
+                    adKey: 'list_ad_$index',
+                    adIndex: adsBefore,
+                  ),
+                );
               }
 
               final feedIndex = index - adsBefore;
@@ -462,20 +476,37 @@ class _FeedListWidgetState extends State<FeedListWidget> {
     ];
   }
 
-  Widget _buildInlineAdSliver({required String adKey}) {
+  Widget _buildInlineAdSliver({required String adKey, int adIndex = 0}) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: _buildInlineAd(adKey: adKey),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: _buildInlineAd(adKey: adKey, adIndex: adIndex),
       ),
     );
   }
 
-  Widget _buildInlineAd({required String adKey}) {
-    return GoogleAdBanner(
-      key: ValueKey(adKey),
-      adSize: AdSize.mediumRectangle,
-      reserveSpace: true,
+  Widget _buildInlineAd({required String adKey, int adIndex = 0}) {
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      buildWhen: (previous, current) =>
+          previous.bannerAds != current.bannerAds,
+      builder: (context, state) {
+        final ads = state.bannerAds ?? [];
+
+        if (ads.isNotEmpty) {
+          final bannerAd = ads[adIndex % ads.length];
+          return SizedBox(
+            height: 200,
+            child: BannerAdWidget(bannerAd: bannerAd),
+          );
+        }
+
+        // Fallback to Google AdBanner if no user banner ads are active
+        return GoogleAdBanner(
+          key: ValueKey(adKey),
+          adSize: AdSize.mediumRectangle,
+          reserveSpace: true,
+        );
+      },
     );
   }
 
