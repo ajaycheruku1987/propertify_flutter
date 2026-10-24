@@ -116,11 +116,11 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.yellow.shade900.withOpacity(0.6),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text(
-                        'Top Ads',
+                        'AD',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,

@@ -272,15 +272,15 @@ class PropertyCardCompact extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.orange.shade900.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  l10n.topAds,
+                  l10n.featured,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 9,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

@@ -208,11 +208,11 @@ class _PropertyCardState extends State<PropertyCard> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.yellow.shade700.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  l10n.topAds,
+                  l10n.featured,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
