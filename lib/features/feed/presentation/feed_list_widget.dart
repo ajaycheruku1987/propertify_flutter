@@ -41,7 +41,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
   bool _isGridView = true; // Track grid/list view mode
 
   /// Show a banner / Google ad after every N property cards in grid/list.
-  static const int _adInterval = 10;
+  static const int _adInterval = 20;
 
   @override
   void initState() {
