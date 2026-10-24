@@ -10,6 +10,7 @@ import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
+import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -116,53 +117,33 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Large Image Section (Supports Single & Multiple Images)
-                SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Stack(
-                    children: [
-                      if (imageUrls.length <= 1)
-                        Hero(
-                          tag: bannerAd.id ?? 'banner',
-                          child: CachedNetworkImage(
-                            imageUrl: _resolveSingleImage(
-                              imageUrls.isNotEmpty ? imageUrls.first : null,
-                            ),
-                            height: 300,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Container(
-                              height: 300,
-                              width: double.infinity,
-                              color: Colors.grey.shade200,
-                              child: const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              height: 300,
-                              width: double.infinity,
-                              color: Colors.grey.shade200,
-                              child: const Icon(
-                                Icons.broken_image,
-                                color: Colors.grey,
-                                size: 50,
-                              ),
-                            ),
+                // Large Image Section (Supports Single & Multiple Images with Full-Screen Pinch-to-Zoom View)
+                GestureDetector(
+                  onTap: () {
+                    if (imageUrls.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FullScreenImageViewer(
+                            images: imageUrls,
+                            initialIndex: _currentImageIndex,
                           ),
-                        )
-                      else
-                        PageView.builder(
-                          itemCount: imageUrls.length,
-                          onPageChanged: (index) {
-                            setState(() {
-                              _currentImageIndex = index;
-                            });
-                          },
-                          itemBuilder: (context, index) {
-                            return CachedNetworkImage(
-                              imageUrl: _resolveSingleImage(imageUrls[index]),
+                        ),
+                      );
+                    }
+                  },
+                  child: SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: Stack(
+                      children: [
+                        if (imageUrls.length <= 1)
+                          Hero(
+                            tag: bannerAd.id ?? 'banner',
+                            child: CachedNetworkImage(
+                              imageUrl: _resolveSingleImage(
+                                imageUrls.isNotEmpty ? imageUrls.first : null,
+                              ),
                               height: 300,
                               width: double.infinity,
                               fit: BoxFit.cover,
@@ -184,58 +165,111 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
                                   size: 50,
                                 ),
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          )
+                        else
+                          PageView.builder(
+                            itemCount: imageUrls.length,
+                            onPageChanged: (index) {
+                              setState(() {
+                                _currentImageIndex = index;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              return CachedNetworkImage(
+                                imageUrl: _resolveSingleImage(imageUrls[index]),
+                                height: 300,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => Container(
+                                  height: 300,
+                                  width: double.infinity,
+                                  color: Colors.grey.shade200,
+                                  child: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) => Container(
+                                  height: 300,
+                                  width: double.infinity,
+                                  color: Colors.grey.shade200,
+                                  child: const Icon(
+                                    Icons.broken_image,
+                                    color: Colors.grey,
+                                    size: 50,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
 
-                      // Image counter badge & dots if multiple images
-                      if (imageUrls.length > 1) ...[
+                        // Zoom/Fullscreen hint icon
                         Positioned(
-                          top: 12,
+                          bottom: 12,
                           right: 12,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
+                            padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
                               color: Colors.black.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(12),
+                              shape: BoxShape.circle,
                             ),
-                            child: Text(
-                              '${_currentImageIndex + 1}/${imageUrls.length}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                            child: const Icon(
+                              Icons.fullscreen,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+
+                        // Image counter badge & dots if multiple images
+                        if (imageUrls.length > 1) ...[
+                          Positioned(
+                            top: 12,
+                            right: 12,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.6),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                '${_currentImageIndex + 1}/${imageUrls.length}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 12,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: imageUrls.asMap().entries.map((entry) {
-                              return AnimatedContainer(
-                                duration: const Duration(milliseconds: 200),
-                                width: _currentImageIndex == entry.key ? 16.0 : 8.0,
-                                height: 8.0,
-                                margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: _currentImageIndex == entry.key
-                                      ? Colors.white
-                                      : Colors.white.withOpacity(0.5),
-                                ),
-                              );
-                            }).toList(),
+                          Positioned(
+                            bottom: 12,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: imageUrls.asMap().entries.map((entry) {
+                                return AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: _currentImageIndex == entry.key ? 16.0 : 8.0,
+                                  height: 8.0,
+                                  margin: const EdgeInsets.symmetric(horizontal: 3.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: _currentImageIndex == entry.key
+                                        ? Colors.white
+                                        : Colors.white.withOpacity(0.5),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
-                        ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
 
