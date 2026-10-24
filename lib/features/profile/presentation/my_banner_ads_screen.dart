@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
+import 'package:propertify/utils/env.dart';
 import '../bloc/profile_bloc.dart';
 import '../models/banner_ad_model.dart';
 import 'create_banner_ad.dart';
@@ -153,7 +155,7 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
     final planName = bannerAd.planName ?? 'Unknown';
     final planDays = bannerAd.planDays ?? 0;
     final amount = bannerAd.amount ?? 0.0;
-    final isApproved = bannerAd.approved ?? false;
+    final isPaid = bannerAd.isPaid ?? false;
 
     return InkWell(
       onTap: () => context.push(BannerAdDetailView.routeName, extra: bannerAd),
@@ -162,182 +164,222 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Image Section
-          if (imageUrls.isNotEmpty)
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              ),
-              child: SizedBox(
-                height: 180,
-                width: double.infinity,
-                child: imageUrls.length == 1
-                    ? Image.network(
-                        imageUrls.first,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image Section (Supports Single & Multiple Images)
+            if (imageUrls.isNotEmpty)
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+                child: SizedBox(
+                  height: 180,
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      if (imageUrls.length == 1)
+                        CachedNetworkImage(
+                          imageUrl: _resolveImage(imageUrls.first),
+                          width: double.infinity,
+                          height: 180,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            color: Colors.grey.shade200,
+                            child: const Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Container(
                             color: Colors.grey.shade200,
                             child: const Icon(
                               Icons.broken_image,
                               size: 50,
                               color: Colors.grey,
                             ),
-                          );
-                        },
-                      )
-                    : PageView.builder(
-                        itemCount: imageUrls.length,
-                        itemBuilder: (context, index) {
-                          return Image.network(
-                            imageUrls[index],
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
+                          ),
+                        )
+                      else
+                        PageView.builder(
+                          itemCount: imageUrls.length,
+                          itemBuilder: (context, index) {
+                            return CachedNetworkImage(
+                              imageUrl: _resolveImage(imageUrls[index]),
+                              width: double.infinity,
+                              height: 180,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Container(
+                                color: Colors.grey.shade200,
+                                child: const Center(
+                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Container(
                                 color: Colors.grey.shade200,
                                 child: const Icon(
                                   Icons.broken_image,
                                   size: 50,
                                   color: Colors.grey,
                                 ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-              ),
-            ),
-
-          // Content Section
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Status Badges Row
-                Row(
-                  children: [
-                    _buildStatusChip(
-                      isApproved ? 'Approved' : 'Pending',
-                      isApproved ? Colors.green : Colors.orange,
-                    ),
-                    const SizedBox(width: 8),
-                    if (isExpired)
-                      _buildStatusChip('Expired', Colors.red)
-                    else if (daysRemaining <= 3 && daysRemaining > 0)
-                      _buildStatusChip(
-                        '$daysRemaining days left',
-                        Colors.orange,
-                      )
-                    else if (!isExpired)
-                      _buildStatusChip('Active', Colors.blue),
-                  ],
-                ),
-                const SizedBox(height: 12),
-
-                // Description
-                Text(
-                  description,
-                  style: const TextStyle(fontSize: 14, color: Colors.black87),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 12),
-
-                // Plan Info
-                Row(
-                  children: [
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 16,
-                      color: Colors.grey.shade600,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$planName Plan',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade700,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Icon(
-                      Icons.calendar_today,
-                      size: 16,
-                      color: Colors.grey.shade600,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$planDays days',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade700,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-
-                // Dates
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 16,
-                          color: Colors.grey.shade600,
+                              ),
+                            );
+                          },
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Created: ${DateFormat('MMM dd, yyyy').format(createdDate)}',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey.shade600,
+                      if (imageUrls.length > 1)
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              '${imageUrls.length} Photos',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                    Text(
-                      '₹${amount.toStringAsFixed(0)}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF8B5CF6),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.event, size: 16, color: Colors.grey.shade600),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Expires: ${DateFormat('MMM dd, yyyy').format(expiryDate)}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isExpired ? Colors.red : Colors.grey.shade600,
-                        fontWeight: isExpired
-                            ? FontWeight.w600
-                            : FontWeight.normal,
+              ),
+
+            // Content Section
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Status Badges Row
+                  Row(
+                    children: [
+                      _buildStatusChip(
+                        isPaid ? 'Paid' : 'Payment Pending',
+                        isPaid ? Colors.green : Colors.orange,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      const SizedBox(width: 8),
+                      if (isExpired)
+                        _buildStatusChip('Expired', Colors.red)
+                      else if (daysRemaining <= 3 && daysRemaining > 0)
+                        _buildStatusChip(
+                          '$daysRemaining days left',
+                          Colors.orange,
+                        )
+                      else if (!isExpired)
+                        _buildStatusChip('Active', Colors.blue),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Description
+                  Text(
+                    description,
+                    style: const TextStyle(fontSize: 14, color: Colors.black87),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Plan Info
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.workspace_premium,
+                        size: 16,
+                        color: Colors.grey.shade600,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '$planName Plan',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey.shade700,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Icon(
+                        Icons.calendar_today,
+                        size: 16,
+                        color: Colors.grey.shade600,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '$planDays days',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+
+                  // Dates
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 16,
+                            color: Colors.grey.shade600,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Created: ${DateFormat('MMM dd, yyyy').format(createdDate)}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₹${amount.toStringAsFixed(0)}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF8B5CF6),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(Icons.event, size: 16, color: Colors.grey.shade600),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Expires: ${DateFormat('MMM dd, yyyy').format(expiryDate)}',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isExpired ? Colors.red : Colors.grey.shade600,
+                          fontWeight: isExpired
+                              ? FontWeight.w600
+                              : FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _buildStatusChip(String label, Color color) {
     return Container(
@@ -356,5 +398,18 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
         ),
       ),
     );
+  }
+
+  String _resolveImage(String path) {
+    if (path.isEmpty) return '';
+    if (path.startsWith('http')) return path;
+    String baseUrl = env.baseUrl.replaceAll('/api', '').replaceAll('api', '');
+    if (baseUrl.endsWith('/') && path.startsWith('/')) {
+      return baseUrl + path.substring(1);
+    }
+    if (!baseUrl.endsWith('/') && !path.startsWith('/')) {
+      return '$baseUrl/$path';
+    }
+    return baseUrl + path;
   }
 }

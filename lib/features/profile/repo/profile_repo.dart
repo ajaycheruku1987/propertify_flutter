@@ -175,7 +175,12 @@ class ProfileRepo {
     );
     final responseData = await response.getResponse();
     return responseData.fold((failure) => Left(failure), (right) {
-      final List<dynamic> data = right as List<dynamic>;
+      List<dynamic> data = [];
+      if (right is List) {
+        data = right;
+      } else if (right is Map<String, dynamic>) {
+        data = (right['banner_ads'] ?? right['data'] ?? right['items'] ?? []) as List<dynamic>;
+      }
       final bannerAds = data
           .map((item) => BannerAdModel.fromJson(item as Map<String, dynamic>))
           .toList();
@@ -188,7 +193,12 @@ class ProfileRepo {
     final response = await ftPyroApiRequest.get('/banner-ads/me');
     final responseData = await response.getResponse();
     return responseData.fold((failure) => Left(failure), (right) {
-      final List<dynamic> data = right as List<dynamic>;
+      List<dynamic> data = [];
+      if (right is List) {
+        data = right;
+      } else if (right is Map<String, dynamic>) {
+        data = (right['banner_ads'] ?? right['data'] ?? right['items'] ?? []) as List<dynamic>;
+      }
       final bannerAds = data
           .map((item) => BannerAdModel.fromJson(item as Map<String, dynamic>))
           .toList();

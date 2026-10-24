@@ -28,6 +28,8 @@ class BannerAdDetailView extends StatefulWidget {
 }
 
 class _BannerAdDetailViewState extends State<BannerAdDetailView> {
+  int _currentImageIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +44,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
   @override
   Widget build(BuildContext context) {
     final bannerAd = widget.bannerAd;
-    final imageUrl = _resolveImage(bannerAd.imageUrls);
+    final imageUrls = bannerAd.imageUrls ?? [];
     final l10n = AppLocalizations.of(context)!;
     final Map<String, dynamic> adJson = bannerAd.toJson();
 
@@ -61,7 +63,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
     final startDateStr = DateFormat('dd MMM yyyy').format(startDate);
     final endDateStr = DateFormat('dd MMM yyyy').format(endDate);
 
-    // Safely access dynamic fields not yet in Freezed model
+    // Safely access dynamic fields
     final String? adAddress = bannerAd.address ?? adJson['address'] as String?;
 
     return Scaffold(
@@ -114,27 +116,126 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Large Image
-                Hero(
-                  tag: bannerAd.id ?? 'banner',
-                  child: CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    height: 300,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      height: 300,
-                      width: double.infinity,
-                      color: Colors.grey.shade200,
-                      child: const Center(child: CircularProgressIndicator()),
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                      height: 300,
-                      width: double.infinity,
-                      color: Colors.grey.shade200,
-                      child: const Icon(Icons.broken_image,
-                          color: Colors.grey, size: 50),
-                    ),
+                // Large Image Section (Supports Single & Multiple Images)
+                SizedBox(
+                  height: 300,
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      if (imageUrls.length <= 1)
+                        Hero(
+                          tag: bannerAd.id ?? 'banner',
+                          child: CachedNetworkImage(
+                            imageUrl: _resolveSingleImage(
+                              imageUrls.isNotEmpty ? imageUrls.first : null,
+                            ),
+                            height: 300,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Container(
+                              height: 300,
+                              width: double.infinity,
+                              color: Colors.grey.shade200,
+                              child: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => Container(
+                              height: 300,
+                              width: double.infinity,
+                              color: Colors.grey.shade200,
+                              child: const Icon(
+                                Icons.broken_image,
+                                color: Colors.grey,
+                                size: 50,
+                              ),
+                            ),
+                          ),
+                        )
+                      else
+                        PageView.builder(
+                          itemCount: imageUrls.length,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _currentImageIndex = index;
+                            });
+                          },
+                          itemBuilder: (context, index) {
+                            return CachedNetworkImage(
+                              imageUrl: _resolveSingleImage(imageUrls[index]),
+                              height: 300,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Container(
+                                height: 300,
+                                width: double.infinity,
+                                color: Colors.grey.shade200,
+                                child: const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Container(
+                                height: 300,
+                                width: double.infinity,
+                                color: Colors.grey.shade200,
+                                child: const Icon(
+                                  Icons.broken_image,
+                                  color: Colors.grey,
+                                  size: 50,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+
+                      // Image counter badge & dots if multiple images
+                      if (imageUrls.length > 1) ...[
+                        Positioned(
+                          top: 12,
+                          right: 12,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              '${_currentImageIndex + 1}/${imageUrls.length}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 12,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: imageUrls.asMap().entries.map((entry) {
+                              return AnimatedContainer(
+                                duration: const Duration(milliseconds: 200),
+                                width: _currentImageIndex == entry.key ? 16.0 : 8.0,
+                                height: 8.0,
+                                margin: const EdgeInsets.symmetric(horizontal: 3.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: _currentImageIndex == entry.key
+                                      ? Colors.white
+                                      : Colors.white.withOpacity(0.5),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
 
@@ -246,7 +347,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
 
                       const SizedBox(height: 32),
 
-                      // Owner Details (Agent Info Style)
+                      // Owner Details
                       Text(
                         l10n.postedBy,
                         style: const TextStyle(
@@ -502,20 +603,19 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
     );
   }
 
-  String _resolveImage(List<String>? urls) {
-    final String? first = urls != null && urls.isNotEmpty ? urls.first : null;
-    if (first == null || first.isEmpty) {
+  String _resolveSingleImage(String? path) {
+    if (path == null || path.isEmpty) {
       return 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80';
     }
-    if (first.startsWith('http')) return first;
+    if (path.startsWith('http')) return path;
     String baseUrl = env.baseUrl.replaceAll('/api', '').replaceAll('api', '');
-    if (baseUrl.endsWith('/') && first.startsWith('/')) {
-      return baseUrl + first.substring(1);
+    if (baseUrl.endsWith('/') && path.startsWith('/')) {
+      return baseUrl + path.substring(1);
     }
-    if (!baseUrl.endsWith('/') && !first.startsWith('/')) {
-      return '$baseUrl/$first';
+    if (!baseUrl.endsWith('/') && !path.startsWith('/')) {
+      return '$baseUrl/$path';
     }
-    return baseUrl + first;
+    return baseUrl + path;
   }
 
   String _resolveAvatar(String path) {

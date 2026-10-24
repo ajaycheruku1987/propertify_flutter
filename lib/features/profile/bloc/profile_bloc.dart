@@ -453,7 +453,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         (bannerAds) {
           final activeAds = bannerAds
               .where(
-                (ad) => ad.isCurrentlyActive && (ad.approved ?? true),
+                (ad) => ad.isCurrentlyActive && ad.isPaid == true,
               )
               .toList();
           emit(

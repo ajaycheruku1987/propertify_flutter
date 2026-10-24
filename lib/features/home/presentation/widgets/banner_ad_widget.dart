@@ -11,14 +11,22 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../utils/env.dart';
 import '../../../../utils/string_extensions.dart';
 
-class BannerAdWidget extends StatelessWidget {
+class BannerAdWidget extends StatefulWidget {
   final BannerAdModel bannerAd;
 
   const BannerAdWidget({super.key, required this.bannerAd});
 
   @override
+  State<BannerAdWidget> createState() => _BannerAdWidgetState();
+}
+
+class _BannerAdWidgetState extends State<BannerAdWidget> {
+  int _currentImageIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    final imageUrl = _resolveImage(bannerAd.imageUrls);
+    final bannerAd = widget.bannerAd;
+    final imageUrls = bannerAd.imageUrls ?? [];
     final title = (bannerAd.description ?? 'Featured Property').capitalize();
 
     return InkWell(
@@ -30,21 +38,58 @@ class BannerAdWidget extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: imageUrl,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  color: Colors.grey.shade200,
-                  child: const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
+              // Image Section (Single Image or PageView for Multiple Images)
+              if (imageUrls.length <= 1)
+                CachedNetworkImage(
+                  imageUrl: _resolveSingleImage(
+                    imageUrls.isNotEmpty ? imageUrls.first : null,
                   ),
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey.shade200,
+                    child: const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.grey.shade200,
+                    child: const Icon(
+                      Icons.broken_image,
+                      color: Colors.grey,
+                      size: 50,
+                    ),
+                  ),
+                )
+              else
+                PageView.builder(
+                  itemCount: imageUrls.length,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentImageIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      imageUrl: _resolveSingleImage(imageUrls[index]),
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey.shade200,
+                        child: const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.grey.shade200,
+                        child: const Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                          size: 50,
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                errorWidget: (context, url, error) => Container(
-                  color: Colors.grey.shade200,
-                  child: const Icon(Icons.broken_image,
-                      color: Colors.grey, size: 50),
-                ),
-              ),
+
               // Gradient Overlay
               Container(
                 decoration: BoxDecoration(
@@ -57,31 +102,81 @@ class BannerAdWidget extends StatelessWidget {
                 ),
               ),
 
-              // Top Ads Badge
+              // Top Ads Badge & Image Counter
               Positioned(
                 top: 12,
                 left: 12,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text(
-                    'Top Ads',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                right: 12,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'Top Ads',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                    if (imageUrls.length > 1)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.6),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '${_currentImageIndex + 1}/${imageUrls.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
 
-              // Text Content
+              // Multiple Image Indicator Dots
+              if (imageUrls.length > 1)
+                Positioned(
+                  top: 48,
+                  left: 0,
+                  right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imageUrls.asMap().entries.map((entry) {
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        width: _currentImageIndex == entry.key ? 12.0 : 6.0,
+                        height: 6.0,
+                        margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          color: _currentImageIndex == entry.key
+                              ? Colors.white
+                              : Colors.white.withOpacity(0.5),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+
+              // Text Content & Contact Icons
               Positioned(
                 bottom: 16,
                 left: 16,
@@ -141,8 +236,10 @@ class BannerAdWidget extends StatelessWidget {
                               phone.replaceAll(RegExp(r'\D'), '');
                           final url = Uri.parse('https://wa.me/$cleanPhone');
                           if (await canLaunchUrl(url)) {
-                            await launchUrl(url,
-                                mode: LaunchMode.externalApplication);
+                            await launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            );
                           }
                         }
                       },
@@ -177,13 +274,18 @@ class BannerAdWidget extends StatelessWidget {
     );
   }
 
-  String _resolveImage(List<String>? urls) {
-    final String? first = urls != null && urls.isNotEmpty ? urls.first : null;
-    if (first == null || first.isEmpty) {
+  String _resolveSingleImage(String? url) {
+    if (url == null || url.isEmpty) {
       return 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80';
     }
-    return first.startsWith('http')
-        ? first
-        : '${env.baseUrl.replaceAll('api', '')}$first';
+    if (url.startsWith('http')) return url;
+    String baseUrl = env.baseUrl.replaceAll('/api', '').replaceAll('api', '');
+    if (baseUrl.endsWith('/') && url.startsWith('/')) {
+      return baseUrl + url.substring(1);
+    }
+    if (!baseUrl.endsWith('/') && !url.startsWith('/')) {
+      return '$baseUrl/$url';
+    }
+    return baseUrl + url;
   }
 }
