@@ -109,8 +109,7 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
         },
         (reels) {
           final int offset = event.skip ?? 0;
-          final int limit = event.limit ?? 10;
-          final bool hasMoreData = reels.length >= limit;
+          final bool hasMoreData = reels.isNotEmpty;
 
           final List<ReelResponseModel> updatedList = [
             if (offset > 0) ...state.reelsList,
@@ -121,7 +120,7 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
             _mergeState(
               isLoading: false,
               reelsList: updatedList,
-              currentOffset: offset + limit,
+              currentOffset: offset + reels.length,
               hasMoreData: hasMoreData,
               notifyStatus: NotifyStatus(message: 'Reels loaded successfully'),
             ),
