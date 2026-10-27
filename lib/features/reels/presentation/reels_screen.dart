@@ -990,12 +990,31 @@ class ReelViewState extends State<ReelView>
                       const SizedBox(height: 20),
                       _ActionButton(
                         icon: Icons.phone_outlined,
-                        label: '',
+                        label: widget.reel.callCount?.toString() ?? '0',
                         onTap: () {
-                          _showContactBottomSheet(
-                            context,
-                            widget.reel.owner?.phoneNumber,
-                          );
+                          final phone = widget.reel.owner?.phoneNumber;
+                          if (phone != null && phone.isNotEmpty) {
+                            _makePhoneCall(phone);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Phone number not available')),
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      _ActionButton(
+                        icon: FontAwesomeIcons.whatsapp,
+                        label: widget.reel.whatsappCount?.toString() ?? '0',
+                        onTap: () {
+                          final phone = widget.reel.owner?.phoneNumber;
+                          if (phone != null && phone.isNotEmpty) {
+                            _openWhatsApp(phone);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Phone number not available')),
+                            );
+                          }
                         },
                       ),
                       const SizedBox(height: 20),
@@ -1064,147 +1083,49 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
-  void _showContactBottomSheet(BuildContext context, String? phoneNumber) {
-    final l10n = AppLocalizations.of(context)!;
-    if (phoneNumber == null || phoneNumber.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.contactNumberNotAvailable)),
+  void _makePhoneCall(String phoneNumber) {
+    if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+      ContactTracker.trackReelContact(
+        reelId: widget.reel.id!,
+        interactionType: 'call',
       );
-      return;
     }
+    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+    launchUrl(launchUri);
+  }
 
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  l10n.contactOwner,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          SafetyDisclaimerHelper.showSafetyDisclaimer(
-                            context: context,
-                            actionType: 'Call',
-                            onContinue: () {
-                              if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
-                                ContactTracker.trackReelContact(
-                                  reelId: widget.reel.id!,
-                                  interactionType: 'call',
-                                );
-                              }
-                              final Uri launchUri = Uri(
-                                scheme: 'tel',
-                                path: phoneNumber,
-                              );
-                              launchUrl(launchUri);
-                            },
-                          );
-                        },
-                        icon: const Icon(Icons.phone, color: Colors.white),
-                        label: Text(l10n.call),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6C5CE7),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          SafetyDisclaimerHelper.showSafetyDisclaimer(
-                            context: context,
-                            actionType: 'WhatsApp',
-                            onContinue: () async {
-                              if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
-                                ContactTracker.trackReelContact(
-                                  reelId: widget.reel.id!,
-                                  interactionType: 'whatsapp',
-                                );
-                              }
-                              String cleanMobile = phoneNumber.replaceAll(
-                                RegExp(r'\D'),
-                                '',
-                              );
-                              var whatsappUrl =
-                                  "whatsapp://send?phone=$cleanMobile";
-                              var uri = Uri.parse(whatsappUrl);
+  Future<void> _openWhatsApp(String phoneNumber) async {
+    if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+      ContactTracker.trackReelContact(
+        reelId: widget.reel.id!,
+        interactionType: 'whatsapp',
+      );
+    }
+    final cleanMobile = phoneNumber.replaceAll(RegExp(r'\D'), '');
+    final whatsappUrl = "whatsapp://send?phone=$cleanMobile";
+    final uri = Uri.parse(whatsappUrl);
 
-                              try {
-                                if (await canLaunchUrl(uri)) {
-                                  await launchUrl(uri);
-                                } else {
-                                  // Fallback to web
-                                  final webUri = Uri.parse(
-                                    'https://wa.me/$cleanMobile',
-                                  );
-                                  if (!await launchUrl(
-                                    webUri,
-                                    mode: LaunchMode.externalApplication,
-                                  )) {
-                                    throw 'Could not launch WhatsApp';
-                                  }
-                                }
-                              } catch (e) {
-                                if (mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(l10n.couldNotOpenWhatsapp),
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                          );
-                        },
-                        icon: const FaIcon(
-                          FontAwesomeIcons.whatsapp,
-                          color: Colors.white,
-                        ),
-                        label: Text(l10n.whatsapp),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF25D366),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        final webUri = Uri.parse('https://wa.me/$cleanMobile');
+        if (!await launchUrl(webUri, mode: LaunchMode.externalApplication)) {
+          throw 'Could not launch WhatsApp';
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open WhatsApp')),
         );
-      },
-    );
+      }
+    }
   }
 }
 
 class _ActionButton extends StatelessWidget {
-  final IconData icon;
+  final dynamic icon;
   final String label;
   final Color? color;
   final VoidCallback? onTap;
@@ -1218,12 +1139,13 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: onTap,
       child: Column(
         children: [
-          Icon(icon, color: color ?? Colors.white, size: 28),
+          icon is IconData
+              ? Icon(icon as IconData, color: color ?? Colors.white, size: 28)
+              : FaIcon(icon as FaIconData, color: color ?? Colors.white, size: 28),
           if (label.isNotEmpty) ...[
             const SizedBox(height: 4),
             Text(
