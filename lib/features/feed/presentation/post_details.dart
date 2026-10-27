@@ -841,6 +841,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   currentUserProfile?.postsCount != null
                               ? currentUserProfile!.postsCount
                               : postDetails.owner?.postsCount,
+                          callCount: postDetails.callCount,
+                          whatsappCount: postDetails.whatsappCount,
                           onCallPressed: isOwner
                               ? null
                               : () {
@@ -982,20 +984,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                         .showAddButton,
                                   );
                                 },
-                              ),
-                              _buildInteractionButton(
-                                context: context,
-                                icon: FontAwesomeIcons.phone,
-                                label: '${postDetails.callCount ?? 0}',
-                                color: Colors.green.shade700,
-                                onTap: null,
-                              ),
-                              _buildInteractionButton(
-                                context: context,
-                                icon: FontAwesomeIcons.whatsapp,
-                                label: '${postDetails.whatsappCount ?? 0}',
-                                color: const Color(0xFF25D366),
-                                onTap: null,
                               ),
                               _buildInteractionButton(
                                 context: context,

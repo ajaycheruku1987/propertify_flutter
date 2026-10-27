@@ -22,6 +22,8 @@ class AgentInfo extends StatelessWidget {
   final String? userId;
   final String? memberSince;
   final int? itemsListed;
+  final int? callCount;
+  final int? whatsappCount;
   final VoidCallback? onCallPressed;
   final VoidCallback? onWhatsAppPressed;
 
@@ -34,6 +36,8 @@ class AgentInfo extends StatelessWidget {
     this.userId,
     this.memberSince,
     this.itemsListed,
+    this.callCount,
+    this.whatsappCount,
     this.onCallPressed,
     this.onWhatsAppPressed,
   });
@@ -238,23 +242,51 @@ class AgentInfo extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Action Buttons (Luxurious Style)
+                    // Action Buttons (Luxurious Style with Counts Below)
                     if (!isOwnProfile)
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           if (onCallPressed != null)
-                            _buildActionButton(
-                              icon: Icons.phone_in_talk_rounded,
-                              color: Theme.of(context).primaryColor,
-                              onTap: onCallPressed!,
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                _buildActionButton(
+                                  icon: Icons.phone_in_talk_rounded,
+                                  color: Theme.of(context).primaryColor,
+                                  onTap: onCallPressed!,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '${callCount ?? 0}',
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
                             ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                           if (onWhatsAppPressed != null)
-                            _buildActionButton(
-                              icon: FontAwesomeIcons.whatsapp,
-                              color: const Color(0xFF25D366),
-                              onTap: onWhatsAppPressed!,
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                _buildActionButton(
+                                  icon: FontAwesomeIcons.whatsapp,
+                                  color: const Color(0xFF25D366),
+                                  onTap: onWhatsAppPressed!,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '${whatsappCount ?? 0}',
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
                             ),
                         ],
                       ),
