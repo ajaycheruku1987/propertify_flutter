@@ -523,26 +523,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         ],
                       ),
                       const SizedBox(height: 12),
-                    ] else ...[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildContactButton(
-                            icon: Icons.phone_in_talk_rounded,
-                            label: 'Call',
-                            color: Theme.of(context).primaryColor,
-                            onTap: () => _makePhoneCall(profile.phoneNumber ?? ''),
-                          ),
-                          const SizedBox(width: 16),
-                          _buildContactButton(
-                            icon: FontAwesomeIcons.whatsapp,
-                            label: 'WhatsApp',
-                            color: const Color(0xFF25D366),
-                            onTap: () => _openWhatsApp(profile.phoneNumber ?? ''),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
                     ],
                     SocialLinksWidget(
                       userProfile: profile,
@@ -713,20 +693,65 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: post.imageUrls?.isNotEmpty ?? false
-                    ? CachedNetworkImage(
-                        imageUrl: post.imageUrls!.first,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(
-                          color: Colors.grey[300],
-                          child: const Center(
-                            child: CircularProgressIndicator(strokeWidth: 2),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    post.imageUrls?.isNotEmpty ?? false
+                        ? CachedNetworkImage(
+                            imageUrl: post.imageUrls!.first,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const LogoPlaceholder(),
+                          )
+                        : const LogoPlaceholder(),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, Colors.black.withOpacity(0.75)],
                           ),
                         ),
-                        errorWidget: (context, url, error) =>
-                            const LogoPlaceholder(),
-                      )
-                    : const LogoPlaceholder(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.phone, size: 12, color: Colors.greenAccent),
+                                const SizedBox(width: 2),
+                                Text(
+                                  '${post.callCount ?? 0}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const FaIcon(FontAwesomeIcons.whatsapp, size: 12, color: Color(0xFF25D366)),
+                                const SizedBox(width: 2),
+                                Text(
+                                  '${post.whatsappCount ?? 0}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -814,26 +839,53 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                       ),
                     ),
                   Positioned(
-                    bottom: 8,
-                    left: 8,
-                    right: 8,
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.visibility,
-                          size: 16,
-                          color: Colors.white,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Colors.black.withOpacity(0.75)],
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${reel.viewsCount ?? 0}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.visibility, size: 9, color: Colors.white),
+                              const SizedBox(width: 2),
+                              Text(
+                                '${reel.viewsCount ?? 0}',
+                                style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          Row(
+                            children: [
+                              const Icon(Icons.phone, size: 9, color: Colors.greenAccent),
+                              const SizedBox(width: 2),
+                              Text(
+                                '${reel.callCount ?? 0}',
+                                style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const FaIcon(FontAwesomeIcons.whatsapp, size: 9, color: Color(0xFF25D366)),
+                              const SizedBox(width: 2),
+                              Text(
+                                '${reel.whatsappCount ?? 0}',
+                                style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
