@@ -629,14 +629,16 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
   }
 
   Widget _buildStatusRow(
-    IconData icon,
+    dynamic icon,
     String label,
     String value, {
     Color? color,
   }) {
     return Row(
       children: [
-        Icon(icon, size: 20, color: color ?? Colors.black54),
+        icon is IconData
+            ? Icon(icon, size: 20, color: color ?? Colors.black54)
+            : FaIcon(icon as FaIconData, size: 20, color: color ?? Colors.black54),
         const SizedBox(width: 12),
         Text(
           label,

@@ -29,4 +29,18 @@ class ContactTracker {
       );
     } catch (_) {}
   }
+
+  /// Track a Call or WhatsApp interaction on a reel
+  static Future<void> trackReelContact({
+    required String reelId,
+    required String interactionType, // 'call' or 'whatsapp'
+  }) async {
+    if (reelId.isEmpty) return;
+    try {
+      final apiRequest = GetIt.instance<ApiRequest>();
+      await apiRequest.post(
+        '/reels/$reelId/increment-contact?interaction_type=$interactionType',
+      );
+    } catch (_) {}
+  }
 }

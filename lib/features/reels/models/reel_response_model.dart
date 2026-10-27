@@ -16,6 +16,8 @@ class ReelResponseModel {
   final int? likesCount;
   final int? commentsCount;
   final int? viewsCount;
+  final int? callCount;
+  final int? whatsappCount;
 
   bool get isCurrentlyPromoted {
     if (isPromoted != true) return false;
@@ -55,6 +57,8 @@ class ReelResponseModel {
     this.likesCount,
     this.commentsCount,
     this.viewsCount,
+    this.callCount,
+    this.whatsappCount,
   });
 
   factory ReelResponseModel.fromJson(Map<String, dynamic> json) {
@@ -78,6 +82,8 @@ class ReelResponseModel {
       likesCount: json['likes_count'],
       commentsCount: json['comments_count'],
       viewsCount: json['views_count'],
+      callCount: json['call_count'],
+      whatsappCount: json['whatsapp_count'],
     );
   }
 
@@ -99,6 +105,8 @@ class ReelResponseModel {
     int? likesCount,
     int? commentsCount,
     int? viewsCount,
+    int? callCount,
+    int? whatsappCount,
   }) {
     return ReelResponseModel(
       description: description ?? this.description,
@@ -118,6 +126,8 @@ class ReelResponseModel {
       likesCount: likesCount ?? this.likesCount,
       commentsCount: commentsCount ?? this.commentsCount,
       viewsCount: viewsCount ?? this.viewsCount,
+      callCount: callCount ?? this.callCount,
+      whatsappCount: whatsappCount ?? this.whatsappCount,
     );
   }
 
@@ -140,6 +150,8 @@ class ReelResponseModel {
       'likes_count': likesCount,
       'comments_count': commentsCount,
       'views_count': viewsCount,
+      'call_count': callCount,
+      'whatsapp_count': whatsappCount,
     };
   }
 }

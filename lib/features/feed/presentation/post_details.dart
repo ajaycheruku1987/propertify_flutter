@@ -985,7 +985,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               ),
                               _buildInteractionButton(
                                 context: context,
-                                icon: Icons.phone_in_talk,
+                                icon: FontAwesomeIcons.phone,
                                 label: '${postDetails.callCount ?? 0}',
                                 color: Colors.green.shade700,
                                 onTap: null,

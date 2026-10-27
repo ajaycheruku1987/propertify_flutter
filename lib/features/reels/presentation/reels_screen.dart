@@ -22,6 +22,7 @@ import '../../admin/bloc/admin_bloc.dart';
 import '../../../../utils/string_extensions.dart';
 import '../../../core/route_observer.dart';
 import 'package:propertify/utils/safety_disclaimer_helper.dart';
+import 'package:propertify/utils/contact_tracker.dart';
 
 class ReelsScreen extends StatefulWidget {
   static const String routeName = '/reels';
@@ -1099,6 +1100,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             context: context,
                             actionType: 'Call',
                             onContinue: () {
+                              if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+                                ContactTracker.trackReelContact(
+                                  reelId: widget.reel.id!,
+                                  interactionType: 'call',
+                                );
+                              }
                               final Uri launchUri = Uri(
                                 scheme: 'tel',
                                 path: phoneNumber,
@@ -1128,6 +1135,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             context: context,
                             actionType: 'WhatsApp',
                             onContinue: () async {
+                              if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+                                ContactTracker.trackReelContact(
+                                  reelId: widget.reel.id!,
+                                  interactionType: 'whatsapp',
+                                );
+                              }
                               String cleanMobile = phoneNumber.replaceAll(
                                 RegExp(r'\D'),
                                 '',
