@@ -182,20 +182,20 @@ class AgentInfo extends StatelessWidget {
                       child: ClipOval(
                         child: CachedNetworkImage(
                           imageUrl: _resolveImageUrl(agentImage),
-                          width: 60,
-                          height: 60,
+                          width: 50,
+                          height: 50,
                           fit: BoxFit.cover,
                           memCacheWidth: 180,
                           maxWidthDiskCache: 200,
                           fadeInDuration: const Duration(milliseconds: 300),
                           placeholder: (context, url) => Container(
-                            width: 60,
-                            height: 60,
+                            width: 50,
+                            height: 50,
                             color: Colors.grey[100],
                           ),
                           errorWidget: (context, url, error) => Container(
-                            width: 60,
-                            height: 60,
+                            width: 50,
+                            height: 50,
                             color: Colors.grey[200],
                             child: Icon(Icons.person,
                                 color: Colors.grey[400], size: 30),
@@ -218,17 +218,17 @@ class AgentInfo extends StatelessWidget {
                               letterSpacing: 1,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 5),
                           Text(
                             agentName.toTitleCase(),
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               color: Color(0xFF1A1A1A),
                               fontWeight: FontWeight.w800,
                               letterSpacing: -0.5,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 5),
                           Text(
                             memberSince != null && memberSince!.isNotEmpty
                                 ? 'Member since $memberSince'
