@@ -537,11 +537,25 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           builder: (context, reelsState) {
                             return BlocBuilder<ProfileBloc, ProfileState>(
                               builder: (context, profileState) {
-                                final bannerAdsCount = (profileState.bannerAds ?? [])
+                                final posts = homeState.otherUserPosts ?? [];
+                                final reels = reelsState.otherUserReels;
+                                final banners = (profileState.bannerAds ?? [])
                                     .where((ad) =>
                                         ad.userId == widget.userId ||
                                         ad.owner?.id == widget.userId)
-                                    .length;
+                                    .toList();
+
+                                int totalLeads = 0;
+                                for (var p in posts) {
+                                  totalLeads += (p.callCount ?? 0) + (p.whatsappCount ?? 0);
+                                }
+                                for (var r in reels) {
+                                  totalLeads += (r.callCount ?? 0) + (r.whatsappCount ?? 0);
+                                }
+                                for (var b in banners) {
+                                  totalLeads += (b.callCount ?? 0) + (b.whatsappCount ?? 0);
+                                }
+
                                 return Container(
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   decoration: BoxDecoration(
@@ -559,8 +573,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                       children: [
                                         _buildStatItem(
                                           label: 'Posts',
-                                          value:
-                                              '${homeState.otherUserPosts?.length ?? 0}',
+                                          value: '${posts.length}',
                                         ),
                                         VerticalDivider(
                                           color: Colors.grey.shade300,
@@ -570,8 +583,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                         ),
                                         _buildStatItem(
                                           label: 'Reels',
-                                          value:
-                                              '${reelsState.otherUserReels.length}',
+                                          value: '${reels.length}',
                                         ),
                                         VerticalDivider(
                                           color: Colors.grey.shade300,
@@ -580,8 +592,18 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                           endIndent: 4,
                                         ),
                                         _buildStatItem(
-                                          label: 'Banner Ads',
-                                          value: '$bannerAdsCount',
+                                          label: 'Banners',
+                                          value: '${banners.length}',
+                                        ),
+                                        VerticalDivider(
+                                          color: Colors.grey.shade300,
+                                          thickness: 1,
+                                          indent: 4,
+                                          endIndent: 4,
+                                        ),
+                                        _buildStatItem(
+                                          label: 'Leads',
+                                          value: '$totalLeads',
                                         ),
                                       ],
                                     ),
