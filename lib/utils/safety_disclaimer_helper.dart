@@ -9,138 +9,162 @@ class SafetyDisclaimerHelper {
     showDialog(
       context: context,
       builder: (dialogContext) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+        return _SafetyDisclaimerDialog(
+          actionType: actionType,
+          onContinue: onContinue,
+        );
+      },
+    );
+  }
+}
+
+class _SafetyDisclaimerDialog extends StatefulWidget {
+  final String actionType;
+  final VoidCallback onContinue;
+
+  const _SafetyDisclaimerDialog({
+    required this.actionType,
+    required this.onContinue,
+  });
+
+  @override
+  State<_SafetyDisclaimerDialog> createState() =>
+      _SafetyDisclaimerDialogState();
+}
+
+class _SafetyDisclaimerDialogState extends State<_SafetyDisclaimerDialog> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      title: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.amber.withOpacity(0.15),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.warning_amber_rounded,
+              color: Colors.orange,
+              size: 26,
+            ),
           ),
-          title: Row(
+          const SizedBox(width: 12),
+          const Expanded(
+            child: Text(
+              'Safety Disclaimer',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+        ],
+      ),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.amber.withOpacity(0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.warning_amber_rounded,
-                  color: Colors.orange,
-                  size: 26,
+              const Text(
+                'Please exercise caution when contacting unknown users, property owners, or advertisers through Propertify. Never transfer advance payments before personally visiting the property.',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.black87,
+                  height: 1.4,
                 ),
               ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'Safety Disclaimer',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+              const SizedBox(height: 10),
+              if (_isExpanded) ...[
+                _buildBulletPoint(
+                  title: 'Verify Before Paying:',
+                  description:
+                      'Never transfer advance payments, booking fees, deposits, or other money before personally visiting the property, verifying identity, and confirming terms.',
+                ),
+                const SizedBox(height: 10),
+                _buildBulletPoint(
+                  title: 'Verify Property Details:',
+                  description:
+                      'Independently verify ownership, documents, approvals, and pricing before making any commitment.',
+                ),
+                const SizedBox(height: 10),
+                _buildBulletPoint(
+                  title: 'Protect Personal Info:',
+                  description:
+                      'Never share OTPs, passwords, banking credentials, or sensitive documents with unknown persons.',
+                ),
+                const SizedBox(height: 10),
+                _buildBulletPoint(
+                  title: 'Beware of Fraud:',
+                  description:
+                      'Watch out for fake listings, impersonation, unrealistic offers, and urgent payment requests.',
+                ),
+                const SizedBox(height: 10),
+                _buildBulletPoint(
+                  title: 'Report Suspicious Activity:',
+                  description:
+                      'Report suspicious listings or transaction requests to Propertify immediately.',
+                ),
+                const SizedBox(height: 12),
+              ],
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Text(
+                    _isExpanded ? 'Show Less ▲' : 'Read More ▼',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Please exercise caution when contacting unknown users, property owners, brokers, or advertisers through Propertify.',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.black87,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _buildBulletPoint(
-                    title: 'Verify Before Paying:',
-                    description:
-                        'Never transfer advance payments, booking fees, deposits, or other money before personally visiting the property, verifying the other party\'s identity, and confirming the terms of the transaction.',
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint(
-                    title: 'Verify Property Details:',
-                    description:
-                        'Independently verify ownership, authorization to sell or rent, property documents, approvals, pricing, and other important details before making any commitment.',
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint(
-                    title: 'Protect Personal Information:',
-                    description:
-                        'Never share OTPs, passwords, banking credentials, or other sensitive information with unknown persons. Be cautious when sharing identity documents or personal details.',
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint(
-                    title: 'Beware of Fraud:',
-                    description:
-                        'Watch out for fake listings, misleading information, impersonation, unrealistic offers, and requests for urgent or unusual payments.',
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint(
-                    title: 'Report Suspicious Activity:',
-                    description:
-                        'If you encounter a suspicious listing, user, or transaction request, report it to Propertify immediately.',
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint(
-                    title: 'Platform Disclaimer:',
-                    description:
-                        'Propertify facilitates connections between users. Unless explicitly stated otherwise, Propertify does not independently guarantee the accuracy of listings, user identities, property ownership, legal documents, or transactions between users.',
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'By proceeding, you acknowledge these safety precautions and agree to exercise due diligence before contacting or transacting with another user.',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black54,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Stay alert. Verify first. Pay safely.',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                ],
-              ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.grey.shade700),
+          ),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).primaryColor,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: Text(
-                'Cancel',
-                style: TextStyle(color: Colors.grey.shade700),
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pop(dialogContext);
-                onContinue();
-              },
-              child: Text('Continue to $actionType'),
-            ),
-          ],
-        );
-      },
+          onPressed: () {
+            Navigator.pop(context);
+            widget.onContinue();
+          },
+          child: Text('Continue to ${widget.actionType}'),
+        ),
+      ],
     );
   }
 
-  static Widget _buildBulletPoint({
+  Widget _buildBulletPoint({
     required String title,
     required String description,
   }) {

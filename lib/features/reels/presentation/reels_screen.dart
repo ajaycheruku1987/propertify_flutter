@@ -1084,43 +1084,55 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   void _makePhoneCall(String phoneNumber) {
-    if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
-      ContactTracker.trackReelContact(
-        reelId: widget.reel.id!,
-        interactionType: 'call',
-      );
-    }
-    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
-    launchUrl(launchUri);
+    SafetyDisclaimerHelper.showSafetyDisclaimer(
+      context: context,
+      actionType: 'Call',
+      onContinue: () {
+        if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+          ContactTracker.trackReelContact(
+            reelId: widget.reel.id!,
+            interactionType: 'call',
+          );
+        }
+        final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+        launchUrl(launchUri);
+      },
+    );
   }
 
   Future<void> _openWhatsApp(String phoneNumber) async {
-    if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
-      ContactTracker.trackReelContact(
-        reelId: widget.reel.id!,
-        interactionType: 'whatsapp',
-      );
-    }
-    final cleanMobile = phoneNumber.replaceAll(RegExp(r'\D'), '');
-    final whatsappUrl = "whatsapp://send?phone=$cleanMobile";
-    final uri = Uri.parse(whatsappUrl);
-
-    try {
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri);
-      } else {
-        final webUri = Uri.parse('https://wa.me/$cleanMobile');
-        if (!await launchUrl(webUri, mode: LaunchMode.externalApplication)) {
-          throw 'Could not launch WhatsApp';
+    SafetyDisclaimerHelper.showSafetyDisclaimer(
+      context: context,
+      actionType: 'WhatsApp',
+      onContinue: () async {
+        if (widget.reel.id != null && widget.reel.id!.isNotEmpty) {
+          ContactTracker.trackReelContact(
+            reelId: widget.reel.id!,
+            interactionType: 'whatsapp',
+          );
         }
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not open WhatsApp')),
-        );
-      }
-    }
+        final cleanMobile = phoneNumber.replaceAll(RegExp(r'\D'), '');
+        final whatsappUrl = "whatsapp://send?phone=$cleanMobile";
+        final uri = Uri.parse(whatsappUrl);
+
+        try {
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri);
+          } else {
+            final webUri = Uri.parse('https://wa.me/$cleanMobile');
+            if (!await launchUrl(webUri, mode: LaunchMode.externalApplication)) {
+              throw 'Could not launch WhatsApp';
+            }
+          }
+        } catch (e) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Could not open WhatsApp')),
+            );
+          }
+        }
+      },
+    );
   }
 }
 

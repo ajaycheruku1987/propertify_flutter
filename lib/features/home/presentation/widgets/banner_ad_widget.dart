@@ -8,6 +8,7 @@ import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/utils/contact_tracker.dart';
+import 'package:propertify/utils/safety_disclaimer_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../utils/env.dart';
 import '../../../../utils/string_extensions.dart';
@@ -213,15 +214,21 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                           context.push(AuthScreen.routeName);
                           return;
                         }
-                        if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
-                          ContactTracker.trackBannerContact(
-                            bannerId: bannerAd.id!,
-                            interactionType: 'call',
-                          );
-                        }
                         final phone = bannerAd.owner?.phoneNumber;
                         if (phone != null && phone.isNotEmpty) {
-                          launchUrl(Uri.parse('tel:$phone'));
+                          SafetyDisclaimerHelper.showSafetyDisclaimer(
+                            context: context,
+                            actionType: 'Call',
+                            onContinue: () {
+                              if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
+                                ContactTracker.trackBannerContact(
+                                  bannerId: bannerAd.id!,
+                                  interactionType: 'call',
+                                );
+                              }
+                              launchUrl(Uri.parse('tel:$phone'));
+                            },
+                          );
                         }
                       },
                     ),
@@ -237,23 +244,29 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                           context.push(AuthScreen.routeName);
                           return;
                         }
-                        if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
-                          ContactTracker.trackBannerContact(
-                            bannerId: bannerAd.id!,
-                            interactionType: 'whatsapp',
-                          );
-                        }
                         final phone = bannerAd.owner?.phoneNumber;
                         if (phone != null && phone.isNotEmpty) {
-                          final cleanPhone =
-                              phone.replaceAll(RegExp(r'\D'), '');
-                          final url = Uri.parse('https://wa.me/$cleanPhone');
-                          if (await canLaunchUrl(url)) {
-                            await launchUrl(
-                              url,
-                              mode: LaunchMode.externalApplication,
-                            );
-                          }
+                          SafetyDisclaimerHelper.showSafetyDisclaimer(
+                            context: context,
+                            actionType: 'WhatsApp',
+                            onContinue: () async {
+                              if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
+                                ContactTracker.trackBannerContact(
+                                  bannerId: bannerAd.id!,
+                                  interactionType: 'whatsapp',
+                                );
+                              }
+                              final cleanPhone =
+                                  phone.replaceAll(RegExp(r'\D'), '');
+                              final url = Uri.parse('https://wa.me/$cleanPhone');
+                              if (await canLaunchUrl(url)) {
+                                await launchUrl(
+                                  url,
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              }
+                            },
+                          );
                         }
                       },
                     ),

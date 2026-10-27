@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
+import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
+import 'package:propertify/features/profile/presentation/my_banner_ads_screen.dart';
+import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
@@ -491,9 +494,36 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     ),
                     const SizedBox(height: 20),
 
-                    // Call & WhatsApp Buttons (Only if NOT own profile)
-                    if (!(widget.userId == serviceLocator<AppCacheService>().customerAccountId ||
-                          profile.id == serviceLocator<AppCacheService>().customerAccountId)) ...[
+                    // Owner Action Buttons OR Call & WhatsApp Buttons
+                    if (widget.userId == serviceLocator<AppCacheService>().customerAccountId ||
+                          profile.id == serviceLocator<AppCacheService>().customerAccountId) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildOwnerActionButton(
+                            icon: Icons.edit_outlined,
+                            label: 'Edit Profile',
+                            color: Colors.blue,
+                            onTap: () => context.push(EditProfileScreen.routeName),
+                          ),
+                          const SizedBox(width: 8),
+                          _buildOwnerActionButton(
+                            icon: Icons.campaign_outlined,
+                            label: 'My Banners',
+                            color: Colors.purple,
+                            onTap: () => context.push(MyBannerAdsScreen.routeName),
+                          ),
+                          const SizedBox(width: 8),
+                          _buildOwnerActionButton(
+                            icon: Icons.dashboard_outlined,
+                            label: 'Dashboard',
+                            color: Theme.of(context).primaryColor,
+                            onTap: () => context.push(MyDashboardScreen.routeName),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ] else ...[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -1196,6 +1226,31 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildOwnerActionButton({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onTap,
+      icon: Icon(icon, size: 15, color: Colors.white),
+      label: Text(
+        label,
+        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+      ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        elevation: 1,
       ),
     );
   }

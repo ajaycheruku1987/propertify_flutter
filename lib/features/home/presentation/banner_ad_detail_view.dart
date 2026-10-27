@@ -13,6 +13,7 @@ import 'package:propertify/features/profile/presentation/other_user_profile_scre
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
 import 'package:propertify/utils/contact_tracker.dart';
 import 'package:propertify/utils/env.dart';
+import 'package:propertify/utils/safety_disclaimer_helper.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:propertify/utils/string_extensions.dart';
@@ -703,17 +704,34 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
       return;
     }
 
-    if (widget.bannerAd.id != null && widget.bannerAd.id!.isNotEmpty) {
-      ContactTracker.trackBannerContact(
-        bannerId: widget.bannerAd.id!,
-        interactionType: isCall ? 'call' : 'whatsapp',
-      );
-    }
-
     if (isCall) {
-      _makePhoneCall(phoneNumber);
+      SafetyDisclaimerHelper.showSafetyDisclaimer(
+        context: context,
+        actionType: 'Call',
+        onContinue: () {
+          if (widget.bannerAd.id != null && widget.bannerAd.id!.isNotEmpty) {
+            ContactTracker.trackBannerContact(
+              bannerId: widget.bannerAd.id!,
+              interactionType: 'call',
+            );
+          }
+          _makePhoneCall(phoneNumber);
+        },
+      );
     } else {
-      _openWhatsApp(phoneNumber);
+      SafetyDisclaimerHelper.showSafetyDisclaimer(
+        context: context,
+        actionType: 'WhatsApp',
+        onContinue: () {
+          if (widget.bannerAd.id != null && widget.bannerAd.id!.isNotEmpty) {
+            ContactTracker.trackBannerContact(
+              bannerId: widget.bannerAd.id!,
+              interactionType: 'whatsapp',
+            );
+          }
+          _openWhatsApp(phoneNumber);
+        },
+      );
     }
   }
 
