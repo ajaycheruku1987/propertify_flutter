@@ -53,6 +53,8 @@ class FeedPostsResponseModel with _$FeedPostsResponseModel {
     @JsonKey(name: "likes_count") int? likesCount,
     @JsonKey(name: "comments_count") int? commentsCount,
     @JsonKey(name: "views_count") int? viewsCount,
+    @JsonKey(name: "call_count") int? callCount,
+    @JsonKey(name: "whatsapp_count") int? whatsappCount,
     @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
     @JsonKey(name: "area_unit", fromJson: _toString) String? areaUnit,
     @JsonKey(name: "facing", fromJson: _toString) String? facing,

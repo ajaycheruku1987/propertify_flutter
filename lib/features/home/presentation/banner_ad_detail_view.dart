@@ -11,6 +11,7 @@ import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:propertify/features/feed/presentation/widgets/full_screen_image_viewer.dart';
+import 'package:propertify/utils/contact_tracker.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -374,6 +375,23 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
                                 'End Date',
                                 endDateStr,
                               ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: Divider(),
+                              ),
+                              _buildStatusRow(
+                                Icons.phone_in_talk_outlined,
+                                'Calls Received',
+                                '${bannerAd.callCount ?? 0}',
+                                color: Colors.green.shade700,
+                              ),
+                              const SizedBox(height: 12),
+                              _buildStatusRow(
+                                FontAwesomeIcons.whatsapp,
+                                'WhatsApp Leads',
+                                '${bannerAd.whatsappCount ?? 0}',
+                                color: const Color(0xFF25D366),
+                              ),
                             ],
                           ),
                         ),
@@ -682,6 +700,14 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
       );
       return;
     }
+
+    if (widget.bannerAd.id != null && widget.bannerAd.id!.isNotEmpty) {
+      ContactTracker.trackBannerContact(
+        bannerId: widget.bannerAd.id!,
+        interactionType: isCall ? 'call' : 'whatsapp',
+      );
+    }
+
     if (isCall) {
       _makePhoneCall(phoneNumber);
     } else {

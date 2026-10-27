@@ -48,6 +48,10 @@ mixin _$BannerAdModel {
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: "address")
   String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: "call_count")
+  int? get callCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "whatsapp_count")
+  int? get whatsappCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +79,9 @@ abstract class $BannerAdModelCopyWith<$Res> {
       @JsonKey(name: "plan_name") String? planName,
       @JsonKey(name: "terms_accepted") bool? termsAccepted,
       @JsonKey(name: "user_id") String? userId,
-      @JsonKey(name: "address") String? address});
+      @JsonKey(name: "address") String? address,
+      @JsonKey(name: "call_count") int? callCount,
+      @JsonKey(name: "whatsapp_count") int? whatsappCount});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -107,6 +113,8 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
     Object? termsAccepted = freezed,
     Object? userId = freezed,
     Object? address = freezed,
+    Object? callCount = freezed,
+    Object? whatsappCount = freezed,
   }) {
     return _then(_value.copyWith(
       amount: freezed == amount
@@ -165,6 +173,14 @@ class _$BannerAdModelCopyWithImpl<$Res, $Val extends BannerAdModel>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      callCount: freezed == callCount
+          ? _value.callCount
+          : callCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      whatsappCount: freezed == whatsappCount
+          ? _value.whatsappCount
+          : whatsappCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -203,7 +219,9 @@ abstract class _$$BannerAdModelImplCopyWith<$Res>
       @JsonKey(name: "plan_name") String? planName,
       @JsonKey(name: "terms_accepted") bool? termsAccepted,
       @JsonKey(name: "user_id") String? userId,
-      @JsonKey(name: "address") String? address});
+      @JsonKey(name: "address") String? address,
+      @JsonKey(name: "call_count") int? callCount,
+      @JsonKey(name: "whatsapp_count") int? whatsappCount});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -234,6 +252,8 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
     Object? termsAccepted = freezed,
     Object? userId = freezed,
     Object? address = freezed,
+    Object? callCount = freezed,
+    Object? whatsappCount = freezed,
   }) {
     return _then(_$BannerAdModelImpl(
       amount: freezed == amount
@@ -292,6 +312,14 @@ class __$$BannerAdModelImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      callCount: freezed == callCount
+          ? _value.callCount
+          : callCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      whatsappCount: freezed == whatsappCount
+          ? _value.whatsappCount
+          : whatsappCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -313,7 +341,9 @@ class _$BannerAdModelImpl extends _BannerAdModel {
       @JsonKey(name: "plan_name") this.planName,
       @JsonKey(name: "terms_accepted") this.termsAccepted,
       @JsonKey(name: "user_id") this.userId,
-      @JsonKey(name: "address") this.address})
+      @JsonKey(name: "address") this.address,
+      @JsonKey(name: "call_count") this.callCount,
+      @JsonKey(name: "whatsapp_count") this.whatsappCount})
       : _imageUrls = imageUrls,
         super._();
 
@@ -370,10 +400,16 @@ class _$BannerAdModelImpl extends _BannerAdModel {
   @override
   @JsonKey(name: "address")
   final String? address;
+  @override
+  @JsonKey(name: "call_count")
+  final int? callCount;
+  @override
+  @JsonKey(name: "whatsapp_count")
+  final int? whatsappCount;
 
   @override
   String toString() {
-    return 'BannerAdModel(amount: $amount, approved: $approved, createdAt: $createdAt, description: $description, expiresAt: $expiresAt, id: $id, imageUrls: $imageUrls, isPaid: $isPaid, owner: $owner, planDays: $planDays, planName: $planName, termsAccepted: $termsAccepted, userId: $userId, address: $address)';
+    return 'BannerAdModel(amount: $amount, approved: $approved, createdAt: $createdAt, description: $description, expiresAt: $expiresAt, id: $id, imageUrls: $imageUrls, isPaid: $isPaid, owner: $owner, planDays: $planDays, planName: $planName, termsAccepted: $termsAccepted, userId: $userId, address: $address, callCount: $callCount, whatsappCount: $whatsappCount)';
   }
 
   @override
@@ -402,7 +438,11 @@ class _$BannerAdModelImpl extends _BannerAdModel {
             (identical(other.termsAccepted, termsAccepted) ||
                 other.termsAccepted == termsAccepted) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.callCount, callCount) ||
+                other.callCount == callCount) &&
+            (identical(other.whatsappCount, whatsappCount) ||
+                other.whatsappCount == whatsappCount));
   }
 
   @JsonKey(ignore: true)
@@ -422,7 +462,9 @@ class _$BannerAdModelImpl extends _BannerAdModel {
       planName,
       termsAccepted,
       userId,
-      address);
+      address,
+      callCount,
+      whatsappCount);
 
   @JsonKey(ignore: true)
   @override
@@ -440,20 +482,23 @@ class _$BannerAdModelImpl extends _BannerAdModel {
 
 abstract class _BannerAdModel extends BannerAdModel {
   const factory _BannerAdModel(
-      {@JsonKey(name: "amount") final double? amount,
-      @JsonKey(name: "approved") final bool? approved,
-      @JsonKey(name: "created_at") final String? createdAt,
-      @JsonKey(name: "description") final String? description,
-      @JsonKey(name: "expires_at") final String? expiresAt,
-      @JsonKey(name: "id") final String? id,
-      @JsonKey(name: "image_urls") final List<String>? imageUrls,
-      @JsonKey(name: "is_paid") final bool? isPaid,
-      @JsonKey(name: "owner") final Owner? owner,
-      @JsonKey(name: "plan_days") final int? planDays,
-      @JsonKey(name: "plan_name") final String? planName,
-      @JsonKey(name: "terms_accepted") final bool? termsAccepted,
-      @JsonKey(name: "user_id") final String? userId,
-      @JsonKey(name: "address") final String? address}) = _$BannerAdModelImpl;
+          {@JsonKey(name: "amount") final double? amount,
+          @JsonKey(name: "approved") final bool? approved,
+          @JsonKey(name: "created_at") final String? createdAt,
+          @JsonKey(name: "description") final String? description,
+          @JsonKey(name: "expires_at") final String? expiresAt,
+          @JsonKey(name: "id") final String? id,
+          @JsonKey(name: "image_urls") final List<String>? imageUrls,
+          @JsonKey(name: "is_paid") final bool? isPaid,
+          @JsonKey(name: "owner") final Owner? owner,
+          @JsonKey(name: "plan_days") final int? planDays,
+          @JsonKey(name: "plan_name") final String? planName,
+          @JsonKey(name: "terms_accepted") final bool? termsAccepted,
+          @JsonKey(name: "user_id") final String? userId,
+          @JsonKey(name: "address") final String? address,
+          @JsonKey(name: "call_count") final int? callCount,
+          @JsonKey(name: "whatsapp_count") final int? whatsappCount}) =
+      _$BannerAdModelImpl;
   const _BannerAdModel._() : super._();
 
   factory _BannerAdModel.fromJson(Map<String, dynamic> json) =
@@ -501,6 +546,12 @@ abstract class _BannerAdModel extends BannerAdModel {
   @override
   @JsonKey(name: "address")
   String? get address;
+  @override
+  @JsonKey(name: "call_count")
+  int? get callCount;
+  @override
+  @JsonKey(name: "whatsapp_count")
+  int? get whatsappCount;
   @override
   @JsonKey(ignore: true)
   _$$BannerAdModelImplCopyWith<_$BannerAdModelImpl> get copyWith =>

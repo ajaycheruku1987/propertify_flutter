@@ -7,6 +7,7 @@ import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
+import 'package:propertify/utils/contact_tracker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../utils/env.dart';
 import '../../../../utils/string_extensions.dart';
@@ -212,6 +213,12 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                           context.push(AuthScreen.routeName);
                           return;
                         }
+                        if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
+                          ContactTracker.trackBannerContact(
+                            bannerId: bannerAd.id!,
+                            interactionType: 'call',
+                          );
+                        }
                         final phone = bannerAd.owner?.phoneNumber;
                         if (phone != null && phone.isNotEmpty) {
                           launchUrl(Uri.parse('tel:$phone'));
@@ -229,6 +236,12 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                         if (!isLoggedIn) {
                           context.push(AuthScreen.routeName);
                           return;
+                        }
+                        if (bannerAd.id != null && bannerAd.id!.isNotEmpty) {
+                          ContactTracker.trackBannerContact(
+                            bannerId: bannerAd.id!,
+                            interactionType: 'whatsapp',
+                          );
                         }
                         final phone = bannerAd.owner?.phoneNumber;
                         if (phone != null && phone.isNotEmpty) {

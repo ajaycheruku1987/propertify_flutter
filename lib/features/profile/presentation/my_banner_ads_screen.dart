@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/features/home/presentation/banner_ad_detail_view.dart';
 import 'package:propertify/utils/env.dart';
 import '../bloc/profile_bloc.dart';
@@ -371,6 +372,47 @@ class _MyBannerAdsScreenState extends State<MyBannerAdsScreen> {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F4FF),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(Icons.phone_in_talk, size: 16, color: Colors.green),
+                            const SizedBox(width: 6),
+                            Text(
+                              '${bannerAd.callCount ?? 0} Calls',
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const FaIcon(FontAwesomeIcons.whatsapp, size: 16, color: Color(0xFF25D366)),
+                            const SizedBox(width: 6),
+                            Text(
+                              '${bannerAd.whatsappCount ?? 0} WhatsApp',
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

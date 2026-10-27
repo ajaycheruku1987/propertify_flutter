@@ -33,6 +33,8 @@ class BannerAdModel with _$BannerAdModel {
     @JsonKey(name: "terms_accepted") bool? termsAccepted,
     @JsonKey(name: "user_id") String? userId,
     @JsonKey(name: "address") String? address,
+    @JsonKey(name: "call_count") int? callCount,
+    @JsonKey(name: "whatsapp_count") int? whatsappCount,
   }) = _BannerAdModel;
 
   factory BannerAdModel.fromJson(Map<String, dynamic> json) =>

@@ -17,6 +17,7 @@ import 'package:propertify/features/feed/repo/feed_repo.dart';
 import 'package:propertify/core/notification_service.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/services/block_service.dart';
+import 'package:propertify/utils/contact_tracker.dart';
 import 'package:propertify/features/profile/presentation/other_user_profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
@@ -858,6 +859,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                       context: context,
                                       actionType: 'Call',
                                       onContinue: () {
+                                        if (postDetails.id != null &&
+                                            postDetails.id!.isNotEmpty) {
+                                          ContactTracker.trackPropertyContact(
+                                            propertyId: postDetails.id!,
+                                            interactionType: 'call',
+                                          );
+                                        }
                                         final Uri launchUri =
                                             Uri(scheme: 'tel', path: mobile);
                                         launchUrl(launchUri);
@@ -882,6 +890,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                       context: context,
                                       actionType: 'WhatsApp',
                                       onContinue: () async {
+                                        if (postDetails.id != null &&
+                                            postDetails.id!.isNotEmpty) {
+                                          ContactTracker.trackPropertyContact(
+                                            propertyId: postDetails.id!,
+                                            interactionType: 'whatsapp',
+                                          );
+                                        }
                                         String cleanMobile =
                                             mobile.replaceAll(RegExp(r'\D'), '');
                                         var whatsappUrl =
@@ -967,6 +982,20 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                         .showAddButton,
                                   );
                                 },
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: Icons.phone_in_talk,
+                                label: '${postDetails.callCount ?? 0}',
+                                color: Colors.green.shade700,
+                                onTap: null,
+                              ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.whatsapp,
+                                label: '${postDetails.whatsappCount ?? 0}',
+                                color: const Color(0xFF25D366),
+                                onTap: null,
                               ),
                               _buildInteractionButton(
                                 context: context,
