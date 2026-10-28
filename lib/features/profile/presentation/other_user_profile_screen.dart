@@ -475,33 +475,41 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     ),
                     */
 
-                    // User ID, Member Since, and State | Country Location
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        _buildInfoChip(
-                          icon: Icons.person_outline,
-                          label: profile.username ?? '',
-                        ),
-                        _buildInfoChip(
-                          icon: Icons.calendar_today_outlined,
-                          label: profile.memberSince != null
-                              ? 'Joined ${profile.memberSince}'
-                              : 'New Member',
-                        ),
-                        if ((profile.state != null && profile.state!.isNotEmpty) ||
-                            (profile.country != null && profile.country!.isNotEmpty))
+                    // User ID, Member Since, and City | State | Country Location (Only from User Profile)
+                    (() {
+                      final String? city = profile.city;
+                      final String? state = profile.state;
+                      final String? country = profile.country;
+
+                      final locationParts = <String>[
+                        if (city != null && city.trim().isNotEmpty) city.trim().toUpperCase(),
+                        if (state != null && state.trim().isNotEmpty) state.trim().toUpperCase(),
+                        if (country != null && country.trim().isNotEmpty) country.trim().toUpperCase(),
+                      ];
+
+                      return Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
                           _buildInfoChip(
-                            icon: Icons.location_on_outlined,
-                            label: [
-                              if (profile.state != null && profile.state!.isNotEmpty) profile.state!.toUpperCase(),
-                              if (profile.country != null && profile.country!.isNotEmpty) profile.country!.toUpperCase(),
-                            ].join(' | '),
+                            icon: Icons.person_outline,
+                            label: profile.username ?? '',
                           ),
-                      ],
-                    ),
+                          _buildInfoChip(
+                            icon: Icons.calendar_today_outlined,
+                            label: profile.memberSince != null
+                                ? 'Joined ${profile.memberSince}'
+                                : 'New Member',
+                          ),
+                          if (locationParts.isNotEmpty)
+                            _buildInfoChip(
+                              icon: Icons.location_on_outlined,
+                              label: locationParts.join(' | '),
+                            ),
+                        ],
+                      );
+                    }()),
                     const SizedBox(height: 20),
 
                     // Owner Action Buttons OR Call & WhatsApp Buttons
@@ -514,7 +522,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                             icon: Icons.edit_outlined,
                             label: 'Edit Profile',
                             color: Colors.blue,
-                            onTap: () => context.push(EditProfileScreen.routeName),
+                            onTap: () => context.push(EditProfileScreen.routeName, extra: profile),
                           ),
                           const SizedBox(width: 8),
                           _buildOwnerActionButton(

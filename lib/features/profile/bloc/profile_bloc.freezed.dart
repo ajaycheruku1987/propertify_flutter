@@ -20,8 +20,15 @@ mixin _$ProfileEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -58,8 +65,15 @@ mixin _$ProfileEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -94,8 +108,15 @@ mixin _$ProfileEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -251,8 +272,15 @@ class _$ResetImpl implements _Reset {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -292,8 +320,15 @@ class _$ResetImpl implements _Reset {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -331,8 +366,15 @@ class _$ResetImpl implements _Reset {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -490,8 +532,15 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -531,8 +580,15 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -570,8 +626,15 @@ class _$LoadProfileImpl implements _LoadProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -701,6 +764,7 @@ abstract class _$$UpdateProfileImplCopyWith<$Res> {
       String? lastName,
       String email,
       String phoneNumber,
+      String? city,
       String? state,
       String? country});
 }
@@ -721,6 +785,7 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? email = null,
     Object? phoneNumber = null,
+    Object? city = freezed,
     Object? state = freezed,
     Object? country = freezed,
   }) {
@@ -745,6 +810,10 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -766,6 +835,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
       this.lastName,
       required this.email,
       required this.phoneNumber,
+      this.city,
       this.state,
       this.country});
 
@@ -780,13 +850,15 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   @override
   final String phoneNumber;
   @override
+  final String? city;
+  @override
   final String? state;
   @override
   final String? country;
 
   @override
   String toString() {
-    return 'ProfileEvent.updateProfile(name: $name, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, state: $state, country: $country)';
+    return 'ProfileEvent.updateProfile(name: $name, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, city: $city, state: $state, country: $country)';
   }
 
   @override
@@ -802,13 +874,14 @@ class _$UpdateProfileImpl implements _UpdateProfile {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.country, country) || other.country == country));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, firstName, lastName, email,
-      phoneNumber, state, country);
+      phoneNumber, city, state, country);
 
   @JsonKey(ignore: true)
   @override
@@ -821,8 +894,15 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -855,7 +935,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(bool flag) isLoading,
   }) {
     return updateProfile(
-        name, firstName, lastName, email, phoneNumber, state, country);
+        name, firstName, lastName, email, phoneNumber, city, state, country);
   }
 
   @override
@@ -863,8 +943,15 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -895,7 +982,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(bool flag)? isLoading,
   }) {
     return updateProfile?.call(
-        name, firstName, lastName, email, phoneNumber, state, country);
+        name, firstName, lastName, email, phoneNumber, city, state, country);
   }
 
   @override
@@ -903,8 +990,15 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -937,7 +1031,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   }) {
     if (updateProfile != null) {
       return updateProfile(
-          name, firstName, lastName, email, phoneNumber, state, country);
+          name, firstName, lastName, email, phoneNumber, city, state, country);
     }
     return orElse();
   }
@@ -1026,6 +1120,7 @@ abstract class _UpdateProfile implements ProfileEvent {
       final String? lastName,
       required final String email,
       required final String phoneNumber,
+      final String? city,
       final String? state,
       final String? country}) = _$UpdateProfileImpl;
 
@@ -1034,6 +1129,7 @@ abstract class _UpdateProfile implements ProfileEvent {
   String? get lastName;
   String get email;
   String get phoneNumber;
+  String? get city;
   String? get state;
   String? get country;
   @JsonKey(ignore: true)
@@ -1166,8 +1262,15 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1208,8 +1311,15 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1248,8 +1358,15 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -1452,8 +1569,15 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1493,8 +1617,15 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1532,8 +1663,15 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -1735,8 +1873,15 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1776,8 +1921,15 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1815,8 +1967,15 @@ class _$ChangePasswordImpl implements _ChangePassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2018,8 +2177,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2059,8 +2225,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2098,8 +2271,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2315,8 +2495,15 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2356,8 +2543,15 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2395,8 +2589,15 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2600,8 +2801,15 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2641,8 +2849,15 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2680,8 +2895,15 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2846,8 +3068,15 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2887,8 +3116,15 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2926,8 +3162,15 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3113,8 +3356,15 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3154,8 +3404,15 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3193,8 +3450,15 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3406,8 +3670,15 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3447,8 +3718,15 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3486,8 +3764,15 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3655,8 +3940,15 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3696,8 +3988,15 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3735,8 +4034,15 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3894,8 +4200,15 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3935,8 +4248,15 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3974,8 +4294,15 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4191,8 +4518,15 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4232,8 +4566,15 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4271,8 +4612,15 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4469,8 +4817,15 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4510,8 +4865,15 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4549,8 +4911,15 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4740,8 +5109,15 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function() loadProfile,
-    required TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)
+    required TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4781,8 +5157,15 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? reset,
     TResult? Function()? loadProfile,
-    TResult? Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult? Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4820,8 +5203,15 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function()? loadProfile,
-    TResult Function(String name, String? firstName, String? lastName,
-            String email, String phoneNumber, String? state, String? country)?
+    TResult Function(
+            String name,
+            String? firstName,
+            String? lastName,
+            String email,
+            String phoneNumber,
+            String? city,
+            String? state,
+            String? country)?
         updateProfile,
     TResult Function(
             String? facebookUrl,

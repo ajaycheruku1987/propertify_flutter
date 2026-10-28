@@ -27,6 +27,7 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "role") String? role,
     @JsonKey(name: "member_since") String? memberSince,
     @JsonKey(name: "posts_count") int? postsCount,
+    @JsonKey(name: "city") String? city,
     @JsonKey(name: "state") String? state,
     @JsonKey(name: "country") String? country,
     @JsonKey(name: "facebook_url") String? facebookUrl,
@@ -37,6 +38,28 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "youtube_url") String? youtubeUrl,
   }) = _UserProfileModel;
 
-  factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$UserProfileModelFromJson(json);
+  factory UserProfileModel.fromJson(Map<String, dynamic> json) {
+    var model = _$UserProfileModelFromJson(json);
+    String? city = model.city;
+    String? state = model.state;
+    String? country = model.country;
+
+    if ((city == null || city.isEmpty) && json['location'] is String && (json['location'] as String).isNotEmpty) {
+      final parts = (json['location'] as String).split(',');
+      if (parts.isNotEmpty) city = parts[0].trim();
+      if (parts.length > 1) state = parts[1].trim();
+      if (parts.length > 2) country = parts[2].trim();
+    }
+
+    if ((city == null || city.isEmpty) && json['address'] is String && (json['address'] as String).isNotEmpty) {
+      final parts = (json['address'] as String).split(',');
+      if (parts.isNotEmpty && city == null) city = parts.last.trim();
+    }
+
+    return model.copyWith(
+      city: city,
+      state: state,
+      country: country,
+    );
+  }
 }

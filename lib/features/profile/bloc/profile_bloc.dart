@@ -66,8 +66,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           if (profile.id != null) cache.saveCustomerAccountId(profile.id!);
           if (profile.phoneNumber != null) cache.saveUserPhone(profile.phoneNumber!);
 
-          // Merge cached social links
+          // Merge cached social links & location
           final cachedSocials = cache.getSocialLinks();
+          final cachedLocation = cache.getUserLocation();
           final mergedProfile = profile.copyWith(
             facebookUrl: profile.facebookUrl ?? cachedSocials['facebook_url'],
             instagramUrl: profile.instagramUrl ?? cachedSocials['instagram_url'],
@@ -75,6 +76,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             websiteUrl: profile.websiteUrl ?? cachedSocials['website_url'],
             xUrl: profile.xUrl ?? cachedSocials['x_url'],
             youtubeUrl: profile.youtubeUrl ?? cachedSocials['youtube_url'],
+            city: (profile.city != null && profile.city!.isNotEmpty)
+                ? profile.city
+                : cachedLocation['city'],
+            state: (profile.state != null && profile.state!.isNotEmpty)
+                ? profile.state
+                : cachedLocation['state'],
+            country: (profile.country != null && profile.country!.isNotEmpty)
+                ? profile.country
+                : cachedLocation['country'],
           );
 
           emit(
@@ -111,6 +121,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final newLastName = event.lastName?.trim();
       final newEmail = event.email.trim();
       final newPhone = event.phoneNumber.trim();
+      final newCity = event.city?.trim();
       final newState = event.state?.trim();
       final newCountry = event.country?.trim();
 
@@ -119,6 +130,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final currentLastName = currentProfile?.lastName?.trim();
       final currentEmail = currentProfile?.email?.trim();
       final currentPhone = currentProfile?.phoneNumber?.trim();
+      final currentCity = currentProfile?.city?.trim();
       final currentState = currentProfile?.state?.trim();
       final currentCountry = currentProfile?.country?.trim();
 
@@ -130,6 +142,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           newLastName != currentLastName ? newLastName : null;
       final String? emailToSend = newEmail != currentEmail ? newEmail : null;
       final String? phoneToSend = newPhone != currentPhone ? newPhone : null;
+      final String? cityToSend = newCity != currentCity ? newCity : null;
       final String? stateToSend = newState != currentState ? newState : null;
       final String? countryToSend = newCountry != currentCountry ? newCountry : null;
 
@@ -138,6 +151,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           lastNameToSend == null &&
           emailToSend == null &&
           phoneToSend == null &&
+          cityToSend == null &&
           stateToSend == null &&
           countryToSend == null) {
         emit(
@@ -156,6 +170,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         lastName: lastNameToSend,
         email: emailToSend,
         phoneNumber: phoneToSend,
+        city: cityToSend,
         state: stateToSend,
         country: countryToSend,
       );
@@ -170,10 +185,30 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
         },
         (updatedProfile) {
+          final cache = serviceLocator<AppCacheService>();
+          cache.saveUserLocation(
+            city: (newCity != null && newCity.isNotEmpty) ? newCity : currentProfile?.city,
+            state: (newState != null && newState.isNotEmpty) ? newState : currentProfile?.state,
+            country: (newCountry != null && newCountry.isNotEmpty) ? newCountry : currentProfile?.country,
+          );
+
+          final cachedLocation = cache.getUserLocation();
+          final mergedProfile = updatedProfile.copyWith(
+            city: (updatedProfile.city != null && updatedProfile.city!.isNotEmpty)
+                ? updatedProfile.city
+                : cachedLocation['city'],
+            state: (updatedProfile.state != null && updatedProfile.state!.isNotEmpty)
+                ? updatedProfile.state
+                : cachedLocation['state'],
+            country: (updatedProfile.country != null && updatedProfile.country!.isNotEmpty)
+                ? updatedProfile.country
+                : cachedLocation['country'],
+          );
+
           emit(
             state.copyWith(
               isLoading: false,
-              userProfile: updatedProfile,
+              userProfile: mergedProfile,
               notifyStatus: NotifyStatus(
                 message: 'Profile updated successfully',
               ),

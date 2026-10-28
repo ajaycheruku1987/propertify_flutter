@@ -158,4 +158,29 @@ class AppCacheService {
       'youtube_url': sharedPreferences.getString('social_youtube'),
     };
   }
+
+  ///[User Location Cache]
+  Future<void> saveUserLocation({
+    String? city,
+    String? state,
+    String? country,
+  }) async {
+    if (city != null) {
+      await sharedPreferences.setString('user_city', city);
+    }
+    if (state != null) {
+      await sharedPreferences.setString('user_state', state);
+    }
+    if (country != null) {
+      await sharedPreferences.setString('user_country', country);
+    }
+  }
+
+  Map<String, String?> getUserLocation() {
+    return {
+      'city': sharedPreferences.getString('user_city'),
+      'state': sharedPreferences.getString('user_state'),
+      'country': sharedPreferences.getString('user_country'),
+    };
+  }
 }

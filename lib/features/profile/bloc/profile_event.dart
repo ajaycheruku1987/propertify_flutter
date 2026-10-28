@@ -11,6 +11,7 @@ class ProfileEvent with _$ProfileEvent {
     String? lastName,
     required String email,
     required String phoneNumber,
+    String? city,
     String? state,
     String? country,
   }) = _UpdateProfile;

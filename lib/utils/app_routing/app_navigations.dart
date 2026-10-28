@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/app.dart';
+import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 
 import 'package:propertify/features/calculator/presentation/conversion_calculator_screen.dart';
 import 'package:propertify/features/company/presentation/create_company_screen.dart';
@@ -141,7 +144,13 @@ final router = GoRouter(
     GoRoute(
       path: EditProfileScreen.routeName,
       builder: (context, state) {
-        final userProfile = state.extra as UserProfileModel;
+        final userProfile = (state.extra as UserProfileModel?) ??
+            context.read<ProfileBloc>().state.userProfile;
+        if (userProfile == null) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
         return EditProfileScreen(userProfile: userProfile);
       },
     ),

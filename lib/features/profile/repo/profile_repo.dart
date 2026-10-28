@@ -39,6 +39,7 @@ class ProfileRepo {
     String? websiteUrl,
     String? xUrl,
     String? youtubeUrl,
+    String? city,
     String? state,
     String? country,
   }) async {
@@ -55,6 +56,7 @@ class ProfileRepo {
     if (websiteUrl != null) updateData["website_url"] = websiteUrl;
     if (xUrl != null) updateData["x_url"] = xUrl;
     if (youtubeUrl != null) updateData["youtube_url"] = youtubeUrl;
+    if (city != null) updateData["city"] = city;
     if (state != null) updateData["state"] = state;
     if (country != null) updateData["country"] = country;
 

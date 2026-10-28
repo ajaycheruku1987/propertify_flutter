@@ -133,7 +133,7 @@ class AgentInfo extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            if (!isOwnProfile && userId != null && userId!.isNotEmpty) {
+            if (userId != null && userId!.isNotEmpty) {
               context.push(
                 OtherUserProfileScreen.routeName,
                 extra: userId,
@@ -378,46 +378,44 @@ class AgentInfo extends StatelessWidget {
                             },
                           ),
                         ),
-                        if (!isOwnProfile) ...[
-                          VerticalDivider(
-                            color: Colors.grey.shade200,
-                            thickness: 1,
-                            indent: 8,
-                            endIndent: 8,
-                          ),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                if (userId != null && userId!.isNotEmpty) {
-                                  context.push(
-                                    OtherUserProfileScreen.routeName,
-                                    extra: userId,
-                                  );
-                                }
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.account_circle_outlined,
-                                    color: Theme.of(context).primaryColor,
-                                    size: 24,
+                        VerticalDivider(
+                          color: Colors.grey.shade200,
+                          thickness: 1,
+                          indent: 8,
+                          endIndent: 8,
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              if (userId != null && userId!.isNotEmpty) {
+                                context.push(
+                                  OtherUserProfileScreen.routeName,
+                                  extra: userId,
+                                );
+                              }
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.account_circle_outlined,
+                                  color: Theme.of(context).primaryColor,
+                                  size: 24,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'PROFILE',
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.5,
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'PROFILE',
-                                    style: TextStyle(
-                                      fontSize: 9,
-                                      color: Colors.grey.shade500,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ],
                     ),
                   ),

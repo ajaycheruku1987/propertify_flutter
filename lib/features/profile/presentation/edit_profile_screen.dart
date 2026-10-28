@@ -22,6 +22,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
+  late TextEditingController _cityController;
   late TextEditingController _stateController;
   late TextEditingController _countryController;
   final _formKey = GlobalKey<FormState>();
@@ -37,6 +38,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _emailController = TextEditingController(text: widget.userProfile.email);
     _phoneController =
         TextEditingController(text: widget.userProfile.phoneNumber);
+    _cityController =
+        TextEditingController(text: widget.userProfile.city);
     _stateController =
         TextEditingController(text: widget.userProfile.state);
     _countryController =
@@ -50,6 +53,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _lastNameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
+    _cityController.dispose();
     _stateController.dispose();
     _countryController.dispose();
     super.dispose();
@@ -148,6 +152,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   },
                 ),
                 const SizedBox(height: 20),
+                TextFormField(
+                  controller: _cityController,
+                  decoration: const InputDecoration(
+                    labelText: 'City (e.g. Hyderabad)',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.location_city_outlined),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
@@ -198,6 +211,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   lastName: _lastNameController.text,
                                   email: _emailController.text,
                                   phoneNumber: _phoneController.text,
+                                  city: _cityController.text,
                                   state: _stateController.text,
                                   country: _countryController.text,
                                 ),
