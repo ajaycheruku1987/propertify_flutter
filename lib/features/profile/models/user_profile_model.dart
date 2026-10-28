@@ -27,6 +27,8 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "role") String? role,
     @JsonKey(name: "member_since") String? memberSince,
     @JsonKey(name: "posts_count") int? postsCount,
+    @JsonKey(name: "state") String? state,
+    @JsonKey(name: "country") String? country,
     @JsonKey(name: "facebook_url") String? facebookUrl,
     @JsonKey(name: "instagram_url") String? instagramUrl,
     @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,

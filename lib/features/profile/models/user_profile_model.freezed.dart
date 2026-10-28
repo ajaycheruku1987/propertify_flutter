@@ -40,6 +40,10 @@ mixin _$UserProfileModel {
   String? get memberSince => throw _privateConstructorUsedError;
   @JsonKey(name: "posts_count")
   int? get postsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "state")
+  String? get state => throw _privateConstructorUsedError;
+  @JsonKey(name: "country")
+  String? get country => throw _privateConstructorUsedError;
   @JsonKey(name: "facebook_url")
   String? get facebookUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "instagram_url")
@@ -76,6 +80,8 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
       @JsonKey(name: "facebook_url") String? facebookUrl,
       @JsonKey(name: "instagram_url") String? instagramUrl,
       @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
@@ -107,6 +113,8 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? state = freezed,
+    Object? country = freezed,
     Object? facebookUrl = freezed,
     Object? instagramUrl = freezed,
     Object? whatsappChannelUrl = freezed,
@@ -155,6 +163,14 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
       facebookUrl: freezed == facebookUrl
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
@@ -202,6 +218,8 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
       @JsonKey(name: "facebook_url") String? facebookUrl,
       @JsonKey(name: "instagram_url") String? instagramUrl,
       @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
@@ -231,6 +249,8 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? state = freezed,
+    Object? country = freezed,
     Object? facebookUrl = freezed,
     Object? instagramUrl = freezed,
     Object? whatsappChannelUrl = freezed,
@@ -279,6 +299,14 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
       facebookUrl: freezed == facebookUrl
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
@@ -321,6 +349,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "role") this.role,
       @JsonKey(name: "member_since") this.memberSince,
       @JsonKey(name: "posts_count") this.postsCount,
+      @JsonKey(name: "state") this.state,
+      @JsonKey(name: "country") this.country,
       @JsonKey(name: "facebook_url") this.facebookUrl,
       @JsonKey(name: "instagram_url") this.instagramUrl,
       @JsonKey(name: "whatsapp_channel_url") this.whatsappChannelUrl,
@@ -362,6 +392,12 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @JsonKey(name: "posts_count")
   final int? postsCount;
   @override
+  @JsonKey(name: "state")
+  final String? state;
+  @override
+  @JsonKey(name: "country")
+  final String? country;
+  @override
   @JsonKey(name: "facebook_url")
   final String? facebookUrl;
   @override
@@ -382,7 +418,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, state: $state, country: $country, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
   }
 
   @override
@@ -407,6 +443,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
                 other.memberSince == memberSince) &&
             (identical(other.postsCount, postsCount) ||
                 other.postsCount == postsCount) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.country, country) || other.country == country) &&
             (identical(other.facebookUrl, facebookUrl) ||
                 other.facebookUrl == facebookUrl) &&
             (identical(other.instagramUrl, instagramUrl) ||
@@ -434,6 +472,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       role,
       memberSince,
       postsCount,
+      state,
+      country,
       facebookUrl,
       instagramUrl,
       whatsappChannelUrl,
@@ -468,6 +508,8 @@ abstract class _UserProfileModel implements UserProfileModel {
       @JsonKey(name: "role") final String? role,
       @JsonKey(name: "member_since") final String? memberSince,
       @JsonKey(name: "posts_count") final int? postsCount,
+      @JsonKey(name: "state") final String? state,
+      @JsonKey(name: "country") final String? country,
       @JsonKey(name: "facebook_url") final String? facebookUrl,
       @JsonKey(name: "instagram_url") final String? instagramUrl,
       @JsonKey(name: "whatsapp_channel_url") final String? whatsappChannelUrl,
@@ -509,6 +551,12 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   @JsonKey(name: "posts_count")
   int? get postsCount;
+  @override
+  @JsonKey(name: "state")
+  String? get state;
+  @override
+  @JsonKey(name: "country")
+  String? get country;
   @override
   @JsonKey(name: "facebook_url")
   String? get facebookUrl;

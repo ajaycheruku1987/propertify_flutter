@@ -547,54 +547,59 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
 
   String _getOwnerName(dynamic currentUserProfile, dynamic otherUserProfile, bool isOwner) {
     if (!isOwner && otherUserProfile != null) {
-      final firstName = otherUserProfile.firstName?.trim() ?? '';
-      final lastName = otherUserProfile.lastName?.trim() ?? '';
+      final String firstName = (otherUserProfile.firstName?.toString() ?? '').trim();
+      final String lastName = (otherUserProfile.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         return '$firstName $lastName'.trim().toTitleCase();
       }
-      if (otherUserProfile.username != null && otherUserProfile.username!.isNotEmpty) {
-        return otherUserProfile.username!.toTitleCase();
+      final String username = (otherUserProfile.username?.toString() ?? '').trim();
+      if (username.isNotEmpty) {
+        return username.toTitleCase();
       }
     }
     if (!isOwner && widget.bannerAd.owner != null) {
       final owner = widget.bannerAd.owner!;
-      final firstName = owner.firstName?.trim() ?? '';
-      final lastName = owner.lastName?.trim() ?? '';
+      final String firstName = (owner.firstName?.toString() ?? '').trim();
+      final String lastName = (owner.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         return '$firstName $lastName'.trim().toTitleCase();
       }
-      if (owner.username != null && owner.username!.isNotEmpty) {
-        return owner.username!.toTitleCase();
+      final String username = (owner.username?.toString() ?? '').trim();
+      if (username.isNotEmpty) {
+        return username.toTitleCase();
       }
     }
     if (isOwner && currentUserProfile != null) {
-      final firstName = currentUserProfile.firstName?.trim() ?? '';
-      final lastName = currentUserProfile.lastName?.trim() ?? '';
+      final String firstName = (currentUserProfile.firstName?.toString() ?? '').trim();
+      final String lastName = (currentUserProfile.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         return '$firstName $lastName'.trim().toTitleCase();
       }
-      if (currentUserProfile.username != null && currentUserProfile.username!.isNotEmpty) {
-        return currentUserProfile.username!.toTitleCase();
+      final String username = (currentUserProfile.username?.toString() ?? '').trim();
+      if (username.isNotEmpty) {
+        return username.toTitleCase();
       }
     }
     final owner = widget.bannerAd.owner;
     if (owner != null) {
-      final firstName = owner.firstName?.trim() ?? '';
-      final lastName = owner.lastName?.trim() ?? '';
+      final String firstName = (owner.firstName?.toString() ?? '').trim();
+      final String lastName = (owner.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         return '$firstName $lastName'.trim().toTitleCase();
       }
-      if (owner.username != null && owner.username!.isNotEmpty) {
-        return owner.username!.toTitleCase();
+      final String username = (owner.username?.toString() ?? '').trim();
+      if (username.isNotEmpty) {
+        return username.toTitleCase();
       }
     }
     if (currentUserProfile != null) {
-      final firstName = currentUserProfile.firstName?.trim() ?? '';
-      final lastName = currentUserProfile.lastName?.trim() ?? '';
+      final String firstName = (currentUserProfile.firstName?.toString() ?? '').trim();
+      final String lastName = (currentUserProfile.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
         return '$firstName $lastName'.trim().toTitleCase();
       }
-      return (currentUserProfile.username ?? 'Propertify User').toTitleCase();
+      final String username = (currentUserProfile.username?.toString() ?? 'Propertify User').trim();
+      return username.toTitleCase();
     }
     return 'Propertify User';
   }

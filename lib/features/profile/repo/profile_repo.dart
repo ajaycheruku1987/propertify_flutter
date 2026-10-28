@@ -39,6 +39,8 @@ class ProfileRepo {
     String? websiteUrl,
     String? xUrl,
     String? youtubeUrl,
+    String? state,
+    String? country,
   }) async {
     final Map<String, dynamic> updateData = {};
 
@@ -53,6 +55,8 @@ class ProfileRepo {
     if (websiteUrl != null) updateData["website_url"] = websiteUrl;
     if (xUrl != null) updateData["x_url"] = xUrl;
     if (youtubeUrl != null) updateData["youtube_url"] = youtubeUrl;
+    if (state != null) updateData["state"] = state;
+    if (country != null) updateData["country"] = country;
 
     final response = await ftPyroApiRequest.put(
       '/profile',

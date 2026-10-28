@@ -475,21 +475,31 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     ),
                     */
 
-                    // User ID and Member Since
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    // User ID, Member Since, and State | Country Location
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 8,
+                      runSpacing: 8,
                       children: [
                         _buildInfoChip(
                           icon: Icons.person_outline,
                           label: profile.username ?? '',
                         ),
-                        const SizedBox(width: 8),
                         _buildInfoChip(
                           icon: Icons.calendar_today_outlined,
                           label: profile.memberSince != null
                               ? 'Joined ${profile.memberSince}'
                               : 'New Member',
                         ),
+                        if ((profile.state != null && profile.state!.isNotEmpty) ||
+                            (profile.country != null && profile.country!.isNotEmpty))
+                          _buildInfoChip(
+                            icon: Icons.location_on_outlined,
+                            label: [
+                              if (profile.state != null && profile.state!.isNotEmpty) profile.state!.toUpperCase(),
+                              if (profile.country != null && profile.country!.isNotEmpty) profile.country!.toUpperCase(),
+                            ].join(' | '),
+                          ),
                       ],
                     ),
                     const SizedBox(height: 20),

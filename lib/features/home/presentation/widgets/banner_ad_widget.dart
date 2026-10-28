@@ -207,6 +207,7 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                     // Call Button
                     _buildContactIcon(
                       icon: Icons.phone_outlined,
+                      count: bannerAd.callCount ?? 0,
                       onTap: () {
                         final isLoggedIn =
                             context.read<HomeBloc>().state.showAddButton;
@@ -237,6 +238,7 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
                     _buildContactIcon(
                       icon: FontAwesomeIcons.whatsapp,
                       isFontAwesome: true,
+                      count: bannerAd.whatsappCount ?? 0,
                       onTap: () async {
                         final isLoggedIn =
                             context.read<HomeBloc>().state.showAddButton;
@@ -283,19 +285,43 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
   Widget _buildContactIcon({
     required dynamic icon,
     bool isFontAwesome = false,
+    int? count,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
-          shape: BoxShape.circle,
-        ),
-        child: isFontAwesome
-            ? FaIcon(icon as FaIconData?, size: 16, color: const Color(0xFF25D366))
-            : Icon(icon as IconData?, size: 16, color: const Color(0xFF6C5CE7)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.9),
+              shape: BoxShape.circle,
+            ),
+            child: isFontAwesome
+                ? FaIcon(icon as FaIconData?, size: 16, color: const Color(0xFF25D366))
+                : Icon(icon as IconData?, size: 16, color: const Color(0xFF6C5CE7)),
+          ),
+          if (count != null) ...[
+            const SizedBox(height: 2),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                '$count',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

@@ -22,6 +22,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
+  late TextEditingController _stateController;
+  late TextEditingController _countryController;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -35,6 +37,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _emailController = TextEditingController(text: widget.userProfile.email);
     _phoneController =
         TextEditingController(text: widget.userProfile.phoneNumber);
+    _stateController =
+        TextEditingController(text: widget.userProfile.state);
+    _countryController =
+        TextEditingController(text: widget.userProfile.country);
   }
 
   @override
@@ -44,6 +50,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _lastNameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
+    _stateController.dispose();
+    _countryController.dispose();
     super.dispose();
   }
 
@@ -140,6 +148,32 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   },
                 ),
                 const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _stateController,
+                        decoration: const InputDecoration(
+                          labelText: 'State (e.g. Telangana)',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.map_outlined),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: TextFormField(
+                        controller: _countryController,
+                        decoration: const InputDecoration(
+                          labelText: 'Country (e.g. India)',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.public),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: _phoneController,
                   decoration: const InputDecoration(
@@ -148,8 +182,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     prefixIcon: Icon(Icons.phone),
                   ),
                   keyboardType: TextInputType.phone,
-                  enabled:
-                      false, // Usually phone number is not editable if it's the primary ID
+                  enabled: false,
                 ),
                 const SizedBox(height: 40),
                 BlocBuilder<ProfileBloc, ProfileState>(
@@ -165,6 +198,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   lastName: _lastNameController.text,
                                   email: _emailController.text,
                                   phoneNumber: _phoneController.text,
+                                  state: _stateController.text,
+                                  country: _countryController.text,
                                 ),
                               );
                         }
