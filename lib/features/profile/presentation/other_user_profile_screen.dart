@@ -8,6 +8,7 @@ import 'package:propertify/features/feed/presentation/widgets/full_screen_image_
 import 'package:propertify/features/profile/presentation/edit_profile_screen.dart';
 import 'package:propertify/features/profile/presentation/my_banner_ads_screen.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
+import 'package:propertify/features/profile/models/user_profile_model.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
@@ -504,7 +505,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           ),
                           if (locationParts.isNotEmpty)
                             _buildInfoChip(
-                              icon: Icons.location_on_outlined,
+                              icon: null,
                               label: locationParts.join(' | '),
                             ),
                         ],
@@ -520,23 +521,30 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         children: [
                           _buildOwnerActionButton(
                             icon: Icons.edit_outlined,
-                            label: 'Edit Profile',
+                            label: 'Edit',
                             color: Colors.blue,
                             onTap: () => context.push(EditProfileScreen.routeName, extra: profile),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 6),
                           _buildOwnerActionButton(
                             icon: Icons.campaign_outlined,
-                            label: 'My Banners',
+                            label: 'Banners',
                             color: Colors.purple,
                             onTap: () => context.push(MyBannerAdsScreen.routeName),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 6),
                           _buildOwnerActionButton(
                             icon: Icons.dashboard_outlined,
                             label: 'Dashboard',
                             color: Theme.of(context).primaryColor,
                             onTap: () => context.push(MyDashboardScreen.routeName),
+                          ),
+                          const SizedBox(width: 6),
+                          _buildOwnerActionButton(
+                            icon: Icons.share_rounded,
+                            label: 'Socials',
+                            color: Colors.teal,
+                            onTap: () => _showSocialLinksBottomSheet(context, profile),
                           ),
                         ],
                       ),
@@ -1297,7 +1305,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     }
   }
 
-  Widget _buildInfoChip({required IconData icon, required String label}) {
+  Widget _buildInfoChip({IconData? icon, required String label}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -1307,8 +1315,10 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 14, color: Colors.grey.shade600),
-          const SizedBox(width: 4),
+          if (icon != null) ...[
+            Icon(icon, size: 14, color: Colors.grey.shade600),
+            const SizedBox(width: 4),
+          ],
           Text(
             label,
             style: TextStyle(
@@ -1319,6 +1329,54 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
           ),
         ],
       ),
+    );
+  }
+
+  void _showSocialLinksBottomSheet(BuildContext context, UserProfileModel profile) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Manage Social Links',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  SocialLinksWidget(
+                    userProfile: profile,
+                    isOwner: true,
+                    initiallyExpanded: true,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

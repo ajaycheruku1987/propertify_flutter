@@ -25,11 +25,13 @@ class SocialPlatform {
 class SocialLinksWidget extends StatefulWidget {
   final UserProfileModel? userProfile;
   final bool isOwner;
+  final bool initiallyExpanded;
 
   const SocialLinksWidget({
     super.key,
     required this.userProfile,
     required this.isOwner,
+    this.initiallyExpanded = false,
   });
 
   @override
@@ -37,7 +39,13 @@ class SocialLinksWidget extends StatefulWidget {
 }
 
 class _SocialLinksWidgetState extends State<SocialLinksWidget> {
-  bool _isExpanded = false;
+  late bool _isExpanded;
+
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded = widget.initiallyExpanded;
+  }
 
   static const List<SocialPlatform> platforms = [
     SocialPlatform(
