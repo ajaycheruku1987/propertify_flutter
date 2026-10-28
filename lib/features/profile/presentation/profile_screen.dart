@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/core/logout.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
@@ -20,6 +22,7 @@ import 'package:propertify/features/profile/presentation/edit_profile_screen.dar
 import 'package:propertify/features/profile/presentation/my_banner_ads_screen.dart';
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
 import 'package:propertify/features/profile/presentation/deactivate_account_screen.dart';
+import 'package:propertify/features/admin/presentation/admin_dashboard_screen.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/utils/env.dart';
@@ -71,6 +74,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
             builder: (context, profileState) {
               if (profileState.isLoading && profileState.userProfile == null) {
                 return const Center(child: CircularProgressIndicator());
+              }
+
+              if (homeState.showAddButton) {
+                final userId = profileState.userProfile?.id ??
+                    serviceLocator<AppCacheService>().customerAccountId;
+                if (userId != null && userId.isNotEmpty) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    final homeBloc = context.read<HomeBloc>();
+                    if (homeBloc.state.otherUserPosts == null) {
+                      homeBloc.add(HomeEvent.loadOtherUserPosts(
+                        userId: userId,
+                        limit: 10,
+                        offset: 0,
+                      ));
+                    }
+                    final reelsBloc = context.read<ReelsBloc>();
+                    if (reelsBloc.state.otherUserReels.isEmpty) {
+                      reelsBloc.add(ReelsEvent.loadOtherUserReels(userId: userId));
+                    }
+                  });
+                }
               }
 
               if (!homeState.showAddButton) {
@@ -345,7 +369,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
 
-                    const Divider(),
+                    // Admin / Role Dashboard Menu Item
+                    if (homeState.showAddButton) ...[
+                      () {
+                        final role = profileState.userProfile?.role?.toLowerCase() ??
+                            serviceLocator<AppCacheService>()
+                                .getRole()
+                                ?.toLowerCase();
+
+                        if (role == 'admin' || role == 'seller' || role == 'marketing') {
+                          return Column(
+                            children: [
+                              if (role == 'admin')
+                                ProfileMenuItem(
+                                  icon: Icons.admin_panel_settings_outlined,
+                                  title: l10n.adminDashboard,
+                                  onTap: () {
+                                    context.push(AdminDashboardScreen.routeName);
+                                  },
+                                ),
+                              if (role == 'seller')
+                                ProfileMenuItem(
+                                  icon: Icons.dashboard_outlined,
+                                  title: l10n.homeLoansDashboard,
+                                  onTap: () {
+                                    context.push('${AdminDashboardScreen.routeName}?isSeller=true');
+                                  },
+                                ),
+                              if (role == 'marketing')
+                                ProfileMenuItem(
+                                  icon: Icons.campaign_outlined,
+                                  title: l10n.interiorDesignDashboard,
+                                  onTap: () {
+                                    context.push('${AdminDashboardScreen.routeName}?isMarketing=true');
+                                  },
+                                ),
+                            ],
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      }(),
+                    ],
+
+                    // const Divider(),
                     // Menu Items
                     // ProfileMenuItem(
                     //   icon: Icons.dashboard_outlined,

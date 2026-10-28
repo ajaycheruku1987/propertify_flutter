@@ -525,13 +525,13 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                             color: Colors.blue,
                             onTap: () => context.push(EditProfileScreen.routeName, extra: profile),
                           ),
-                          const SizedBox(width: 6),
-                          _buildOwnerActionButton(
-                            icon: Icons.campaign_outlined,
-                            label: 'Banners',
-                            color: Colors.purple,
-                            onTap: () => context.push(MyBannerAdsScreen.routeName),
-                          ),
+                          // const SizedBox(width: 6),
+                          // _buildOwnerActionButton(
+                          //   icon: Icons.campaign_outlined,
+                          //   label: 'Banners',
+                          //   color: Colors.purple,
+                          //   onTap: () => context.push(MyBannerAdsScreen.routeName),
+                          // ),
                           const SizedBox(width: 6),
                           _buildOwnerActionButton(
                             icon: Icons.dashboard_outlined,
