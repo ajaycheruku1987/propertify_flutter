@@ -288,15 +288,16 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
             ),
           ],
         ),
-        child: Row(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.add,
-              size: 16,
+              size: 18,
               color: Theme.of(context).primaryColor,
             ),
-            const SizedBox(width: 4),
+            const SizedBox(height: 2),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
               decoration: BoxDecoration(
