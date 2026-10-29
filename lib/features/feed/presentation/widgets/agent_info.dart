@@ -13,6 +13,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/utils/env.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/service_locator.dart';
+import '../../../../utils/common_widgets/user_avatar_widget.dart';
 
 class AgentInfo extends StatelessWidget {
   final String agentName;
@@ -173,34 +174,17 @@ class AgentInfo extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: 0.05),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
                         ],
                       ),
-                      child: ClipOval(
-                        child: CachedNetworkImage(
-                          imageUrl: _resolveImageUrl(agentImage),
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
-                          memCacheWidth: 180,
-                          maxWidthDiskCache: 200,
-                          fadeInDuration: const Duration(milliseconds: 300),
-                          placeholder: (context, url) => Container(
-                            width: 50,
-                            height: 50,
-                            color: Colors.grey[100],
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            width: 50,
-                            height: 50,
-                            color: Colors.grey[200],
-                            child: Icon(Icons.person,
-                                color: Colors.grey[400], size: 30),
-                          ),
-                        ),
+                      child: UserAvatarWidget(
+                        imageUrl: _resolveImageUrl(agentImage),
+                        name: agentName,
+                        size: 50,
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(width: 16),
