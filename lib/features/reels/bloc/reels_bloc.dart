@@ -545,7 +545,7 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     Emitter<ReelsState> emit,
   ) async {
     try {
-      emit(_mergeState(isLoadingOtherUserReels: true));
+      emit(_mergeState(isLoadingOtherUserReels: true, otherUserReels: []));
 
       final result = await _repo.getUserReels(userId: event.userId);
 

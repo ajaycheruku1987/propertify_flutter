@@ -135,7 +135,10 @@ class HomeBloc extends HydratedBloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoadingOtherUserPosts: true));
+      emit(state.copyWith(
+        isLoadingOtherUserPosts: true,
+        otherUserPosts: event.offset == 0 ? null : state.otherUserPosts,
+      ));
 
       final result = await _homeRepo.getUserPosts(
         userId: event.userId,
