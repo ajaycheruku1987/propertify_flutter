@@ -10,6 +10,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/core/app_theme.dart';
 import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:propertify/utils/extensions/price_format.dart';
 
 class PropertyCard extends StatefulWidget {
   final List<String> imageUrls;
@@ -380,7 +381,7 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
               if (widget.price != null)
                 Text(
-                  widget.price!,
+                  widget.price!.startsWith('₹') ? '₹${formatIndianCurrency(widget.price!.substring(1))}' : '₹${formatIndianCurrency(widget.price)}',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

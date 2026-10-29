@@ -9,6 +9,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/core/app_theme.dart';
 import 'package:propertify/utils/common_widgets/logo_placeholder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:propertify/utils/extensions/price_format.dart';
 
 /// Compact version of PropertyCard optimized for grid view
 class PropertyCardCompact extends StatelessWidget {
@@ -163,7 +164,7 @@ class PropertyCardCompact extends StatelessWidget {
                     if (price != null) ...[
                       const SizedBox(height: 4),
                       Text(
-                        price!,
+                        price!.startsWith('₹') ? '₹${formatIndianCurrency(price!.substring(1))}' : '₹${formatIndianCurrency(price)}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,

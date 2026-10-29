@@ -1,6 +1,7 @@
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/utils/extensions/price_format.dart';
 
 class PropertyInfo extends StatelessWidget {
   final String title;
@@ -95,7 +96,7 @@ class PropertyInfo extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '₹$price',
+                    '₹${formatIndianCurrency(price)}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
