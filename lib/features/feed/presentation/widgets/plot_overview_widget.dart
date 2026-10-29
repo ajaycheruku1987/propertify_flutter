@@ -117,78 +117,104 @@ class PlotOverviewWidget extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Grid of Plot Spec Tiles
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              // 1. Listing Type
-              if (listingTypeStr.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.sell_outlined,
-                  label: 'Listing Type',
-                  value: listingTypeStr.translate(context),
-                  valueColor: listingTypeStr.contains('Rent') ? Colors.orange : Colors.green.shade700,
-                ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = (constraints.maxWidth - 12) / 2;
+              return Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  // 1. Listing Type
+                  if (listingTypeStr.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.sell_outlined,
+                        label: 'Listing Type',
+                        value: listingTypeStr.translate(context),
+                        valueColor: listingTypeStr.contains('Rent') ? Colors.orange : Colors.green.shade700,
+                      ),
+                    ),
 
-              // 2. Plot Sub-Type
-              if (subCategoryStr.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.category_outlined,
-                  label: 'Plot Type',
-                  value: subCategoryStr.translate(context),
-                ),
+                  // 2. Plot Sub-Type
+                  if (subCategoryStr.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.category_outlined,
+                        label: 'Plot Type',
+                        value: subCategoryStr.translate(context),
+                      ),
+                    ),
 
-              // 3. Plot Area
-              if (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.square_foot_rounded,
-                  label: 'Plot Area',
-                  value: '${postDetails.plotArea} ${postDetails.areaUnit ?? "Sq.Yds"}',
-                  subtitle: ratePerUnitStr.isNotEmpty ? ratePerUnitStr : null,
-                ),
+                  // 3. Plot Area
+                  if (postDetails.plotArea != null && postDetails.plotArea!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.square_foot_rounded,
+                        label: 'Plot Area',
+                        value: '${postDetails.plotArea} ${postDetails.areaUnit ?? "Sq.Yds"}',
+                        subtitle: ratePerUnitStr.isNotEmpty ? ratePerUnitStr : null,
+                      ),
+                    ),
 
-              // 4. Facing
-              if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.explore_outlined,
-                  label: 'Plot Facing',
-                  value: postDetails.facing!,
-                ),
+                  // 4. Facing
+                  if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.explore_outlined,
+                        label: 'Plot Facing',
+                        value: postDetails.facing!,
+                      ),
+                    ),
 
-              // 5. Road Size
-              if (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.add_road_rounded,
-                  label: 'Road Width',
-                  value: postDetails.roadWidth!.toLowerCase().contains('ft')
-                      ? postDetails.roadWidth!
-                      : '${postDetails.roadWidth} Ft Road',
-                ),
+                  // 5. Road Size
+                  if (postDetails.roadWidth != null && postDetails.roadWidth!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.add_road_rounded,
+                        label: 'Road Width',
+                        value: postDetails.roadWidth!.toLowerCase().contains('ft')
+                            ? postDetails.roadWidth!
+                            : '${postDetails.roadWidth} Ft Road',
+                      ),
+                    ),
 
-              // 6. Approval Status
-              if (postDetails.approvalStatus != null &&
-                  postDetails.approvalStatus!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.verified_user_outlined,
-                  label: 'Approval Status',
-                  value: postDetails.approvalStatus!,
-                ),
+                  // 6. Approval Status
+                  if (postDetails.approvalStatus != null &&
+                      postDetails.approvalStatus!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.verified_user_outlined,
+                        label: 'Approval Status',
+                        value: postDetails.approvalStatus!,
+                      ),
+                    ),
 
-              // 7. Dimensions
-              if (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.straighten_rounded,
-                  label: 'Dimensions',
-                  value: postDetails.dimensions!,
-                ),
-            ],
+                  // 7. Dimensions
+                  if (postDetails.dimensions != null && postDetails.dimensions!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.straighten_rounded,
+                        label: 'Dimensions',
+                        value: postDetails.dimensions!,
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
 
           // Highlights / Badges
@@ -267,7 +293,6 @@ class PlotOverviewWidget extends StatelessWidget {
     Color? valueColor,
   }) {
     return Container(
-      width: (MediaQuery.of(context).size.width - 76) / 2,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
