@@ -194,19 +194,6 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       // Handle error
     }
   }
-      );
-    } catch (e) {
-      emit(
-        state.copyWith(
-          isLoading: false,
-          notifyStatus: NotifyStatus(
-            message: 'An error occurred: ${e.toString()}',
-            type: NotifyType.error,
-          ),
-        ),
-      );
-    }
-  }
 
   void _onIsLoading(_IsLoading event, Emitter<FeedState> emit) {
     emit(state.copyWith(isLoading: true));
