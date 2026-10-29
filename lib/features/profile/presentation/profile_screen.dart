@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import 'package:propertify/utils/common_widgets/user_avatar_widget.dart';
 import 'widgets/profile_menu_item.dart';
 import 'widgets/social_links_widget.dart';
 import 'package:propertify/features/profile/presentation/my_dashboard_screen.dart';
@@ -99,51 +100,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               if (!homeState.showAddButton) {
                 // Guest View
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.person_outline_rounded,
-                          size: 64,
-                          color: Colors.grey,
+                return Container(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 32,
+                        horizontal: 24,
+                      ),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).primaryColor.withValues(alpha: 0.8),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
                         ),
-                        const SizedBox(height: 16),
-                        Text(
-                          l10n.welcomeToPropertify,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.signInToSync,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        ElevatedButton(
-                          onPressed: () => context.go(AuthScreen.routeName),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32,
-                              vertical: 12,
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: const BoxDecoration(
+                              color: Colors.white24,
+                              shape: BoxShape.circle,
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                            child: const Icon(
+                              Icons.person_outline_rounded,
+                              size: 48,
+                              color: Colors.white,
                             ),
                           ),
-                          child: Text(l10n.getStarted),
-                        ),
-                      ],
+                          const SizedBox(height: 20),
+                          Text(
+                            l10n.welcomeToPropertify,
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            l10n.signInToSync,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.white70,
+                              height: 1.4,
+                            ),
+                          ),
+                          const SizedBox(height: 28),
+                          SizedBox(
+                            width: 180,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.go(AuthScreen.routeName);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: Theme.of(context).primaryColor,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: Text(
+                                l10n.getStarted,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -203,29 +250,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onTap: () => _showImagePicker(context),
                             child: Stack(
                               children: [
-                                ClipOval(
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        _resolveImageUrl(profile?.profilepic),
-                                    width: 110,
-                                    height: 110,
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) => Container(
-                                      width: 110,
-                                      height: 110,
-                                      color: Colors.grey[300],
-                                      child: const Center(
-                                          child: CircularProgressIndicator()),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
-                                      width: 110,
-                                      height: 110,
-                                      color: Colors.grey[300],
-                                      child: const Icon(Icons.person,
-                                          size: 55, color: Colors.grey),
-                                    ),
-                                  ),
+                                UserAvatarWidget(
+                                  imageUrl: _resolveImageUrl(profile?.profilepic),
+                                  name: profile != null ? ('${profile.firstName ?? ''} ${profile.lastName ?? ''}'.trim().isNotEmpty ? '${profile.firstName} ${profile.lastName}' : profile.username) : null,
+                                  size: 110,
+                                  fontSize: 44,
                                 ),
                                 Positioned(
                                   bottom: 0,

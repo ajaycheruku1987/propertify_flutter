@@ -60,6 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              context.read<HomeBloc>().add(const HomeEvent.setBottomNavIndex(0));
                               context.go(HomeScreen.routeName);
                             },
                             child: Container(

@@ -2,6 +2,7 @@ import 'package:propertify/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import '../../models/user_profile_model.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
+import '../../../../utils/common_widgets/user_avatar_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -34,20 +35,11 @@ class ProfileHeader extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.grey.shade300, width: 2),
                 ),
-                child: ClipOval(
-                  child: userProfile?.profilepic != null
-                      ? CachedNetworkImage(
-                          imageUrl: userProfile!.profilepic!,
-                          key: ValueKey(userProfile!.profilepic),
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(
-                            width: 120,
-                            height: 120,
-                            color: Colors.grey[100],
-                          ),
-                          errorWidget: (context, url, error) => _buildDefaultAvatar(),
-                        )
-                      : _buildDefaultAvatar(),
+                child: UserAvatarWidget(
+                  imageUrl: userProfile?.profilepic,
+                  name: _getDisplayName(),
+                  size: 120,
+                  fontSize: 48,
                 ),
               ),
             ),
@@ -58,7 +50,7 @@ class ProfileHeader extends StatelessWidget {
                 height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha: 0.5),
                 ),
                 child: const Center(
                   child: CircularProgressIndicator(
@@ -152,9 +144,5 @@ class ProfileHeader extends StatelessWidget {
       return (userProfile?.username ?? 'Propertify User').toTitleCase();
     }
     return fullName.toTitleCase();
-  }
-
-  Widget _buildDefaultAvatar() {
-    return const LogoPlaceholder(logoWidth: 40, logoHeight: 40);
   }
 }

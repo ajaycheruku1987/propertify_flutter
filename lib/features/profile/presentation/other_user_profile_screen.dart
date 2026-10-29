@@ -23,6 +23,7 @@ import '../../../../utils/custom_toast.dart';
 import '../../../../features/auth/presentation/auth_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:propertify/utils/common_widgets/user_avatar_widget.dart';
 import '../../company/bloc/company_bloc.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
 import 'package:propertify/features/home/presentation/widgets/banner_ad_widget.dart';
@@ -372,30 +373,11 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           );
                         }
                       },
-                      child: ClipOval(
-                        child: CachedNetworkImage(
-                          imageUrl: _resolveImageUrl(profile.profilepic),
-                          width: 120,
-                          height: 120,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(
-                            width: 120,
-                            height: 120,
-                            color: Colors.grey[300],
-                            child: const Center(
-                                child: CircularProgressIndicator()),
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            width: 120,
-                            height: 120,
-                            color: Colors.grey[300],
-                            child: Icon(
-                              Icons.person,
-                              size: 60,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                        ),
+                      child: UserAvatarWidget(
+                        imageUrl: _resolveImageUrl(profile.profilepic),
+                        name: '${profile.firstName ?? ''} ${profile.lastName ?? ''}'.trim().isNotEmpty ? '${profile.firstName} ${profile.lastName}' : profile.username,
+                        size: 120,
+                        fontSize: 48,
                       ),
                     ),
                     const SizedBox(height: 16),
