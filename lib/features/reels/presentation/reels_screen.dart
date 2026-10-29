@@ -10,6 +10,9 @@ import 'package:share_plus/share_plus.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
+import 'package:propertify/features/home/bloc/home_bloc.dart';
+import 'package:propertify/utils/custom_toast.dart';
+import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -426,12 +429,16 @@ class ReelViewState extends State<ReelView>
   bool _showMuteIcon = false;
   bool _isRouteActive = true;
   bool _isAppResumed = true;
+  late bool _isLiked;
+  late int _likesCount;
   late AnimationController _muteIconController;
   late Animation<double> _muteIconAnimation;
 
   @override
   void initState() {
     super.initState();
+    _isLiked = widget.reel.isLiked ?? false;
+    _likesCount = widget.reel.likesCount ?? 0;
     WidgetsBinding.instance.addObserver(this);
 
     // Initialize animation controller for mute icon
@@ -472,10 +479,15 @@ class ReelViewState extends State<ReelView>
   }
 
   @override
-  void didUpdateWidget(ReelView oldWidget) {
+  void didUpdateWidget(covariant ReelView oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isActive != widget.isActive) {
       _updatePlaybackState();
+    }
+    if (oldWidget.reel.isLiked != widget.reel.isLiked ||
+        oldWidget.reel.likesCount != widget.reel.likesCount) {
+      _isLiked = widget.reel.isLiked ?? false;
+      _likesCount = widget.reel.likesCount ?? 0;
     }
   }
 
@@ -951,15 +963,24 @@ class ReelViewState extends State<ReelView>
                         const SizedBox(height: 20),
                       ],
                       _ActionButton(
-                        icon: widget.reel.isLiked == true
+                        icon: _isLiked
                             ? Icons.thumb_up
                             : Icons.thumb_up_alt_outlined,
-                        label: widget.reel.likesCount?.toString() ?? '0',
-                        color: widget.reel.isLiked == true
-                            ? Colors.white
-                            : null,
+                        label: '$_likesCount',
+                        color: _isLiked ? Colors.white : null,
                         onTap: () {
+                          if (!context.read<HomeBloc>().state.showAddButton) {
+                            CustomToast.showErrorToast(
+                              msg: AppLocalizations.of(context)!.pleaseLoginToLikePosts,
+                            );
+                            context.push(AuthScreen.routeName);
+                            return;
+                          }
                           if (widget.reel.id != null) {
+                            setState(() {
+                              _isLiked = !_isLiked;
+                              _likesCount += _isLiked ? 1 : -1;
+                            });
                             context.read<ReelsBloc>().add(
                               ReelsEvent.toggleLikeReel(
                                 reelId: widget.reel.id!,
@@ -1022,25 +1043,30 @@ class ReelViewState extends State<ReelView>
                         icon: Icons.share_outlined,
                         label: '',
                         onTap: () {
-                          // Prepare share content
-                          final String reelDescription =
-                              (widget.reel.description ?? 'Check out this reel').translate(context);
-                          final String postedBy = () {
-                            final owner = widget.reel.owner;
-                            if (owner == null) return 'Propertify User';
-                            final firstName = owner.firstName?.trim() ?? '';
-                            final lastName = owner.lastName?.trim() ?? '';
-                            if (firstName.isNotEmpty || lastName.isNotEmpty) {
-                              return '$firstName $lastName'.trim();
-                            }
-                            return owner.username ?? 'Propertify User';
-                          }();
-                          final String videoUrl = widget.reel.videoUrl ?? '';
-                          final String location = (widget.reel.location ?? '').translate(context);
+                          try {
+                            // Prepare share content
+                            final String reelDescription =
+                                (widget.reel.description ?? 'Check out this reel').translate(context);
+                            final String postedBy = () {
+                              final owner = widget.reel.owner;
+                              if (owner == null) return 'Propertify User';
+                              final firstName = owner.firstName?.toString().trim() ?? '';
+                              final lastName = owner.lastName?.toString().trim() ?? '';
+                              final username = owner.username?.toString().trim() ?? '';
+                              if (firstName.isNotEmpty || lastName.isNotEmpty) {
+                                return '$firstName $lastName'.trim().toTitleCase();
+                              }
+                              if (username.isNotEmpty) {
+                                return username.toTitleCase();
+                              }
+                              return 'Propertify User';
+                            }();
+                            final String videoUrl = widget.reel.videoUrl ?? '';
+                            final String location = (widget.reel.location ?? '').translate(context);
 
-                          // Create formatted message
-                          final String shareMessage =
-                              '''
+                            // Create formatted message
+                            final String shareMessage =
+                                '''
 🎬 Reel on Propertify
 
 📝 Description:
@@ -1057,13 +1083,16 @@ Check it out on Propertify!
 📱 Download the app:
 Android: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
 iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
-                        '''
-                                  .trim();
+                          '''
+                                    .trim();
 
-                          Share.share(
-                            shareMessage,
-                            subject: 'Check out this reel',
-                          );
+                            Share.share(
+                              shareMessage,
+                              subject: 'Check out this reel',
+                            );
+                          } catch (e) {
+                            debugPrint('Error sharing reel: $e');
+                          }
                         },
                       ),
                     ],

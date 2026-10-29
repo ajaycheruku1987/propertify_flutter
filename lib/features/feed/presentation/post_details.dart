@@ -114,29 +114,27 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 
   void _handleShare(dynamic postDetails) {
     if (postDetails == null) return;
-    final l10n = AppLocalizations.of(context)!;
-
-    final String postTitle = ((postDetails.title as String? ?? 'Property')).capitalize().translate(context);
-    final String postDescription =
-        (postDetails.description as String? ?? 'Check out this property').translate(context);
-    String postedBy = 'Propertify User';
-    if (postDetails.owner != null) {
-      final owner = postDetails.owner!;
-      final firstName = owner.firstName?.trim() ?? '';
-      final lastName = owner.lastName?.trim() ?? '';
-      if (firstName.isNotEmpty || lastName.isNotEmpty) {
-        postedBy = '$firstName $lastName'.trim().toTitleCase();
-      } else {
-        postedBy = (owner.username ?? 'Propertify User').toTitleCase();
+    try {
+      final String postTitle = (postDetails.title?.toString() ?? 'Property').capitalize().translate(context);
+      final String postDescription =
+          (postDetails.description?.toString() ?? 'Check out this property').translate(context);
+      String postedBy = 'Propertify User';
+      if (postDetails.owner != null) {
+        final owner = postDetails.owner!;
+        final firstName = owner.firstName?.toString().trim() ?? '';
+        final lastName = owner.lastName?.toString().trim() ?? '';
+        final username = owner.username?.toString().trim() ?? '';
+        if (firstName.isNotEmpty || lastName.isNotEmpty) {
+          postedBy = '$firstName $lastName'.trim().toTitleCase();
+        } else if (username.isNotEmpty) {
+          postedBy = username.toTitleCase();
+        }
       }
-    }
-    final String imageUrl =
-        postDetails.imageUrls != null && postDetails.imageUrls!.isNotEmpty
-        ? postDetails.imageUrls!.first
-        : '';
+      final List<dynamic>? imgs = postDetails.imageUrls;
+      final String imageUrl = (imgs != null && imgs.isNotEmpty) ? imgs.first.toString() : '';
 
-    final String shareMessage =
-        '''
+      final String shareMessage =
+          '''
 🏠 $postTitle
 
 📝 Description:
@@ -151,10 +149,13 @@ Check it out on Propertify!
 📱 Download the app:
 Android: https://play.google.com/store/apps/details?id=com.placeofsalesrealestate
 iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
-              '''
-            .trim();
+                '''
+              .trim();
 
-    Share.share(shareMessage, subject: postTitle);
+      Share.share(shareMessage, subject: postTitle);
+    } catch (e) {
+      debugPrint('Error sharing post: $e');
+    }
   }
 
   Widget _buildInteractionButton({
@@ -993,6 +994,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                 color: Colors.grey.shade700,
                                 onTap: null,
                               ),
+                              _buildInteractionButton(
+                                context: context,
+                                icon: FontAwesomeIcons.shareNodes,
+                                label: 'Share',
+                                color: Colors.grey.shade700,
+                                onTap: () => _handleShare(postDetails),
+                              ),
                             ],
                           ),
                         ),
@@ -1121,12 +1129,27 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
-                const SizedBox(height: 12),
-                const Text(
-                  'Calculators',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(width: 40),
+                      const Text(
+                        'Calculators',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 12),
