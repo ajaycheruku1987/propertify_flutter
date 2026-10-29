@@ -369,7 +369,7 @@ class _PropertyCardState extends State<PropertyCard> {
             children: [
               Expanded(
                 child: Text(
-                  widget.title.capitalize().translate(context),
+                  widget.title.toTitleCase().translate(context),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(

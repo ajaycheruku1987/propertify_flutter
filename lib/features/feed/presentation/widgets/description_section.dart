@@ -16,10 +16,11 @@ class _DescriptionSectionState extends State<DescriptionSection> {
   bool _isExpanded = false;
 
   String get _cleanDescription {
-    if (widget.description.contains('__PROPS__')) {
-      return widget.description.split('__PROPS__').first.trim();
+    String desc = widget.description;
+    if (desc.contains('__PROPS__')) {
+      desc = desc.split('__PROPS__').first.trim();
     }
-    return widget.description;
+    return desc.capitalize();
   }
 
   @override
