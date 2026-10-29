@@ -114,96 +114,122 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Grid of Details
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              // 1. Listing Type
-              if (listingTypeStr.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.sell_outlined,
-                  label: 'Listing Type',
-                  value: listingTypeStr.translate(context),
-                  valueColor: listingTypeStr.contains('Rent') ? Colors.orange : Colors.green.shade700,
-                ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = (constraints.maxWidth - 12) / 2;
+              return Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  // 1. Listing Type
+                  if (listingTypeStr.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.sell_outlined,
+                        label: 'Listing Type',
+                        value: listingTypeStr.translate(context),
+                        valueColor: listingTypeStr.contains('Rent') ? Colors.orange : Colors.green.shade700,
+                      ),
+                    ),
 
-              // 2. Main Category
-              if (resolvedMainCat != null && resolvedMainCat.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.apartment_rounded,
-                  label: 'Category',
-                  value: resolvedMainCat.translate(context),
-                ),
+                  // 2. Main Category
+                  if (resolvedMainCat != null && resolvedMainCat.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.apartment_rounded,
+                        label: 'Category',
+                        value: resolvedMainCat.translate(context),
+                      ),
+                    ),
 
-              // 3. Property Sub-Type
-              if (subCategoryStr.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.home_work_outlined,
-                  label: 'Property Type',
-                  value: subCategoryStr.translate(context),
-                ),
+                  // 3. Property Sub-Type
+                  if (subCategoryStr.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.home_work_outlined,
+                        label: 'Property Type',
+                        value: subCategoryStr.translate(context),
+                      ),
+                    ),
 
-              // 4. Carpet Area / Area
-              if (hasCarpetArea)
-                (() {
-                  final hasCarp = postDetails.carpetArea != null &&
-                      postDetails.carpetArea!.isNotEmpty;
-                  final areaStr = hasCarp ? postDetails.carpetArea! : postDetails.plotArea!;
-                  final unitStr = hasCarp
-                      ? (postDetails.carpetAreaUnit ?? "Sq.Ft")
-                      : (postDetails.areaUnit ?? "Sq.Yds");
+                  // 4. Carpet Area / Area
+                  if (hasCarpetArea)
+                    (() {
+                      final hasCarp = postDetails.carpetArea != null &&
+                          postDetails.carpetArea!.isNotEmpty;
+                      final areaStr = hasCarp ? postDetails.carpetArea! : postDetails.plotArea!;
+                      final unitStr = hasCarp
+                          ? (postDetails.carpetAreaUnit ?? "Sq.Ft")
+                          : (postDetails.areaUnit ?? "Sq.Yds");
 
-                  String ratePerUnit = '';
-                  if (postDetails.price != null) {
-                    final double? areaNum = double.tryParse(
-                      areaStr.replaceAll(RegExp(r'[^0-9.]'), ''),
-                    );
-                    if (areaNum != null && areaNum > 0) {
-                      final double rate = postDetails.price! / areaNum;
-                      ratePerUnit = '₹${rate.toStringAsFixed(0)} / $unitStr';
-                    }
-                  }
-                  return _buildSpecTile(
-                    context,
-                    icon: Icons.square_foot_rounded,
-                    label: postDetails.mainCategory == 'Industrial' ? 'Area' : 'Carpet Area',
-                    value: '$areaStr $unitStr',
-                    subtitle: ratePerUnit.isNotEmpty ? ratePerUnit : null,
-                  );
-                })(),
+                      String ratePerUnit = '';
+                      if (postDetails.price != null) {
+                        final double? areaNum = double.tryParse(
+                          areaStr.replaceAll(RegExp(r'[^0-9.]'), ''),
+                        );
+                        if (areaNum != null && areaNum > 0) {
+                          final double rate = postDetails.price! / areaNum;
+                          ratePerUnit = '₹${rate.toStringAsFixed(0)} / $unitStr';
+                        }
+                      }
+                      return SizedBox(
+                        width: itemWidth,
+                        child: _buildSpecTile(
+                          context,
+                          icon: Icons.square_foot_rounded,
+                          label: postDetails.mainCategory == 'Industrial' ? 'Area' : 'Carpet Area',
+                          value: '$areaStr $unitStr',
+                          subtitle: ratePerUnit.isNotEmpty ? ratePerUnit : null,
+                        ),
+                      );
+                    })(),
 
-              // 5. Property Status
-              if (hasStatus)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.real_estate_agent_outlined,
-                  label: 'Property Status',
-                  value: postDetails.propertyStatus!,
-                ),
+                  // 5. Property Status
+                  if (hasStatus)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.real_estate_agent_outlined,
+                        label: 'Property Status',
+                        value: postDetails.propertyStatus!,
+                      ),
+                    ),
 
-              // 6. Security Deposit (Rent/Lease)
-              if (hasDeposit)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.account_balance_wallet_outlined,
-                  label: 'Security Deposit',
-                  value: postDetails.securityDeposit!.startsWith('₹')
-                      ? postDetails.securityDeposit!
-                      : '₹${postDetails.securityDeposit}',
-                ),
+                  // 6. Security Deposit (Rent/Lease)
+                  if (hasDeposit)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.account_balance_wallet_outlined,
+                        label: 'Security Deposit',
+                        value: postDetails.securityDeposit!.startsWith('₹')
+                            ? postDetails.securityDeposit!
+                            : '₹${postDetails.securityDeposit}',
+                      ),
+                    ),
 
-              // 7. Facing
-              if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
-                _buildSpecTile(
-                  context,
-                  icon: Icons.compass_calibration_rounded,
-                  label: 'Facing',
-                  value: postDetails.facing!,
-                ),
-            ],
+                  // 7. Facing
+                  if (postDetails.facing != null && postDetails.facing!.isNotEmpty)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _buildSpecTile(
+                        context,
+                        icon: Icons.compass_calibration_rounded,
+                        label: 'Facing',
+                        value: postDetails.facing!,
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
 
           // Feature Badges (Negotiable & Contact Preferences)
@@ -253,7 +279,6 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
     Color? valueColor,
   }) {
     return Container(
-      width: (MediaQuery.of(context).size.width - 76) / 2,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
