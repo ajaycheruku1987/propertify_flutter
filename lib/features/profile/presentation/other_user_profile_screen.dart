@@ -776,21 +776,31 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           children: [
                             Row(
                               children: [
-                                const Icon(Icons.phone, size: 12, color: Colors.greenAccent),
+                                const Icon(Icons.visibility, size: 9, color: Colors.white),
                                 const SizedBox(width: 2),
                                 Text(
-                                  '${post.callCount ?? 0}',
-                                  style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                                  '${post.viewsCount ?? 0}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                             Row(
                               children: [
-                                const FaIcon(FontAwesomeIcons.whatsapp, size: 12, color: Color(0xFF25D366)),
+                                const Icon(Icons.phone, size: 9, color: Colors.greenAccent),
+                                const SizedBox(width: 2),
+                                Text(
+                                  '${post.callCount ?? 0}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const FaIcon(FontAwesomeIcons.whatsapp, size: 9, color: Color(0xFF25D366)),
                                 const SizedBox(width: 2),
                                 Text(
                                   '${post.whatsappCount ?? 0}',
-                                  style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
