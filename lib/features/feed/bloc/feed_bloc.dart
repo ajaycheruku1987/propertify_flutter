@@ -133,51 +133,67 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
+        if (post?.id == event.propertyId) {
+          final bool isFavourited = post?.isFavourited ?? false;
+          return post?.copyWith(isFavourited: !isFavourited);
+        }
+        return post;
+      }
+
+      final updatedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+      final updatedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+      final updatedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+      final updatedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+      final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+      final updatedPostDetails = updatePost(state.postDetails);
+
+      // Optimistic update - update state instantly without setting isLoading: true
+      emit(
+        state.copyWith(
+          feedsList: updatedFeedsList,
+          favouritesList: updatedFavouritesList,
+          myPropertiesList: updatedMyPropertiesList,
+          similarProperties: updatedSimilarProperties,
+          similarPostsByCategory: updatedSimilarPostsByCategory,
+          postDetails: updatedPostDetails,
+        ),
+      );
 
       final Either<Failure, LikeFeedPostResponseModel> likeEither =
           await _feedRepo.toggleFavorite(propertyId: event.propertyId);
 
       likeEither.fold(
         (failure) {
+          // Revert optimistic update on failure
+          final revertedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final revertedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final revertedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final revertedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final revertedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
+          final revertedPostDetails = updatePost(state.postDetails);
+
           emit(
             state.copyWith(
-              isLoading: false,
+              feedsList: revertedFeedsList,
+              favouritesList: revertedFavouritesList,
+              myPropertiesList: revertedMyPropertiesList,
+              similarProperties: revertedSimilarProperties,
+              similarPostsByCategory: revertedSimilarPostsByCategory,
+              postDetails: revertedPostDetails,
               notifyStatus: NotifyStatus(message: failure.message),
             ),
           );
         },
         (likeResponse) {
-          FeedPostsResponseModel? updatePost(FeedPostsResponseModel? post) {
-            if (post?.id == event.propertyId) {
-              final bool isFavourited = post?.isFavourited ?? false;
-              return post?.copyWith(isFavourited: !isFavourited);
-            }
-            return post;
-          }
-
-          final updatedFeedsList = state.feedsList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
-          final updatedFavouritesList = state.favouritesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
-          final updatedMyPropertiesList = state.myPropertiesList.map(updatePost).whereType<FeedPostsResponseModel>().toList();
-          final updatedSimilarProperties = state.similarProperties.map(updatePost).whereType<FeedPostsResponseModel>().toList();
-          final updatedSimilarPostsByCategory = state.similarPostsByCategory.map(updatePost).whereType<FeedPostsResponseModel>().toList();
-          final updatedPostDetails = updatePost(state.postDetails);
-
-          emit(
-            state.copyWith(
-              isLoading: false,
-              feedsList: updatedFeedsList,
-              favouritesList: updatedFavouritesList,
-              myPropertiesList: updatedMyPropertiesList,
-              similarProperties: updatedSimilarProperties,
-              similarPostsByCategory: updatedSimilarPostsByCategory,
-              postDetails: updatedPostDetails,
-            ),
-          );
-
           // Record happy action for in-app review
           serviceLocator<ReviewService>().recordHappyAction();
         },
+      );
+    } catch (e) {
+      // Handle error
+    }
+  }
       );
     } catch (e) {
       emit(
