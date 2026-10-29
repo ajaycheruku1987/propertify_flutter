@@ -3,9 +3,13 @@ import 'package:intl/intl.dart';
 
 class StampDutyCalculatorWidget extends StatefulWidget {
   final double propertyPrice;
+  final String? propertyLocation;
 
-  const StampDutyCalculatorWidget({Key? key, required this.propertyPrice})
-      : super(key: key);
+  const StampDutyCalculatorWidget({
+    Key? key,
+    required this.propertyPrice,
+    this.propertyLocation,
+  }) : super(key: key);
 
   @override
   State<StampDutyCalculatorWidget> createState() =>
@@ -37,7 +41,27 @@ class _StampDutyCalculatorWidgetState extends State<StampDutyCalculatorWidget> {
   @override
   void initState() {
     super.initState();
+    _selectedState = _detectState(widget.propertyLocation);
     _updateRatesForState(_selectedState);
+  }
+
+  String _detectState(String? location) {
+    if (location == null || location.isEmpty) return 'Maharashtra';
+    final loc = location.toLowerCase();
+    if (loc.contains('mumbai') || loc.contains('pune') || loc.contains('maharashtra') || loc.contains('nagpur')) {
+      return 'Maharashtra';
+    } else if (loc.contains('bangalore') || loc.contains('bengaluru') || loc.contains('karnataka') || loc.contains('mysore')) {
+      return 'Karnataka';
+    } else if (loc.contains('delhi') || loc.contains('new delhi') || loc.contains('ncr')) {
+      return 'Delhi';
+    } else if (loc.contains('chennai') || loc.contains('tamil nadu') || loc.contains('madurai') || loc.contains('coimbatore') || loc.contains('mamandur') || loc.contains('tamilnadu')) {
+      return 'Tamil Nadu';
+    } else if (loc.contains('hyderabad') || loc.contains('telangana') || loc.contains('secunderabad')) {
+      return 'Telangana';
+    } else if (loc.contains('lucknow') || loc.contains('uttar pradesh') || loc.contains('noida') || loc.contains('kanpur')) {
+      return 'Uttar Pradesh';
+    }
+    return 'Maharashtra';
   }
 
   void _updateRatesForState(String state) {

@@ -765,6 +765,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             _showEmiCalculatorBottomSheet(
                               context,
                               (postDetails.price ?? 0).toDouble(),
+                              postDetails,
                             );
                           },
                         ),
@@ -1095,7 +1096,8 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     return false;
   }
 
-  void _showEmiCalculatorBottomSheet(BuildContext context, double propertyPrice) {
+  void _showEmiCalculatorBottomSheet(
+      BuildContext context, double propertyPrice, FeedPostsResponseModel postDetails) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -1131,7 +1133,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 if (propertyPrice > 0) ...[
                   EmiCalculatorWidget(propertyPrice: propertyPrice),
                   const SizedBox(height: 8),
-                  StampDutyCalculatorWidget(propertyPrice: propertyPrice),
+                  StampDutyCalculatorWidget(
+                    propertyPrice: propertyPrice,
+                    propertyLocation: _resolveLocation(
+                      postDetails.city,
+                      postDetails.address,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                 ],
                 const UnitConversionCalculatorWidget(),
