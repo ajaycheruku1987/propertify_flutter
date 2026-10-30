@@ -14,6 +14,12 @@ UserProfileModel userProfileModelFromJson(String str) =>
 String userProfileModelToJson(UserProfileModel data) =>
     json.encode(data.toJson());
 
+double? _toDouble(dynamic value) {
+  if (value is num) return value.toDouble();
+  if (value is String) return double.tryParse(value);
+  return null;
+}
+
 @freezed
 class UserProfileModel with _$UserProfileModel {
   const factory UserProfileModel({
@@ -27,6 +33,8 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "role") String? role,
     @JsonKey(name: "member_since") String? memberSince,
     @JsonKey(name: "posts_count") int? postsCount,
+    @JsonKey(name: "average_rating", fromJson: _toDouble) double? averageRating,
+    @JsonKey(name: "total_reviews") int? totalReviews,
     @JsonKey(name: "city") String? city,
     @JsonKey(name: "state") String? state,
     @JsonKey(name: "country") String? country,

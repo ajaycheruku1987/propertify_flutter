@@ -845,6 +845,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               : postDetails.owner?.postsCount,
                           callCount: postDetails.callCount,
                           whatsappCount: postDetails.whatsappCount,
+                          averageRating: isOwner
+                              ? currentUserProfile?.averageRating
+                              : postDetails.owner?.averageRating,
+                          totalReviews: isOwner
+                              ? currentUserProfile?.totalReviews
+                              : postDetails.owner?.totalReviews,
                           onCallPressed: isOwner
                               ? null
                               : () {

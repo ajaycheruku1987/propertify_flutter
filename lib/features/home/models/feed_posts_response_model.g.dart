@@ -125,6 +125,8 @@ _$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(
       profileImage: json['profilepic'] as String?,
       memberSince: json['member_since'] as String?,
       postsCount: (json['posts_count'] as num?)?.toInt(),
+      averageRating: _toDouble(json['average_rating']),
+      totalReviews: (json['total_reviews'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
@@ -139,4 +141,6 @@ Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
       'profilepic': instance.profileImage,
       'member_since': instance.memberSince,
       'posts_count': instance.postsCount,
+      'average_rating': instance.averageRating,
+      'total_reviews': instance.totalReviews,
     };

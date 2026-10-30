@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) {
-  return _UserProfileModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserProfileModel {
   @JsonKey(name: "id")
@@ -40,6 +36,10 @@ mixin _$UserProfileModel {
   String? get memberSince => throw _privateConstructorUsedError;
   @JsonKey(name: "posts_count")
   int? get postsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  double? get averageRating => throw _privateConstructorUsedError;
+  @JsonKey(name: "total_reviews")
+  int? get totalReviews => throw _privateConstructorUsedError;
   @JsonKey(name: "city")
   String? get city => throw _privateConstructorUsedError;
   @JsonKey(name: "state")
@@ -59,7 +59,6 @@ mixin _$UserProfileModel {
   @JsonKey(name: "youtube_url")
   String? get youtubeUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserProfileModelCopyWith<UserProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -82,6 +81,9 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      double? averageRating,
+      @JsonKey(name: "total_reviews") int? totalReviews,
       @JsonKey(name: "city") String? city,
       @JsonKey(name: "state") String? state,
       @JsonKey(name: "country") String? country,
@@ -116,6 +118,8 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? averageRating = freezed,
+    Object? totalReviews = freezed,
     Object? city = freezed,
     Object? state = freezed,
     Object? country = freezed,
@@ -166,6 +170,14 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
       postsCount: freezed == postsCount
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalReviews: freezed == totalReviews
+          ? _value.totalReviews
+          : totalReviews // ignore: cast_nullable_to_non_nullable
               as int?,
       city: freezed == city
           ? _value.city
@@ -226,6 +238,9 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      double? averageRating,
+      @JsonKey(name: "total_reviews") int? totalReviews,
       @JsonKey(name: "city") String? city,
       @JsonKey(name: "state") String? state,
       @JsonKey(name: "country") String? country,
@@ -258,6 +273,8 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? role = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? averageRating = freezed,
+    Object? totalReviews = freezed,
     Object? city = freezed,
     Object? state = freezed,
     Object? country = freezed,
@@ -309,6 +326,14 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalReviews: freezed == totalReviews
+          ? _value.totalReviews
+          : totalReviews // ignore: cast_nullable_to_non_nullable
+              as int?,
       city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -350,7 +375,7 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UserProfileModelImpl implements _UserProfileModel {
   const _$UserProfileModelImpl(
       {@JsonKey(name: "id") this.id,
@@ -363,6 +388,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "role") this.role,
       @JsonKey(name: "member_since") this.memberSince,
       @JsonKey(name: "posts_count") this.postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble) this.averageRating,
+      @JsonKey(name: "total_reviews") this.totalReviews,
       @JsonKey(name: "city") this.city,
       @JsonKey(name: "state") this.state,
       @JsonKey(name: "country") this.country,
@@ -372,9 +399,6 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "website_url") this.websiteUrl,
       @JsonKey(name: "x_url") this.xUrl,
       @JsonKey(name: "youtube_url") this.youtubeUrl});
-
-  factory _$UserProfileModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserProfileModelImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -407,6 +431,12 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @JsonKey(name: "posts_count")
   final int? postsCount;
   @override
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  final double? averageRating;
+  @override
+  @JsonKey(name: "total_reviews")
+  final int? totalReviews;
+  @override
   @JsonKey(name: "city")
   final String? city;
   @override
@@ -436,7 +466,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, city: $city, state: $state, country: $country, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, averageRating: $averageRating, totalReviews: $totalReviews, city: $city, state: $state, country: $country, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
   }
 
   @override
@@ -461,6 +491,10 @@ class _$UserProfileModelImpl implements _UserProfileModel {
                 other.memberSince == memberSince) &&
             (identical(other.postsCount, postsCount) ||
                 other.postsCount == postsCount) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
+            (identical(other.totalReviews, totalReviews) ||
+                other.totalReviews == totalReviews) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.country, country) || other.country == country) &&
@@ -477,7 +511,6 @@ class _$UserProfileModelImpl implements _UserProfileModel {
                 other.youtubeUrl == youtubeUrl));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -491,6 +524,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
         role,
         memberSince,
         postsCount,
+        averageRating,
+        totalReviews,
         city,
         state,
         country,
@@ -508,13 +543,6 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   _$$UserProfileModelImplCopyWith<_$UserProfileModelImpl> get copyWith =>
       __$$UserProfileModelImplCopyWithImpl<_$UserProfileModelImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserProfileModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UserProfileModel implements UserProfileModel {
@@ -529,6 +557,9 @@ abstract class _UserProfileModel implements UserProfileModel {
       @JsonKey(name: "role") final String? role,
       @JsonKey(name: "member_since") final String? memberSince,
       @JsonKey(name: "posts_count") final int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      final double? averageRating,
+      @JsonKey(name: "total_reviews") final int? totalReviews,
       @JsonKey(name: "city") final String? city,
       @JsonKey(name: "state") final String? state,
       @JsonKey(name: "country") final String? country,
@@ -539,9 +570,6 @@ abstract class _UserProfileModel implements UserProfileModel {
       @JsonKey(name: "x_url") final String? xUrl,
       @JsonKey(name: "youtube_url")
       final String? youtubeUrl}) = _$UserProfileModelImpl;
-
-  factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
-      _$UserProfileModelImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
@@ -573,6 +601,12 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   @JsonKey(name: "posts_count")
   int? get postsCount;
+  @override
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  double? get averageRating;
+  @override
+  @JsonKey(name: "total_reviews")
+  int? get totalReviews;
   @override
   @JsonKey(name: "city")
   String? get city;

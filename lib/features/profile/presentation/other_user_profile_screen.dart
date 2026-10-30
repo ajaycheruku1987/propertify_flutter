@@ -23,6 +23,12 @@ import '../../../../utils/custom_toast.dart';
 import '../../../../features/auth/presentation/auth_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/utils/string_extensions.dart';
+import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:propertify/features/profile/models/seller_review_model.dart';
+import 'package:propertify/features/profile/repo/profile_repo.dart';
+import 'package:propertify/core/service_locator.dart';
+import 'package:propertify/core/failure.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:propertify/utils/common_widgets/user_avatar_widget.dart';
 import '../../company/bloc/company_bloc.dart';
 import '../../../../utils/common_widgets/logo_placeholder.dart';
@@ -63,9 +69,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   void initState() {
     super.initState();
     _tabController = TabController(
-      length: 3,
+      length: 4,
       vsync: this,
-      initialIndex: widget.initialTabIndex.clamp(0, 2),
+      initialIndex: widget.initialTabIndex.clamp(0, 3),
     );
 
     // Ensure current user profile is up to date
@@ -646,8 +652,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     Tab(text: 'Posts'),
                     Tab(text: 'Reels'),
                     Tab(text: 'Banner Ads'),
-                    // Tab(text: 'Services'),
-                    // Tab(text: 'Projects/Sales'),
+                    Tab(text: 'Reviews'),
                   ],
                 ),
               ),
@@ -659,8 +664,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     _buildPostsTab(),
                     _buildReelsTab(),
                     _buildBannerAdsTab(),
-                    // _buildServicesTab(),
-                    // _buildSalesTab(),
+                    _buildReviewsTab(profile),
                   ],
                 ),
               ),
@@ -1553,5 +1557,415 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
       return '$baseUrl/$path';
     }
     return baseUrl + path;
+  }
+
+  Widget _buildReviewsTab(UserProfileModel profile) {
+    return FutureBuilder<Either<Failure, SellerReviewResponseModel>>(
+      future: serviceLocator<ProfileRepo>().getSellerReviews(sellerId: widget.userId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (!snapshot.hasData || snapshot.data!.isLeft()) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.star_outline_rounded, size: 48, color: Colors.grey),
+                const SizedBox(height: 12),
+                const Text(
+                  'No reviews available yet',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+                const SizedBox(height: 16),
+                _buildWriteReviewButton(profile),
+              ],
+            ),
+          );
+        }
+
+        final reviewData = snapshot.data!.getOrElse(() => const SellerReviewResponseModel());
+        final avgRating = reviewData.averageRating ?? profile.averageRating ?? 0.0;
+        final totalRev = reviewData.totalReviews ?? profile.totalReviews ?? 0;
+        final reviews = reviewData.reviews ?? [];
+        final distribution = reviewData.ratingDistribution ?? {};
+
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Rating Overview Card
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF8F9FE),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Theme.of(context).primaryColor.withValues(alpha: 0.08),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    // Score Column
+                    Column(
+                      children: [
+                        Text(
+                          avgRating.toStringAsFixed(1),
+                          style: TextStyle(
+                            fontSize: 38,
+                            fontWeight: FontWeight.w900,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        AnimatedRatingStars(
+                          initialRating: avgRating,
+                          minRating: 0.0,
+                          maxRating: 5.0,
+                          filledColor: Colors.amber,
+                          emptyColor: Colors.grey.shade300,
+                          starSize: 14.0,
+                          onChanged: (_) {},
+                          readOnly: true,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '$totalRev Reviews',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 24),
+                    // Distribution Bars
+                    Expanded(
+                      child: Column(
+                        children: [5, 4, 3, 2, 1].map((star) {
+                          final count = distribution['$star'] ?? 0;
+                          final pct = totalRev > 0 ? (count / totalRev) : 0.0;
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2),
+                            child: Row(
+                              children: [
+                                Text(
+                                  '$star ★',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(4),
+                                    child: LinearProgressIndicator(
+                                      value: pct,
+                                      minHeight: 6,
+                                      backgroundColor: Colors.grey.shade200,
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.amber.shade700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Write Review Action Button
+              _buildWriteReviewButton(profile),
+
+              const SizedBox(height: 20),
+
+              // Reviews Header
+              Text(
+                'Customer Reviews ($totalRev)',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1A1A1A),
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              if (reviews.isEmpty)
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade50,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Be the first to write a review for this seller!',
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                    ),
+                  ),
+                )
+              else
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: reviews.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 12),
+                  itemBuilder: (context, index) {
+                    final item = reviews[index];
+                    final reviewer = item.reviewer;
+                    final reviewerName = () {
+                      if (reviewer == null) return 'Propertify User';
+                      final f = reviewer.firstName?.toString().trim() ?? '';
+                      final l = reviewer.lastName?.toString().trim() ?? '';
+                      if (f.isNotEmpty || l.isNotEmpty) return '$f $l'.trim();
+                      return reviewer.username?.toString() ?? 'Propertify User';
+                    }();
+
+                    return Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey.shade200),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              UserAvatarWidget(
+                                imageUrl: reviewer?.profilepic,
+                                name: reviewerName,
+                                size: 36,
+                                fontSize: 14,
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      reviewerName.toTitleCase(),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    AnimatedRatingStars(
+                                      initialRating: item.rating ?? 5.0,
+                                      minRating: 0.0,
+                                      maxRating: 5.0,
+                                      filledColor: Colors.amber,
+                                      emptyColor: Colors.grey.shade300,
+                                      starSize: 12.0,
+                                      onChanged: (_) {},
+                                      readOnly: true,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (item.review != null && item.review!.trim().isNotEmpty) ...[
+                            const SizedBox(height: 10),
+                            Text(
+                              item.review!,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade800,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    );
+                  },
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildWriteReviewButton(UserProfileModel profile) {
+    final currentUserId = serviceLocator<AppCacheService>().customerAccountId;
+    if (widget.userId == currentUserId) {
+      return const SizedBox.shrink();
+    }
+
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        onPressed: () => _showWriteReviewBottomSheet(context, profile),
+        icon: const Icon(Icons.rate_review_outlined, size: 18),
+        label: const Text('Write a Review'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 0,
+        ),
+      ),
+    );
+  }
+
+  void _showWriteReviewBottomSheet(BuildContext context, UserProfileModel profile) {
+    if (!context.read<HomeBloc>().state.showAddButton) {
+      CustomToast.showErrorToast(msg: 'Please login to write a review');
+      context.push(AuthScreen.routeName);
+      return;
+    }
+
+    double selectedRating = 5.0;
+    final TextEditingController reviewController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setBottomSheetState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                left: 20,
+                right: 20,
+                top: 20,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Rate & Review Seller',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A1A1A),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close),
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  const SizedBox(height: 12),
+                  const Text(
+                    'Your Rating',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Center(
+                    child: AnimatedRatingStars(
+                      initialRating: selectedRating,
+                      minRating: 1.0,
+                      maxRating: 5.0,
+                      filledColor: Colors.amber,
+                      emptyColor: Colors.grey.shade300,
+                      starSize: 32.0,
+                      onChanged: (rating) {
+                        setBottomSheetState(() {
+                          selectedRating = rating;
+                        });
+                      },
+                      displayRatingValue: true,
+                      readOnly: false,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Your Experience',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: reviewController,
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      hintText: 'Share your experience dealing with this seller...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.grey.shade300),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final comment = reviewController.text.trim();
+                        final res = await serviceLocator<ProfileRepo>().postSellerReview(
+                          sellerId: widget.userId,
+                          rating: selectedRating,
+                          review: comment,
+                        );
+
+                        if (context.mounted) {
+                          res.fold(
+                            (failure) => CustomToast.showErrorToast(msg: failure.message),
+                            (success) {
+                              CustomToast.showSuccessToast(msg: 'Review submitted successfully!');
+                              Navigator.pop(context);
+                              setState(() {});
+                            },
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        'Submit Review',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

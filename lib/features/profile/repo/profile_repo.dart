@@ -12,6 +12,7 @@ import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/profile/models/user_profile_model.dart';
 import 'package:propertify/features/profile/models/banner_ad_model.dart';
 import 'package:propertify/features/profile/models/feedback_model.dart';
+import 'package:propertify/features/profile/models/seller_review_model.dart';
 
 class ProfileRepo {
   final ftPyroApiRequest = GetIt.instance<ApiRequest>();
@@ -240,6 +241,56 @@ class ProfileRepo {
     return responseData.fold(
       (failure) => Left(failure),
       (right) => Right(UserProfileModel.fromJson(right)),
+    );
+  }
+
+  /// Get Seller Reviews API
+  Future<Either<Failure, SellerReviewResponseModel>> getSellerReviews({
+    required String sellerId,
+    int limit = 10,
+    int offset = 0,
+  }) async {
+    final response = await ftPyroApiRequest.get(
+      '/sellers/$sellerId/reviews',
+      queryParameters: {'limit': limit, 'offset': offset},
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(SellerReviewResponseModel.fromJson(right as Map<String, dynamic>)),
+    );
+  }
+
+  /// Post or Update Seller Review API
+  Future<Either<Failure, Map<String, dynamic>>> postSellerReview({
+    required String sellerId,
+    required double rating,
+    required String review,
+  }) async {
+    final response = await ftPyroApiRequest.post(
+      '/sellers/$sellerId/reviews',
+      data: {
+        'rating': rating,
+        'review': review,
+      },
+    );
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => Right(right as Map<String, dynamic>),
+    );
+  }
+
+  /// Delete Seller Review API
+  Future<Either<Failure, bool>> deleteSellerReview({
+    required String sellerId,
+    required String reviewId,
+  }) async {
+    final response = await ftPyroApiRequest.delete('/sellers/$sellerId/reviews/$reviewId');
+    final responseData = await response.getResponse();
+    return responseData.fold(
+      (failure) => Left(failure),
+      (right) => const Right(true),
     );
   }
 

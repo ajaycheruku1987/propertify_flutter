@@ -1384,6 +1384,10 @@ mixin _$Owner {
   String? get memberSince => throw _privateConstructorUsedError;
   @JsonKey(name: "posts_count")
   int? get postsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  double? get averageRating => throw _privateConstructorUsedError;
+  @JsonKey(name: "total_reviews")
+  int? get totalReviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1405,7 +1409,10 @@ abstract class $OwnerCopyWith<$Res> {
       @JsonKey(name: "username") String? username,
       @JsonKey(name: "profilepic") String? profileImage,
       @JsonKey(name: "member_since") String? memberSince,
-      @JsonKey(name: "posts_count") int? postsCount});
+      @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      double? averageRating,
+      @JsonKey(name: "total_reviews") int? totalReviews});
 }
 
 /// @nodoc
@@ -1431,6 +1438,8 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
     Object? profileImage = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? averageRating = freezed,
+    Object? totalReviews = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -1473,6 +1482,14 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalReviews: freezed == totalReviews
+          ? _value.totalReviews
+          : totalReviews // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -1494,7 +1511,10 @@ abstract class _$$OwnerImplCopyWith<$Res> implements $OwnerCopyWith<$Res> {
       @JsonKey(name: "username") String? username,
       @JsonKey(name: "profilepic") String? profileImage,
       @JsonKey(name: "member_since") String? memberSince,
-      @JsonKey(name: "posts_count") int? postsCount});
+      @JsonKey(name: "posts_count") int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      double? averageRating,
+      @JsonKey(name: "total_reviews") int? totalReviews});
 }
 
 /// @nodoc
@@ -1518,6 +1538,8 @@ class __$$OwnerImplCopyWithImpl<$Res>
     Object? profileImage = freezed,
     Object? memberSince = freezed,
     Object? postsCount = freezed,
+    Object? averageRating = freezed,
+    Object? totalReviews = freezed,
   }) {
     return _then(_$OwnerImpl(
       id: freezed == id
@@ -1560,6 +1582,14 @@ class __$$OwnerImplCopyWithImpl<$Res>
           ? _value.postsCount
           : postsCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalReviews: freezed == totalReviews
+          ? _value.totalReviews
+          : totalReviews // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -1577,7 +1607,9 @@ class _$OwnerImpl implements _Owner {
       @JsonKey(name: "username") this.username,
       @JsonKey(name: "profilepic") this.profileImage,
       @JsonKey(name: "member_since") this.memberSince,
-      @JsonKey(name: "posts_count") this.postsCount});
+      @JsonKey(name: "posts_count") this.postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble) this.averageRating,
+      @JsonKey(name: "total_reviews") this.totalReviews});
 
   factory _$OwnerImpl.fromJson(Map<String, dynamic> json) =>
       _$$OwnerImplFromJson(json);
@@ -1612,10 +1644,16 @@ class _$OwnerImpl implements _Owner {
   @override
   @JsonKey(name: "posts_count")
   final int? postsCount;
+  @override
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  final double? averageRating;
+  @override
+  @JsonKey(name: "total_reviews")
+  final int? totalReviews;
 
   @override
   String toString() {
-    return 'Owner(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, dateOfBirth: $dateOfBirth, username: $username, profileImage: $profileImage, memberSince: $memberSince, postsCount: $postsCount)';
+    return 'Owner(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, dateOfBirth: $dateOfBirth, username: $username, profileImage: $profileImage, memberSince: $memberSince, postsCount: $postsCount, averageRating: $averageRating, totalReviews: $totalReviews)';
   }
 
   @override
@@ -1638,7 +1676,11 @@ class _$OwnerImpl implements _Owner {
             (identical(other.memberSince, memberSince) ||
                 other.memberSince == memberSince) &&
             (identical(other.postsCount, postsCount) ||
-                other.postsCount == postsCount));
+                other.postsCount == postsCount) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
+            (identical(other.totalReviews, totalReviews) ||
+                other.totalReviews == totalReviews));
   }
 
   @JsonKey(ignore: true)
@@ -1654,7 +1696,9 @@ class _$OwnerImpl implements _Owner {
       username,
       profileImage,
       memberSince,
-      postsCount);
+      postsCount,
+      averageRating,
+      totalReviews);
 
   @JsonKey(ignore: true)
   @override
@@ -1681,7 +1725,10 @@ abstract class _Owner implements Owner {
       @JsonKey(name: "username") final String? username,
       @JsonKey(name: "profilepic") final String? profileImage,
       @JsonKey(name: "member_since") final String? memberSince,
-      @JsonKey(name: "posts_count") final int? postsCount}) = _$OwnerImpl;
+      @JsonKey(name: "posts_count") final int? postsCount,
+      @JsonKey(name: "average_rating", fromJson: _toDouble)
+      final double? averageRating,
+      @JsonKey(name: "total_reviews") final int? totalReviews}) = _$OwnerImpl;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
@@ -1715,6 +1762,12 @@ abstract class _Owner implements Owner {
   @override
   @JsonKey(name: "posts_count")
   int? get postsCount;
+  @override
+  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  double? get averageRating;
+  @override
+  @JsonKey(name: "total_reviews")
+  int? get totalReviews;
   @override
   @JsonKey(ignore: true)
   _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>
