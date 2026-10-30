@@ -1699,7 +1699,8 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                 )
               else if (reviews.isEmpty && myReview != null)
                 const SizedBox.shrink()
-              else if (reviews.isEmpty)
+              else if (reviews.isEmpty && !(widget.userId == serviceLocator<AppCacheService>().customerAccountId ||
+                    profile.id == serviceLocator<AppCacheService>().customerAccountId))
                 Container(
                   padding: const EdgeInsets.all(24),
                   width: double.infinity,
