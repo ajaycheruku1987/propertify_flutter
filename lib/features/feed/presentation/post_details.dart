@@ -833,7 +833,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               : (postDetails.owner?.profileImage ?? ''),
                           rating: postDetails.rating?.toString() ?? '-',
                           userId: isOwner
-                              ? (currentUserProfile?.id ?? postDetails.owner?.id)
+                              ? (currentUserProfile?.id ?? postDetails.owner?.id ?? postDetails.userId)
                               : (postDetails.owner?.id ?? postDetails.userId),
                           memberSince: isOwner &&
                                   currentUserProfile?.memberSince != null

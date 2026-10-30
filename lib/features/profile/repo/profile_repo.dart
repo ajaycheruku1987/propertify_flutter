@@ -250,14 +250,21 @@ class ProfileRepo {
     int limit = 10,
     int offset = 0,
   }) async {
+    debugPrint('Getting seller reviews for sellerId: $sellerId');
     final response = await ftPyroApiRequest.get(
       '/sellers/$sellerId/reviews',
       queryParameters: {'limit': limit, 'offset': offset},
     );
     final responseData = await response.getResponse();
     return responseData.fold(
-      (failure) => Left(failure),
-      (right) => Right(SellerReviewResponseModel.fromJson(right as Map<String, dynamic>)),
+      (failure) {
+        debugPrint('Failed to get seller reviews: ${failure.message}');
+        return Left(failure);
+      },
+      (right) {
+        debugPrint('Seller reviews success: $right');
+        return Right(SellerReviewResponseModel.fromJson(right as Map<String, dynamic>));
+      },
     );
   }
 

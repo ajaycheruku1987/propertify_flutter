@@ -1560,32 +1560,18 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
   }
 
   Widget _buildReviewsTab(UserProfileModel profile) {
+    if (profile.id == null || profile.id!.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    final sellerId = profile.id!;
     return FutureBuilder<Either<Failure, SellerReviewResponseModel>>(
-      future: serviceLocator<ProfileRepo>().getSellerReviews(sellerId: widget.userId),
+      future: ProfileRepo().getSellerReviews(sellerId: sellerId),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
+        final isLoading = snapshot.connectionState == ConnectionState.waiting;
+        final reviewData = snapshot.hasData && snapshot.data!.isRight()
+            ? snapshot.data!.getOrElse(() => const SellerReviewResponseModel())
+            : const SellerReviewResponseModel();
 
-        if (!snapshot.hasData || snapshot.data!.isLeft()) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.star_outline_rounded, size: 48, color: Colors.grey),
-                const SizedBox(height: 12),
-                const Text(
-                  'No reviews available yet',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-                const SizedBox(height: 16),
-                _buildWriteReviewButton(profile),
-              ],
-            ),
-          );
-        }
-
-        final reviewData = snapshot.data!.getOrElse(() => const SellerReviewResponseModel());
         final avgRating = reviewData.averageRating ?? profile.averageRating ?? 0.0;
         final totalRev = reviewData.totalReviews ?? profile.totalReviews ?? 0;
         final reviews = reviewData.reviews ?? [];
@@ -1619,14 +1605,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
-                        AnimatedRatingStars(
-                          initialRating: avgRating,
-                          minRating: 0.0,
-                          maxRating: 5.0,
-                          filledColor: Colors.amber,
-                          emptyColor: Colors.grey.shade300,
-                          starSize: 14.0,
-                          onChanged: (_) {},
+                        StarRatingWidget(
+                          rating: avgRating,
+                          size: 14.0,
                           readOnly: true,
                         ),
                         const SizedBox(height: 4),
@@ -1702,6 +1683,104 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
 
               const SizedBox(height: 12),
 
+              if (isLoading && reviews.isEmpty)
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              else if (reviews.isEmpty)
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade50,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Be the first to write a review for this seller!',
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                    ),
+                  ),
+                )
+              else
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: reviews.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 16),
+                  itemBuilder: (context, index) {
+                    final item = reviews[index];
+                    final reviewer = item.reviewer;
+                    final reviewerName = () {
+                      if (reviewer == null) return 'Propertify User';
+                      final f = reviewer.firstName?.toString().trim() ?? '';
+                      final l = reviewer.lastName?.toString().trim() ?? '';
+                      if (f.isNotEmpty || l.isNotEmpty) return '$f $l'.trim();
+                      return reviewer.username?.toString() ?? 'Propertify User';
+                    }();
+
+                    return Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey.shade200),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              UserAvatarWidget(
+                                imageUrl: reviewer?.profilepic,
+                                name: reviewerName,
+                                size: 36,
+                                fontSize: 14,
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      reviewerName.toTitleCase(),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    StarRatingWidget(
+                                      rating: item.rating ?? 5.0,
+                                      size: 12.0,
+                                      readOnly: true,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (item.review != null && item.review!.trim().isNotEmpty) ...[
+                            const SizedBox(height: 10),
+                            Text(
+                              item.review!,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade800,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    );
+                  },
+                ),
+
               if (reviews.isEmpty)
                 Container(
                   padding: const EdgeInsets.all(24),
@@ -1766,14 +1845,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                                       ),
                                     ),
                                     const SizedBox(height: 2),
-                                    AnimatedRatingStars(
-                                      initialRating: item.rating ?? 5.0,
-                                      minRating: 0.0,
-                                      maxRating: 5.0,
-                                      filledColor: Colors.amber,
-                                      emptyColor: Colors.grey.shade300,
-                                      starSize: 12.0,
-                                      onChanged: (_) {},
+                                    StarRatingWidget(
+                                      rating: item.rating ?? 5.0,
+                                      size: 12.0,
                                       readOnly: true,
                                     ),
                                   ],
@@ -1806,7 +1880,8 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
 
   Widget _buildWriteReviewButton(UserProfileModel profile) {
     final currentUserId = serviceLocator<AppCacheService>().customerAccountId;
-    if (widget.userId == currentUserId) {
+    final targetId = profile.id ?? widget.userId;
+    if (targetId == currentUserId) {
       return const SizedBox.shrink();
     }
 
@@ -1885,20 +1960,28 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   ),
                   const SizedBox(height: 8),
                   Center(
-                    child: AnimatedRatingStars(
-                      initialRating: selectedRating,
-                      minRating: 1.0,
-                      maxRating: 5.0,
-                      filledColor: Colors.amber,
-                      emptyColor: Colors.grey.shade300,
-                      starSize: 32.0,
-                      onChanged: (rating) {
-                        setBottomSheetState(() {
-                          selectedRating = rating;
-                        });
-                      },
-                      displayRatingValue: true,
-                      readOnly: false,
+                    child: Column(
+                      children: [
+                        StarRatingWidget(
+                          rating: selectedRating,
+                          size: 32.0,
+                          readOnly: false,
+                          onChanged: (rating) {
+                            setBottomSheetState(() {
+                              selectedRating = rating;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          selectedRating.toStringAsFixed(1),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.amber,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -1928,8 +2011,8 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     child: ElevatedButton(
                       onPressed: () async {
                         final comment = reviewController.text.trim();
-                        final res = await serviceLocator<ProfileRepo>().postSellerReview(
-                          sellerId: widget.userId,
+                        final res = await ProfileRepo().postSellerReview(
+                          sellerId: profile.id ?? widget.userId,
                           rating: selectedRating,
                           review: comment,
                         );
@@ -1938,8 +2021,8 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           res.fold(
                             (failure) => CustomToast.showErrorToast(msg: failure.message),
                             (success) {
-                              CustomToast.showSuccessToast(msg: 'Review submitted successfully!');
                               Navigator.pop(context);
+                              CustomToast.showSuccessToast(msg: 'Review submitted successfully!');
                               setState(() {});
                             },
                           );
@@ -1966,6 +2049,48 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
           },
         );
       },
+    );
+  }
+}
+
+class StarRatingWidget extends StatelessWidget {
+  final double rating;
+  final double size;
+  final Color color;
+  final ValueChanged<double>? onChanged;
+  final bool readOnly;
+
+  const StarRatingWidget({
+    super.key,
+    required this.rating,
+    this.size = 16.0,
+    this.color = Colors.amber,
+    this.onChanged,
+    this.readOnly = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(5, (index) {
+        IconData icon;
+        if (index + 1 <= rating) {
+          icon = Icons.star;
+        } else if (index + 0.5 <= rating) {
+          icon = Icons.star_half;
+        } else {
+          icon = Icons.star_border;
+        }
+
+        return GestureDetector(
+          onTap: readOnly || onChanged == null ? null : () => onChanged!((index + 1).toDouble()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Icon(icon, color: color, size: size),
+          ),
+        );
+      }),
     );
   }
 }

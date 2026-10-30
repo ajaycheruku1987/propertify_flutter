@@ -36,7 +36,7 @@ mixin _$UserProfileModel {
   String? get memberSince => throw _privateConstructorUsedError;
   @JsonKey(name: "posts_count")
   int? get postsCount => throw _privateConstructorUsedError;
-  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  @JsonKey(name: "average_rating")
   double? get averageRating => throw _privateConstructorUsedError;
   @JsonKey(name: "total_reviews")
   int? get totalReviews => throw _privateConstructorUsedError;
@@ -81,8 +81,7 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
-      @JsonKey(name: "average_rating", fromJson: _toDouble)
-      double? averageRating,
+      @JsonKey(name: "average_rating") double? averageRating,
       @JsonKey(name: "total_reviews") int? totalReviews,
       @JsonKey(name: "city") String? city,
       @JsonKey(name: "state") String? state,
@@ -238,8 +237,7 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "role") String? role,
       @JsonKey(name: "member_since") String? memberSince,
       @JsonKey(name: "posts_count") int? postsCount,
-      @JsonKey(name: "average_rating", fromJson: _toDouble)
-      double? averageRating,
+      @JsonKey(name: "average_rating") double? averageRating,
       @JsonKey(name: "total_reviews") int? totalReviews,
       @JsonKey(name: "city") String? city,
       @JsonKey(name: "state") String? state,
@@ -376,7 +374,7 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserProfileModelImpl implements _UserProfileModel {
+class _$UserProfileModelImpl extends _UserProfileModel {
   const _$UserProfileModelImpl(
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "username") this.username,
@@ -388,7 +386,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "role") this.role,
       @JsonKey(name: "member_since") this.memberSince,
       @JsonKey(name: "posts_count") this.postsCount,
-      @JsonKey(name: "average_rating", fromJson: _toDouble) this.averageRating,
+      @JsonKey(name: "average_rating") this.averageRating,
       @JsonKey(name: "total_reviews") this.totalReviews,
       @JsonKey(name: "city") this.city,
       @JsonKey(name: "state") this.state,
@@ -398,7 +396,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       @JsonKey(name: "whatsapp_channel_url") this.whatsappChannelUrl,
       @JsonKey(name: "website_url") this.websiteUrl,
       @JsonKey(name: "x_url") this.xUrl,
-      @JsonKey(name: "youtube_url") this.youtubeUrl});
+      @JsonKey(name: "youtube_url") this.youtubeUrl})
+      : super._();
 
   @override
   @JsonKey(name: "id")
@@ -431,7 +430,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @JsonKey(name: "posts_count")
   final int? postsCount;
   @override
-  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  @JsonKey(name: "average_rating")
   final double? averageRating;
   @override
   @JsonKey(name: "total_reviews")
@@ -545,7 +544,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
           this, _$identity);
 }
 
-abstract class _UserProfileModel implements UserProfileModel {
+abstract class _UserProfileModel extends UserProfileModel {
   const factory _UserProfileModel(
       {@JsonKey(name: "id") final String? id,
       @JsonKey(name: "username") final String? username,
@@ -557,8 +556,7 @@ abstract class _UserProfileModel implements UserProfileModel {
       @JsonKey(name: "role") final String? role,
       @JsonKey(name: "member_since") final String? memberSince,
       @JsonKey(name: "posts_count") final int? postsCount,
-      @JsonKey(name: "average_rating", fromJson: _toDouble)
-      final double? averageRating,
+      @JsonKey(name: "average_rating") final double? averageRating,
       @JsonKey(name: "total_reviews") final int? totalReviews,
       @JsonKey(name: "city") final String? city,
       @JsonKey(name: "state") final String? state,
@@ -570,6 +568,7 @@ abstract class _UserProfileModel implements UserProfileModel {
       @JsonKey(name: "x_url") final String? xUrl,
       @JsonKey(name: "youtube_url")
       final String? youtubeUrl}) = _$UserProfileModelImpl;
+  const _UserProfileModel._() : super._();
 
   @override
   @JsonKey(name: "id")
@@ -602,7 +601,7 @@ abstract class _UserProfileModel implements UserProfileModel {
   @JsonKey(name: "posts_count")
   int? get postsCount;
   @override
-  @JsonKey(name: "average_rating", fromJson: _toDouble)
+  @JsonKey(name: "average_rating")
   double? get averageRating;
   @override
   @JsonKey(name: "total_reviews")

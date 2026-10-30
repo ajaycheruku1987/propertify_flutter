@@ -207,44 +207,16 @@ class AgentInfo extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Text(
-                                agentName.toTitleCase(),
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xFF1A1A1A),
-                                  fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.5,
-                                ),
-                              ),
-                              if (averageRating != null && averageRating! > 0) ...[
-                                const SizedBox(width: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                  decoration: BoxDecoration(
-                                    color: Colors.amber.shade50,
-                                    borderRadius: BorderRadius.circular(6),
-                                    border: Border.all(color: Colors.amber.shade200),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(Icons.star, color: Colors.amber, size: 12),
-                                      const SizedBox(width: 3),
-                                      Text(
-                                        '${averageRating!.toStringAsFixed(1)} ${totalReviews != null && totalReviews! > 0 ? "($totalReviews)" : ""}',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.amber.shade900,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ],
+                          Text(
+                            agentName.toTitleCase(),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF1A1A1A),
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.5,
+                            ),
                           ),
                           const SizedBox(height: 5),
                           Text(
@@ -257,6 +229,32 @@ class AgentInfo extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          if (averageRating != null && averageRating! > 0) ...[
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.amber.shade50,
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(color: Colors.amber.shade200),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.star, color: Colors.amber, size: 12),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${averageRating!.toStringAsFixed(1)} ${totalReviews != null && totalReviews! > 0 ? "($totalReviews)" : ""}',
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.amber.shade900,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     ),
