@@ -44,44 +44,48 @@ class UserProfileModel with _$UserProfileModel {
   }) = _UserProfileModel;
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
-    String? city = json['city']?.toString();
-    String? state = json['state']?.toString();
-    String? country = json['country']?.toString();
+    final Map<String, dynamic> data = json['data'] is Map<String, dynamic>
+        ? json['data'] as Map<String, dynamic>
+        : (json['result'] is Map<String, dynamic> ? json['result'] as Map<String, dynamic> : json);
 
-    if ((city == null || city.isEmpty) && json['location'] is String && (json['location'] as String).isNotEmpty) {
-      final parts = (json['location'] as String).split(',');
+    String? city = data['city']?.toString();
+    String? state = data['state']?.toString();
+    String? country = data['country']?.toString();
+
+    if ((city == null || city.isEmpty) && data['location'] is String && (data['location'] as String).isNotEmpty) {
+      final parts = (data['location'] as String).split(',');
       if (parts.isNotEmpty) city = parts[0].trim();
       if (parts.length > 1) state = parts[1].trim();
       if (parts.length > 2) country = parts[2].trim();
     }
 
-    if ((city == null || city.isEmpty) && json['address'] is String && (json['address'] as String).isNotEmpty) {
-      final parts = (json['address'] as String).split(',');
+    if ((city == null || city.isEmpty) && data['address'] is String && (data['address'] as String).isNotEmpty) {
+      final parts = (data['address'] as String).split(',');
       if (parts.isNotEmpty && city == null) city = parts.last.trim();
     }
 
     return UserProfileModel(
-      id: json['id']?.toString() ?? json['user_id']?.toString(),
-      username: json['username']?.toString(),
-      firstName: json['first_name']?.toString(),
-      lastName: json['last_name']?.toString(),
-      email: json['email']?.toString(),
-      phoneNumber: json['phone_number']?.toString(),
-      profilepic: json['profilepic']?.toString(),
-      role: json['role']?.toString(),
-      memberSince: json['member_since']?.toString(),
-      postsCount: json['posts_count'] is num ? (json['posts_count'] as num).toInt() : int.tryParse(json['posts_count']?.toString() ?? ''),
-      averageRating: _toDouble(json['average_rating'] ?? json['avg_rating'] ?? json['rating'] ?? json['rating_average']),
-      totalReviews: json['total_reviews'] is num ? (json['total_reviews'] as num).toInt() : (int.tryParse(json['total_reviews']?.toString() ?? json['reviews_count']?.toString() ?? json['review_count']?.toString() ?? '') ?? 0),
+      id: data['id']?.toString() ?? data['user_id']?.toString(),
+      username: data['username']?.toString(),
+      firstName: data['first_name']?.toString(),
+      lastName: data['last_name']?.toString(),
+      email: data['email']?.toString(),
+      phoneNumber: data['phone_number']?.toString(),
+      profilepic: data['profilepic']?.toString(),
+      role: data['role']?.toString(),
+      memberSince: data['member_since']?.toString(),
+      postsCount: data['posts_count'] is num ? (data['posts_count'] as num).toInt() : int.tryParse(data['posts_count']?.toString() ?? ''),
+      averageRating: _toDouble(data['average_rating'] ?? data['avg_rating'] ?? data['rating'] ?? data['rating_average']),
+      totalReviews: data['total_reviews'] is num ? (data['total_reviews'] as num).toInt() : (int.tryParse(data['total_reviews']?.toString() ?? data['reviews_count']?.toString() ?? data['review_count']?.toString() ?? '') ?? 0),
       city: city,
       state: state,
       country: country,
-      facebookUrl: json['facebook_url']?.toString(),
-      instagramUrl: json['instagram_url']?.toString(),
-      whatsappChannelUrl: json['whatsapp_channel_url']?.toString(),
-      websiteUrl: json['website_url']?.toString(),
-      xUrl: json['x_url']?.toString(),
-      youtubeUrl: json['youtube_url']?.toString(),
+      facebookUrl: data['facebook_url']?.toString(),
+      instagramUrl: data['instagram_url']?.toString(),
+      whatsappChannelUrl: data['whatsapp_channel_url']?.toString(),
+      websiteUrl: data['website_url']?.toString(),
+      xUrl: data['x_url']?.toString(),
+      youtubeUrl: data['youtube_url']?.toString(),
     );
   }
 }

@@ -21,26 +21,30 @@ class SellerReviewResponseModel with _$SellerReviewResponseModel {
   }) = _SellerReviewResponseModel;
 
   factory SellerReviewResponseModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> data = json['data'] is Map<String, dynamic>
+        ? json['data'] as Map<String, dynamic>
+        : (json['result'] is Map<String, dynamic> ? json['result'] as Map<String, dynamic> : json);
+
     var distMap = <String, int>{};
-    if (json['rating_distribution'] is Map) {
-      (json['rating_distribution'] as Map).forEach((k, v) {
+    if (data['rating_distribution'] is Map) {
+      (data['rating_distribution'] as Map).forEach((k, v) {
         distMap[k.toString()] = v is num ? v.toInt() : (int.tryParse(v?.toString() ?? '0') ?? 0);
       });
     }
 
     var revList = <SellerReviewItem>[];
-    if (json['reviews'] is List) {
-      revList = (json['reviews'] as List)
+    if (data['reviews'] is List) {
+      revList = (data['reviews'] as List)
           .map((e) => SellerReviewItem.fromJson(e as Map<String, dynamic>))
           .toList();
     }
 
     return SellerReviewResponseModel(
-      sellerId: json['seller_id']?.toString() ?? json['user_id']?.toString() ?? json['id']?.toString(),
-      averageRating: _toDouble(json['average_rating'] ?? json['avg_rating'] ?? json['rating'] ?? json['rating_average']),
-      totalReviews: json['total_reviews'] is num ? (json['total_reviews'] as num).toInt() : (int.tryParse(json['total_reviews']?.toString() ?? json['reviews_count']?.toString() ?? json['review_count']?.toString() ?? '') ?? 0),
+      sellerId: data['seller_id']?.toString() ?? data['user_id']?.toString() ?? data['id']?.toString(),
+      averageRating: _toDouble(data['average_rating'] ?? data['avg_rating'] ?? data['rating'] ?? data['rating_average']),
+      totalReviews: data['total_reviews'] is num ? (data['total_reviews'] as num).toInt() : (int.tryParse(data['total_reviews']?.toString() ?? data['reviews_count']?.toString() ?? data['review_count']?.toString() ?? '') ?? 0),
       ratingDistribution: distMap,
-      myReview: json['my_review'] != null ? SellerReviewItem.fromJson(json['my_review'] as Map<String, dynamic>) : null,
+      myReview: data['my_review'] != null ? SellerReviewItem.fromJson(data['my_review'] as Map<String, dynamic>) : null,
       reviews: revList,
     );
   }
