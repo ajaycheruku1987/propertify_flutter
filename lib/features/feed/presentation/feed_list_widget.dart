@@ -610,7 +610,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       title: feed.title ?? 'Property',
       location: _resolveLocation(feed.city, feed.address),
       price: feed.price != null ? '₹${feed.price}' : null,
-      rating: feed.rating?.toDouble(),
       showActions: true,
       isLiked: feed.isLiked ?? false,
       isFavorite: feed.isFavourited ?? false,
