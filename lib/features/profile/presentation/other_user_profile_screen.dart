@@ -1574,7 +1574,14 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
 
         final avgRating = reviewData.averageRating ?? profile.averageRating ?? 0.0;
         final totalRev = reviewData.totalReviews ?? profile.totalReviews ?? 0;
-        final reviews = reviewData.reviews ?? [];
+        
+        // Exclude myReview from the general customer reviews list to prevent duplication
+        final myReview = reviewData.myReview;
+        List<SellerReviewItem> reviews = reviewData.reviews ?? [];
+        if (myReview != null && myReview.id != null) {
+          reviews = reviews.where((r) => r.id != myReview.id).toList();
+        }
+
         final distribution = reviewData.ratingDistribution ?? {};
 
         return SingleChildScrollView(
@@ -1666,7 +1673,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
 
               const SizedBox(height: 16),
 
-              // Write Review Action Button
+              // Write / Edit Review Action Button
               _buildWriteReviewButton(profile, reviewData),
 
               const SizedBox(height: 20),
@@ -1683,7 +1690,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
 
               const SizedBox(height: 12),
 
-              if (isLoading && reviews.isEmpty)
+              if (isLoading && reviews.isEmpty && myReview == null)
                 const Center(
                   child: Padding(
                     padding: EdgeInsets.all(24.0),
@@ -1711,97 +1718,6 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: reviews.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 16),
-                  itemBuilder: (context, index) {
-                    final item = reviews[index];
-                    final reviewer = item.reviewer;
-                    final reviewerName = () {
-                      if (reviewer == null) return 'Propertify User';
-                      final f = reviewer.firstName?.toString().trim() ?? '';
-                      final l = reviewer.lastName?.toString().trim() ?? '';
-                      if (f.isNotEmpty || l.isNotEmpty) return '$f $l'.trim();
-                      return reviewer.username?.toString() ?? 'Propertify User';
-                    }();
-
-                    return Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.grey.shade200),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              UserAvatarWidget(
-                                imageUrl: reviewer?.profilepic,
-                                name: reviewerName,
-                                size: 36,
-                                fontSize: 14,
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      reviewerName.toTitleCase(),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    StarRatingWidget(
-                                      rating: item.rating ?? 5.0,
-                                      size: 12.0,
-                                      readOnly: true,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          if (item.review != null && item.review!.trim().isNotEmpty) ...[
-                            const SizedBox(height: 10),
-                            Text(
-                              item.review!,
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey.shade800,
-                                height: 1.4,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    );
-                  },
-                ),
-
-              if (reviews.isEmpty)
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade50,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Be the first to write a review for this seller!',
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
-                    ),
-                  ),
-                )
-              else
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: reviews.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final item = reviews[index];
                     final reviewer = item.reviewer;
