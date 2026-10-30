@@ -1697,6 +1697,8 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     child: CircularProgressIndicator(),
                   ),
                 )
+              else if (reviews.isEmpty && myReview != null)
+                const SizedBox.shrink()
               else if (reviews.isEmpty)
                 Container(
                   padding: const EdgeInsets.all(24),

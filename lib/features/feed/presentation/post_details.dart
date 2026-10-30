@@ -1003,7 +1003,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               _buildInteractionButton(
                                 context: context,
                                 icon: FontAwesomeIcons.shareNodes,
-                                label: 'Share',
+                                label: '',
                                 color: Colors.grey.shade700,
                                 onTap: () => _handleShare(postDetails),
                               ),
