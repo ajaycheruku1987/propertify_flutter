@@ -1667,7 +1667,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
               const SizedBox(height: 16),
 
               // Write Review Action Button
-              _buildWriteReviewButton(profile),
+              _buildWriteReviewButton(profile, reviewData),
 
               const SizedBox(height: 20),
 
@@ -1878,11 +1878,114 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     );
   }
 
-  Widget _buildWriteReviewButton(UserProfileModel profile) {
+  Widget _buildWriteReviewButton(UserProfileModel profile, SellerReviewResponseModel reviewData) {
     final currentUserId = serviceLocator<AppCacheService>().customerAccountId;
     final targetId = profile.id ?? widget.userId;
     if (targetId == currentUserId) {
       return const SizedBox.shrink();
+    }
+
+    final myReview = reviewData.myReview;
+
+    if (myReview != null) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha: 0.3)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Your Review',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit_outlined, size: 18, color: Colors.blue),
+                      onPressed: () => _showWriteReviewBottomSheet(context, profile, existingReview: myReview),
+                      constraints: const BoxConstraints(),
+                      padding: const EdgeInsets.all(4),
+                    ),
+                    const SizedBox(width: 12),
+                    IconButton(
+                      icon: const Icon(Icons.delete_outline, size: 18, color: Colors.red),
+                      onPressed: () async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Delete Review'),
+                            content: const Text('Are you sure you want to delete your review?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                              ),
+                            ],
+                          ),
+                        );
+
+                        if (confirmed == true && myReview.id != null) {
+                          final res = await ProfileRepo().deleteSellerReview(
+                            sellerId: targetId,
+                            reviewId: myReview.id!,
+                          );
+                          if (context.mounted) {
+                            res.fold(
+                              (failure) => CustomToast.showErrorToast(msg: failure.message),
+                              (success) {
+                                CustomToast.showSuccessToast(msg: 'Review deleted successfully');
+                                setState(() {});
+                              },
+                            );
+                          }
+                        }
+                      },
+                      constraints: const BoxConstraints(),
+                      padding: const EdgeInsets.all(4),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            StarRatingWidget(
+              rating: myReview.rating ?? 5.0,
+              size: 14.0,
+              readOnly: true,
+            ),
+            if (myReview.review != null && myReview.review!.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                myReview.review!,
+                style: TextStyle(fontSize: 13, color: Colors.grey.shade700, height: 1.4),
+              ),
+            ],
+          ],
+        ),
+      );
     }
 
     return SizedBox(
@@ -1904,15 +2007,17 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
     );
   }
 
-  void _showWriteReviewBottomSheet(BuildContext context, UserProfileModel profile) {
+  void _showWriteReviewBottomSheet(BuildContext context, UserProfileModel profile, {SellerReviewItem? existingReview}) {
     if (!context.read<HomeBloc>().state.showAddButton) {
       CustomToast.showErrorToast(msg: 'Please login to write a review');
       context.push(AuthScreen.routeName);
       return;
     }
 
-    double selectedRating = 5.0;
-    final TextEditingController reviewController = TextEditingController();
+    double selectedRating = existingReview?.rating ?? 5.0;
+    final TextEditingController reviewController = TextEditingController(
+      text: existingReview?.review ?? '',
+    );
 
     showModalBottomSheet(
       context: context,
@@ -1938,9 +2043,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Rate & Review Seller',
-                        style: TextStyle(
+                      Text(
+                        existingReview != null ? 'Edit Your Review' : 'Rate & Review Seller',
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF1A1A1A),
@@ -2022,7 +2127,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                             (failure) => CustomToast.showErrorToast(msg: failure.message),
                             (success) {
                               Navigator.pop(context);
-                              CustomToast.showSuccessToast(msg: 'Review submitted successfully!');
+                              CustomToast.showSuccessToast(msg: existingReview != null ? 'Review updated successfully!' : 'Review submitted successfully!');
                               setState(() {});
                             },
                           );
@@ -2036,9 +2141,9 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        'Submit Review',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      child: Text(
+                        existingReview != null ? 'Update Review' : 'Submit Review',
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

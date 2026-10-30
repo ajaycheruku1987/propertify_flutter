@@ -39,6 +39,10 @@ class SellerReviewResponseModel with _$SellerReviewResponseModel {
           .toList();
     }
 
+    // Deduplicate reviews by ID
+    final seenIds = <String>{};
+    revList = revList.where((r) => r.id == null || seenIds.add(r.id!)).toList();
+
     return SellerReviewResponseModel(
       sellerId: data['seller_id']?.toString() ?? data['user_id']?.toString() ?? data['id']?.toString(),
       averageRating: _toDouble(data['average_rating'] ?? data['avg_rating'] ?? data['rating'] ?? data['rating_average']),
