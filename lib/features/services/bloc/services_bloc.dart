@@ -753,7 +753,10 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
     Emitter<ServicesState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoadingOtherUserServices: true));
+      emit(state.copyWith(
+        isLoadingOtherUserServices: true,
+        otherUserServices: event.skip == 0 ? [] : state.otherUserServices,
+      ));
 
       final result = await _servicesRepo.getUserServices(
         userId: event.userId,

@@ -481,6 +481,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
+      emit(state.copyWith(bannerAds: []));
       // Feed banner ads are global — never filter by user location/radius.
       Either<Failure, List<BannerAdModel>> bannerAdsEither =
           await _profileRepo.getBannerAds();
@@ -524,7 +525,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, myBannerAds: []));
       Either<Failure, List<BannerAdModel>> bannerAdsEither = await _profileRepo
           .getMyBannerAds();
 

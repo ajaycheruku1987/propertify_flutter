@@ -38,6 +38,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String? _lastLoadedUserId;
+
   @override
   void initState() {
     super.initState();
@@ -80,20 +82,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               if (homeState.showAddButton) {
                 final userId = profileState.userProfile?.id ??
                     serviceLocator<AppCacheService>().customerAccountId;
-                if (userId != null && userId.isNotEmpty) {
+                if (userId != null && userId.isNotEmpty && _lastLoadedUserId != userId) {
+                  _lastLoadedUserId = userId;
                   WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (!mounted) return;
                     final homeBloc = context.read<HomeBloc>();
-                    if (homeBloc.state.otherUserPosts == null) {
-                      homeBloc.add(HomeEvent.loadOtherUserPosts(
-                        userId: userId,
-                        limit: 10,
-                        offset: 0,
-                      ));
-                    }
+                    homeBloc.add(HomeEvent.loadOtherUserPosts(
+                      userId: userId,
+                      limit: 10,
+                      offset: 0,
+                    ));
                     final reelsBloc = context.read<ReelsBloc>();
-                    if (reelsBloc.state.otherUserReels.isEmpty) {
-                      reelsBloc.add(ReelsEvent.loadOtherUserReels(userId: userId));
-                    }
+                    reelsBloc.add(ReelsEvent.loadOtherUserReels(userId: userId));
+                    final profileBloc = context.read<ProfileBloc>();
+                    profileBloc.add(const ProfileEvent.loadMyBannerAds());
                   });
                 }
               }
@@ -197,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }
 
               final profile = profileState.userProfile;
-              final bannerAdsCount = profileState.bannerAds?.length ?? 0;
+              final bannerAdsCount = profileState.myBannerAds?.length ?? 0;
               final postsCount = homeState.otherUserPosts?.length ?? 0;
               final reelsList = (() {
                 try {
@@ -219,7 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     (((r.callCount ?? 0) + (r.whatsappCount ?? 0)) as num)
                         .toInt();
               }
-              for (var b in (profileState.bannerAds ?? [])) {
+              for (var b in (profileState.myBannerAds ?? [])) {
                 totalLeads +=
                     (((b.callCount ?? 0) + (b.whatsappCount ?? 0)) as num)
                         .toInt();
