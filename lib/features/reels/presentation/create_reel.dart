@@ -9,6 +9,7 @@ import 'package:propertify/utils/common_widgets/common_textfield.dart';
 import 'package:propertify/utils/common_widgets/post_success_screen.dart';
 import 'package:propertify/features/create_post/bloc/create_post_bloc.dart';
 import 'package:propertify/utils/image_picker_util.dart';
+import 'package:propertify/utils/media_cache_compression_util.dart';
 import 'package:propertify/core/content_type.dart';
 import 'package:video_compress/video_compress.dart';
 
@@ -59,31 +60,10 @@ class _CreateReelScreenState extends State<CreateReelScreen> {
   Future<void> _pickVideo() async {
     final file = await ImagePickerUtil.pickSingleVideo();
     if (file != null) {
-      File processedFile = file;
-
-      // Check if file is distinct from .mp4
-      if (!file.path.toLowerCase().endsWith('.mp4')) {
-        // Compress/Convert to mp4
-        final mediaInfo = await VideoCompress.compressVideo(
-          file.path,
-          quality: VideoQuality.DefaultQuality, // or specific quality
-          deleteOrigin: false, // Keep original
-        );
-
-        if (mediaInfo != null && mediaInfo.file != null) {
-          processedFile = mediaInfo.file!;
-        }
-      }
+      // Compress video for optimal upload and fast playback
+      final processedFile = await MediaCacheCompressionUtil.compressVideo(file);
 
       setState(() => _videoFile = processedFile);
-      if (mounted) {
-        // await Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (_) => ReelEditorScreen(videoPath: file.path),
-        //   ),
-        // );
-      }
     }
   }
 

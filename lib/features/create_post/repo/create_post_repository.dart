@@ -9,6 +9,7 @@ import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/create_post/models/add_post_response.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
+import 'package:propertify/utils/media_cache_compression_util.dart';
 
 abstract class CreatePostRepository {
   Future<Either<Failure, AddPostResponse>> createPost({
@@ -139,15 +140,16 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         if (carpetAreaUnit != null && carpetAreaUnit.isNotEmpty) 'carpet_area_unit': carpetAreaUnit,
       });
 
-      // Add image files to FormData
+      // Add compressed image files to FormData for fast upload & display
       for (int i = 0; i < images.length; i++) {
         var file = images[i];
+        final compressedFile = await MediaCacheCompressionUtil.compressImage(file);
         formData.files.add(
           MapEntry(
             'images',
             await MultipartFile.fromFile(
-              file.path,
-              filename: file.path.split('/').last,
+              compressedFile.path,
+              filename: compressedFile.path.split('/').last,
               contentType: MediaType('image', 'jpeg'),
             ),
           ),

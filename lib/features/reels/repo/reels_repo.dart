@@ -5,6 +5,7 @@ import 'package:propertify/core/api_request/api_request.dart';
 import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
+import 'package:propertify/utils/media_cache_compression_util.dart';
 
 import '../models/reel_response_model.dart';
 import '../models/like_reel_response_model.dart';
@@ -187,17 +188,33 @@ class ReelsRepoImpl implements ReelsRepo {
         if (promotedUntil != null) 'promoted_until': promotedUntil,
       };
 
+      final compressedVideo = await MediaCacheCompressionUtil.compressVideo(videoFile);
+      final thumbnail = await MediaCacheCompressionUtil.generateVideoThumbnail(compressedVideo);
+
       final formData = FormData.fromMap(body);
       formData.files.add(
         MapEntry(
           'video',
           await MultipartFile.fromFile(
-            videoFile.path,
-            filename: videoFile.path.split('/').last,
+            compressedVideo.path,
+            filename: compressedVideo.path.split('/').last,
             // contentType: MediaType('video', 'mp4'),
           ),
         ),
       );
+
+      if (thumbnail != null) {
+        formData.files.add(
+          MapEntry(
+            'thumbnail',
+            await MultipartFile.fromFile(
+              thumbnail.path,
+              filename: thumbnail.path.split('/').last,
+              // contentType: MediaType('image', 'jpeg'),
+            ),
+          ),
+        );
+      }
 
       final response = await apiRequest.post('/reels/', data: formData);
       final responseData = await response.getResponse();
