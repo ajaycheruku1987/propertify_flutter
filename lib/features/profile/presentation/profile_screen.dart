@@ -298,6 +298,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                           const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _buildInfoChip(label: profile?.phoneNumber??''),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
                           Wrap(
                             alignment: WrapAlignment.center,
                             spacing: 8,
@@ -326,7 +333,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               _buildOwnerActionButton(
                                 icon: Icons.edit_outlined,
-                                label: 'Edit',
+                                label: 'Edit Profile',
                                 color: Colors.blue,
                                 onTap: () => context.push(
                                   EditProfileScreen.routeName,
@@ -353,8 +360,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               const SizedBox(width: 6),
                               _buildOwnerActionButton(
-                                icon: Icons.share_rounded,
-                                label: 'Socials',
+                                icon: Icons.link_outlined,
+                                label: 'Add Social Links',
                                 color: Colors.teal,
                                 onTap: () => _showSocialLinksBottomSheet(
                                   context,
