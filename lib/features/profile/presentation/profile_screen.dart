@@ -301,15 +301,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             spacing: 8,
                             runSpacing: 8,
                             children: [
-                              _buildInfoChip(label: profile?.username ?? ''),
+                              _buildInfoChip(label: profile?.username?? ''),
                               _buildInfoChip(
                                 label: profile?.memberSince != null
                                     ? 'Joined ${profile?.memberSince}'
                                     : 'New Member',
                               ),
                               if (locationParts.isNotEmpty)
-                                _buildInfoChip(
-                                    label: locationParts.join(' | ')),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildInfoChip(
+                                        label: locationParts.join(' | ')),
+                                  ],
+                                ),
                             ],
                           ),
                           const SizedBox(height: 20),
@@ -572,15 +577,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: Colors.blueGrey.shade50,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         label,
         style: TextStyle(
           fontSize: 11,
-          color: Colors.grey.shade700,
-          fontWeight: FontWeight.w500,
+          color: Colors.grey.shade900,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
