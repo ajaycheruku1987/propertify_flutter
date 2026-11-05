@@ -136,6 +136,11 @@ class _PlotDetailsInputState extends State<PlotDetailsInput> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: 'e.g. 200',
+                        hintStyle: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                        ),
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
@@ -261,6 +266,11 @@ class _PlotDetailsInputState extends State<PlotDetailsInput> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: 'e.g. 40 Ft Road',
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                   suffixText: 'Ft',
@@ -391,6 +401,11 @@ class _PlotDetailsInputState extends State<PlotDetailsInput> {
                 controller: _dimensionsController,
                 decoration: InputDecoration(
                   hintText: 'e.g. 30 ft x 50 ft',
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: const EdgeInsets.symmetric(

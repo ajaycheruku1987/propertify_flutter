@@ -66,6 +66,11 @@ class _CarpetAreaInputWidgetState extends State<CarpetAreaInputWidget> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'e.g. 2000',
+                      hintStyle: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                      ),
                       filled: true,
                       fillColor: Colors.grey.shade50,
                       contentPadding: const EdgeInsets.symmetric(

@@ -58,6 +58,11 @@ class _PricingSectionWidgetState extends State<PricingSectionWidget> {
               decoration: InputDecoration(
                 prefixText: '₹ ',
                 hintText: isRentOrLease ? 'e.g. 25,000 / month' : 'e.g. 75,00,000',
+                hintStyle: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                ),
                 filled: true,
                 fillColor: Colors.grey.shade50,
                 contentPadding: const EdgeInsets.symmetric(
@@ -119,6 +124,11 @@ class _PricingSectionWidgetState extends State<PricingSectionWidget> {
                 decoration: InputDecoration(
                   prefixText: '₹ ',
                   hintText: 'e.g. 1,00,000',
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                  ),
                   filled: true,
                   fillColor: Colors.grey.shade50,
                   contentPadding: const EdgeInsets.symmetric(
