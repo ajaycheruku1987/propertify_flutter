@@ -349,7 +349,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   context.read<FeedBloc>().add(
                                         const FeedEvent.getFeedsEvent(offset: 0),
                                       );
-                                  Navigator.pop(context);
+                                  context.pop();
                                   CustomToast.showSuccessToast(
                                     msg: l10n.postReportedSuccess,
                                   );
@@ -415,7 +415,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   context.read<FeedBloc>().add(
                         const FeedEvent.getFeedsEvent(offset: 0),
                       );
-                  Navigator.pop(context);
+                  context.pop();
                   CustomToast.showSuccessToast(
                     msg: '$userName has been blocked.',
                   );
@@ -456,7 +456,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               color: Colors.black,
               size: 20,
             ),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
           ),
         ),
         title: Text(
@@ -1158,7 +1158,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         ),
                       ),
                       IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => context.pop(),
                         icon: const Icon(Icons.close),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -1568,7 +1568,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   CustomToast.showSuccessToast(
                     msg: 'Property released and kept active.',
                   );
-                  Navigator.pop(context);
+                  context.pop();
                 },
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.green.shade700,
@@ -1626,7 +1626,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 CustomToast.showSuccessToast(
                   msg: 'Property deleted successfully.',
                 );
-                Navigator.pop(context);
+                context.pop();
               },
               child: const Text(
                 'Delete',
