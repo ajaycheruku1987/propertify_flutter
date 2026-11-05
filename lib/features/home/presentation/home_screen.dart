@@ -122,6 +122,13 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Refresh feeds when returning to the home screen
+    context.read<FeedBloc>().add(const FeedEvent.getFeedsEvent(offset: 0));
+  }
+
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();

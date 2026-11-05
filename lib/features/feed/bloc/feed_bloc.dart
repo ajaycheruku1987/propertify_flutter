@@ -707,9 +707,19 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
 
       postDetailsEither.fold(
         (failure) {
+          final updatedFeedsList = state.feedsList
+              .where((property) => property.id != event.postId)
+              .toList();
+          final updatedSimilarProperties = state.similarProperties
+              .where((property) => property.id != event.postId)
+              .toList();
+
           emit(
             state.copyWith(
               isLoading: false,
+              feedsList: updatedFeedsList,
+              similarProperties: updatedSimilarProperties,
+              postDetails: null,
               notifyStatus: NotifyStatus(message: failure.message),
             ),
           );

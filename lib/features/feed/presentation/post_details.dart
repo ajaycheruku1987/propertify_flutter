@@ -681,6 +681,14 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             }
 
             if (state.postDetails == null) {
+              if (!state.isLoading) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (context.mounted && context.canPop()) {
+                    CustomToast.showErrorToast(msg: l10n.postNotFound);
+                    context.pop();
+                  }
+                });
+              }
               return Center(child: Text(l10n.postNotFound));
             }
 

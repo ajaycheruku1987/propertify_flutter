@@ -188,7 +188,10 @@ class ReelsRepoImpl implements ReelsRepo {
         if (promotedUntil != null) 'promoted_until': promotedUntil,
       };
 
-      final compressedVideo = await MediaCacheCompressionUtil.compressVideo(videoFile);
+      File compressedVideo = videoFile;
+      if (!videoFile.path.contains('compressed') && !videoFile.path.contains('cache')) {
+        compressedVideo = await MediaCacheCompressionUtil.compressVideo(videoFile);
+      }
       final thumbnail = await MediaCacheCompressionUtil.generateVideoThumbnail(compressedVideo);
 
       final formData = FormData.fromMap(body);

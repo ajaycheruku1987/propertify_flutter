@@ -36,6 +36,19 @@ class MediaCacheCompressionUtil {
   /// Compresses a video file for fast upload and efficient streaming.
   static Future<File> compressVideo(File file) async {
     try {
+      final sizeInBytes = await file.length();
+      // Skip heavy transcoding if file is already small (< 30MB) or already cached/compressed
+      if (sizeInBytes < 30 * 1024 * 1024 || file.path.contains('compressed') || file.path.contains('cache')) {
+        debugPrint('Video size is efficient (${(sizeInBytes / (1024 * 1024)).toStringAsFixed(2)} MB), skipping heavy compression.');
+        return file;
+      }
+
+      try {
+        await VideoCompress.cancelCompression();
+      } catch (e) {
+        debugPrint('Cancel compression error: $e');
+      }
+
       debugPrint('Compressing video: ${file.path}');
       final mediaInfo = await VideoCompress.compressVideo(
         file.path,
@@ -51,7 +64,11 @@ class MediaCacheCompressionUtil {
       return file;
     } catch (e) {
       debugPrint('Error compressing video: $e');
-      VideoCompress.cancelCompression();
+      try {
+        await VideoCompress.cancelCompression();
+      } catch (ex) {
+        debugPrint('Cancel compression error: $ex');
+      }
       return file;
     }
   }
