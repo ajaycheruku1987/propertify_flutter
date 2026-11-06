@@ -201,7 +201,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               children: [
                 // Image Carousel Section (moved from SliverAppBar)
                 SizedBox(
-                  height: 340,
+                  height: (sale.imageUrls?.length ?? 0) > 1 ? 430 : 340,
                   child: ImageCarousel(
                     images: sale.imageUrls ?? [],
                     createdAt: sale.createdAt,

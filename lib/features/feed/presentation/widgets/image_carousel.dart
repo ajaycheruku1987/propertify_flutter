@@ -48,7 +48,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
         // Main image carousel container
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Stack(
               children: [
                 // Main image carousel with rounded corners
@@ -134,8 +134,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.black.withOpacity(0.55),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
                         _formatDate(widget.createdAt!),
@@ -158,12 +158,13 @@ class _ImageCarouselState extends State<ImageCarousel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         displayImages.length,
-                        (index) => Container(
+                        (index) => AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
                           margin: const EdgeInsets.symmetric(horizontal: 3),
-                          width: 6,
+                          width: _currentIndex == index ? 16 : 6,
                           height: 6,
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                            borderRadius: BorderRadius.circular(3),
                             color: _currentIndex == index
                                 ? Colors.white
                                 : Colors.white.withOpacity(0.5),
@@ -173,27 +174,17 @@ class _ImageCarouselState extends State<ImageCarousel> {
                     ),
                   ),
 
-                // Action Buttons (Favorite and Share)
+                // Action Button (Favorite Only)
                 if (widget.showActionButtons)
                   Positioned(
                     top: 16,
                     right: 16,
-                    child: Column(
-                      children: [
-                        _buildActionButton(
-                          icon: widget.isFavourited
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          iconColor: widget.isFavourited ? Colors.red : Colors.black87,
-                          onTap: widget.onFavoriteToggle,
-                        ),
-                        const SizedBox(height: 12),
-                        _buildActionButton(
-                          icon: Icons.share_outlined,
-                          iconColor: Colors.black87,
-                          onTap: widget.onShare,
-                        ),
-                      ],
+                    child: _buildActionButton(
+                      icon: widget.isFavourited
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      iconColor: widget.isFavourited ? Colors.red : Colors.black87,
+                      onTap: widget.onFavoriteToggle,
                     ),
                   ),
               ],
@@ -201,16 +192,17 @@ class _ImageCarouselState extends State<ImageCarousel> {
           ),
         ),
 
-        // Thumbnail row below the image slider
+        // Thumbnail row below the image slider with Luxury styling
         if (displayImages.length > 1)
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
             child: SizedBox(
-              height: 72,
+              height: 56,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: displayImages.length,
                 itemBuilder: (context, index) {
+                  final isSelected = _currentIndex == index;
                   final imageUrl = displayImages[index].contains('https://')
                       ? displayImages[index]
                       : '${env.baseUrl.replaceAll('api', '')}${displayImages[index]}';
@@ -223,33 +215,46 @@ class _ImageCarouselState extends State<ImageCarousel> {
                         curve: Curves.easeInOut,
                       );
                     },
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 12),
-                      width: 72,
-                      height: 72,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: _currentIndex == index
-                              ? const Color(0xFF6C5CE7)
-                              : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: CachedNetworkImage(
-                          imageUrl: imageUrl,
-                          fit: BoxFit.cover,
-                          memCacheWidth: 120,
-                          maxWidthDiskCache: 120,
-                          fadeInDuration: const Duration(milliseconds: 200),
-                          placeholder: (context, url) => Container(
-                            width: 72,
-                            height: 72,
-                            color: Colors.grey[100],
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 200),
+                      opacity: isSelected ? 1.0 : 0.65,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        width: 76,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: isSelected
+                                ? const Color(0xFF6C5CE7)
+                                : Colors.white,
+                            width: isSelected ? 2.5 : 1.5,
                           ),
-                          errorWidget: (context, url, error) => const LogoPlaceholder(),
+                          boxShadow: [
+                            BoxShadow(
+                              color: isSelected
+                                  ? const Color(0x336C5CE7)
+                                  : Colors.black.withOpacity(0.08),
+                              blurRadius: isSelected ? 6 : 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            fit: BoxFit.cover,
+                            memCacheWidth: 150,
+                            maxWidthDiskCache: 200,
+                            fadeInDuration: const Duration(milliseconds: 200),
+                            placeholder: (context, url) => Container(
+                              width: 76,
+                              height: 52,
+                              color: Colors.grey[100],
+                            ),
+                            errorWidget: (context, url, error) => const LogoPlaceholder(),
+                          ),
                         ),
                       ),
                     ),
@@ -302,8 +307,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 4,
+                color: Colors.black.withOpacity(0.12),
+                blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
             ],

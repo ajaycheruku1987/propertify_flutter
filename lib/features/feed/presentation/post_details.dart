@@ -708,51 +708,31 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     _buildReportedPostBanner(context, postDetails),
 
                   // Image Carousel Section
-                  Stack(
-                    children: [
-                      SizedBox(
-                        height: 380,
-                        child: ImageCarousel(
-                          images: postDetails.imageUrls ?? [],
-                          createdAt: postDetails.createdAt,
-                          isFavourited: postDetails.isFavourited ?? false,
-                          showActionButtons: true,
-                          onFavoriteToggle: () {
-                            if (!context.read<HomeBloc>().state.showAddButton) {
-                              CustomToast.showErrorToast(
-                                msg: l10n.pleaseLoginToFavorite,
-                              );
-                              context.push(AuthScreen.routeName);
-                              return;
-                            }
-                            if (postDetails.id != null) {
-                              context.read<FeedBloc>().add(
-                                FeedEvent.toggleFavorite(
-                                  propertyId: postDetails.id!,
-                                ),
-                              );
-                            }
-                          },
-                          onShare: () => _handleShare(postDetails),
-                        ),
-                      ),
-                      // Gradient overlay for better text visibility if needed, or rounded corners
-                      Positioned(
-                        bottom: -1,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: 30,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
+                  SizedBox(
+                    height: (postDetails.imageUrls?.length ?? 0) > 1 ? 410 : 340,
+                    child: ImageCarousel(
+                      images: postDetails.imageUrls ?? [],
+                      createdAt: postDetails.createdAt,
+                      isFavourited: postDetails.isFavourited ?? false,
+                      showActionButtons: true,
+                      onFavoriteToggle: () {
+                        if (!context.read<HomeBloc>().state.showAddButton) {
+                          CustomToast.showErrorToast(
+                            msg: l10n.pleaseLoginToFavorite,
+                          );
+                          context.push(AuthScreen.routeName);
+                          return;
+                        }
+                        if (postDetails.id != null) {
+                          context.read<FeedBloc>().add(
+                            FeedEvent.toggleFavorite(
+                              propertyId: postDetails.id!,
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
+                          );
+                        }
+                      },
+                      onShare: () => _handleShare(postDetails),
+                    ),
                   ),
 
                   // Main Content

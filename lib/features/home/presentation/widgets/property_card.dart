@@ -286,43 +286,6 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
             ),
           ),
-          // Share Button
-          Positioned(
-            top: 60,
-            right: 8,
-            child: GestureDetector(
-              onTap: widget.onSharePressed,
-              behavior: HitTestBehavior.opaque,
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  shape: BoxShape.circle,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.share,
-                      color: Colors.grey.shade600,
-                      size: 16,
-                    ),
-                    if (widget.shareCount > 0) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        widget.shareCount.toString(),
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade700,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ),
           if (widget.listingType != null && widget.listingType!.isNotEmpty)
             Positioned(
               bottom: 8,

@@ -356,43 +356,6 @@ class PropertyCardCompact extends StatelessWidget {
               ),
             ),
           ),
-          // Share Button
-          Positioned(
-            top: 42,
-            right: 8,
-            child: GestureDetector(
-              onTap: onSharePressed,
-              behavior: HitTestBehavior.opaque,
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  shape: BoxShape.circle,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.share,
-                      color: Colors.grey.shade600,
-                      size: 12,
-                    ),
-                    if (shareCount > 0) ...[
-                      const SizedBox(height: 1),
-                      Text(
-                        shareCount.toString(),
-                        style: TextStyle(
-                          fontSize: 8,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade700,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ),
           //code for lookingFor
           if (listingType != null && listingType!.isNotEmpty)
             Positioned(

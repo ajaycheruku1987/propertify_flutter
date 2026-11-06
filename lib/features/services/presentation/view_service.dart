@@ -267,7 +267,7 @@ Check it out on Propertify!
               children: [
                 // Image Carousel Section
                 SizedBox(
-                  height: 340,
+                  height: (service.imageUrls?.length ?? 0) > 1 ? 430 : 340,
                   child: ImageCarousel(
                     images: service.imageUrls ?? [],
                     createdAt: service.createdAt,
