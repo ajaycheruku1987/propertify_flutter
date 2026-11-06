@@ -152,6 +152,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 '''
               .trim();
 
+      if (postDetails.id != null) {
+        context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: postDetails.id!));
+      }
       Share.share(shareMessage, subject: postTitle);
     } catch (e) {
       debugPrint('Error sharing post: $e');
@@ -1011,7 +1014,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                               _buildInteractionButton(
                                 context: context,
                                 icon: FontAwesomeIcons.shareNodes,
-                                label: '',
+                                label: '${postDetails.sharesCount ?? 0}',
                                 color: Colors.grey.shade700,
                                 onTap: () => _handleShare(postDetails),
                               ),

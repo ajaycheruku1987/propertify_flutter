@@ -97,4 +97,8 @@ class FeedEvent with _$FeedEvent {
     required String propertyId,
     required String commentId,
   }) = _DeleteComment;
+
+  const factory FeedEvent.shareProperty({
+    required String propertyId,
+  }) = _ShareProperty;
 }

@@ -159,6 +159,7 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                   commentCount: post.commentsCount ?? 0,
                   likeCount: post.likesCount ?? 0,
                   viewCount: post.viewsCount ?? 0,
+                  shareCount: post.sharesCount ?? 0,
                   showActions: true,
                   onFavoritePressed: () {
                     if (post.id != null) {
@@ -218,6 +219,9 @@ Check it out on Propertify!
 '''
                             .trim();
 
+                    if (post.id != null) {
+                      context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: post.id!));
+                    }
                     Share.share(shareMessage, subject: postTitle);
                   },
                   onLikePressed: () {

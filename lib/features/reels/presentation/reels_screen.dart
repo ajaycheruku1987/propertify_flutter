@@ -1041,7 +1041,7 @@ class ReelViewState extends State<ReelView>
                       const SizedBox(height: 20),
                       _ActionButton(
                         icon: Icons.share_outlined,
-                        label: '',
+                        label: widget.reel.sharesCount?.toString() ?? '0',
                         onTap: () {
                           try {
                             // Prepare share content

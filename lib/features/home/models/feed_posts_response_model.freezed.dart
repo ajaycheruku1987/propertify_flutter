@@ -69,6 +69,8 @@ mixin _$FeedPostsResponseModel {
   int? get commentsCount => throw _privateConstructorUsedError;
   @JsonKey(name: "views_count")
   int? get viewsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "shares_count")
+  int? get sharesCount => throw _privateConstructorUsedError;
   @JsonKey(name: "call_count")
   int? get callCount => throw _privateConstructorUsedError;
   @JsonKey(name: "whatsapp_count")
@@ -153,6 +155,7 @@ abstract class $FeedPostsResponseModelCopyWith<$Res> {
       @JsonKey(name: "likes_count") int? likesCount,
       @JsonKey(name: "comments_count") int? commentsCount,
       @JsonKey(name: "views_count") int? viewsCount,
+      @JsonKey(name: "shares_count") int? sharesCount,
       @JsonKey(name: "call_count") int? callCount,
       @JsonKey(name: "whatsapp_count") int? whatsappCount,
       @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
@@ -222,6 +225,7 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
     Object? likesCount = freezed,
     Object? commentsCount = freezed,
     Object? viewsCount = freezed,
+    Object? sharesCount = freezed,
     Object? callCount = freezed,
     Object? whatsappCount = freezed,
     Object? plotArea = freezed,
@@ -342,6 +346,10 @@ class _$FeedPostsResponseModelCopyWithImpl<$Res,
       viewsCount: freezed == viewsCount
           ? _value.viewsCount
           : viewsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sharesCount: freezed == sharesCount
+          ? _value.sharesCount
+          : sharesCount // ignore: cast_nullable_to_non_nullable
               as int?,
       callCount: freezed == callCount
           ? _value.callCount
@@ -485,6 +493,7 @@ abstract class _$$FeedPostsResponseModelImplCopyWith<$Res>
       @JsonKey(name: "likes_count") int? likesCount,
       @JsonKey(name: "comments_count") int? commentsCount,
       @JsonKey(name: "views_count") int? viewsCount,
+      @JsonKey(name: "shares_count") int? sharesCount,
       @JsonKey(name: "call_count") int? callCount,
       @JsonKey(name: "whatsapp_count") int? whatsappCount,
       @JsonKey(name: "plot_area", fromJson: _toString) String? plotArea,
@@ -554,6 +563,7 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
     Object? likesCount = freezed,
     Object? commentsCount = freezed,
     Object? viewsCount = freezed,
+    Object? sharesCount = freezed,
     Object? callCount = freezed,
     Object? whatsappCount = freezed,
     Object? plotArea = freezed,
@@ -674,6 +684,10 @@ class __$$FeedPostsResponseModelImplCopyWithImpl<$Res>
       viewsCount: freezed == viewsCount
           ? _value.viewsCount
           : viewsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sharesCount: freezed == sharesCount
+          ? _value.sharesCount
+          : sharesCount // ignore: cast_nullable_to_non_nullable
               as int?,
       callCount: freezed == callCount
           ? _value.callCount
@@ -799,6 +813,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
       @JsonKey(name: "likes_count") this.likesCount,
       @JsonKey(name: "comments_count") this.commentsCount,
       @JsonKey(name: "views_count") this.viewsCount,
+      @JsonKey(name: "shares_count") this.sharesCount,
       @JsonKey(name: "call_count") this.callCount,
       @JsonKey(name: "whatsapp_count") this.whatsappCount,
       @JsonKey(name: "plot_area", fromJson: _toString) this.plotArea,
@@ -913,6 +928,9 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
   @JsonKey(name: "views_count")
   final int? viewsCount;
   @override
+  @JsonKey(name: "shares_count")
+  final int? sharesCount;
+  @override
   @JsonKey(name: "call_count")
   final int? callCount;
   @override
@@ -984,7 +1002,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
 
   @override
   String toString() {
-    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, callCount: $callCount, whatsappCount: $whatsappCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, mainCategory: $mainCategory, subCategory: $subCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, propertyStatus: $propertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, carpetArea: $carpetArea, carpetAreaUnit: $carpetAreaUnit, reportedBy: $reportedBy, reportReason: $reportReason, reportedAt: $reportedAt)';
+    return 'FeedPostsResponseModel(id: $id, userId: $userId, title: $title, description: $description, city: $city, address: $address, propertyType: $propertyType, listingType: $listingType, price: $price, imageUrls: $imageUrls, isFeatured: $isFeatured, rating: $rating, createdAt: $createdAt, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, promotedAt: $promotedAt, promotedUntil: $promotedUntil, owner: $owner, isFavourited: $isFavourited, isLiked: $isLiked, likesCount: $likesCount, commentsCount: $commentsCount, viewsCount: $viewsCount, sharesCount: $sharesCount, callCount: $callCount, whatsappCount: $whatsappCount, plotArea: $plotArea, areaUnit: $areaUnit, facing: $facing, roadWidth: $roadWidth, postedBy: $postedBy, approvalStatus: $approvalStatus, dimensions: $dimensions, isCornerPlot: $isCornerPlot, isGatedCommunity: $isGatedCommunity, mainCategory: $mainCategory, subCategory: $subCategory, isNegotiable: $isNegotiable, securityDeposit: $securityDeposit, propertyStatus: $propertyStatus, contactViaPhone: $contactViaPhone, contactViaWhatsApp: $contactViaWhatsApp, carpetArea: $carpetArea, carpetAreaUnit: $carpetAreaUnit, reportedBy: $reportedBy, reportReason: $reportReason, reportedAt: $reportedAt)';
   }
 
   @override
@@ -1031,6 +1049,8 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
                 other.commentsCount == commentsCount) &&
             (identical(other.viewsCount, viewsCount) ||
                 other.viewsCount == viewsCount) &&
+            (identical(other.sharesCount, sharesCount) ||
+                other.sharesCount == sharesCount) &&
             (identical(other.callCount, callCount) ||
                 other.callCount == callCount) &&
             (identical(other.whatsappCount, whatsappCount) ||
@@ -1106,6 +1126,7 @@ class _$FeedPostsResponseModelImpl extends _FeedPostsResponseModel {
         likesCount,
         commentsCount,
         viewsCount,
+        sharesCount,
         callCount,
         whatsappCount,
         plotArea,
@@ -1172,6 +1193,7 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
       @JsonKey(name: "likes_count") final int? likesCount,
       @JsonKey(name: "comments_count") final int? commentsCount,
       @JsonKey(name: "views_count") final int? viewsCount,
+      @JsonKey(name: "shares_count") final int? sharesCount,
       @JsonKey(name: "call_count") final int? callCount,
       @JsonKey(name: "whatsapp_count") final int? whatsappCount,
       @JsonKey(name: "plot_area", fromJson: _toString) final String? plotArea,
@@ -1283,6 +1305,9 @@ abstract class _FeedPostsResponseModel extends FeedPostsResponseModel {
   @override
   @JsonKey(name: "views_count")
   int? get viewsCount;
+  @override
+  @JsonKey(name: "shares_count")
+  int? get sharesCount;
   @override
   @JsonKey(name: "call_count")
   int? get callCount;

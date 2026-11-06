@@ -889,6 +889,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   Widget _buildDescriptionSection(SaleRecord sale) {
     final l10n = AppLocalizations.of(context)!;
+    if (sale.description == null || sale.description!.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

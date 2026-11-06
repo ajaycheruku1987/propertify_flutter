@@ -530,6 +530,7 @@ class _FeedListWidgetState extends State<FeedListWidget> {
       commentCount: feed.commentsCount ?? 0,
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
+      shareCount: feed.sharesCount ?? 0,
       listingType: feed.listingType,
       propertyType: feed.propertyType,
       onFavoritePressed: () {
@@ -589,6 +590,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   '''
                 .trim();
 
+        if (feed.id != null) {
+          context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: feed.id!));
+        }
         Share.share(shareMessage, subject: postTitle);
       },
       onCardPressed: () {
@@ -621,6 +625,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       commentCount: feed.commentsCount ?? 0,
       likeCount: feed.likesCount ?? 0,
       viewCount: feed.viewsCount ?? 0,
+      shareCount: feed.sharesCount ?? 0,
       listingType: feed.listingType,
       propertyType: feed.propertyType,
       onFavoritePressed: () {
@@ -680,6 +685,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   '''
                 .trim();
 
+        if (feed.id != null) {
+          context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: feed.id!));
+        }
         Share.share(shareMessage, subject: postTitle);
       },
       onCardPressed: () {

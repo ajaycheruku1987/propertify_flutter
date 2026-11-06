@@ -406,6 +406,25 @@ class FeedRepo {
     }
   }
 
+  /// Record Property Share API
+  Future<Either<Failure, void>> shareProperty({
+    required String propertyId,
+  }) async {
+    try {
+      final response = await ftPyroApiRequest.post(
+        '/properties/$propertyId/share',
+      );
+
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => const Right(null),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
   /// Update Property API
   Future<Either<Failure, FeedPostsResponseModel>> updateProperty({
     required String propertyId,

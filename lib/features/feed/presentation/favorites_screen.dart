@@ -89,6 +89,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 commentCount: post.commentsCount ?? 0,
                 likeCount: post.likesCount ?? 0,
                 viewCount: post.viewsCount ?? 0,
+                shareCount: post.sharesCount ?? 0,
                 onFavoritePressed: () {
                   if (post.id != null) {
                     context.read<FeedBloc>().add(
@@ -140,6 +141,9 @@ Check it out on Propertify!
                   '''
                           .trim();
 
+                  if (post.id != null) {
+                    context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: post.id!));
+                  }
                   Share.share(shareMessage, subject: postTitle);
                 },
                 onLikePressed: () {

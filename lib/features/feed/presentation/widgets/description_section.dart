@@ -20,14 +20,20 @@ class _DescriptionSectionState extends State<DescriptionSection> {
     if (desc.contains('__PROPS__')) {
       desc = desc.split('__PROPS__').first.trim();
     }
-    return desc.capitalize();
+    return desc.trim();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cleanDesc = _cleanDescription;
+    if (cleanDesc.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     final l10n = AppLocalizations.of(context)!;
     const int maxLines = 3;
-    final bool isLongText = _cleanDescription.length > 150;
+    final bool isLongText = cleanDesc.length > 150;
+    final capitalizedDesc = cleanDesc.capitalize();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,7 +56,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
           // Description Text
           AnimatedCrossFade(
             firstChild: Text(
-              _cleanDescription.translate(context),
+              capitalizedDesc.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],
@@ -61,7 +67,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               overflow: TextOverflow.ellipsis,
             ),
             secondChild: Text(
-              _cleanDescription.translate(context),
+              capitalizedDesc.translate(context),
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[700],

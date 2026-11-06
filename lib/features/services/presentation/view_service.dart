@@ -628,6 +628,10 @@ Check it out on Propertify!
 
   Widget _buildDescriptionSection(service) {
     final l10n = AppLocalizations.of(context)!;
+    final desc = service.description?.toString() ?? '';
+    if (desc.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(

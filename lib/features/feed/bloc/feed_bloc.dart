@@ -52,6 +52,7 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     on<_GetMyProperties>(_onGetMyProperties);
     on<_GetFavourites>(_onGetFavourites);
     on<_RecordPropertyView>(_onRecordPropertyView);
+    on<_ShareProperty>(_onShareProperty);
     on<_GetSimilarPostsByCategoryEvent>(_onGetSimilarPostsByCategoryEvent);
     on<_ResetSimilarPostsByCategory>(_onResetSimilarPostsByCategory);
     on<_DeletePropertyEvent>(_onDeletePropertyEvent);
@@ -926,6 +927,53 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
       // Silently track the view, no state changes needed
     } catch (e) {
       // Silently fail, don't notify user for view tracking errors
+    }
+  }
+
+  Future<void> _onShareProperty(
+    _ShareProperty event,
+    Emitter<FeedState> emit,
+  ) async {
+    try {
+      await _feedRepo.shareProperty(propertyId: event.propertyId);
+      final updatedFeeds = state.feedsList.map((post) {
+        if (post.id == event.propertyId) {
+          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+        }
+        return post;
+      }).toList();
+
+      final updatedFavorites = state.favouritesList.map((post) {
+        if (post.id == event.propertyId) {
+          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+        }
+        return post;
+      }).toList();
+
+      final updatedMyProperties = state.myPropertiesList.map((post) {
+        if (post.id == event.propertyId) {
+          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+        }
+        return post;
+      }).toList();
+
+      FeedPostsResponseModel? updatedPostDetails = state.postDetails;
+      if (updatedPostDetails?.id == event.propertyId) {
+        updatedPostDetails = updatedPostDetails?.copyWith(
+          sharesCount: (updatedPostDetails.sharesCount ?? 0) + 1,
+        );
+      }
+
+      emit(
+        state.copyWith(
+          feedsList: updatedFeeds,
+          favouritesList: updatedFavorites,
+          myPropertiesList: updatedMyProperties,
+          postDetails: updatedPostDetails,
+        ),
+      );
+    } catch (e) {
+      // Silently fail
     }
   }
 

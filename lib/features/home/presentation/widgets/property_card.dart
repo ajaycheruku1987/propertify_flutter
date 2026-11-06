@@ -31,6 +31,7 @@ class PropertyCard extends StatefulWidget {
   final int likeCount;
   final int commentCount;
   final int viewCount;
+  final int shareCount;
   final VoidCallback onFavoritePressed;
   final VoidCallback onCardPressed;
   final VoidCallback onSharePressed;
@@ -52,6 +53,7 @@ class PropertyCard extends StatefulWidget {
     this.likeCount = 0,
     this.commentCount = 0,
     this.viewCount = 0,
+    this.shareCount = 0,
     required this.onFavoritePressed,
     required this.onCardPressed,
     required this.onSharePressed,
@@ -297,10 +299,26 @@ class _PropertyCardState extends State<PropertyCard> {
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
-                child: FaIcon(
-                  FontAwesomeIcons.share,
-                  color: Colors.grey.shade600,
-                  size: 20,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.share,
+                      color: Colors.grey.shade600,
+                      size: 16,
+                    ),
+                    if (widget.shareCount > 0) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        widget.shareCount.toString(),
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ),

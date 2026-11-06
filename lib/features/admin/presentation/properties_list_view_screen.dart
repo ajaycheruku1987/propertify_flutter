@@ -2,6 +2,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/features/feed/bloc/feed_bloc.dart';
 import 'package:propertify/features/feed/presentation/post_details.dart';
 import 'package:propertify/features/home/presentation/widgets/property_card.dart';
 import 'package:propertify/utils/custom_toast.dart';
@@ -195,6 +196,7 @@ class _PropertiesListViewScreenState extends State<PropertiesListViewScreen> {
                 likeCount: property.likesCount ?? 0,
                 commentCount: property.commentsCount ?? 0,
                 viewCount: property.viewsCount ?? 0,
+                shareCount: property.sharesCount ?? 0,
                 onFavoritePressed: () {},
                 onCardPressed: () {
                   context.push(
@@ -202,6 +204,9 @@ class _PropertiesListViewScreenState extends State<PropertiesListViewScreen> {
                   );
                 },
                 onSharePressed: () {
+                  if (property.id != null) {
+                    context.read<FeedBloc>().add(FeedEvent.shareProperty(propertyId: property.id!));
+                  }
                   Share.share('Check out this property: ${property.title?.capitalize() ?? 'Property'}');
                 },
                 onLikePressed: () {},

@@ -29,6 +29,7 @@ class PropertyCardCompact extends StatelessWidget {
   final int likeCount;
   final int commentCount;
   final int viewCount;
+  final int shareCount;
   final VoidCallback onFavoritePressed;
   final VoidCallback onCardPressed;
   final VoidCallback onLikePressed;
@@ -53,6 +54,7 @@ class PropertyCardCompact extends StatelessWidget {
     this.likeCount = 0,
     this.commentCount = 0,
     this.viewCount = 0,
+    this.shareCount = 0,
     required this.onFavoritePressed,
     required this.onCardPressed,
     required this.onLikePressed,
@@ -367,10 +369,26 @@ class PropertyCardCompact extends StatelessWidget {
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
-                child: FaIcon(
-                  FontAwesomeIcons.share,
-                  color: Colors.grey.shade600,
-                  size: 14,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.share,
+                      color: Colors.grey.shade600,
+                      size: 12,
+                    ),
+                    if (shareCount > 0) ...[
+                      const SizedBox(height: 1),
+                      Text(
+                        shareCount.toString(),
+                        style: TextStyle(
+                          fontSize: 8,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ),
