@@ -31,9 +31,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This app may use the camera to record videos for reels.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs location access to help you find and post properties in your area.</string>
+	<string>This app needs location access to show properties near you and to alert you when someone posts a listing in your state.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs location access to help you find and post properties in your area.</string>
+	<string>This app needs location access to show properties near you and to alert you when someone posts a listing in your state.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app may use the microphone to capture audio while recording reels.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

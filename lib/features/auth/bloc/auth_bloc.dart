@@ -190,6 +190,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       print("Error removing FCM token on logout: $e");
     }
 
+    try {
+      await NotificationService.instance
+          .unsubscribeFromRegion()
+          .timeout(const Duration(seconds: 5));
+    } catch (e) {
+      print("Error leaving region alerts on logout: $e");
+    }
+
     // Clear all auth data
     await _appCacheService.clearAll();
     await _apiRequest.updateAuthorization(clearToken: true);

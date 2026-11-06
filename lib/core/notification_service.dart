@@ -34,6 +34,22 @@ const int _groupSummaryId = 0;
 const String _summaryPayload = '{"type":"summary"}';
 // The backend broadcasts to every install through this topic.
 const String _allUsersTopic = 'all';
+// Last region topic this install joined, so a move can leave the old one.
+const String _regionTopicKey = 'alert_region_topic';
+const String _regionLabelKey = 'alert_region_label';
+
+/// FCM topic for a state name. "Telangana" becomes `state_telangana`.
+String? stateTopicName(String raw) {
+  final slug = raw
+      .trim()
+      .toLowerCase()
+      .replaceAll('&', ' and ')
+      .replaceAll(RegExp(r'[^a-z0-9]+'), '_')
+      .replaceAll(RegExp(r'_+'), '_')
+      .replaceAll(RegExp(r'^_|_$'), '');
+  if (slug.isEmpty) return null;
+  return 'state_$slug';
+}
 // Large photos are scaled down so the notification stays under Android's size limits.
 const int _maxPictureSide = 1024;
 
@@ -79,15 +95,12 @@ class NotificationService {
       _onMessageOpened(initialMessage);
     }
 
-    final String? token = await getToken();
-    log('FCM Token: $token');
-
-    // On iOS this must run after getToken(), which waits for the APNs token.
-    try {
-      await fcm.subscribeToTopic(_allUsersTopic);
-      log('Subscribed to "$_allUsersTopic" topic');
-    } catch (e) {
-      log('Error subscribing to "$_allUsersTopic" topic: $e');
+    // iOS cannot join an FCM topic until the user has allowed notifications
+    // and APNs has issued a device token. Permission is requested later.
+    final existing = await fcm.getNotificationSettings();
+    if (existing.authorizationStatus == AuthorizationStatus.authorized ||
+        existing.authorizationStatus == AuthorizationStatus.provisional) {
+      await _registerPushToken();
     }
 
     fcm.onTokenRefresh.listen(_syncTokenWithBackend);
@@ -101,7 +114,84 @@ class NotificationService {
       sound: true,
     );
     log('Notification permission: ${settings.authorizationStatus}');
+    if (settings.authorizationStatus == AuthorizationStatus.authorized ||
+        settings.authorizationStatus == AuthorizationStatus.provisional) {
+      await _registerPushToken();
+    }
     return settings;
+  }
+
+  Future<void> _registerPushToken() async {
+    final String? token = await getToken();
+    log('FCM Token: $token');
+    if (token == null) return;
+    try {
+      await fcm.subscribeToTopic(_allUsersTopic);
+      log('Subscribed to "$_allUsersTopic" topic');
+    } catch (e) {
+      log('Error subscribing to "$_allUsersTopic" topic: $e');
+    }
+    await subscribeToSavedRegion();
+    _syncTokenWithBackend(token);
+  }
+
+  /// Join the FCM topic for [stateName] (for example Telangana -> state_telangana).
+  /// Leaves the previous state topic when the region changes.
+  /// No-ops until notification permission is granted; the label is kept so a
+  /// later [subscribeToSavedRegion] can finish the join.
+  Future<void> subscribeToState(String stateName) async {
+    final topic = stateTopicName(stateName);
+    if (topic == null) return;
+
+    final prefs = serviceLocator<SharedPreferences>();
+    await prefs.setString(_regionLabelKey, stateName.trim());
+
+    final settings = await fcm.getNotificationSettings();
+    final allowed =
+        settings.authorizationStatus == AuthorizationStatus.authorized ||
+        settings.authorizationStatus == AuthorizationStatus.provisional;
+    if (!allowed) return;
+
+    final previous = prefs.getString(_regionTopicKey);
+    if (previous == topic) return;
+
+    if (previous != null && previous.isNotEmpty) {
+      try {
+        await fcm.unsubscribeFromTopic(previous);
+      } catch (e) {
+        log('Error leaving "$previous": $e');
+      }
+    }
+
+    try {
+      await fcm.subscribeToTopic(topic);
+      await prefs.setString(_regionTopicKey, topic);
+      log('Subscribed to "$topic"');
+    } catch (e) {
+      log('Error subscribing to "$topic": $e');
+    }
+  }
+
+  Future<void> subscribeToSavedRegion() async {
+    final label =
+        serviceLocator<SharedPreferences>().getString(_regionLabelKey);
+    if (label == null || label.trim().isEmpty) return;
+    await subscribeToState(label);
+  }
+
+  Future<void> unsubscribeFromRegion() async {
+    final prefs = serviceLocator<SharedPreferences>();
+    final topic = prefs.getString(_regionTopicKey);
+    if (topic != null && topic.isNotEmpty) {
+      try {
+        await fcm.unsubscribeFromTopic(topic);
+        log('Unsubscribed from "$topic"');
+      } catch (e) {
+        log('Error unsubscribing from "$topic": $e');
+      }
+    }
+    await prefs.remove(_regionTopicKey);
+    await prefs.remove(_regionLabelKey);
   }
 
   Future<void> _onForegroundMessage(RemoteMessage message) async {
@@ -423,7 +513,7 @@ Future<Uint8List?> _downloadPicture(String? url) async {
   }
 }
 
-// The poster also receives the "all" topic broadcast of their own new post.
+// The poster is on the same state topic, so their own new post is dropped here.
 Future<bool> _isOwnPost(Map<String, dynamic> data) async {
   if (data['type'] != 'new_post') return false;
   final ownerId = data['owner_id']?.toString();

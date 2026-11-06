@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:propertify/core/constants/app_categories.dart';
 import 'package:propertify/utils/location_service.dart';
+import 'package:propertify/utils/region_alerts.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/features/auth/bloc/auth_bloc.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
@@ -93,7 +94,8 @@ class _HomeScreenContent extends StatefulWidget {
   State<_HomeScreenContent> createState() => _HomeScreenContentState();
 }
 
-class _HomeScreenContentState extends State<_HomeScreenContent> {
+class _HomeScreenContentState extends State<_HomeScreenContent>
+    with WidgetsBindingObserver {
   int _selectedTabIndex = 0;
   int _selectedBottomNavIndex = 0;
   int _currentSlide = 0;
@@ -103,6 +105,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final appCache = serviceLocator<AppCacheService>();
       final token = appCache.getToken();
@@ -130,8 +133,16 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _searchController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _refreshRegion();
+    }
   }
 
   @override
@@ -552,11 +563,52 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           village: address.village,
         ),
       );
+
+      await _syncRegion(address.state);
     } catch (_) {
       // Ignore — user can pick a location manually.
     } finally {
       if (mounted) setState(() => _isLoadingLocation = false);
     }
+  }
+
+  /// Re-read the state when the user returns. Does not show a permission prompt.
+  /// The profile is updated only when the state actually changed.
+  Future<void> _refreshRegion() async {
+    try {
+      if (!await LocationService.isGranted()) return;
+
+      final lastKnown = await LocationService.getLastKnown();
+      final position = await LocationService.getQuickCurrentPosition(
+        fallback: lastKnown,
+      );
+      if (position == null || !mounted) return;
+
+      final address = await LocationService.reverseGeocode(
+        position.latitude,
+        position.longitude,
+      );
+      if (!mounted || address.state.trim().isEmpty) return;
+
+      context.read<HomeBloc>().add(
+        HomeEvent.updateCurrentLocation(
+          lat: position.latitude,
+          lng: position.longitude,
+          city: address.city,
+          state: address.state,
+          village: address.village,
+        ),
+      );
+      await _syncRegion(address.state);
+    } catch (e) {
+      debugPrint('Region refresh error: $e');
+    }
+  }
+
+  Future<void> _syncRegion(String stateName) async {
+    final token = serviceLocator<AppCacheService>().getToken();
+    if (token == null || token.isEmpty) return;
+    await RegionAlerts.bindState(stateName);
   }
 
   String _getLocationText() {

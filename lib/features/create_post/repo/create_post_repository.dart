@@ -9,6 +9,7 @@ import 'package:propertify/core/failure.dart';
 import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/create_post/models/add_post_response.dart';
 import 'package:propertify/utils/extensions/http_extension.dart';
+import 'package:propertify/utils/location_service.dart';
 import 'package:propertify/utils/media_cache_compression_util.dart';
 
 abstract class CreatePostRepository {
@@ -107,6 +108,15 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         'carpet_area_unit': carpetAreaUnit,
       };
 
+      String? stateName;
+      if (latitude != null && longitude != null) {
+        final region = await LocationService.reverseGeocode(latitude, longitude);
+        if (region.state.trim().isNotEmpty) {
+          stateName = region.state.trim();
+          metadata['state'] = stateName;
+        }
+      }
+
       String encodedMetadata = jsonEncode(metadata);
       String finalDescription = (description != null && description.trim().isNotEmpty ? description.trim() : '') + '\n\n__PROPS__$encodedMetadata';
 
@@ -116,6 +126,7 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
         'listing_type': listingType,
         'address': address,
         'city': city,
+        if (stateName != null) 'state': stateName,
         'price': priceValue,
         'description': finalDescription,
         if (latitude != null) 'latitude': latitude.toString(),

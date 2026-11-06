@@ -13,6 +13,16 @@ class LocationService {
     timeLimit: Duration(seconds: 8),
   );
 
+  /// True when location services are on and permission was already granted.
+  /// Does not show a prompt.
+  static Future<bool> isGranted() async {
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) return false;
+    final permission = await Geolocator.checkPermission();
+    return permission != LocationPermission.denied &&
+        permission != LocationPermission.deniedForever;
+  }
+
   /// Ensures permission is granted. Returns false if denied / services off.
   static Future<bool> ensurePermission() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
