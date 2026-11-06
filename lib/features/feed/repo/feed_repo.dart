@@ -407,7 +407,7 @@ class FeedRepo {
   }
 
   /// Record Property Share API
-  Future<Either<Failure, void>> shareProperty({
+  Future<Either<Failure, int?>> shareProperty({
     required String propertyId,
   }) async {
     try {
@@ -418,7 +418,12 @@ class FeedRepo {
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),
-        (right) => const Right(null),
+        (right) {
+          if (right is Map<String, dynamic> && right.containsKey('shares_count')) {
+            return Right((right['shares_count'] as num?)?.toInt());
+          }
+          return const Right(null);
+        },
       );
     } catch (e) {
       return Left(ApiFailure('An error occurred: ${e.toString()}'));

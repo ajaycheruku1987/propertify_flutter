@@ -935,33 +935,37 @@ class FeedBloc extends HydratedBloc<FeedEvent, FeedState> {
     Emitter<FeedState> emit,
   ) async {
     try {
-      await _feedRepo.shareProperty(propertyId: event.propertyId);
+      final res = await _feedRepo.shareProperty(propertyId: event.propertyId);
+      final int? serverShareCount = res.fold((l) => null, (r) => r);
+
       final updatedFeeds = state.feedsList.map((post) {
         if (post.id == event.propertyId) {
-          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+          final newCount = serverShareCount ?? ((post.sharesCount ?? 0) + 1);
+          return post.copyWith(sharesCount: newCount);
         }
         return post;
       }).toList();
 
       final updatedFavorites = state.favouritesList.map((post) {
         if (post.id == event.propertyId) {
-          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+          final newCount = serverShareCount ?? ((post.sharesCount ?? 0) + 1);
+          return post.copyWith(sharesCount: newCount);
         }
         return post;
       }).toList();
 
       final updatedMyProperties = state.myPropertiesList.map((post) {
         if (post.id == event.propertyId) {
-          return post.copyWith(sharesCount: (post.sharesCount ?? 0) + 1);
+          final newCount = serverShareCount ?? ((post.sharesCount ?? 0) + 1);
+          return post.copyWith(sharesCount: newCount);
         }
         return post;
       }).toList();
 
       FeedPostsResponseModel? updatedPostDetails = state.postDetails;
       if (updatedPostDetails?.id == event.propertyId) {
-        updatedPostDetails = updatedPostDetails?.copyWith(
-          sharesCount: (updatedPostDetails.sharesCount ?? 0) + 1,
-        );
+        final newCount = serverShareCount ?? ((updatedPostDetails?.sharesCount ?? 0) + 1);
+        updatedPostDetails = updatedPostDetails?.copyWith(sharesCount: newCount);
       }
 
       emit(
