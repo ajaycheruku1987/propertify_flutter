@@ -105,7 +105,12 @@ class WriteReviewBottomSheet {
                     controller: reviewController,
                     maxLines: 4,
                     decoration: InputDecoration(
-                      hintText: 'Share your experience dealing with this seller...',
+                      hintText: 'Share your valuable experience...',
+                      hintStyle: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(color: Colors.grey.shade300),
