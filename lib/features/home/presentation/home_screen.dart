@@ -127,8 +127,11 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Refresh feeds when returning to the home screen
-    context.read<FeedBloc>().add(const FeedEvent.getFeedsEvent(offset: 0));
+    // Refresh feeds when returning to the home screen using current location & filters
+    final homeState = context.read<HomeBloc>().state;
+    if (homeState.currentLat != 0.0 || homeState.currentLng != 0.0) {
+      _fetchDataForCurrentLocation(context, homeState);
+    }
   }
 
   @override
