@@ -14,6 +14,7 @@ import 'package:propertify/utils/env.dart';
 import 'package:propertify/core/app_cache_service.dart';
 import 'package:propertify/core/service_locator.dart';
 import '../../../../utils/common_widgets/user_avatar_widget.dart';
+import 'package:propertify/features/profile/presentation/widgets/write_review_bottom_sheet.dart';
 
 class AgentInfo extends StatelessWidget {
   final String agentName;
@@ -29,6 +30,7 @@ class AgentInfo extends StatelessWidget {
   final int? totalReviews;
   final VoidCallback? onCallPressed;
   final VoidCallback? onWhatsAppPressed;
+  final VoidCallback? onRatingPressed;
 
   const AgentInfo({
     super.key,
@@ -45,6 +47,7 @@ class AgentInfo extends StatelessWidget {
     this.totalReviews,
     this.onCallPressed,
     this.onWhatsAppPressed,
+    this.onRatingPressed,
   });
 
   void _showOwnerReelsBottomSheet(BuildContext context, List<ReelResponseModel> reels) {
@@ -229,9 +232,14 @@ class AgentInfo extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          if (averageRating != null && averageRating! > 0) ...[
-                            const SizedBox(height: 6),
-                            Container(
+                          const SizedBox(height: 6),
+                          GestureDetector(
+                            onTap: onRatingPressed ?? () {
+                              if (userId != null && userId!.isNotEmpty) {
+                                WriteReviewBottomSheet.show(context, sellerId: userId!);
+                              }
+                            },
+                            child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade50,
@@ -244,17 +252,27 @@ class AgentInfo extends StatelessWidget {
                                   const Icon(Icons.star, color: Colors.amber, size: 12),
                                   const SizedBox(width: 3),
                                   Text(
-                                    '${averageRating!.toStringAsFixed(1)} ${totalReviews != null && totalReviews! > 0 ? "($totalReviews)" : ""}',
+                                    (averageRating != null && averageRating! > 0)
+                                        ? '${averageRating!.toStringAsFixed(1)} ${totalReviews != null && totalReviews! > 0 ? "($totalReviews)" : ""}'
+                                        : '0.0',
                                     style: TextStyle(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.amber.shade900,
                                     ),
                                   ),
+                                  if (averageRating == null || averageRating! <= 0) ...[
+                                    const SizedBox(width: 4),
+                                    Icon(
+                                      Icons.edit_outlined,
+                                      color: Colors.amber.shade900,
+                                      size: 10,
+                                    ),
+                                  ],
                                 ],
                               ),
                             ),
-                          ],
+                          ),
                         ],
                       ),
                     ),
