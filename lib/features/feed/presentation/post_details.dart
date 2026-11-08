@@ -459,7 +459,17 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               color: Colors.black,
               size: 20,
             ),
-            onPressed: () => context.pop(),
+            onPressed: () {
+              Future.microtask(() {
+                if (context.mounted) {
+                  if (GoRouter.of(context).canPop()) {
+                    context.pop();
+                  } else {
+                    context.go('/home');
+                  }
+                }
+              });
+            },
           ),
         ),
         title: Text(
@@ -684,15 +694,38 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             }
 
             if (state.postDetails == null) {
-              if (!state.isLoading) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (context.mounted && context.canPop()) {
-                    CustomToast.showErrorToast(msg: l10n.postNotFound);
-                    context.pop();
-                  }
-                });
-              }
-              return Center(child: Text(l10n.postNotFound));
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+                      const SizedBox(height: 16),
+                      Text(
+                        l10n.postNotFound,
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        onPressed: () {
+                          Future.microtask(() {
+                            if (context.mounted) {
+                              if (GoRouter.of(context).canPop()) {
+                                context.pop();
+                              } else {
+                                context.go('/home');
+                              }
+                            }
+                          });
+                        },
+                        child: const Text('Go Back'),
+                      ),
+                    ],
+                  ),
+                ),
+              );
             }
 
             final postDetails = state.postDetails!;
@@ -1141,7 +1174,13 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         ),
                       ),
                       IconButton(
-                        onPressed: () => context.pop(),
+                        onPressed: () {
+                          Future.microtask(() {
+                            if (context.mounted) {
+                              context.pop();
+                            }
+                          });
+                        },
                         icon: const Icon(Icons.close),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
