@@ -223,6 +223,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     return Container(
       padding: const EdgeInsets.all(16),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: LocationSelector(
@@ -243,7 +244,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                 child: Stack(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(8),
+                      height: 42,
+                      width: 42,
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(50),
@@ -296,10 +299,11 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
         await CreateOrAddBottomSheet.show(context);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        height: 42,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(21),
           border: Border.all(color: Colors.grey.shade300),
           boxShadow: [
             BoxShadow(
@@ -315,15 +319,15 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
           children: [
             Icon(
               Icons.add,
-              size: 18,
+              size: 16,
               color: Theme.of(context).primaryColor,
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 1),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 0.5),
               decoration: BoxDecoration(
                 color: Colors.green,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(
                 'FREE',
