@@ -795,6 +795,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                           },
                         ),
 
+                        // Description Section
+                        DescriptionSection(
+                          description: postDetails.description ?? '',
+                        ),
+                        SizedBox(height: 4,),
+
                         // Plot Specifications Widget (for Plot / Land listings) or General Property Overview
                         if (postDetails.mainCategory == 'Land & Plots' ||
                             postDetails.propertyType == 'Open Plot' ||
@@ -810,15 +816,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
                         _buildPromotionSection(postDetails, l10n),
 
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Divider(height: 16),
-                        ),
-
-                        // Description Section
-                        DescriptionSection(
-                          description: postDetails.description ?? '',
-                        ),
+                        // const Padding(
+                        //   padding: EdgeInsets.symmetric(horizontal: 20),
+                        //   child: Divider(height: 16),
+                        // ),
 
                         // Agent Info Section
                         AgentInfo(
@@ -1040,24 +1041,27 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         context.read<ProfileBloc>().state.userProfile?.id ==
                                     postDetails.owner?.id &&
                                 !postDetails.isCurrentlyPromoted
-                            ? Center(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      // Navigate to SelectPlanScreen when boost post is tapped
-                                      final postId = postDetails.id ?? '';
-                                      context.push(
-                                        '${SelectPlanScreen.routeName}?contentType=${ContentType.FEED.value}&contentId=$postId',
-                                      );
-                                    },
-                                    child: SvgPicture.asset(
-                                      'assets/images/boost_post.svg',
+                            ? Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                child: Center(
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        // Navigate to SelectPlanScreen when boost post is tapped
+                                        final postId = postDetails.id ?? '';
+                                        context.push(
+                                          '${SelectPlanScreen.routeName}?contentType=${ContentType.FEED.value}&contentId=$postId',
+                                        );
+                                      },
+                                      child: SvgPicture.asset(
+                                        'assets/images/boost_post.svg',
+                                      ),
                                     ),
                                   ),
                                 ),
                               )
-                            : Container(),
+                            : const SizedBox.shrink(),
 
                         // Similar Properties Section
                         _buildSimilaritySection(state, postDetails),
@@ -1232,11 +1236,11 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     final formattedDate = formatter.format(expiryDate);
 
     return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.06),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: Theme.of(context).primaryColor.withOpacity(0.15),
           width: 1,
@@ -1245,7 +1249,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor.withOpacity(0.1),
               shape: BoxShape.circle,
@@ -1253,10 +1257,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             child: Icon(
               Icons.campaign_outlined,
               color: Theme.of(context).primaryColor,
-              size: 20,
+              size: 22,
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1264,18 +1268,18 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 Text(
                   isExpired ? l10n.promotionExpired : l10n.daysLeft(daysLeft),
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
                     color: isExpired
                         ? Colors.red.shade700
                         : Theme.of(context).primaryColor,
                   ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 3),
                 Text(
                   l10n.promotedUntil(formattedDate),
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey.shade600,
                   ),

@@ -44,7 +44,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
           const Text(
             'About this Property',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w800,
               color: Color(0xFF1A1A1A),
               letterSpacing: -0.5,
