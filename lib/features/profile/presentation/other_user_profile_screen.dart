@@ -41,6 +41,7 @@ import 'package:propertify/core/services/block_service.dart';
 import 'package:propertify/features/feed/bloc/feed_bloc.dart';
 import 'package:propertify/utils/safety_disclaimer_helper.dart';
 import 'widgets/social_links_widget.dart';
+import 'widgets/about_section_widget.dart';
 
 class OtherUserProfileScreen extends StatefulWidget {
   static const String routeName = '/other-user-profile';
@@ -357,13 +358,14 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
             );
           }
 
-          return Column(
-            children: [
-              // Profile Header
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
+          return NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
                     // Profile Picture
                     GestureDetector(
                       onTap: () {
@@ -501,49 +503,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                     }()),
                     if (profile.about != null && profile.about!.trim().isNotEmpty) ...[
                       const SizedBox(height: 16),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF8F9FE),
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: Theme.of(context).primaryColor.withOpacity(0.1),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.info_outline,
-                                  size: 18,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                const SizedBox(width: 8),
-                                const Text(
-                                  'About',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF1A1A1A),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              profile.about!,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                color: Colors.black87,
-                                height: 1.4,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      AboutSectionWidget(aboutText: profile.about!),
                     ],
                     const SizedBox(height: 20),
 
@@ -555,7 +515,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         children: [
                           _buildOwnerActionButton(
                             icon: Icons.edit_outlined,
-                            label: 'Edit',
+                            label: 'Edit Profile',
                             color: Colors.blue,
                             onTap: () => context.push(EditProfileScreen.routeName, extra: profile),
                           ),
@@ -576,7 +536,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                           const SizedBox(width: 6),
                           _buildOwnerActionButton(
                             icon: Icons.share_rounded,
-                            label: 'Socials',
+                            label: 'Add Social Links',
                             color: Colors.teal,
                             onTap: () => _showSocialLinksBottomSheet(context, profile),
                           ),
@@ -678,43 +638,40 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                   ],
                 ),
               ),
-
-              // Tab Bar
-              Container(
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.grey[200]!)),
-                ),
-                child: TabBar(
-                  controller: _tabController,
-                  isScrollable: true,
-                  labelColor: Theme.of(context).primaryColor,
-                  unselectedLabelColor: Colors.grey[600],
-                  indicatorColor: Theme.of(context).primaryColor,
-                  labelStyle: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
+            ),
+                SliverPersistentHeader(
+                  delegate: _SliverAppBarDelegate(
+                    TabBar(
+                      controller: _tabController,
+                      isScrollable: true,
+                      labelColor: Theme.of(context).primaryColor,
+                      unselectedLabelColor: Colors.grey[600],
+                      indicatorColor: Theme.of(context).primaryColor,
+                      labelStyle: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      tabs: const [
+                        Tab(text: 'Posts'),
+                        Tab(text: 'Reels'),
+                        Tab(text: 'Banner Ads'),
+                        Tab(text: 'Reviews'),
+                      ],
+                    ),
                   ),
-                  tabs: const [
-                    Tab(text: 'Posts'),
-                    Tab(text: 'Reels'),
-                    Tab(text: 'Banner Ads'),
-                    Tab(text: 'Reviews'),
-                  ],
+                  pinned: true,
                 ),
-              ),
-              // Tab Views
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    _buildPostsTab(),
-                    _buildReelsTab(),
-                    _buildBannerAdsTab(),
-                    _buildReviewsTab(profile),
-                  ],
-                ),
-              ),
-            ],
+              ];
+            },
+            body: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildPostsTab(),
+                _buildReelsTab(),
+                _buildBannerAdsTab(),
+                _buildReviewsTab(profile),
+              ],
+            ),
           );
         },
       ),
@@ -2125,6 +2082,32 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
         );
       },
     );
+  }
+}
+
+
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final TabBar _tabBar;
+
+  _SliverAppBarDelegate(this._tabBar);
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
 
