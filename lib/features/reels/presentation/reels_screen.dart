@@ -920,7 +920,7 @@ class ReelViewState extends State<ReelView>
             ),
           Positioned(
             right: 0,
-            bottom: 200,
+            bottom: 90,
             child: BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, profileState) {
                 final l10n = AppLocalizations.of(context)!;
