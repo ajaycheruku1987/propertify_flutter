@@ -51,7 +51,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
             ),
           ),
 
-          const SizedBox(height: 12),
+          const SizedBox(height: 6),
 
           // Description Text
           AnimatedCrossFade(

@@ -799,7 +799,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                         DescriptionSection(
                           description: postDetails.description ?? '',
                         ),
-                        SizedBox(height: 4,),
+                        SizedBox(height: 8,),
 
                         // Plot Specifications Widget (for Plot / Land listings) or General Property Overview
                         if (postDetails.mainCategory == 'Land & Plots' ||
@@ -1236,7 +1236,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     final formattedDate = formatter.format(expiryDate);
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.06),
