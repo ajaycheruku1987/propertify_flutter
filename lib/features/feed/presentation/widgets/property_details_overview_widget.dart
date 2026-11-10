@@ -45,7 +45,7 @@ class PropertyDetailsOverviewWidget extends StatelessWidget {
         (postDetails.contactViaWhatsApp ?? false);
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: const Color(0xFFF8F9FE),

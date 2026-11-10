@@ -136,7 +136,7 @@ class AgentInfo extends StatelessWidget {
     final isOwnProfile = userId != null && userId == currentUserId;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
