@@ -41,6 +41,7 @@ class UserProfileModel with _$UserProfileModel {
     @JsonKey(name: "website_url") String? websiteUrl,
     @JsonKey(name: "x_url") String? xUrl,
     @JsonKey(name: "youtube_url") String? youtubeUrl,
+    @JsonKey(name: "about") String? about,
   }) = _UserProfileModel;
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
@@ -86,6 +87,7 @@ class UserProfileModel with _$UserProfileModel {
       websiteUrl: data['website_url']?.toString(),
       xUrl: data['x_url']?.toString(),
       youtubeUrl: data['youtube_url']?.toString(),
+      about: data['about']?.toString() ?? data['bio']?.toString() ?? data['company_bio']?.toString(),
     );
   }
 }

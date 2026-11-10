@@ -499,6 +499,52 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen>
                         ],
                       );
                     }()),
+                    if (profile.about != null && profile.about!.trim().isNotEmpty) ...[
+                      const SizedBox(height: 16),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF8F9FE),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor.withOpacity(0.1),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.info_outline,
+                                  size: 18,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  'About',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF1A1A1A),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              profile.about!,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                color: Colors.black87,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 20),
 
                     // Owner Action Buttons OR Call & WhatsApp Buttons

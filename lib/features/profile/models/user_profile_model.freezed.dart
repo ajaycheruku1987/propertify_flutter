@@ -58,6 +58,8 @@ mixin _$UserProfileModel {
   String? get xUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "youtube_url")
   String? get youtubeUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "about")
+  String? get about => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserProfileModelCopyWith<UserProfileModel> get copyWith =>
@@ -91,7 +93,8 @@ abstract class $UserProfileModelCopyWith<$Res> {
       @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
       @JsonKey(name: "website_url") String? websiteUrl,
       @JsonKey(name: "x_url") String? xUrl,
-      @JsonKey(name: "youtube_url") String? youtubeUrl});
+      @JsonKey(name: "youtube_url") String? youtubeUrl,
+      @JsonKey(name: "about") String? about});
 }
 
 /// @nodoc
@@ -128,6 +131,7 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? websiteUrl = freezed,
     Object? xUrl = freezed,
     Object? youtubeUrl = freezed,
+    Object? about = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -214,6 +218,10 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.youtubeUrl
           : youtubeUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -247,7 +255,8 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       @JsonKey(name: "whatsapp_channel_url") String? whatsappChannelUrl,
       @JsonKey(name: "website_url") String? websiteUrl,
       @JsonKey(name: "x_url") String? xUrl,
-      @JsonKey(name: "youtube_url") String? youtubeUrl});
+      @JsonKey(name: "youtube_url") String? youtubeUrl,
+      @JsonKey(name: "about") String? about});
 }
 
 /// @nodoc
@@ -282,6 +291,7 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? websiteUrl = freezed,
     Object? xUrl = freezed,
     Object? youtubeUrl = freezed,
+    Object? about = freezed,
   }) {
     return _then(_$UserProfileModelImpl(
       id: freezed == id
@@ -368,6 +378,10 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.youtubeUrl
           : youtubeUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -396,7 +410,8 @@ class _$UserProfileModelImpl extends _UserProfileModel {
       @JsonKey(name: "whatsapp_channel_url") this.whatsappChannelUrl,
       @JsonKey(name: "website_url") this.websiteUrl,
       @JsonKey(name: "x_url") this.xUrl,
-      @JsonKey(name: "youtube_url") this.youtubeUrl})
+      @JsonKey(name: "youtube_url") this.youtubeUrl,
+      @JsonKey(name: "about") this.about})
       : super._();
 
   @override
@@ -462,10 +477,13 @@ class _$UserProfileModelImpl extends _UserProfileModel {
   @override
   @JsonKey(name: "youtube_url")
   final String? youtubeUrl;
+  @override
+  @JsonKey(name: "about")
+  final String? about;
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, averageRating: $averageRating, totalReviews: $totalReviews, city: $city, state: $state, country: $country, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl)';
+    return 'UserProfileModel(id: $id, username: $username, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, profilepic: $profilepic, role: $role, memberSince: $memberSince, postsCount: $postsCount, averageRating: $averageRating, totalReviews: $totalReviews, city: $city, state: $state, country: $country, facebookUrl: $facebookUrl, instagramUrl: $instagramUrl, whatsappChannelUrl: $whatsappChannelUrl, websiteUrl: $websiteUrl, xUrl: $xUrl, youtubeUrl: $youtubeUrl, about: $about)';
   }
 
   @override
@@ -507,7 +525,8 @@ class _$UserProfileModelImpl extends _UserProfileModel {
                 other.websiteUrl == websiteUrl) &&
             (identical(other.xUrl, xUrl) || other.xUrl == xUrl) &&
             (identical(other.youtubeUrl, youtubeUrl) ||
-                other.youtubeUrl == youtubeUrl));
+                other.youtubeUrl == youtubeUrl) &&
+            (identical(other.about, about) || other.about == about));
   }
 
   @override
@@ -533,7 +552,8 @@ class _$UserProfileModelImpl extends _UserProfileModel {
         whatsappChannelUrl,
         websiteUrl,
         xUrl,
-        youtubeUrl
+        youtubeUrl,
+        about
       ]);
 
   @JsonKey(ignore: true)
@@ -566,8 +586,8 @@ abstract class _UserProfileModel extends UserProfileModel {
       @JsonKey(name: "whatsapp_channel_url") final String? whatsappChannelUrl,
       @JsonKey(name: "website_url") final String? websiteUrl,
       @JsonKey(name: "x_url") final String? xUrl,
-      @JsonKey(name: "youtube_url")
-      final String? youtubeUrl}) = _$UserProfileModelImpl;
+      @JsonKey(name: "youtube_url") final String? youtubeUrl,
+      @JsonKey(name: "about") final String? about}) = _$UserProfileModelImpl;
   const _UserProfileModel._() : super._();
 
   @override
@@ -633,6 +653,9 @@ abstract class _UserProfileModel extends UserProfileModel {
   @override
   @JsonKey(name: "youtube_url")
   String? get youtubeUrl;
+  @override
+  @JsonKey(name: "about")
+  String? get about;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileModelImplCopyWith<_$UserProfileModelImpl> get copyWith =>

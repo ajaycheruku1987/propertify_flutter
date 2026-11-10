@@ -124,6 +124,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final newCity = event.city?.trim();
       final newState = event.state?.trim();
       final newCountry = event.country?.trim();
+      final newAbout = event.about?.trim();
 
       final currentName = currentProfile?.username?.trim();
       final currentFirstName = currentProfile?.firstName?.trim();
@@ -133,6 +134,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final currentCity = currentProfile?.city?.trim();
       final currentState = currentProfile?.state?.trim();
       final currentCountry = currentProfile?.country?.trim();
+      final currentAbout = currentProfile?.about?.trim();
 
       // Only send fields that have actually changed
       final String? nameToSend = newName != currentName ? newName : null;
@@ -145,6 +147,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final String? cityToSend = newCity != currentCity ? newCity : null;
       final String? stateToSend = newState != currentState ? newState : null;
       final String? countryToSend = newCountry != currentCountry ? newCountry : null;
+      final String? aboutToSend = newAbout != currentAbout ? newAbout : null;
 
       if (nameToSend == null &&
           firstNameToSend == null &&
@@ -153,7 +156,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           phoneToSend == null &&
           cityToSend == null &&
           stateToSend == null &&
-          countryToSend == null) {
+          countryToSend == null &&
+          aboutToSend == null) {
         emit(
           state.copyWith(
             isLoading: false,
@@ -173,6 +177,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         city: cityToSend,
         state: stateToSend,
         country: countryToSend,
+        about: aboutToSend,
       );
 
       updateResponseEither.fold(

@@ -25,6 +25,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _cityController;
   late TextEditingController _stateController;
   late TextEditingController _countryController;
+  late TextEditingController _aboutController;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -44,6 +45,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         TextEditingController(text: widget.userProfile.state);
     _countryController =
         TextEditingController(text: widget.userProfile.country);
+    _aboutController =
+        TextEditingController(text: widget.userProfile.about);
   }
 
   @override
@@ -56,6 +59,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _cityController.dispose();
     _stateController.dispose();
     _countryController.dispose();
+    _aboutController.dispose();
     super.dispose();
   }
 
@@ -197,6 +201,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   keyboardType: TextInputType.phone,
                   enabled: false,
                 ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _aboutController,
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    labelText: 'About / Company Story',
+                    hintText: 'Tell others about yourself, your background, or your company story...',
+                    hintStyle: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    border: OutlineInputBorder(),
+                    alignLabelWithHint: true,
+                    prefixIcon: Icon(Icons.info_outline),
+                  ),
+                ),
                 const SizedBox(height: 40),
                 BlocBuilder<ProfileBloc, ProfileState>(
                   builder: (context, state) {
@@ -214,6 +235,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   city: _cityController.text,
                                   state: _stateController.text,
                                   country: _countryController.text,
+                                  about: _aboutController.text,
                                 ),
                               );
                         }

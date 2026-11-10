@@ -28,7 +28,8 @@ mixin _$ProfileEvent {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -73,7 +74,8 @@ mixin _$ProfileEvent {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -116,7 +118,8 @@ mixin _$ProfileEvent {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -280,7 +283,8 @@ class _$ResetImpl implements _Reset {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -328,7 +332,8 @@ class _$ResetImpl implements _Reset {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -374,7 +379,8 @@ class _$ResetImpl implements _Reset {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -540,7 +546,8 @@ class _$LoadProfileImpl implements _LoadProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -588,7 +595,8 @@ class _$LoadProfileImpl implements _LoadProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -634,7 +642,8 @@ class _$LoadProfileImpl implements _LoadProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -766,7 +775,8 @@ abstract class _$$UpdateProfileImplCopyWith<$Res> {
       String phoneNumber,
       String? city,
       String? state,
-      String? country});
+      String? country,
+      String? about});
 }
 
 /// @nodoc
@@ -788,6 +798,7 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
     Object? city = freezed,
     Object? state = freezed,
     Object? country = freezed,
+    Object? about = freezed,
   }) {
     return _then(_$UpdateProfileImpl(
       name: null == name
@@ -822,6 +833,10 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -837,7 +852,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
       required this.phoneNumber,
       this.city,
       this.state,
-      this.country});
+      this.country,
+      this.about});
 
   @override
   final String name;
@@ -855,10 +871,12 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   final String? state;
   @override
   final String? country;
+  @override
+  final String? about;
 
   @override
   String toString() {
-    return 'ProfileEvent.updateProfile(name: $name, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, city: $city, state: $state, country: $country)';
+    return 'ProfileEvent.updateProfile(name: $name, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, city: $city, state: $state, country: $country, about: $about)';
   }
 
   @override
@@ -876,12 +894,13 @@ class _$UpdateProfileImpl implements _UpdateProfile {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.country, country) || other.country == country));
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.about, about) || other.about == about));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, firstName, lastName, email,
-      phoneNumber, city, state, country);
+      phoneNumber, city, state, country, about);
 
   @JsonKey(ignore: true)
   @override
@@ -902,7 +921,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -934,8 +954,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function(String id) deleteFeedback,
     required TResult Function(bool flag) isLoading,
   }) {
-    return updateProfile(
-        name, firstName, lastName, email, phoneNumber, city, state, country);
+    return updateProfile(name, firstName, lastName, email, phoneNumber, city,
+        state, country, about);
   }
 
   @override
@@ -951,7 +971,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -981,8 +1002,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function(String id)? deleteFeedback,
     TResult? Function(bool flag)? isLoading,
   }) {
-    return updateProfile?.call(
-        name, firstName, lastName, email, phoneNumber, city, state, country);
+    return updateProfile?.call(name, firstName, lastName, email, phoneNumber,
+        city, state, country, about);
   }
 
   @override
@@ -998,7 +1019,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -1030,8 +1052,8 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult orElse(),
   }) {
     if (updateProfile != null) {
-      return updateProfile(
-          name, firstName, lastName, email, phoneNumber, city, state, country);
+      return updateProfile(name, firstName, lastName, email, phoneNumber, city,
+          state, country, about);
     }
     return orElse();
   }
@@ -1122,7 +1144,8 @@ abstract class _UpdateProfile implements ProfileEvent {
       required final String phoneNumber,
       final String? city,
       final String? state,
-      final String? country}) = _$UpdateProfileImpl;
+      final String? country,
+      final String? about}) = _$UpdateProfileImpl;
 
   String get name;
   String? get firstName;
@@ -1132,6 +1155,7 @@ abstract class _UpdateProfile implements ProfileEvent {
   String? get city;
   String? get state;
   String? get country;
+  String? get about;
   @JsonKey(ignore: true)
   _$$UpdateProfileImplCopyWith<_$UpdateProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1270,7 +1294,8 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1319,7 +1344,8 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1366,7 +1392,8 @@ class _$UpdateSocialLinksImpl implements _UpdateSocialLinks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -1577,7 +1604,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1625,7 +1653,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1671,7 +1700,8 @@ class _$UploadProfileImageImpl implements _UploadProfileImage {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -1881,7 +1911,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -1929,7 +1960,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -1975,7 +2007,8 @@ class _$ChangePasswordImpl implements _ChangePassword {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2185,7 +2218,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2233,7 +2267,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2279,7 +2314,8 @@ class _$DeleteAccountImpl implements _DeleteAccount {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2503,7 +2539,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2551,7 +2588,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2597,7 +2635,8 @@ class _$CreateBannerAdImpl implements _CreateBannerAd {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -2809,7 +2848,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -2857,7 +2897,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -2903,7 +2944,8 @@ class _$LoadBannerAdsImpl implements _LoadBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3076,7 +3118,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3124,7 +3167,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3170,7 +3214,8 @@ class _$LoadMyBannerAdsImpl implements _LoadMyBannerAds {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3364,7 +3409,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3412,7 +3458,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3458,7 +3505,8 @@ class _$LoadOtherUserProfileImpl implements _LoadOtherUserProfile {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3678,7 +3726,8 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3726,7 +3775,8 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -3772,7 +3822,8 @@ class _$SubmitFeedbackImpl implements _SubmitFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -3948,7 +3999,8 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -3996,7 +4048,8 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4042,7 +4095,8 @@ class _$LoadMyFeedbacksImpl implements _LoadMyFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4208,7 +4262,8 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4256,7 +4311,8 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4302,7 +4358,8 @@ class _$LoadAllFeedbacksImpl implements _LoadAllFeedbacks {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4526,7 +4583,8 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4574,7 +4632,8 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4620,7 +4679,8 @@ class _$UpdateFeedbackImpl implements _UpdateFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -4825,7 +4885,8 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -4873,7 +4934,8 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -4919,7 +4981,8 @@ class _$DeleteFeedbackImpl implements _DeleteFeedback {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,
@@ -5117,7 +5180,8 @@ class _$IsLoadingImpl implements _IsLoading {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)
+            String? country,
+            String? about)
         updateProfile,
     required TResult Function(
             String? facebookUrl,
@@ -5165,7 +5229,8 @@ class _$IsLoadingImpl implements _IsLoading {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult? Function(
             String? facebookUrl,
@@ -5211,7 +5276,8 @@ class _$IsLoadingImpl implements _IsLoading {
             String phoneNumber,
             String? city,
             String? state,
-            String? country)?
+            String? country,
+            String? about)?
         updateProfile,
     TResult Function(
             String? facebookUrl,

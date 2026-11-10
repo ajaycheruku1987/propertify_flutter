@@ -14,6 +14,7 @@ class ProfileEvent with _$ProfileEvent {
     String? city,
     String? state,
     String? country,
+    String? about,
   }) = _UpdateProfile;
 
   const factory ProfileEvent.updateSocialLinks({

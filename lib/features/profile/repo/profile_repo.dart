@@ -43,6 +43,7 @@ class ProfileRepo {
     String? city,
     String? state,
     String? country,
+    String? about,
   }) async {
     final Map<String, dynamic> updateData = {};
 
@@ -60,6 +61,7 @@ class ProfileRepo {
     if (city != null) updateData["city"] = city;
     if (state != null) updateData["state"] = state;
     if (country != null) updateData["country"] = country;
+    if (about != null) updateData["about"] = about;
 
     final response = await ftPyroApiRequest.put(
       '/profile',
