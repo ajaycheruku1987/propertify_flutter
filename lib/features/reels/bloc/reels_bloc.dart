@@ -43,6 +43,7 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
     });
     on<_GetMyReels>(_onGetMyReels);
     on<_GetSearchSuggestions>(_onGetSearchSuggestions);
+    on<_ShareReel>(_onShareReel);
     on<_Reset>(_onReset);
   }
 
@@ -634,6 +635,50 @@ class ReelsBloc extends Bloc<ReelsEvent, ReelsState> {
           ),
         ),
       );
+    }
+  }
+
+  Future<void> _onShareReel(
+    _ShareReel event,
+    Emitter<ReelsState> emit,
+  ) async {
+    try {
+      final res = await _repo.shareReel(reelId: event.reelId);
+      final int? serverShareCount = res.fold((l) => null, (r) => r);
+
+      final updatedList = state.reelsList.map((reel) {
+        if (reel.id == event.reelId) {
+          final newCount = serverShareCount ?? ((reel.sharesCount ?? 0) + 1);
+          return reel.copyWith(sharesCount: newCount);
+        }
+        return reel;
+      }).toList();
+
+      final updatedMyReels = state.myReels.map((reel) {
+        if (reel.id == event.reelId) {
+          final newCount = serverShareCount ?? ((reel.sharesCount ?? 0) + 1);
+          return reel.copyWith(sharesCount: newCount);
+        }
+        return reel;
+      }).toList();
+
+      final updatedOtherReels = state.otherUserReels.map((reel) {
+        if (reel.id == event.reelId) {
+          final newCount = serverShareCount ?? ((reel.sharesCount ?? 0) + 1);
+          return reel.copyWith(sharesCount: newCount);
+        }
+        return reel;
+      }).toList();
+
+      emit(
+        _mergeState(
+          reelsList: updatedList,
+          myReels: updatedMyReels,
+          otherUserReels: updatedOtherReels,
+        ),
+      );
+    } catch (e) {
+      debugPrint('Error sharing reel: $e');
     }
   }
 

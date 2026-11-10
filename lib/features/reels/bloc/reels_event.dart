@@ -70,4 +70,7 @@ class ReelsEvent with _$ReelsEvent {
   // Search suggestions
   const factory ReelsEvent.getSearchSuggestions({required String query}) =
       _GetSearchSuggestions;
+
+  // Share a reel
+  const factory ReelsEvent.shareReel({required String reelId}) = _ShareReel;
 }

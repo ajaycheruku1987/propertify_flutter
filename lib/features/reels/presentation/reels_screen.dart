@@ -431,6 +431,7 @@ class ReelViewState extends State<ReelView>
   bool _isAppResumed = true;
   late bool _isLiked;
   late int _likesCount;
+  late int _sharesCount;
   late AnimationController _muteIconController;
   late Animation<double> _muteIconAnimation;
 
@@ -439,6 +440,7 @@ class ReelViewState extends State<ReelView>
     super.initState();
     _isLiked = widget.reel.isLiked ?? false;
     _likesCount = widget.reel.likesCount ?? 0;
+    _sharesCount = widget.reel.sharesCount ?? 0;
     WidgetsBinding.instance.addObserver(this);
 
     // Initialize animation controller for mute icon
@@ -488,6 +490,9 @@ class ReelViewState extends State<ReelView>
         oldWidget.reel.likesCount != widget.reel.likesCount) {
       _isLiked = widget.reel.isLiked ?? false;
       _likesCount = widget.reel.likesCount ?? 0;
+    }
+    if (oldWidget.reel.sharesCount != widget.reel.sharesCount) {
+      _sharesCount = widget.reel.sharesCount ?? 0;
     }
   }
 
@@ -1041,9 +1046,17 @@ class ReelViewState extends State<ReelView>
                       const SizedBox(height: 20),
                       _ActionButton(
                         icon: Icons.share_outlined,
-                        label: widget.reel.sharesCount?.toString() ?? '0',
+                        label: '$_sharesCount',
                         onTap: () {
                           try {
+                            if (widget.reel.id != null) {
+                              setState(() {
+                                _sharesCount += 1;
+                              });
+                              context.read<ReelsBloc>().add(
+                                ReelsEvent.shareReel(reelId: widget.reel.id!),
+                              );
+                            }
                             // Prepare share content
                             final String reelDescription =
                                 (widget.reel.description ?? 'Check out this reel').translate(context);
@@ -1104,8 +1117,14 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           Positioned(
             left: 16,
             right: 16,
-            bottom: 24,
-            child: _BottomInfo(reel: widget.reel),
+            bottom: 0,
+            child: SafeArea(
+              bottom: true,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: _BottomInfo(reel: widget.reel),
+              ),
+            ),
           ),
         ],
       ),

@@ -55,6 +55,10 @@ abstract class ReelsRepo {
     required String reelId,
   });
 
+  Future<Either<Failure, int?>> shareReel({
+    required String reelId,
+  });
+
   Future<Either<Failure, List<ReelResponseModel>>> getUserReels({
     required String userId,
   });
@@ -303,6 +307,29 @@ class ReelsRepoImpl implements ReelsRepo {
       return responseData.fold(
         (failure) => Left(failure),
         (data) => Right(ReelViewResponseModel.fromJson(data)),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, int?>> shareReel({
+    required String reelId,
+  }) async {
+    try {
+      final apiRequest = serviceLocator<ApiRequest>();
+      final response = await apiRequest.post('/reels/$reelId/share');
+      final responseData = await response.getResponse();
+
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) {
+          if (right is Map<String, dynamic> && right.containsKey('shares_count')) {
+            return Right((right['shares_count'] as num?)?.toInt());
+          }
+          return const Right(null);
+        },
       );
     } catch (e) {
       return Left(ApiFailure('An error occurred: ${e.toString()}'));
