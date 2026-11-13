@@ -297,28 +297,7 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (bannerAd.description != null && bannerAd.description!.trim().isNotEmpty) ...[
-                        Text(
-                          l10n.description,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          bannerAd.description!.translate(context),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.black54,
-                            height: 1.5,
-                          ),
-                        ),
-                      ],
-
                       if (adAddress != null && adAddress.isNotEmpty) ...[
-                        const SizedBox(height: 24),
                         Text(
                           l10n.address,
                           style: const TextStyle(
@@ -348,6 +327,26 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
                               ),
                             ),
                           ],
+                        ),
+                      ],
+                      if (bannerAd.description != null && bannerAd.description!.trim().isNotEmpty) ...[
+                        const SizedBox(height: 24),
+                        Text(
+                          l10n.description,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          bannerAd.description!.translate(context),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black54,
+                            height: 1.5,
+                          ),
                         ),
                       ],
 
