@@ -22,6 +22,12 @@ class BannerAdsScreen extends StatefulWidget {
 class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  int _lastBannerPage = 0;
+  int _lastPropertyPage = 0;
+  int _lastServicePage = 0;
+  int _lastReelPage = 0;
+  int _lastProjectPage = 0;
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +39,12 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
   }
 
   void _loadTabContent(int index) {
+    _lastBannerPage = 0;
+    _lastPropertyPage = 0;
+    _lastServicePage = 0;
+    _lastReelPage = 0;
+    _lastProjectPage = 0;
+
     final adminBloc = context.read<AdminBloc>();
     switch (index) {
       case 0:
@@ -68,6 +80,43 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
             CustomToast.showErrorToast(msg: state.notifyStatus?.message);
           } else {
             CustomToast.showSuccessToast(msg: state.notifyStatus?.message);
+          }
+        }
+
+        // Automatically fetch subsequent pages in the background up to the backend limit (100 per page)
+        if (!state.isLoading) {
+          final adminBloc = context.read<AdminBloc>();
+          switch (_tabController.index) {
+            case 0:
+              if (state.hasMoreBannerAds && state.currentBannerAdsPage > _lastBannerPage) {
+                _lastBannerPage = state.currentBannerAdsPage;
+                adminBloc.add(AdminEvent.getBannerAds(page: state.currentBannerAdsPage + 1, limit: 100));
+              }
+              break;
+            case 1:
+              if (state.hasMoreProperties && state.currentPropertiesPage > _lastPropertyPage) {
+                _lastPropertyPage = state.currentPropertiesPage;
+                adminBloc.add(AdminEvent.getAdminProperties(page: state.currentPropertiesPage + 1, limit: 100));
+              }
+              break;
+            case 2:
+              if (state.hasMoreServices && state.currentServicesPage > _lastServicePage) {
+                _lastServicePage = state.currentServicesPage;
+                adminBloc.add(AdminEvent.getServices(page: state.currentServicesPage + 1, limit: 100));
+              }
+              break;
+            case 3:
+              if (state.hasMoreAdminReels && state.currentAdminReelsPage > _lastReelPage) {
+                _lastReelPage = state.currentAdminReelsPage;
+                adminBloc.add(AdminEvent.getAdminReels(page: state.currentAdminReelsPage + 1, limit: 100));
+              }
+              break;
+            case 4:
+              if (state.hasMoreProjects && state.currentProjectsPage > _lastProjectPage) {
+                _lastProjectPage = state.currentProjectsPage;
+                adminBloc.add(AdminEvent.getProjects(page: state.currentProjectsPage + 1, limit: 100));
+              }
+              break;
           }
         }
       },
@@ -242,7 +291,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
 
   Widget _buildPropertiesList(AdminState state) {
     final properties = state.properties ?? [];
-    final allBoosted = properties.where((p) => p.isPromoted == true).toList();
+    final allBoosted = properties.where((p) => p.isPromoted == true || p.promotedUntil != null || p.promotedAt != null).toList();
 
     final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
@@ -315,7 +364,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
 
   Widget _buildServicesList(AdminState state) {
     final services = state.services ?? [];
-    final allBoosted = services.where((s) => s.isPromoted == true).toList();
+    final allBoosted = services.where((s) => s.isPromoted == true || s.promotedUntil != null || s.promotedAt != null).toList();
 
     final activeItems = allBoosted.where((s) => s.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((s) => !s.isCurrentlyPromoted).toList();
@@ -388,7 +437,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
 
   Widget _buildReelsList(AdminState state) {
     final reels = state.adminReels ?? [];
-    final allBoosted = reels.where((r) => r.isPromoted == true).toList();
+    final allBoosted = reels.where((r) => r.isPromoted == true || r.promotedUntil != null).toList();
 
     final activeItems = allBoosted.where((r) => r.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((r) => !r.isCurrentlyPromoted).toList();
@@ -461,7 +510,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
 
   Widget _buildProjectsList(AdminState state) {
     final projects = state.projects ?? [];
-    final allBoosted = projects.where((p) => p.isPromoted == true).toList();
+    final allBoosted = projects.where((p) => p.isPromoted == true || p.promotedUntil != null).toList();
 
     final activeItems = allBoosted.where((p) => p.isCurrentlyPromoted).toList();
     final expiredItems = allBoosted.where((p) => !p.isCurrentlyPromoted).toList();
@@ -711,10 +760,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     required String content,
     required VoidCallback onConfirm,
   }) {
+    // Drop in confirmation
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(title),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         content: Text(content),
         actions: [
           TextButton(
@@ -727,7 +777,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
               onConfirm();
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            child: const Text('Delete', style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),
