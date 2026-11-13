@@ -301,7 +301,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              _buildInfoChip(label: profile?.username?? ''),
                               _buildInfoChip(label: profile?.phoneNumber??''),
+                              _buildInfoChip(
+                                label: profile?.memberSince != null
+                                    ? 'Joined ${profile?.memberSince}'
+                                    : 'New Member',
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -310,12 +316,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             spacing: 8,
                             runSpacing: 8,
                             children: [
-                              _buildInfoChip(label: profile?.username?? ''),
-                              _buildInfoChip(
-                                label: profile?.memberSince != null
-                                    ? 'Joined ${profile?.memberSince}'
-                                    : 'New Member',
-                              ),
                               if (locationParts.isNotEmpty)
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -586,7 +586,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.shade50,
+        color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
