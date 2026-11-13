@@ -125,76 +125,43 @@ class _SocialLinksWidgetState extends State<SocialLinksWidget> {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(color: Colors.grey.shade200),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Connect With Me',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey.shade600,
-              letterSpacing: 0.5,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 16,
-            runSpacing: 12,
-            children: activePlatforms.map((platform) {
-              final url = platform.getUrl(widget.userProfile)!;
-              return _buildCustomerSocialButton(
-                context,
-                platform: platform,
-                url: url,
-              );
-            }).toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCustomerSocialButton(
-    BuildContext context, {
-    required SocialPlatform platform,
-    required String url,
-  }) {
-    return Tooltip(
-      message: platform.label,
-      child: InkWell(
-        onTap: () => _launchUrl(url),
-        borderRadius: BorderRadius.circular(24),
-        child: Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: platform.color.withOpacity(0.08),
-            shape: BoxShape.circle,
-            border: Border.all(color: platform.color.withOpacity(0.2), width: 1.2),
-          ),
-          child: Center(
-            child: FaIcon(platform.icon, color: platform.color, size: 22),
+    return Column(
+      children: [
+        const SizedBox(height: 12),
+        Text(
+          'Connect With Me',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade600,
           ),
         ),
-      ),
+        const SizedBox(height: 16),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 24,
+          runSpacing: 16,
+          children: activePlatforms.map((platform) {
+            final url = platform.getUrl(widget.userProfile)!;
+            return Tooltip(
+              message: platform.label,
+              child: GestureDetector(
+                onTap: () => _launchUrl(url),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: platform.color.withOpacity(0.1),
+                    border: Border.all(color: platform.color.withOpacity(0.2)),
+                  ),
+                  child: FaIcon(platform.icon, color: platform.color, size: 22),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 
