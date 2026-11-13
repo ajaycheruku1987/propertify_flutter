@@ -111,9 +111,26 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
               (currentUserId == bannerAd.userId ||
                   currentUserId == bannerAd.owner?.id);
 
-          final ownerName = _getOwnerName(profileState.userProfile, profileState.otherUserProfile, isOwner);
-          final ownerAvatar = _getOwnerAvatar(profileState.userProfile, profileState.otherUserProfile, isOwner);
-          final ownerPhone = _getOwnerPhone(profileState.otherUserProfile);
+          final matchingOtherProfile =
+              (profileState.otherUserProfile?.id == ownerId)
+                  ? profileState.otherUserProfile
+                  : null;
+
+          final ownerName = _getOwnerName(
+            profileState.userProfile,
+            matchingOtherProfile,
+            isOwner,
+          );
+          final ownerAvatar = _getOwnerAvatar(
+            profileState.userProfile,
+            matchingOtherProfile,
+            isOwner,
+          );
+          final ownerPhone = _getOwnerPhone(
+            profileState.userProfile,
+            matchingOtherProfile,
+            isOwner,
+          );
 
           return SingleChildScrollView(
             child: Column(
@@ -547,30 +564,11 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
     );
   }
 
-  String _getOwnerName(dynamic currentUserProfile, dynamic otherUserProfile, bool isOwner) {
-    if (!isOwner && otherUserProfile != null) {
-      final String firstName = (otherUserProfile.firstName?.toString() ?? '').trim();
-      final String lastName = (otherUserProfile.lastName?.toString() ?? '').trim();
-      if (firstName.isNotEmpty || lastName.isNotEmpty) {
-        return '$firstName $lastName'.trim().toTitleCase();
-      }
-      final String username = (otherUserProfile.username?.toString() ?? '').trim();
-      if (username.isNotEmpty) {
-        return username.toTitleCase();
-      }
-    }
-    if (!isOwner && widget.bannerAd.owner != null) {
-      final owner = widget.bannerAd.owner!;
-      final String firstName = (owner.firstName?.toString() ?? '').trim();
-      final String lastName = (owner.lastName?.toString() ?? '').trim();
-      if (firstName.isNotEmpty || lastName.isNotEmpty) {
-        return '$firstName $lastName'.trim().toTitleCase();
-      }
-      final String username = (owner.username?.toString() ?? '').trim();
-      if (username.isNotEmpty) {
-        return username.toTitleCase();
-      }
-    }
+  String _getOwnerName(
+    dynamic currentUserProfile,
+    dynamic otherUserProfile,
+    bool isOwner,
+  ) {
     if (isOwner && currentUserProfile != null) {
       final String firstName = (currentUserProfile.firstName?.toString() ?? '').trim();
       final String lastName = (currentUserProfile.lastName?.toString() ?? '').trim();
@@ -582,8 +580,21 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
         return username.toTitleCase();
       }
     }
-    final owner = widget.bannerAd.owner;
-    if (owner != null) {
+
+    if (otherUserProfile != null) {
+      final String firstName = (otherUserProfile.firstName?.toString() ?? '').trim();
+      final String lastName = (otherUserProfile.lastName?.toString() ?? '').trim();
+      if (firstName.isNotEmpty || lastName.isNotEmpty) {
+        return '$firstName $lastName'.trim().toTitleCase();
+      }
+      final String username = (otherUserProfile.username?.toString() ?? '').trim();
+      if (username.isNotEmpty) {
+        return username.toTitleCase();
+      }
+    }
+
+    if (widget.bannerAd.owner != null) {
+      final owner = widget.bannerAd.owner!;
       final String firstName = (owner.firstName?.toString() ?? '').trim();
       final String lastName = (owner.lastName?.toString() ?? '').trim();
       if (firstName.isNotEmpty || lastName.isNotEmpty) {
@@ -594,45 +605,43 @@ class _BannerAdDetailViewState extends State<BannerAdDetailView> {
         return username.toTitleCase();
       }
     }
-    if (currentUserProfile != null) {
-      final String firstName = (currentUserProfile.firstName?.toString() ?? '').trim();
-      final String lastName = (currentUserProfile.lastName?.toString() ?? '').trim();
-      if (firstName.isNotEmpty || lastName.isNotEmpty) {
-        return '$firstName $lastName'.trim().toTitleCase();
-      }
-      final String username = (currentUserProfile.username?.toString() ?? 'Propertify User').trim();
-      return username.toTitleCase();
-    }
+
     return 'Propertify User';
   }
 
-  String _getOwnerAvatar(dynamic currentUserProfile, dynamic otherUserProfile, bool isOwner) {
-    if (!isOwner && otherUserProfile?.profilepic != null && otherUserProfile!.profilepic!.isNotEmpty) {
-      return _resolveAvatar(otherUserProfile.profilepic!);
-    }
-    if (!isOwner && widget.bannerAd.owner?.profileImage != null && widget.bannerAd.owner!.profileImage!.isNotEmpty) {
-      return _resolveAvatar(widget.bannerAd.owner!.profileImage!);
-    }
+  String _getOwnerAvatar(
+    dynamic currentUserProfile,
+    dynamic otherUserProfile,
+    bool isOwner,
+  ) {
     if (isOwner && currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
       return _resolveAvatar(currentUserProfile.profilepic!);
     }
-    final ownerAvatar = widget.bannerAd.owner?.profileImage;
-    if (ownerAvatar != null && ownerAvatar.isNotEmpty) {
-      return _resolveAvatar(ownerAvatar);
-    }
+
     if (otherUserProfile?.profilepic != null && otherUserProfile!.profilepic!.isNotEmpty) {
       return _resolveAvatar(otherUserProfile.profilepic!);
     }
-    if (currentUserProfile?.profilepic != null && currentUserProfile!.profilepic!.isNotEmpty) {
-      return _resolveAvatar(currentUserProfile.profilepic!);
+
+    if (widget.bannerAd.owner?.profileImage != null && widget.bannerAd.owner!.profileImage!.isNotEmpty) {
+      return _resolveAvatar(widget.bannerAd.owner!.profileImage!);
     }
+
     return '';
   }
 
-  String _getOwnerPhone(dynamic otherUserProfile) {
+  String _getOwnerPhone(
+    dynamic currentUserProfile,
+    dynamic otherUserProfile,
+    bool isOwner,
+  ) {
+    if (isOwner && currentUserProfile?.phoneNumber != null && currentUserProfile!.phoneNumber!.isNotEmpty) {
+      return currentUserProfile.phoneNumber!;
+    }
+
     if (otherUserProfile?.phoneNumber != null && otherUserProfile!.phoneNumber!.isNotEmpty) {
       return otherUserProfile.phoneNumber!;
     }
+
     return widget.bannerAd.owner?.phoneNumber ?? '';
   }
 

@@ -59,5 +59,13 @@ class Owner with _$Owner {
     @JsonKey(name: "username") String? username,
   }) = _Owner;
 
-  factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
+  factory Owner.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> mutableJson = Map<String, dynamic>.from(json);
+    if (mutableJson['profilepic'] == null) {
+      mutableJson['profilepic'] = mutableJson['profile_pic'] ??
+          mutableJson['profile_image'] ??
+          mutableJson['profileImage'];
+    }
+    return _$OwnerFromJson(mutableJson);
+  }
 }
