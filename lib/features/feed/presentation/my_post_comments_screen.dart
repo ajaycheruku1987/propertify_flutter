@@ -53,7 +53,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            l10n.comments,
+            'Comments & Notifications',
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
