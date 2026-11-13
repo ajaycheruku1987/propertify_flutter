@@ -21,7 +21,6 @@ class BannerAdsScreen extends StatefulWidget {
 
 class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -31,26 +30,25 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     _tabController.addListener(() {
       _loadTabContent(_tabController.index);
     });
-    _scrollController.addListener(_onScroll);
   }
 
   void _loadTabContent(int index) {
     final adminBloc = context.read<AdminBloc>();
     switch (index) {
       case 0:
-        adminBloc.add(const AdminEvent.getBannerAds(page: 1));
+        adminBloc.add(const AdminEvent.getBannerAds(page: 1, limit: 100));
         break;
       case 1:
-        adminBloc.add(const AdminEvent.getAdminProperties(page: 1));
+        adminBloc.add(const AdminEvent.getAdminProperties(page: 1, limit: 100));
         break;
       case 2:
-        adminBloc.add(const AdminEvent.getServices(page: 1));
+        adminBloc.add(const AdminEvent.getServices(page: 1, limit: 100));
         break;
       case 3:
-        adminBloc.add(const AdminEvent.getAdminReels(page: 1));
+        adminBloc.add(const AdminEvent.getAdminReels(page: 1, limit: 100));
         break;
       case 4:
-        adminBloc.add(const AdminEvent.getProjects(page: 1));
+        adminBloc.add(const AdminEvent.getProjects(page: 1, limit: 100));
         break;
     }
   }
@@ -58,45 +56,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
   @override
   void dispose() {
     _tabController.dispose();
-    _scrollController.dispose();
     super.dispose();
-  }
-
-  void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.9) {
-      final state = context.read<AdminBloc>().state;
-      if (state.isLoading) return;
-
-      final adminBloc = context.read<AdminBloc>();
-      switch (_tabController.index) {
-        case 0:
-          if (state.hasMoreBannerAds) {
-            adminBloc.add(AdminEvent.getBannerAds(page: state.currentBannerAdsPage + 1));
-          }
-          break;
-        case 1:
-          if (state.hasMoreProperties) {
-            adminBloc.add(AdminEvent.getAdminProperties(page: state.currentPropertiesPage + 1));
-          }
-          break;
-        case 2:
-          if (state.hasMoreServices) {
-            adminBloc.add(AdminEvent.getServices(page: state.currentServicesPage + 1));
-          }
-          break;
-        case 3:
-          if (state.hasMoreAdminReels) {
-            adminBloc.add(AdminEvent.getAdminReels(page: state.currentAdminReelsPage + 1));
-          }
-          break;
-        case 4:
-          if (state.hasMoreProjects) {
-            adminBloc.add(AdminEvent.getProjects(page: state.currentProjectsPage + 1));
-          }
-          break;
-      }
-    }
   }
 
   @override
@@ -130,7 +90,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                     child: TabBarView(
                       controller: _tabController,
                       children: [
-                        _buildBannerAdsList(state.bannerAds ?? [], state),
+                        _buildBannerAdsList(state.bannerAds ?? []),
                         _buildPropertiesList(state),
                         _buildServicesList(state),
                         _buildReelsList(state),
@@ -208,9 +168,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     required List<Widget> expiredChildren,
     required String activeEmptyMsg,
     required String expiredEmptyMsg,
-    bool hasMore = false,
-    bool isLoading = false,
-    VoidCallback? onLoadMore,
   }) {
     return DefaultTabController(
       length: 2,
@@ -238,42 +195,14 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
                     ? _buildEmptyState(activeEmptyMsg)
                     : ListView(
                         padding: const EdgeInsets.all(16),
-                        children: [
-                          ...activeChildren,
-                          if (hasMore && onLoadMore != null)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
-                              child: Center(
-                                child: isLoading
-                                    ? const CircularProgressIndicator()
-                                    : ElevatedButton(
-                                        onPressed: onLoadMore,
-                                        child: const Text('Load More'),
-                                      ),
-                              ),
-                            ),
-                        ],
+                        children: activeChildren,
                       ),
                 // Expired Tab
                 expiredChildren.isEmpty
                     ? _buildEmptyState(expiredEmptyMsg)
                     : ListView(
                         padding: const EdgeInsets.all(16),
-                        children: [
-                          ...expiredChildren,
-                          if (hasMore && onLoadMore != null)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
-                              child: Center(
-                                child: isLoading
-                                    ? const CircularProgressIndicator()
-                                    : ElevatedButton(
-                                        onPressed: onLoadMore,
-                                        child: const Text('Load More'),
-                                      ),
-                              ),
-                            ),
-                        ],
+                        children: expiredChildren,
                       ),
               ],
             ),
@@ -283,7 +212,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     );
   }
 
-  Widget _buildBannerAdsList(List<BannerAdModel> ads, AdminState state) {
+  Widget _buildBannerAdsList(List<BannerAdModel> ads) {
     final activeAds = ads.where((ad) => ad.isCurrentlyActive).toList();
     final expiredAds = ads.where((ad) => !ad.isCurrentlyActive).toList();
 
@@ -308,15 +237,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       expiredChildren: expiredCards,
       activeEmptyMsg: 'No active boosted banners found',
       expiredEmptyMsg: 'No expired boosted banners found',
-      hasMore: state.hasMoreBannerAds,
-      isLoading: state.isLoading,
-      onLoadMore: () {
-        context.read<AdminBloc>().add(
-              AdminEvent.getBannerAds(
-                page: state.currentBannerAdsPage + 1,
-              ),
-            );
-      },
     );
   }
 
@@ -390,15 +310,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       expiredChildren: expiredCards,
       activeEmptyMsg: 'No active boosted feeds found',
       expiredEmptyMsg: 'No expired boosted feeds found',
-      hasMore: state.hasMoreProperties,
-      isLoading: state.isLoading,
-      onLoadMore: () {
-        context.read<AdminBloc>().add(
-              AdminEvent.getAdminProperties(
-                page: state.currentPropertiesPage + 1,
-              ),
-            );
-      },
     );
   }
 
@@ -472,15 +383,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       expiredChildren: expiredCards,
       activeEmptyMsg: 'No active boosted services found',
       expiredEmptyMsg: 'No expired boosted services found',
-      hasMore: state.hasMoreServices,
-      isLoading: state.isLoading,
-      onLoadMore: () {
-        context.read<AdminBloc>().add(
-              AdminEvent.getServices(
-                page: state.currentServicesPage + 1,
-              ),
-            );
-      },
     );
   }
 
@@ -554,15 +456,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       expiredChildren: expiredCards,
       activeEmptyMsg: 'No active boosted reels found',
       expiredEmptyMsg: 'No expired boosted reels found',
-      hasMore: state.hasMoreAdminReels,
-      isLoading: state.isLoading,
-      onLoadMore: () {
-        context.read<AdminBloc>().add(
-              AdminEvent.getAdminReels(
-                page: state.currentAdminReelsPage + 1,
-              ),
-            );
-      },
     );
   }
 
@@ -636,15 +529,6 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       expiredChildren: expiredCards,
       activeEmptyMsg: 'No active boosted projects found',
       expiredEmptyMsg: 'No expired boosted projects found',
-      hasMore: state.hasMoreProjects,
-      isLoading: state.isLoading,
-      onLoadMore: () {
-        context.read<AdminBloc>().add(
-              AdminEvent.getProjects(
-                page: state.currentProjectsPage + 1,
-              ),
-            );
-      },
     );
   }
 
