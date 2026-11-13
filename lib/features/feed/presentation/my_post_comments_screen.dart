@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:propertify/l10n/app_localizations.dart';
+import '../../../core/notification_router.dart';
 import '../../home/bloc/home_bloc.dart';
 import '../../notifications/bloc/notifications_bloc.dart';
 import '../../notifications/models/notification_model.dart';
@@ -12,6 +13,7 @@ import '../../reels/presentation/reels_screen.dart';
 
 import '../bloc/feed_bloc.dart';
 import '../../home/models/feed_posts_response_model.dart';
+import '../../reels/models/reel_response_model.dart';
 import 'widgets/comments_bottom_sheet.dart';
 import '../../reels/bloc/reels_bloc.dart';
 import '../../reels/presentation/widgets/reel_comments_bottom_sheet.dart';
@@ -64,7 +66,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
             indicatorColor: Theme.of(context).primaryColor,
             tabs: const [
               Tab(text: 'Comments'),
-              Tab(text: 'Alerts History'),
+              Tab(text: 'Notifications'),
             ],
           ),
         ),
@@ -126,7 +128,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
             return TabBarView(
               children: [
                 _buildLiveServerCommentsTab(),
-                _buildAlertsHistoryTab(),
+                _buildNotificationsTab(),
               ],
             );
           },
@@ -210,15 +212,28 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                   );
                 }
 
-                final totalItemsCount = propertiesWithComments.length + reelsWithComments.length;
+                final commentItems = <_CommentItem>[
+                  ...propertiesWithComments.map((p) => _CommentItem.fromPost(p)),
+                  ...reelsWithComments.map((r) => _CommentItem.fromReel(r)),
+                ];
+
+                commentItems.sort((a, b) {
+                  final unreadA = _getUnreadCount(a.id, a.commentsCount, notifState) > 0 ? 1 : 0;
+                  final unreadB = _getUnreadCount(b.id, b.commentsCount, notifState) > 0 ? 1 : 0;
+                  if (unreadA != unreadB) {
+                    return unreadB.compareTo(unreadA); // unread items first (top)
+                  }
+                  return b.parsedDate.compareTo(a.parsedDate); // newest date first
+                });
 
                 return ListView.separated(
                   padding: const EdgeInsets.all(16),
-                  itemCount: totalItemsCount,
+                  itemCount: commentItems.length,
                   separatorBuilder: (context, index) => const Divider(height: 24),
                   itemBuilder: (context, index) {
-                    if (index < propertiesWithComments.length) {
-                      final post = propertiesWithComments[index];
+                    final item = commentItems[index];
+                    if (!item.isReel) {
+                      final post = item.post!;
                       final totalComments = post.commentsCount ?? 0;
                       final unreadCount = _getUnreadCount(post.id ?? '', totalComments, notifState);
 
@@ -400,8 +415,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                         ),
                       );
                     } else {
-                      final reelIndex = index - propertiesWithComments.length;
-                      final reel = reelsWithComments[reelIndex];
+                      final reel = item.reel!;
                       final totalComments = reel.commentsCount ?? 0;
                       final unreadCount = _getUnreadCount(reel.id ?? '', totalComments, notifState);
 
@@ -597,16 +611,49 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
     );
   }
 
-  Widget _buildAlertsHistoryTab() {
+  Widget _buildNotificationsTab() {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          Container(
+            color: Colors.white,
+            child: TabBar(
+              labelColor: Theme.of(context).primaryColor,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Theme.of(context).primaryColor,
+              tabs: const [
+                Tab(text: 'Unread'),
+                Tab(text: 'Read'),
+              ],
+            ),
+          ),
+          const Expanded(
+            child: TabBarView(
+              children: [
+                _NotificationList(isRead: false),
+                _NotificationList(isRead: true),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NotificationList extends StatelessWidget {
+  final bool isRead;
+
+  const _NotificationList({required this.isRead});
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
-        final commentNotifications = state.notifications
-            .where((n) =>
-                n.type == 'comment' ||
-                n.title.toLowerCase().contains('comment'))
-            .toList();
+        final notifications = isRead ? state.readNotifications : state.unreadNotifications;
 
-        if (commentNotifications.isEmpty) {
+        if (notifications.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -617,9 +664,9 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                   color: Colors.grey[300],
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'No recent comment alert notifications received.',
-                  style: TextStyle(color: Colors.black54),
+                Text(
+                  AppLocalizations.of(context)?.noNotifications ?? 'No notifications found.',
+                  style: TextStyle(color: Colors.grey[500]),
                 ),
               ],
             ),
@@ -628,11 +675,11 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
 
         return ListView.separated(
           padding: const EdgeInsets.all(16),
-          itemCount: commentNotifications.length,
-          separatorBuilder: (context, index) => const Divider(height: 24),
+          itemCount: notifications.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemBuilder: (context, index) {
-            final notification = commentNotifications[index];
-            return _CommentNotificationCard(notification: notification);
+            final notification = notifications[index];
+            return _NotificationCard(notification: notification);
           },
         );
       },
@@ -640,104 +687,85 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
   }
 }
 
-class _CommentNotificationCard extends StatelessWidget {
+class _NotificationCard extends StatelessWidget {
   final NotificationModel notification;
 
-  const _CommentNotificationCard({required this.notification});
+  const _NotificationCard({required this.notification});
 
   @override
   Widget build(BuildContext context) {
-    final bool isReel = notification.body.toLowerCase().contains('reel') || 
-                        notification.title.toLowerCase().contains('reel') ||
-                        notification.type == 'reel_comment';
-    final bool isUnread = !notification.isRead;
-
-    void navigateToPost() {
-      if (notification.referenceId != null && notification.referenceId!.isNotEmpty) {
-         if (isReel) {
-           context.push('${ReelsScreen.routeName}?reelId=${notification.referenceId}&showBackButton=true&isMyReels=true');
-         } else {
-           context.push('${PostDetailsScreen.routeName}?postId=${notification.referenceId}');
-         }
-      }
-    }
-    
     return InkWell(
-      onTap: navigateToPost,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
+      onTap: () {
+        if (!notification.isRead) {
+          context.read<NotificationsBloc>().add(MarkAsRead(notification.id));
+        }
+        final data = notification.data;
+        if (data != null && data['type'] != null) {
+          NotificationRouter.open(data);
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0, right: 8.0),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
               child: Icon(
-                Icons.circle,
-                size: 8,
+                _getIcon(notification.type),
                 color: Theme.of(context).primaryColor,
+                size: 20,
               ),
             ),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Text(
-                          notification.body.isNotEmpty ? notification.body : notification.title,
-                          style: const TextStyle(
+                          notification.title,
+                          style: TextStyle(
+                            fontWeight: notification.isRead ? FontWeight.w500 : FontWeight.bold,
                             fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
                       Text(
-                        DateFormat('MMM d').format(notification.timestamp),
+                        DateFormat('MMM d, h:mm a').format(notification.timestamp),
                         style: TextStyle(
-                          color: Colors.grey[500],
-                          fontSize: 12,
+                          color: Colors.grey[400],
+                          fontSize: 11,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 4,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      // Feed / Reel label
-                      _buildBadge(
-                        label: isReel ? 'Reel' : 'Feed',
-                        backgroundColor: isReel 
-                            ? Colors.orange.withOpacity(0.1) 
-                            : Theme.of(context).primaryColor.withOpacity(0.1),
-                        textColor: isReel ? Colors.orange.shade800 : Theme.of(context).primaryColor,
-                      ),
-                      
-                      // unread / Replied status label
-                      _buildBadge(
-                        label: isUnread ? 'unread' : 'Replied',
-                        backgroundColor: isUnread 
-                            ? Colors.red.withOpacity(0.1) 
-                            : Colors.green.withOpacity(0.1),
-                        textColor: isUnread ? Colors.red : Colors.green.shade700,
-                      ),
-
-                      // Reply action button (only if unread)
-                      if (isUnread)
-                        _buildBadge(
-                          label: 'Reply',
-                          backgroundColor: Theme.of(context).primaryColor,
-                          textColor: Colors.white,
-                          onTap: navigateToPost,
-                        ),
-                    ],
+                  const SizedBox(height: 4),
+                  Text(
+                    _cleanBody,
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -748,31 +776,66 @@ class _CommentNotificationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildBadge({
-    required String label,
-    required Color backgroundColor,
-    required Color textColor,
-    VoidCallback? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(4),
-          border: label == 'Reply' ? null : Border.all(color: textColor.withOpacity(0.15)),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
+  String get _cleanBody {
+    if (notification.body.contains('__PROPS__')) {
+      return notification.body.split('__PROPS__').first.trim();
+    }
+    return notification.body;
   }
+
+  IconData _getIcon(String? type) {
+    switch (type) {
+      case 'property':
+      case 'new_post':
+        return Icons.home_work_outlined;
+      case 'like':
+      case 'reel_like':
+        return Icons.thumb_up_outlined;
+      case 'comment':
+      case 'reel_comment':
+        return Icons.comment_outlined;
+      case 'favourite':
+        return Icons.favorite_border;
+      case 'service_review':
+        return Icons.star_border;
+      case 'verification':
+      case 'gst_verification':
+        return Icons.verified_outlined;
+      default:
+        return Icons.notifications_outlined;
+    }
+  }
+}
+
+class _CommentItem {
+  final String id;
+  final String title;
+  final String location;
+  final int commentsCount;
+  final String? createdAt;
+  final bool isReel;
+  final FeedPostsResponseModel? post;
+  final ReelResponseModel? reel;
+
+  _CommentItem.fromPost(FeedPostsResponseModel p)
+      : id = p.id ?? '',
+        title = p.title ?? 'Untitled Post',
+        location = p.city ?? 'Unknown location',
+        commentsCount = p.commentsCount ?? 0,
+        createdAt = p.createdAt,
+        isReel = false,
+        post = p,
+        reel = null;
+
+  _CommentItem.fromReel(ReelResponseModel r)
+      : id = r.id ?? '',
+        title = r.description != null && r.description!.isNotEmpty ? r.description! : 'Untitled Reel Video',
+        location = r.location ?? 'Unknown location',
+        commentsCount = r.commentsCount ?? 0,
+        createdAt = r.createdAt,
+        isReel = true,
+        post = null,
+        reel = r;
+
+  DateTime get parsedDate => DateTime.tryParse(createdAt ?? '') ?? DateTime(0);
 }
