@@ -1,5 +1,4 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import '../models/notification_model.dart';
 import 'notifications_event.dart';
 import 'notifications_state.dart';
 
@@ -23,6 +22,25 @@ class NotificationsBloc extends HydratedBloc<NotificationsEvent, NotificationsSt
         return n;
       }).toList();
       emit(state.copyWith(notifications: updatedList));
+    });
+
+    on<MarkCommentsAsRead>((event, emit) {
+      final updatedMap = Map<String, int>.from(state.readCommentCounts);
+      updatedMap[event.id] = event.count;
+
+      final updatedNotifications = state.notifications.map((n) {
+        if (n.referenceId == event.id ||
+            n.data?['post_id'] == event.id ||
+            n.data?['reel_id'] == event.id) {
+          return n.copyWith(isRead: true);
+        }
+        return n;
+      }).toList();
+
+      emit(state.copyWith(
+        readCommentCounts: updatedMap,
+        notifications: updatedNotifications,
+      ));
     });
 
     on<MarkAllAsRead>((event, emit) {

@@ -5,6 +5,7 @@ import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import '../../bloc/reels_bloc.dart';
 import '../../models/reel_comment_model.dart';
+import '../../../notifications/bloc/notifications_bloc.dart';
 
 class ReelCommentsBottomSheet extends StatefulWidget {
   final String reelId;
@@ -27,6 +28,14 @@ class ReelCommentsBottomSheet extends StatefulWidget {
   ) {
     // Load comments when bottom sheet is shown
     context.read<ReelsBloc>().add(ReelsEvent.getReelComments(reelId: reelId));
+
+    final reelsState = context.read<ReelsBloc>().state;
+    final matchingReels = reelsState.myReels.where((r) => r.id == reelId).toList();
+    if (matchingReels.isNotEmpty && (matchingReels.first.commentsCount ?? 0) > 0) {
+      context.read<NotificationsBloc>().add(
+            MarkCommentsAsRead(id: reelId, count: matchingReels.first.commentsCount!),
+          );
+    }
 
     return showModalBottomSheet(
       context: context,

@@ -14,6 +14,12 @@ class MarkAsRead extends NotificationsEvent {
   const MarkAsRead(this.notificationId);
 }
 
+class MarkCommentsAsRead extends NotificationsEvent {
+  final String id;
+  final int count;
+  const MarkCommentsAsRead({required this.id, required this.count});
+}
+
 class MarkAllAsRead extends NotificationsEvent {
   const MarkAllAsRead();
 }

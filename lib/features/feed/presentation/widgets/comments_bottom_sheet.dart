@@ -6,6 +6,7 @@ import 'package:propertify/features/profile/bloc/profile_bloc.dart';
 import 'package:propertify/utils/extensions/date_time_extensions.dart';
 import '../../bloc/feed_bloc.dart';
 import '../../models/feed_comment_model.dart';
+import '../../../notifications/bloc/notifications_bloc.dart';
 
 class CommentsBottomSheet extends StatefulWidget {
   final String propertyId;
@@ -29,6 +30,14 @@ class CommentsBottomSheet extends StatefulWidget {
     context.read<FeedBloc>().add(
           FeedEvent.getCommentsById(propertyId: propertyId),
         );
+
+    final feedState = context.read<FeedBloc>().state;
+    final matchingProperties = feedState.myPropertiesList.where((p) => p.id == propertyId).toList();
+    if (matchingProperties.isNotEmpty && (matchingProperties.first.commentsCount ?? 0) > 0) {
+      context.read<NotificationsBloc>().add(
+            MarkCommentsAsRead(id: propertyId, count: matchingProperties.first.commentsCount!),
+          );
+    }
 
     return showModalBottomSheet(
       context: context,

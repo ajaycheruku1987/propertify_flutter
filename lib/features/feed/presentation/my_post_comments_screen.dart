@@ -135,391 +135,460 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
     );
   }
 
+  int _getUnreadCount(
+    String id,
+    int totalComments,
+    NotificationsState notifState,
+  ) {
+    if (id.isEmpty || totalComments <= 0) return 0;
+
+    if (notifState.readCommentCounts.containsKey(id)) {
+      final readCount = notifState.readCommentCounts[id] ?? 0;
+      final unread = totalComments - readCount;
+      return unread > 0 ? unread : 0;
+    }
+
+    final unreadNotifs = notifState.unreadNotifications.where(
+      (n) =>
+          n.referenceId == id ||
+          n.data?['post_id'] == id ||
+          n.data?['reel_id'] == id,
+    ).length;
+
+    if (unreadNotifs > 0) {
+      return unreadNotifs;
+    }
+
+    return totalComments;
+  }
+
+  void _markCommentsRead(String? id, int count) {
+    if (id != null && id.isNotEmpty) {
+      context.read<NotificationsBloc>().add(
+            MarkCommentsAsRead(id: id, count: count),
+          );
+    }
+  }
+
   Widget _buildLiveServerCommentsTab() {
-    return BlocBuilder<FeedBloc, FeedState>(
-      builder: (context, feedState) {
-        return BlocBuilder<ReelsBloc, ReelsState>(
-          builder: (context, reelsState) {
-            if ((feedState.isPostLoading && feedState.myPropertiesList.isEmpty) ||
-                (reelsState.isLoadingMyReels && reelsState.myReels.isEmpty)) {
-              return const Center(child: CircularProgressIndicator());
-            }
+    return BlocBuilder<NotificationsBloc, NotificationsState>(
+      builder: (context, notifState) {
+        return BlocBuilder<FeedBloc, FeedState>(
+          builder: (context, feedState) {
+            return BlocBuilder<ReelsBloc, ReelsState>(
+              builder: (context, reelsState) {
+                if ((feedState.isPostLoading && feedState.myPropertiesList.isEmpty) ||
+                    (reelsState.isLoadingMyReels && reelsState.myReels.isEmpty)) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-            final propertiesWithComments = feedState.myPropertiesList
-                .where((p) => (p.commentsCount ?? 0) > 0)
-                .toList();
+                final propertiesWithComments = feedState.myPropertiesList
+                    .where((p) => (p.commentsCount ?? 0) > 0)
+                    .toList();
 
-            final reelsWithComments = reelsState.myReels
-                .where((r) => (r.commentsCount ?? 0) > 0)
-                .toList();
+                final reelsWithComments = reelsState.myReels
+                    .where((r) => (r.commentsCount ?? 0) > 0)
+                    .toList();
 
-            if (propertiesWithComments.isEmpty && reelsWithComments.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.comment_bank_outlined,
-                      size: 64,
-                      color: Colors.grey[300],
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'No active live comments on your posts or reels yet.',
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            final totalItemsCount = propertiesWithComments.length + reelsWithComments.length;
-
-            return ListView.separated(
-              padding: const EdgeInsets.all(16),
-              itemCount: totalItemsCount,
-              separatorBuilder: (context, index) => const Divider(height: 24),
-              itemBuilder: (context, index) {
-                if (index < propertiesWithComments.length) {
-                  final post = propertiesWithComments[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                if (propertiesWithComments.isEmpty && reelsWithComments.isEmpty) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            if (post.id != null) {
-                              CommentsBottomSheet.show(context, post.id!, true);
-                            }
-                          },
-                          borderRadius: BorderRadius.circular(24),
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.insert_comment_outlined,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 24,
-                                ),
-                              ),
-                              Positioned(
-                                top: -4,
-                                right: -4,
-                                child: Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 18,
-                                    minHeight: 18,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '${post.commentsCount}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        Icon(
+                          Icons.comment_bank_outlined,
+                          size: 64,
+                          color: Colors.grey[300],
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                post.title ?? 'Untitled Post',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                post.city ?? 'Unknown location',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 3,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Theme.of(context).primaryColor.withOpacity(0.2),
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      'Feed',
-                                      style: TextStyle(
-                                        color: Color(0xFF6C5CE7),
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  InkWell(
-                                    onTap: () {
-                                      if (post.id != null) {
-                                        context.push('${PostDetailsScreen.routeName}?postId=${post.id}');
-                                      }
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).primaryColor.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Theme.of(context).primaryColor.withOpacity(0.2),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        'View Post Details',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: Theme.of(context).primaryColor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  TextButton(
-                                    onPressed: () {
-                                      if (post.id != null) {
-                                        CommentsBottomSheet.show(context, post.id!, true);
-                                      }
-                                    },
-                                    style: TextButton.styleFrom(
-                                      padding: EdgeInsets.zero,
-                                      minimumSize: Size.zero,
-                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.reply, size: 14, color: Theme.of(context).primaryColor),
-                                        const SizedBox(width: 2),
-                                        Text(
-                                          'Reply',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  final reelIndex = index - propertiesWithComments.length;
-                  final reel = reelsWithComments[reelIndex];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            if (reel.id != null) {
-                              ReelCommentsBottomSheet.show(context, reel.id!, true);
-                            }
-                          },
-                          borderRadius: BorderRadius.circular(24),
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.orange.withOpacity(0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.movie_outlined,
-                                  color: Colors.orange,
-                                  size: 24,
-                                ),
-                              ),
-                              Positioned(
-                                top: -4,
-                                right: -4,
-                                child: Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 18,
-                                    minHeight: 18,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '${reel.commentsCount}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                reel.description != null && reel.description!.isNotEmpty
-                                    ? reel.description!
-                                    : 'Untitled Reel Video',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                reel.location ?? 'Unknown location',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 3,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.orange.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.orange.withOpacity(0.2),
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      'Reel',
-                                      style: TextStyle(
-                                        color: Colors.orange,
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  InkWell(
-                                    onTap: () {
-                                      if (reel.id != null) {
-                                        context.push('${ReelsScreen.routeName}?reelId=${reel.id}&showBackButton=true&isMyReels=true');
-                                      }
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.orange.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Colors.orange.withOpacity(0.2),
-                                        ),
-                                      ),
-                                      child: const Text(
-                                        'View Reel Video',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: Colors.orange,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  TextButton(
-                                    onPressed: () {
-                                      if (reel.id != null) {
-                                        ReelCommentsBottomSheet.show(context, reel.id!, true);
-                                      }
-                                    },
-                                    style: TextButton.styleFrom(
-                                      padding: EdgeInsets.zero,
-                                      minimumSize: Size.zero,
-                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.reply, size: 14, color: Theme.of(context).primaryColor),
-                                        const SizedBox(width: 2),
-                                        Text(
-                                          'Reply',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'No active live comments on your posts or reels yet.',
+                          style: TextStyle(color: Colors.black54),
                         ),
                       ],
                     ),
                   );
                 }
+
+                final totalItemsCount = propertiesWithComments.length + reelsWithComments.length;
+
+                return ListView.separated(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: totalItemsCount,
+                  separatorBuilder: (context, index) => const Divider(height: 24),
+                  itemBuilder: (context, index) {
+                    if (index < propertiesWithComments.length) {
+                      final post = propertiesWithComments[index];
+                      final totalComments = post.commentsCount ?? 0;
+                      final unreadCount = _getUnreadCount(post.id ?? '', totalComments, notifState);
+
+                      return InkWell(
+                        onTap: () {
+                          if (post.id != null) {
+                            _markCommentsRead(post.id, totalComments);
+                            CommentsBottomSheet.show(context, post.id!, true);
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  if (post.id != null) {
+                                    _markCommentsRead(post.id, totalComments);
+                                    CommentsBottomSheet.show(context, post.id!, true);
+                                  }
+                                },
+                                borderRadius: BorderRadius.circular(24),
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        Icons.insert_comment_outlined,
+                                        color: Theme.of(context).primaryColor,
+                                        size: 24,
+                                      ),
+                                    ),
+                                    if (unreadCount > 0)
+                                      Positioned(
+                                        top: -4,
+                                        right: -4,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          constraints: const BoxConstraints(
+                                            minWidth: 18,
+                                            minHeight: 18,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '$unreadCount',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      post.title ?? 'Untitled Post',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      post.city ?? 'Unknown location',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 3,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                            borderRadius: BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: Theme.of(context).primaryColor.withOpacity(0.2),
+                                            ),
+                                          ),
+                                          child: const Text(
+                                            'Feed',
+                                            style: TextStyle(
+                                              color: Color(0xFF6C5CE7),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        InkWell(
+                                          onTap: () {
+                                            if (post.id != null) {
+                                              _markCommentsRead(post.id, totalComments);
+                                              context.push('${PostDetailsScreen.routeName}?postId=${post.id}');
+                                            }
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 8,
+                                              vertical: 3,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                              borderRadius: BorderRadius.circular(4),
+                                              border: Border.all(
+                                                color: Theme.of(context).primaryColor.withOpacity(0.2),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              'View Post Details',
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                color: Theme.of(context).primaryColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        TextButton(
+                                          onPressed: () {
+                                            if (post.id != null) {
+                                              _markCommentsRead(post.id, totalComments);
+                                              CommentsBottomSheet.show(context, post.id!, true);
+                                            }
+                                          },
+                                          style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size.zero,
+                                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(Icons.reply, size: 14, color: Theme.of(context).primaryColor),
+                                              const SizedBox(width: 2),
+                                              Text(
+                                                'Reply',
+                                                style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Theme.of(context).primaryColor,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    } else {
+                      final reelIndex = index - propertiesWithComments.length;
+                      final reel = reelsWithComments[reelIndex];
+                      final totalComments = reel.commentsCount ?? 0;
+                      final unreadCount = _getUnreadCount(reel.id ?? '', totalComments, notifState);
+
+                      return InkWell(
+                        onTap: () {
+                          if (reel.id != null) {
+                            _markCommentsRead(reel.id, totalComments);
+                            ReelCommentsBottomSheet.show(context, reel.id!, true);
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  if (reel.id != null) {
+                                    _markCommentsRead(reel.id, totalComments);
+                                    ReelCommentsBottomSheet.show(context, reel.id!, true);
+                                  }
+                                },
+                                borderRadius: BorderRadius.circular(24),
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange.withOpacity(0.1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.movie_outlined,
+                                        color: Colors.orange,
+                                        size: 24,
+                                      ),
+                                    ),
+                                    if (unreadCount > 0)
+                                      Positioned(
+                                        top: -4,
+                                        right: -4,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          constraints: const BoxConstraints(
+                                            minWidth: 18,
+                                            minHeight: 18,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '$unreadCount',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      reel.description != null && reel.description!.isNotEmpty
+                                          ? reel.description!
+                                          : 'Untitled Reel Video',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      reel.location ?? 'Unknown location',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 3,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Colors.orange.withOpacity(0.1),
+                                            borderRadius: BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: Colors.orange.withOpacity(0.2),
+                                            ),
+                                          ),
+                                          child: const Text(
+                                            'Reel',
+                                            style: TextStyle(
+                                              color: Colors.orange,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        InkWell(
+                                          onTap: () {
+                                            if (reel.id != null) {
+                                              _markCommentsRead(reel.id, totalComments);
+                                              context.push('${ReelsScreen.routeName}?reelId=${reel.id}&showBackButton=true&isMyReels=true');
+                                            }
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 8,
+                                              vertical: 3,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.orange.withOpacity(0.1),
+                                              borderRadius: BorderRadius.circular(4),
+                                              border: Border.all(
+                                                color: Colors.orange.withOpacity(0.2),
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              'View Reel Video',
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                color: Colors.orange,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        TextButton(
+                                          onPressed: () {
+                                            if (reel.id != null) {
+                                              _markCommentsRead(reel.id, totalComments);
+                                              ReelCommentsBottomSheet.show(context, reel.id!, true);
+                                            }
+                                          },
+                                          style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size.zero,
+                                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(Icons.reply, size: 14, color: Theme.of(context).primaryColor),
+                                              const SizedBox(width: 2),
+                                              Text(
+                                                'Reply',
+                                                style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Theme.of(context).primaryColor,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                );
               },
             );
           },
