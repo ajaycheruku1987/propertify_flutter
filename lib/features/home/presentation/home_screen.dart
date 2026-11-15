@@ -501,14 +501,15 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
   }
 
   Future<void> _initCurrentLocation() async {
+    // Request notification permission independently so it's never skipped if location permission fails or is denied.
+    try {
+      await NotificationService.instance.requestPermission();
+    } catch (e) {
+      debugPrint('Notification permission error: $e');
+    }
+
     try {
       final hasPermission = await LocationService.ensurePermission();
-      // Request notification permission next, sequentially after location permission.
-      try {
-        await NotificationService.instance.requestPermission();
-      } catch (e) {
-        debugPrint('Notification permission error: $e');
-      }
 
       // Permissions are now fully completed (user answered both location & notification prompts).
       // Refresh profile, company, and home data so the app refreshes cleanly.
