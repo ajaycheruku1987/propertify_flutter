@@ -10,6 +10,11 @@ import '../../../utils/custom_toast.dart';
 import '../bloc/admin_bloc.dart';
 import '../../profile/models/banner_ad_model.dart';
 import 'widgets/banner_ad_card.dart';
+import '../../feed/presentation/post_details.dart';
+import '../../reels/presentation/reels_screen.dart';
+import '../../sales/models/sales_model.dart';
+import '../../sales/presentation/sale_view_screen.dart';
+import '../../services/presentation/view_service.dart';
 
 class BannerAdsScreen extends StatefulWidget {
   static const String routeName = '/banner-ads-screen';
@@ -315,6 +320,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: property.createdAt,
         endDate: property.promotedUntil,
         isExpired: false,
+        onTap: () {
+          if (property.id != null) {
+            context.push('${PostDetailsScreen.routeName}?postId=${property.id}');
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Feed Post',
@@ -344,6 +354,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: property.createdAt,
         endDate: property.promotedUntil,
         isExpired: true,
+        onTap: () {
+          if (property.id != null) {
+            context.push('${PostDetailsScreen.routeName}?postId=${property.id}');
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Feed Post',
@@ -388,6 +403,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: service.createdAt,
         endDate: service.promotedUntil,
         isExpired: false,
+        onTap: () {
+          if (service.id != null) {
+            context.push(ViewServiceScreen.routeName, extra: service.id);
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Service',
@@ -417,6 +437,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: service.createdAt,
         endDate: service.promotedUntil,
         isExpired: true,
+        onTap: () {
+          if (service.id != null) {
+            context.push(ViewServiceScreen.routeName, extra: service.id);
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Service',
@@ -461,6 +486,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: reel.createdAt,
         endDate: reel.promotedUntil,
         isExpired: false,
+        onTap: () {
+          if (reel.id != null) {
+            context.push('${ReelsScreen.routeName}?reelId=${reel.id}&showBackButton=true');
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Reel',
@@ -490,6 +520,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: reel.createdAt,
         endDate: reel.promotedUntil,
         isExpired: true,
+        onTap: () {
+          if (reel.id != null) {
+            context.push('${ReelsScreen.routeName}?reelId=${reel.id}&showBackButton=true');
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Reel',
@@ -534,6 +569,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: project.createdAt,
         endDate: project.promotedUntil,
         isExpired: false,
+        onTap: () {
+          if (project.id != null) {
+            context.push(SaleViewScreen.routeName, extra: SaleRecord(id: project.id!));
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Project',
@@ -563,6 +603,11 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
         startDate: project.createdAt,
         endDate: project.promotedUntil,
         isExpired: true,
+        onTap: () {
+          if (project.id != null) {
+            context.push(SaleViewScreen.routeName, extra: SaleRecord(id: project.id!));
+          }
+        },
         onDelete: () {
           _showDeleteConfirmation(
             title: 'Delete Project',
@@ -590,6 +635,7 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
     String? startDate,
     String? endDate,
     bool isExpired = false,
+    VoidCallback? onTap,
   }) {
     final DateTime? start = startDate != null ? DateTime.tryParse(startDate) : null;
     final DateTime? end = endDate != null ? DateTime.tryParse(endDate) : null;
@@ -599,129 +645,133 @@ class _BannerAdsScreenState extends State<BannerAdsScreen> with SingleTickerProv
       margin: EdgeInsets.zero,
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            if (image != null)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  image,
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              if (image != null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    image,
                     width: 80,
                     height: 80,
-                    color: Colors.grey.shade200,
-                    child: const Icon(Icons.broken_image, color: Colors.grey),
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      width: 80,
+                      height: 80,
+                      color: Colors.grey.shade200,
+                      child: const Icon(Icons.broken_image, color: Colors.grey),
+                    ),
                   ),
+                )
+              else
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.image, color: Colors.grey),
                 ),
-              )
-            else
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(Icons.image, color: Colors.grey),
-              ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      const Icon(Icons.person, size: 14, color: Colors.grey),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text(
-                          'Owner: $owner',
-                          style: TextStyle(color: Colors.grey.shade700, fontSize: 12),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  if (start != null || end != null) ...[
-                    const SizedBox(height: 6),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
-                        Icon(Icons.calendar_today, size: 12, color: isExpired ? Colors.red : Colors.blue),
+                        const Icon(Icons.person, size: 14, color: Colors.grey),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? "Expires: ${formatter.format(end)}" : ""}'
-                                .trim(),
-                            style: TextStyle(
-                              color: isExpired ? Colors.red : Colors.blue,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            'Owner: $owner',
+                            style: TextStyle(color: Colors.grey.shade700, fontSize: 12),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ),
-                  ],
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          isPaid ? 'PAID' : 'UNPAID',
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+                    if (start != null || end != null) ...[
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Icon(Icons.calendar_today, size: 12, color: isExpired ? Colors.red : Colors.blue),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              '${start != null ? "Start: ${formatter.format(start)}" : ""} ${end != null ? "Expires: ${formatter.format(end)}" : ""}'
+                                  .trim(),
+                              style: TextStyle(
+                                color: isExpired ? Colors.red : Colors.blue,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                      if (isExpired) ...[
-                        const SizedBox(width: 8),
+                    ],
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.red.shade50,
+                            color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Text(
-                            'EXPIRED',
+                          child: Text(
+                            isPaid ? 'PAID' : 'UNPAID',
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
                             ),
                           ),
                         ),
+                        if (isExpired) ...[
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.red.shade50,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              'EXPIRED',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete_outline, color: Colors.red),
-              onPressed: onDelete,
-              tooltip: 'Delete',
-            ),
-          ],
+              IconButton(
+                icon: const Icon(Icons.delete_outline, color: Colors.red),
+                onPressed: onDelete,
+                tooltip: 'Delete',
+              ),
+            ],
+          ),
         ),
       ),
     );
