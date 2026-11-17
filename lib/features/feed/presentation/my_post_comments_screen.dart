@@ -65,8 +65,8 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
             unselectedLabelColor: Colors.grey,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: const [
-              Tab(text: 'Comments'),
               Tab(text: 'Notifications'),
+              Tab(text: 'Comments'),
             ],
           ),
         ),
@@ -127,8 +127,8 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
 
             return TabBarView(
               children: [
-                _buildLiveServerCommentsTab(),
                 _buildNotificationsTab(),
+                _buildLiveServerCommentsTab(),
               ],
             );
           },
