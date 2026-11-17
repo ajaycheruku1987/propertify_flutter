@@ -233,61 +233,61 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
           ),
           const SizedBox(width: 8),
           _buildAddListingButton(),
-          const SizedBox(width: 8),
-          BlocBuilder<NotificationsBloc, NotificationsState>(
-            builder: (context, state) {
-              final unreadCount = state.unreadNotifications.length;
-              return GestureDetector(
-                onTap: () {
-                  context.push(NotificationsScreen.routeName);
-                },
-                child: Stack(
-                  children: [
-                    Container(
-                      height: 42,
-                      width: 42,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
-                      child: const Icon(
-                        Icons.notifications_outlined,
-                        size: 24,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    if (unreadCount > 0)
-                      Positioned(
-                        right: 3,
-                        top: 3,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          constraints: const BoxConstraints(
-                            minWidth: 16,
-                            minHeight: 16,
-                          ),
-                          child: Text(
-                            '$unreadCount',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 8,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              );
-            },
-          ),
+          // const SizedBox(width: 8),
+          // BlocBuilder<NotificationsBloc, NotificationsState>(
+          //   builder: (context, state) {
+          //     final unreadCount = state.unreadNotifications.length;
+          //     return GestureDetector(
+          //       onTap: () {
+          //         context.push(NotificationsScreen.routeName);
+          //       },
+          //       child: Stack(
+          //         children: [
+          //           Container(
+          //             height: 42,
+          //             width: 42,
+          //             alignment: Alignment.center,
+          //             decoration: BoxDecoration(
+          //               color: Colors.white,
+          //               borderRadius: BorderRadius.circular(50),
+          //               border: Border.all(color: Colors.grey.shade300),
+          //             ),
+          //             child: const Icon(
+          //               Icons.notifications_outlined,
+          //               size: 24,
+          //               color: Colors.black54,
+          //             ),
+          //           ),
+          //           if (unreadCount > 0)
+          //             Positioned(
+          //               right: 3,
+          //               top: 3,
+          //               child: Container(
+          //                 padding: const EdgeInsets.all(4),
+          //                 decoration: const BoxDecoration(
+          //                   color: Colors.red,
+          //                   shape: BoxShape.circle,
+          //                 ),
+          //                 constraints: const BoxConstraints(
+          //                   minWidth: 16,
+          //                   minHeight: 16,
+          //                 ),
+          //                 child: Text(
+          //                   '$unreadCount',
+          //                   style: const TextStyle(
+          //                     color: Colors.white,
+          //                     fontSize: 8,
+          //                     fontWeight: FontWeight.bold,
+          //                   ),
+          //                   textAlign: TextAlign.center,
+          //                 ),
+          //               ),
+          //             ),
+          //         ],
+          //       ),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
