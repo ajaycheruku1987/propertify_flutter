@@ -54,7 +54,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            'Comments & Notifications',
+            'Notifications & Comments',
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
 
             return TabBarView(
               children: [
-                _buildNotificationsTab(),
+                const _NotificationList(),
                 _buildLiveServerCommentsTab(),
               ],
             );
@@ -611,48 +611,22 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
       },
     );
   }
-
-  Widget _buildNotificationsTab() {
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            child: TabBar(
-              labelColor: Theme.of(context).primaryColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Theme.of(context).primaryColor,
-              tabs: const [
-                Tab(text: 'Unread'),
-                Tab(text: 'Read'),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: TabBarView(
-              children: [
-                _NotificationList(isRead: false),
-                _NotificationList(isRead: true),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _NotificationList extends StatelessWidget {
-  final bool isRead;
-
-  const _NotificationList({required this.isRead});
+  const _NotificationList();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
-        final notifications = isRead ? state.readNotifications : state.unreadNotifications;
+        final notifications = List<NotificationModel>.from(state.notifications)
+          ..sort((a, b) {
+            if (a.isRead != b.isRead) {
+              return a.isRead ? 1 : -1; // Unread first
+            }
+            return b.timestamp.compareTo(a.timestamp); // Newest first
+          });
 
         if (notifications.isEmpty) {
           return Center(
@@ -705,8 +679,13 @@ class _NotificationCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: notification.isRead
+              ? Colors.white
+              : Theme.of(context).primaryColor.withOpacity(0.08),
           borderRadius: BorderRadius.circular(12),
+          border: notification.isRead
+              ? null
+              : Border.all(color: Theme.of(context).primaryColor.withOpacity(0.2)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.03),
