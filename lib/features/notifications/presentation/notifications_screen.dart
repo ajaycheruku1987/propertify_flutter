@@ -6,10 +6,22 @@ import 'package:propertify/l10n/app_localizations.dart';
 import '../bloc/notifications_bloc.dart';
 import '../models/notification_model.dart';
 
-class NotificationsScreen extends StatelessWidget {
+class NotificationsScreen extends StatefulWidget {
   static const String routeName = '/notifications';
 
   const NotificationsScreen({super.key});
+
+  @override
+  State<NotificationsScreen> createState() => _NotificationsScreenState();
+}
+
+class _NotificationsScreenState extends State<NotificationsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Pull server inbox (persisted for every like/comment/view/etc) into local state.
+    context.read<NotificationsBloc>().add(const FetchNotifications());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +52,13 @@ class NotificationsScreen extends StatelessWidget {
             indicatorWeight: 3,
           ),
           actions: [
+            IconButton(
+              tooltip: 'Refresh',
+              onPressed: () {
+                context.read<NotificationsBloc>().add(const FetchNotifications());
+              },
+              icon: const Icon(Icons.refresh, color: Colors.white),
+            ),
             TextButton(
               onPressed: () {
                 context.read<NotificationsBloc>().add(const MarkAllAsRead());
@@ -122,10 +141,7 @@ class _NotificationCard extends StatelessWidget {
         if (!notification.isRead) {
           context.read<NotificationsBloc>().add(MarkAsRead(notification.id));
         }
-        final data = notification.data;
-        if (data != null && data['type'] != null) {
-          NotificationRouter.open(data);
-        }
+        NotificationRouter.openNotification(notification);
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -217,8 +233,15 @@ class _NotificationCard extends StatelessWidget {
       case 'comment':
       case 'reel_comment':
         return Icons.comment_outlined;
+      case 'view':
+        return Icons.visibility_outlined;
+      case 'share':
+      case 'reel_share':
+        return Icons.share_outlined;
       case 'favourite':
         return Icons.favorite_border;
+      case 'contact_click':
+        return Icons.phone_outlined;
       case 'service_review':
         return Icons.star_border;
       case 'verification':

@@ -39,6 +39,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
     context.read<ReelsBloc>().add(
           const ReelsEvent.getMyReels(),
         );
+    context.read<NotificationsBloc>().add(const FetchNotifications());
   }
 
   @override
@@ -699,10 +700,7 @@ class _NotificationCard extends StatelessWidget {
         if (!notification.isRead) {
           context.read<NotificationsBloc>().add(MarkAsRead(notification.id));
         }
-        final data = notification.data;
-        if (data != null && data['type'] != null) {
-          NotificationRouter.open(data);
-        }
+        NotificationRouter.openNotification(notification);
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -794,8 +792,15 @@ class _NotificationCard extends StatelessWidget {
       case 'comment':
       case 'reel_comment':
         return Icons.comment_outlined;
+      case 'view':
+        return Icons.visibility_outlined;
+      case 'share':
+      case 'reel_share':
+        return Icons.share_outlined;
       case 'favourite':
         return Icons.favorite_border;
+      case 'contact_click':
+        return Icons.phone_outlined;
       case 'service_review':
         return Icons.star_border;
       case 'verification':

@@ -27,3 +27,12 @@ class MarkAllAsRead extends NotificationsEvent {
 class ClearNotifications extends NotificationsEvent {
   const ClearNotifications();
 }
+
+class FetchNotifications extends NotificationsEvent {
+  const FetchNotifications();
+}
+
+class SyncNotifications extends NotificationsEvent {
+  final List<NotificationModel> notifications;
+  const SyncNotifications(this.notifications);
+}

@@ -77,4 +77,76 @@ class NotificationModel {
       data: (json['data'] as Map?)?.cast<String, dynamic>(),
     );
   }
+
+  /// Backend inbox payload (`GET /notifications`) uses snake_case fields.
+  factory NotificationModel.fromApi(Map<String, dynamic> json) {
+    final rawBody = json['body']?.toString() ?? '';
+    final cleanBody = rawBody.contains('__PROPS__')
+        ? rawBody.split('__PROPS__').first.trim()
+        : rawBody;
+    final data = (json['data'] as Map?)?.cast<String, dynamic>();
+    final createdAt = json['created_at']?.toString() ??
+        json['timestamp']?.toString() ??
+        DateTime.now().toIso8601String();
+    return NotificationModel(
+      id: json['id'].toString(),
+      title: json['title']?.toString() ?? '',
+      body: cleanBody,
+      timestamp: DateTime.tryParse(createdAt) ?? DateTime.now(),
+      isRead: json['is_read'] as bool? ?? json['isRead'] as bool? ?? false,
+      type: json['type']?.toString(),
+      referenceId:
+          json['reference_id']?.toString() ?? json['referenceId']?.toString(),
+      imageUrl: json['image_url']?.toString() ?? json['imageUrl']?.toString(),
+      data: data,
+    );
+  }
+
+  /// Payload used by [NotificationRouter] for in-app taps.
+  /// Builds from stored `data`, filling gaps from `type` + `referenceId`.
+  Map<String, dynamic> get routingData {
+    final map = <String, dynamic>{
+      if (data != null) ...data!,
+    };
+    final resolvedType = (map['type'] ?? type)?.toString();
+    if (resolvedType != null && resolvedType.isNotEmpty) {
+      map['type'] = resolvedType;
+    }
+    final ref = (referenceId ??
+            map['property_id'] ??
+            map['reel_id'] ??
+            map['service_id'] ??
+            map['project_id'] ??
+            map['reference_id'])
+        ?.toString()
+        .trim();
+    if (ref != null && ref.isNotEmpty) {
+      map['reference_id'] = ref;
+      switch (resolvedType) {
+        case 'new_post':
+        case 'like':
+        case 'comment':
+        case 'view':
+        case 'share':
+        case 'favourite':
+        case 'contact_click':
+        case 'property':
+          map.putIfAbsent('property_id', () => ref);
+          break;
+        case 'reel_like':
+        case 'reel_comment':
+        case 'reel_share':
+          map.putIfAbsent('reel_id', () => ref);
+          break;
+        case 'service_review':
+        case 'verification':
+          map.putIfAbsent('service_id', () => ref);
+          break;
+        case 'callback_request':
+          map.putIfAbsent('project_id', () => ref);
+          break;
+      }
+    }
+    return map;
+  }
 }
