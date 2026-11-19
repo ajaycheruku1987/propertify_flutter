@@ -43,6 +43,14 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<FeedBloc>().add(const FeedEvent.getMyProperties(offset: 0, limit: 40));
+    context.read<ReelsBloc>().add(const ReelsEvent.getMyReels());
+    context.read<NotificationsBloc>().add(const FetchNotifications());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     
@@ -126,11 +134,18 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
               );
             }
 
-            return TabBarView(
-              children: [
-                const _NotificationList(),
-                _buildLiveServerCommentsTab(),
-              ],
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<FeedBloc>().add(const FeedEvent.getMyProperties(offset: 0, limit: 40));
+                context.read<ReelsBloc>().add(const ReelsEvent.getMyReels());
+                context.read<NotificationsBloc>().add(const FetchNotifications());
+              },
+              child: TabBarView(
+                children: [
+                  const _NotificationList(),
+                  _buildLiveServerCommentsTab(),
+                ],
+              ),
             );
           },
         ),
@@ -230,7 +245,7 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                 return ListView.separated(
                   padding: const EdgeInsets.all(16),
                   itemCount: commentItems.length,
-                  separatorBuilder: (context, index) => const Divider(height: 24),
+                  separatorBuilder: (context, index) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final item = commentItems[index];
                     if (!item.isReel) {
@@ -238,15 +253,31 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                       final totalComments = post.commentsCount ?? 0;
                       final unreadCount = _getUnreadCount(post.id ?? '', totalComments, notifState);
 
-                      return InkWell(
-                        onTap: () {
-                          if (post.id != null) {
-                            _markCommentsRead(post.id, totalComments);
-                            CommentsBottomSheet.show(context, post.id!, true);
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: unreadCount > 0
+                              ? Theme.of(context).primaryColor.withOpacity(0.08)
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: unreadCount > 0
+                              ? Border.all(color: Theme.of(context).primaryColor.withOpacity(0.2))
+                              : null,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.03),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            if (post.id != null) {
+                              _markCommentsRead(post.id, totalComments);
+                              CommentsBottomSheet.show(context, post.id!, true);
+                            }
+                          },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -420,15 +451,31 @@ class _MyPostCommentsScreenState extends State<MyPostCommentsScreen> {
                       final totalComments = reel.commentsCount ?? 0;
                       final unreadCount = _getUnreadCount(reel.id ?? '', totalComments, notifState);
 
-                      return InkWell(
-                        onTap: () {
-                          if (reel.id != null) {
-                            _markCommentsRead(reel.id, totalComments);
-                            ReelCommentsBottomSheet.show(context, reel.id!, true);
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: unreadCount > 0
+                              ? Colors.orange.withOpacity(0.08)
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: unreadCount > 0
+                              ? Border.all(color: Colors.orange.withOpacity(0.2))
+                              : null,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.03),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            if (reel.id != null) {
+                              _markCommentsRead(reel.id, totalComments);
+                              ReelCommentsBottomSheet.show(context, reel.id!, true);
+                            }
+                          },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

@@ -75,6 +75,15 @@ class _ReelCommentsBottomSheetState extends State<ReelCommentsBottomSheet> {
       ),
     );
 
+    final reelsState = context.read<ReelsBloc>().state;
+    final matchingReels = reelsState.myReels.where((r) => r.id == widget.reelId).toList();
+    if (matchingReels.isNotEmpty) {
+      final currentCount = matchingReels.first.commentsCount ?? 0;
+      context.read<NotificationsBloc>().add(
+            MarkCommentsAsRead(id: widget.reelId, count: currentCount + 1),
+          );
+    }
+
     // Clear the input field
     _commentController.clear();
     FocusScope.of(context).unfocus();

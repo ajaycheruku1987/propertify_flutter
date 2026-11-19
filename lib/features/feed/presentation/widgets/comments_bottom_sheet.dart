@@ -92,6 +92,15 @@ class _CommentsBottomSheetState extends State<CommentsBottomSheet> {
           ),
         );
 
+    final feedState = context.read<FeedBloc>().state;
+    final matchingProperties = feedState.myPropertiesList.where((p) => p.id == widget.propertyId).toList();
+    if (matchingProperties.isNotEmpty) {
+      final currentCount = matchingProperties.first.commentsCount ?? 0;
+      context.read<NotificationsBloc>().add(
+            MarkCommentsAsRead(id: widget.propertyId, count: currentCount + 1),
+          );
+    }
+
     // Clear the input field
     _commentController.clear();
     setState(() => _replyingTo = null);
