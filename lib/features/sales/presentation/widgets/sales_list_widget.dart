@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:propertify/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:propertify/utils/string_extensions.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/company/presentation/gst_verification_screen.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
@@ -442,7 +443,7 @@ class _SalesListWidgetState extends State<SalesListWidget> {
     if (propertyTypes != null &&
         propertyTypes.isNotEmpty &&
         !propertyTypes.contains('All')) {
-      for (final type in propertyTypes) {
+      for (final type in propertyTypes.cast<String>()) {
         chips.add(
           _buildChip('${l10n.type}: ${type.translate(context)}', () {
             final newFilter = Map<String, dynamic>.from(filter);
