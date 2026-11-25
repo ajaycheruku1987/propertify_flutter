@@ -949,9 +949,11 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   Widget _buildDescriptionSection(SaleRecord sale) {
     final l10n = AppLocalizations.of(context)!;
-    if (sale.description == null || sale.description!.trim().isEmpty) {
+    final description = (sale.description ?? '').translate(context);
+    if (description.trim().isEmpty) {
       return const SizedBox.shrink();
     }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -962,39 +964,63 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            (sale.description?.length ?? 0) > 150
-                ? (_isDescriptionExpanded
-                      ? (sale.description ?? '').translate(context)
-                      : '${(sale.description?.length ?? 0) > 150 ? sale.description!.substring(0, 150).translate(context) : (sale.description ?? '').translate(context)}${(sale.description?.length ?? 0) > 150 ? '...' : ''}')
-                : (sale.description ?? '').translate(context),
-            style: const TextStyle(
-              fontSize: 14,
               color: Colors.black87,
-              height: 1.5,
             ),
           ),
-          const SizedBox(height: 8),
-          if ((sale.description?.length ?? 0) > 150)
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isDescriptionExpanded = !_isDescriptionExpanded;
-                });
-              },
-              child: Text(
-                _isDescriptionExpanded ? l10n.less : l10n.more,
-                style: TextStyle(
+          const SizedBox(height: 10),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final textSpan = TextSpan(
+                text: description,
+                style: const TextStyle(
                   fontSize: 14,
-                  color: AppTheme.blueColor,
-                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                  height: 1.5,
                 ),
-              ),
-            ),
+              );
+              final textPainter = TextPainter(
+                text: textSpan,
+                maxLines: 3,
+                textDirection: Directionality.of(context),
+              );
+              textPainter.layout(maxWidth: constraints.maxWidth);
+              final bool isExceeding = textPainter.didExceedMaxLines;
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    description,
+                    maxLines: _isDescriptionExpanded ? null : 3,
+                    overflow: _isDescriptionExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black87,
+                      height: 1.5,
+                    ),
+                  ),
+                  if (isExceeding) ...[
+                    const SizedBox(height: 6),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isDescriptionExpanded = !_isDescriptionExpanded;
+                        });
+                      },
+                      child: Text(
+                        _isDescriptionExpanded ? l10n.less : l10n.more,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppTheme.blueColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              );
+            },
+          ),
         ],
       ),
     );
