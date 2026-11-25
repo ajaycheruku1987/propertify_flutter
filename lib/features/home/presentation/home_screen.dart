@@ -398,19 +398,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
         final hasLookingFor = lookingFor != null && lookingFor.isNotEmpty && lookingFor != 'All';
         return !hasPropType && !hasLookingFor;
       }
-      if (name == 'Sale' || name == 'Rent' || name == 'Lease') {
-        final mapped = name == 'Sale' ? 'Sell' : name;
-        return lookingFor == mapped || (name == 'Sale' && lookingFor == 'Sale');
-      }
       return propertyTypes != null && propertyTypes.isNotEmpty && propertyTypes.first == name;
     }
 
-    // Show All, Sale, Rent, Lease + main categories + all subcategories.
+    // Show All + main categories + all subcategories.
     final List<Map<String, dynamic>> categories = [
       {'name': 'All', 'icon': Icons.apps},
-      {'name': 'Sale', 'icon': Icons.sell_outlined},
-      {'name': 'Rent', 'icon': Icons.apartment_outlined},
-      {'name': 'Lease', 'icon': Icons.business_outlined},
       ...AppCategories.mainPropertyCategories,
       ...AppCategories.propertyType,
     ];
