@@ -227,7 +227,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       // Tab Content based on selection
                       _buildSelectedSectionContent(sale, state),
 
-                      const SizedBox(height: 100), // Space for bottom buttons
+                      const SizedBox(height: 24), // Space for bottom buttons
                     ],
                   ),
                 ),
@@ -549,7 +549,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               ),
             ),
 
-          const SizedBox(height: 100), // Space for bottom buttons
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -810,7 +810,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               ),
             ),
 
-          const SizedBox(height: 100), // Space for bottom buttons
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -853,7 +853,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               ),
             ),
 
-          const SizedBox(height: 100), // Space for bottom buttons
+          const SizedBox(height: 16),
         ],
       ),
     );
