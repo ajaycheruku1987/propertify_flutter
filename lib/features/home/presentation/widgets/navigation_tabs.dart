@@ -65,7 +65,7 @@ class NavigationTabs extends StatelessWidget {
                           style: TextStyle(
                             color: selectedIndex == index
                                 ? Theme.of(context).primaryColor
-                                : Theme.of(context).hintColor,
+                                : Colors.grey.shade800,
                             fontSize: 10,
                           ),
                         ),
@@ -84,7 +84,7 @@ class NavigationTabs extends StatelessWidget {
   Widget _getTabIcon(BuildContext context, int index, bool isSelected) {
     final color = isSelected
         ? Theme.of(context).primaryColor
-        : Theme.of(context).hintColor;
+        : Colors.grey.shade800;
 
     switch (index) {
       case 0: // Feeds
