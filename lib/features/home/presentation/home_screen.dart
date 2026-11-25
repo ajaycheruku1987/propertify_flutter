@@ -32,6 +32,7 @@ import '../../services/bloc/services_bloc.dart';
 import '../../services/presentation/services_list_widget.dart';
 import '../bloc/home_bloc.dart';
 import 'widgets/bottom_navigation_widget.dart';
+import 'widgets/category_options_bottom_sheet.dart';
 import 'widgets/create_or_add_bottom_sheet.dart';
 import 'widgets/feeds_filter.dart';
 import 'widgets/location_selector.dart';
@@ -348,7 +349,11 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
       BuildContext context,
       Map<String, dynamic> filterData,
       ) {
-    context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
+    if (filterData.isEmpty) {
+      context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+    } else {
+      context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
+    }
     final propertyTypes = filterData['propertyTypes'] as List?;
     final lookingFor = filterData['lookingFor'] as String?;
     final isLocationCustom = filterData['isLocationCustom'] == true;
@@ -429,6 +434,18 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                       latitude: context.read<HomeBloc>().state.currentLat,
                       longitude: context.read<HomeBloc>().state.currentLng,
                     ),
+                  );
+                  return;
+                }
+
+                if (AppCategories.isMainCategory(categoryName)) {
+                  CategoryOptionsBottomSheet.show(
+                    context,
+                    mainCategory: categoryName,
+                    activeFilter: context.read<HomeBloc>().state.activeFeedsFilter,
+                    onApply: (filterData) {
+                      _applyFeedsFilter(context, filterData);
+                    },
                   );
                   return;
                 }

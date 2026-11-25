@@ -874,7 +874,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     final isLocationCustom = filterData['isLocationCustom'] == true;
 
     final isDefault =
-        (lookingFor == 'All' || lookingFor == '') &&
+        (lookingFor == 'All' || lookingFor == '' || lookingFor == null) &&
         (propertyTypes == null ||
             propertyTypes.isEmpty ||
             propertyTypes.contains('All')) &&
@@ -950,60 +950,35 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     final filter = state.activeFeedsFilter!;
     final chips = <Widget>[];
 
+    void clearAllFilters() {
+      context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
+      context.read<FeedBloc>().add(const FeedEvent.reset());
+      context.read<FeedBloc>().add(
+        FeedEvent.getFeedsEvent(
+          latitude: context.read<HomeBloc>().state.currentLat,
+          longitude: context.read<HomeBloc>().state.currentLng,
+        ),
+      );
+    }
+
     if (filter['isLocationCustom'] == true && filter['location'] != null) {
       chips.add(
-        _buildChip('${l10n.location}: ${filter['location']}', () {
-          final newFilter = Map<String, dynamic>.from(filter);
-          newFilter['isLocationCustom'] = false;
-          newFilter['location'] = null;
-          newFilter['addressText'] = null;
-          newFilter['latitude'] = null;
-          newFilter['longitude'] = null;
-          _applyFeedsFilter(context, newFilter);
-        }),
+        _buildChip('${l10n.location}: ${filter['location']}', clearAllFilters),
       );
     }
     final lookingFor = filter['lookingFor'] as String?;
     if (lookingFor != null && lookingFor != 'All' && lookingFor.isNotEmpty) {
       chips.add(
-        _buildChip('${l10n.lookingFor}: $lookingFor', () {
-          final newFilter = Map<String, dynamic>.from(filter);
-          newFilter['lookingFor'] = 'All';
-          _applyFeedsFilter(context, newFilter);
-        }),
+        _buildChip('${l10n.lookingFor}: $lookingFor', clearAllFilters),
       );
     }
-    final propertyTypes = filter['propertyTypes'] as List?;
-    /* 
-    // Removed redundancy: Categories are now shown in the horizontal selector, 
-    // so we don't need them as individual chips above the results.
-    if (propertyTypes != null &&
-        propertyTypes.isNotEmpty &&
-        !propertyTypes.contains('All')) {
-      for (final type in propertyTypes) {
-        chips.add(
-          _buildChip('${l10n.type}: $type', () {
-            final newFilter = Map<String, dynamic>.from(filter);
-            final list = List<String>.from(newFilter['propertyTypes'] ?? []);
-            list.remove(type);
-            newFilter['propertyTypes'] = list;
-            _applyFeedsFilter(context, newFilter);
-          }),
-        );
-      }
-    }
-    */
     final priceRange = filter['priceRange'] as Map?;
     if (priceRange != null &&
         (priceRange['min'] != 100000 || priceRange['max'] != 50000000)) {
       chips.add(
         _buildChip(
           '${l10n.price}: ₹${(priceRange['min'] as num).round()} - ₹${(priceRange['max'] as num).round()}',
-          () {
-            final newFilter = Map<String, dynamic>.from(filter);
-            newFilter['priceRange'] = {'min': 100000, 'max': 50000000};
-            _applyFeedsFilter(context, newFilter);
-          },
+          clearAllFilters,
         ),
       );
     }
