@@ -246,89 +246,115 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
+          // Title & Price Badge
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Text(
                   (sale.projectName ?? 'Property Title').translate(context),
                   maxLines: 2,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.black87,
+                    letterSpacing: -0.5,
                   ),
                 ),
               ),
-
-              // Price
-              Text(
-                sale.minPrice != null && sale.maxPrice != null
-                    ? '${formatPrice(sale.minPrice)}-${formatPrice(sale.maxPrice)}'
-                    : sale.minPrice != null
-                    ? '${formatPrice(sale.minPrice)}'
-                    : '',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: AppTheme.blueColor,
+              const SizedBox(width: 12),
+              // Price Badge
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppTheme.blueColor.withOpacity(0.08),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.blueColor.withOpacity(0.2)),
+                ),
+                child: Text(
+                  sale.minPrice != null && sale.maxPrice != null
+                      ? '${formatPrice(sale.minPrice)} - ${formatPrice(sale.maxPrice)}'
+                      : sale.minPrice != null
+                      ? '${formatPrice(sale.minPrice)}'
+                      : '',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.blueColor,
+                  ),
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
 
           // Zero Brokerage & Possession Date
-          Text(
-            'Zero Brokerage • ${(sale.propertyType?.toLowerCase().contains('openplot') ?? false) ? 'Launched Date: ${sale.createdAt != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.createdAt!).toLocal()) : 'N/A'}' : 'Possession by: ${sale.possessionDate != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.possessionDate.toString()).toLocal()) : 'Ready to Move'}'}',
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              // color: Colors.grey,
-            ),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.amber.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Text(
+                  'Zero Brokerage',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.amber,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  (sale.propertyType?.toLowerCase().contains('openplot') ?? false)
+                      ? 'Launched: ${sale.createdAt != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.createdAt!).toLocal()) : 'N/A'}'
+                      : 'Possession: ${sale.possessionDate != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.possessionDate.toString()).toLocal()) : 'Ready to Move'}',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[600],
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: 12),
 
-          // Location
-          // Row(
-          //   children: [
-          //     const Icon(
-          //       Icons.location_on_outlined,
-          //       size: 16,
-          //       color: Colors.grey,
-          //     ),
-          //     const SizedBox(width: 4),
-          //     Expanded(
-          //       child: Text(
-          //         (sale.location ?? sale.city ?? 'Location').toTitleCase(),
-          //         style: const TextStyle(fontSize: 13, color: Colors.grey),
-          //         maxLines: 1,
-          //         overflow: TextOverflow.ellipsis,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-
-          // const SizedBox(height: 8),
-
-          // RERA Number
+          // RERA Number Badge
           if (sale.reraNumber != null && sale.reraNumber!.isNotEmpty)
-            Row(
-              children: [
-                const Icon(
-                  Icons.verified_outlined,
-                  size: 16,
-                  color: Colors.grey,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  'Rera no : ${sale.reraNumber}',
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
-                ),
-              ],
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.06),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.green.withOpacity(0.2)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.verified_rounded,
+                    size: 15,
+                    color: Colors.green,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    'RERA No: ${sale.reraNumber}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
             ),
 
           const SizedBox(height: 16),
@@ -349,23 +375,23 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           child: Row(
             children: [
               _buildTabItem(l10n.overview),
-              const SizedBox(width: 20),
+              const SizedBox(width: 12),
               _buildTabItem(l10n.location),
-              const SizedBox(width: 20),
+              const SizedBox(width: 12),
               _buildTabItem(
                 'Available ${_getUnitsLabel(sale.propertyType)}',
                 '${l10n.available} ${_getUnitsLabel(sale.propertyType).translate(context)} ($unitsCount)',
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 12),
               _buildTabItem(l10n.specifications),
-              const SizedBox(width: 20),
+              const SizedBox(width: 12),
               _buildTabItem(l10n.publicFacilities),
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
         Divider(height: 1, thickness: 1, color: Colors.grey[200]),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
       ],
     );
   }
@@ -378,23 +404,24 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           _selectedSection = tabName;
         });
       },
-      child: Column(
-        children: [
-          Text(
-            tabLabel ?? tabName,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-              color: isSelected ? AppTheme.blueColor : Colors.black,
-            ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.blueColor : Colors.grey[100],
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? AppTheme.blueColor : Colors.grey[300]!,
           ),
-          const SizedBox(height: 4),
-          Container(
-            height: 2,
-            width: 40,
-            color: isSelected ? AppTheme.blueColor : Colors.transparent,
+        ),
+        child: Text(
+          tabLabel ?? tabName,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            color: isSelected ? Colors.white : Colors.black87,
           ),
-        ],
+        ),
       ),
     );
   }
@@ -832,45 +859,91 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     );
   }
 
+  IconData _getAmenityIcon(String item) {
+    final lower = item.toLowerCase();
+    if (lower.contains('pool') || lower.contains('swimming')) return Icons.pool;
+    if (lower.contains('gym') || lower.contains('fitness') || lower.contains('workout')) return Icons.fitness_center;
+    if (lower.contains('banquet') || lower.contains('hall') || lower.contains('party')) return Icons.celebration;
+    if (lower.contains('play') || lower.contains('ground') || lower.contains('kids') || lower.contains('park')) return Icons.sports_soccer;
+    if (lower.contains('walk') || lower.contains('jog') || lower.contains('track') || lower.contains('are')) return Icons.directions_walk;
+    if (lower.contains('guest') || lower.contains('room')) return Icons.hotel;
+    if (lower.contains('parking') || lower.contains('car')) return Icons.local_parking;
+    if (lower.contains('security') || lower.contains('guard')) return Icons.security;
+    if (lower.contains('lift') || lower.contains('elevator')) return Icons.elevator;
+    if (lower.contains('power') || lower.contains('backup')) return Icons.bolt;
+    if (lower.contains('water') || lower.contains('supply')) return Icons.water_drop;
+    if (lower.contains('club') || lower.contains('house')) return Icons.house;
+    return Icons.check_circle_outline;
+  }
+
   Widget _buildBulletedList(String text) {
     // Also split by newline if legacy texts use it
     final List<String> items = text
         .split(RegExp(r';;|\n'))
-        .map((s) => s.trim())
+        .map((s) => s.trim().replaceAll(RegExp(r'^•\s*'), ''))
         .where((s) => s.isNotEmpty)
         .toList();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.map((item) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.arrow_forward_ios_outlined,
-                size: 18,
-                color: AppTheme.blueColor,
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 2.8,
+      ),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        String correctedItem = item;
+        if (correctedItem.toLowerCase() == 'walking are') {
+          correctedItem = 'Walking Area';
+        }
+        final cleanItem = correctedItem.toTitleCase();
+        final icon = _getAmenityIcon(item);
+
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.shade200),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.02),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
               ),
-              const SizedBox(width: 8),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppTheme.blueColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, size: 18, color: AppTheme.blueColor),
+              ),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  item.replaceFirst(
-                    RegExp(r'^•\s*'),
-                    '',
-                  ).translate(context), // Strip old bullets if present
+                  cleanItem.translate(context),
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black87,
-                    height: 1.5,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
         );
-      }).toList(),
+      },
     );
   }
 
