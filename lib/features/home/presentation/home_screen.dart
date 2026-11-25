@@ -154,8 +154,8 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     final l10n = AppLocalizations.of(context)!;
     final List<String> tabs = [
       l10n.feeds,
-      l10n.requests,
       l10n.projects,
+      l10n.requests,
       l10n.services,
     ];
 
@@ -390,14 +390,27 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     final homeState = context.watch<HomeBloc>().state;
     final activeFilter = homeState.activeFeedsFilter;
     final propertyTypes = activeFilter?['propertyTypes'] as List?;
-    final String currentSelectedCategory =
-    (propertyTypes != null && propertyTypes.isNotEmpty)
-        ? propertyTypes.first as String
-        : 'All';
+    final lookingFor = activeFilter?['lookingFor'] as String?;
 
-    // Show main categories + all subcategories so new types are visible.
+    bool isCategorySelected(String name) {
+      if (name == 'All') {
+        final hasPropType = propertyTypes != null && propertyTypes.isNotEmpty && !propertyTypes.contains('All');
+        final hasLookingFor = lookingFor != null && lookingFor.isNotEmpty && lookingFor != 'All';
+        return !hasPropType && !hasLookingFor;
+      }
+      if (name == 'Sale' || name == 'Rent' || name == 'Lease') {
+        final mapped = name == 'Sale' ? 'Sell' : name;
+        return lookingFor == mapped || (name == 'Sale' && lookingFor == 'Sale');
+      }
+      return propertyTypes != null && propertyTypes.isNotEmpty && propertyTypes.first == name;
+    }
+
+    // Show All, Sale, Rent, Lease + main categories + all subcategories.
     final List<Map<String, dynamic>> categories = [
       {'name': 'All', 'icon': Icons.apps},
+      {'name': 'Sale', 'icon': Icons.sell_outlined},
+      {'name': 'Rent', 'icon': Icons.apartment_outlined},
+      {'name': 'Lease', 'icon': Icons.business_outlined},
       ...AppCategories.mainPropertyCategories,
       ...AppCategories.propertyType,
     ];
@@ -412,7 +425,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
         itemBuilder: (context, index) {
           final cat = categories[index];
           final categoryName = cat['name'] as String;
-          final bool isSelected = currentSelectedCategory == categoryName;
+          final bool isSelected = isCategorySelected(categoryName);
           final theme = Theme.of(context);
 
           return Padding(
@@ -478,15 +491,226 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     );
   }
 
+  Widget _buildCategorySelectorForTab(BuildContext context, int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        return _buildCategorySelector(context);
+      case 1: // Projects (Sales)
+        return _buildProjectsCategorySelector(context);
+      case 2: // Requests
+        return _buildRequestsCategorySelector(context);
+      case 3: // Services
+        return _buildServicesCategorySelector(context);
+      default:
+        return _buildCategorySelector(context);
+    }
+  }
+
+  Widget _buildProjectsCategorySelector(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
+    final activeFilter = homeState.activeSalesFilter;
+    final propertyTypes = activeFilter?['propertyTypes'] as List?;
+    final String currentSelected = (propertyTypes != null && propertyTypes.isNotEmpty)
+        ? propertyTypes.first as String
+        : 'All';
+
+    final categories = ['All', 'Villas', 'Apartments', 'Open Plots', 'Commercial'];
+
+    return Container(
+      height: 44,
+      padding: EdgeInsets.zero,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final catName = categories[index];
+          final bool isSelected = currentSelected == catName;
+          final theme = Theme.of(context);
+
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text(catName.translate(context)),
+              selected: isSelected,
+              onSelected: (selected) {
+                if (!selected) return;
+                final currentFilter = homeState.activeSalesFilter ?? {};
+                final newFilter = Map<String, dynamic>.from(currentFilter);
+                if (catName == 'All') {
+                  newFilter.remove('propertyTypes');
+                } else {
+                  newFilter['propertyTypes'] = [catName];
+                }
+                context.read<HomeBloc>().add(HomeEvent.updateSalesFilter(newFilter));
+                context.read<SalesBloc>().add(
+                  SalesEvent.getSalesEvent(
+                    search: homeState.searchQuery,
+                    propertyTypes: catName == 'All' ? null : [catName],
+                  ),
+                );
+              },
+              selectedColor: theme.primaryColor,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: isSelected ? theme.primaryColor : Colors.grey.shade300,
+                  width: 1,
+                ),
+              ),
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                fontSize: 13,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildRequestsCategorySelector(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
+    final activeFilter = homeState.activeRequestsFilter;
+    final city = activeFilter?['address'] as String?;
+    final categories = AppCategories.requestCategoriesFilter;
+    final String currentSelected = activeFilter?['categoryType'] as String? ?? 'All';
+
+    return Container(
+      height: 44,
+      padding: EdgeInsets.zero,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final catName = categories[index];
+          final bool isSelected = currentSelected == catName || (catName == 'All' && currentSelected == 'All');
+          final theme = Theme.of(context);
+
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text(catName.translate(context)),
+              selected: isSelected,
+              onSelected: (selected) {
+                if (!selected) return;
+                final currentFilter = homeState.activeRequestsFilter ?? {};
+                final newFilter = Map<String, dynamic>.from(currentFilter);
+                if (catName == 'All') {
+                  newFilter.remove('categoryType');
+                } else {
+                  newFilter['categoryType'] = catName;
+                }
+                context.read<HomeBloc>().add(HomeEvent.updateRequestsFilter(newFilter));
+                context.read<RequestsBloc>().add(
+                  RequestsEvent.getRequests(
+                    search: homeState.searchQuery,
+                    city: city,
+                    latitude: homeState.currentLat,
+                    longitude: homeState.currentLng,
+                    radiusKm: 15,
+                  ),
+                );
+              },
+              selectedColor: theme.primaryColor,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: isSelected ? theme.primaryColor : Colors.grey.shade300,
+                  width: 1,
+                ),
+              ),
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                fontSize: 13,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildServicesCategorySelector(BuildContext context) {
+    final homeState = context.watch<HomeBloc>().state;
+    final activeFilter = homeState.activeServicesFilter;
+    final selectedCategories = List<String>.from(activeFilter?['categories'] ?? []);
+    final String currentSelected = selectedCategories.isNotEmpty ? selectedCategories.first : 'All';
+
+    final categories = AppCategories.serviceCategoriesFilter;
+
+    return Container(
+      height: 44,
+      padding: EdgeInsets.zero,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final catName = categories[index];
+          final bool isSelected = currentSelected == catName || (catName == 'All' && selectedCategories.isEmpty);
+          final theme = Theme.of(context);
+
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text(catName.translate(context)),
+              selected: isSelected,
+              onSelected: (selected) {
+                if (!selected) return;
+                final currentFilter = homeState.activeServicesFilter ?? {};
+                final newFilter = Map<String, dynamic>.from(currentFilter);
+                if (catName == 'All') {
+                  newFilter.remove('categories');
+                } else {
+                  newFilter['categories'] = [catName];
+                }
+                context.read<HomeBloc>().add(HomeEvent.updateServicesFilter(newFilter));
+                context.read<ServicesBloc>().add(
+                  ServicesEvent.getServicesEvent(
+                    search: homeState.searchQuery,
+                    categoryNames: catName == 'All' ? null : [catName],
+                    latitude: homeState.currentLat,
+                    longitude: homeState.currentLng,
+                    radiusKm: 15,
+                  ),
+                );
+              },
+              selectedColor: theme.primaryColor,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: isSelected ? theme.primaryColor : Colors.grey.shade300,
+                  width: 1,
+                ),
+              ),
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                fontSize: 13,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget _buildContent({required int tabIndex}) {
     // This will show different content based on selected tab
     switch (tabIndex) {
       case 0: // Feeds
         return _buildFeedsContent();
-      case 1:
-        return const RequestsScreen();
-      case 2: // Projects
+      case 1: // Projects
         return _buildSalesContent();
+      case 2: // Requests
+        return const RequestsScreen();
       case 3: // Services
         return _buildServicesContent();
       default:
@@ -787,9 +1011,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     if (currentTabIndex == 0) {
       hasActiveFilter = state.activeFeedsFilter != null;
     } else if (currentTabIndex == 1) {
-      hasActiveFilter = state.activeRequestsFilter != null;
-    } else if (currentTabIndex == 2) {
       hasActiveFilter = state.activeSalesFilter != null;
+    } else if (currentTabIndex == 2) {
+      hasActiveFilter = state.activeRequestsFilter != null;
     } else if (currentTabIndex == 3) {
       hasActiveFilter = state.activeServicesFilter != null;
     }
@@ -923,19 +1147,19 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                                       longitude: homeState.currentLng,
                                     ),
                                   );
-                                }else if (currentTabIndex == 1) {
+                                } else if (currentTabIndex == 1) {
+                                  context.read<SalesBloc>().add(
+                                    SalesEvent.getSalesEvent(
+                                      search: searchQuery,
+                                    ),
+                                  );
+                                } else if (currentTabIndex == 2) {
                                   context.read<RequestsBloc>().add(
                                     RequestsEvent.getRequests(
                                       search: searchQuery,
                                       latitude: homeState.currentLat,
                                       longitude: homeState.currentLng,
                                       radiusKm: 5,
-                                    ),
-                                  );
-                                } else if (currentTabIndex == 2) {
-                                  context.read<SalesBloc>().add(
-                                    SalesEvent.getSalesEvent(
-                                      search: searchQuery,
                                     ),
                                   );
                                 } else if (currentTabIndex == 3) {
@@ -988,6 +1212,58 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                                     },
                                   );
                                 } else if (currentTabIndex == 1) {
+                                  SalesFilter.show(
+                                    context,
+                                    activeFilter: homeState.activeSalesFilter,
+                                    currentAddress: currentAddress,
+                                    currentCity: currentCity,
+                                    onApplyFilter: (filterData) {
+                                      context.read<HomeBloc>().add(
+                                        HomeEvent.updateSalesFilter(filterData),
+                                      );
+
+                                      final propertyTypes =
+                                      filterData['propertyTypes'] as List?;
+                                      final List<String>? types =
+                                      propertyTypes != null &&
+                                          propertyTypes.isNotEmpty &&
+                                          !propertyTypes.contains('All')
+                                          ? List<String>.from(propertyTypes)
+                                          : null;
+
+                                      final isLocationCustom =
+                                          filterData['isLocationCustom'] == true;
+                                      final latitude = isLocationCustom
+                                          ? filterData['latitude'] as double?
+                                          : homeState.currentLat;
+                                      final longitude = isLocationCustom
+                                          ? filterData['longitude'] as double?
+                                          : homeState.currentLng;
+
+                                      context.read<SalesBloc>().add(
+                                        SalesEvent.getSalesEvent(
+                                          search: homeState.searchQuery,
+                                          propertyTypes: types,
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                          radiusKm: 15,
+                                        ),
+                                      );
+                                    },
+                                    onResetFilter: () {
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSalesFilter(null),
+                                      );
+                                      _searchController.clear();
+                                      context.read<HomeBloc>().add(
+                                        const HomeEvent.updateSearchQuery(''),
+                                      );
+                                      context.read<SalesBloc>().add(
+                                        const SalesEvent.getSalesEvent(),
+                                      );
+                                    },
+                                  );
+                                } else if (currentTabIndex == 2) {
                                   RequestsFilter.show(
                                     context,
                                     activeFilter:
@@ -1037,58 +1313,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                                           longitude: homeState.currentLng,
                                           radiusKm: 5,
                                         ),
-                                      );
-                                    },
-                                  );
-                                } else if (currentTabIndex == 2) {
-                                  SalesFilter.show(
-                                    context,
-                                    activeFilter: homeState.activeSalesFilter,
-                                    currentAddress: currentAddress,
-                                    currentCity: currentCity,
-                                    onApplyFilter: (filterData) {
-                                      context.read<HomeBloc>().add(
-                                        HomeEvent.updateSalesFilter(filterData),
-                                      );
-
-                                      final propertyTypes =
-                                      filterData['propertyTypes'] as List?;
-                                      final List<String>? types =
-                                      propertyTypes != null &&
-                                          propertyTypes.isNotEmpty &&
-                                          !propertyTypes.contains('All')
-                                          ? List<String>.from(propertyTypes)
-                                          : null;
-
-                                      final isLocationCustom =
-                                          filterData['isLocationCustom'] == true;
-                                      final latitude = isLocationCustom
-                                          ? filterData['latitude'] as double?
-                                          : homeState.currentLat;
-                                      final longitude = isLocationCustom
-                                          ? filterData['longitude'] as double?
-                                          : homeState.currentLng;
-
-                                      context.read<SalesBloc>().add(
-                                        SalesEvent.getSalesEvent(
-                                          search: homeState.searchQuery,
-                                          propertyTypes: types,
-                                          latitude: latitude,
-                                          longitude: longitude,
-                                          radiusKm: 15,
-                                        ),
-                                      );
-                                    },
-                                    onResetFilter: () {
-                                      context.read<HomeBloc>().add(
-                                        const HomeEvent.updateSalesFilter(null),
-                                      );
-                                      _searchController.clear();
-                                      context.read<HomeBloc>().add(
-                                        const HomeEvent.updateSearchQuery(''),
-                                      );
-                                      context.read<SalesBloc>().add(
-                                        const SalesEvent.getSalesEvent(),
                                       );
                                     },
                                   );
@@ -1186,7 +1410,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                                   child: OverflowBox(
                                     maxHeight: 50.0,
                                     alignment: Alignment.topCenter,
-                                    child: _buildCategorySelector(context),
+                                    child: _buildCategorySelectorForTab(context, state.homeIndex),
                                   ),
                                 ),
                               ),

@@ -4,7 +4,7 @@ class AppCategories {
   // Structured Property Categories & Subcategories Hierarchy
   static const Map<String, List<String>> propertyCategoryHierarchy = {
     'Residential': [
-      'Apartment / Flat',
+      'Apartment',
       'Independent House',
       'Villa',
       'Duplex',
@@ -130,7 +130,7 @@ class AppCategories {
 
   static const List<Map<String, dynamic>> propertyTypeForProject = [
     {'name': 'Villas', 'icon': Icons.villa_outlined},
-    {'name': 'Flats', 'icon': Icons.apartment_outlined},
+    {'name': 'Apartments', 'icon': Icons.apartment_outlined},
     {'name': 'Open Plots', 'icon': Icons.business_outlined},
     {'name': 'Commercial', 'icon': Icons.storefront_outlined},
   ];
@@ -138,7 +138,7 @@ class AppCategories {
   static const List<String> propertyTypeFilterNameForProject = [
     'All',
     'Villas',
-    'Flats',
+    'Apartments',
     'Open Plots',
     'Commercial',
   ];

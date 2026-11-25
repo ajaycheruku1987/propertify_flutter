@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/requests/bloc/requests_bloc.dart';
 import 'package:propertify/features/home/presentation/widgets/request_tile_widget.dart';
+import 'package:propertify/features/requests/presentation/create_request_details.dart';
 
 class MyRequestsScreen extends StatefulWidget {
   static const String routeName = '/my-requests';
@@ -124,6 +125,17 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.push(CreateRequestDetails.routeName);
+        },
+        backgroundColor: Theme.of(context).primaryColor,
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: const Text(
+          'Create Request',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }

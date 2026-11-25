@@ -62,7 +62,6 @@ class MyDashboardScreen extends StatelessWidget {
                   'icon': Icons.comment_outlined,
                   'onTap': () => context.push(MyPostCommentsScreen.routeName),
                 },
-                /*
                 {
                   'title': l10n.myRequests,
                   'icon': Icons.description_outlined,
@@ -73,7 +72,6 @@ class MyDashboardScreen extends StatelessWidget {
                   'icon': Icons.home_repair_service_outlined,
                   'onTap': () => context.push(MyServicesScreen.routeName),
                 },
-                */
                 {
                   'title': l10n.bannerPromotions,
                   'icon': Icons.campaign_outlined,
@@ -84,7 +82,6 @@ class MyDashboardScreen extends StatelessWidget {
                   'icon': Icons.favorite_outline,
                   'onTap': () => context.push(FavoritesScreen.routeName),
                 },
-                /*
                 if (companyState.myCompany != null)
                   {
                     'title': l10n.deleteCompany,
@@ -97,7 +94,6 @@ class MyDashboardScreen extends StatelessWidget {
                       );
                     },
                   },
-                */
                 {
                   'title': l10n.myFeedbacks,
                   'icon': Icons.feedback_outlined,

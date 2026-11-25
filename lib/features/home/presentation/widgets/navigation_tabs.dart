@@ -93,17 +93,17 @@ class NavigationTabs extends StatelessWidget {
           width: 24,
           colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
         );
-      case 1: // Requests
-        return SvgPicture.asset(
-          'assets/icons/request.svg',
-          width: 24,
-          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-        );
-      case 2: // Projects
+      case 1: // Projects
         return Icon(
           Icons.apartment_outlined,
           size: 24,
           color: color,
+        );
+      case 2: // Requests
+        return SvgPicture.asset(
+          'assets/icons/request.svg',
+          width: 24,
+          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
         );
       case 3: // Services
         return SvgPicture.asset(

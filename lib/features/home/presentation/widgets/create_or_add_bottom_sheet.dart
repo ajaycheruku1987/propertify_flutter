@@ -119,7 +119,6 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                   // Second Row
                   Row(
                     children: [
-                      /*
                       Expanded(
                         child: _buildOptionCard(
                           context: context,
@@ -130,13 +129,10 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                           onTap: () async {
                             Navigator.pop(context);
                             await context.push(CreateServiceDetails.routeName);
-
-                            // Handle register as agent
                           },
                         ),
                       ),
                       const SizedBox(width: 12),
-                      */
                       Expanded(
                         child: _buildOptionCard(
                           context: context,
@@ -155,7 +151,6 @@ class CreateOrAddBottomSheet extends StatelessWidget {
 
                   const SizedBox(height: 12),
 
-                  /*
                   // Third Row
                   Row(
                     children: [
@@ -169,7 +164,6 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context);
                             context.push(CreateRequestDetails.routeName);
-                            // Handle create request
                           },
                         ),
                       ),
@@ -282,7 +276,6 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                       ),
                     ],
                   ),
-                  */
                 ],
               ),
             ),

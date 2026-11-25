@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propertify/features/services/bloc/services_bloc.dart';
+import 'package:propertify/features/services/presentation/create_service_details.dart';
 import 'package:propertify/features/services/presentation/view_service.dart';
 import 'package:propertify/features/services/presentation/widgets/service_card.dart';
 
@@ -144,6 +145,17 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.push(CreateServiceDetails.routeName);
+        },
+        backgroundColor: Theme.of(context).primaryColor,
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: Text(
+          l10n.registerAsAgent,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }

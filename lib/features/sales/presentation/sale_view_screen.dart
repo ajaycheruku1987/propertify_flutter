@@ -1282,7 +1282,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   String _getUnitsLabel(String? propertyType) {
     final type = propertyType?.toLowerCase().trim() ?? '';
     if (type.contains('apartment')) {
-      return 'Flats';
+      return 'Apartments';
     } else if (type.contains('villa')) {
       return 'Villas';
     } else if (type.contains('plot')) {
