@@ -217,6 +217,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       // Property Details Section (Title, Price, Location, RERA)
                       _buildPropertyDetailsSection(sale),
 
+                      // Description Section
+                      _buildDescriptionSection(sale),
+                      const SizedBox(height: 16),
+
                       // Tab Navigation
                       _buildTabNavigation(sale, state),
 
@@ -422,28 +426,11 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         children: [
           // Property Info Cards (Type, Units, Area) - Above Description
           _buildPropertyInfoCards(sale),
-          const SizedBox(height: 24),
-
-          // Description Section
-          _buildDescriptionSection(sale),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
 
           // Address Section
           _buildAddressSection(sale),
-          const SizedBox(height: 24),
-
-          // EMI Calculator & Stamp Duty Section
-          if (context.read<ProfileBloc>().state.userProfile?.id !=
-              (sale.userId ?? sale.owner?.id)) ...[
-            EmiCalculatorWidget(
-              propertyPrice: (sale.minPrice ?? 0).toDouble(),
-            ),
-            const SizedBox(height: 16),
-            StampDutyCalculatorWidget(
-              propertyPrice: (sale.minPrice ?? 0).toDouble(),
-            ),
-            const SizedBox(height: 24),
-          ],
+          const SizedBox(height: 16),
 
           // Builder/Company Section
           _buildBuilderSection(sale),
@@ -892,48 +879,51 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     if (sale.description == null || sale.description!.trim().isEmpty) {
       return const SizedBox.shrink();
     }
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.description,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          (sale.description?.length ?? 0) > 150
-              ? (_isDescriptionExpanded
-                    ? (sale.description ?? '').translate(context)
-                    : '${(sale.description?.length ?? 0) > 150 ? sale.description!.substring(0, 150).translate(context) : (sale.description ?? '').translate(context)}${(sale.description?.length ?? 0) > 150 ? '...' : ''}')
-              : (sale.description ?? '').translate(context),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-            height: 1.5,
-          ),
-        ),
-        const SizedBox(height: 8),
-        if ((sale.description?.length ?? 0) > 150)
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _isDescriptionExpanded = !_isDescriptionExpanded;
-              });
-            },
-            child: Text(
-              _isDescriptionExpanded ? l10n.less : l10n.more,
-              style: TextStyle(
-                fontSize: 14,
-                color: AppTheme.blueColor,
-                fontWeight: FontWeight.w600,
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.description,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
             ),
           ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            (sale.description?.length ?? 0) > 150
+                ? (_isDescriptionExpanded
+                      ? (sale.description ?? '').translate(context)
+                      : '${(sale.description?.length ?? 0) > 150 ? sale.description!.substring(0, 150).translate(context) : (sale.description ?? '').translate(context)}${(sale.description?.length ?? 0) > 150 ? '...' : ''}')
+                : (sale.description ?? '').translate(context),
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.black87,
+              height: 1.5,
+            ),
+          ),
+          const SizedBox(height: 8),
+          if ((sale.description?.length ?? 0) > 150)
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isDescriptionExpanded = !_isDescriptionExpanded;
+                });
+              },
+              child: Text(
+                _isDescriptionExpanded ? l10n.less : l10n.more,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppTheme.blueColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -1035,7 +1025,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.postedBy, 
+              l10n.postedBy,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
