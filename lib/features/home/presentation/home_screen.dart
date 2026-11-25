@@ -154,9 +154,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     final l10n = AppLocalizations.of(context)!;
     final List<String> tabs = [
       l10n.feeds,
-      // l10n.requests,
-      // l10n.projects,
-      // l10n.services,
+      l10n.requests,
+      l10n.projects,
+      l10n.services,
     ];
 
     return BlocConsumer<HomeBloc, HomeState>(
@@ -483,14 +483,12 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
     switch (tabIndex) {
       case 0: // Feeds
         return _buildFeedsContent();
-    /*
       case 1:
         return const RequestsScreen();
-      case 2: // Request
+      case 2: // Projects
         return _buildSalesContent();
       case 3: // Services
         return _buildServicesContent();
-      */
       default:
         return _buildFeedsContent();
     }
@@ -796,7 +794,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
       hasActiveFilter = state.activeServicesFilter != null;
     }
 
-    final maxHeight = 210.0;
+    final maxHeight = 295.0;
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -875,7 +873,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                             ),
 
                           // Navigation Tabs - fades out
-                          /*
                           if (fadeOpacity > 0)
                             SizedBox(
                               height: 95.0 * fadeOpacity,
@@ -898,7 +895,6 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
                                 ),
                               ),
                             ),
-                          */
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 16,
