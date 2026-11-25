@@ -864,60 +864,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     return city;
   }
 
-  void _applyFeedsFilter(
-    BuildContext context,
-    Map<String, dynamic> filterData,
-  ) {
-    final propertyTypes = filterData['propertyTypes'] as List?;
-    final lookingFor = filterData['lookingFor'] as String?;
-    final priceRange = filterData['priceRange'] as Map?;
-    final isLocationCustom = filterData['isLocationCustom'] == true;
 
-    final isDefault =
-        (lookingFor == 'All' || lookingFor == '' || lookingFor == null) &&
-        (propertyTypes == null ||
-            propertyTypes.isEmpty ||
-            propertyTypes.contains('All')) &&
-        (priceRange == null ||
-            (priceRange['min'] == 100000 && priceRange['max'] == 50000000)) &&
-        !isLocationCustom;
-
-    if (isDefault) {
-      context.read<HomeBloc>().add(const HomeEvent.updateFeedsFilter(null));
-      context.read<FeedBloc>().add(
-        FeedEvent.getFeedsEvent(
-          latitude: context.read<HomeBloc>().state.currentLat,
-          longitude: context.read<HomeBloc>().state.currentLng,
-        ),
-      );
-    } else {
-      context.read<HomeBloc>().add(HomeEvent.updateFeedsFilter(filterData));
-
-      final mappedLookingFor =
-          AppCategories.mapLookingForToListingType(lookingFor);
-      final resolved = AppCategories.resolvePropertyFilter(propertyTypes);
-
-      final latitude = isLocationCustom
-          ? filterData['latitude'] as double?
-          : context.read<HomeBloc>().state.currentLat;
-      final longitude = isLocationCustom
-          ? filterData['longitude'] as double?
-          : context.read<HomeBloc>().state.currentLng;
-
-      context.read<FeedBloc>().add(
-        FeedEvent.getFeedsEvent(
-          city: filterData['location'] as String?,
-          listingType: mappedLookingFor,
-          propertyType: resolved.propertyType,
-          mainCategory: resolved.mainCategory,
-          minPrice: (filterData['priceRange'] as Map?)?['min']?.toDouble(),
-          maxPrice: (filterData['priceRange'] as Map?)?['max']?.toDouble(),
-          latitude: latitude,
-          longitude: longitude,
-        ),
-      );
-    }
-  }
 
   bool _hasVisibleChips(HomeState state) {
     if (state.activeFeedsFilter == null) return false;
