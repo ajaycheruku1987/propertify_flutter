@@ -685,7 +685,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${l10n.available} $unitsLabel (${units.length})',
+                  '${l10n.available} Flats (${units.length})',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
