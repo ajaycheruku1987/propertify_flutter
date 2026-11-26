@@ -244,6 +244,103 @@ class SalesRepo {
     }
   }
 
+  /// Update Sales Project (PATCH /sales-projects/$projectId)
+  Future<Either<Failure, SalesModel>> updateSalesProject({
+    required String projectId,
+    required String propertyType,
+    required String projectName,
+    String? rera,
+    required num area,
+    required String areaUnit,
+    int? noOfUnits,
+    int? noOfFloors,
+    String? description,
+    String? specifications,
+    String? address,
+    String? city,
+    String? state,
+    String? location,
+    double? latitude,
+    double? longitude,
+    String? publicFacilities,
+    num? minPrice,
+    num? maxPrice,
+    String? saleSpecification,
+    String? possessionDate,
+    List<File>? images,
+    File? brochure,
+  }) async {
+    try {
+      final Map<String, dynamic> body = {
+        'property_type': propertyType,
+        'project_name': projectName,
+        if (rera != null && rera.isNotEmpty) 'rera_number': rera,
+        'area': area,
+        'area_unit': areaUnit,
+        if (noOfUnits != null) 'no_of_units': noOfUnits,
+        if (noOfFloors != null) 'no_of_floors': noOfFloors,
+        if (description != null && description.isNotEmpty)
+          'description': description,
+        if (specifications != null && specifications.isNotEmpty)
+          'specifications': specifications,
+        if (address != null) 'address': address,
+        if (city != null) 'city': city,
+        if (state != null) 'state': state,
+        if (location != null) 'location': location,
+        if (latitude != null) 'latitude': latitude,
+        if (longitude != null) 'longitude': longitude,
+        if (minPrice != null) 'min_price': minPrice,
+        if (maxPrice != null) 'max_price': maxPrice,
+        if (saleSpecification != null && saleSpecification.isNotEmpty)
+          'sale_specification': saleSpecification,
+        if (publicFacilities != null && publicFacilities.isNotEmpty)
+          'public_facilities': publicFacilities,
+        if (possessionDate != null && possessionDate.isNotEmpty)
+          'possession_date': possessionDate,
+      };
+
+      final formData = FormData.fromMap(body);
+
+      if (images != null) {
+        for (final img in images) {
+          formData.files.add(
+            MapEntry(
+              'images',
+              await MultipartFile.fromFile(
+                img.path,
+                filename: img.path.split('/').last,
+              ),
+            ),
+          );
+        }
+      }
+
+      if (brochure != null) {
+        formData.files.add(
+          MapEntry(
+            'brochure',
+            await MultipartFile.fromFile(
+              brochure.path,
+              filename: brochure.path.split('/').last,
+            ),
+          ),
+        );
+      }
+
+      final response = await apiRequest.put(
+        '/sales-projects/$projectId',
+        data: formData,
+      );
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (right) => Right(SalesModel.fromJson(right as Map<String, dynamic>)),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
   Future<Either<Failure, CallbackRequestResponseModel>> requestCallback({
     required String salesProjectId,
   }) async {
@@ -355,6 +452,38 @@ class SalesRepo {
       final response = await apiRequest.delete(
         '/sales-projects/callbacks/$callbackId',
       );
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (_) => const Right(true),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
+  /// Delete Sales Project (DELETE /sales-projects/$projectId)
+  Future<Either<Failure, bool>> deleteSalesProject({
+    required String projectId,
+  }) async {
+    try {
+      final response = await apiRequest.delete('/sales-projects/$projectId');
+      final responseData = await response.getResponse();
+      return responseData.fold(
+        (failure) => Left(failure),
+        (_) => const Right(true),
+      );
+    } catch (e) {
+      return Left(ApiFailure('An error occurred: ${e.toString()}'));
+    }
+  }
+
+  /// Delete Project Unit (DELETE /sales-projects/units/$unitId)
+  Future<Either<Failure, bool>> deleteProjectUnit({
+    required String unitId,
+  }) async {
+    try {
+      final response = await apiRequest.delete('/sales-projects/units/$unitId');
       final responseData = await response.getResponse();
       return responseData.fold(
         (failure) => Left(failure),

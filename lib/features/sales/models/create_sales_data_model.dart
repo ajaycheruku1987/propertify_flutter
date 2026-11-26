@@ -23,6 +23,7 @@ class CreateSalesDataModel {
   final String? possessionDate;
   final List<File>? imageFiles;
   final File? brochure;
+  final String? projectIdToEdit;
 
   const CreateSalesDataModel({
     this.propertyType,
@@ -47,6 +48,7 @@ class CreateSalesDataModel {
     this.possessionDate,
     this.imageFiles,
     this.brochure,
+    this.projectIdToEdit,
   });
 
   CreateSalesDataModel copyWith({
@@ -72,6 +74,7 @@ class CreateSalesDataModel {
     String? possessionDate,
     List<File>? imageFiles,
     File? brochure,
+    String? projectIdToEdit,
   }) {
     return CreateSalesDataModel(
       propertyType: propertyType ?? this.propertyType,
@@ -96,6 +99,7 @@ class CreateSalesDataModel {
       possessionDate: possessionDate ?? this.possessionDate,
       imageFiles: imageFiles ?? this.imageFiles,
       brochure: brochure ?? this.brochure,
+      projectIdToEdit: projectIdToEdit ?? this.projectIdToEdit,
     );
   }
 }

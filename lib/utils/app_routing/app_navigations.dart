@@ -308,7 +308,10 @@ final router = GoRouter(
     ),
     GoRoute(
       path: CreateSalesScreen.routeName,
-      builder: (context, state) => const CreateSalesScreen(),
+      builder: (context, state) {
+        final saleToEdit = state.extra as SaleRecord?;
+        return CreateSalesScreen(saleToEdit: saleToEdit);
+      },
     ),
     GoRoute(
       path: SalesProjectImagesDescriptionScreen.routeName,

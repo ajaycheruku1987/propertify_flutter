@@ -35,6 +35,7 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
     on<_UpdateSalesDetailsEvent>(_onUpdateSalesDetailsEvent);
     on<_UpdateSalesMediaEvent>(_onUpdateSalesMediaEvent);
     on<_CreateSalesProjectEvent>(_onCreateSalesProjectEvent);
+    on<UpdateSalesProjectEvent>(_onUpdateSalesProject);
     on<_RequestCallbackEvent>(_onRequestCallbackEvent);
     on<_Reset>(_onReset);
     on<_GetProjectUnitsEvent>(_onGetProjectUnitsEvent);
@@ -42,6 +43,8 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
     on<_EditProjectUnitEvent>(_onEditProjectUnitEvent);
     on<_GetProjectCallbacksEvent>(_onGetProjectCallbacksEvent);
     on<_DeleteCallbackEvent>(_onDeleteCallbackEvent);
+    on<DeleteSalesProjectEvent>(_onDeleteSalesProjectEvent);
+    on<DeleteProjectUnitEvent>(_onDeleteProjectUnitEvent);
   }
 
   void _onReset(_Reset event, Emitter<SalesState> emit) {
@@ -400,6 +403,76 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
     }
   }
 
+  void _onUpdateSalesProject(
+    UpdateSalesProjectEvent event,
+    Emitter<SalesState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
+
+      final draft = state.createSalesDataModel;
+      final Either<Failure, SalesModel> responseEither = await _salesRepo
+          .updateSalesProject(
+            projectId: event.projectId,
+            propertyType: event.propertyType,
+            projectName: event.projectName,
+            rera: event.rera,
+            area: event.area,
+            areaUnit: event.areaUnit,
+            noOfUnits: event.noOfUnits,
+            noOfFloors: event.noOfFloors,
+            description: event.description ?? draft?.description,
+            specifications: event.specifications ?? draft?.specifications,
+            address: event.address ?? draft?.address,
+            city: event.city ?? draft?.city,
+            state: event.state ?? draft?.state,
+            location: event.location ?? draft?.location,
+            latitude: event.latitude ?? draft?.latitude,
+            longitude: event.longitude ?? draft?.longitude,
+            publicFacilities: event.publicFacilities ?? draft?.publicFacilities,
+            minPrice: event.minPrice ?? draft?.minPrice,
+            maxPrice: event.maxPrice ?? draft?.maxPrice,
+            saleSpecification: event.saleSpecification ?? draft?.saleSpecification,
+            possessionDate: event.possessionDate ?? draft?.possessionDate,
+            images: draft?.imageFiles,
+            brochure: event.brochure ?? draft?.brochure,
+          );
+
+      responseEither.fold(
+        (failure) => emit(
+          state.copyWith(
+            isLoading: false,
+            isError: true,
+            notifyStatus: NotifyStatus(
+              message: failure.message,
+              type: NotifyType.error,
+            ),
+          ),
+        ),
+        (successList) => emit(
+          state.copyWith(
+            isLoading: false,
+            isSuccess: true,
+            saleRecord: successList.salerecords?.first,
+            notifyStatus: NotifyStatus(
+              message: 'Sales project updated successfully',
+              type: NotifyType.success,
+            ),
+          ),
+        ),
+      );
+    } catch (e) {
+      CustomToast.showErrorToast(msg: e.toString());
+      emit(
+        state.copyWith(
+          isLoading: false,
+          isError: true,
+          notifyStatus: NotifyStatus(message: e.toString()),
+        ),
+      );
+    }
+  }
+
   void _onUpdateSalesDetailsEvent(
     _UpdateSalesDetailsEvent event,
     Emitter<SalesState> emit,
@@ -717,4 +790,76 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
       ));
     }
   }
-}
+
+  Future<void> _onDeleteSalesProjectEvent(
+    DeleteSalesProjectEvent event,
+    Emitter<SalesState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
+      final result = await _salesRepo.deleteSalesProject(projectId: event.projectId);
+      result.fold(
+        (failure) {
+          CustomToast.showErrorToast(msg: failure.message);
+          emit(state.copyWith(
+            isLoading: false,
+            isError: true,
+            notifyStatus: NotifyStatus(message: failure.message),
+          ));
+        },
+        (_) {
+          CustomToast.showSuccessToast(msg: 'Sales project deleted successfully');
+          emit(state.copyWith(
+            isLoading: false,
+            isSuccess: true,
+            saleRecord: null,
+            notifyStatus: NotifyStatus(
+              message: 'Sales project deleted successfully',
+              type: NotifyType.success,
+            ),
+          ));
+        },
+      );
+    } catch (e) {
+      CustomToast.showErrorToast(msg: e.toString());
+      emit(state.copyWith(
+        isLoading: false,
+        isError: true,
+        notifyStatus: NotifyStatus(message: e.toString()),
+      ));
+    }
+  }
+
+  Future<void> _onDeleteProjectUnitEvent(
+    DeleteProjectUnitEvent event,
+    Emitter<SalesState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true, notifyStatus: null));
+      final result = await _salesRepo.deleteProjectUnit(unitId: event.unitId);
+      result.fold(
+        (failure) {
+          CustomToast.showErrorToast(msg: failure.message);
+          emit(state.copyWith(
+            isLoading: false,
+            isError: true,
+            notifyStatus: NotifyStatus(message: failure.message),
+          ));
+        },
+        (_) {
+          CustomToast.showSuccessToast(msg: 'Unit deleted successfully');
+          // Re-fetch project units
+          add(SalesEvent.getProjectUnits(projectId: event.projectId));
+        },
+      );
+    } catch (e) {
+      CustomToast.showErrorToast(msg: e.toString());
+      emit(state.copyWith(
+        isLoading: false,
+        isError: true,
+        notifyStatus: NotifyStatus(message: e.toString()),
+      ));
+    }
+  }
+  }
+

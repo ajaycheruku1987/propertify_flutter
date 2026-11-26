@@ -12,13 +12,16 @@ import 'package:propertify/features/create_post/presentation/widgets/address_inp
 import 'package:propertify/features/create_post/presentation/widgets/property_type_selector.dart';
 import 'package:propertify/features/sales/bloc/sales_bloc.dart';
 import 'package:propertify/features/sales/models/create_sales_data_model.dart';
+import 'package:propertify/features/sales/models/sales_model.dart';
 import 'package:propertify/features/sales/presentation/create_sales_media.dart';
 import 'package:propertify/utils/common_widgets/dynamic_list_field.dart';
 
 class CreateSalesScreen extends StatefulWidget {
   static const String routeName = '/create-sales';
 
-  const CreateSalesScreen({super.key});
+  final SaleRecord? saleToEdit;
+
+  const CreateSalesScreen({super.key, this.saleToEdit});
 
   @override
   State<CreateSalesScreen> createState() => _CreateSalesScreenState();
@@ -56,7 +59,67 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedAreaUnit = 'SqFts';
+    _selectedAreaUnit = widget.saleToEdit?.areaUnit ?? 'SqFts';
+    if (widget.saleToEdit != null) {
+      final sale = widget.saleToEdit!;
+      _projectNameController.text = sale.projectName ?? '';
+      _reraController.text = sale.reraNumber ?? '';
+      _areaController.text = sale.area?.toString() ?? '';
+      _noOfUnitsController.text = sale.noOfUnits?.toString() ?? '';
+      _addressController.text = sale.address ?? '';
+      _cityController.text = sale.city ?? '';
+      _stateController.text = sale.state ?? '';
+      _publicFacilitiesController.text = sale.publicFacilities ?? '';
+      _descriptionController.text = sale.description ?? '';
+      _specController.text = sale.specifications ?? '';
+      _saleSpecificationController.text = sale.saleSpecification ?? '';
+      _minPriceController.text = sale.minPrice?.toString() ?? '';
+      _maxPriceController.text = sale.maxPrice?.toString() ?? '';
+      _possessionDateController.text = sale.possessionDate ?? '';
+      _selectedLatitude = sale.latitude;
+      _selectedLongitude = sale.longitude;
+      _selectedCity = sale.city;
+      _selectedAddress = sale.address;
+
+      if (sale.propertyType != null && sale.propertyType!.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.read<CreatePostBloc>().add(
+            CreatePostEvent.propertyTypeChanged(
+              propertyType: sale.propertyType!,
+            ),
+          );
+        });
+      }
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<SalesBloc>().add(
+          SalesEvent.updateSalesDetails(
+            createSalesDataModel: CreateSalesDataModel(
+              projectIdToEdit: sale.id,
+              propertyType: sale.propertyType,
+              projectName: sale.projectName,
+              rera: sale.reraNumber,
+              area: sale.area?.toDouble(),
+              areaUnit: sale.areaUnit,
+              noOfUnits: sale.noOfUnits,
+              description: sale.description,
+              specifications: sale.specifications,
+              address: sale.address,
+              city: sale.city,
+              state: sale.state,
+              location: sale.location,
+              latitude: sale.latitude,
+              longitude: sale.longitude,
+              publicFacilities: sale.publicFacilities,
+              minPrice: sale.minPrice,
+              maxPrice: sale.maxPrice,
+              saleSpecification: sale.saleSpecification,
+              possessionDate: sale.possessionDate,
+            ),
+          ),
+        );
+      });
+    }
   }
 
   @override
@@ -108,7 +171,7 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          l10n.createSalesProject,
+          widget.saleToEdit != null ? 'Edit Sales Project' : l10n.createSalesProject,
           style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
@@ -121,9 +184,6 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
         listener: (context, state) {
           final msg = state.notifyStatus?.message;
           if (msg != null && msg.isNotEmpty) {}
-          // if (state.isSuccess && !state.isLoading) {
-          //   context.pop();
-          // }
         },
         child: Form(
           key: _formKey,
@@ -389,7 +449,6 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                // Removed explicit Location/Latitude/Longitude inputs
                 const SizedBox(height: 16),
                 // Description
                 CommonTextFormField(
@@ -509,7 +568,9 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                               ? null
                               : _saleSpecificationController.text.trim();
 
+                          final existingDraft = context.read<SalesBloc>().state.createSalesDataModel;
                           final draft = CreateSalesDataModel(
+                            projectIdToEdit: widget.saleToEdit?.id ?? existingDraft?.projectIdToEdit,
                             propertyType: propertyType,
                             projectName: projectName,
                             rera: rera,

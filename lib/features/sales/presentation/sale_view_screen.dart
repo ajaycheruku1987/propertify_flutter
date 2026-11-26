@@ -13,6 +13,7 @@ import 'package:propertify/utils/common_widgets/select_plan_screen.dart';
 import 'package:propertify/utils/extensions/price_format.dart';
 import '../../feed/presentation/widgets/image_carousel.dart';
 import '../models/sales_model.dart';
+import '../models/sales_unit_model.dart';
 import '../../../core/app_theme.dart';
 import 'package:propertify/utils/fullscreenwidget.dart';
 import '../../../utils/custom_toast.dart';
@@ -29,6 +30,7 @@ import '../../feed/presentation/widgets/emi_calculator_widget.dart';
 import '../../feed/presentation/widgets/stamp_duty_calculator_widget.dart';
 import 'widgets/add_edit_unit_bottom_sheet.dart';
 import 'sale_callback_requests_screen.dart';
+import 'create_sales.dart';
 
 class SaleViewScreen extends StatefulWidget {
   static const String routeName = '/sale-view';
@@ -116,11 +118,76 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     Share.share(shareMessage, subject: projectTitle);
   }
 
+  void _showDeleteProjectDialog(BuildContext context, String projectId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Project'),
+        content: const Text(
+          'Are you sure you want to delete this project? This action cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              context.read<SalesBloc>().add(
+                DeleteSalesProjectEvent(projectId: projectId),
+              );
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteUnitDialog(
+    BuildContext context,
+    SalesUnitModel unit,
+    String projectId,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Unit'),
+        content: Text(
+          'Are you sure you want to delete Unit No. ${unit.unitNumber ?? ""}? ',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              context.read<SalesBloc>().add(
+                DeleteProjectUnitEvent(
+                  unitId: unit.id!,
+                  projectId: projectId,
+                ),
+              );
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return BlocConsumer<SalesBloc, SalesState>(
       listener: (context, state) {
+        if (state.notifyStatus?.message == 'Sales project deleted successfully') {
+          Navigator.pop(context);
+          return;
+        }
         if (state.isError && state.notifyStatus != null) {
           CustomToast.showErrorToast(msg: state.notifyStatus!.message);
         }
@@ -141,6 +208,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             body: Center(child: CircularProgressIndicator()),
           );
         }
+
+        final bool isOwner =
+            context.read<ProfileBloc>().state.userProfile?.id ==
+            (sale.userId ?? sale.owner?.id);
 
         return Scaffold(
           backgroundColor: Colors.white,
@@ -175,6 +246,48 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             ),
             centerTitle: true,
             actions: [
+              if (isOwner) ...[
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.edit_outlined, color: Colors.black),
+                    onPressed: () {
+                      context.push(CreateSalesScreen.routeName, extra: sale);
+                    },
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    onPressed: () => _showDeleteProjectDialog(context, sale.id!),
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
               Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -465,7 +578,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
           // Boost Now Button (only for owner)
           _buildBoostButton(sale),
-          // const SizedBox(height: 100), // Space for bottom buttons
         ],
       ),
     );
@@ -626,7 +738,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     final bool isOpenPlot = lowerPropType.contains('plot');
 
                     String titleLabel = 'Unit';
-                    if (isApartment) titleLabel = l10n.flats.replaceAll('లు', ''); // Rough singular
+                    if (isApartment) titleLabel = l10n.flats.replaceAll('లు', '');
                     if (isVilla) titleLabel = l10n.villa;
                     if (isOpenPlot) titleLabel = l10n.openPlot;
 
@@ -661,19 +773,41 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                                   ),
                                 ),
                                 if (isOwner)
-                                  InkWell(
-                                    onTap: () {
-                                      AddEditUnitBottomSheet.show(
-                                        context,
-                                        sale,
-                                        unit,
-                                      );
-                                    },
-                                    child: Icon(
-                                      Icons.edit_outlined,
-                                      color: AppTheme.blueColor,
-                                      size: 18,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          AddEditUnitBottomSheet.show(
+                                            context,
+                                            sale,
+                                            unit,
+                                          );
+                                        },
+                                        child: Icon(
+                                          Icons.edit_outlined,
+                                          color: AppTheme.blueColor,
+                                          size: 18,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      InkWell(
+                                        onTap: () {
+                                          if (unit.id != null) {
+                                            _showDeleteUnitDialog(
+                                              context,
+                                              unit,
+                                              sale.id!,
+                                            );
+                                          }
+                                        },
+                                        child: const Icon(
+                                          Icons.delete_outline,
+                                          color: Colors.red,
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                               ],
                             ),
@@ -722,7 +856,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                             if (isApartment && unit.floor != null)
                               _buildUnitDetailIconRow(
                                 Icons.layers_outlined,
-                                '${l10n.noOfFloors.replaceAll('ల సంఖ్య', '')} ${unit.floor}', // Rough mapping
+                                '${l10n.noOfFloors.replaceAll('ల సంఖ్య', '')} ${unit.floor}',
                               ),
                             if (isApartment && unit.bhkQty != null)
                               _buildUnitDetailIconRow(
@@ -790,7 +924,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           ),
           const SizedBox(height: 16),
 
-          // Display specifications if available
           if (sale.specifications != null &&
               sale.specifications!.trim().isNotEmpty)
             _buildBulletedList(sale.specifications!)
@@ -802,10 +935,10 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey[200]!),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'No specifications available',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ),
             ),
@@ -833,7 +966,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
           ),
           const SizedBox(height: 16),
 
-          // Display public facilities if available
           if (sale.publicFacilities != null &&
               sale.publicFacilities!.trim().isNotEmpty)
             _buildBulletedList(sale.publicFacilities!)
@@ -877,7 +1009,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildBulletedList(String text) {
-    // Also split by newline if legacy texts use it
     final List<String> items = text
         .split(RegExp(r';;|\n'))
         .map((s) => s.trim().replaceAll(RegExp(r'^•\s*'), ''))
@@ -1050,7 +1181,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildAddressSection(SaleRecord sale) {
-    print('DEBUG ADDRESS -> city: ${sale.city}, state: ${sale.state}, address: ${sale.address}, location: ${sale.location}');
     final city = sale.city?.trim();
     final state = sale.state?.trim();
 
@@ -1072,7 +1202,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
     String addressText = addressParts.map((p) => p.translate(context)).join(' | ');
 
-    // Clean up any leading/trailing pipes, commas, or whitespace
     addressText = addressText
         .replaceAll(RegExp(r'\s*\|\s*'), ' | ')
         .replaceAll(RegExp(r'^[|, \s]+|[|, \s]+$'), '')
@@ -1240,7 +1369,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         ? Center(
             child: GestureDetector(
               onTap: () {
-                // Navigate to SelectPlanScreen when boost is tapped
                 final saleId = sale.id ?? '';
                 context.push(
                   '${SelectPlanScreen.routeName}?contentType=${ContentType.SALES.value}&contentId=$saleId',
@@ -1298,7 +1426,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               const SizedBox(width: 16),
             ],
 
-            // Owner → View Requests; Others → Call Request / Auth
             Expanded(
               child: isOwner
                   ? ElevatedButton.icon(
@@ -1363,7 +1490,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     if (price == null) return '0';
     if (price == 0) return '0';
 
-    // Convert to lakhs for display (the "Lakh" suffix is added in the UI)
     if (price >= 100000) {
       double priceInLakhs = price / 100000;
       if (priceInLakhs == priceInLakhs.roundToDouble()) {

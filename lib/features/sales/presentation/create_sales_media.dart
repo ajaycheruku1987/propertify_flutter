@@ -51,14 +51,15 @@ class _SalesProjectImagesDescriptionScreenState
 
   @override
   Widget build(BuildContext context) {
+    final draft = context.watch<SalesBloc>().state.createSalesDataModel;
+    final isEditing = draft?.projectIdToEdit != null;
+
     return BlocListener<SalesBloc, SalesState>(
       listener: (context, state) {
         if (state.notifyStatus?.type == NotifyType.success) {
-          // Navigate to success screen using GoRouter
-          // Note: We'll need to get the sale ID from state when available
-          final saleId = ''; // TODO: Get from successful sale creation response
+          final saleId = state.saleRecord?.id ?? '';
           context.go(
-            '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent('Listed Successfully!')}&message=${Uri.encodeComponent('Your Product has been listed Successfully\nwould You Like to boost Your Listing')}&contentType=${ContentType.SALES.value}&contentId=$saleId&homeRoute=${Uri.encodeComponent(HomeScreen.routeName)}',
+            '${PostSuccessScreen.routeName}?title=${Uri.encodeComponent(isEditing ? 'Updated Successfully!' : 'Listed Successfully!')}&message=${Uri.encodeComponent(isEditing ? 'Your Sales Project has been updated Successfully' : 'Your Product has been listed Successfully\nwould You Like to boost Your Listing')}&contentType=${ContentType.SALES.value}&contentId=$saleId&homeRoute=${Uri.encodeComponent(HomeScreen.routeName)}',
           );
         } else if (state.notifyStatus?.type == NotifyType.error) {
           CustomToast.showErrorToast(msg: state.notifyStatus?.message ?? '');
@@ -76,9 +77,9 @@ class _SalesProjectImagesDescriptionScreenState
                   icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () => Navigator.pop(context),
                 ),
-                title: const Text(
-                  'Create Sales Project',
-                  style: TextStyle(
+                title: Text(
+                  isEditing ? 'Edit Sales Project' : 'Create Sales Project',
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -422,30 +423,62 @@ class _SalesProjectImagesDescriptionScreenState
         ),
       );
 
-      // Trigger create with existing details from draft
-      bloc.add(
-        SalesEvent.createSalesProject(
-          propertyType: draft.propertyType ?? '',
-          projectName: draft.projectName ?? '',
-          rera: draft.rera,
-          area: draft.area ?? 0,
-          areaUnit: draft.areaUnit ?? '',
-          noOfUnits: draft.noOfUnits,
-          noOfFloors: draft.noOfFloors,
-          description: draft.description,
-          specifications: draft.specifications,
-          address: draft.address,
-          city: draft.city,
-          state: draft.state,
-          location: draft.location,
-          latitude: draft.latitude,
-          longitude: draft.longitude,
-          publicFacilities: draft.publicFacilities,
-          saleSpecification: draft.saleSpecification,
-          images: null,
-          brochure: _brochureFile ?? draft.brochure,
-        ),
-      );
+      if (draft.projectIdToEdit != null) {
+        bloc.add(
+          UpdateSalesProjectEvent(
+            projectId: draft.projectIdToEdit!,
+            propertyType: draft.propertyType ?? '',
+            projectName: draft.projectName ?? '',
+            rera: draft.rera,
+            area: draft.area ?? 0,
+            areaUnit: draft.areaUnit ?? '',
+            noOfUnits: draft.noOfUnits,
+            noOfFloors: draft.noOfFloors,
+            description: draft.description,
+            specifications: draft.specifications,
+            address: draft.address,
+            city: draft.city,
+            state: draft.state,
+            location: draft.location,
+            latitude: draft.latitude,
+            longitude: draft.longitude,
+            publicFacilities: draft.publicFacilities,
+            minPrice: draft.minPrice,
+            maxPrice: draft.maxPrice,
+            saleSpecification: draft.saleSpecification,
+            possessionDate: draft.possessionDate,
+            images: null,
+            brochure: _brochureFile ?? draft.brochure,
+          ),
+        );
+      } else {
+        bloc.add(
+          SalesEvent.createSalesProject(
+            propertyType: draft.propertyType ?? '',
+            projectName: draft.projectName ?? '',
+            rera: draft.rera,
+            area: draft.area ?? 0,
+            areaUnit: draft.areaUnit ?? '',
+            noOfUnits: draft.noOfUnits,
+            noOfFloors: draft.noOfFloors,
+            description: draft.description,
+            specifications: draft.specifications,
+            address: draft.address,
+            city: draft.city,
+            state: draft.state,
+            location: draft.location,
+            latitude: draft.latitude,
+            longitude: draft.longitude,
+            publicFacilities: draft.publicFacilities,
+            minPrice: draft.minPrice,
+            maxPrice: draft.maxPrice,
+            saleSpecification: draft.saleSpecification,
+            possessionDate: draft.possessionDate,
+            images: null,
+            brochure: _brochureFile ?? draft.brochure,
+          ),
+        );
+      }
     } catch (e) {
       if (mounted) {
         CustomToast.showErrorToast(msg: 'Error submitting sales project: $e');

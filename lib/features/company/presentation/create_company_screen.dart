@@ -51,7 +51,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
   double? _latitude;
   double? _longitude;
 
-  final List<String> _categories = AppCategories.companyCategories;
+  final List<String> _categories = List.from(AppCategories.companyCategories);
 
   @override
   void initState() {
@@ -68,6 +68,9 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
       _cityController.text = company.city ?? '';
       _stateController.text = company.state ?? '';
       _selectedCategory = company.category;
+      if (_selectedCategory != null && !_categories.contains(_selectedCategory)) {
+        _categories.add(_selectedCategory!);
+      }
 
       // Initialize Bloc with existing data
       WidgetsBinding.instance.addPostFrameCallback((_) {

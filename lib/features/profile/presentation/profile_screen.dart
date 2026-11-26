@@ -24,6 +24,7 @@ import 'package:propertify/features/profile/presentation/my_banner_ads_screen.da
 import 'package:propertify/features/profile/presentation/feedback_screen.dart';
 import 'package:propertify/features/profile/presentation/deactivate_account_screen.dart';
 import 'package:propertify/features/admin/presentation/admin_dashboard_screen.dart';
+import 'package:propertify/features/company/presentation/my_company.dart';
 import 'package:propertify/utils/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:propertify/utils/env.dart';
@@ -477,6 +478,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.language,
                       title: 'Language / Translation',
                       onTap: () => _showLanguageDialog(context),
+                    ),
+                    ProfileMenuItem(
+                      icon: Icons.business,
+                      title: l10n.myCompany,
+                      onTap: () {
+                        final userId = profileState.userProfile?.id ??
+                            serviceLocator<AppCacheService>().customerAccountId;
+                        if (userId != null && userId.isNotEmpty) {
+                          context.push(MyCompanyScreen.routeName, extra: userId);
+                        }
+                      },
                     ),
                     ProfileMenuItem(
                       icon: Icons.feedback_outlined,

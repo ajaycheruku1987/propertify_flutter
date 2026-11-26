@@ -558,10 +558,6 @@ abstract class _BannerAdModel extends BannerAdModel {
       throw _privateConstructorUsedError;
 }
 
-Owner _$OwnerFromJson(Map<String, dynamic> json) {
-  return _Owner.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Owner {
   @JsonKey(name: "date_of_birth")
@@ -581,7 +577,6 @@ mixin _$Owner {
   @JsonKey(name: "username")
   String? get username => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $OwnerCopyWith<Owner> get copyWith => throw _privateConstructorUsedError;
 }
@@ -737,7 +732,7 @@ class __$$OwnerImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$OwnerImpl implements _Owner {
   const _$OwnerImpl(
       {@JsonKey(name: "date_of_birth") this.dateOfBirth,
@@ -748,9 +743,6 @@ class _$OwnerImpl implements _Owner {
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "profilepic") this.profileImage,
       @JsonKey(name: "username") this.username});
-
-  factory _$OwnerImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OwnerImplFromJson(json);
 
   @override
   @JsonKey(name: "date_of_birth")
@@ -803,7 +795,6 @@ class _$OwnerImpl implements _Owner {
                 other.username == username));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, dateOfBirth, email, firstName,
       id, lastName, phoneNumber, profileImage, username);
@@ -813,13 +804,6 @@ class _$OwnerImpl implements _Owner {
   @pragma('vm:prefer-inline')
   _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>
       __$$OwnerImplCopyWithImpl<_$OwnerImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OwnerImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Owner implements Owner {
@@ -832,8 +816,6 @@ abstract class _Owner implements Owner {
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "profilepic") final String? profileImage,
       @JsonKey(name: "username") final String? username}) = _$OwnerImpl;
-
-  factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
   @override
   @JsonKey(name: "date_of_birth")

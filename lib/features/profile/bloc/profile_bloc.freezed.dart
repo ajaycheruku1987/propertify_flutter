@@ -5437,7 +5437,6 @@ abstract class $ProfileStateCopyWith<$Res> {
       List<FeedbackModel>? allFeedbacks});
 
   $UserProfileModelCopyWith<$Res>? get userProfile;
-  $BannerAdModelCopyWith<$Res>? get createdBannerAd;
   $UserProfileModelCopyWith<$Res>? get otherUserProfile;
 }
 
@@ -5523,18 +5522,6 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
 
   @override
   @pragma('vm:prefer-inline')
-  $BannerAdModelCopyWith<$Res>? get createdBannerAd {
-    if (_value.createdBannerAd == null) {
-      return null;
-    }
-
-    return $BannerAdModelCopyWith<$Res>(_value.createdBannerAd!, (value) {
-      return _then(_value.copyWith(createdBannerAd: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $UserProfileModelCopyWith<$Res>? get otherUserProfile {
     if (_value.otherUserProfile == null) {
       return null;
@@ -5568,8 +5555,6 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
 
   @override
   $UserProfileModelCopyWith<$Res>? get userProfile;
-  @override
-  $BannerAdModelCopyWith<$Res>? get createdBannerAd;
   @override
   $UserProfileModelCopyWith<$Res>? get otherUserProfile;
 }

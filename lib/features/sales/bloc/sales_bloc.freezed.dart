@@ -61,6 +61,31 @@ mixin _$SalesEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -118,6 +143,31 @@ mixin _$SalesEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -174,6 +224,31 @@ mixin _$SalesEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -199,6 +274,8 @@ mixin _$SalesEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -219,6 +296,7 @@ mixin _$SalesEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -238,6 +316,7 @@ mixin _$SalesEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -348,6 +427,31 @@ class _$ResetImpl implements _Reset {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -408,6 +512,31 @@ class _$ResetImpl implements _Reset {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -467,6 +596,31 @@ class _$ResetImpl implements _Reset {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -498,6 +652,8 @@ class _$ResetImpl implements _Reset {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -521,6 +677,7 @@ class _$ResetImpl implements _Reset {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -543,6 +700,7 @@ class _$ResetImpl implements _Reset {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -763,6 +921,31 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -824,6 +1007,31 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -884,6 +1092,31 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -916,6 +1149,8 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -939,6 +1174,7 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -961,6 +1197,7 @@ class _$GetSalesEventImpl implements _GetSalesEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1109,6 +1346,31 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -1169,6 +1431,31 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -1228,6 +1515,31 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -1259,6 +1571,8 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -1282,6 +1596,7 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1304,6 +1619,7 @@ class _$GetSaleDetailsEventImpl implements _GetSaleDetailsEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1459,6 +1775,31 @@ class _$GetSalesProjectsByUserIdEventImpl
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -1519,6 +1860,31 @@ class _$GetSalesProjectsByUserIdEventImpl
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -1578,6 +1944,31 @@ class _$GetSalesProjectsByUserIdEventImpl
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -1609,6 +2000,8 @@ class _$GetSalesProjectsByUserIdEventImpl
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -1632,6 +2025,7 @@ class _$GetSalesProjectsByUserIdEventImpl
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1654,6 +2048,7 @@ class _$GetSalesProjectsByUserIdEventImpl
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1765,6 +2160,31 @@ class _$IsLoadingImpl implements _IsLoading {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -1825,6 +2245,31 @@ class _$IsLoadingImpl implements _IsLoading {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -1884,6 +2329,31 @@ class _$IsLoadingImpl implements _IsLoading {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -1915,6 +2385,8 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -1938,6 +2410,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -1960,6 +2433,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -2090,6 +2564,31 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -2150,6 +2649,31 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -2209,6 +2733,31 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -2240,6 +2789,8 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -2263,6 +2814,7 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -2285,6 +2837,7 @@ class _$UpdateSalesDetailsEventImpl implements _UpdateSalesDetailsEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -2421,6 +2974,31 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -2481,6 +3059,31 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -2540,6 +3143,31 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -2571,6 +3199,8 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -2594,6 +3224,7 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -2616,6 +3247,7 @@ class _$UpdateSalesMediaEventImpl implements _UpdateSalesMediaEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3013,6 +3645,31 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -3095,6 +3752,31 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -3176,6 +3858,31 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -3229,6 +3936,8 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -3252,6 +3961,7 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3274,6 +3984,7 @@ class _$CreateSalesProjectEventImpl implements _CreateSalesProjectEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3338,6 +4049,801 @@ abstract class _CreateSalesProjectEvent implements SalesEvent {
   File? get brochure;
   @JsonKey(ignore: true)
   _$$CreateSalesProjectEventImplCopyWith<_$CreateSalesProjectEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateSalesProjectEventImplCopyWith<$Res> {
+  factory _$$UpdateSalesProjectEventImplCopyWith(
+          _$UpdateSalesProjectEventImpl value,
+          $Res Function(_$UpdateSalesProjectEventImpl) then) =
+      __$$UpdateSalesProjectEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String projectId,
+      String propertyType,
+      String projectName,
+      String? rera,
+      num area,
+      String areaUnit,
+      int? noOfUnits,
+      int? noOfFloors,
+      String? description,
+      String? specifications,
+      String? address,
+      String? city,
+      String? state,
+      String? location,
+      double? latitude,
+      double? longitude,
+      String? publicFacilities,
+      num? minPrice,
+      num? maxPrice,
+      String? saleSpecification,
+      String? possessionDate,
+      List<String>? images,
+      File? brochure});
+}
+
+/// @nodoc
+class __$$UpdateSalesProjectEventImplCopyWithImpl<$Res>
+    extends _$SalesEventCopyWithImpl<$Res, _$UpdateSalesProjectEventImpl>
+    implements _$$UpdateSalesProjectEventImplCopyWith<$Res> {
+  __$$UpdateSalesProjectEventImplCopyWithImpl(
+      _$UpdateSalesProjectEventImpl _value,
+      $Res Function(_$UpdateSalesProjectEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectId = null,
+    Object? propertyType = null,
+    Object? projectName = null,
+    Object? rera = freezed,
+    Object? area = null,
+    Object? areaUnit = null,
+    Object? noOfUnits = freezed,
+    Object? noOfFloors = freezed,
+    Object? description = freezed,
+    Object? specifications = freezed,
+    Object? address = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? location = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? publicFacilities = freezed,
+    Object? minPrice = freezed,
+    Object? maxPrice = freezed,
+    Object? saleSpecification = freezed,
+    Object? possessionDate = freezed,
+    Object? images = freezed,
+    Object? brochure = freezed,
+  }) {
+    return _then(_$UpdateSalesProjectEventImpl(
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as String,
+      propertyType: null == propertyType
+          ? _value.propertyType
+          : propertyType // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectName: null == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String,
+      rera: freezed == rera
+          ? _value.rera
+          : rera // ignore: cast_nullable_to_non_nullable
+              as String?,
+      area: null == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as num,
+      areaUnit: null == areaUnit
+          ? _value.areaUnit
+          : areaUnit // ignore: cast_nullable_to_non_nullable
+              as String,
+      noOfUnits: freezed == noOfUnits
+          ? _value.noOfUnits
+          : noOfUnits // ignore: cast_nullable_to_non_nullable
+              as int?,
+      noOfFloors: freezed == noOfFloors
+          ? _value.noOfFloors
+          : noOfFloors // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      specifications: freezed == specifications
+          ? _value.specifications
+          : specifications // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      publicFacilities: freezed == publicFacilities
+          ? _value.publicFacilities
+          : publicFacilities // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minPrice: freezed == minPrice
+          ? _value.minPrice
+          : minPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      maxPrice: freezed == maxPrice
+          ? _value.maxPrice
+          : maxPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      saleSpecification: freezed == saleSpecification
+          ? _value.saleSpecification
+          : saleSpecification // ignore: cast_nullable_to_non_nullable
+              as String?,
+      possessionDate: freezed == possessionDate
+          ? _value.possessionDate
+          : possessionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      brochure: freezed == brochure
+          ? _value.brochure
+          : brochure // ignore: cast_nullable_to_non_nullable
+              as File?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateSalesProjectEventImpl implements _UpdateSalesProjectEvent {
+  const _$UpdateSalesProjectEventImpl(
+      {required this.projectId,
+      required this.propertyType,
+      required this.projectName,
+      this.rera,
+      required this.area,
+      required this.areaUnit,
+      this.noOfUnits,
+      this.noOfFloors,
+      this.description,
+      this.specifications,
+      this.address,
+      this.city,
+      this.state,
+      this.location,
+      this.latitude,
+      this.longitude,
+      this.publicFacilities,
+      this.minPrice,
+      this.maxPrice,
+      this.saleSpecification,
+      this.possessionDate,
+      final List<String>? images,
+      this.brochure})
+      : _images = images;
+
+  @override
+  final String projectId;
+  @override
+  final String propertyType;
+  @override
+  final String projectName;
+  @override
+  final String? rera;
+  @override
+  final num area;
+  @override
+  final String areaUnit;
+  @override
+  final int? noOfUnits;
+  @override
+  final int? noOfFloors;
+  @override
+  final String? description;
+  @override
+  final String? specifications;
+  @override
+  final String? address;
+  @override
+  final String? city;
+  @override
+  final String? state;
+  @override
+  final String? location;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  final String? publicFacilities;
+  @override
+  final num? minPrice;
+  @override
+  final num? maxPrice;
+  @override
+  final String? saleSpecification;
+  @override
+  final String? possessionDate;
+  final List<String>? _images;
+  @override
+  List<String>? get images {
+    final value = _images;
+    if (value == null) return null;
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final File? brochure;
+
+  @override
+  String toString() {
+    return 'SalesEvent.updateSalesProject(projectId: $projectId, propertyType: $propertyType, projectName: $projectName, rera: $rera, area: $area, areaUnit: $areaUnit, noOfUnits: $noOfUnits, noOfFloors: $noOfFloors, description: $description, specifications: $specifications, address: $address, city: $city, state: $state, location: $location, latitude: $latitude, longitude: $longitude, publicFacilities: $publicFacilities, minPrice: $minPrice, maxPrice: $maxPrice, saleSpecification: $saleSpecification, possessionDate: $possessionDate, images: $images, brochure: $brochure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateSalesProjectEventImpl &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.propertyType, propertyType) ||
+                other.propertyType == propertyType) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.rera, rera) || other.rera == rera) &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.areaUnit, areaUnit) ||
+                other.areaUnit == areaUnit) &&
+            (identical(other.noOfUnits, noOfUnits) ||
+                other.noOfUnits == noOfUnits) &&
+            (identical(other.noOfFloors, noOfFloors) ||
+                other.noOfFloors == noOfFloors) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.specifications, specifications) ||
+                other.specifications == specifications) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.publicFacilities, publicFacilities) ||
+                other.publicFacilities == publicFacilities) &&
+            (identical(other.minPrice, minPrice) ||
+                other.minPrice == minPrice) &&
+            (identical(other.maxPrice, maxPrice) ||
+                other.maxPrice == maxPrice) &&
+            (identical(other.saleSpecification, saleSpecification) ||
+                other.saleSpecification == saleSpecification) &&
+            (identical(other.possessionDate, possessionDate) ||
+                other.possessionDate == possessionDate) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.brochure, brochure) ||
+                other.brochure == brochure));
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        projectId,
+        propertyType,
+        projectName,
+        rera,
+        area,
+        areaUnit,
+        noOfUnits,
+        noOfFloors,
+        description,
+        specifications,
+        address,
+        city,
+        state,
+        location,
+        latitude,
+        longitude,
+        publicFacilities,
+        minPrice,
+        maxPrice,
+        saleSpecification,
+        possessionDate,
+        const DeepCollectionEquality().hash(_images),
+        brochure
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateSalesProjectEventImplCopyWith<_$UpdateSalesProjectEventImpl>
+      get copyWith => __$$UpdateSalesProjectEventImplCopyWithImpl<
+          _$UpdateSalesProjectEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)
+        getSalesEvent,
+    required TResult Function(String projectId) getSaleDetailsEvent,
+    required TResult Function(String userId, int? page, int? pageSize)
+        getSalesProjectsByUserId,
+    required TResult Function() isLoading,
+    required TResult Function(CreateSalesDataModel createSalesDataModel)
+        updateSalesDetails,
+    required TResult Function(CreateSalesDataModel createSalesDataModel)
+        updateSalesMedia,
+    required TResult Function(
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
+    required TResult Function(String salesProjectId) requestCallback,
+    required TResult Function(String projectId) getProjectUnits,
+    required TResult Function(String projectId, Map<String, dynamic> data)
+        addProjectUnit,
+    required TResult Function(
+            String unitId, String projectId, Map<String, dynamic> data)
+        editProjectUnit,
+    required TResult Function(String projectId) getProjectCallbacks,
+    required TResult Function(String callbackId, String projectId)
+        deleteCallback,
+  }) {
+    return updateSalesProject(
+        projectId,
+        propertyType,
+        projectName,
+        rera,
+        area,
+        areaUnit,
+        noOfUnits,
+        noOfFloors,
+        description,
+        specifications,
+        address,
+        city,
+        state,
+        location,
+        latitude,
+        longitude,
+        publicFacilities,
+        minPrice,
+        maxPrice,
+        saleSpecification,
+        possessionDate,
+        images,
+        brochure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reset,
+    TResult? Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
+        getSalesEvent,
+    TResult? Function(String projectId)? getSaleDetailsEvent,
+    TResult? Function(String userId, int? page, int? pageSize)?
+        getSalesProjectsByUserId,
+    TResult? Function()? isLoading,
+    TResult? Function(CreateSalesDataModel createSalesDataModel)?
+        updateSalesDetails,
+    TResult? Function(CreateSalesDataModel createSalesDataModel)?
+        updateSalesMedia,
+    TResult? Function(
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
+    TResult? Function(String salesProjectId)? requestCallback,
+    TResult? Function(String projectId)? getProjectUnits,
+    TResult? Function(String projectId, Map<String, dynamic> data)?
+        addProjectUnit,
+    TResult? Function(
+            String unitId, String projectId, Map<String, dynamic> data)?
+        editProjectUnit,
+    TResult? Function(String projectId)? getProjectCallbacks,
+    TResult? Function(String callbackId, String projectId)? deleteCallback,
+  }) {
+    return updateSalesProject?.call(
+        projectId,
+        propertyType,
+        projectName,
+        rera,
+        area,
+        areaUnit,
+        noOfUnits,
+        noOfFloors,
+        description,
+        specifications,
+        address,
+        city,
+        state,
+        location,
+        latitude,
+        longitude,
+        publicFacilities,
+        minPrice,
+        maxPrice,
+        saleSpecification,
+        possessionDate,
+        images,
+        brochure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(
+            List<String>? propertyTypes,
+            String? city,
+            double? latitude,
+            double? longitude,
+            double? radiusKm,
+            String? search,
+            int? limit,
+            int? offset)?
+        getSalesEvent,
+    TResult Function(String projectId)? getSaleDetailsEvent,
+    TResult Function(String userId, int? page, int? pageSize)?
+        getSalesProjectsByUserId,
+    TResult Function()? isLoading,
+    TResult Function(CreateSalesDataModel createSalesDataModel)?
+        updateSalesDetails,
+    TResult Function(CreateSalesDataModel createSalesDataModel)?
+        updateSalesMedia,
+    TResult Function(
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
+    TResult Function(String salesProjectId)? requestCallback,
+    TResult Function(String projectId)? getProjectUnits,
+    TResult Function(String projectId, Map<String, dynamic> data)?
+        addProjectUnit,
+    TResult Function(
+            String unitId, String projectId, Map<String, dynamic> data)?
+        editProjectUnit,
+    TResult Function(String projectId)? getProjectCallbacks,
+    TResult Function(String callbackId, String projectId)? deleteCallback,
+    required TResult orElse(),
+  }) {
+    if (updateSalesProject != null) {
+      return updateSalesProject(
+          projectId,
+          propertyType,
+          projectName,
+          rera,
+          area,
+          areaUnit,
+          noOfUnits,
+          noOfFloors,
+          description,
+          specifications,
+          address,
+          city,
+          state,
+          location,
+          latitude,
+          longitude,
+          publicFacilities,
+          minPrice,
+          maxPrice,
+          saleSpecification,
+          possessionDate,
+          images,
+          brochure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_GetSalesEvent value) getSalesEvent,
+    required TResult Function(_GetSaleDetailsEvent value) getSaleDetailsEvent,
+    required TResult Function(_GetSalesProjectsByUserIdEvent value)
+        getSalesProjectsByUserId,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_UpdateSalesDetailsEvent value)
+        updateSalesDetails,
+    required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
+    required TResult Function(_CreateSalesProjectEvent value)
+        createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
+    required TResult Function(_RequestCallbackEvent value) requestCallback,
+    required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
+    required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
+    required TResult Function(_EditProjectUnitEvent value) editProjectUnit,
+    required TResult Function(_GetProjectCallbacksEvent value)
+        getProjectCallbacks,
+    required TResult Function(_DeleteCallbackEvent value) deleteCallback,
+  }) {
+    return updateSalesProject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_GetSalesEvent value)? getSalesEvent,
+    TResult? Function(_GetSaleDetailsEvent value)? getSaleDetailsEvent,
+    TResult? Function(_GetSalesProjectsByUserIdEvent value)?
+        getSalesProjectsByUserId,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
+    TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
+    TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
+    TResult? Function(_RequestCallbackEvent value)? requestCallback,
+    TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
+    TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
+    TResult? Function(_EditProjectUnitEvent value)? editProjectUnit,
+    TResult? Function(_GetProjectCallbacksEvent value)? getProjectCallbacks,
+    TResult? Function(_DeleteCallbackEvent value)? deleteCallback,
+  }) {
+    return updateSalesProject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_GetSalesEvent value)? getSalesEvent,
+    TResult Function(_GetSaleDetailsEvent value)? getSaleDetailsEvent,
+    TResult Function(_GetSalesProjectsByUserIdEvent value)?
+        getSalesProjectsByUserId,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
+    TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
+    TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
+    TResult Function(_RequestCallbackEvent value)? requestCallback,
+    TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
+    TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
+    TResult Function(_EditProjectUnitEvent value)? editProjectUnit,
+    TResult Function(_GetProjectCallbacksEvent value)? getProjectCallbacks,
+    TResult Function(_DeleteCallbackEvent value)? deleteCallback,
+    required TResult orElse(),
+  }) {
+    if (updateSalesProject != null) {
+      return updateSalesProject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSalesProjectEvent implements SalesEvent {
+  const factory _UpdateSalesProjectEvent(
+      {required final String projectId,
+      required final String propertyType,
+      required final String projectName,
+      final String? rera,
+      required final num area,
+      required final String areaUnit,
+      final int? noOfUnits,
+      final int? noOfFloors,
+      final String? description,
+      final String? specifications,
+      final String? address,
+      final String? city,
+      final String? state,
+      final String? location,
+      final double? latitude,
+      final double? longitude,
+      final String? publicFacilities,
+      final num? minPrice,
+      final num? maxPrice,
+      final String? saleSpecification,
+      final String? possessionDate,
+      final List<String>? images,
+      final File? brochure}) = _$UpdateSalesProjectEventImpl;
+
+  String get projectId;
+  String get propertyType;
+  String get projectName;
+  String? get rera;
+  num get area;
+  String get areaUnit;
+  int? get noOfUnits;
+  int? get noOfFloors;
+  String? get description;
+  String? get specifications;
+  String? get address;
+  String? get city;
+  String? get state;
+  String? get location;
+  double? get latitude;
+  double? get longitude;
+  String? get publicFacilities;
+  num? get minPrice;
+  num? get maxPrice;
+  String? get saleSpecification;
+  String? get possessionDate;
+  List<String>? get images;
+  File? get brochure;
+  @JsonKey(ignore: true)
+  _$$UpdateSalesProjectEventImplCopyWith<_$UpdateSalesProjectEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3451,6 +4957,31 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -3511,6 +5042,31 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -3570,6 +5126,31 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -3601,6 +5182,8 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -3624,6 +5207,7 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3646,6 +5230,7 @@ class _$RequestCallbackEventImpl implements _RequestCallbackEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3781,6 +5366,31 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -3841,6 +5451,31 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -3900,6 +5535,31 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -3931,6 +5591,8 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -3954,6 +5616,7 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -3976,6 +5639,7 @@ class _$GetProjectUnitsEventImpl implements _GetProjectUnitsEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -4126,6 +5790,31 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -4186,6 +5875,31 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -4245,6 +5959,31 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -4276,6 +6015,8 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -4299,6 +6040,7 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -4321,6 +6063,7 @@ class _$AddProjectUnitEventImpl implements _AddProjectUnitEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -4484,6 +6227,31 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -4544,6 +6312,31 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -4603,6 +6396,31 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -4634,6 +6452,8 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -4657,6 +6477,7 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -4679,6 +6500,7 @@ class _$EditProjectUnitEventImpl implements _EditProjectUnitEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -4819,6 +6641,31 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -4879,6 +6726,31 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -4938,6 +6810,31 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -4969,6 +6866,8 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -4992,6 +6891,7 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -5014,6 +6914,7 @@ class _$GetProjectCallbacksEventImpl implements _GetProjectCallbacksEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -5158,6 +7059,31 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
             List<String>? images,
             File? brochure)
         createSalesProject,
+    required TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)
+        updateSalesProject,
     required TResult Function(String salesProjectId) requestCallback,
     required TResult Function(String projectId) getProjectUnits,
     required TResult Function(String projectId, Map<String, dynamic> data)
@@ -5218,6 +7144,31 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult? Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult? Function(String salesProjectId)? requestCallback,
     TResult? Function(String projectId)? getProjectUnits,
     TResult? Function(String projectId, Map<String, dynamic> data)?
@@ -5277,6 +7228,31 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
             List<String>? images,
             File? brochure)?
         createSalesProject,
+    TResult Function(
+            String projectId,
+            String propertyType,
+            String projectName,
+            String? rera,
+            num area,
+            String areaUnit,
+            int? noOfUnits,
+            int? noOfFloors,
+            String? description,
+            String? specifications,
+            String? address,
+            String? city,
+            String? state,
+            String? location,
+            double? latitude,
+            double? longitude,
+            String? publicFacilities,
+            num? minPrice,
+            num? maxPrice,
+            String? saleSpecification,
+            String? possessionDate,
+            List<String>? images,
+            File? brochure)?
+        updateSalesProject,
     TResult Function(String salesProjectId)? requestCallback,
     TResult Function(String projectId)? getProjectUnits,
     TResult Function(String projectId, Map<String, dynamic> data)?
@@ -5308,6 +7284,8 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
     required TResult Function(_UpdateSalesMediaEvent value) updateSalesMedia,
     required TResult Function(_CreateSalesProjectEvent value)
         createSalesProject,
+    required TResult Function(_UpdateSalesProjectEvent value)
+        updateSalesProject,
     required TResult Function(_RequestCallbackEvent value) requestCallback,
     required TResult Function(_GetProjectUnitsEvent value) getProjectUnits,
     required TResult Function(_AddProjectUnitEvent value) addProjectUnit,
@@ -5331,6 +7309,7 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
     TResult? Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult? Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult? Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult? Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult? Function(_RequestCallbackEvent value)? requestCallback,
     TResult? Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult? Function(_AddProjectUnitEvent value)? addProjectUnit,
@@ -5353,6 +7332,7 @@ class _$DeleteCallbackEventImpl implements _DeleteCallbackEvent {
     TResult Function(_UpdateSalesDetailsEvent value)? updateSalesDetails,
     TResult Function(_UpdateSalesMediaEvent value)? updateSalesMedia,
     TResult Function(_CreateSalesProjectEvent value)? createSalesProject,
+    TResult Function(_UpdateSalesProjectEvent value)? updateSalesProject,
     TResult Function(_RequestCallbackEvent value)? requestCallback,
     TResult Function(_GetProjectUnitsEvent value)? getProjectUnits,
     TResult Function(_AddProjectUnitEvent value)? addProjectUnit,

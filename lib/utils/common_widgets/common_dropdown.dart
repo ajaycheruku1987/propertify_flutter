@@ -75,9 +75,19 @@ class CommonDropdownFormField<T> extends StatelessWidget {
           ),
         LayoutBuilder(
           builder: (context, constraints) {
+            final resolvedItems = List<DropdownMenuItem<T>>.from(items);
+            if (value != null && !resolvedItems.any((item) => item.value == value)) {
+              resolvedItems.add(
+                DropdownMenuItem<T>(
+                  value: value,
+                  child: Text(value.toString()),
+                ),
+              );
+            }
+
             return DropdownButtonFormField2<T>(
               value: value,
-              items: items,
+              items: resolvedItems,
               onChanged: readOnly ? null : onChanged,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               style: resolvedTextStyle,
