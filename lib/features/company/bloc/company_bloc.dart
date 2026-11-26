@@ -1,8 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:propertify/core/app_cache_service.dart';
+import 'package:propertify/core/service_locator.dart';
 import 'package:propertify/features/company/models/create_company_response.dart';
 import 'package:propertify/features/company/models/my_company_response_model.dart';
+import 'package:propertify/features/sales/repo/sales_repo.dart';
 import '../repo/company_repository.dart';
 
 part 'company_bloc.freezed.dart';
@@ -370,17 +373,40 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
 
     final result = await _repository.deleteCompany(companyId: event.companyId);
 
-    result.fold(
-      (failure) =>
-          emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
-      (success) => emit(
-        state.copyWith(
-          isLoading: false,
-          myCompany: null,
-          isSuccess: true,
-          errorMessage: 'Company deleted successfully',
-        ),
-      ),
+    await result.fold(
+      (failure) async {
+        emit(state.copyWith(isLoading: false, errorMessage: failure.message));
+      },
+      (success) async {
+        try {
+          final userId = serviceLocator<AppCacheService>().customerAccountId;
+          if (userId != null && userId.isNotEmpty) {
+            final salesRepo = serviceLocator<SalesRepo>();
+            final projectsResult = await salesRepo.getSalesProjectsByUserId(userId: userId);
+            projectsResult.fold(
+              (_) {},
+              (salesModel) async {
+                final projects = salesModel.salerecords ?? [];
+                for (final project in projects) {
+                  if (project.id != null && project.id!.isNotEmpty) {
+                    await salesRepo.deleteSalesProject(projectId: project.id!);
+                  }
+                }
+              },
+            );
+          }
+        } catch (_) {}
+
+        emit(
+          state.copyWith(
+            isLoading: false,
+            myCompany: null,
+            userCompany: null,
+            isSuccess: true,
+            errorMessage: 'Company deleted successfully',
+          ),
+        );
+      },
     );
   }
 }

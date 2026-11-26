@@ -963,6 +963,14 @@ class _HomeScreenContentState extends State<_HomeScreenContent>
         radiusKm: 5,
       ),
     );
+
+    context.read<SalesBloc>().add(
+      SalesEvent.getSalesEvent(
+        latitude: latitude,
+        longitude: longitude,
+        radiusKm: 15,
+      ),
+    );
   }
 
   Future<void> _openMapScreen() async {

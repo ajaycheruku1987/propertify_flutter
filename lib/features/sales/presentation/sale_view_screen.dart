@@ -185,7 +185,12 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
     return BlocConsumer<SalesBloc, SalesState>(
       listener: (context, state) {
         if (state.notifyStatus?.message == 'Sales project deleted successfully') {
-          Navigator.pop(context);
+          Future.delayed(const Duration(milliseconds: 300), () {
+            if (!mounted) return;
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+          });
           return;
         }
         if (state.isError && state.notifyStatus != null) {

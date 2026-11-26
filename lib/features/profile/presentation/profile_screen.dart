@@ -9,6 +9,10 @@ import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
 import 'package:propertify/features/reels/bloc/reels_bloc.dart';
+import '../../../utils/common_widgets/common_custom_button.dart';
+import '../../../utils/custom_toast.dart';
+import '../../company/presentation/gst_verification_screen.dart';
+import '../../home/presentation/widgets/home_loan_widget.dart';
 import '../bloc/profile_bloc.dart';
 import '../../../utils/image_picker_util.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -76,6 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         builder: (context, homeState) {
           return BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, profileState) {
+              final companyState = context.watch<CompanyBloc>().state;
               if (profileState.isLoading && profileState.userProfile == null) {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -474,24 +479,342 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     }
                     //   },
                     // ),
-                    BlocBuilder<CompanyBloc, CompanyState>(
-                      builder: (context, companyState) {
-                        if (companyState.myCompany == null) {
-                          return const SizedBox.shrink();
-                        }
-                        return ProfileMenuItem(
-                          icon: Icons.business,
-                          title: l10n.myCompany,
-                          onTap: () {
-                            final userId = profileState.userProfile?.id ??
-                                serviceLocator<AppCacheService>().customerAccountId;
-                            if (userId != null && userId.isNotEmpty) {
-                              context.push(MyCompanyScreen.routeName, extra: userId);
-                            }
-                          },
-                        );
-                      },
-                    ),
+                    if (homeState.showAddButton) const Divider(),
+
+                    if (homeState.showAddButton && companyState.myCompany != null) ...[
+                      const Divider(),
+                      ProfileMenuItem(
+                        icon: Icons.business,
+                        title: l10n.myCompany,
+                        onTap: () {
+                          final userId = profile?.id ??
+                              profileState.userProfile?.id ??
+                              serviceLocator<AppCacheService>().customerAccountId;
+                          if (userId != null && userId.isNotEmpty) {
+                            context.push(
+                              MyCompanyScreen.routeName,
+                              extra: userId,
+                            );
+                          }
+                        },
+                      ),
+                    ],
+
+                    // Verification Pending Banner
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null &&
+                        companyState.myCompany?.gstVerificationStatus ==
+                            'pending') ...[
+                              const SizedBox(height: 12),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                ),
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: Colors.orange,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.orange.withOpacity(0.2),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        child: const Icon(
+                                          Icons.av_timer_rounded,
+                                          color: Colors.orange,
+                                          size: 24,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 16),
+                                      const Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Verification in progress',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            SizedBox(height: 4),
+                                            Text(
+                                              'Usually takes 24 hours',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+
+                            // Verification Rejected Banner
+                            if (homeState.showAddButton &&
+                                companyState.myCompany != null &&
+                                companyState.myCompany?.gstVerificationStatus ==
+                                    'rejected') ...[
+                              const SizedBox(height: 12),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    CustomToast.showWarningToast(
+                                      msg: 'Feature coming soon',
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: Colors.red,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            color: Colors.red.withOpacity(0.2),
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
+                                          ),
+                                          child: const Icon(
+                                            Icons.error_outline_rounded,
+                                            color: Colors.red,
+                                            size: 24,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 16),
+                                        const Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'GST Verification is Rejected',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                              SizedBox(height: 4),
+                                              Text(
+                                                'Please update the GST again',
+                                                style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black54,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 16,
+                                          color: Colors.red,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+
+                            // Verify GST Banner (when company exists but not verified)
+                            if (homeState.showAddButton &&
+                                companyState.myCompany != null &&
+                                (companyState
+                                    .myCompany
+                                    ?.gstVerificationStatus ==
+                                    'none' ||
+                                    companyState
+                                        .myCompany
+                                        ?.gstVerificationStatus ==
+                                        null)) ...[
+                              const SizedBox(height: 12),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.push(
+                                      '/verification-payment?type=gst&entityId=${companyState.myCompany?.id}&showSkip=false',
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Theme.of(
+                                            context,
+                                          ).primaryColor.withOpacity(0.1),
+                                          Theme.of(
+                                            context,
+                                          ).primaryColor.withOpacity(0.05),
+                                        ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(
+                                              context,
+                                            ).primaryColor.withOpacity(0.2),
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.verified_user,
+                                            color: Theme.of(
+                                              context,
+                                            ).primaryColor,
+                                            size: 24,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Verify GST',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 4),
+                                              const Text(
+                                                'Verify GST to start creating projects',
+                                                style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black54,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 16,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+
+                            // if (homeState.showAddButton &&
+                            //     companyState.myCompany != null) ...[
+                            //   Padding(
+                            //     padding: const EdgeInsets.symmetric(
+                            //       horizontal: 16.0,
+                            //     ),
+                            //     child: ProfileStatusCard(
+                            //       title: 'GST Verification',
+                            //       subtitle: 'Please wait 24 hrs to Complete',
+                            //       buttonText: 'Pending',
+                            //       onButtonTap: () {},
+                            //       imagePath: 'assets/images/gst_inreview.svg',
+                            //       isSvg: true,
+                            //     ),
+                            //   ),
+                            //   Padding(
+                            //     padding: const EdgeInsets.symmetric(
+                            //       horizontal: 16.0,
+                            //     ),
+                            //     child: ProfileStatusCard(
+                            //       title: 'You GST Verified Sucessfully ',
+                            //       subtitle: 'Add your Company Details',
+                            //       buttonText: 'Successful',
+                            //       onButtonTap: () {},
+                            //       imagePath: 'assets/images/gst_verified.svg',
+                            //       isSvg: true,
+                            //     ),
+                            //   ),
+                            // ],
+                            if (homeState.showAddButton &&
+                                companyState.myCompany == null) ...[
+                              // Padding(
+                              //   padding: const EdgeInsets.symmetric(
+                              //     horizontal: 16.0,
+                              //   ),
+                              //   child: ProfileStatusCard(
+                              //     title: 'GST Verification',
+                              //     subtitle: 'Please wait 24 hrs to Complete',
+                              //     buttonText: 'Pending',
+                              //     onButtonTap: () {},
+                              //     imagePath: 'assets/images/gst_inreview.svg',
+                              //     isSvg: true,
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.symmetric(
+                              //     horizontal: 16.0,
+                              //   ),
+                              //   child: ProfileStatusCard(
+                              //     title: 'You GST Verified Sucessfully ',
+                              //     subtitle: 'Add your Company Details',
+                              //     buttonText: 'Successful',
+                              //     onButtonTap: () {},
+                              //     imagePath: 'assets/images/gst_verified.svg',
+                              //     isSvg: true,
+                              //   ),
+                              // ),
+                              AdSliderWidget(
+                                title: 'Want to create a Project!',
+                                caption:
+                                'First Create a company by Verifying GST',
+                                onCreateRequest: () {
+                                  context.push(GstVerificationScreen.routeName);
+                                },
+                                createButtonText: 'Create Company',
+                                showExploreDetailsButton: false,
+                                backgroundImagePath:
+                                'assets/images/create_company_banner.svg',
+                              ),
+                            ],
+
                     ProfileMenuItem(
                       icon: Icons.language,
                       title: 'Language / Translation',
