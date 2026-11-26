@@ -37,31 +37,6 @@ class SalesEvent with _$SalesEvent {
     required CreateSalesDataModel createSalesDataModel,
   }) = _UpdateSalesMediaEvent;
 
-  const factory SalesEvent.createSalesProject({
-    required String propertyType,
-    required String projectName,
-    String? rera,
-    required num area,
-    required String areaUnit,
-    int? noOfUnits,
-    int? noOfFloors,
-    String? description,
-    String? specifications,
-    String? address,
-    String? city,
-    String? state,
-    String? location,
-    double? latitude,
-    double? longitude,
-    String? publicFacilities,
-    num? minPrice,
-    num? maxPrice,
-    String? saleSpecification,
-    String? possessionDate,
-    List<String>? images,
-    File? brochure,
-  }) = _CreateSalesProjectEvent;
-
   const factory SalesEvent.requestCallback({required String salesProjectId}) =
       _RequestCallbackEvent;
 
@@ -87,6 +62,56 @@ class SalesEvent with _$SalesEvent {
     required String callbackId,
     required String projectId,
   }) = _DeleteCallbackEvent;
+}
+
+class CreateSalesProjectEvent extends SalesEvent {
+  final String propertyType;
+  final String projectName;
+  final String? rera;
+  final num area;
+  final String areaUnit;
+  final int? noOfUnits;
+  final int? noOfFloors;
+  final String? description;
+  final String? specifications;
+  final String? address;
+  final String? city;
+  final String? state;
+  final String? location;
+  final double? latitude;
+  final double? longitude;
+  final String? publicFacilities;
+  final num? minPrice;
+  final num? maxPrice;
+  final String? saleSpecification;
+  final String? possessionDate;
+  final List<File>? images;
+  final File? brochure;
+
+  const CreateSalesProjectEvent({
+    required this.propertyType,
+    required this.projectName,
+    this.rera,
+    required this.area,
+    required this.areaUnit,
+    this.noOfUnits,
+    this.noOfFloors,
+    this.description,
+    this.specifications,
+    this.address,
+    this.city,
+    this.state,
+    this.location,
+    this.latitude,
+    this.longitude,
+    this.publicFacilities,
+    this.minPrice,
+    this.maxPrice,
+    this.saleSpecification,
+    this.possessionDate,
+    this.images,
+    this.brochure,
+  }) : super._();
 }
 
 class UpdateSalesProjectEvent extends SalesEvent {

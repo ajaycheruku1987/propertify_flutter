@@ -447,13 +447,13 @@ class _SalesProjectImagesDescriptionScreenState
             maxPrice: draft.maxPrice,
             saleSpecification: draft.saleSpecification,
             possessionDate: draft.possessionDate,
-            images: null,
+            images: _selectedImages,
             brochure: _brochureFile ?? draft.brochure,
           ),
         );
       } else {
         bloc.add(
-          SalesEvent.createSalesProject(
+          CreateSalesProjectEvent(
             propertyType: draft.propertyType ?? '',
             projectName: draft.projectName ?? '',
             rera: draft.rera,
@@ -474,7 +474,7 @@ class _SalesProjectImagesDescriptionScreenState
             maxPrice: draft.maxPrice,
             saleSpecification: draft.saleSpecification,
             possessionDate: draft.possessionDate,
-            images: null,
+            images: _selectedImages,
             brochure: _brochureFile ?? draft.brochure,
           ),
         );

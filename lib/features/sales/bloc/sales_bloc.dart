@@ -34,7 +34,7 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
     on<_IsLoading>(_onIsLoading);
     on<_UpdateSalesDetailsEvent>(_onUpdateSalesDetailsEvent);
     on<_UpdateSalesMediaEvent>(_onUpdateSalesMediaEvent);
-    on<_CreateSalesProjectEvent>(_onCreateSalesProjectEvent);
+    on<CreateSalesProjectEvent>(_onCreateSalesProjectEvent);
     on<UpdateSalesProjectEvent>(_onUpdateSalesProject);
     on<_RequestCallbackEvent>(_onRequestCallbackEvent);
     on<_Reset>(_onReset);
@@ -334,7 +334,7 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
   }
 
   void _onCreateSalesProjectEvent(
-    _CreateSalesProjectEvent event,
+    CreateSalesProjectEvent event,
     Emitter<SalesState> emit,
   ) async {
     try {
@@ -363,8 +363,7 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
             maxPrice: event.maxPrice ?? draft?.maxPrice,
             saleSpecification: event.saleSpecification ?? draft?.saleSpecification,
             possessionDate: event.possessionDate ?? draft?.possessionDate,
-            images:
-                draft?.imageFiles, // images are optional; handled in media step
+            images: event.images ?? draft?.imageFiles,
             brochure: event.brochure ?? draft?.brochure,
           );
 
