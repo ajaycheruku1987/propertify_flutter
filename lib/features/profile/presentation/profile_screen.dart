@@ -417,49 +417,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-
-                    // Admin / Role Dashboard Menu Item
-                    if (homeState.showAddButton) ...[
-                      () {
-                        final role = profileState.userProfile?.role?.toLowerCase() ??
-                            serviceLocator<AppCacheService>()
-                                .getRole()
-                                ?.toLowerCase();
-
-                        if (role == 'admin' || role == 'seller' || role == 'marketing') {
-                          return Column(
-                            children: [
-                              if (role == 'admin')
-                                ProfileMenuItem(
-                                  icon: Icons.admin_panel_settings_outlined,
-                                  title: l10n.adminDashboard,
-                                  onTap: () {
-                                    context.push(AdminDashboardScreen.routeName);
-                                  },
-                                ),
-                              if (role == 'seller')
-                                ProfileMenuItem(
-                                  icon: Icons.dashboard_outlined,
-                                  title: l10n.homeLoansDashboard,
-                                  onTap: () {
-                                    context.push('${AdminDashboardScreen.routeName}?isSeller=true');
-                                  },
-                                ),
-                              if (role == 'marketing')
-                                ProfileMenuItem(
-                                  icon: Icons.campaign_outlined,
-                                  title: l10n.interiorDesignDashboard,
-                                  onTap: () {
-                                    context.push('${AdminDashboardScreen.routeName}?isMarketing=true');
-                                  },
-                                ),
-                            ],
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      }(),
-                    ],
-
                     // const Divider(),
                     // Menu Items
                     // ProfileMenuItem(
@@ -814,7 +771,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 'assets/images/create_company_banner.svg',
                               ),
                             ],
+                    // Admin / Role Dashboard Menu Item
+                    if (homeState.showAddButton) ...[
+                          () {
+                        final role = profileState.userProfile?.role?.toLowerCase() ??
+                            serviceLocator<AppCacheService>()
+                                .getRole()
+                                ?.toLowerCase();
 
+                        if (role == 'admin' || role == 'seller' || role == 'marketing') {
+                          return Column(
+                            children: [
+                              if (role == 'admin')
+                                ProfileMenuItem(
+                                  icon: Icons.admin_panel_settings_outlined,
+                                  title: l10n.adminDashboard,
+                                  onTap: () {
+                                    context.push(AdminDashboardScreen.routeName);
+                                  },
+                                ),
+                              if (role == 'seller')
+                                ProfileMenuItem(
+                                  icon: Icons.dashboard_outlined,
+                                  title: l10n.homeLoansDashboard,
+                                  onTap: () {
+                                    context.push('${AdminDashboardScreen.routeName}?isSeller=true');
+                                  },
+                                ),
+                              if (role == 'marketing')
+                                ProfileMenuItem(
+                                  icon: Icons.campaign_outlined,
+                                  title: l10n.interiorDesignDashboard,
+                                  onTap: () {
+                                    context.push('${AdminDashboardScreen.routeName}?isMarketing=true');
+                                  },
+                                ),
+                            ],
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      }(),
+                    ],
                     ProfileMenuItem(
                       icon: Icons.language,
                       title: 'Language / Translation',
