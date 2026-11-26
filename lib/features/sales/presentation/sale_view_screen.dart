@@ -1050,28 +1050,56 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   }
 
   Widget _buildAddressSection(SaleRecord sale) {
-    final l10n = AppLocalizations.of(context)!;
+    print('DEBUG ADDRESS -> city: ${sale.city}, state: ${sale.state}, address: ${sale.address}, location: ${sale.location}');
+    final city = sale.city?.trim();
+    final state = sale.state?.trim();
+
+    List<String> addressParts = [];
+    if (city != null && city.isNotEmpty) {
+      addressParts.add(city.replaceAll(',', ' |'));
+    }
+    if (state != null && state.isNotEmpty) {
+      addressParts.add(state);
+    }
+
+    if (addressParts.isEmpty) {
+      if (sale.address != null && sale.address!.trim().isNotEmpty) {
+        addressParts.add(sale.address!.trim());
+      } else if (sale.location != null && sale.location!.trim().isNotEmpty) {
+        addressParts.add(sale.location!.trim());
+      }
+    }
+
+    String addressText = addressParts.map((p) => p.translate(context)).join(' | ');
+
+    // Clean up any leading/trailing pipes, commas, or whitespace
+    addressText = addressText
+        .replaceAll(RegExp(r'\s*\|\s*'), ' | ')
+        .replaceAll(RegExp(r'^[|, \s]+|[|, \s]+$'), '')
+        .trim();
+
+    if (addressText.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              Row(
-                children: [
-                  Icon(Icons.location_on_outlined, size: 14,color: Colors.grey.shade700,),
-                  const SizedBox(width: 8),
-                  Text(
-                    "${(sale.city?.replaceAll(',', ' |') ?? '').translate(context)} | ${(sale.state ?? '').translate(context)}",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade700,
-                    ),
+              Icon(Icons.location_on_outlined, size: 14, color: Colors.grey.shade700),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  addressText,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade700,
                   ),
-                ],
+                ),
               ),
             ],
           ),
