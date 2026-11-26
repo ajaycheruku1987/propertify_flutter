@@ -88,7 +88,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               if (homeState.showAddButton) {
                 final userId = profileState.userProfile?.id ??
                     serviceLocator<AppCacheService>().customerAccountId;
-                if (userId != null && userId.isNotEmpty && _lastLoadedUserId != userId) {
+                if (userId != null &&
+                    userId.isNotEmpty &&
+                    _lastLoadedUserId != userId) {
                   _lastLoadedUserId = userId;
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (!mounted) return;
@@ -99,7 +101,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       offset: 0,
                     ));
                     final reelsBloc = context.read<ReelsBloc>();
-                    reelsBloc.add(ReelsEvent.loadOtherUserReels(userId: userId));
+                    reelsBloc
+                        .add(ReelsEvent.loadOtherUserReels(userId: userId));
                     final profileBloc = context.read<ProfileBloc>();
                     profileBloc.add(const ProfileEvent.loadMyBannerAds());
                   });
@@ -121,7 +124,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         gradient: LinearGradient(
                           colors: [
                             Theme.of(context).primaryColor,
-                            Theme.of(context).primaryColor.withValues(alpha: 0.8),
+                            Theme.of(context)
+                                .primaryColor
+                                .withValues(alpha: 0.8),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -129,7 +134,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
+                            color: Theme.of(context)
+                                .primaryColor
+                                .withValues(alpha: 0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -259,8 +266,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Stack(
                               children: [
                                 UserAvatarWidget(
-                                  imageUrl: _resolveImageUrl(profile?.profilepic),
-                                  name: profile != null ? ('${profile.firstName ?? ''} ${profile.lastName ?? ''}'.trim().isNotEmpty ? '${profile.firstName} ${profile.lastName}' : profile.username) : null,
+                                  imageUrl:
+                                      _resolveImageUrl(profile?.profilepic),
+                                  name: profile != null
+                                      ? ('${profile.firstName ?? ''} ${profile.lastName ?? ''}'
+                                              .trim()
+                                              .isNotEmpty
+                                          ? '${profile.firstName} ${profile.lastName}'
+                                          : profile.username)
+                                      : null,
                                   size: 110,
                                   fontSize: 44,
                                 ),
@@ -288,8 +302,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               final firstName =
                                   profile?.firstName?.trim() ?? '';
                               final lastName = profile?.lastName?.trim() ?? '';
-                              if (firstName.isNotEmpty ||
-                                  lastName.isNotEmpty) {
+                              if (firstName.isNotEmpty || lastName.isNotEmpty) {
                                 return '$firstName $lastName'
                                     .trim()
                                     .toTitleCase();
@@ -307,8 +320,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildInfoChip(label: profile?.username?? ''),
-                              _buildInfoChip(label: profile?.phoneNumber??''),
+                              _buildInfoChip(label: profile?.username ?? ''),
+                              _buildInfoChip(label: profile?.phoneNumber ?? ''),
                               _buildInfoChip(
                                 label: profile?.memberSince != null
                                     ? 'Joined ${profile?.memberSince}'
@@ -438,7 +451,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // ),
                     if (homeState.showAddButton) const Divider(),
 
-                    if (homeState.showAddButton && companyState.myCompany != null) ...[
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null) ...[
                       const Divider(),
                       ProfileMenuItem(
                         icon: Icons.business,
@@ -446,7 +460,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onTap: () {
                           final userId = profile?.id ??
                               profileState.userProfile?.id ??
-                              serviceLocator<AppCacheService>().customerAccountId;
+                              serviceLocator<AppCacheService>()
+                                  .customerAccountId;
                           if (userId != null && userId.isNotEmpty) {
                             context.push(
                               MyCompanyScreen.routeName,
@@ -462,324 +477,321 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         companyState.myCompany != null &&
                         companyState.myCompany?.gstVerificationStatus ==
                             'pending') ...[
-                              const SizedBox(height: 12),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.orange.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.orange,
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.orange.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(
+                                    8,
+                                  ),
                                 ),
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
+                                child: const Icon(
+                                  Icons.av_timer_rounded,
+                                  color: Colors.orange,
+                                  size: 24,
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              const Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Verification in progress',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      'Usually takes 24 hours',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+
+                    // Verification Rejected Banner
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null &&
+                        companyState.myCompany?.gstVerificationStatus ==
+                            'rejected') ...[
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            CustomToast.showWarningToast(
+                              msg: 'Feature coming soon',
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Colors.red.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.red,
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
-                                    color: Colors.orange.withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: Colors.orange,
-                                      width: 1.5,
+                                    color: Colors.red.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(
+                                      8,
                                     ),
                                   ),
-                                  child: Row(
+                                  child: const Icon(
+                                    Icons.error_outline_rounded,
+                                    color: Colors.red,
+                                    size: 24,
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                const Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          color: Colors.orange.withOpacity(0.2),
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
-                                        ),
-                                        child: const Icon(
-                                          Icons.av_timer_rounded,
-                                          color: Colors.orange,
-                                          size: 24,
+                                      Text(
+                                        'GST Verification is Rejected',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black87,
                                         ),
                                       ),
-                                      const SizedBox(width: 16),
-                                      const Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Verification in progress',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black87,
-                                              ),
-                                            ),
-                                            SizedBox(height: 4),
-                                            Text(
-                                              'Usually takes 24 hours',
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                          ],
+                                      SizedBox(height: 4),
+                                      Text(
+                                        'Please update the GST again',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black54,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ),
-                            ],
-
-                            // Verification Rejected Banner
-                            if (homeState.showAddButton &&
-                                companyState.myCompany != null &&
-                                companyState.myCompany?.gstVerificationStatus ==
-                                    'rejected') ...[
-                              const SizedBox(height: 12),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 16,
+                                  color: Colors.red,
                                 ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    CustomToast.showWarningToast(
-                                      msg: 'Feature coming soon',
-                                    );
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                        color: Colors.red,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Colors.red.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: const Icon(
-                                            Icons.error_outline_rounded,
-                                            color: Colors.red,
-                                            size: 24,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 16),
-                                        const Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'GST Verification is Rejected',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black87,
-                                                ),
-                                              ),
-                                              SizedBox(height: 4),
-                                              Text(
-                                                'Please update the GST again',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.black54,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 16,
-                                          color: Colors.red,
-                                        ),
-                                      ],
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+
+                    // Verify GST Banner (when company exists but not verified)
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null &&
+                        (companyState.myCompany?.gstVerificationStatus ==
+                                'none' ||
+                            companyState.myCompany?.gstVerificationStatus ==
+                                null)) ...[
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            context.push(
+                              '/verification-payment?type=gst&entityId=${companyState.myCompany?.id}&showSkip=false',
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Theme.of(
+                                    context,
+                                  ).primaryColor.withOpacity(0.1),
+                                  Theme.of(
+                                    context,
+                                  ).primaryColor.withOpacity(0.05),
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(
+                                      context,
+                                    ).primaryColor.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(
+                                      8,
                                     ),
                                   ),
-                                ),
-                              ),
-                            ],
-
-                            // Verify GST Banner (when company exists but not verified)
-                            if (homeState.showAddButton &&
-                                companyState.myCompany != null &&
-                                (companyState
-                                    .myCompany
-                                    ?.gstVerificationStatus ==
-                                    'none' ||
-                                    companyState
-                                        .myCompany
-                                        ?.gstVerificationStatus ==
-                                        null)) ...[
-                              const SizedBox(height: 12),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context.push(
-                                      '/verification-payment?type=gst&entityId=${companyState.myCompany?.id}&showSkip=false',
-                                    );
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Theme.of(
-                                            context,
-                                          ).primaryColor.withOpacity(0.1),
-                                          Theme.of(
-                                            context,
-                                          ).primaryColor.withOpacity(0.05),
-                                        ],
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                        color: Theme.of(context).primaryColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(
-                                              context,
-                                            ).primaryColor.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: Icon(
-                                            Icons.verified_user,
-                                            color: Theme.of(
-                                              context,
-                                            ).primaryColor,
-                                            size: 24,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 16),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              const Text(
-                                                'Verify GST',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black87,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4),
-                                              const Text(
-                                                'Verify GST to start creating projects',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.black54,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 16,
-                                          color: Theme.of(context).primaryColor,
-                                        ),
-                                      ],
-                                    ),
+                                  child: Icon(
+                                    Icons.verified_user,
+                                    color: Theme.of(
+                                      context,
+                                    ).primaryColor,
+                                    size: 24,
                                   ),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Verify GST',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      const Text(
+                                        'Verify GST to start creating projects',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 16,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
 
-                            // if (homeState.showAddButton &&
-                            //     companyState.myCompany != null) ...[
-                            //   Padding(
-                            //     padding: const EdgeInsets.symmetric(
-                            //       horizontal: 16.0,
-                            //     ),
-                            //     child: ProfileStatusCard(
-                            //       title: 'GST Verification',
-                            //       subtitle: 'Please wait 24 hrs to Complete',
-                            //       buttonText: 'Pending',
-                            //       onButtonTap: () {},
-                            //       imagePath: 'assets/images/gst_inreview.svg',
-                            //       isSvg: true,
-                            //     ),
-                            //   ),
-                            //   Padding(
-                            //     padding: const EdgeInsets.symmetric(
-                            //       horizontal: 16.0,
-                            //     ),
-                            //     child: ProfileStatusCard(
-                            //       title: 'You GST Verified Sucessfully ',
-                            //       subtitle: 'Add your Company Details',
-                            //       buttonText: 'Successful',
-                            //       onButtonTap: () {},
-                            //       imagePath: 'assets/images/gst_verified.svg',
-                            //       isSvg: true,
-                            //     ),
-                            //   ),
-                            // ],
-                            if (homeState.showAddButton &&
-                                companyState.myCompany == null) ...[
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //     horizontal: 16.0,
-                              //   ),
-                              //   child: ProfileStatusCard(
-                              //     title: 'GST Verification',
-                              //     subtitle: 'Please wait 24 hrs to Complete',
-                              //     buttonText: 'Pending',
-                              //     onButtonTap: () {},
-                              //     imagePath: 'assets/images/gst_inreview.svg',
-                              //     isSvg: true,
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //     horizontal: 16.0,
-                              //   ),
-                              //   child: ProfileStatusCard(
-                              //     title: 'You GST Verified Sucessfully ',
-                              //     subtitle: 'Add your Company Details',
-                              //     buttonText: 'Successful',
-                              //     onButtonTap: () {},
-                              //     imagePath: 'assets/images/gst_verified.svg',
-                              //     isSvg: true,
-                              //   ),
-                              // ),
-                              AdSliderWidget(
-                                title: 'Want to create a Project!',
-                                caption:
-                                'First Create a company by Verifying GST',
-                                onCreateRequest: () {
-                                  context.push(GstVerificationScreen.routeName);
-                                },
-                                createButtonText: 'Create Company',
-                                showExploreDetailsButton: false,
-                                backgroundImagePath:
-                                'assets/images/create_company_banner.svg',
-                              ),
-                            ],
+                    // if (homeState.showAddButton &&
+                    //     companyState.myCompany != null) ...[
+                    //   Padding(
+                    //     padding: const EdgeInsets.symmetric(
+                    //       horizontal: 16.0,
+                    //     ),
+                    //     child: ProfileStatusCard(
+                    //       title: 'GST Verification',
+                    //       subtitle: 'Please wait 24 hrs to Complete',
+                    //       buttonText: 'Pending',
+                    //       onButtonTap: () {},
+                    //       imagePath: 'assets/images/gst_inreview.svg',
+                    //       isSvg: true,
+                    //     ),
+                    //   ),
+                    //   Padding(
+                    //     padding: const EdgeInsets.symmetric(
+                    //       horizontal: 16.0,
+                    //     ),
+                    //     child: ProfileStatusCard(
+                    //       title: 'You GST Verified Sucessfully ',
+                    //       subtitle: 'Add your Company Details',
+                    //       buttonText: 'Successful',
+                    //       onButtonTap: () {},
+                    //       imagePath: 'assets/images/gst_verified.svg',
+                    //       isSvg: true,
+                    //     ),
+                    //   ),
+                    // ],
+                    if (homeState.showAddButton &&
+                        companyState.myCompany == null) ...[
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(
+                      //     horizontal: 16.0,
+                      //   ),
+                      //   child: ProfileStatusCard(
+                      //     title: 'GST Verification',
+                      //     subtitle: 'Please wait 24 hrs to Complete',
+                      //     buttonText: 'Pending',
+                      //     onButtonTap: () {},
+                      //     imagePath: 'assets/images/gst_inreview.svg',
+                      //     isSvg: true,
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(
+                      //     horizontal: 16.0,
+                      //   ),
+                      //   child: ProfileStatusCard(
+                      //     title: 'You GST Verified Sucessfully ',
+                      //     subtitle: 'Add your Company Details',
+                      //     buttonText: 'Successful',
+                      //     onButtonTap: () {},
+                      //     imagePath: 'assets/images/gst_verified.svg',
+                      //     isSvg: true,
+                      //   ),
+                      // ),
+                      AdSliderWidget(
+                        title: 'Want to create a Project!',
+                        caption: 'First Create a company by Verifying GST',
+                        onCreateRequest: () {
+                          context.push(GstVerificationScreen.routeName);
+                        },
+                        createButtonText: 'Create Company',
+                        showExploreDetailsButton: false,
+                        backgroundImagePath:
+                            'assets/images/create_company_banner.svg',
+                      ),
+                    ],
                     // Admin / Role Dashboard Menu Item
                     if (homeState.showAddButton) ...[
-                          () {
-                        final role = profileState.userProfile?.role?.toLowerCase() ??
-                            serviceLocator<AppCacheService>()
-                                .getRole()
-                                ?.toLowerCase();
+                      () {
+                        final role =
+                            profileState.userProfile?.role?.toLowerCase() ??
+                                serviceLocator<AppCacheService>()
+                                    .getRole()
+                                    ?.toLowerCase();
 
-                        if (role == 'admin' || role == 'seller' || role == 'marketing') {
+                        if (role == 'admin' ||
+                            role == 'seller' ||
+                            role == 'marketing') {
                           return Column(
                             children: [
                               if (role == 'admin')
@@ -787,7 +799,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   icon: Icons.admin_panel_settings_outlined,
                                   title: l10n.adminDashboard,
                                   onTap: () {
-                                    context.push(AdminDashboardScreen.routeName);
+                                    context
+                                        .push(AdminDashboardScreen.routeName);
                                   },
                                 ),
                               if (role == 'seller')
@@ -795,7 +808,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   icon: Icons.dashboard_outlined,
                                   title: l10n.homeLoansDashboard,
                                   onTap: () {
-                                    context.push('${AdminDashboardScreen.routeName}?isSeller=true');
+                                    context.push(
+                                        '${AdminDashboardScreen.routeName}?isSeller=true');
                                   },
                                 ),
                               if (role == 'marketing')
@@ -803,7 +817,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   icon: Icons.campaign_outlined,
                                   title: l10n.interiorDesignDashboard,
                                   onTap: () {
-                                    context.push('${AdminDashboardScreen.routeName}?isMarketing=true');
+                                    context.push(
+                                        '${AdminDashboardScreen.routeName}?isMarketing=true');
                                   },
                                 ),
                             ],
