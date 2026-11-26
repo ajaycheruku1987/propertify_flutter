@@ -8,6 +8,7 @@ import 'package:propertify/core/logout.dart';
 import 'package:propertify/features/auth/presentation/auth_screen.dart';
 import 'package:propertify/features/company/bloc/company_bloc.dart';
 import 'package:propertify/features/home/bloc/home_bloc.dart';
+import 'package:propertify/features/profile/presentation/widgets/profile_status_card.dart';
 import 'package:propertify/features/reels/bloc/reels_bloc.dart';
 import '../../../utils/common_widgets/common_custom_button.dart';
 import '../../../utils/custom_toast.dart';
@@ -258,7 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 50),
                     // Header & Profile Picture
                     Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 4),
                       child: Column(
                         children: [
                           GestureDetector(
@@ -430,27 +431,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    // const Divider(),
-                    // Menu Items
-                    // ProfileMenuItem(
-                    //   icon: Icons.dashboard_outlined,
-                    //   title: l10n.myDashboard,
-                    //   onTap: () => context.push(MyDashboardScreen.routeName),
-                    // ),
-                    // ProfileMenuItem(
-                    //   icon: Icons.person_outline,
-                    //   title: l10n.editProfile,
-                    //   onTap: () {
-                    //     if (profile != null) {
-                    //       context.push(
-                    //         EditProfileScreen.routeName,
-                    //         extra: profile,
-                    //       );
-                    //     }
-                    //   },
-                    // ),
-                    if (homeState.showAddButton) const Divider(),
-
                     if (homeState.showAddButton &&
                         companyState.myCompany != null) ...[
                       const Divider(),
@@ -477,7 +457,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         companyState.myCompany != null &&
                         companyState.myCompany?.gstVerificationStatus ==
                             'pending') ...[
-                      const SizedBox(height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
@@ -711,35 +690,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
 
-                    // if (homeState.showAddButton &&
-                    //     companyState.myCompany != null) ...[
-                    //   Padding(
-                    //     padding: const EdgeInsets.symmetric(
-                    //       horizontal: 16.0,
-                    //     ),
-                    //     child: ProfileStatusCard(
-                    //       title: 'GST Verification',
-                    //       subtitle: 'Please wait 24 hrs to Complete',
-                    //       buttonText: 'Pending',
-                    //       onButtonTap: () {},
-                    //       imagePath: 'assets/images/gst_inreview.svg',
-                    //       isSvg: true,
-                    //     ),
-                    //   ),
-                    //   Padding(
-                    //     padding: const EdgeInsets.symmetric(
-                    //       horizontal: 16.0,
-                    //     ),
-                    //     child: ProfileStatusCard(
-                    //       title: 'You GST Verified Sucessfully ',
-                    //       subtitle: 'Add your Company Details',
-                    //       buttonText: 'Successful',
-                    //       onButtonTap: () {},
-                    //       imagePath: 'assets/images/gst_verified.svg',
-                    //       isSvg: true,
-                    //     ),
-                    //   ),
-                    // ],
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: ProfileStatusCard(
+                          title: 'GST Verification',
+                          subtitle: 'Please wait 24 hrs to Complete',
+                          buttonText: 'Pending',
+                          onButtonTap: () {},
+                          imagePath: 'assets/images/gst_inreview.svg',
+                          isSvg: true,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: ProfileStatusCard(
+                          title: 'You GST Verified Sucessfully ',
+                          subtitle: 'Add your Company Details',
+                          buttonText: 'Successful',
+                          onButtonTap: () {},
+                          imagePath: 'assets/images/gst_verified.svg',
+                          isSvg: true,
+                        ),
+                      ),
+                    ],
                     if (homeState.showAddButton &&
                         companyState.myCompany == null) ...[
                       // Padding(
@@ -769,6 +748,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //   ),
                       // ),
                       AdSliderWidget(
+                        margin: const EdgeInsets.fromLTRB(16, 4, 16, 16),
                         title: 'Want to create a Project!',
                         caption: 'First Create a company by Verifying GST',
                         onCreateRequest: () {

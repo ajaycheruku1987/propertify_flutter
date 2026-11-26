@@ -10,6 +10,7 @@ class AdSliderWidget extends StatelessWidget {
   final bool showExploreDetailsButton;
   final String createButtonText;
   final String backgroundImagePath; // New parameter
+  final EdgeInsetsGeometry? margin;
 
   const AdSliderWidget({
     super.key,
@@ -21,12 +22,13 @@ class AdSliderWidget extends StatelessWidget {
     this.showExploreDetailsButton = true,
     this.createButtonText = 'Create Request',
     this.backgroundImagePath = 'assets/images/ad_bg.svg', // Default value
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(16),
+      margin: margin ?? const EdgeInsets.all(16),
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
