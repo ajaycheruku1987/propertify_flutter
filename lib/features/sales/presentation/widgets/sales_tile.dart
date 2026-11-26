@@ -184,11 +184,20 @@ class SalesTile extends StatelessWidget {
                         ? 'Launched Date: ${sale.createdAt != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.createdAt!).toLocal()) : 'N/A'}'
                         : 'Possession by: ${sale.possessionDate != null ? DateFormat('dd MMM yyyy').format(DateTime.parse(sale.possessionDate.toString()).toLocal()) : 'Ready to Move'}',
                   ),
-                  const SizedBox(height: 8),
-                  _buildFeature(
-                    Icons.location_on_outlined,
-                    (sale.city ?? '').translate(context),
-                  ),
+                  () {
+                    final cleanCity = (sale.city ?? '')
+                        .translate(context)
+                        .replaceAll(RegExp(r'^[, |\s]+'), '')
+                        .trim();
+                    if (cleanCity.isEmpty) return const SizedBox.shrink();
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        _buildFeature(Icons.location_on_outlined, cleanCity),
+                      ],
+                    );
+                  }(),
 
                   // const SizedBox(height: 12),
                 ],

@@ -398,7 +398,9 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                     // Store locally for sales creation
                     _selectedAddress = address;
                     _addressController.text = address;
-                    _selectedCity = '$village, $city';
+                    _selectedCity = (village != null && village.trim().isNotEmpty)
+                        ? '$village, $city'
+                        : city;
                     _cityController.text = _selectedCity ?? city;
                     _stateController.text = stateVal;
                     _selectedLatitude = latitude;
@@ -413,7 +415,9 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                     );
                     context.read<CreatePostBloc>().add(
                       CreatePostEvent.locationChanged(
-                        location: '$city, $village',
+                        location: (village != null && village.trim().isNotEmpty)
+                            ? '$city, $village'
+                            : city,
                       ),
                     );
                   },

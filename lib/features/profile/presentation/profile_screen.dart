@@ -475,11 +475,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   },
                     // ),
                     ProfileMenuItem(
-                      icon: Icons.language,
-                      title: 'Language / Translation',
-                      onTap: () => _showLanguageDialog(context),
-                    ),
-                    ProfileMenuItem(
                       icon: Icons.business,
                       title: l10n.myCompany,
                       onTap: () {
@@ -489,6 +484,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           context.push(MyCompanyScreen.routeName, extra: userId);
                         }
                       },
+                    ),
+                    ProfileMenuItem(
+                      icon: Icons.language,
+                      title: 'Language / Translation',
+                      onTap: () => _showLanguageDialog(context),
                     ),
                     ProfileMenuItem(
                       icon: Icons.feedback_outlined,
