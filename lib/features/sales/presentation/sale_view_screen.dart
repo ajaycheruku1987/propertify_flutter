@@ -214,6 +214,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 10,),
                       // Property Details Section (Title, Price, Location, RERA)
                       _buildPropertyDetailsSection(sale),
 
@@ -585,7 +586,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     AddEditUnitBottomSheet.show(context, sale);
                   },
                   icon: const Icon(Icons.add, size: 20),
-                  label: Text('${l10n.create} $unitsLabel'),
+                  label: Text('Add'),
                   style: TextButton.styleFrom(
                     foregroundColor: AppTheme.blueColor,
                     padding: const EdgeInsets.symmetric(horizontal: 12),
