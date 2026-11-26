@@ -139,7 +139,7 @@ class AppCategories {
     'All',
     'Villas',
     'Apartments',
-    'Open Plots',
+    'Openplots',
     'Commercial',
   ];
 
@@ -205,7 +205,7 @@ class AppCategories {
   // Company categories
   static const List<String> companyCategories = [
     'Construction',
-    'Open Plots',
+    'Openplots',
     'Commercial',
   ];
 }

@@ -246,48 +246,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
             ),
             centerTitle: true,
             actions: [
-              if (isOwner) ...[
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.edit_outlined, color: Colors.black),
-                    onPressed: () {
-                      context.push(CreateSalesScreen.routeName, extra: sale);
-                    },
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.delete_outline, color: Colors.red),
-                    onPressed: () => _showDeleteProjectDialog(context, sale.id!),
-                  ),
-                ),
-                const SizedBox(width: 8),
-              ],
               Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -306,6 +264,72 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                   onPressed: () => _handleShare(sale),
                 ),
               ),
+              if (isOwner) ...[
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: PopupMenuButton<String>(
+                    color: Colors.white,
+                    padding: EdgeInsets.zero,
+                    position: PopupMenuPosition.under,
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    icon: const Icon(
+                      Icons.more_vert,
+                      color: Colors.black87,
+                      size: 20,
+                    ),
+                    onSelected: (value) {
+                      if (value == 'edit') {
+                        context.push(CreateSalesScreen.routeName, extra: sale);
+                      } else if (value == 'delete') {
+                        _showDeleteProjectDialog(context, sale.id!);
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'edit',
+                        child: Row(
+                          children: [
+                            const Icon(Icons.edit_outlined, size: 18, color: Colors.black87),
+                            const SizedBox(width: 10),
+                            Text(
+                              l10n.edit,
+                              style: const TextStyle(fontSize: 14, color: Colors.black87),
+                            ),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: 'delete',
+                        child: Row(
+                          children: [
+                            const Icon(Icons.delete_outline, size: 18, color: Colors.red),
+                            const SizedBox(width: 10),
+                            Text(
+                              l10n.delete,
+                              style: const TextStyle(fontSize: 14, color: Colors.red),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 4),
+              ],
             ],
           ),
           body: SingleChildScrollView(
@@ -685,7 +709,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${l10n.available} Flats (${units.length})',
+                  '${l10n.available} $unitsLabel (${units.length})',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -740,7 +764,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                     String titleLabel = 'Unit';
                     if (isApartment) titleLabel = l10n.flats.replaceAll('లు', '');
                     if (isVilla) titleLabel = l10n.villa;
-                    if (isOpenPlot) titleLabel = l10n.openPlot;
+                    if (isOpenPlot) titleLabel = l10n.openPlots;
 
                     final isAvailable =
                         (unit.status ?? "Available").toLowerCase() ==
@@ -1505,7 +1529,7 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
   String _getUnitsLabel(String? propertyType) {
     final type = propertyType?.toLowerCase().trim() ?? '';
     if (type.contains('apartment')) {
-      return 'Apartments';
+      return 'Flats';
     } else if (type.contains('villa')) {
       return 'Villas';
     } else if (type.contains('plot')) {

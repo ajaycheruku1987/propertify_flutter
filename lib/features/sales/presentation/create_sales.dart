@@ -361,6 +361,10 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                   label: l10n.saleSpecification,
                   controller: _saleSpecificationController,
                   hintText: l10n.saleSpecHint,
+                  maxLength: 20,
+                  textInputFormatter: [
+                    LengthLimitingTextInputFormatter(20),
+                  ],
                   maxlines: 2,
                 ),
                 const SizedBox(height: 16),
@@ -484,18 +488,20 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                               .state;
 
                           // Map property type to backend format
-                          String propertyType = createPostState
-                              .selectedPropertyType
-                              .toLowerCase()
-                              .trim();
-                          if (propertyType == 'apartments') {
+                          final String rawType = createPostState.selectedPropertyType;
+                          final String lowerType = rawType.toLowerCase().trim();
+                          String propertyType = rawType;
+
+                          if (lowerType.contains('apartment')) {
                             propertyType = 'Apartments';
-                          } else if (propertyType == 'villas') {
+                          } else if (lowerType.contains('villa')) {
                             propertyType = 'Villas';
-                          } else if (propertyType == 'open plot' ||
-                              propertyType == 'plots' ||
-                              propertyType == 'properties') {
+                          } else if (lowerType.contains('plot') ||
+                              lowerType.contains('land') ||
+                              lowerType.contains('properties')) {
                             propertyType = 'OpenPlot';
+                          } else if (lowerType.contains('commercial')) {
+                            propertyType = 'Commercial';
                           }
 
                           final String projectName = _projectNameController.text
