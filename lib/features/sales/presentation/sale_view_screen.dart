@@ -218,6 +218,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
                       // Property Details Section (Title, Price, Location, RERA)
                       _buildPropertyDetailsSection(sale),
 
+                      // Address Section
+                      _buildAddressSection(sale),
+                      const SizedBox(height: 16),
                       // Description Section
                       _buildDescriptionSection(sale),
                       const SizedBox(height: 16),
@@ -454,10 +457,6 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         children: [
           // Property Info Cards (Type, Units, Area) - Above Description
           _buildPropertyInfoCards(sale),
-          const SizedBox(height: 16),
-
-          // Address Section
-          _buildAddressSection(sale),
           const SizedBox(height: 16),
 
           // Builder/Company Section
@@ -1052,46 +1051,32 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
 
   Widget _buildAddressSection(SaleRecord sale) {
     final l10n = AppLocalizations.of(context)!;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.address,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.grey[50],
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey[200]!),
-          ),
-          child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const Icon(Icons.location_on_outlined),
+                  Icon(Icons.location_on_outlined, size: 14,color: Colors.grey.shade700,),
                   const SizedBox(width: 8),
                   Text(
                     "${(sale.city?.replaceAll(',', ' |') ?? '').translate(context)} | ${(sale.state ?? '').translate(context)}",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade700,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
