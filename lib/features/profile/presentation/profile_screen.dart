@@ -474,15 +474,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     }
                     //   },
                     // ),
-                    ProfileMenuItem(
-                      icon: Icons.business,
-                      title: l10n.myCompany,
-                      onTap: () {
-                        final userId = profileState.userProfile?.id ??
-                            serviceLocator<AppCacheService>().customerAccountId;
-                        if (userId != null && userId.isNotEmpty) {
-                          context.push(MyCompanyScreen.routeName, extra: userId);
+                    BlocBuilder<CompanyBloc, CompanyState>(
+                      builder: (context, companyState) {
+                        if (companyState.myCompany == null) {
+                          return const SizedBox.shrink();
                         }
+                        return ProfileMenuItem(
+                          icon: Icons.business,
+                          title: l10n.myCompany,
+                          onTap: () {
+                            final userId = profileState.userProfile?.id ??
+                                serviceLocator<AppCacheService>().customerAccountId;
+                            if (userId != null && userId.isNotEmpty) {
+                              context.push(MyCompanyScreen.routeName, extra: userId);
+                            }
+                          },
+                        );
                       },
                     ),
                     ProfileMenuItem(

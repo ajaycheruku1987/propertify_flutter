@@ -808,10 +808,30 @@ class SalesBloc extends Bloc<SalesEvent, SalesState> {
         },
         (_) {
           CustomToast.showSuccessToast(msg: 'Sales project deleted successfully');
+          final updatedUserProjects = state.userSalesProjects?.salerecords != null
+              ? state.userSalesProjects!.copyWith(
+                  salerecords: state.userSalesProjects!.salerecords!
+                      .where((record) => record.id != event.projectId)
+                      .toList(),
+                )
+              : null;
+
+          final updatedSalesList = state.salesList?.salerecords != null
+              ? state.salesList!.copyWith(
+                  salerecords: state.salesList!.salerecords!
+                      .where((record) => record.id != event.projectId)
+                      .toList(),
+                )
+              : null;
+
           emit(state.copyWith(
             isLoading: false,
             isSuccess: true,
             saleRecord: null,
+            projectUnits: null,
+            projectCallbacks: [],
+            userSalesProjects: updatedUserProjects,
+            salesList: updatedSalesList,
             notifyStatus: NotifyStatus(
               message: 'Sales project deleted successfully',
               type: NotifyType.success,

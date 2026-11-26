@@ -86,6 +86,7 @@ class _MyCompanyScreenState extends State<MyCompanyScreen> {
       listener: (context, state) {
         if (state.isSuccess &&
             state.errorMessage == 'Company deleted successfully') {
+          context.read<SalesBloc>().add(const SalesEvent.reset());
           Navigator.of(context).pop();
           return;
         }
