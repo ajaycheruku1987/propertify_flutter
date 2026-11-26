@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:propertify/l10n/app_localizations.dart';
@@ -203,6 +204,9 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                           label: unitsLabel,
                           controller: _noOfUnitsController,
                           keyboardType: TextInputType.number,
+                          textInputFormatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
                           isRequired: true,
                           validator: (v) =>
                               v == null || v.trim().isEmpty ? l10n.required : null,
@@ -211,7 +215,14 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                         CommonTextFormField(
                           label: areaLabel,
                           controller: _areaController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          textInputFormatter: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d*\.?\d*'),
+                            ),
+                          ],
                           isRequired: true,
                           validator: (v) =>
                               v == null || v.trim().isEmpty ? l10n.required : null,
@@ -255,6 +266,11 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                         keyboardType: const TextInputType.numberWithOptions(
                           decimal: true,
                         ),
+                        textInputFormatter: [
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r'^\d*\.?\d*'),
+                          ),
+                        ],
                         isRequired: true,
                         validator: (v) =>
                             v == null || v.trim().isEmpty ? l10n.required : null,
@@ -268,6 +284,11 @@ class _CreateSalesScreenState extends State<CreateSalesScreen> {
                         keyboardType: const TextInputType.numberWithOptions(
                           decimal: true,
                         ),
+                        textInputFormatter: [
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r'^\d*\.?\d*'),
+                          ),
+                        ],
                         isRequired: true,
                         validator: (v) =>
                             v == null || v.trim().isEmpty ? l10n.required : null,

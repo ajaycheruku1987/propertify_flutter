@@ -1245,6 +1245,9 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         context.read<ProfileBloc>().state.userProfile?.id ==
         (sale.userId ?? sale.owner?.id);
 
+    final bool hasBrochure =
+        sale.brochureUrl != null && sale.brochureUrl!.trim().isNotEmpty;
+
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -1260,36 +1263,27 @@ iOS: https://apps.apple.com/in/app/propertify-buy-sell-rent/id6763365054
         ),
         child: Row(
           children: [
-            Expanded(
-              child: OutlinedButton.icon(
-                onPressed: () {
-                  final url = sale.brochureUrl?.trim();
-                  String? openUrl = url != null && url.isNotEmpty
-                      ? url
-                      : (sale.imageUrls != null && sale.imageUrls!.isNotEmpty
-                            ? sale.imageUrls!.first
-                            : null);
-                  if (openUrl != null) {
-                    FullscreenWidget.open(context, imageUrl: openUrl);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('No brochure available')),
-                    );
-                  }
-                },
-                icon: const Icon(Icons.description, size: 20),
-                label: const Text('Brochure'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AppTheme.blueColor,
-                  side: BorderSide(color: AppTheme.blueColor),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            if (hasBrochure) ...[
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    final url = sale.brochureUrl!.trim();
+                    FullscreenWidget.open(context, imageUrl: url);
+                  },
+                  icon: const Icon(Icons.description, size: 20),
+                  label: const Text('Brochure'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppTheme.blueColor,
+                    side: BorderSide(color: AppTheme.blueColor),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(width: 16),
+              const SizedBox(width: 16),
+            ],
 
             // Owner → View Requests; Others → Call Request / Auth
             Expanded(
