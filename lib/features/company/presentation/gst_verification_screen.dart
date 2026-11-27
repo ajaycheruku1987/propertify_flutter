@@ -23,9 +23,17 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
   @override
   void initState() {
     super.initState();
-    // Reset bloc state when screen is visited
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<CompanyBloc>().add(const CompanyEvent.resetState());
+      final companyState = context.read<CompanyBloc>().state;
+      if (companyState.myCompany != null) {
+        final company = companyState.myCompany!;
+        _gstController.text = company.gstNumber ?? '';
+        context.read<CompanyBloc>().add(
+              CompanyEvent.initializeForEdit(company: company),
+            );
+      } else {
+        context.read<CompanyBloc>().add(const CompanyEvent.resetState());
+      }
     });
   }
 
@@ -35,19 +43,29 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
     super.dispose();
   }
 
-  void _onNextPressed() {
+  void _onButtonPressed() {
     if (_gstController.text.trim().isEmpty) {
       CustomToast.showErrorToast(msg: 'Please enter GST number');
       return;
     }
 
     final bloc = context.read<CompanyBloc>();
+    final myCompany = bloc.state.myCompany;
+
     bloc.add(CompanyEvent.gstNumberChanged(gstNumber: _gstController.text));
-    context.push(CreateCompanyScreen.routeName);
+
+    if (myCompany != null && myCompany.id != null) {
+      bloc.add(CompanyEvent.updateCompany(companyId: myCompany.id!));
+    } else {
+      context.push(CreateCompanyScreen.routeName);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final myCompany = context.select((CompanyBloc bloc) => bloc.state.myCompany);
+    final isUpdate = myCompany != null;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -57,9 +75,9 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Create company',
-          style: TextStyle(
+        title: Text(
+          isUpdate ? 'Update GST' : 'Create company',
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -72,6 +90,12 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
           listener: (context, state) {
             if (state.errorMessage != null) {
               CustomToast.showErrorToast(msg: state.errorMessage!);
+            } else if (state.isSuccess && isUpdate) {
+              CustomToast.showSuccessToast(
+                msg: 'GST updated successfully, sent for approval',
+              );
+              context.read<CompanyBloc>().add(const CompanyEvent.getMyCompany());
+              context.go('/profile?refresh=true');
             }
           },
           builder: (context, state) {
@@ -105,10 +129,12 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
 
                         const SizedBox(height: 40),
 
-                        const Text(
-                          'Verify GST for Create Company',
+                        Text(
+                          isUpdate
+                              ? 'Update GST Number'
+                              : 'Verify GST for Create Company',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87,
@@ -116,7 +142,9 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'Enter your GST Number and Verify to\nRegister company',
+                          isUpdate
+                              ? 'Enter your corrected GST Number and submit\nfor admin approval'
+                              : 'Enter your GST Number and Verify to\nRegister company',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 14,
@@ -130,9 +158,7 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
                         CommonTextFormField(
                           controller: _gstController,
                           hintText: 'GST number',
-                          onChanged: (value) {
-                            // Optional: Validate format live
-                          },
+                          onChanged: (value) {},
                         ),
 
                         const Spacer(),
@@ -140,10 +166,9 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: CommonCustomButton(
-                            onTap: _onNextPressed,
-                            buttonLabel: 'Next',
+                            onTap: _onButtonPressed,
+                            buttonLabel: isUpdate ? 'Submit' : 'Next',
                             isEnable: !state.isLoading,
-                            // Matches screenshot purple
                           ),
                         ),
                         const SizedBox(height: 20),

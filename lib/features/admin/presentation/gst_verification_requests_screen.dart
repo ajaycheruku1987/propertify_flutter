@@ -423,20 +423,20 @@ class AdminGstCompanyCard extends StatelessWidget {
                 if (status != 'approved')
                   Row(
                     children: [
-                      // Expanded(
-                      //   child: OutlinedButton(
-                      //     onPressed: () => _showRejectDialog(context),
-                      //     style: OutlinedButton.styleFrom(
-                      //       foregroundColor: Colors.red,
-                      //       side: const BorderSide(color: Colors.red),
-                      //       shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(8),
-                      //       ),
-                      //     ),
-                      //     child: const Text('Reject'),
-                      //   ),
-                      // ),
-                      // const SizedBox(width: 12),
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () => _showRejectDialog(context),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.red,
+                            side: const BorderSide(color: Colors.red),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text('Reject'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () => _showApproveDialog(context),

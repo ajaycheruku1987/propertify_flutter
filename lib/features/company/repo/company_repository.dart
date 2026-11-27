@@ -144,7 +144,10 @@ class CompanyRepositoryImpl implements CompanyRepository {
       if (facebookUrl != null) formDataMap['facebook_url'] = facebookUrl;
       if (instagramUrl != null) formDataMap['instagram_url'] = instagramUrl;
       if (twitterUrl != null) formDataMap['twitter_url'] = twitterUrl;
-      if (gstNumber != null) formDataMap['gst_number'] = gstNumber;
+      if (gstNumber != null) {
+        formDataMap['gst_number'] = gstNumber;
+        formDataMap['gst_verification_status'] = 'pending';
+      }
 
       if (image != null) {
         formDataMap['image'] = await MultipartFile.fromFile(

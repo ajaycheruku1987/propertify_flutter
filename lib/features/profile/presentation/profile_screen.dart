@@ -502,17 +502,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         companyState.myCompany != null &&
                         companyState.myCompany?.gstVerificationStatus ==
                             'rejected') ...[
-                      const SizedBox
-
-                        (height: 12),
+                      const SizedBox(height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            CustomToast.showWarningToast(
-                              msg: 'Feature coming soon',
+                            context.push(
+                              GstVerificationScreen.routeName,
                             );
                           },
                           child: Container(
@@ -712,6 +710,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                     // Admin / Role Dashboard Menu Item
                     if (homeState.showAddButton) ...[
+                      ProfileMenuItem(
+                        icon: Icons.dashboard_outlined,
+                        title: l10n.myDashboard,
+                        onTap: () => context.push(MyDashboardScreen.routeName),
+                      ),
                       () {
                         final role =
                             profileState.userProfile?.role?.toLowerCase() ??
