@@ -431,26 +431,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    if (homeState.showAddButton &&
-                        companyState.myCompany != null) ...[
-                      const Divider(),
-                      ProfileMenuItem(
-                        icon: Icons.business,
-                        title: l10n.myCompany,
-                        onTap: () {
-                          final userId = profile?.id ??
-                              profileState.userProfile?.id ??
-                              serviceLocator<AppCacheService>()
-                                  .customerAccountId;
-                          if (userId != null && userId.isNotEmpty) {
-                            context.push(
-                              MyCompanyScreen.routeName,
-                              extra: userId,
-                            );
-                          }
-                        },
-                      ),
-                    ],
 
                     // Verification Pending Banner
                     if (homeState.showAddButton &&
@@ -522,7 +502,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         companyState.myCompany != null &&
                         companyState.myCompany?.gstVerificationStatus ==
                             'rejected') ...[
-                      const SizedBox(height: 12),
+                      const SizedBox
+
+                        (height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
@@ -689,64 +671,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ],
-
-                    if (homeState.showAddButton &&
-                        companyState.myCompany != null) ...[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                        ),
-                        child: ProfileStatusCard(
-                          title: 'GST Verification',
-                          subtitle: 'Please wait 24 hrs to Complete',
-                          buttonText: 'Pending',
-                          onButtonTap: () {},
-                          imagePath: 'assets/images/gst_inreview.svg',
-                          isSvg: true,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                        ),
-                        child: ProfileStatusCard(
-                          title: 'You GST Verified Sucessfully ',
-                          subtitle: 'Add your Company Details',
-                          buttonText: 'Successful',
-                          onButtonTap: () {},
-                          imagePath: 'assets/images/gst_verified.svg',
-                          isSvg: true,
-                        ),
-                      ),
-                    ],
                     if (homeState.showAddButton &&
                         companyState.myCompany == null) ...[
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(
-                      //     horizontal: 16.0,
-                      //   ),
-                      //   child: ProfileStatusCard(
-                      //     title: 'GST Verification',
-                      //     subtitle: 'Please wait 24 hrs to Complete',
-                      //     buttonText: 'Pending',
-                      //     onButtonTap: () {},
-                      //     imagePath: 'assets/images/gst_inreview.svg',
-                      //     isSvg: true,
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(
-                      //     horizontal: 16.0,
-                      //   ),
-                      //   child: ProfileStatusCard(
-                      //     title: 'You GST Verified Sucessfully ',
-                      //     subtitle: 'Add your Company Details',
-                      //     buttonText: 'Successful',
-                      //     onButtonTap: () {},
-                      //     imagePath: 'assets/images/gst_verified.svg',
-                      //     isSvg: true,
-                      //   ),
-                      // ),
                       AdSliderWidget(
                         margin: const EdgeInsets.fromLTRB(16, 4, 16, 16),
                         title: 'Want to create a Project!',
@@ -758,6 +684,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         showExploreDetailsButton: false,
                         backgroundImagePath:
                             'assets/images/create_company_banner.svg',
+                      ),
+                    ],
+
+                    if (homeState.showAddButton &&
+                        companyState.myCompany != null) ...[
+                      const Divider(),
+                      ProfileMenuItem(
+                        icon: Icons.business,
+                        title: l10n.myCompany,
+                        onTap: () {
+                          final userId = profile?.id ??
+                              profileState.userProfile?.id ??
+                              serviceLocator<AppCacheService>()
+                                  .customerAccountId;
+                          if (userId != null && userId.isNotEmpty) {
+                            context.push(
+                              MyCompanyScreen.routeName,
+                              extra: userId,
+                            );
+                          }
+                        },
                       ),
                     ],
                     // Admin / Role Dashboard Menu Item
