@@ -91,7 +91,7 @@ class _GstVerificationScreenState extends State<GstVerificationScreen> {
                           width: double.infinity,
                           child: Center(
                             child: SvgPicture.asset(
-                              'assets/icons/city_illustration.svg', // Assuming this asset exists or using placeholder
+                              'assets/images/my_company.svg',
                               height: 180,
                               placeholderBuilder: (BuildContext context) =>
                                   const Icon(

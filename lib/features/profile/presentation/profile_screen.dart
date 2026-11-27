@@ -688,7 +688,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
 
                     if (homeState.showAddButton &&
-                        companyState.myCompany != null) ...[
+                        companyState.myCompany != null &&
+                        (companyState.myCompany?.gstVerificationStatus ==
+                                'approved' ||
+                            companyState.myCompany?.isVerified == true)) ...[
                       const Divider(),
                       ProfileMenuItem(
                         icon: Icons.business,

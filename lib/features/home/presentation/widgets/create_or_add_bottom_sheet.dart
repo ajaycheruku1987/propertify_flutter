@@ -218,10 +218,10 @@ class CreateOrAddBottomSheet extends StatelessWidget {
                               ),
                             );
                           }
-                          // Case 2: Company exists and GST is verified (not none, not pending) -> Show Create Project
+                          // Case 2: Company exists and GST is verified -> Show Create Project
                           else if (hasCompany &&
-                              status != null &&
-                              status != 'none') {
+                              (status == 'approved' ||
+                                  company.isVerified == true)) {
                             return Expanded(
                               child: _buildOptionCard(
                                 context: context,
